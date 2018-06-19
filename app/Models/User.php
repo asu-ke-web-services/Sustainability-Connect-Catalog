@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;

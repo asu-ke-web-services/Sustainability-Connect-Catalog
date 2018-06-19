@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "backpack/crud": "^3.4",
+        "backpack/permissionmanager": "^3.12",
         "backpack/settings": "^2.1",
         "barryvdh/laravel-elfinder": "^0.3.12",
         "fideloper/proxy": "~3.3",

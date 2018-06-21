@@ -10,3 +10,7 @@
     <a href="{!! route('projects.index') !!}"><i class="fa fa-edit"></i><span>Projects</span></a>
 </li>
 
+<li class="{{ Request::is('internships*') ? 'active' : '' }}">
+    <a href="{!! route('internships.index') !!}"><i class="fa fa-edit"></i><span>Internships</span></a>
+</li>
+

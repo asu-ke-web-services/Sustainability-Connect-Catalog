@@ -26,3 +26,4 @@ Route::resource('opportunities', 'OpportunityController');
 
 Route::resource('projects', 'ProjectController');
 
+Route::resource('internships', 'InternshipController');

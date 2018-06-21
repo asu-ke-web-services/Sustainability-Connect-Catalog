@@ -24,3 +24,5 @@ Route::resource('organizations', 'OrganizationController');
 
 Route::resource('opportunities', 'OpportunityController');
 
+Route::resource('projects', 'ProjectController');
+

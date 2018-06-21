@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace SCCatalog\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Organization;
+use SCCatalog\Models\Organization;
 
 class CreateOrganizationRequest extends FormRequest
 {

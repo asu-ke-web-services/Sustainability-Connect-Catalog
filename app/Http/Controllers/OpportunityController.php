@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace SCCatalog\Http\Controllers;
 
-use App\Http\Requests\CreateOpportunityRequest;
-use App\Http\Requests\UpdateOpportunityRequest;
-use App\Repositories\OpportunityRepository;
-use App\Http\Controllers\AppBaseController;
+use SCCatalog\Http\Requests\CreateOpportunityRequest;
+use SCCatalog\Http\Requests\UpdateOpportunityRequest;
+use SCCatalog\Repositories\OpportunityRepository;
+use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;

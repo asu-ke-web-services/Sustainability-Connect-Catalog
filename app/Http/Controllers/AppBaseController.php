@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace SCCatalog\Http\Controllers;
 
 use InfyOm\Generator\Utils\ResponseUtil;
 use Response;

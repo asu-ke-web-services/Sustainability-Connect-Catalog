@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace SCCatalog\Http\Controllers;
 
-use App\Http\Requests\CreateOrganizationRequest;
-use App\Http\Requests\UpdateOrganizationRequest;
-use App\Repositories\OrganizationRepository;
-use App\Http\Controllers\AppBaseController;
+use SCCatalog\Http\Requests\CreateOrganizationRequest;
+use SCCatalog\Http\Requests\UpdateOrganizationRequest;
+use SCCatalog\Repositories\OrganizationRepository;
+use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;

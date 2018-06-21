@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace SCCatalog\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\StudentDegreeLevelRequest as StoreRequest;
-use App\Http\Requests\StudentDegreeLevelRequest as UpdateRequest;
+use SCCatalog\Http\Requests\StudentDegreeLevelRequest as StoreRequest;
+use SCCatalog\Http\Requests\StudentDegreeLevelRequest as UpdateRequest;
 
 class StudentDegreeLevelCrudController extends CrudController
 {
@@ -18,7 +18,7 @@ class StudentDegreeLevelCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\StudentDegreeLevel');
+        $this->crud->setModel('SCCatalog\Models\StudentDegreeLevel');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/student_degree_level');
         $this->crud->setEntityNameStrings('student_degree_level', 'student_degree_levels');
 

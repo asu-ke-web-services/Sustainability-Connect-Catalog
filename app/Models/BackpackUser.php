@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace SCCatalog\Models;
 
-use App\Models\User;
+use SCCatalog\Models\User;
 use Backpack\Base\app\Notifications\ResetPasswordNotification as ResetPasswordNotification;
 
 class BackpackUser extends User

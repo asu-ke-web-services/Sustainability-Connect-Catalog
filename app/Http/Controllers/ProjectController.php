@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace SCCatalog\Http\Controllers;
 
-use App\Http\Requests\CreateProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
-use App\Repositories\ProjectRepository;
-use App\Http\Controllers\AppBaseController;
+use SCCatalog\Http\Requests\CreateProjectRequest;
+use SCCatalog\Http\Requests\UpdateProjectRequest;
+use SCCatalog\Repositories\ProjectRepository;
+use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;

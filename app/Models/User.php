@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace SCCatalog\Models;
 
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;

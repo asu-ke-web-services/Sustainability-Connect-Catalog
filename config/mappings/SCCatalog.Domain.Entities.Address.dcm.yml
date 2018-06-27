@@ -1,0 +1,75 @@
+#SCCatalog.Domain.Entities.Address.dcm.yml
+SCCatalog\Domain\Entities\Address:
+    type: entity
+    #repositoryClass: SCCatalog\Infrastructure\Repositories\DoctrineOrganizationRepository
+    table: addresses
+    options:
+        collate: utf8mb4_unicode_ci
+        charset: utf8mb4
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    indexes:
+        street1_index:
+            columns: [ street1 ]
+        street2_index:
+            columns: [ street2 ]
+        city_index:
+            columns: [ city ]
+        state_index:
+            columns: [ state ]
+        postal_code_index:
+            columns: [ postal_code ]
+        country_index:
+            columns: [ country ]
+    fields:
+        street1:
+            type: string
+            length: 255
+            nullable: true
+        street2:
+            type: string
+            length: 255
+            nullable: true
+        city:
+            type: string
+            length: 255
+            nullable: true
+        state:
+            type: string
+            length: 255
+            nullable: true
+        postalCode:
+            type: string
+            column: postal_code
+            length: 255
+            nullable: true
+        country:
+            type: string
+            length: 255
+            nullable: true
+        note:
+            type: text
+            nullable: true
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: datetime
+            column: deleted_at
+            nullable: true

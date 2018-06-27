@@ -1,0 +1,65 @@
+#SCCatalog.Domain.Entities.Organization.dcm.yml
+SCCatalog\Domain\Entities\Organization:
+    type: entity
+    #repositoryClass: SCCatalog\Infrastructure\Repositories\DoctrineOrganizationRepository
+    table: organizations
+    options:
+        collate: utf8mb4_unicode_ci
+        charset: utf8mb4
+    indexes:
+        name_index:
+            columns: [ name ]
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 50
+        url:
+            type: string
+            length: 1024
+            nullable: true
+        phone:
+            type: string
+            length: 50
+            nullable: true
+        notes:
+            type: text
+            nullable: true
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+        deletedAt:
+            type: datetime
+            column: deleted_at
+            nullable: true
+#    oneToOne:
+#        type:
+#            targetEntity: OrganizationType
+#            joinColumn:
+#                name: organization_type_id
+#                referencedColumnName: id
+#                onDelete: ["persist", "merge"]
+#        status:
+#            targetEntity: OrganizationStatus
+#            joinColumn:
+#                name: organization_status_id
+#                referencedColumnName: id
+#                onDelete: ["persist", "merge"]
+    oneToMany:
+        addresses:
+            targetEntity: SCCatalog\Domain\Entities\Address
+            mappedBy: address
+#        notes:
+#            targetEntity: Note
+#            mappedBy: organization
+#            cascade: ["persist", "merge"]
+#        opportunities:
+#            targetEntity: SCCatalog\Domain\Model\Opportunity\Opportunity
+#            mappedBy: organization

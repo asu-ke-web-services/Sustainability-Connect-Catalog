@@ -25,10 +25,10 @@ return [
             'dev'           => env('APP_DEBUG', false),
             'meta'          => env('DOCTRINE_METADATA', 'yaml'),
             'connection'    => env('DB_CONNECTION', 'mysql'),
-            'namespaces'    => ['SCConnect\Domain\Entities'],
+            'namespaces'    => ['SCCatalog'],
             'paths'         => [
-                base_path('app/Domain/Entities'),
-                config_path('app/Infrastructure/Mappings')
+                base_path('app'),
+                config_path('mappings')
             ],
             'repository'    => Doctrine\ORM\EntityRepository::class,
             'proxies'       => [

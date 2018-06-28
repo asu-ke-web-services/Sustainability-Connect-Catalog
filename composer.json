@@ -15,12 +15,16 @@
     "gedmo/doctrine-extensions": "2.4.*",
     "infyomlabs/adminlte-templates": "5.5.x-dev",
     "infyomlabs/laravel-generator": "5.5.x-dev",
+    "laravel-doctrine/acl": "1.0.*",
     "laravel-doctrine/extensions": "1.0.*",
     "laravel-doctrine/migrations": "1.1.*",
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "^5.5.0",
     "mccool/laravel-auto-presenter": "^7.0",
+    "ramsey/uuid-doctrine": "^1.4",
+    "roave/security-advisories": "dev-master",
+    "somnambulist/domain-events": "^1.1",
     "venturecraft/revisionable": "1.*"
   },
   "require-dev": {

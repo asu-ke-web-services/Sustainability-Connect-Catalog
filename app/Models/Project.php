@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace SCCatalog\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Project
- * @package App\Models
+ * @package SCCatalog\Models
  * @version June 20, 2018, 11:48 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection opportunitiesAddresses

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace SCCatalog\Repositories;
 
-use App\Models\Organization;
+use SCCatalog\Models\Organization;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class OrganizationRepository
- * @package App\Repositories
+ * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:29 pm UTC
  *
  * @method Organization findWithoutFail($id, $columns = ['*'])

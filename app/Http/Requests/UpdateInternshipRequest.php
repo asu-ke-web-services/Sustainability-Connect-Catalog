@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace SCCatalog\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Internship;
+use SCCatalog\Models\Internship;
 
 class UpdateInternshipRequest extends FormRequest
 {

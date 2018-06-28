@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace SCCatalog\Repositories;
 
-use App\Models\Internship;
+use SCCatalog\Models\Internship;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class InternshipRepository
- * @package App\Repositories
+ * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:49 pm UTC
  *
  * @method Internship findWithoutFail($id, $columns = ['*'])

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace SCCatalog\Repositories;
 
-use App\Models\Project;
+use SCCatalog\Models\Project;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class ProjectRepository
- * @package App\Repositories
+ * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:48 pm UTC
  *
  * @method Project findWithoutFail($id, $columns = ['*'])

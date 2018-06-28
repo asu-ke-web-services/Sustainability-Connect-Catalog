@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace SCCatalog\Http\Controllers;
 
-use App\Http\Requests\CreateInternshipRequest;
-use App\Http\Requests\UpdateInternshipRequest;
-use App\Repositories\InternshipRepository;
-use App\Http\Controllers\AppBaseController;
+use SCCatalog\Http\Requests\CreateInternshipRequest;
+use SCCatalog\Http\Requests\UpdateInternshipRequest;
+use SCCatalog\Repositories\InternshipRepository;
+use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;

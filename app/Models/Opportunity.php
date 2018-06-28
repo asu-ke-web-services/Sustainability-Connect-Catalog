@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace SCCatalog\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Opportunity
- * @package App\Models
+ * @package SCCatalog\Models
  * @version June 20, 2018, 11:46 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection OpportunitiesAddress
@@ -36,7 +36,7 @@ class Opportunity extends Model
     use SoftDeletes;
 
     public $table = 'opportunities';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -92,7 +92,7 @@ class Opportunity extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**
@@ -100,7 +100,7 @@ class Opportunity extends Model
      **/
     public function opportunitiesAddresses()
     {
-        return $this->hasMany(\App\Models\OpportunitiesAddress::class);
+        return $this->hasMany(\SCCatalog\Models\OpportunitiesAddress::class);
     }
 
     /**
@@ -108,7 +108,7 @@ class Opportunity extends Model
      **/
     public function opportunitiesCategories()
     {
-        return $this->hasMany(\App\Models\OpportunitiesCategory::class);
+        return $this->hasMany(\SCCatalog\Models\OpportunitiesCategory::class);
     }
 
     /**
@@ -116,7 +116,7 @@ class Opportunity extends Model
      **/
     public function opportunitiesKeywords()
     {
-        return $this->hasMany(\App\Models\OpportunitiesKeyword::class);
+        return $this->hasMany(\SCCatalog\Models\OpportunitiesKeyword::class);
     }
 
     /**
@@ -124,6 +124,6 @@ class Opportunity extends Model
      **/
     public function opportunitiesNotes()
     {
-        return $this->hasMany(\App\Models\OpportunitiesNote::class);
+        return $this->hasMany(\SCCatalog\Models\OpportunitiesNote::class);
     }
 }

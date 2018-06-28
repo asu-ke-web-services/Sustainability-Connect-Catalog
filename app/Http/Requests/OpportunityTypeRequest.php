@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace SCCatalog\Http\Requests;
 
-use App\Http\Requests\Request;
+use SCCatalog\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OpportunityTypeRequest extends FormRequest

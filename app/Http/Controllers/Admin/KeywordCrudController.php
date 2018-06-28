@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace SCCatalog\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\KeywordRequest as StoreRequest;
-use App\Http\Requests\KeywordRequest as UpdateRequest;
+use SCCatalog\Http\Requests\KeywordRequest as StoreRequest;
+use SCCatalog\Http\Requests\KeywordRequest as UpdateRequest;
 
 class KeywordCrudController extends CrudController
 {
@@ -18,7 +18,7 @@ class KeywordCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Keyword');
+        $this->crud->setModel('SCCatalog\Models\Keyword');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/keyword');
         $this->crud->setEntityNameStrings('keyword', 'keywords');
 

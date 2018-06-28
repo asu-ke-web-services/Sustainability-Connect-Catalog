@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace SCCatalog\Repositories;
 
-use App\Models\Opportunity;
+use SCCatalog\Models\Opportunity;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class OpportunityRepository
- * @package App\Repositories
+ * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:46 pm UTC
  *
  * @method Opportunity findWithoutFail($id, $columns = ['*'])

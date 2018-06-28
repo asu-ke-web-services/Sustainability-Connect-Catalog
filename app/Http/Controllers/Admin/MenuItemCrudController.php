@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace SCCatalog\Http\Controllers\Admin;
 
-use App\Http\Requests;
+use SCCatalog\Http\Requests;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use Backpack\CRUD\app\Http\Requests\CrudRequest as StoreRequest;
@@ -14,7 +14,7 @@ class MenuItemCrudController extends CrudController
     {
         parent::__construct();
 
-        $this->crud->setModel("App\Models\MenuItem");
+        $this->crud->setModel("SCCatalog\Models\MenuItem");
         $this->crud->setRoute(config('backpack.base.route_prefix').'/menu-item');
         $this->crud->setEntityNameStrings('menu item', 'menu items');
 
@@ -31,7 +31,7 @@ class MenuItemCrudController extends CrudController
                                 'name' => 'parent_id',
                                 'entity' => 'parent',
                                 'attribute' => 'name',
-                                'model' => "\App\Models\MenuItem",
+                                'model' => "\SCCatalog\Models\MenuItem",
                             ]);
 
         $this->crud->addField([
@@ -44,7 +44,7 @@ class MenuItemCrudController extends CrudController
                                 'name' => 'parent_id',
                                 'entity' => 'parent',
                                 'attribute' => 'name',
-                                'model' => "\App\Models\MenuItem",
+                                'model' => "\SCCatalog\Models\MenuItem",
                             ]);
         $this->crud->addField([
                                 'name' => 'type',

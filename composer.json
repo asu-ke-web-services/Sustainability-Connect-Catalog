@@ -19,6 +19,7 @@
     "mccool/laravel-auto-presenter": "^7.0",
     "richan-fongdasen/eloquent-blameable": "^1.1",
     "roave/security-advisories": "dev-master",
+    "spatie/laravel-sluggable": "^2.1",
     "venturecraft/revisionable": "1.*"
   },
   "require-dev": {

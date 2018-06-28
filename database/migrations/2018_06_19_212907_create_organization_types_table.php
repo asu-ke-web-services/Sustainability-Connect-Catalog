@@ -18,6 +18,22 @@ class CreateOrganizationTypesTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->foreign('created_by')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('updated_by')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('deleted_by')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

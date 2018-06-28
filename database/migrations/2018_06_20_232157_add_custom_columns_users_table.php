@@ -15,21 +15,40 @@ class AddCustomColumnsUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->softDeletes();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
             $table->string('type')->nullable();
             $table->string('asurite')->nullable();
-            $table->string('student_degree_level_id')->nullable()->after('asurite');
-            // $table->foreign('student_degree_level_id')
-            //     ->references('id')
-            //     ->on('student_degree_levels');
-            $table->text('degree_program')->nullable()->after('student_degree_level_id');
-            $table->date('graduation_date')->nullable()->after('degree_program');
-            $table->string('phone')->nullable()->after('graduation_date');
-            $table->text('research_interests')->nullable()->after('phone');
-            $table->text('department')->nullable()->after('research_interests');
-            $table->integer('organization_id')->unsigned()->nullable()->after('department');
-            // $table->foreign('organization_id')
-            //     ->references('id')
-            //     ->on('organizations');
+            $table->integer('student_degree_level_id')->unsigned()->nullable();
+            $table->text('degree_program')->nullable();
+            $table->date('graduation_date')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('research_interests')->nullable();
+            $table->text('department')->nullable();
+            $table->integer('organization_id')->unsigned()->nullable();
+
+            $table->foreign('student_degree_level_id')
+                ->references('id')
+                ->on('student_degree_levels');
+
+            $table->foreign('organization_id')
+                ->references('id')
+                ->on('organizations');
+
+
+            $table->foreign('created_by')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('updated_by')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('deleted_by')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
@@ -41,9 +60,12 @@ class AddCustomColumnsUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //$table->dropForeign('users_student_degree_level_id_foreign');
-            //$table->dropForeign('users_organization_id_foreign');
-            $table->dropColumn(['type', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id', 'deleted_at']);
+            $table->dropForeign('users_created_by_foreign');
+            $table->dropForeign('users_deleted_by_foreign');
+            $table->dropForeign('users_organization_id_foreign');
+            $table->dropForeign('users_student_degree_level_id_foreign');
+            $table->dropForeign('users_updated_by_foreign');
+            $table->dropColumn(['type', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id', 'deleted_at', 'created_by', 'updated_by', 'deleted_by']);
         });
     }
 }

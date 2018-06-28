@@ -23,8 +23,8 @@ class CreateInternshipsTable extends Migration
             $table->string('program_lead')->nullable();
             $table->string('success_story')->nullable();
             $table->string('library_collection')->nullable();
-            $table->date('publish_on');
-            $table->date('publish_until');
+            $table->date('publish_on')->nullable();
+            $table->date('publish_until')->nullable();
         });
     }
 

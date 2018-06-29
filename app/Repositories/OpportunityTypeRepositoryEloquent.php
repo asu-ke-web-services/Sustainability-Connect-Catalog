@@ -2,9 +2,9 @@
 
 namespace SCCatalog\Repositories;
 
+use InfyOm\Generator\Common\BaseRepository;
 use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\OpportunityType;
-use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class OpportunityTypeRepository
@@ -32,5 +32,24 @@ class OpportunityTypeRepository extends BaseRepository implements AddressReposit
     public function model()
     {
         return OpportunityType::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+        return OpportunityTypeValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

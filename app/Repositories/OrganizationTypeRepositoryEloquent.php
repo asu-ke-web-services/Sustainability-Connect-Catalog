@@ -2,9 +2,9 @@
 
 namespace SCCatalog\Repositories;
 
+use InfyOm\Generator\Common\BaseRepository;
 use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\OrganizationType;
-use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class OrganizationTypeRepository
@@ -32,5 +32,24 @@ class OrganizationTypeRepository extends BaseRepository implements AddressReposi
     public function model()
     {
         return OrganizationType::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+        return OrganizationTypeValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

@@ -2,9 +2,11 @@
 
 namespace SCCatalog\Repositories;
 
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
-use SCCatalog\Models\Organization;
 use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use SCCatalog\Contracts\Repository\OrganizationRepositoryContract;
+use SCCatalog\Models\Organization;
+use SCCatalog\Validators\OrganizationValidator;
 
 /**
  * Class OrganizationRepository
@@ -32,5 +34,25 @@ class OrganizationRepository extends BaseRepository implements AddressRepository
     public function model()
     {
         return Organization::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+
+        return OrganizationValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

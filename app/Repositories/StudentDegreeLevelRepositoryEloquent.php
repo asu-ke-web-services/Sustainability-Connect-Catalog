@@ -2,9 +2,9 @@
 
 namespace SCCatalog\Repositories;
 
+use InfyOm\Generator\Common\BaseRepository;
 use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\StudentDegreeLevel;
-use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class StudentDegreeLevelRepository
@@ -32,5 +32,24 @@ class StudentDegreeLevelRepository extends BaseRepository implements AddressRepo
     public function model()
     {
         return StudentDegreeLevel::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+        return StudentDegreeLevelValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

@@ -2,9 +2,11 @@
 
 namespace SCCatalog\Repositories;
 
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
+use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use SCCatalog\Contracts\Repository\OpportunityRepositoryContract;
 use SCCatalog\Models\Opportunity;
-use SCCatalog\Repositories\BaseRepository;
+use SCCatalog\Validators\OpportunityValidator;
 
 /**
  * Class OpportunityRepository
@@ -44,5 +46,25 @@ class OpportunityRepository extends BaseRepository implements AddressRepositoryC
     public function model()
     {
         return Opportunity::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+
+        return OpportunityValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

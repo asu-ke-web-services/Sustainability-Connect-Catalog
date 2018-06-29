@@ -2,9 +2,9 @@
 
 namespace SCCatalog\Repositories;
 
+use InfyOm\Generator\Common\BaseRepository;
 use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\Keyword;
-use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class KeywordRepository
@@ -32,5 +32,24 @@ class KeywordRepository extends BaseRepository implements AddressRepositoryContr
     public function model()
     {
         return Keyword::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+        return KeywordValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

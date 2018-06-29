@@ -2,9 +2,11 @@
 
 namespace SCCatalog\Repositories;
 
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
-use SCCatalog\Models\Internship;
 use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use SCCatalog\Contracts\Repository\InternshipRepositoryContract;
+use SCCatalog\Models\Internship;
+use SCCatalog\Validators\InternshipValidator;
 
 /**
  * Class InternshipRepository
@@ -39,5 +41,25 @@ class InternshipRepository extends BaseRepository implements AddressRepositoryCo
     public function model()
     {
         return Internship::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+
+        return InternshipValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

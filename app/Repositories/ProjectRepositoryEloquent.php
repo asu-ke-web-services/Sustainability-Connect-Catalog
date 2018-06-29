@@ -2,9 +2,11 @@
 
 namespace SCCatalog\Repositories;
 
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
-use SCCatalog\Models\Project;
 use InfyOm\Generator\Common\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use SCCatalog\Contracts\Repository\ProjectRepositoryContract;
+use SCCatalog\Models\Project;
+use SCCatalog\Validators\ProjectValidator;
 
 /**
  * Class ProjectRepository
@@ -41,5 +43,25 @@ class ProjectRepository extends BaseRepository implements AddressRepositoryContr
     public function model()
     {
         return Project::class;
+    }
+
+    /**
+    * Specify Validator class name
+    *
+    * @return mixed
+    */
+    public function validator()
+    {
+
+        return ProjectValidator::class;
+    }
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

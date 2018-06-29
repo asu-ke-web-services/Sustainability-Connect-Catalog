@@ -2,19 +2,19 @@
 
 namespace SCCatalog\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Internship
  * @package SCCatalog\Models
  * @version June 20, 2018, 11:49 pm UTC
  *
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesAddresses
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesCategories
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesKeywords
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesNotes
- * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
+ * @property \Illuminate\Database\Eloquent\Collection Addresses
+ * @property \Illuminate\Database\Eloquent\Collection Categories
+ * @property \Illuminate\Database\Eloquent\Collection Keywords
+ * @property \Illuminate\Database\Eloquent\Collection Notes
  * @property string compensation
  * @property string responsibilities
  * @property string qualifications
@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Internship extends Model
 {
+    use BlameableTrait;
     use SoftDeletes;
 
     public $table = 'internships';

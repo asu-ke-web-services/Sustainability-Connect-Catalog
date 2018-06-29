@@ -2,19 +2,21 @@
 
 namespace SCCatalog\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * Class Opportunity
  * @package SCCatalog\Models
  * @version June 20, 2018, 11:46 pm UTC
  *
- * @property \Illuminate\Database\Eloquent\Collection OpportunitiesAddress
- * @property \Illuminate\Database\Eloquent\Collection OpportunitiesCategory
- * @property \Illuminate\Database\Eloquent\Collection OpportunitiesKeyword
- * @property \Illuminate\Database\Eloquent\Collection OpportunitiesNote
- * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
+ * @property \Illuminate\Database\Eloquent\Collection Address
+ * @property \Illuminate\Database\Eloquent\Collection Category
+ * @property \Illuminate\Database\Eloquent\Collection Keyword
+ * @property \Illuminate\Database\Eloquent\Collection Note
  * @property integer opportunityable_id
  * @property string opportunityable_type
  * @property string title
@@ -33,6 +35,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Opportunity extends Model
 {
+    use BlameableTrait;
+    use HasSlug;
     use SoftDeletes;
 
     public $table = 'opportunities';
@@ -68,22 +72,22 @@ class Opportunity extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'opportunityable_id' => 'integer',
-        'opportunityable_type' => 'string',
-        'title' => 'string',
-        'alt_title' => 'string',
-        'slug' => 'string',
-        'listing_expires' => 'date',
-        'application_deadline' => 'string',
+        'id'                    => 'integer',
+        'opportunityable_id'    => 'integer',
+        'opportunityable_type'  => 'string',
+        'title'                 => 'string',
+        'alt_title'             => 'string',
+        'slug'                  => 'string',
+        'listing_expires'       => 'date',
+        'application_deadline'  => 'string',
         'opportunity_status_id' => 'integer',
-        'hidden' => 'boolean',
-        'summary' => 'string',
-        'description' => 'string',
+        'hidden'                => 'boolean',
+        'summary'               => 'string',
+        'description'           => 'string',
         'parent_opportunity_id' => 'integer',
-        'organization_id' => 'integer',
-        'owner_user_id' => 'integer',
-        'submitting_user_id' => 'integer'
+        'organization_id'       => 'integer',
+        'owner_user_id'         => 'integer',
+        'submitting_user_id'    => 'integer'
     ];
 
     /**
@@ -98,32 +102,47 @@ class Opportunity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function opportunitiesAddresses()
+    public function addresses()
     {
-        return $this->hasMany(\SCCatalog\Models\OpportunitiesAddress::class);
+        return $this->hasMany(\SCCatalog\Models\Address::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function opportunitiesCategories()
+    public function categories()
     {
-        return $this->hasMany(\SCCatalog\Models\OpportunitiesCategory::class);
+        return $this->hasMany(\SCCatalog\Models\Category::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function opportunitiesKeywords()
+    public function keywords()
     {
-        return $this->hasMany(\SCCatalog\Models\OpportunitiesKeyword::class);
+        return $this->hasMany(\SCCatalog\Models\Keyword::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function opportunitiesNotes()
+    public function notes()
     {
-        return $this->hasMany(\SCCatalog\Models\OpportunitiesNote::class);
+        return $this->hasMany(\SCCatalog\Models\Note::class);
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
+    public function opportunityable()
+    {
+        return $this->morphTo();
     }
 }

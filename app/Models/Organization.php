@@ -2,8 +2,9 @@
 
 namespace SCCatalog\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Organization
@@ -21,10 +22,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Organization extends Model
 {
+    use BlameableTrait;
     use SoftDeletes;
 
     public $table = 'organizations';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -56,8 +58,8 @@ class Organization extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }

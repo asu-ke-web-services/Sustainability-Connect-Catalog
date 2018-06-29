@@ -2,19 +2,19 @@
 
 namespace SCCatalog\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Project
  * @package SCCatalog\Models
  * @version June 20, 2018, 11:48 pm UTC
  *
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesAddresses
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesCategories
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesKeywords
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesNotes
- * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
+ * @property \Illuminate\Database\Eloquent\Collection Addresses
+ * @property \Illuminate\Database\Eloquent\Collection Categories
+ * @property \Illuminate\Database\Eloquent\Collection Keywords
+ * @property \Illuminate\Database\Eloquent\Collection Notes
  * @property string compensation
  * @property string responsibilities
  * @property string learning_outcomes
@@ -30,10 +30,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Project extends Model
 {
+    use BlameableTrait;
     use SoftDeletes;
 
     public $table = 'projects';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -83,8 +84,13 @@ class Project extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
+    public function opportunity()
+    {
+        return $this->morphOne('Opportunity', 'opportunityable');
+    }
+
 }

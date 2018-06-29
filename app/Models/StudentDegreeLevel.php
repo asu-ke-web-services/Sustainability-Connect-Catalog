@@ -2,12 +2,19 @@
 
 namespace SCCatalog\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class StudentDegreeLevel extends Model
 {
+    use BlameableTrait;
     use CrudTrait;
+    use HasSlug;
+    use SoftDeletes;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,11 +24,15 @@ class StudentDegreeLevel extends Model
 
     protected $table = 'student_degree_levels';
     // protected $primaryKey = 'id';
-    // public $timestamps = false;
+    public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = [
+        'order',
+        'name',
+        'slug'
+    ];
     // protected $hidden = [];
-    // protected $dates = [];
+    protected $dates = ['deleted_at'];
 
     /*
     |--------------------------------------------------------------------------
@@ -52,4 +63,15 @@ class StudentDegreeLevel extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
+   /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
+    }
 }

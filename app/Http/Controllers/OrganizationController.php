@@ -2,8 +2,8 @@
 
 namespace SCCatalog\Http\Controllers;
 
-use SCCatalog\Http\Requests\CreateOrganizationRequest;
-use SCCatalog\Http\Requests\UpdateOrganizationRequest;
+use SCCatalog\Http\Requests\OrganizationCreateRequest;
+use SCCatalog\Http\Requests\OrganizationUpdateRequest;
 use SCCatalog\Support\Contracts\Repository\OrganizationRepositoryContract as OrganizationRepository;
 use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -49,11 +49,11 @@ class OrganizationController extends AppBaseController
     /**
      * Store a newly created Organization in storage.
      *
-     * @param CreateOrganizationRequest $request
+     * @param OrganizationCreateRequest $request
      *
      * @return Response
      */
-    public function store(CreateOrganizationRequest $request)
+    public function store( OrganizationCreateRequest $request)
     {
         $input = $request->all();
 
@@ -107,12 +107,12 @@ class OrganizationController extends AppBaseController
     /**
      * Update the specified Organization in storage.
      *
-     * @param  int              $id
-     * @param UpdateOrganizationRequest $request
+     * @param  int                      $id
+     * @param OrganizationUpdateRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateOrganizationRequest $request)
+    public function update( $id, OrganizationUpdateRequest $request)
     {
         $organization = $this->repository->findWithoutFail($id);
 

@@ -2,8 +2,8 @@
 
 namespace SCCatalog\Http\Controllers;
 
-use SCCatalog\Http\Requests\CreateInternshipRequest;
-use SCCatalog\Http\Requests\UpdateInternshipRequest;
+use SCCatalog\Http\Requests\InternshipCreateRequest;
+use SCCatalog\Http\Requests\InternshipUpdateRequest;
 use SCCatalog\Support\Contracts\Repository\InternshipRepositoryContract as InternshipRepository;
 use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -49,11 +49,11 @@ class InternshipController extends AppBaseController
     /**
      * Store a newly created Internship in storage.
      *
-     * @param CreateInternshipRequest $request
+     * @param InternshipCreateRequest $request
      *
      * @return Response
      */
-    public function store(CreateInternshipRequest $request)
+    public function store( InternshipCreateRequest $request)
     {
         $input = $request->all();
 
@@ -107,12 +107,12 @@ class InternshipController extends AppBaseController
     /**
      * Update the specified Internship in storage.
      *
-     * @param  int              $id
-     * @param UpdateInternshipRequest $request
+     * @param  int                    $id
+     * @param InternshipUpdateRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateInternshipRequest $request)
+    public function update( $id, InternshipUpdateRequest $request)
     {
         $internship = $this->repository->findWithoutFail($id);
 

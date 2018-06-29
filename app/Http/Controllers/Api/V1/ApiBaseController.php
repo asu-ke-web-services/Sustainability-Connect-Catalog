@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Controllers;
+namespace SCCatalog\Http\Controllers\Api\V1;
 
 use InfyOm\Generator\Utils\ResponseUtil;
 use Response;
@@ -14,9 +14,9 @@ use Response;
  *   )
  * )
  * This class should be parent class for other API controllers
- * Class AppBaseController
+ * Class ApiBaseController
  */
-class AppBaseController extends Controller
+class ApiBaseController extends Controller
 {
     public function sendResponse($result, $message)
     {

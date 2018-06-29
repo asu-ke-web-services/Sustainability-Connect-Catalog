@@ -2,33 +2,55 @@
 
 namespace SCCatalog\Http\Controllers;
 
-use SCCatalog\Http\Requests\CreateOpportunityRequest;
-use SCCatalog\Http\Requests\UpdateOpportunityRequest;
-use SCCatalog\Support\Contracts\Repository\OpportunityRepositoryContract as OpportunityRepository;
-use SCCatalog\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
+
 use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+use SCCatalog\Http\Requests\OpportunityCreateRequest;
+use SCCatalog\Http\Requests\OpportunityUpdateRequest;
+use SCCatalog\Http\Requests;
+use SCCatalog\Contracts\Repository\OpportunityRepositoryContract as OpportunityRepository;
+use SCCatalog\Http\Controllers\AppBaseController;
+use SCCatalog\Validators\OpportunityValidator;
 use Response;
 
+/**
+ * Class OpportunityController.
+ *
+ * @package namespace SCCatalog\Http\Controllers;
+ */
 class OpportunityController extends AppBaseController
 {
-    /** 
-        @var  OpportunityRepository
-
-        Laravel note: the Repository Contract is referenced here, and Laravel injects
-        the Repository implementation because we registered the binding between the 
-        contract and repo in Providers\AppServiceProvider
-    */
+    /**
+     * @var  OpportunityRepository
+     */
     private $repository;
 
-    public function __construct(OpportunityRepository $repo)
+    /**
+     * @var OpportunityValidator
+     */
+    protected $validator;
+
+    /**
+     * OpportunityController constructor.
+     *
+     *     Laravel note: the Repository Contract is referenced here, and Laravel injects
+     *     the Repository implementation because we registered the binding between the
+     *     contract and repo in Providers\AppServiceProvider
+     *
+     * @param OpportunityRepository $repository
+     * @param OpportunityValidator $validator
+     */
+    public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
     {
-        $this->repository = $repo;
+        $this->repository = $repository;
+        $this->validator  = $validator;
     }
 
     /**
-     * Display a listing of the Opportunity.
+     * Display a listing of the resource.
      *
      * @param Request $request
      * @return Response
@@ -37,6 +59,13 @@ class OpportunityController extends AppBaseController
     {
         $this->repository->pushCriteria(new RequestCriteria($request));
         $opportunities = $this->repository->all();
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'data' => $posts,
+            ]);
+        }
 
         return view('opportunities.index')
             ->with('opportunities', $opportunities);
@@ -53,25 +82,51 @@ class OpportunityController extends AppBaseController
     }
 
     /**
-     * Store a newly created Opportunity in storage.
+     * Store a newly created resource in storage.
      *
-     * @param CreateOpportunityRequest $request
+     * @param OpportunityCreateRequest $request
      *
      * @return Response
+     *
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(CreateOpportunityRequest $request)
+    public function store(OpportunityCreateRequest $request)
     {
-        $input = $request->all();
+        try {
 
-        $opportunity = $this->repository->create($input);
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-        Flash::success('Opportunity saved successfully.');
+            $opportunity = $this->repository->create($request->all());
 
-        return redirect(route('opportunities.index'));
+            $response = [
+                'message' => 'Opportunity created.',
+                'data'    => $post->toArray(),
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+            Flash::success('Opportunity saved successfully.');
+
+            return redirect()->back()->with('message', $response['message']);
+            // OR: return redirect(route('opportunities.index'));
+
+        } catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
     }
 
     /**
-     * Display the specified Opportunity.
+     * Display the specified resource.
      *
      * @param  int $id
      *
@@ -80,6 +135,13 @@ class OpportunityController extends AppBaseController
     public function show($id)
     {
         $opportunity = $this->repository->findWithoutFail($id);
+
+        if (request()->wantsJson()) {
+            // TODO: handle empty response (add message?)
+            return response()->json([
+                'data' => $post,
+            ]);
+        }
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');
@@ -91,7 +153,7 @@ class OpportunityController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified Opportunity.
+     * Show the form for editing the specified resource.
      *
      * @param  int $id
      *
@@ -111,32 +173,68 @@ class OpportunityController extends AppBaseController
     }
 
     /**
-     * Update the specified Opportunity in storage.
+     * Update the specified resource in storage.
      *
-     * @param  int              $id
-     * @param UpdateOpportunityRequest $request
+     * @param int                      $id
+     * @param OpportunityUpdateRequest $request
      *
      * @return Response
+     *
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update($id, UpdateOpportunityRequest $request)
+    public function update($id, OpportunityUpdateRequest $request)
     {
-        $opportunity = $this->repository->findWithoutFail($id);
+        try {
 
-        if (empty($opportunity)) {
-            Flash::error('Opportunity not found');
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            return redirect(route('opportunities.index'));
+            $opportunity = $this->repository->update($request->all(), $id);
+
+            $response = [
+                'message' => 'Opportunity updated.',
+                'data'    => $opportunity->toArray(),
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+            Flash::success('Opportunity updated successfully.');
+
+            return redirect()->back()->with('message', $response['message']);
+            // OR: return redirect(route('opportunities.index'));
+
+        } catch (ValidatorException $e) {
+
+            if ($request->wantsJson()) {
+
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
 
-        $opportunity = $this->repository->update($request->all(), $id);
+        // $opportunity = $this->repository->findWithoutFail($id);
 
-        Flash::success('Opportunity updated successfully.');
+        // if (empty($opportunity)) {
+        //     Flash::error('Opportunity not found');
 
-        return redirect(route('opportunities.index'));
+        //     return redirect(route('opportunities.index'));
+        // }
+
+        // $opportunity = $this->repository->update($request->all(), $id);
+
+        // Flash::success('Opportunity updated successfully.');
+
+        // return redirect(route('opportunities.index'));
     }
 
     /**
-     * Remove the specified Opportunity from storage.
+     * Remove the specified resource from storage.
      *
      * @param  int $id
      *
@@ -144,6 +242,19 @@ class OpportunityController extends AppBaseController
      */
     public function destroy($id)
     {
+        // $deleted = $this->repository->delete($id);
+
+        // if (request()->wantsJson()) {
+
+        //     return response()->json([
+        //         'message' => 'Opportunity deleted.',
+        //         'deleted' => $deleted,
+        //     ]);
+        // }
+
+        // return redirect()->back()->with('message', 'Opportunity deleted.');
+
+
         $opportunity = $this->repository->findWithoutFail($id);
 
         if (empty($opportunity)) {

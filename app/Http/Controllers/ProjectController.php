@@ -2,8 +2,8 @@
 
 namespace SCCatalog\Http\Controllers;
 
-use SCCatalog\Http\Requests\CreateProjectRequest;
-use SCCatalog\Http\Requests\UpdateProjectRequest;
+use SCCatalog\Http\Requests\ProjectCreateRequest;
+use SCCatalog\Http\Requests\ProjectUpdateRequest;
 use SCCatalog\Support\Contracts\Repository\ProjectRepositoryContract as ProjectRepository;
 use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -49,11 +49,11 @@ class ProjectController extends AppBaseController
     /**
      * Store a newly created Project in storage.
      *
-     * @param CreateProjectRequest $request
+     * @param ProjectCreateRequest $request
      *
      * @return Response
      */
-    public function store(CreateProjectRequest $request)
+    public function store( ProjectCreateRequest $request)
     {
         $input = $request->all();
 
@@ -107,12 +107,12 @@ class ProjectController extends AppBaseController
     /**
      * Update the specified Project in storage.
      *
-     * @param  int              $id
-     * @param UpdateProjectRequest $request
+     * @param  int                 $id
+     * @param ProjectUpdateRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateProjectRequest $request)
+    public function update( $id, ProjectUpdateRequest $request)
     {
         $project = $this->repository->findWithoutFail($id);
 

@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Repositories;
 
+use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\Internship;
 use InfyOm\Generator\Common\BaseRepository;
 
@@ -14,7 +15,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Internship find($id, $columns = ['*'])
  * @method Internship first($columns = ['*'])
 */
-class InternshipRepository extends BaseRepository
+class InternshipRepository extends BaseRepository implements AddressRepositoryContract
 {
     /**
      * @var array

@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Repositories;
 
+use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\Project;
 use InfyOm\Generator\Common\BaseRepository;
 
@@ -14,7 +15,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Project find($id, $columns = ['*'])
  * @method Project first($columns = ['*'])
 */
-class ProjectRepository extends BaseRepository
+class ProjectRepository extends BaseRepository implements AddressRepositoryContract
 {
     /**
      * @var array

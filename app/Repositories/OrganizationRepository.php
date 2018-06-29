@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Repositories;
 
+use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\Organization;
 use InfyOm\Generator\Common\BaseRepository;
 
@@ -14,7 +15,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Organization find($id, $columns = ['*'])
  * @method Organization first($columns = ['*'])
 */
-class OrganizationRepository extends BaseRepository
+class OrganizationRepository extends BaseRepository implements AddressRepositoryContract
 {
     /**
      * @var array

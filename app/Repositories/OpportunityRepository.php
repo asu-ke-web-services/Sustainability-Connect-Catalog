@@ -2,8 +2,9 @@
 
 namespace SCCatalog\Repositories;
 
+use SCCatalog\Contracts\Repository\AddressRepositoryContract;
 use SCCatalog\Models\Opportunity;
-use InfyOm\Generator\Common\BaseRepository;
+use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class OpportunityRepository
@@ -14,7 +15,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Opportunity find($id, $columns = ['*'])
  * @method Opportunity first($columns = ['*'])
 */
-class OpportunityRepository extends BaseRepository
+class OpportunityRepository extends BaseRepository implements AddressRepositoryContract
 {
     /**
      * @var array

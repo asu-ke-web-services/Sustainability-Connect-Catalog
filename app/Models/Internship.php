@@ -4,6 +4,8 @@ namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
@@ -26,10 +28,11 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property date publish_on
  * @property date publish_until
  */
-class Internship extends Model
+class Internship extends Model implements Transformable
 {
     use BlameableTrait;
     use SoftDeletes;
+    use TransformableTrait;
 
     public $table = 'internships';
 

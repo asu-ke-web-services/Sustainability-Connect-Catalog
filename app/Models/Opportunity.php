@@ -4,6 +4,8 @@ namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -33,11 +35,12 @@ use Spatie\Sluggable\SlugOptions;
  * @property integer owner_user_id
  * @property integer submitting_user_id
  */
-class Opportunity extends Model
+class Opportunity extends Model implements Transformable
 {
     use BlameableTrait;
     use HasSlug;
     use SoftDeletes;
+    use TransformableTrait;
 
     public $table = 'opportunities';
 
@@ -49,8 +52,6 @@ class Opportunity extends Model
 
 
     public $fillable = [
-        'opportunityable_id',
-        'opportunityable_type',
         'title',
         'alt_title',
         'slug',

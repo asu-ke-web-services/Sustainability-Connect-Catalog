@@ -6,11 +6,11 @@ use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
 /**
- * Class OpportunityValidator.
+ * Class InternshipValidator.
  *
  * @package namespace SCCatalog\Validators;
  */
-class OpportunityValidator extends LaravelValidator
+class InternshipValidator extends LaravelValidator
 {
     /**
      * Validation Rules

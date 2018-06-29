@@ -3,23 +3,23 @@
 namespace SCCatalog\Transformers\Api\V1;
 
 use League\Fractal\TransformerAbstract;
-use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Project;
 
 /**
- * Class OpportunityTransformer.
+ * Class ProjectTransformer.
  *
  * @package namespace SCCatalog\Transformers;
  */
-class OpportunityTransformer extends TransformerAbstract
+class ProjectTransformer extends TransformerAbstract
 {
     /**
-     * Transform the Opportunity entity.
+     * Transform the Project entity.
      *
-     * @param \SCCatalog\Models\Opportunity $model
+     * @param \SCCatalog\Models\Project $model
      *
      * @return array
      */
-    public function transform(Opportunity $model)
+    public function transform(Project $model)
     {
         return [
             'id'                          => (int) $model->id,

@@ -4,7 +4,7 @@ namespace SCCatalog\Http\Controllers;
 
 use SCCatalog\Http\Requests\CreateOrganizationRequest;
 use SCCatalog\Http\Requests\UpdateOrganizationRequest;
-use SCCatalog\Repositories\OrganizationRepository;
+use SCCatalog\Support\Contracts\Repository\OrganizationRepositoryContract as OrganizationRepository;
 use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -14,11 +14,11 @@ use Response;
 class OrganizationController extends AppBaseController
 {
     /** @var  OrganizationRepository */
-    private $organizationRepository;
+    private $repository;
 
-    public function __construct(OrganizationRepository $organizationRepo)
+    public function __construct(OrganizationRepository $repo)
     {
-        $this->organizationRepository = $organizationRepo;
+        $this->repository = $repo;
     }
 
     /**
@@ -29,8 +29,8 @@ class OrganizationController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->organizationRepository->pushCriteria(new RequestCriteria($request));
-        $organizations = $this->organizationRepository->all();
+        $this->repository->pushCriteria(new RequestCriteria($request));
+        $organizations = $this->repository->all();
 
         return view('organizations.index')
             ->with('organizations', $organizations);
@@ -57,7 +57,7 @@ class OrganizationController extends AppBaseController
     {
         $input = $request->all();
 
-        $organization = $this->organizationRepository->create($input);
+        $organization = $this->repository->create($input);
 
         Flash::success('Organization saved successfully.');
 
@@ -73,7 +73,7 @@ class OrganizationController extends AppBaseController
      */
     public function show($id)
     {
-        $organization = $this->organizationRepository->findWithoutFail($id);
+        $organization = $this->repository->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -93,7 +93,7 @@ class OrganizationController extends AppBaseController
      */
     public function edit($id)
     {
-        $organization = $this->organizationRepository->findWithoutFail($id);
+        $organization = $this->repository->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -114,7 +114,7 @@ class OrganizationController extends AppBaseController
      */
     public function update($id, UpdateOrganizationRequest $request)
     {
-        $organization = $this->organizationRepository->findWithoutFail($id);
+        $organization = $this->repository->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -122,7 +122,7 @@ class OrganizationController extends AppBaseController
             return redirect(route('organizations.index'));
         }
 
-        $organization = $this->organizationRepository->update($request->all(), $id);
+        $organization = $this->repository->update($request->all(), $id);
 
         Flash::success('Organization updated successfully.');
 
@@ -138,7 +138,7 @@ class OrganizationController extends AppBaseController
      */
     public function destroy($id)
     {
-        $organization = $this->organizationRepository->findWithoutFail($id);
+        $organization = $this->repository->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -146,7 +146,7 @@ class OrganizationController extends AppBaseController
             return redirect(route('organizations.index'));
         }
 
-        $this->organizationRepository->delete($id);
+        $this->repository->delete($id);
 
         Flash::success('Organization deleted successfully.');
 

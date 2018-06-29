@@ -4,7 +4,7 @@ namespace SCCatalog\Http\Controllers;
 
 use SCCatalog\Http\Requests\CreateInternshipRequest;
 use SCCatalog\Http\Requests\UpdateInternshipRequest;
-use SCCatalog\Repositories\InternshipRepository;
+use SCCatalog\Support\Contracts\Repository\InternshipRepositoryContract as InternshipRepository;
 use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -14,11 +14,11 @@ use Response;
 class InternshipController extends AppBaseController
 {
     /** @var  InternshipRepository */
-    private $internshipRepository;
+    private $repository;
 
-    public function __construct(InternshipRepository $internshipRepo)
+    public function __construct(InternshipRepository $repo)
     {
-        $this->internshipRepository = $internshipRepo;
+        $this->repository = $repo;
     }
 
     /**
@@ -29,8 +29,8 @@ class InternshipController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->internshipRepository->pushCriteria(new RequestCriteria($request));
-        $internships = $this->internshipRepository->all();
+        $this->repository->pushCriteria(new RequestCriteria($request));
+        $internships = $this->repository->all();
 
         return view('internships.index')
             ->with('internships', $internships);
@@ -57,7 +57,7 @@ class InternshipController extends AppBaseController
     {
         $input = $request->all();
 
-        $internship = $this->internshipRepository->create($input);
+        $internship = $this->repository->create($input);
 
         Flash::success('Internship saved successfully.');
 
@@ -73,7 +73,7 @@ class InternshipController extends AppBaseController
      */
     public function show($id)
     {
-        $internship = $this->internshipRepository->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -93,7 +93,7 @@ class InternshipController extends AppBaseController
      */
     public function edit($id)
     {
-        $internship = $this->internshipRepository->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -114,7 +114,7 @@ class InternshipController extends AppBaseController
      */
     public function update($id, UpdateInternshipRequest $request)
     {
-        $internship = $this->internshipRepository->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -122,7 +122,7 @@ class InternshipController extends AppBaseController
             return redirect(route('internships.index'));
         }
 
-        $internship = $this->internshipRepository->update($request->all(), $id);
+        $internship = $this->repository->update($request->all(), $id);
 
         Flash::success('Internship updated successfully.');
 
@@ -138,7 +138,7 @@ class InternshipController extends AppBaseController
      */
     public function destroy($id)
     {
-        $internship = $this->internshipRepository->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -146,7 +146,7 @@ class InternshipController extends AppBaseController
             return redirect(route('internships.index'));
         }
 
-        $this->internshipRepository->delete($id);
+        $this->repository->delete($id);
 
         Flash::success('Internship deleted successfully.');
 

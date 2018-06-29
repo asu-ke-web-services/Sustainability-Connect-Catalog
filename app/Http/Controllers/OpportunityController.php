@@ -4,7 +4,7 @@ namespace SCCatalog\Http\Controllers;
 
 use SCCatalog\Http\Requests\CreateOpportunityRequest;
 use SCCatalog\Http\Requests\UpdateOpportunityRequest;
-use SCCatalog\Repositories\OpportunityRepository;
+use SCCatalog\Support\Contracts\Repository\OpportunityRepositoryContract as OpportunityRepository;
 use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -13,12 +13,18 @@ use Response;
 
 class OpportunityController extends AppBaseController
 {
-    /** @var  OpportunityRepository */
-    private $opportunityRepository;
+    /** 
+        @var  OpportunityRepository
 
-    public function __construct(OpportunityRepository $opportunityRepo)
+        Laravel note: the Repository Contract is referenced here, and Laravel injects
+        the Repository implementation because we registered the binding between the 
+        contract and repo in Providers\AppServiceProvider
+    */
+    private $repository;
+
+    public function __construct(OpportunityRepository $repo)
     {
-        $this->opportunityRepository = $opportunityRepo;
+        $this->repository = $repo;
     }
 
     /**
@@ -29,8 +35,8 @@ class OpportunityController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->opportunityRepository->pushCriteria(new RequestCriteria($request));
-        $opportunities = $this->opportunityRepository->all();
+        $this->repository->pushCriteria(new RequestCriteria($request));
+        $opportunities = $this->repository->all();
 
         return view('opportunities.index')
             ->with('opportunities', $opportunities);
@@ -57,7 +63,7 @@ class OpportunityController extends AppBaseController
     {
         $input = $request->all();
 
-        $opportunity = $this->opportunityRepository->create($input);
+        $opportunity = $this->repository->create($input);
 
         Flash::success('Opportunity saved successfully.');
 
@@ -73,7 +79,7 @@ class OpportunityController extends AppBaseController
      */
     public function show($id)
     {
-        $opportunity = $this->opportunityRepository->findWithoutFail($id);
+        $opportunity = $this->repository->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');
@@ -93,7 +99,7 @@ class OpportunityController extends AppBaseController
      */
     public function edit($id)
     {
-        $opportunity = $this->opportunityRepository->findWithoutFail($id);
+        $opportunity = $this->repository->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');
@@ -114,7 +120,7 @@ class OpportunityController extends AppBaseController
      */
     public function update($id, UpdateOpportunityRequest $request)
     {
-        $opportunity = $this->opportunityRepository->findWithoutFail($id);
+        $opportunity = $this->repository->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');
@@ -122,7 +128,7 @@ class OpportunityController extends AppBaseController
             return redirect(route('opportunities.index'));
         }
 
-        $opportunity = $this->opportunityRepository->update($request->all(), $id);
+        $opportunity = $this->repository->update($request->all(), $id);
 
         Flash::success('Opportunity updated successfully.');
 
@@ -138,7 +144,7 @@ class OpportunityController extends AppBaseController
      */
     public function destroy($id)
     {
-        $opportunity = $this->opportunityRepository->findWithoutFail($id);
+        $opportunity = $this->repository->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');
@@ -146,7 +152,7 @@ class OpportunityController extends AppBaseController
             return redirect(route('opportunities.index'));
         }
 
-        $this->opportunityRepository->delete($id);
+        $this->repository->delete($id);
 
         Flash::success('Opportunity deleted successfully.');
 

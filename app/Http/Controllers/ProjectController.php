@@ -4,7 +4,7 @@ namespace SCCatalog\Http\Controllers;
 
 use SCCatalog\Http\Requests\CreateProjectRequest;
 use SCCatalog\Http\Requests\UpdateProjectRequest;
-use SCCatalog\Repositories\ProjectRepository;
+use SCCatalog\Support\Contracts\Repository\ProjectRepositoryContract as ProjectRepository;
 use SCCatalog\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -14,11 +14,11 @@ use Response;
 class ProjectController extends AppBaseController
 {
     /** @var  ProjectRepository */
-    private $projectRepository;
+    private $repository;
 
-    public function __construct(ProjectRepository $projectRepo)
+    public function __construct(ProjectRepository $repo)
     {
-        $this->projectRepository = $projectRepo;
+        $this->repository = $repo;
     }
 
     /**
@@ -29,8 +29,8 @@ class ProjectController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->projectRepository->pushCriteria(new RequestCriteria($request));
-        $projects = $this->projectRepository->all();
+        $this->repository->pushCriteria(new RequestCriteria($request));
+        $projects = $this->repository->all();
 
         return view('projects.index')
             ->with('projects', $projects);
@@ -57,7 +57,7 @@ class ProjectController extends AppBaseController
     {
         $input = $request->all();
 
-        $project = $this->projectRepository->create($input);
+        $project = $this->repository->create($input);
 
         Flash::success('Project saved successfully.');
 
@@ -73,7 +73,7 @@ class ProjectController extends AppBaseController
      */
     public function show($id)
     {
-        $project = $this->projectRepository->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -93,7 +93,7 @@ class ProjectController extends AppBaseController
      */
     public function edit($id)
     {
-        $project = $this->projectRepository->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -114,7 +114,7 @@ class ProjectController extends AppBaseController
      */
     public function update($id, UpdateProjectRequest $request)
     {
-        $project = $this->projectRepository->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -122,7 +122,7 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        $project = $this->projectRepository->update($request->all(), $id);
+        $project = $this->repository->update($request->all(), $id);
 
         Flash::success('Project updated successfully.');
 
@@ -138,7 +138,7 @@ class ProjectController extends AppBaseController
      */
     public function destroy($id)
     {
-        $project = $this->projectRepository->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -146,7 +146,7 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        $this->projectRepository->delete($id);
+        $this->repository->delete($id);
 
         Flash::success('Project deleted successfully.');
 

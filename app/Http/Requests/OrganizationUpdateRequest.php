@@ -3,9 +3,9 @@
 namespace SCCatalog\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models\Project;
+use SCCatalog\Models\Organization;
 
-class UpdateProjectRequest extends FormRequest
+class OrganizationUpdateRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class UpdateProjectRequest extends FormRequest
      */
     public function rules()
     {
-        return Project::$rules;
+        return Organization::$rules;
     }
 }

@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use SCCatalog\Models\Opportunity;
 
-class CreateOpportunityRequest extends FormRequest
+class OpportunityCreateRequest extends FormRequest
 {
 
     /**

@@ -3,9 +3,9 @@
 namespace SCCatalog\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models\Organization;
+use SCCatalog\Models\Internship;
 
-class CreateOrganizationRequest extends FormRequest
+class InternshipCreateRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateOrganizationRequest extends FormRequest
      */
     public function rules()
     {
-        return Organization::$rules;
+        return Internship::$rules;
     }
 }

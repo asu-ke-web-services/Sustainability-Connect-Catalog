@@ -34,6 +34,8 @@ class UsersTableSeeder extends Seeder
             'phone'              => '480-727-4843',
             'created_at'         => '2014-03-25',
             'updated_at'         => '2014-03-25',
+            'created_by' => $faker->numberBetween(1, 80),
+            'updated_by' => $faker->numberBetween(1, 80),
         ]);
 
         // Students
@@ -55,6 +57,8 @@ class UsersTableSeeder extends Seeder
                 // 'research_interests' => $faker->paragraph,
                 'created_at' => $userCreatedDate,
                 'updated_at' => $userCreatedDate,
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
 
@@ -75,6 +79,8 @@ class UsersTableSeeder extends Seeder
                 // 'research_interests' => $faker->paragraph,
                 'created_at' => $userCreatedDate,
                 'updated_at' => $userCreatedDate,
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
 
@@ -97,6 +103,8 @@ class UsersTableSeeder extends Seeder
                 // 'research_interests' => $faker->paragraph,
                 'created_at' => $userCreatedDate,
                 'updated_at' => $userCreatedDate,
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
 
@@ -119,6 +127,8 @@ class UsersTableSeeder extends Seeder
                 // 'research_interests' => $faker->paragraph,
                 'created_at' => $userCreatedDate,
                 'updated_at' => $userCreatedDate,
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
 

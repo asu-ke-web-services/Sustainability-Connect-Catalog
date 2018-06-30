@@ -32,6 +32,8 @@ class AddressesTableSeeder extends Seeder
                 'note' => $faker->sentence,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
     }

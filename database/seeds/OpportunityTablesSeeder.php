@@ -35,6 +35,10 @@ class OpportunityTablesSeeder extends Seeder
             $opportunity_types->fill([
             	'order' => 1,
                 'name' => 'Project',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -45,6 +49,10 @@ class OpportunityTablesSeeder extends Seeder
             $opportunity_types->fill([
             	'order' => 2,
                 'name' => 'Internship',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -60,6 +68,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 1,
             	'opportunity_type_id' => 1,
                 'name' => 'Idea Submission',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -71,6 +83,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 2,
             	'opportunity_type_id' => 1,
                 'name' => 'Archived/Closed',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -82,6 +98,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 3,
             	'opportunity_type_id' => 1,
                 'name' => 'Seeking Champion',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -93,6 +113,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 4,
             	'opportunity_type_id' => 1,
                 'name' => 'Recruiting Participants',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -104,6 +128,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 5,
             	'opportunity_type_id' => 1,
                 'name' => 'In Progress',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -115,6 +143,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 6,
             	'opportunity_type_id' => 1,
                 'name' => 'Completed',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -126,6 +158,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 1,
             	'opportunity_type_id' => 2,
                 'name' => 'Inactive',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -137,6 +173,10 @@ class OpportunityTablesSeeder extends Seeder
             	'order' => 2,
             	'opportunity_type_id' => 2,
                 'name' => 'Active',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ])->save();
         }
 
@@ -164,6 +204,8 @@ class OpportunityTablesSeeder extends Seeder
                 'owner_user_id' => $faker->numberBetween(55, 80),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
 
             DB::table('projects')->insert([
@@ -182,6 +224,8 @@ class OpportunityTablesSeeder extends Seeder
                 'primary' => $faker->boolean(90),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
 
@@ -248,6 +292,8 @@ class OpportunityTablesSeeder extends Seeder
                 'owner_user_id' => $faker->numberBetween(55, 80),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
 
             DB::table('internships')->insert([
@@ -269,6 +315,8 @@ class OpportunityTablesSeeder extends Seeder
                 'primary' => $faker->boolean(90),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
 
@@ -279,6 +327,8 @@ class OpportunityTablesSeeder extends Seeder
                 'note_body' => $faker->text,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
+                'created_by' => $faker->numberBetween(1, 80),
+                'updated_by' => $faker->numberBetween(1, 80),
             ]);
         }
 

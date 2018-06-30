@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include 'elements/head.twig' %}
+  </head>
+  <body class="home page page-template page-template-page-full-width page-template-page-full-width-php">
+    <a href="#skippy" class="sr-only">Skip to Content</a>
+{#    {% if app_debug == 0 %}
+      {% include 'elements/google-tag-manager.twig' %}
+    {% endif %}
+#}
+    <div id="page-wrapper">
+      <div id="page">
+        <div id="asu_header">
+          {% include 'elements/header-asu.twig' %}
+          <div id="site-name-desktop" class="section site-name-desktop">
+            <div class="container">
+              <div class="site-title" id="asu_school_name">
+                <span class="first-word"><a href="https://sustainability.asu.edu" id="org-link-site-title">Global Sustainability</a></span>&nbsp;|&nbsp;<a href="/" id="blog-name-site-title">Sustainability Connect</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /#asu_header -->
+
+        <!-- Global Navigation -->
+        <nav class="navbar navbar-ws">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ws-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Sustainability Connect</a>
+            </div>
+            <div id="ws-navbar-collapse-1" class="navbar navbar-pf-vertical collapse navbar-collapse">
+              {% include 'elements/navbar-menu.twig' %}
+{#              {% if isAuthenticated %}
+                {% include 'elements/notifications-drawer.twig' %}
+              {% endif %}
+#}
+            </div>
+          </div><!-- /.navbar-collapse -->
+        </nav>
+        <!-- End Navigation -->
+
+        <span id="skippy" class="sr-only"></span>
+
+        <div id="main-wrapper" class="clearfix">
+          <div class="clearfix">
+            <div id="content" class="site-content">
+              <main id="main" class="site-main">
+                {% include 'elements/hero-block.twig' %}
+                <div class="widecolumn">
+                  <div class="asu-breadcrumbs"><div class="container"><div class="row"><div class="col-md-12">
+                    <div id="breadcrumbs" class="breadcrumb">
+                      <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                        <span itemprop="title">
+                          Breadcrumbs
+                        </span>
+                      </span>
+                    </div>
+                  </div></div></div></div>
+                </div>
+
+                <div class="container pad-bot-md pad-top-sm">
+
+                  {# flashNotifications #}
+                  {% block content %}{% endblock %}
+
+                </div><!-- .entry-content -->
+              </main><!-- #main -->
+            </div><!-- #content -->
+          </div><!-- .clearfix -->
+        </div><!-- #main-wrapper -->
+      </div><!-- #page -->
+    </div><!-- #page-wrapper -->
+    {% include 'elements/footer-asu.twig' %}
+
+    {% block script_bottom %}
+      {# tether must be loaded before bootstrap.js (per bootstrap docs, though that might just be specific to bootstrap v4) #}
+      <script type="text/javascript" src="{{ asset('assets/tether/js/tether.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js' )}}"></script>
+      <script type="text/javascript" src="{{ asset('assets/patternfly/js/patternfly.min.js' )}}"></script>
+      <script type="text/javascript" src="{{ asset('assets/asu-web-standards/js/bootstrap-asu.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('assets/asu-header/js/asu-header.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('assets/asu-header/js/asu-header-config.js') }}"></script>
+
+{#      <script>// configure tether
+        $(document).ready(function(){$(\'[data-toggle="tooltip"]\').tooltip({\'placement\': \'top\'});});', array('block' => 'scriptBottom', 'defer' => true));
+      </script>
+#}
+    {% endblock %}
+  </body>
+</html>

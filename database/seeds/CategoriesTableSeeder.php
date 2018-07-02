@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Category;
+use SCCatalog\Models\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -12,6 +12,13 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+        Eloquent::unguard();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('categories')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $faker = Faker\Factory::create();
+
         $category = Category::firstOrNew([
             'slug' => 'affordable-and-clean-energy',
         ]);
@@ -21,8 +28,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Affordable and Clean Energy',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -35,8 +42,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Clean Water and Sanitation',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -49,8 +56,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Climate Action',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -63,8 +70,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Decent Work and Economic Growth',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -77,8 +84,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Gender Equality',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -91,8 +98,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Good Health and Well-Being',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -105,8 +112,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Industry, Innovation, and Infrastructure',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -119,8 +126,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Life Below Water',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -133,8 +140,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Life On Land',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -147,8 +154,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'No Poverty',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -161,8 +168,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Partnership for the Goals',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -175,8 +182,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Peace, Justice, and Strong Institutions',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -189,8 +196,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Quality Education',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -203,8 +210,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Reduced Inequalities',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -217,8 +224,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Responsible Consumption and Production',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -231,8 +238,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Sustainable Cities and Communities',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -245,8 +252,8 @@ class CategoriesTableSeeder extends Seeder
                 'name' => 'Zero Hunger',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
     }

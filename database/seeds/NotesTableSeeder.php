@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AddressesTableSeeder extends Seeder
+class NotesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,23 +13,17 @@ class AddressesTableSeeder extends Seeder
     {
         Eloquent::unguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('addresses')->truncate();
+        DB::table('notes')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = Faker\Factory::create();
 
-        // Addresses
+        // Notes
         for ($i = 0; $i < 200; $i++) {
             $expirationDate = $faker->date('Y-m-d', '+ 1 year');
 
-            DB::table('addresses')->insert([
-                'street1' => $faker->buildingNumber . ' ' . $faker->streetName,
-                'street2' => $faker->secondaryAddress,
-                'city' => $faker->city,
-                'state' => $faker->state,
-                'postal_code' => $faker->postcode,
-                'country' => $faker->country,
-                'note' => $faker->sentence,
+            DB::table('notes')->insert([
+                'body' => $faker->sentence,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,

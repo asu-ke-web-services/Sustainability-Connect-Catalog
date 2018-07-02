@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\OpportunityStatus;
-use App\Models\OpportunityType;
+use SCCatalog\Models\OpportunityStatus;
+use SCCatalog\Models\OpportunityType;
 
 class OpportunityTablesSeeder extends Seeder
 {
@@ -15,6 +15,7 @@ class OpportunityTablesSeeder extends Seeder
     {
         Eloquent::unguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('opportunity_statuses')->truncate();
         DB::table('opportunities')->truncate();
         DB::table('opportunities_addresses')->truncate();
         DB::table('opportunities_affiliations')->truncate();
@@ -25,38 +26,7 @@ class OpportunityTablesSeeder extends Seeder
         DB::table('internships')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-
-		// Pre-fill Opportunity Type options
-
-        $opportunity_types = OpportunityType::firstOrNew([
-            'slug' => 'project',
-        ]);
-        if (!$opportunity_types->exists) {
-            $opportunity_types->fill([
-            	'order' => 1,
-                'name' => 'Project',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
-            ])->save();
-        }
-
-        $opportunity_types = OpportunityType::firstOrNew([
-            'slug' => 'internship',
-        ]);
-        if (!$opportunity_types->exists) {
-            $opportunity_types->fill([
-            	'order' => 2,
-                'name' => 'Internship',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
-            ])->save();
-        }
-
-
+        $faker = Faker\Factory::create();
 
         // Pre-fill Opportunity Status options
 
@@ -70,8 +40,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'Idea Submission',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -85,8 +55,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'Archived/Closed',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -100,8 +70,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'Seeking Champion',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -115,8 +85,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'Recruiting Participants',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -130,8 +100,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'In Progress',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -145,8 +115,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'Completed',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -160,8 +130,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'Inactive',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -175,8 +145,8 @@ class OpportunityTablesSeeder extends Seeder
                 'name' => 'Active',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -199,13 +169,13 @@ class OpportunityTablesSeeder extends Seeder
                 'description' => $faker->paragraph(3, true),
                 'listing_expires' => $expirationDate,
                 'application_deadline' => $expirationDate,
-                // org id
+                'organization_id' => $faker->numberBetween(1, 20),
                 'submitting_user_id' => $faker->numberBetween(1, 110),
                 'owner_user_id' => $faker->numberBetween(55, 80),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
 
             DB::table('projects')->insert([
@@ -224,51 +194,72 @@ class OpportunityTablesSeeder extends Seeder
                 'primary' => $faker->boolean(90),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('opportunities_notes')->insert([
+                'opportunity_id' => $i + 1,
+                'user_id' => $faker->numberBetween(55, 80),
+                'note_id' => $i + 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            if ($faker->boolean(30)) {
+                DB::table('opportunities_affiliations')->insert([
+                    'opportunity_id' => $i + 1,
+                    'affiliation_id' => 1,
+                    'order' => 1,
+                    'created_at' => $faker->dateTime(),
+                    'updated_at' => $faker->dateTime(),
+                    'created_by' => 1,
+                    'updated_by' => 1,
+                ]);
+            }
+
+            DB::table('opportunities_affiliations')->insert([
+                'opportunity_id' => $i + 1,
+                'affiliation_id' => $faker->numberBetween(2, 4),
+                'order' => 2,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('opportunities_affiliations')->insert([
+                'opportunity_id' => $i + 1,
+                'affiliation_id' => $faker->numberBetween(5, 12),
+                'order' => 3,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('opportunities_categories')->insert([
+                'opportunity_id' => $i + 1,
+                'category_id' => $faker->numberBetween(1, 17),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('opportunities_keywords')->insert([
+                'opportunity_id' => $i + 1,
+                'keyword_id' => $faker->numberBetween(1, 24),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
         }
-
-        // for ($i = 0; $i < 2000; $i++) {
-        //     DB::table('opportunities_notes')->insert([
-        //         'opportunity_id' => $faker->numberBetween(1, 1000),
-        //         'user_id' => $faker->numberBetween(301, 320),
-        //         'note_body' => $faker->text,
-        //         'created_at' => $faker->dateTime(),
-        //         'updated_at' => $faker->dateTime(),
-        //     ]);
-        // }
-
-        // for ($i = 0; $i < 1000; $i++) {
-        //     DB::table('opportunities_flags')->insert([
-        //         'opportunity_id' => $faker->numberBetween(1, 500),
-        //         'flag_id' => $faker->numberBetween(1, 5),
-        //         'sort' => 1,
-        //         'created_at' => $faker->dateTime(),
-        //         'updated_at' => $faker->dateTime(),
-        //     ]);
-        // }
-
-        // for ($i = 0; $i < 1000; $i++) {
-        //     DB::table('opportunities_categories')->insert([
-        //         'opportunity_id' => $faker->numberBetween(1, 500),
-        //         'category_id' => $faker->numberBetween(1, 5),
-        //         'sort' => 1,
-        //         'created_at' => $faker->dateTime(),
-        //         'updated_at' => $faker->dateTime(),
-        //     ]);
-        // }
-
-        // for ($i = 0; $i < 1000; $i++) {
-        //     DB::table('opportunities_keywords')->insert([
-        //         'opportunity_id' => $faker->numberBetween(1, 500),
-        //         'keyword_id' => $faker->numberBetween(1, 5),
-        //         'sort' => 1,
-        //         'created_at' => $faker->dateTime(),
-        //         'updated_at' => $faker->dateTime(),
-        //     ]);
-        // }
-
 
 
         // Internships
@@ -281,19 +272,19 @@ class OpportunityTablesSeeder extends Seeder
                 'title' => $faker->sentence(3, true),
                 'alt_title' => $faker->sentence(3, true),
                 'slug' => $faker->unique()->slug,
-                'opportunity_status_id' => $faker->numberBetween(1, 2),
+                'opportunity_status_id' => $faker->numberBetween(7, 8),
                 'hidden' => $faker->boolean(10),
                 'summary' => $faker->paragraph(1, true),
                 'description' => $faker->paragraph(3, true),
                 'listing_expires' => $expirationDate,
                 'application_deadline' => $expirationDate,
-                // org id
+                'organization_id' => $faker->numberBetween(1, 20),
                 'submitting_user_id' => $faker->numberBetween(1, 110),
                 'owner_user_id' => $faker->numberBetween(55, 80),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
 
             DB::table('internships')->insert([
@@ -315,52 +306,83 @@ class OpportunityTablesSeeder extends Seeder
                 'primary' => $faker->boolean(90),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
-        }
 
-        for ($i = 0; $i < 200; $i++) {
             DB::table('opportunities_notes')->insert([
-                'opportunity_id' => $faker->numberBetween(1, 200),
+                'opportunity_id' => $i + 101,
                 'user_id' => $faker->numberBetween(55, 80),
-                'note_body' => $faker->text,
+                'note_id' => $i + 101,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            if ($faker->boolean(30)) {
+                DB::table('opportunities_affiliations')->insert([
+                    'opportunity_id' => $i + 101,
+                    'affiliation_id' => 1,
+                    'order' => 1,
+                    'created_at' => $faker->dateTime(),
+                    'updated_at' => $faker->dateTime(),
+                    'created_by' => 1,
+                    'updated_by' => 1,
+                ]);
+            }
+
+            DB::table('opportunities_affiliations')->insert([
+                'opportunity_id' => $i + 101,
+                'affiliation_id' => $faker->numberBetween(2, 4),
+                'order' => 2,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('opportunities_affiliations')->insert([
+                'opportunity_id' => $i + 101,
+                'affiliation_id' => $faker->numberBetween(5, 12),
+                'order' => 3,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('opportunities_categories')->insert([
+                'opportunity_id' => $i + 101,
+                'category_id' => $faker->numberBetween(1, 17),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('opportunities_keywords')->insert([
+                'opportunity_id' => $i + 101,
+                'keyword_id' => $faker->numberBetween(1, 24),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
         }
 
-        // for ($i = 0; $i < 1000; $i++) {
-        //     DB::table('opportunities_flags')->insert([
-        //         'opportunity_id' => $faker->numberBetween(1, 500),
-        //         'flag_id' => $faker->numberBetween(1, 5),
-        //         'sort' => 1,
-        //         'created_at' => $faker->dateTime(),
-        //         'updated_at' => $faker->dateTime(),
-        //     ]);
-        // }
-
-        // for ($i = 0; $i < 1000; $i++) {
-        //     DB::table('opportunities_categories')->insert([
-        //         'opportunity_id' => $faker->numberBetween(1, 500),
-        //         'category_id' => $faker->numberBetween(1, 5),
-        //         'sort' => 1,
-        //         'created_at' => $faker->dateTime(),
-        //         'updated_at' => $faker->dateTime(),
-        //     ]);
-        // }
-
-        // for ($i = 0; $i < 1000; $i++) {
-        //     DB::table('opportunities_keywords')->insert([
-        //         'opportunity_id' => $faker->numberBetween(1, 500),
-        //         'keyword_id' => $faker->numberBetween(1, 5),
-        //         'sort' => 1,
-        //         'created_at' => $faker->dateTime(),
-        //         'updated_at' => $faker->dateTime(),
-        //     ]);
-        // }
-
+        for ($i = 0; $i < 100; $i++) {
+            DB::table('opportunities_notes')->insert([
+                'opportunity_id' => $i + 101,
+                'user_id' => $faker->numberBetween(55, 80),
+                'note_id' => $i + 101,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+        }
     }
 }

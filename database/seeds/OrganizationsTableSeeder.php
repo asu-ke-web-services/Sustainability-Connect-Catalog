@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\OrganizationType;
-use App\Models\OrganizationStatus;
+use SCCatalog\Models\OrganizationType;
+use SCCatalog\Models\OrganizationStatus;
 
 class OrganizationsTableSeeder extends Seeder
 {
@@ -15,11 +15,13 @@ class OrganizationsTableSeeder extends Seeder
     {
         Eloquent::unguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('organization_statuses')->truncate();
+        DB::table('organization_types')->truncate();
         DB::table('organizations')->truncate();
         DB::table('organizations_addresses')->truncate();
-        DB::table('organizations_notes')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        $faker = Faker\Factory::create();
 
         // Pre-fill Organization Status options
 
@@ -32,8 +34,8 @@ class OrganizationsTableSeeder extends Seeder
                 'name' => 'Inactive',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -46,8 +48,8 @@ class OrganizationsTableSeeder extends Seeder
                 'name' => 'Active',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -63,8 +65,8 @@ class OrganizationsTableSeeder extends Seeder
                 'name' => 'Government',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -77,8 +79,8 @@ class OrganizationsTableSeeder extends Seeder
                 'name' => 'Non-Governmental (NGO)',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -91,8 +93,8 @@ class OrganizationsTableSeeder extends Seeder
                 'name' => 'Non-Profit',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -105,8 +107,8 @@ class OrganizationsTableSeeder extends Seeder
                 'name' => 'Corporation',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -118,12 +120,11 @@ class OrganizationsTableSeeder extends Seeder
             DB::table('organizations')->insert([
                 'organization_type_id' => $faker->numberBetween(1, 3),
                 'organization_status_id' => 1,
-                // 'type' => $faker->randomElement(['partner' ,'gdr_host']),
                 'name' => $faker->company,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
 
             DB::table('organizations_addresses')->insert([
@@ -132,20 +133,8 @@ class OrganizationsTableSeeder extends Seeder
                 'primary' => $faker->boolean(90),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
-            ]);
-        }
-
-        for ($i = 0; $i < 20; $i++) {
-            DB::table('organizations_notes')->insert([
-                'organization_id' => $faker->numberBetween(1, 200),
-                'user_id' => $faker->numberBetween(301, 320),
-                'note_body' => $faker->text,
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
         }
     }

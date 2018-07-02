@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Keyword;
+use SCCatalog\Models\Keyword;
 
 class KeywordsTableSeeder extends Seeder
 {
@@ -12,6 +12,12 @@ class KeywordsTableSeeder extends Seeder
      */
     public function run()
     {
+        Eloquent::unguard();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('keywords')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        $faker = Faker\Factory::create();
 
         $keyword = Keyword::firstOrNew([
             'slug' => 'air-quality',
@@ -22,8 +28,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Air Quality',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -36,8 +42,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Alternative Fuels',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -50,8 +56,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Architecture',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -65,8 +71,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Biofuels',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -79,8 +85,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Citizen Actions',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -93,8 +99,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Conservation Biology',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -107,8 +113,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Desertification',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -121,8 +127,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Ecosystem Restoration',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -135,8 +141,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Energy Policy',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -149,8 +155,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Entrepreneurship',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -163,8 +169,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Farmers Markets',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -177,8 +183,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Food Systems',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -192,8 +198,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Agriculture',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -206,8 +212,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Green Marketing',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -220,8 +226,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Groundwater',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -234,8 +240,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Land Use Change',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -248,8 +254,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Poverty',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -262,8 +268,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Recreation',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -277,8 +283,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Renewable Energy',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -292,8 +298,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Solar Energy Systems',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -306,8 +312,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Transportation',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -320,8 +326,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Urban Development',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -334,8 +340,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Wastewater Treatment',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -348,8 +354,8 @@ class KeywordsTableSeeder extends Seeder
                 'name' => 'Water Resource Management',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
-                'created_by' => $faker->numberBetween(1, 80),
-                'updated_by' => $faker->numberBetween(1, 80),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
     }

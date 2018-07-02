@@ -34,7 +34,7 @@ class StudentDegreeLevelsTableSeeder extends Seeder
         }
 
         $category = StudentDegreeLevel::firstOrNew([
-            'slug' => 'Masters',
+            'slug' => 'masters',
         ]);
         if (!$category->exists) {
             $category->fill([
@@ -53,7 +53,7 @@ class StudentDegreeLevelsTableSeeder extends Seeder
         if (!$category->exists) {
             $category->fill([
             	'order' => 3,
-                'name' => 'doctoral',
+                'name' => 'Doctoral',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,

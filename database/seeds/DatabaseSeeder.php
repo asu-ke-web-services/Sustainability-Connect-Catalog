@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AddressesTableSeeder::class);
         $this->call(NotesTableSeeder::class);
         $this->call(OrganizationsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(OrganizationNotesTableSeeder::class);
         $this->call(OpportunityTypesTableSeeder::class);
         $this->call(AffiliationsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(OrganizationNotesTableSeeder::class);
         $this->call(OpportunityTablesSeeder::class);
     }
 }

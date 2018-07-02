@@ -35,6 +35,18 @@ class UsersTableSeeder extends Seeder
                 'created_by'         => 1,
                 'updated_by'         => 1,
             ]);
+
+            if ($faker->boolean(60)) {
+                DB::table('users_affiliations')->insert([
+                    'user_id' => $i + 2,
+                    'affiliation_id' => 2,
+                    'order' => 1,
+                    'created_at' => $faker->dateTime(),
+                    'updated_at' => $faker->dateTime(),
+                    'created_by' => 1,
+                    'updated_by' => 1,
+                ]);
+            }
         }
 
         // Faculty
@@ -55,6 +67,18 @@ class UsersTableSeeder extends Seeder
                 'created_by'         => 1,
                 'updated_by'         => 1,
             ]);
+
+            if ($faker->boolean(80)) {
+                DB::table('users_affiliations')->insert([
+                    'user_id' => $i + 52,
+                    'affiliation_id' => 2,
+                    'order' => 1,
+                    'created_at' => $faker->dateTime(),
+                    'updated_at' => $faker->dateTime(),
+                    'created_by' => 1,
+                    'updated_by' => 1,
+                ]);
+            }
         }
 
         // Staff

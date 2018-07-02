@@ -36,6 +36,9 @@ class CreateOpportunitiesTables extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
+//            $table->foreign('opportunityable_type')
+//                ->references('slug')->on('opportunity_types');
+
             $table->foreign('opportunity_status_id')
                 ->references('id')->on('opportunity_statuses');
 
@@ -111,8 +114,8 @@ class CreateOpportunitiesTables extends Migration
             $table->foreign('opportunity_id')
                 ->references('id')->on('opportunities');
 
-            $table->foreign('category_id')
-                ->references('id')->on('categories');
+            // $table->foreign('category_id')
+            //     ->references('id')->on('categories');
 
             $table->foreign('created_by')
                 ->references('id')->on('users')
@@ -141,8 +144,8 @@ class CreateOpportunitiesTables extends Migration
             $table->foreign('opportunity_id')
                 ->references('id')->on('opportunities');
 
-            $table->foreign('keyword_id')
-                ->references('id')->on('keywords');
+            // $table->foreign('keyword_id')
+            //     ->references('id')->on('keywords');
 
             $table->foreign('created_by')
                 ->references('id')->on('users')
@@ -161,7 +164,7 @@ class CreateOpportunitiesTables extends Migration
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->text('note_body');
+            $table->integer('note_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned()->nullable();
@@ -173,6 +176,9 @@ class CreateOpportunitiesTables extends Migration
 
             $table->foreign('user_id')
                 ->references('id')->on('users');
+
+            $table->foreign('note_id')
+                ->references('id')->on('notes');
 
             $table->foreign('created_by')
                 ->references('id')->on('users')

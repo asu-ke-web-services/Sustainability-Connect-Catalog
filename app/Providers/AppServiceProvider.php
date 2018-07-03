@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Providers;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Relation::morphMap([
+            'Project' => \SCCatalog\Models\Project::class,
+            'Internship' => \SCCatalog\Models\Internship::class,
+        ]);
     }
 
     /**

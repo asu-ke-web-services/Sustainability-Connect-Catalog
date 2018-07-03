@@ -3,10 +3,6 @@
 namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
-use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Internship
@@ -28,20 +24,9 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property date publish_on
  * @property date publish_until
  */
-class Internship extends Model implements Transformable
+class Internship extends Model
 {
-    use BlameableTrait;
-    use SoftDeletes;
-    use TransformableTrait;
-
     public $table = 'internships';
-
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'compensation',
@@ -84,5 +69,9 @@ class Internship extends Model implements Transformable
 
     ];
 
+    public function opportunity()
+    {
+        return $this->morphOne('\SCCatalog\Models\Opportunity', 'opportunityable');
+    }
 
 }

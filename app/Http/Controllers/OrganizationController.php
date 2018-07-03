@@ -4,14 +4,13 @@ namespace SCCatalog\Http\Controllers;
 
 use SCCatalog\Http\Requests\OrganizationCreateRequest;
 use SCCatalog\Http\Requests\OrganizationUpdateRequest;
-use SCCatalog\Support\Contracts\Repository\OrganizationRepositoryContract as OrganizationRepository;
-use SCCatalog\Http\Controllers\AppBaseController;
+use SCCatalog\Contracts\Repositories\OrganizationRepositoryContract as OrganizationRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class OrganizationController extends AppBaseController
+class OrganizationController extends Controller
 {
     /** @var  OrganizationRepository */
     private $repository;

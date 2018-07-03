@@ -4,14 +4,13 @@ namespace SCCatalog\Http\Controllers;
 
 use SCCatalog\Http\Requests\InternshipCreateRequest;
 use SCCatalog\Http\Requests\InternshipUpdateRequest;
-use SCCatalog\Support\Contracts\Repository\InternshipRepositoryContract as InternshipRepository;
-use SCCatalog\Http\Controllers\AppBaseController;
+use SCCatalog\Contracts\Repositories\InternshipRepositoryContract as InternshipRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class InternshipController extends AppBaseController
+class InternshipController extends Controller
 {
     /** @var  InternshipRepository */
     private $repository;

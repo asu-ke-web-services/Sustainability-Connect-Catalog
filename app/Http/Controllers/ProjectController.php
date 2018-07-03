@@ -2,23 +2,33 @@
 
 namespace SCCatalog\Http\Controllers;
 
+
+use Flash;
+use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+use Response;
 use SCCatalog\Http\Requests\ProjectCreateRequest;
 use SCCatalog\Http\Requests\ProjectUpdateRequest;
-use SCCatalog\Support\Contracts\Repository\ProjectRepositoryContract as ProjectRepository;
-use SCCatalog\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
+// use SCCatalog\Contracts\Repositories\ProjectRepositoryContract as ProjectRepository;
+use SCCatalog\Repositories\ProjectRepositoryEloquent as ProjectRepository;
+use SCCatalog\Validators\ProjectValidator;
 
-class ProjectController extends AppBaseController
+class ProjectController extends Controller
 {
     /** @var  ProjectRepository */
-    private $repository;
+    private $projects;
 
-    public function __construct(ProjectRepository $repo)
+    /**
+     * @var ProjectValidator
+     */
+    protected $validator;
+
+    public function __construct(ProjectRepository $projects, ProjectValidator $validator)
     {
-        $this->repository = $repo;
+        $this->projects = $projects;
+        $this->validator  = $validator;
     }
 
     /**
@@ -29,8 +39,8 @@ class ProjectController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new RequestCriteria($request));
-        $projects = $this->repository->all();
+        $this->projects->pushCriteria(new RequestCriteria($request));
+        $projects = $this->projects->all();
 
         return view('projects.index')
             ->with('projects', $projects);
@@ -57,7 +67,7 @@ class ProjectController extends AppBaseController
     {
         $input = $request->all();
 
-        $project = $this->repository->create($input);
+        $project = $this->projects->create($input);
 
         Flash::success('Project saved successfully.');
 
@@ -73,7 +83,7 @@ class ProjectController extends AppBaseController
      */
     public function show($id)
     {
-        $project = $this->repository->findWithoutFail($id);
+        $project = $this->projects->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -93,7 +103,7 @@ class ProjectController extends AppBaseController
      */
     public function edit($id)
     {
-        $project = $this->repository->findWithoutFail($id);
+        $project = $this->projects->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -114,7 +124,7 @@ class ProjectController extends AppBaseController
      */
     public function update( $id, ProjectUpdateRequest $request)
     {
-        $project = $this->repository->findWithoutFail($id);
+        $project = $this->projects->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -122,7 +132,7 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        $project = $this->repository->update($request->all(), $id);
+        $project = $this->projects->update($request->all(), $id);
 
         Flash::success('Project updated successfully.');
 
@@ -138,7 +148,7 @@ class ProjectController extends AppBaseController
      */
     public function destroy($id)
     {
-        $project = $this->repository->findWithoutFail($id);
+        $project = $this->projects->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -146,7 +156,7 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        $this->repository->delete($id);
+        $this->projects->delete($id);
 
         Flash::success('Project deleted successfully.');
 

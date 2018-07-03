@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
+use Response;
 use SCCatalog\Http\Requests\OpportunityCreateRequest;
 use SCCatalog\Http\Requests\OpportunityUpdateRequest;
 use SCCatalog\Http\Requests;
-use SCCatalog\Contracts\Repository\OpportunityRepositoryContract as OpportunityRepository;
-use SCCatalog\Http\Controllers\AppBaseController;
+// use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
+use SCCatalog\Repositories\OpportunityRepositoryEloquent as OpportunityRepository;
 use SCCatalog\Validators\OpportunityValidator;
-use Response;
 
 /**
  * Class OpportunityController.
  *
  * @package namespace SCCatalog\Http\Controllers;
  */
-class OpportunityController extends AppBaseController
+class OpportunityController extends Controller
 {
     /**
      * @var  OpportunityRepository

@@ -3,11 +3,11 @@
 namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
+use SCCatalog\Contracts\Repositories\OpportunityTypeRepositoryContract;
 use SCCatalog\Models\OpportunityType;
 
 /**
- * Class OpportunityTypeRepository
+ * Class OpportunityTypeRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:46 pm UTC
  *
@@ -15,7 +15,7 @@ use SCCatalog\Models\OpportunityType;
  * @method OpportunityType find($id, $columns = ['*'])
  * @method OpportunityType first($columns = ['*'])
 */
-class OpportunityTypeRepository extends BaseRepository implements AddressRepositoryContract
+class OpportunityTypeRepositoryEloquent extends BaseRepository implements OpportunityTypeRepositoryContract
 {
     /**
      * @var array

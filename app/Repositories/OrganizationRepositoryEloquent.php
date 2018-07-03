@@ -4,12 +4,12 @@ namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SCCatalog\Contracts\Repository\OrganizationRepositoryContract;
+use SCCatalog\Contracts\Repositories\OrganizationRepositoryContract;
 use SCCatalog\Models\Organization;
 use SCCatalog\Validators\OrganizationValidator;
 
 /**
- * Class OrganizationRepository
+ * Class OrganizationRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:29 pm UTC
  *
@@ -17,7 +17,7 @@ use SCCatalog\Validators\OrganizationValidator;
  * @method Organization find($id, $columns = ['*'])
  * @method Organization first($columns = ['*'])
 */
-class OrganizationRepository extends BaseRepository implements AddressRepositoryContract
+class OrganizationRepositoryEloquent extends BaseRepository implements OrganizationRepositoryContract
 {
     /**
      * @var array

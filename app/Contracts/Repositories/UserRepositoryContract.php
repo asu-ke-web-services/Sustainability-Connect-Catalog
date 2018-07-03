@@ -1,14 +1,14 @@
 <?php
 
-namespace SCCatalog\Contracts\Repository;
+namespace SCCatalog\Contracts\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
  * Interface UserRepositoryContract
  *
- * @package    SCCatalog\Contracts\Repository
- * @subpackage SCCatalog\Contracts\Repository\UserRepositoryContract
+ * @package    SCCatalog\Contracts\Repositories
+ * @subpackage SCCatalog\Contracts\Repositories\UserRepositoryContract
  */
 interface UserRepositoryContract extends RepositoryInterface
 {

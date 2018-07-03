@@ -4,12 +4,12 @@ namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SCCatalog\Contracts\Repository\ProjectRepositoryContract;
+use SCCatalog\Contracts\Repositories\ProjectRepositoryContract;
 use SCCatalog\Models\Project;
 use SCCatalog\Validators\ProjectValidator;
 
 /**
- * Class ProjectRepository
+ * Class ProjectRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:48 pm UTC
  *
@@ -17,7 +17,7 @@ use SCCatalog\Validators\ProjectValidator;
  * @method Project find($id, $columns = ['*'])
  * @method Project first($columns = ['*'])
 */
-class ProjectRepository extends BaseRepository implements AddressRepositoryContract
+class ProjectRepositoryEloquent extends BaseRepository implements ProjectRepositoryContract
 {
     /**
      * @var array

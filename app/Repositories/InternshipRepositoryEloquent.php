@@ -4,12 +4,12 @@ namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SCCatalog\Contracts\Repository\InternshipRepositoryContract;
+use SCCatalog\Contracts\Repositories\InternshipRepositoryContract;
 use SCCatalog\Models\Internship;
 use SCCatalog\Validators\InternshipValidator;
 
 /**
- * Class InternshipRepository
+ * Class InternshipRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:49 pm UTC
  *
@@ -17,7 +17,7 @@ use SCCatalog\Validators\InternshipValidator;
  * @method Internship find($id, $columns = ['*'])
  * @method Internship first($columns = ['*'])
 */
-class InternshipRepository extends BaseRepository implements AddressRepositoryContract
+class InternshipRepositoryEloquent extends BaseRepository implements InternshipRepositoryContract
 {
     /**
      * @var array

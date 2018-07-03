@@ -4,12 +4,12 @@ namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SCCatalog\Contracts\Repository\OpportunityRepositoryContract;
+use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Validators\OpportunityValidator;
 
 /**
- * Class OpportunityRepository
+ * Class OpportunityRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:46 pm UTC
  *
@@ -17,7 +17,7 @@ use SCCatalog\Validators\OpportunityValidator;
  * @method Opportunity find($id, $columns = ['*'])
  * @method Opportunity first($columns = ['*'])
 */
-class OpportunityRepository extends BaseRepository implements AddressRepositoryContract
+class OpportunityRepositoryEloquent extends BaseRepository implements OpportunityRepositoryContract
 {
     /**
      * @var array

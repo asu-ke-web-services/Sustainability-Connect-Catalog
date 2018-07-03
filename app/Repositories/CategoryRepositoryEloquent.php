@@ -3,11 +3,11 @@
 namespace SCCatalog\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
+use SCCatalog\Contracts\Repositories\CategoryRepositoryContract;
 use SCCatalog\Models\Category;
 
 /**
- * Class CategoryRepository
+ * Class CategoryRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:46 pm UTC
  *
@@ -15,7 +15,7 @@ use SCCatalog\Models\Category;
  * @method Category find($id, $columns = ['*'])
  * @method Category first($columns = ['*'])
 */
-class CategoryRepository extends BaseRepository implements AddressRepositoryContract
+class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepositoryContract
 {
     /**
      * @var array

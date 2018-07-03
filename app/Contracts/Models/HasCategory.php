@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Contracts\Entity;
+namespace SCCatalog\Contracts\Models;
 
 use SCCatalog\Models\Category;
 

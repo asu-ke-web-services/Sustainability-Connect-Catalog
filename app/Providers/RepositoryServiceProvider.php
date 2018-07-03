@@ -23,17 +23,17 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\SCCatalog\Contracts\Repository\AddressRepositoryContract::class, \SCCatalog\Repositories\AddressRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\CategoryRepositoryContract::class, \SCCatalog\Repositories\CategoryRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\InternshipRepositoryContract::class, \SCCatalog\Repositories\InternshipRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\KeywordRepositoryContract::class, \SCCatalog\Repositories\KeywordRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\OpportunityRepositoryContract::class, \SCCatalog\Repositories\OpportunityRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\OpportunityStatusRepositoryContract::class, \SCCatalog\Repositories\OpportunityStatusRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\OpportunityTypeRepositoryContract::class, \SCCatalog\Repositories\OpportunityTypeRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\OrganizationStatusRepositoryContract::class, \SCCatalog\Repositories\OrganizationStatusRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\OrganizationTypeRepositoryContract::class, \SCCatalog\Repositories\OrganizationTypeRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\ProjectRepositoryContract::class, \SCCatalog\Repositories\ProjectRepositoryEloquent::class);
-        $this->app->bind(\SCCatalog\Contracts\Repository\StudentDegreeLevelRepositoryContract::class, \SCCatalog\Repositories\StudentDegreeLevelRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\AddressRepositoryContract::class, \SCCatalog\Repositories\AddressRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\CategoryRepositoryContract::class, \SCCatalog\Repositories\CategoryRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\InternshipRepositoryContract::class, \SCCatalog\Repositories\InternshipRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\KeywordRepositoryContract::class, \SCCatalog\Repositories\KeywordRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\OpportunityRepositoryContract::class, \SCCatalog\Repositories\OpportunityRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\OpportunityStatusRepositoryContract::class, \SCCatalog\Repositories\OpportunityStatusRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\OpportunityTypeRepositoryContract::class, \SCCatalog\Repositories\OpportunityTypeRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\OrganizationStatusRepositoryContract::class, \SCCatalog\Repositories\OrganizationStatusRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\OrganizationTypeRepositoryContract::class, \SCCatalog\Repositories\OrganizationTypeRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\ProjectRepositoryContract::class, \SCCatalog\Repositories\ProjectRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\StudentDegreeLevelRepositoryContract::class, \SCCatalog\Repositories\StudentDegreeLevelRepositoryEloquent::class);
         //:end-bindings:
     }
 }

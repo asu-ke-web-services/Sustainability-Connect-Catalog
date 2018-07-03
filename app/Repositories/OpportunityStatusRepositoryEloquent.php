@@ -3,11 +3,11 @@
 namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
+use SCCatalog\Contracts\Repositories\OpportunityStatusRepositoryContract;
 use SCCatalog\Models\OpportunityStatus;
 
 /**
- * Class OpportunityStatusRepository
+ * Class OpportunityStatusRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:46 pm UTC
  *
@@ -15,7 +15,7 @@ use SCCatalog\Models\OpportunityStatus;
  * @method OpportunityStatus find($id, $columns = ['*'])
  * @method OpportunityStatus first($columns = ['*'])
 */
-class OpportunityStatusRepository extends BaseRepository implements AddressRepositoryContract
+class OpportunityStatusRepositoryEloquent extends BaseRepository implements OpportunityStatusRepositoryContract
 {
     /**
      * @var array

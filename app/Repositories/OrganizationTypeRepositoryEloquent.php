@@ -3,11 +3,11 @@
 namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
+use SCCatalog\Contracts\Repositories\OrganizationTypeRepositoryContract;
 use SCCatalog\Models\OrganizationType;
 
 /**
- * Class OrganizationTypeRepository
+ * Class OrganizationTypeRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:46 pm UTC
  *
@@ -15,7 +15,7 @@ use SCCatalog\Models\OrganizationType;
  * @method OrganizationType find($id, $columns = ['*'])
  * @method OrganizationType first($columns = ['*'])
 */
-class OrganizationTypeRepository extends BaseRepository implements AddressRepositoryContract
+class OrganizationTypeRepositoryEloquent extends BaseRepository implements OrganizationTypeRepositoryContract
 {
     /**
      * @var array

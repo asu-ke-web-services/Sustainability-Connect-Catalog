@@ -4,7 +4,7 @@ namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
+use SCCatalog\Contracts\Repositories\AddressRepositoryContract;
 use SCCatalog\Models\Address;
 use SCCatalog\Validators\AddressValidator;
 

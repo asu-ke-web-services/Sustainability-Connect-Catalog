@@ -3,11 +3,11 @@
 namespace SCCatalog\Repositories;
 
 use InfyOm\Generator\Common\BaseRepository;
-use SCCatalog\Contracts\Repository\AddressRepositoryContract;
+use SCCatalog\Contracts\Repositories\KeywordRepositoryContract;
 use SCCatalog\Models\Keyword;
 
 /**
- * Class KeywordRepository
+ * Class KeywordRepositoryEloquent
  * @package SCCatalog\Repositories
  * @version June 20, 2018, 11:46 pm UTC
  *
@@ -15,7 +15,7 @@ use SCCatalog\Models\Keyword;
  * @method Keyword find($id, $columns = ['*'])
  * @method Keyword first($columns = ['*'])
 */
-class KeywordRepository extends BaseRepository implements AddressRepositoryContract
+class KeywordRepositoryEloquent extends BaseRepository implements KeywordRepositoryContract
 {
     /**
      * @var array

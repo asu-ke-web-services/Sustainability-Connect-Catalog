@@ -4,6 +4,92 @@
     <p>{!! $project->id !!}</p>
 </div>
 
+
+<!-- Opportunity.Title Field -->
+<div class="form-group">
+    {!! Form::label('title', 'Title:') !!}
+    <p>{!! $project->opportunity->title !!}</p>
+</div>
+
+<!-- Opportunity.Slug Field -->
+<div class="form-group">
+    {!! Form::label('slug', 'Slug:') !!}
+    <p>{!! $project->opportunity->slug !!}</p>
+</div>
+
+<!-- Opportunity.Description Field -->
+<div class="form-group">
+    {!! Form::label('description', 'Description:') !!}
+    <p>{!! $project->opportunity->description !!}</p>
+</div>
+
+<!-- Opportunity.Status Field -->
+<div class="form-group">
+    {!! Form::label('status', 'Status:') !!}
+    <p>{!! $project->opportunity->status->name !!}</p>
+</div>
+
+<!-- Opportunity.Organization Field -->
+<div class="form-group">
+    {!! Form::label('organization', 'Organization:') !!}
+    <p>{!! $project->opportunity->organization->name !!}</p>
+</div>
+
+<!-- Opportunity.Addresses Field -->
+<div class="form-group">
+{!! Form::label('addresses', 'Addresses:') !!}
+    <ul>
+        @foreach($project->opportunity->addresses as $address)
+            <li>{!! $address->city . ', ' . $address->state !!}</li>
+        @endforeach
+    </ul>
+</div>
+
+<!-- Opportunity.Categories Field -->
+<div class="form-group">
+{!! Form::label('categories', 'Categories:') !!}
+    <ul>
+        @foreach($project->opportunity->categories as $category)
+            <li>{!! $category->name !!}</li>
+        @endforeach
+    </ul>
+</div>
+
+<!-- Opportunity.Keywords Field -->
+<div class="form-group">
+{!! Form::label('keywords', 'Keywords:') !!}
+    <ul>
+        @foreach($project->opportunity->keywords as $keyword)
+            <li>{!! $keyword->name !!}</li>
+        @endforeach
+    </ul>
+</div>
+
+<!-- Opportunity.Notes Field -->
+<div class="form-group">
+{!! Form::label('notes', 'Notes:') !!}
+    <ul>
+        @foreach($project->opportunity->notes as $note)
+            <li>{!! $note->body . ' : ' . $note->updated_at !!}</li>
+        @endforeach
+    </ul>
+</div>
+
+<!-- Opportunity.Manager Field -->
+<div class="form-group">
+    {!! Form::label('manager', 'Manager:') !!}
+    <!-- <p>{!! $project->opportunity->ownerUser->first_name . ' ' . $project->opportunity->ownerUser->last_name !!}</p> -->
+    <p>{!! $project->opportunity->ownerUser->name !!}</p>
+</div>
+<!-- Opportunity.Submitter Field -->
+<div class="form-group">
+    {!! Form::label('submitter', 'Submitter:') !!}
+    <!-- <p>{!! $project->opportunity->submittingUser->first_name . ' ' . $project->opportunity->submittingUser->last_name !!}</p> -->
+    <p>{!! $project->opportunity->submittingUser->name !!}</p>
+</div>
+
+
+
 <!-- Compensation Field -->
 <div class="form-group">
     {!! Form::label('compensation', 'Compensation:') !!}

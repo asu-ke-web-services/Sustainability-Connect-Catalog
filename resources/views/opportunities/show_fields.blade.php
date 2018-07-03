@@ -112,3 +112,9 @@
     <p>{!! $opportunity->deleted_at !!}</p>
 </div>
 
+<!-- Compensation Field -->
+<div class="form-group">
+    {!! Form::label('compensation', 'Compensation:') !!}
+    <p>{!! $opportunity->opportunityable->compensation !!}</p>
+</div>
+

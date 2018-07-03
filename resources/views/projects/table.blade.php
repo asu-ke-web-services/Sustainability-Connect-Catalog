@@ -1,36 +1,22 @@
 <table class="table table-responsive" id="projects-table">
     <thead>
         <tr>
-            <th>Compensation</th>
-        <th>Responsibilities</th>
-        <th>Learning Outcomes</th>
-        <th>Sustainability Contribution</th>
-        <th>Qualifications</th>
-        <th>Application Overview</th>
-        <th>Implementation Paths</th>
-        <th>Budget Type</th>
-        <th>Budget Amount</th>
-        <th>Program Lead</th>
-        <th>Success Story</th>
-        <th>Library Collection</th>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Status</th>
+            <th>Expires</th>
+            <th>Deadline</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
     @foreach($projects as $project)
         <tr>
-            <td>{!! $project->compensation !!}</td>
-            <td>{!! $project->responsibilities !!}</td>
-            <td>{!! $project->learning_outcomes !!}</td>
-            <td>{!! $project->sustainability_contribution !!}</td>
-            <td>{!! $project->qualifications !!}</td>
-            <td>{!! $project->application_overview !!}</td>
-            <td>{!! $project->implementation_paths !!}</td>
-            <td>{!! $project->budget_type !!}</td>
-            <td>{!! $project->budget_amount !!}</td>
-            <td>{!! $project->program_lead !!}</td>
-            <td>{!! $project->success_story !!}</td>
-            <td>{!! $project->library_collection !!}</td>
+            <td>{!! $project->opportunity->title !!}</td>
+            <td>{!! $project->opportunity->summary !!}</td>
+            <td>{!! $project->opportunity->status->name !!}</td>
+            <td>{!! $project->opportunity->listing_expires !!}</td>
+            <td>{!! $project->opportunity->application_deadline !!}</td>
             <td>
                 {!! Form::open(['route' => ['projects.destroy', $project->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

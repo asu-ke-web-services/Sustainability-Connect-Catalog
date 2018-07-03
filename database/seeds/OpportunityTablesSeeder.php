@@ -159,7 +159,7 @@ class OpportunityTablesSeeder extends Seeder
 
             DB::table('opportunities')->insert([
                 'opportunityable_id' => $i + 1,
-                'opportunityable_type' => 'projects',
+                'opportunityable_type' => 'Project',
                 'title' => $faker->sentence(3, true),
                 'alt_title' => $faker->sentence(3, true),
                 'slug' => $faker->unique()->slug,
@@ -268,7 +268,7 @@ class OpportunityTablesSeeder extends Seeder
 
             DB::table('opportunities')->insert([
                 'opportunityable_id' => $i + 1,
-                'opportunityable_type' => 'internships',
+                'opportunityable_type' => 'Internship',
                 'title' => $faker->sentence(3, true),
                 'alt_title' => $faker->sentence(3, true),
                 'slug' => $faker->unique()->slug,

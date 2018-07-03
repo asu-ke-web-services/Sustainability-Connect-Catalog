@@ -15,8 +15,7 @@ class CreateOpportunitiesTables extends Migration
     {
         Schema::create('opportunities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('opportunityable_id')->unsigned();
-            $table->string('opportunityable_type');
+            $table->morphs('opportunityable');
             $table->string('title');
             $table->string('alt_title')->nullable();
             $table->string('slug');

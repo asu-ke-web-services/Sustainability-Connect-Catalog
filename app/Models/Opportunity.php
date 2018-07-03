@@ -101,11 +101,52 @@ class Opportunity extends Model implements Transformable
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function status()
+    {
+        return $this->belongsTo(\SCCatalog\Models\OpportunityStatus::class, 'opportunity_status_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function parentOpportunity()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'parent_opportunity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function organization()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Organization::class, 'organization_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function ownerUser()
+    {
+        return $this->belongsTo(\SCCatalog\Models\User::class, 'owner_user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function submittingUser()
+    {
+        return $this->belongsTo(\SCCatalog\Models\User::class, 'submitting_user_id');
+    }
+
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
     public function addresses()
     {
-        return $this->hasMany(\SCCatalog\Models\Address::class);
+        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'opportunities_addresses');
     }
 
     /**
@@ -113,7 +154,7 @@ class Opportunity extends Model implements Transformable
      **/
     public function categories()
     {
-        return $this->hasMany(\SCCatalog\Models\Category::class);
+        return $this->belongsToMany(\SCCatalog\Models\Category::class, 'opportunities_categories');
     }
 
     /**
@@ -121,7 +162,7 @@ class Opportunity extends Model implements Transformable
      **/
     public function keywords()
     {
-        return $this->hasMany(\SCCatalog\Models\Keyword::class);
+        return $this->belongsToMany(\SCCatalog\Models\Keyword::class, 'opportunities_keywords');
     }
 
     /**
@@ -129,7 +170,7 @@ class Opportunity extends Model implements Transformable
      **/
     public function notes()
     {
-        return $this->hasMany(\SCCatalog\Models\Note::class);
+        return $this->belongsToMany(\SCCatalog\Models\Note::class, 'opportunities_notes');
     }
 
     /**

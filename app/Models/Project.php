@@ -93,7 +93,7 @@ class Project extends Model implements Transformable
 
     public function opportunity()
     {
-        return $this->morphOne('Opportunity', 'opportunityable');
+        return $this->morphOne('\SCCatalog\Models\Opportunity', 'opportunityable');
     }
 
 }

@@ -27,7 +27,7 @@ class ProjectValidator extends LaravelValidator
             'opportunity_status_id'       => 'nullable|integer',
             'hidden'                      => 'boolean',
             'summary'                     => 'required',
-            'description'                 => 'required'
+            'description'                 => 'required',
             'parent_opportunity_id'       => 'nullable|integer',
             'organization_id'             => 'nullable|integer',
             'owner_user_id'               => 'nullable|integer',
@@ -43,7 +43,7 @@ class ProjectValidator extends LaravelValidator
             'budget_amount'               => 'nullable',
             'program_lead'                => 'nullable',
             'success_story'               => 'nullable|active_url',
-            'library_collection'          => 'nullable|active_url'
+            'library_collection'          => 'nullable|active_url',
         ],
         ValidatorInterface::RULE_UPDATE => [
             'title'                       => 'required',
@@ -54,7 +54,7 @@ class ProjectValidator extends LaravelValidator
             'opportunity_status_id'       => 'nullable|integer',
             'hidden'                      => 'boolean',
             'summary'                     => 'required',
-            'description'                 => 'required'
+            'description'                 => 'required',
             'parent_opportunity_id'       => 'nullable|integer',
             'organization_id'             => 'nullable|integer',
             'owner_user_id'               => 'nullable|integer',
@@ -70,7 +70,7 @@ class ProjectValidator extends LaravelValidator
             'budget_amount'               => 'nullable',
             'program_lead'                => 'nullable',
             'success_story'               => 'nullable|active_url',
-            'library_collection'          => 'nullable|active_url'
+            'library_collection'          => 'nullable|active_url',
         ],
     ];
 }

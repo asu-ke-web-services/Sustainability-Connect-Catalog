@@ -27,11 +27,11 @@ class OpportunityValidator extends LaravelValidator
             'opportunity_status_id' => 'nullable|integer',
             'hidden'                => 'boolean',
             'summary'               => 'required',
-            'description'           => 'required'
+            'description'           => 'required',
             'parent_opportunity_id' => 'nullable|integer',
             'organization_id'       => 'nullable|integer',
             'owner_user_id'         => 'nullable|integer',
-            'submitting_user_id'    => 'nullable|integer'
+            'submitting_user_id'    => 'nullable|integer',
         ],
         ValidatorInterface::RULE_UPDATE => [
             'title'                 => 'required',
@@ -42,11 +42,11 @@ class OpportunityValidator extends LaravelValidator
             'opportunity_status_id' => 'nullable|integer',
             'hidden'                => 'boolean',
             'summary'               => 'required',
-            'description'           => 'required'
+            'description'           => 'required',
             'parent_opportunity_id' => 'nullable|integer',
             'organization_id'       => 'nullable|integer',
             'owner_user_id'         => 'nullable|integer',
-            'submitting_user_id'    => 'nullable|integer'
+            'submitting_user_id'    => 'nullable|integer',
         ],
     ];
 }

@@ -27,11 +27,11 @@ class InternshipValidator extends LaravelValidator
             'opportunity_status_id'    => 'nullable|integer',
             'hidden'                   => 'boolean',
             'summary'                  => 'required',
-            'description'              => 'required'
+            'description'              => 'required',
             'parent_opportunity_id'    => 'nullable|integer',
             'organization_id'          => 'nullable|integer',
             'owner_user_id'            => 'nullable|integer',
-            'submitting_user_id'       => 'nullable|integer'
+            'submitting_user_id'       => 'nullable|integer',
             'compensation'             => 'nullable',
             'responsibilities'         => 'nullable',
             'qualifications'           => 'nullable',
@@ -41,7 +41,7 @@ class InternshipValidator extends LaravelValidator
             'success_story'            => 'nullable|active_url',
             'library_collection'       => 'nullable|active_url',
             'publish_on'               => 'nullable|date',
-            'publish_until'            => 'nullable|date'
+            'publish_until'            => 'nullable|date',
         ],
         ValidatorInterface::RULE_UPDATE => [
             'title'                    => 'required',
@@ -52,11 +52,11 @@ class InternshipValidator extends LaravelValidator
             'opportunity_status_id'    => 'nullable|integer',
             'hidden'                   => 'boolean',
             'summary'                  => 'required',
-            'description'              => 'required'
+            'description'              => 'required',
             'parent_opportunity_id'    => 'nullable|integer',
             'organization_id'          => 'nullable|integer',
             'owner_user_id'            => 'nullable|integer',
-            'submitting_user_id'       => 'nullable|integer'
+            'submitting_user_id'       => 'nullable|integer',
             'compensation'             => 'nullable',
             'responsibilities'         => 'nullable',
             'qualifications'           => 'nullable',
@@ -66,7 +66,7 @@ class InternshipValidator extends LaravelValidator
             'success_story'            => 'nullable|active_url',
             'library_collection'       => 'nullable|active_url',
             'publish_on'               => 'nullable|date',
-            'publish_until'            => 'nullable|date'
+            'publish_until'            => 'nullable|date',
         ],
     ];
 }

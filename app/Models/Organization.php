@@ -4,8 +4,6 @@ namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
@@ -22,20 +20,12 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property integer organization_status_id
  * @property string name
  */
-class Organization extends Model implements Transformable
+class Organization extends Model
 {
     use BlameableTrait;
     use SoftDeletes;
-    use TransformableTrait;
 
     public $table = 'organizations';
-
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'organization_type_id',

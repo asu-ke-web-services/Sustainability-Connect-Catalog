@@ -25,6 +25,11 @@ class CreateInternshipsTable extends Migration
             $table->string('library_collection')->nullable();
             $table->date('publish_on')->nullable();
             $table->date('publish_until')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
         });
     }
 

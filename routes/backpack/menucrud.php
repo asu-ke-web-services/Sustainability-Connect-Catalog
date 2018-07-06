@@ -13,7 +13,7 @@
 Route::group([
     'prefix' => config('backpack.base.route_prefix'),
     'middleware' => ['web', 'admin'],
-    'namespace' => 'Backpack\MenuCRUD\app\Http\Controllers\Admin',
+    'namespace' => 'Backpack\MenuCRUD\app\Http\Controllers\Backend',
 ], function () {
     CRUD::resource('menu-item', 'MenuItemCrudController');
 });

@@ -4,8 +4,6 @@ namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -35,17 +33,13 @@ use Spatie\Sluggable\SlugOptions;
  * @property integer owner_user_id
  * @property integer submitting_user_id
  */
-class Opportunity extends Model implements Transformable
+class Opportunity extends Model
 {
     use BlameableTrait;
     use HasSlug;
     use SoftDeletes;
-    use TransformableTrait;
 
     public $table = 'opportunities';
-
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
@@ -142,7 +136,7 @@ class Opportunity extends Model implements Transformable
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      **/
     public function addresses()
     {
@@ -150,7 +144,7 @@ class Opportunity extends Model implements Transformable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      **/
     public function categories()
     {
@@ -158,7 +152,7 @@ class Opportunity extends Model implements Transformable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      **/
     public function keywords()
     {
@@ -166,7 +160,7 @@ class Opportunity extends Model implements Transformable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      **/
     public function notes()
     {

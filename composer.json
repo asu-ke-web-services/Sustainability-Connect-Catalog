@@ -6,6 +6,7 @@
   "type": "project",
   "require": {
     "php": ">=7.0.0",
+    "algolia/algoliasearch-client-php": "^1.27",
     "backpack/crud": "^3.4",
     "backpack/permissionmanager": "^3.12",
     "backpack/settings": "^2.1",
@@ -14,6 +15,7 @@
     "infyomlabs/adminlte-templates": "5.5.x-dev",
     "infyomlabs/laravel-generator": "5.5.x-dev",
     "laravel/framework": "5.5.*",
+    "laravel/scout": "^4.0",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "^5.5.0",
     "mccool/laravel-auto-presenter": "^7.0",

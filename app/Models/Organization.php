@@ -4,6 +4,7 @@ namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
@@ -23,6 +24,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Organization extends Model
 {
     use BlameableTrait;
+    use Searchable;
     use SoftDeletes;
 
     public $table = 'organizations';
@@ -55,4 +57,60 @@ class Organization extends Model
     ];
 
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function status()
+    {
+        return $this->belongsTo(\SCCatalog\Models\OrganizationStatus::class, 'organization_status_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function type()
+    {
+        return $this->belongsTo(\SCCatalog\Models\OrganizationType::class, 'organization_type_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     **/
+    public function addresses()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'organizations_addresses');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     **/
+    public function notes()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Note::class, 'organizations_notes');
+    }
+
+
+    public function toSearchableArray()
+    {
+        $organization = array();
+
+        $organization['name'] = $this->name;
+        $organization['type'] = $this->type->name;
+        $organization['status'] = $this->status->name;
+
+        // Index Addresses
+        $organization['addresses'] = $this->addresses->map(function ($data) {
+                                        return $data['city'] .
+                                                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+                                                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+                                     })->toArray();
+
+        // Index Notes body content
+        $organization['notes'] = $this->notes->map(function ($data) {
+                                        return $data['body'];
+                                     })->toArray();
+
+        return $organization;
+    }
 }

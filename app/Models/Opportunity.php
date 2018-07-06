@@ -5,6 +5,7 @@ namespace SCCatalog\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -37,13 +38,16 @@ class Opportunity extends Model
 {
     use BlameableTrait;
     use HasSlug;
+    use Searchable;
     use SoftDeletes;
 
     public $table = 'opportunities';
 
-
-    protected $dates = ['deleted_at'];
-
+    protected $dates = [
+        'application_deadline',
+        'deleted_at',
+        'listing_expires',
+    ];
 
     public $fillable = [
         'title',
@@ -93,6 +97,17 @@ class Opportunity extends Model
     public static $rules = [
 
     ];
+
+
+    public static function boot()
+    {
+        static::saved(function ($model) {
+            $model->opportunityable->filter(function ($item) {
+                return $item->shouldBeSearchable();
+            })->searchable();
+        });
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -180,5 +195,38 @@ class Opportunity extends Model
     public function opportunityable()
     {
         return $this->morphTo();
+    }
+
+    public function toSearchableArray()
+    {
+        $opportunity = $this->toArray();
+
+        $opportunity['type'] = $this->opportunityable_type;
+        $opportunity['status'] = $this->status->name;
+        $opportunity['organization_name'] = $this->organization->name;
+
+        // Index Addresses
+        $opportunity['addresses'] = $this->addresses->map(function ($data) {
+                                        return $data['city'] .
+                                                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+                                                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+                                     })->toArray();
+
+        // Index Categories names
+        $opportunity['categories'] = $this->categories->map(function ($data) {
+                                        return $data['name'];
+                                     })->toArray();
+
+        // Index Keywords names
+        $opportunity['keywords'] = $this->keywords->map(function ($data) {
+                                        return $data['name'];
+                                     })->toArray();
+
+        // Index Notes body content
+        $opportunity['notes'] = $this->notes->map(function ($data) {
+                                        return $data['body'];
+                                     })->toArray();
+
+        return $opportunity;
     }
 }

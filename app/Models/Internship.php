@@ -3,6 +3,9 @@
 namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Internship
@@ -26,7 +29,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Internship extends Model
 {
+    use BlameableTrait;
+    use Searchable;
+    use SoftDeletes;
+
     public $table = 'internships';
+
+    protected $dates = [
+        'deleted_at',
+        'publish_on',
+        'publish_until',
+    ];
 
     public $fillable = [
         'compensation',
@@ -69,9 +82,57 @@ class Internship extends Model
 
     ];
 
+
+    public static function boot()
+    {
+        static::saved(function ($model) {
+            $model->opportunity->filter(function ($item) {
+                return $item->shouldBeSearchable();
+            })->searchable();
+        });
+    }
+
+
     public function opportunity()
     {
         return $this->morphOne('\SCCatalog\Models\Opportunity', 'opportunityable');
     }
 
+    public function toSearchableArray()
+    {
+        $internship = $this->toArray();
+
+        $internship['opportunity_title'] = $this->opportunity->title;
+        $internship['opportunity_alt_title'] = $this->opportunity->alt_title;
+        $internship['opportunity_description'] = $this->opportunity->description;
+        $internship['opportunity_summary'] = $this->opportunity->summary;
+
+        $internship['type'] = 'Internship';
+        $internship['status'] = $this->opportunity->status->name;
+        $internship['organization_name'] = $this->opportunity->organization->name;
+
+        // Index Addresses
+        $internship['addresses'] = $this->opportunity->addresses->map(function ($data) {
+                                        return $data['city'] .
+                                                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+                                                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+                                     })->toArray();
+
+        // Index Categories names
+        $internship['categories'] = $this->opportunity->categories->map(function ($data) {
+                                        return $data['name'];
+                                     })->toArray();
+
+        // Index Keywords names
+        $internship['keywords'] = $this->opportunity->keywords->map(function ($data) {
+                                        return $data['name'];
+                                     })->toArray();
+
+        // Index Notes body content
+        $internship['notes'] = $this->opportunity->notes->map(function ($data) {
+                                        return $data['body'];
+                                     })->toArray();
+
+        return $internship;
+    }
 }

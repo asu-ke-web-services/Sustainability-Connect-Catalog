@@ -4,6 +4,7 @@ namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
@@ -30,7 +31,15 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  */
 class Project extends Model
 {
+    use BlameableTrait;
+    use Searchable;
+    use SoftDeletes;
+
     public $table = 'projects';
+
+    protected $dates = [
+        'deleted_at',
+    ];
 
     public $fillable = [
         'compensation',
@@ -78,9 +87,65 @@ class Project extends Model
     ];
 
 
+
+    public static function boot()
+    {
+        static::saved(function ($model) {
+            $model->opportunity->filter(function ($item) {
+                return $item->shouldBeSearchable();
+            })->searchable();
+        });
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function ownerUser()
+    {
+        return $this->belongsTo(\SCCatalog\Models\User::class, 'owner_user_id');
+    }
+
     public function opportunity()
     {
         return $this->morphOne('\SCCatalog\Models\Opportunity', 'opportunityable');
     }
 
+    public function toSearchableArray()
+    {
+        $project = $this->toArray();
+
+        $project['opportunity_title'] = $this->opportunity->title;
+        $project['opportunity_alt_title'] = $this->opportunity->alt_title;
+        $project['opportunity_description'] = $this->opportunity->description;
+        $project['opportunity_summary'] = $this->opportunity->summary;
+
+        $project['type'] = 'Project';
+        $project['status'] = $this->opportunity->status->name;
+        $project['organization_name'] = $this->opportunity->organization->name;
+
+        // Index Addresses
+        $project['addresses'] = $this->opportunity->addresses->map(function ($data) {
+                                        return $data['city'] .
+                                                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+                                                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+                                     })->toArray();
+
+        // Index Categories names
+        $project['categories'] = $this->opportunity->categories->map(function ($data) {
+                                        return $data['name'];
+                                     })->toArray();
+
+        // Index Keywords names
+        $project['keywords'] = $this->opportunity->keywords->map(function ($data) {
+                                        return $data['name'];
+                                     })->toArray();
+
+        // Index Notes body content
+        $project['notes'] = $this->opportunity->notes->map(function ($data) {
+                                        return $data['body'];
+                                     })->toArray();
+
+        return $project;
+    }
 }

@@ -12,14 +12,13 @@ use Response;
 use SCCatalog\Http\Requests\OpportunityCreateRequest;
 use SCCatalog\Http\Requests\OpportunityUpdateRequest;
 use SCCatalog\Http\Requests;
-// use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
-use SCCatalog\Repositories\OpportunityRepositoryEloquent as OpportunityRepository;
+use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
 use SCCatalog\Validators\OpportunityValidator;
 
 /**
  * Class OpportunityController.
  *
- * @package namespace SCCatalog\Http\Controllers;
+ * @package namespace SCCatalog\Http\Controllers\Frontend;
  */
 class OpportunityController extends Controller
 {
@@ -45,7 +44,7 @@ class OpportunityController extends Controller
      */
     public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
     {
-        $this->repository = $repository;
+        $this->opportunities = $repository;
         $this->validator  = $validator;
     }
 
@@ -57,8 +56,8 @@ class OpportunityController extends Controller
      */
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new RequestCriteria($request));
-        $opportunities = $this->repository->all();
+        $this->opportunities->pushCriteria(new RequestCriteria($request));
+        $opportunities = $this->opportunities->all();
 
         if (request()->wantsJson()) {
 
@@ -96,7 +95,7 @@ class OpportunityController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $opportunity = $this->repository->create($request->all());
+            $opportunity = $this->opportunities->create($request->all());
 
             $response = [
                 'message' => 'Opportunity created.',
@@ -134,7 +133,7 @@ class OpportunityController extends Controller
      */
     public function show($id)
     {
-        $opportunity = $this->repository->findWithoutFail($id);
+        $opportunity = $this->opportunities->findWithoutFail($id);
 
         if (request()->wantsJson()) {
             // TODO: handle empty response (add message?)
@@ -161,7 +160,7 @@ class OpportunityController extends Controller
      */
     public function edit($id)
     {
-        $opportunity = $this->repository->findWithoutFail($id);
+        $opportunity = $this->opportunities->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');
@@ -188,7 +187,7 @@ class OpportunityController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $opportunity = $this->repository->update($request->all(), $id);
+            $opportunity = $this->opportunities->update($request->all(), $id);
 
             $response = [
                 'message' => 'Opportunity updated.',
@@ -218,7 +217,7 @@ class OpportunityController extends Controller
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
 
-        // $opportunity = $this->repository->findWithoutFail($id);
+        // $opportunity = $this->opportunities->findWithoutFail($id);
 
         // if (empty($opportunity)) {
         //     Flash::error('Opportunity not found');
@@ -226,7 +225,7 @@ class OpportunityController extends Controller
         //     return redirect(route('opportunities.index'));
         // }
 
-        // $opportunity = $this->repository->update($request->all(), $id);
+        // $opportunity = $this->opportunities->update($request->all(), $id);
 
         // Flash::success('Opportunity updated successfully.');
 
@@ -242,7 +241,7 @@ class OpportunityController extends Controller
      */
     public function destroy($id)
     {
-        // $deleted = $this->repository->delete($id);
+        // $deleted = $this->opportunities->delete($id);
 
         // if (request()->wantsJson()) {
 
@@ -255,7 +254,7 @@ class OpportunityController extends Controller
         // return redirect()->back()->with('message', 'Opportunity deleted.');
 
 
-        $opportunity = $this->repository->findWithoutFail($id);
+        $opportunity = $this->opportunities->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');
@@ -263,7 +262,7 @@ class OpportunityController extends Controller
             return redirect(route('opportunities.index'));
         }
 
-        $this->repository->delete($id);
+        $this->opportunities->delete($id);
 
         Flash::success('Opportunity deleted successfully.');
 

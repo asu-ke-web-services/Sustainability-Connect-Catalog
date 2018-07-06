@@ -2,22 +2,43 @@
 
 namespace SCCatalog\Http\Controllers;
 
+
+use Flash;
+use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+use Response;
 use SCCatalog\Http\Requests\OrganizationCreateRequest;
 use SCCatalog\Http\Requests\OrganizationUpdateRequest;
+use SCCatalog\Http\Requests;
 use SCCatalog\Contracts\Repositories\OrganizationRepositoryContract as OrganizationRepository;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
+use SCCatalog\Validators\OrganizationValidator;
 
 class OrganizationController extends Controller
 {
     /** @var  OrganizationRepository */
-    private $repository;
+    private $organizations;
 
-    public function __construct(OrganizationRepository $repo)
+    /**
+     * @var OrganizationValidator
+     */
+    protected $validator;
+
+    /**
+     * OrganizationController constructor.
+     *
+     *     Laravel note: the Repository Contract is referenced here, and Laravel injects
+     *     the Repository implementation because we registered the binding between the
+     *     contract and repo in Providers\AppServiceProvider
+     *
+     * @param OrganizationRepository $repository
+     * @param OrganizationValidator $validator
+     */
+    public function __construct(OrganizationRepository $repository, OrganizationValidator $validator)
     {
-        $this->repository = $repo;
+        $this->organizations = $repository;
+        $this->validator  = $validator;
     }
 
     /**
@@ -28,8 +49,8 @@ class OrganizationController extends Controller
      */
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new RequestCriteria($request));
-        $organizations = $this->repository->all();
+        $this->organizations->pushCriteria(new RequestCriteria($request));
+        $organizations = $this->organizations->all();
 
         return view('organizations.index')
             ->with('organizations', $organizations);
@@ -56,7 +77,7 @@ class OrganizationController extends Controller
     {
         $input = $request->all();
 
-        $organization = $this->repository->create($input);
+        $organization = $this->organizations->create($input);
 
         Flash::success('Organization saved successfully.');
 
@@ -72,7 +93,7 @@ class OrganizationController extends Controller
      */
     public function show($id)
     {
-        $organization = $this->repository->findWithoutFail($id);
+        $organization = $this->organizations->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -92,7 +113,7 @@ class OrganizationController extends Controller
      */
     public function edit($id)
     {
-        $organization = $this->repository->findWithoutFail($id);
+        $organization = $this->organizations->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -113,7 +134,7 @@ class OrganizationController extends Controller
      */
     public function update( $id, OrganizationUpdateRequest $request)
     {
-        $organization = $this->repository->findWithoutFail($id);
+        $organization = $this->organizations->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -121,7 +142,7 @@ class OrganizationController extends Controller
             return redirect(route('organizations.index'));
         }
 
-        $organization = $this->repository->update($request->all(), $id);
+        $organization = $this->organizations->update($request->all(), $id);
 
         Flash::success('Organization updated successfully.');
 
@@ -137,7 +158,7 @@ class OrganizationController extends Controller
      */
     public function destroy($id)
     {
-        $organization = $this->repository->findWithoutFail($id);
+        $organization = $this->organizations->findWithoutFail($id);
 
         if (empty($organization)) {
             Flash::error('Organization not found');
@@ -145,7 +166,7 @@ class OrganizationController extends Controller
             return redirect(route('organizations.index'));
         }
 
-        $this->repository->delete($id);
+        $this->organizations->delete($id);
 
         Flash::success('Organization deleted successfully.');
 

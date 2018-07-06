@@ -2,22 +2,36 @@
 
 namespace SCCatalog\Http\Controllers;
 
+
+use Flash;
+use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+use Response;
 use SCCatalog\Http\Requests\InternshipCreateRequest;
 use SCCatalog\Http\Requests\InternshipUpdateRequest;
 use SCCatalog\Contracts\Repositories\InternshipRepositoryContract as InternshipRepository;
-use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
+use SCCatalog\Validators\InternshipValidator;
 
 class InternshipController extends Controller
 {
-    /** @var  InternshipRepository */
-    private $repository;
+    /**
+     * @var  InternshipRepository
+     */
+    private $internships;
 
-    public function __construct(InternshipRepository $repo)
+    /**
+     * @var InternshipValidator
+     */
+    protected $validator;
+
+
+    public function __construct(InternshipRepository $repository, InternshipValidator $validator)
     {
-        $this->repository = $repo;
+        $this->internships = $repository;
+        $this->validator  = $validator;
+
     }
 
     /**
@@ -28,8 +42,8 @@ class InternshipController extends Controller
      */
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new RequestCriteria($request));
-        $internships = $this->repository->all();
+        $this->internships->pushCriteria(new RequestCriteria($request));
+        $internships = $this->internships->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
 
         return view('internships.index')
             ->with('internships', $internships);
@@ -56,7 +70,7 @@ class InternshipController extends Controller
     {
         $input = $request->all();
 
-        $internship = $this->repository->create($input);
+        $internship = $this->internships->create($input);
 
         Flash::success('Internship saved successfully.');
 
@@ -72,7 +86,7 @@ class InternshipController extends Controller
      */
     public function show($id)
     {
-        $internship = $this->repository->findWithoutFail($id);
+        $internship = $this->internships->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -92,7 +106,7 @@ class InternshipController extends Controller
      */
     public function edit($id)
     {
-        $internship = $this->repository->findWithoutFail($id);
+        $internship = $this->internships->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -113,7 +127,7 @@ class InternshipController extends Controller
      */
     public function update( $id, InternshipUpdateRequest $request)
     {
-        $internship = $this->repository->findWithoutFail($id);
+        $internship = $this->internships->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -121,7 +135,7 @@ class InternshipController extends Controller
             return redirect(route('internships.index'));
         }
 
-        $internship = $this->repository->update($request->all(), $id);
+        $internship = $this->internships->update($request->all(), $id);
 
         Flash::success('Internship updated successfully.');
 
@@ -137,7 +151,7 @@ class InternshipController extends Controller
      */
     public function destroy($id)
     {
-        $internship = $this->repository->findWithoutFail($id);
+        $internship = $this->internships->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -145,7 +159,7 @@ class InternshipController extends Controller
             return redirect(route('internships.index'));
         }
 
-        $this->repository->delete($id);
+        $this->internships->delete($id);
 
         Flash::success('Internship deleted successfully.');
 

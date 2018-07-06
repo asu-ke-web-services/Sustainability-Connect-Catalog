@@ -11,13 +11,14 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
 use SCCatalog\Http\Requests\ProjectCreateRequest;
 use SCCatalog\Http\Requests\ProjectUpdateRequest;
-// use SCCatalog\Contracts\Repositories\ProjectRepositoryContract as ProjectRepository;
-use SCCatalog\Repositories\ProjectRepositoryEloquent as ProjectRepository;
+use SCCatalog\Contracts\Repositories\ProjectRepositoryContract as ProjectRepository;
 use SCCatalog\Validators\ProjectValidator;
 
 class ProjectController extends Controller
 {
-    /** @var  ProjectRepository */
+    /**
+     * @var ProjectRepository
+     */
     private $projects;
 
     /**
@@ -25,9 +26,9 @@ class ProjectController extends Controller
      */
     protected $validator;
 
-    public function __construct(ProjectRepository $projects, ProjectValidator $validator)
+    public function __construct(ProjectRepository $repository, ProjectValidator $validator)
     {
-        $this->projects = $projects;
+        $this->projects = $repository;
         $this->validator  = $validator;
     }
 
@@ -40,7 +41,7 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $this->projects->pushCriteria(new RequestCriteria($request));
-        $projects = $this->projects->all();
+        $projects = $this->projects->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
 
         return view('projects.index')
             ->with('projects', $projects);

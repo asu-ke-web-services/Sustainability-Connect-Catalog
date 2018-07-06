@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use SCCatalog\Models\OpportunityStatus;
 use SCCatalog\Models\OpportunityType;
@@ -153,10 +154,12 @@ class OpportunityTablesSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
+        $expirationDate = Carbon::now()->addMonths(3);
+        $startDate = Carbon::now()->addMonths(6);
+        $endDate = Carbon::now()->addMonths(12);
+
         // Projects
         for ($i = 0; $i < 100; $i++) {
-            $expirationDate = $faker->date('Y-m-d', '+ 1 year');
-
             DB::table('opportunities')->insert([
                 'opportunityable_id' => $i + 1,
                 'opportunityable_type' => 'Project',
@@ -167,6 +170,8 @@ class OpportunityTablesSeeder extends Seeder
                 'hidden' => $faker->boolean(10),
                 'summary' => $faker->paragraph(1, true),
                 'description' => $faker->paragraph(3, true),
+                'start_date' => $startDate,
+                'end_date' => $endDate,
                 'listing_expires' => $expirationDate,
                 'application_deadline' => $expirationDate,
                 'organization_id' => $faker->numberBetween(1, 20),
@@ -186,6 +191,10 @@ class OpportunityTablesSeeder extends Seeder
                 'qualifications' => $faker->text,
                 'application_overview' => $faker->text,
                 'implementation_paths' => $faker->text,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
 
             DB::table('opportunities_addresses')->insert([
@@ -264,8 +273,6 @@ class OpportunityTablesSeeder extends Seeder
 
         // Internships
         for ($i = 0; $i < 100; $i++) {
-            $expirationDate = $faker->date('Y-m-d', '+ 1 year');
-
             DB::table('opportunities')->insert([
                 'opportunityable_id' => $i + 1,
                 'opportunityable_type' => 'Internship',
@@ -276,6 +283,8 @@ class OpportunityTablesSeeder extends Seeder
                 'hidden' => $faker->boolean(10),
                 'summary' => $faker->paragraph(1, true),
                 'description' => $faker->paragraph(3, true),
+                'start_date' => $startDate,
+                'end_date' => $endDate,
                 'listing_expires' => $expirationDate,
                 'application_deadline' => $expirationDate,
                 'organization_id' => $faker->numberBetween(1, 20),
@@ -297,7 +306,11 @@ class OpportunityTablesSeeder extends Seeder
                 'success_story' => $faker->url,
                 'library_collection' => $faker->url,
                 'publish_on' => $faker->date('Y-m-d', '+ 1 year'),
-                'publish_until' => $faker->date('Y-m-d', '+ 1 year')
+                'publish_until' => $faker->date('Y-m-d', '+ 1 year'),
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
 
             DB::table('opportunities_addresses')->insert([

@@ -1,14 +1,14 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Admin;
+namespace SCCatalog\Http\Controllers\Backend;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use SCCatalog\Http\Requests\OpportunityTypeRequest as StoreRequest;
-use SCCatalog\Http\Requests\OpportunityTypeRequest as UpdateRequest;
+use SCCatalog\Http\Requests\KeywordRequest as StoreRequest;
+use SCCatalog\Http\Requests\KeywordRequest as UpdateRequest;
 
-class OpportunityTypeCrudController extends CrudController
+class KeywordCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class OpportunityTypeCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('SCCatalog\Models\OpportunityType');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/opportunity_type');
-        $this->crud->setEntityNameStrings('opportunity_type', 'opportunity_types');
+        $this->crud->setModel('SCCatalog\Models\Keyword');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/keyword');
+        $this->crud->setEntityNameStrings('keyword', 'keywords');
 
         /*
         |--------------------------------------------------------------------------

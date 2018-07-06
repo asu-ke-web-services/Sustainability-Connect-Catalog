@@ -1,14 +1,14 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Admin;
+namespace SCCatalog\Http\Controllers\Backend;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use SCCatalog\Http\Requests\OrganizationStatusRequest as StoreRequest;
-use SCCatalog\Http\Requests\OrganizationStatusRequest as UpdateRequest;
+use SCCatalog\Http\Requests\OpportunityStatusRequest as StoreRequest;
+use SCCatalog\Http\Requests\OpportunityStatusRequest as UpdateRequest;
 
-class OrganizationStatusCrudController extends CrudController
+class OpportunityStatusCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class OrganizationStatusCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('SCCatalog\Models\OrganizationStatus');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/organization_status');
-        $this->crud->setEntityNameStrings('organization_status', 'organization_statuses');
+        $this->crud->setModel('SCCatalog\Models\OpportunityStatus');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/opportunity_status');
+        $this->crud->setEntityNameStrings('opportunity_status', 'opportunity_statuses');
 
         /*
         |--------------------------------------------------------------------------

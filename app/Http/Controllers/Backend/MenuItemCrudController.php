@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Admin;
+namespace SCCatalog\Http\Controllers\Backend;
 
 use SCCatalog\Http\Requests;
 use Backpack\CRUD\app\Http\Controllers\CrudController;

@@ -22,7 +22,8 @@ class CreateOpportunitiesTables extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->date('listing_expires')->nullable();
-            $table->string('application_deadline')->nullable();
+            $table->date('application_deadline')->nullable();
+            $table->string('application_deadline_text')->nullable();
             $table->integer('opportunity_status_id')->unsigned();
             $table->boolean('hidden');
             $table->text('summary')->nullable();

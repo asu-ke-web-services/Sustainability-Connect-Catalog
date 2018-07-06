@@ -175,6 +175,7 @@ return [
         SCCatalog\Providers\AuthServiceProvider::class,
         // SCCatalog\Providers\BroadcastServiceProvider::class,
         SCCatalog\Providers\EventServiceProvider::class,
+        SCCatalog\Providers\RepositoryServiceProvider::class,
         SCCatalog\Providers\RouteServiceProvider::class,
 
     ],

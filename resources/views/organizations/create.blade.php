@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.asu-web-standards')
 
 @section('content')
     <section class="content-header">

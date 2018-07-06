@@ -1,164 +1,122 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $project->id !!}</p>
-</div>
+        <h2 style="margin-top:0">{!! $project->opportunity->title !!}</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <span class="fa-stack" data-toggle="tooltip" data-container="body" title="" data-original-title="Restricted to students majoring in degrees from The School of Sustainability">
+                                <i class="fa fa-square fa-green fa-stack-2x"></i>
+                                <i class="fa fa-leaf fa-stack-1x"></i>
+                            </span>
+                            <span class="fa-stack" data-toggle="tooltip" data-container="body" title="" data-original-title="Can fulfill School of Sustainability Culminating Experience">
+                                <i class="fa fa-square fa-gold fa-stack-2x"></i>
+                                <i class="fa fa-graduation-cap fa-stack-1x"></i>
+                            </span>
+                            <span class="fa-stack" data-toggle="tooltip" data-container="body" title="" data-original-title="Available for Undergraduate Students">
+                                <i class="fa fa-square fa-blue fa-stack-2x"></i>
+                                <strong class="fa-stack-1x fa-inverse">U</strong>
+                            </span>
+                            <span class="fa-stack" data-toggle="tooltip" data-container="body" title="" data-original-title="Available for Graduate Students">
+                                <i class="fa fa-square fa-blue-darkened fa-stack-2x"></i>
+                                <strong class="fa-stack-1x fa-inverse">G</strong>
+                            </span>
+                        </td>
+                    </tr>
+
+                    <!-- Project Status -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Status</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity->status->name !!}</td>
+                    </tr>
+
+                    <!-- Description -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Project Description</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity->description !!}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
 
 
-<!-- Opportunity.Title Field -->
-<div class="form-group">
-    {!! Form::label('title', 'Title:') !!}
-    <p>{!! $project->opportunity->title !!}</p>
-</div>
+        <h3>Availability</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Project Starts -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Project Starts</td>
+                        <td class="col col-sm-9 view-content">TODO</td>
+                    </tr>
+                            <!-- Project Ends -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Project Ends</td>
+                        <td class="col col-sm-9 view-content">TODO</td>
+                    </tr>
+                        </tbody>
+            </table>
+        </div>
 
-<!-- Opportunity.Slug Field -->
-<div class="form-group">
-    {!! Form::label('slug', 'Slug:') !!}
-    <p>{!! $project->opportunity->slug !!}</p>
-</div>
+        <h3>Application Process</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Application Deadline -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Application Deadline</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity->application_deadline !!}</td>
+                    </tr>
+                            <!-- Application Instructions -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Application Instructions</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity->application_overview !!}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<!-- Opportunity.Description Field -->
-<div class="form-group">
-    {!! Form::label('description', 'Description:') !!}
-    <p>{!! $project->opportunity->description !!}</p>
-</div>
+        <h3>Implementation</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Location -->
+                    @foreach($project->opportunity->addresses as $address)
+                        <tr>
+                            <td class="col col-sm-3 view-label">City, State</td>
+                            <td class="col col-sm-9 view-content">{!! $address->city . ', ' . $address->state !!}</td>
+                        </tr>
+                    @endforeach
 
-<!-- Opportunity.Status Field -->
-<div class="form-group">
-    {!! Form::label('status', 'Status:') !!}
-    <p>{!! $project->opportunity->status->name !!}</p>
-</div>
+                    <!-- Project Deliverables -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Sustainability Contribution</td>
+                        <td class="col col-sm-9 view-content">{!! $project->sustainability_contribution !!}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<!-- Opportunity.Organization Field -->
-<div class="form-group">
-    {!! Form::label('organization', 'Organization:') !!}
-    <p>{!! $project->opportunity->organization->name !!}</p>
-</div>
-
-<!-- Opportunity.Addresses Field -->
-<div class="form-group">
-{!! Form::label('addresses', 'Addresses:') !!}
-    <ul>
-        @foreach($project->opportunity->addresses as $address)
-            <li>{!! $address->city . ', ' . $address->state !!}</li>
-        @endforeach
-    </ul>
-</div>
-
-<!-- Opportunity.Categories Field -->
-<div class="form-group">
-{!! Form::label('categories', 'Categories:') !!}
-    <ul>
-        @foreach($project->opportunity->categories as $category)
-            <li>{!! $category->name !!}</li>
-        @endforeach
-    </ul>
-</div>
-
-<!-- Opportunity.Keywords Field -->
-<div class="form-group">
-{!! Form::label('keywords', 'Keywords:') !!}
-    <ul>
-        @foreach($project->opportunity->keywords as $keyword)
-            <li>{!! $keyword->name !!}</li>
-        @endforeach
-    </ul>
-</div>
-
-<!-- Opportunity.Notes Field -->
-<div class="form-group">
-{!! Form::label('notes', 'Notes:') !!}
-    <ul>
-        @foreach($project->opportunity->notes as $note)
-            <li>{!! $note->body . ' : ' . $note->updated_at !!}</li>
-        @endforeach
-    </ul>
-</div>
-
-<!-- Opportunity.Manager Field -->
-<div class="form-group">
-    {!! Form::label('manager', 'Manager:') !!}
-    <!-- <p>{!! $project->opportunity->ownerUser->first_name . ' ' . $project->opportunity->ownerUser->last_name !!}</p> -->
-    <p>{!! $project->opportunity->ownerUser->name !!}</p>
-</div>
-<!-- Opportunity.Submitter Field -->
-<div class="form-group">
-    {!! Form::label('submitter', 'Submitter:') !!}
-    <!-- <p>{!! $project->opportunity->submittingUser->first_name . ' ' . $project->opportunity->submittingUser->last_name !!}</p> -->
-    <p>{!! $project->opportunity->submittingUser->name !!}</p>
-</div>
-
-
-
-<!-- Compensation Field -->
-<div class="form-group">
-    {!! Form::label('compensation', 'Compensation:') !!}
-    <p>{!! $project->compensation !!}</p>
-</div>
-
-<!-- Responsibilities Field -->
-<div class="form-group">
-    {!! Form::label('responsibilities', 'Responsibilities:') !!}
-    <p>{!! $project->responsibilities !!}</p>
-</div>
-
-<!-- Learning Outcomes Field -->
-<div class="form-group">
-    {!! Form::label('learning_outcomes', 'Learning Outcomes:') !!}
-    <p>{!! $project->learning_outcomes !!}</p>
-</div>
-
-<!-- Sustainability Contribution Field -->
-<div class="form-group">
-    {!! Form::label('sustainability_contribution', 'Sustainability Contribution:') !!}
-    <p>{!! $project->sustainability_contribution !!}</p>
-</div>
-
-<!-- Qualifications Field -->
-<div class="form-group">
-    {!! Form::label('qualifications', 'Qualifications:') !!}
-    <p>{!! $project->qualifications !!}</p>
-</div>
-
-<!-- Application Overview Field -->
-<div class="form-group">
-    {!! Form::label('application_overview', 'Application Overview:') !!}
-    <p>{!! $project->application_overview !!}</p>
-</div>
-
-<!-- Implementation Paths Field -->
-<div class="form-group">
-    {!! Form::label('implementation_paths', 'Implementation Paths:') !!}
-    <p>{!! $project->implementation_paths !!}</p>
-</div>
-
-<!-- Budget Type Field -->
-<div class="form-group">
-    {!! Form::label('budget_type', 'Budget Type:') !!}
-    <p>{!! $project->budget_type !!}</p>
-</div>
-
-<!-- Budget Amount Field -->
-<div class="form-group">
-    {!! Form::label('budget_amount', 'Budget Amount:') !!}
-    <p>{!! $project->budget_amount !!}</p>
-</div>
-
-<!-- Program Lead Field -->
-<div class="form-group">
-    {!! Form::label('program_lead', 'Program Lead:') !!}
-    <p>{!! $project->program_lead !!}</p>
-</div>
-
-<!-- Success Story Field -->
-<div class="form-group">
-    {!! Form::label('success_story', 'Success Story:') !!}
-    <p>{!! $project->success_story !!}</p>
-</div>
-
-<!-- Library Collection Field -->
-<div class="form-group">
-    {!! Form::label('library_collection', 'Library Collection:') !!}
-    <p>{!! $project->library_collection !!}</p>
-</div>
-
+        <h3>Student Expectations</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Qualifications -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Minimum and Desired Qualifications</td>
+                        <td class="col col-sm-9 view-content">{!! $project->qualifications !!}</td>
+                    </tr>
+                    <!-- Student Responsibilities -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Student Responsibilities</td>
+                        <td class="col col-sm-9 view-content">{!! $project->responsibilities !!}</td>
+                    </tr>
+                    <!-- Student Learning Ourtcomes -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Student Learning Outcomes</td>
+                        <td class="col col-sm-9 view-content">{!! $project->learning_outcomes !!}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

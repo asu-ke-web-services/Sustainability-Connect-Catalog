@@ -55,19 +55,19 @@ return [
 
     'namespace' => [
 
-        'model'             => 'App\Models',
+        'model'             => 'SCCatalog\Models',
 
-        'datatables'        => 'App\DataTables',
+        'datatables'        => 'SCCatalog\DataTables',
 
-        'repository'        => 'App\Repositories',
+        'repository'        => 'SCCatalog\Repositories',
 
-        'controller'        => 'App\Http\Controllers',
+        'controller'        => 'SCCatalog\Http\Controllers',
 
-        'api_controller'    => 'App\Http\Controllers\API',
+        'api_controller'    => 'SCCatalog\Http\Controllers\API',
 
-        'request'           => 'App\Http\Requests',
+        'request'           => 'SCCatalog\Http\Requests',
 
-        'api_request'       => 'App\Http\Requests\API',
+        'api_request'       => 'SCCatalog\Http\Requests\API',
     ],
 
     /*

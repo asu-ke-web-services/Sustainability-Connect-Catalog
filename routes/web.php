@@ -26,4 +26,6 @@ Route::resource('opportunities', 'OpportunityController');
 
 Route::resource('projects', 'ProjectController');
 
+Route::get('projects/search', 'SearchController@index');
+
 Route::resource('internships', 'InternshipController');

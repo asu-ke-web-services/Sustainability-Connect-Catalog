@@ -159,7 +159,7 @@
                                 <li><a href="/" title="Home"  id="home-icon-main-nav"><span class="fa fa-home hidden-xs hidden-sm" aria-hidden="true"></span><span class="hidden-md hidden-lg">Home</span></a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Projects" href="/projects" id="nav-item_projects">Projects</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Internships" href="/internships" id="nav-item_internships">Internships</a></li>
-                                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Submit Opportunity" href="#" id="nav-item_submit-opportunity">Submit Opportunity</a></li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Submit Opportunity" href="/projects/submit_idea" id="nav-item_submit-opportunity">Submit Opportunity</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="Success Stories" href="#">Success Stories</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="News" href="#" id="nav-item_news">News</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown"><a title="About" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">About <span class="caret"></span></a>
@@ -241,9 +241,9 @@
                                 <h2 data-toggle="collapse" data-target="#menu-item-100-nav" >Get Involved  <span class="caret hidden-sm hidden-md hidden-lg"></span></h2>
                                 <ul class='big-foot-nav collapse' id='menu-item-100-nav'>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-133" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/submit-your-idea/" id="nav-item_133_under_135">Submit Your Idea</a></li>
-                                        <li id="menu-item-106" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about/types-of-opportunities/" id="nav-item_106_under_99">Types of Opportunities</a></li>
-                                        <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about/faq/" id="nav-item_109_under_100">FAQ</a></li>
+                                        <li id="menu-item-133" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/projects/submit_idea/" id="nav-item_133_under_135">Submit Your Idea</a></li>
+                                        <li id="menu-item-106" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_106_under_99">Types of Opportunities</a></li>
+                                        <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_109_under_100">FAQ</a></li>
                                     </ul>
                                 </ul>
                             </div>
@@ -251,10 +251,10 @@
                                 <h2 data-toggle="collapse" data-target="#menu-item-99-nav" >About  <span class="caret hidden-sm hidden-md hidden-lg"></span></h2>
                                 <ul class='big-foot-nav collapse' id='menu-item-99-nav'>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-104" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about/" id="nav-item_about-us_under_99">About Us</a></li>
-                                        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about/contact-us/" id="nav-item_108_under_99">Contact Us</a></li>
-                                        <li id="menu-item-107" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about/programs-partners/" id="nav-item_107_under_99">Programs &#038; Partners</a></li>
-                                        <li id="menu-item-105" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about/why-work-with-us/" id="nav-item_105_under_99">Why Work With Us</a></li>
+                                        <li id="menu-item-104" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_about-us_under_99">About Us</a></li>
+                                        <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_108_under_99">Contact Us</a></li>
+                                        <li id="menu-item-107" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_107_under_99">Programs &#038; Partners</a></li>
+                                        <li id="menu-item-105" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_105_under_99">Why Work With Us</a></li>
                                     </ul>
                                 </ul>
                             </div>

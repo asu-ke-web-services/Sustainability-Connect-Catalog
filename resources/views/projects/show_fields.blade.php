@@ -48,12 +48,12 @@
                     <!-- Project Starts -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Starts</td>
-                        <td class="col col-sm-9 view-content">TODO</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity->start_date !!}</td>
                     </tr>
                             <!-- Project Ends -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Ends</td>
-                        <td class="col col-sm-9 view-content">TODO</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity->end_date !!}</td>
                     </tr>
                         </tbody>
             </table>
@@ -71,7 +71,7 @@
                             <!-- Application Instructions -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Instructions</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunity->application_overview !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->application_overview !!}</td>
                     </tr>
                 </tbody>
             </table>

@@ -60,7 +60,7 @@
             src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
-        <script type="text/javascript" src="{{ asset('vendor/tether/js/tether.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('vendor/tether/dist/js/tether.js') }}"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" defer></script>
         <script type="text/javascript" src="https://static.sustainability.asu.edu/asu-theme/asu-web-standards/js/bootstrap-asu.min.js" defer></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/js/patternfly.min.js" defer></script>

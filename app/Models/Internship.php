@@ -3,9 +3,7 @@
 namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
-use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Internship
@@ -29,9 +27,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  */
 class Internship extends Model
 {
-    use BlameableTrait;
     use Searchable;
-    use SoftDeletes;
 
     public $table = 'internships';
 

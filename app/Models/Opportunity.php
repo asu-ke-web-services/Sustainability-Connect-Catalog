@@ -161,7 +161,18 @@ class Opportunity extends Model
      **/
     public function addresses()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'opportunities_addresses');
+        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'opportunities_addresses')
+            ->withPivot('primary', 'order');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     **/
+    public function primaryAddress()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'opportunities_addresses')
+            ->withPivot('primary', 'order')
+            ->wherePivot('primary', 1);
     }
 
     /**
@@ -207,16 +218,19 @@ class Opportunity extends Model
     {
         $opportunity = $this->toArray();
 
-        $opportunity['type'] = $this->opportunityable_type;
-        $opportunity['status'] = $this->status->name;
-        $opportunity['organization_name'] = $this->organization->name;
+        $opportunity['type']              = $this->opportunityable_type;
+        $opportunity['status']            = $this->status->name;
+        $opportunity['organizationName']  = $this->organization->name;
+        $opportunity['parentOpportunity'] = $this->parentOpportunity;
+        $opportunity['ownerUser']         = $this->ownerUser;
+        $opportunity['submittingUser']    = $this->submittingUser;
 
         // Index Addresses
         $opportunity['addresses'] = $this->addresses->map(function ($data) {
                                         return $data['city'] .
                                                 ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
                                                 ( is_null($data['country']) ? '' : (', ' . $data['country']) );
-                                     })->toArray();
+                                    })->toArray();
 
         // Index Categories names
         $opportunity['categories'] = $this->categories->map(function ($data) {

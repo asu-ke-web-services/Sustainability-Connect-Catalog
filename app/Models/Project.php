@@ -43,7 +43,7 @@ class Project extends Model
         'learning_outcomes',
         'sustainability_contribution',
         'qualifications',
-        'application_overview',
+        'application_instructions',
         'implementation_paths',
         'budget_type',
         'budget_amount',
@@ -64,7 +64,7 @@ class Project extends Model
         'learning_outcomes' => 'string',
         'sustainability_contribution' => 'string',
         'qualifications' => 'string',
-        'application_overview' => 'string',
+        'application_instructions' => 'string',
         'implementation_paths' => 'string',
         'budget_type' => 'string',
         'budget_amount' => 'string',
@@ -83,15 +83,14 @@ class Project extends Model
     ];
 
 
-
-    public static function boot()
-    {
-        static::saved(function ($model) {
-            $model->opportunity->filter(function ($item) {
-                return $item->shouldBeSearchable();
-            })->searchable();
-        });
-    }
+    // public static function boot()
+    // {
+    //     static::saved(function ($model) {
+    //         $model->opportunity->filter(function ($item) {
+    //             return $item->shouldBeSearchable();
+    //         })->searchable();
+    //     });
+    // }
 
 
     /**
@@ -104,21 +103,31 @@ class Project extends Model
 
     public function opportunity()
     {
-        return $this->morphOne('\SCCatalog\Models\Opportunity', 'opportunityable');
+        return $this->morphOne(\SCCatalog\Models\Opportunity::class, 'opportunityable');
     }
 
     public function toSearchableArray()
     {
         $project = $this->toArray();
 
-        $project['opportunity_title'] = $this->opportunity->title;
-        $project['opportunity_alt_title'] = $this->opportunity->alt_title;
-        $project['opportunity_description'] = $this->opportunity->description;
-        $project['opportunity_summary'] = $this->opportunity->summary;
-
-        $project['type'] = 'Project';
-        $project['status'] = $this->opportunity->status->name;
-        $project['organization_name'] = $this->opportunity->organization->name;
+        // $project['id']                  = $this->opportunity->id;
+        $project['slug']                = $this->opportunity->slug;
+        $project['type']                = 'Project';
+        $project['title']               = $this->opportunity->title;
+        $project['alt_title']           = $this->opportunity->alt_title;
+        $project['description']         = $this->opportunity->description;
+        $project['summary']             = $this->opportunity->summary;
+        $project['hidden']              = $this->opportunity->hidden;
+        $project['startDate']           = $this->opportunity->start_date;
+        $project['endDate']             = $this->opportunity->end_date;
+        $project['applicationDeadline'] = ( !is_null( $this->opportunity->application_deadline_text ) ? $this->opportunity->application_deadline_text : $this->opportunity->application_deadline );
+        $project['listingStarts']       = $this->opportunity->listing_starts;
+        $project['listingEnds']         = $this->opportunity->listing_ends;
+        $project['status']              = $this->opportunity->status->name;
+        $project['organization_name']   = $this->opportunity->organization->name;
+        $project['parentOpportunity']   = $this->opportunity->parentOpportunity;
+        $project['ownerUser']           = $this->opportunity->ownerUser;
+        $project['submittingUser']      = $this->opportunity->submittingUser;
 
         // Index Addresses
         $project['addresses'] = $this->opportunity->addresses->map(function ($data) {

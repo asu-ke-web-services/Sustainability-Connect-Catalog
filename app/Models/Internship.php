@@ -98,14 +98,24 @@ class Internship extends Model
     {
         $internship = $this->toArray();
 
-        $internship['opportunity_title'] = $this->opportunity->title;
-        $internship['opportunity_alt_title'] = $this->opportunity->alt_title;
-        $internship['opportunity_description'] = $this->opportunity->description;
-        $internship['opportunity_summary'] = $this->opportunity->summary;
-
-        $internship['type'] = 'Internship';
-        $internship['status'] = $this->opportunity->status->name;
-        $internship['organization_name'] = $this->opportunity->organization->name;
+        // $internship['id']                  = $this->opportunity->id;
+        $internship['slug']                = $this->opportunity->slug;
+        $internship['type']                = 'Internship';
+        $internship['title']               = $this->opportunity->title;
+        $internship['alt_title']           = $this->opportunity->alt_title;
+        $internship['description']         = $this->opportunity->description;
+        $internship['summary']             = $this->opportunity->summary;
+        $internship['hidden']              = $this->opportunity->hidden;
+        $internship['startDate']           = $this->opportunity->start_date;
+        $internship['endDate']             = $this->opportunity->end_date;
+        $internship['applicationDeadline'] = ( !is_null( $this->opportunity->application_deadline_text ) ? $this->opportunity->application_deadline_text : $this->opportunity->application_deadline );
+        $internship['listingStarts']       = $this->opportunity->listing_starts;
+        $internship['listingEnds']         = $this->opportunity->listing_ends;
+        $internship['status']              = $this->opportunity->status->name;
+        $internship['organization_name']   = $this->opportunity->organization->name;
+        $internship['parentOpportunity']   = $this->opportunity->parentOpportunity;
+        $internship['ownerUser']           = $this->opportunity->ownerUser;
+        $internship['submittingUser']      = $this->opportunity->submittingUser;
 
         // Index Addresses
         $internship['addresses'] = $this->opportunity->addresses->map(function ($data) {

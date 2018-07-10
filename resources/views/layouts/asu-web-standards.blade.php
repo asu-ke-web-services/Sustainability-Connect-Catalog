@@ -302,4 +302,6 @@
         </div><!-- /.footer -->
         <!-- End Footer -->
     </body>
+    @section('javascript')
+    @show
 </html>

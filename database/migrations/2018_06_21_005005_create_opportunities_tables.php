@@ -18,10 +18,11 @@ class CreateOpportunitiesTables extends Migration
             $table->morphs('opportunityable');
             $table->string('title');
             $table->string('alt_title')->nullable();
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->date('listing_expires')->nullable();
+            $table->date('listing_starts')->nullable();
+            $table->date('listing_ends')->nullable();
             $table->date('application_deadline')->nullable();
             $table->string('application_deadline_text')->nullable();
             $table->integer('opportunity_status_id')->unsigned();

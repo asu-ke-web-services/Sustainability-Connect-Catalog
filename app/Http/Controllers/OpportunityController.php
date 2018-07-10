@@ -59,12 +59,12 @@ class OpportunityController extends Controller
         $this->opportunities->pushCriteria(new RequestCriteria($request));
         $opportunities = $this->opportunities->all();
 
-        if (request()->wantsJson()) {
+        // if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $posts,
-            ]);
-        }
+        //     return response()->json([
+        //         'data' => $posts,
+        //     ]);
+        // }
 
         return view('opportunities.index')
             ->with('opportunities', $opportunities);
@@ -135,12 +135,12 @@ class OpportunityController extends Controller
     {
         $opportunity = $this->opportunities->findWithoutFail($id);
 
-        if (request()->wantsJson()) {
-            // TODO: handle empty response (add message?)
-            return response()->json([
-                'data' => $post,
-            ]);
-        }
+        // if (request()->wantsJson()) {
+        //     // TODO: handle empty response (add message?)
+        //     return response()->json([
+        //         'data' => $post,
+        //     ]);
+        // }
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');

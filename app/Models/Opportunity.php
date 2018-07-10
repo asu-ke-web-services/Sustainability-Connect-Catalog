@@ -47,12 +47,16 @@ class Opportunity extends Model
         'application_deadline',
         'deleted_at',
         'listing_expires',
+        'start_date',
+        'end_date',
     ];
 
     public $fillable = [
         'title',
         'alt_title',
         'slug',
+        'start_date',
+        'end_date',
         'listing_expires',
         'application_deadline',
         'opportunity_status_id',
@@ -77,6 +81,8 @@ class Opportunity extends Model
         'title'                 => 'string',
         'alt_title'             => 'string',
         'slug'                  => 'string',
+        'start_date'            => 'date',
+        'end_date'              => 'date',
         'listing_expires'       => 'date',
         'application_deadline'  => 'string',
         'opportunity_status_id' => 'integer',

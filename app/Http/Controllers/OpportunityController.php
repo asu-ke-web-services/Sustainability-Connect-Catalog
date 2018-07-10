@@ -18,7 +18,7 @@ use SCCatalog\Validators\OpportunityValidator;
 /**
  * Class OpportunityController.
  *
- * @package namespace SCCatalog\Http\Controllers\Frontend;
+ * @package namespace SCCatalog\Http\Controllers;
  */
 class OpportunityController extends Controller
 {

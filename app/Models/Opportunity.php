@@ -105,14 +105,14 @@ class Opportunity extends Model
     ];
 
 
-    public static function boot()
-    {
-        static::saved(function ($model) {
-            $model->opportunityable->filter(function ($item) {
-                return $item->shouldBeSearchable();
-            })->searchable();
-        });
-    }
+    // public static function boot()
+    // {
+    //     static::saved(function ($model) {
+    //         $model->opportunityable->filter(function ($item) {
+    //             return $item->shouldBeSearchable();
+    //         })->searchable();
+    //     });
+    // }
 
 
     /**

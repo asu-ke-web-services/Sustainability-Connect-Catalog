@@ -79,14 +79,14 @@ class Internship extends Model
     ];
 
 
-    public static function boot()
-    {
-        static::saved(function ($model) {
-            $model->opportunity->filter(function ($item) {
-                return $item->shouldBeSearchable();
-            })->searchable();
-        });
-    }
+    // public static function boot()
+    // {
+    //     static::saved(function ($model) {
+    //         $model->opportunity->filter(function ($item) {
+    //             return $item->shouldBeSearchable();
+    //         })->searchable();
+    //     });
+    // }
 
 
     public function opportunity()

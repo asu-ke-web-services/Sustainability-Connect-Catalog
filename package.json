@@ -31,5 +31,8 @@
         "simplemde": "^1.11.2",
         "sticky-table-headers": "^0.1.24",
         "tether": "^1.4.4"
+    },
+    "dependencies": {
+        "react-instantsearch": "^5.2.0"
     }
 }

@@ -58,6 +58,16 @@ class ProjectController extends Controller
     }
 
     /**
+     * Show the form for submitting project idea.
+     *
+     * @return Response
+     */
+    public function create_idea()
+    {
+        return view('projects.create_idea');
+    }
+
+    /**
      * Store a newly created Project in storage.
      *
      * @param ProjectCreateRequest $request

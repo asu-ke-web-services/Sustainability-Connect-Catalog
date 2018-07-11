@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Sustainability Connect Catalog'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://catalog.sustainabilityconnect.asu.edu'),
 
     /*
     |--------------------------------------------------------------------------
@@ -171,11 +171,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        SCCatalog\Providers\AppServiceProvider::class,
+        SCCatalog\Providers\AuthServiceProvider::class,
+        // SCCatalog\Providers\BroadcastServiceProvider::class,
+        SCCatalog\Providers\EventServiceProvider::class,
+        SCCatalog\Providers\RepositoryServiceProvider::class,
+        SCCatalog\Providers\RouteServiceProvider::class,
 
     ],
 

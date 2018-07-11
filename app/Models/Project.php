@@ -101,6 +101,9 @@ class Project extends Model
         return $this->belongsTo(\SCCatalog\Models\User::class, 'owner_user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     **/
     public function opportunity()
     {
         return $this->morphOne(\SCCatalog\Models\Opportunity::class, 'opportunityable');

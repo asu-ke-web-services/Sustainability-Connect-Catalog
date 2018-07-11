@@ -26,6 +26,12 @@ class ProjectController extends Controller
      */
     protected $validator;
 
+    /**
+     * ProjectController constructor.
+     *
+     * @param ProjectRepository $repository
+     * @param ProjectValidator $validator
+     */
     public function __construct(ProjectRepository $repository, ProjectValidator $validator)
     {
         $this->projects = $repository;

@@ -3,6 +3,8 @@
 namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Attachment
@@ -28,6 +30,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Attachment extends Model
 {
+    use BlameableTrait;
+    use SoftDeletes;
+
     public $table = 'attachments';
 
     protected $dates = [

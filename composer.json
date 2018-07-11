@@ -22,6 +22,7 @@
     "proai/laravel-handlebars": "^1.6",
     "richan-fongdasen/eloquent-blameable": "^1.1",
     "roave/security-advisories": "dev-master",
+    "spatie/laravel-medialibrary": "^6.0.0",
     "spatie/laravel-sluggable": "^2.1",
     "venturecraft/revisionable": "1.*"
   },

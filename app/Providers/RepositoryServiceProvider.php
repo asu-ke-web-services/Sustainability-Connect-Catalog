@@ -24,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(\SCCatalog\Contracts\Repositories\AddressRepositoryContract::class, \SCCatalog\Repositories\AddressRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\AttachmentRepositoryContract::class, \SCCatalog\Repositories\AttachmentRepositoryEloquent::class);
         $this->app->bind(\SCCatalog\Contracts\Repositories\CategoryRepositoryContract::class, \SCCatalog\Repositories\CategoryRepositoryEloquent::class);
         $this->app->bind(\SCCatalog\Contracts\Repositories\InternshipRepositoryContract::class, \SCCatalog\Repositories\InternshipRepositoryEloquent::class);
         $this->app->bind(\SCCatalog\Contracts\Repositories\KeywordRepositoryContract::class, \SCCatalog\Repositories\KeywordRepositoryEloquent::class);

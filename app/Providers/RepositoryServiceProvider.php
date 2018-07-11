@@ -35,6 +35,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\SCCatalog\Contracts\Repositories\OrganizationTypeRepositoryContract::class, \SCCatalog\Repositories\OrganizationTypeRepositoryEloquent::class);
         $this->app->bind(\SCCatalog\Contracts\Repositories\OrganizationRepositoryContract::class, \SCCatalog\Repositories\OrganizationRepositoryEloquent::class);
         $this->app->bind(\SCCatalog\Contracts\Repositories\ProjectRepositoryContract::class, \SCCatalog\Repositories\ProjectRepositoryEloquent::class);
+        $this->app->bind(\SCCatalog\Contracts\Repositories\RelationshipTypeRepositoryContract::class, \SCCatalog\Repositories\RelationshipTypeRepositoryEloquent::class);
         $this->app->bind(\SCCatalog\Contracts\Repositories\StudentDegreeLevelRepositoryContract::class, \SCCatalog\Repositories\StudentDegreeLevelRepositoryEloquent::class);
         //:end-bindings:
     }

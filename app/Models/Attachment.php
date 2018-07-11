@@ -5,6 +5,8 @@ namespace SCCatalog\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
  * Class Attachment
@@ -28,9 +30,10 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property string success_story
  * @property string library_collection
  */
-class Attachment extends Model
+class Attachment extends Model implements HasMedia
 {
     use BlameableTrait;
+    use HasMediaTrait;
     use SoftDeletes;
 
     public $table = 'attachments';

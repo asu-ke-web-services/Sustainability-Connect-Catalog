@@ -18,6 +18,7 @@
     "laravel/scout": "^4.0",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "^5.5.0",
+    "league/flysystem-aws-s3-v3": "^1.0",
     "mccool/laravel-auto-presenter": "^7.0",
     "proai/laravel-handlebars": "^1.6",
     "richan-fongdasen/eloquent-blameable": "^1.1",

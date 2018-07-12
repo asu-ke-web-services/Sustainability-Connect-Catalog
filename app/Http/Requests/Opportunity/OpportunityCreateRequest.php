@@ -2,10 +2,11 @@
 
 namespace SCCatalog\Http\Requests;
 
-use SCCatalog\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use SCCatalog\Http\Requests\Request;
+use SCCatalog\Models\Opportunity;
 
-class OpportunityStatusRequest extends FormRequest
+class OpportunityCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +26,7 @@ class OpportunityStatusRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            // 'name' => 'required|min:5|max:255'
-        ];
+        return Opportunity::$rules;
     }
 
     /**

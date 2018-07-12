@@ -2,8 +2,8 @@
 
 namespace SCCatalog\Http\Requests;
 
-use SCCatalog\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use SCCatalog\Http\Requests\Request;
 
 class OpportunityTypeRequest extends FormRequest
 {

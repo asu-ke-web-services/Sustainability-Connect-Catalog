@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
             ]);
 
             if ($faker->boolean(60)) {
-                DB::table('users_affiliations')->insert([
+                DB::table('affiliation_user')->insert([
                     'user_id' => $i + 2,
                     'affiliation_id' => 2,
                     'order' => 1,
@@ -69,7 +69,7 @@ class UsersTableSeeder extends Seeder
             ]);
 
             if ($faker->boolean(80)) {
-                DB::table('users_affiliations')->insert([
+                DB::table('affiliation_user')->insert([
                     'user_id' => $i + 52,
                     'affiliation_id' => 2,
                     'order' => 1,

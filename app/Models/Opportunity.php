@@ -161,7 +161,7 @@ class Opportunity extends Model
      **/
     public function addresses()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'opportunities_addresses')
+        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'address_opportunity')
             ->withPivot('primary', 'order');
     }
 
@@ -170,7 +170,7 @@ class Opportunity extends Model
      **/
     public function primaryAddress()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'opportunities_addresses')
+        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'address_opportunity')
             ->withPivot('primary', 'order')
             ->wherePivot('primary', 1);
     }
@@ -180,7 +180,7 @@ class Opportunity extends Model
      **/
     public function categories()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Category::class, 'opportunities_categories');
+        return $this->belongsToMany(\SCCatalog\Models\Category::class, 'category_opportunity');
     }
 
     /**
@@ -188,7 +188,7 @@ class Opportunity extends Model
      **/
     public function keywords()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Keyword::class, 'opportunities_keywords');
+        return $this->belongsToMany(\SCCatalog\Models\Keyword::class, 'keyword_opportunity');
     }
 
     /**
@@ -196,7 +196,7 @@ class Opportunity extends Model
      **/
     public function notes()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Note::class, 'opportunities_notes');
+        return $this->belongsToMany(\SCCatalog\Models\Note::class, 'note_opportunity');
     }
 
     /**

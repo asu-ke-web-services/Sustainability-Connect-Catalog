@@ -71,7 +71,7 @@ class CreateOpportunitiesTables extends Migration
         });
 
 
-        Schema::create('opportunities_addresses', function (Blueprint $table) {
+        Schema::create('address_opportunity', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
             $table->integer('address_id')->unsigned();
@@ -103,7 +103,7 @@ class CreateOpportunitiesTables extends Migration
         });
 
 
-        Schema::create('opportunities_categories', function (Blueprint $table) {
+        Schema::create('category_opportunity', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
             $table->integer('category_id')->unsigned();
@@ -133,7 +133,7 @@ class CreateOpportunitiesTables extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('opportunities_keywords', function (Blueprint $table) {
+        Schema::create('keyword_opportunity', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
             $table->integer('keyword_id')->unsigned();
@@ -163,7 +163,7 @@ class CreateOpportunitiesTables extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('opportunities_notes', function (Blueprint $table) {
+        Schema::create('note_opportunity', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -204,10 +204,10 @@ class CreateOpportunitiesTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opportunities_notes');
-        Schema::dropIfExists('opportunities_keywords');
-        Schema::dropIfExists('opportunities_categories');
-        Schema::dropIfExists('opportunities_addresses');
+        Schema::dropIfExists('note_opportunity');
+        Schema::dropIfExists('keyword_opportunity');
+        Schema::dropIfExists('category_opportunity');
+        Schema::dropIfExists('address_opportunity');
         Schema::dropIfExists('opportunities');
     }
 }

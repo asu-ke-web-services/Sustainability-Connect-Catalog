@@ -18,11 +18,11 @@ class OpportunityTablesSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('opportunity_statuses')->truncate();
         DB::table('opportunities')->truncate();
-        DB::table('opportunities_addresses')->truncate();
-        DB::table('opportunities_affiliations')->truncate();
-        DB::table('opportunities_categories')->truncate();
-        DB::table('opportunities_keywords')->truncate();
-        DB::table('opportunities_notes')->truncate();
+        DB::table('address_opportunity')->truncate();
+        DB::table('affiliation_opportunity')->truncate();
+        DB::table('category_opportunity')->truncate();
+        DB::table('keyword_opportunity')->truncate();
+        DB::table('note_opportunity')->truncate();
         DB::table('projects')->truncate();
         DB::table('internships')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -199,7 +199,7 @@ class OpportunityTablesSeeder extends Seeder
                 // 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_addresses')->insert([
+            DB::table('address_opportunity')->insert([
                 'opportunity_id' => $i + 1,
                 'address_id' => $i + 1,
                 'primary' => $faker->boolean(90),
@@ -209,7 +209,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_notes')->insert([
+            DB::table('note_opportunity')->insert([
                 'opportunity_id' => $i + 1,
                 'user_id' => $faker->numberBetween(55, 80),
                 'note_id' => $i + 1,
@@ -220,7 +220,7 @@ class OpportunityTablesSeeder extends Seeder
             ]);
 
             if ($faker->boolean(30)) {
-                DB::table('opportunities_affiliations')->insert([
+                DB::table('affiliation_opportunity')->insert([
                     'opportunity_id' => $i + 1,
                     'affiliation_id' => 1,
                     'order' => 1,
@@ -231,7 +231,7 @@ class OpportunityTablesSeeder extends Seeder
                 ]);
             }
 
-            DB::table('opportunities_affiliations')->insert([
+            DB::table('affiliation_opportunity')->insert([
                 'opportunity_id' => $i + 1,
                 'affiliation_id' => $faker->numberBetween(2, 4),
                 'order' => 2,
@@ -241,7 +241,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_affiliations')->insert([
+            DB::table('affiliation_opportunity')->insert([
                 'opportunity_id' => $i + 1,
                 'affiliation_id' => $faker->numberBetween(5, 12),
                 'order' => 3,
@@ -251,7 +251,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_categories')->insert([
+            DB::table('category_opportunity')->insert([
                 'opportunity_id' => $i + 1,
                 'category_id' => $faker->numberBetween(1, 17),
                 'order' => 1,
@@ -261,7 +261,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_keywords')->insert([
+            DB::table('keyword_opportunity')->insert([
                 'opportunity_id' => $i + 1,
                 'keyword_id' => $faker->numberBetween(1, 24),
                 'order' => 1,
@@ -313,7 +313,7 @@ class OpportunityTablesSeeder extends Seeder
                 // 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_addresses')->insert([
+            DB::table('address_opportunity')->insert([
                 'opportunity_id' => $i + 101,
                 'address_id' => $i + 101,
                 'primary' => $faker->boolean(90),
@@ -323,7 +323,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_notes')->insert([
+            DB::table('note_opportunity')->insert([
                 'opportunity_id' => $i + 101,
                 'user_id' => $faker->numberBetween(55, 80),
                 'note_id' => $i + 101,
@@ -334,7 +334,7 @@ class OpportunityTablesSeeder extends Seeder
             ]);
 
             if ($faker->boolean(30)) {
-                DB::table('opportunities_affiliations')->insert([
+                DB::table('affiliation_opportunity')->insert([
                     'opportunity_id' => $i + 101,
                     'affiliation_id' => 1,
                     'order' => 1,
@@ -345,7 +345,7 @@ class OpportunityTablesSeeder extends Seeder
                 ]);
             }
 
-            DB::table('opportunities_affiliations')->insert([
+            DB::table('affiliation_opportunity')->insert([
                 'opportunity_id' => $i + 101,
                 'affiliation_id' => $faker->numberBetween(2, 4),
                 'order' => 2,
@@ -355,7 +355,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_affiliations')->insert([
+            DB::table('affiliation_opportunity')->insert([
                 'opportunity_id' => $i + 101,
                 'affiliation_id' => $faker->numberBetween(5, 12),
                 'order' => 3,
@@ -365,7 +365,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_categories')->insert([
+            DB::table('category_opportunity')->insert([
                 'opportunity_id' => $i + 101,
                 'category_id' => $faker->numberBetween(1, 17),
                 'order' => 1,
@@ -375,7 +375,7 @@ class OpportunityTablesSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('opportunities_keywords')->insert([
+            DB::table('keyword_opportunity')->insert([
                 'opportunity_id' => $i + 101,
                 'keyword_id' => $faker->numberBetween(1, 24),
                 'order' => 1,
@@ -387,7 +387,7 @@ class OpportunityTablesSeeder extends Seeder
         }
 
         for ($i = 0; $i < 100; $i++) {
-            DB::table('opportunities_notes')->insert([
+            DB::table('note_opportunity')->insert([
                 'opportunity_id' => $i + 101,
                 'user_id' => $faker->numberBetween(55, 80),
                 'note_id' => $i + 101,

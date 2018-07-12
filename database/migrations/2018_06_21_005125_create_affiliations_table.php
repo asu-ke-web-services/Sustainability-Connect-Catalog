@@ -48,7 +48,7 @@ class CreateAffiliationsTable extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('opportunities_affiliations', function (Blueprint $table) {
+        Schema::create('affiliation_opportunity', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
             $table->integer('affiliation_id')->unsigned();
@@ -78,7 +78,7 @@ class CreateAffiliationsTable extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('users_affiliations', function (Blueprint $table) {
+        Schema::create('affiliation_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('affiliation_id')->unsigned();
@@ -117,8 +117,8 @@ class CreateAffiliationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_affiliations');
-        Schema::dropIfExists('opportunities_affiliations');
+        Schema::dropIfExists('affiliation_user');
+        Schema::dropIfExists('affiliation_opportunity');
         Schema::dropIfExists('affiliations');
     }
 }

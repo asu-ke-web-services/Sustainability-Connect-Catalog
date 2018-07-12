@@ -13,7 +13,7 @@ class CreateOpportunitiesUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('opportunities_users', function (Blueprint $table) {
+        Schema::create('opportunity_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -56,6 +56,6 @@ class CreateOpportunitiesUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opportunities_users');
+        Schema::dropIfExists('opportunity_user');
     }
 }

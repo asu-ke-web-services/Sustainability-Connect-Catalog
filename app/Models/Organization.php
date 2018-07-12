@@ -79,7 +79,7 @@ class Organization extends Model
      **/
     public function addresses()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'organizations_addresses');
+        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'address_organizations');
     }
 
     /**
@@ -87,7 +87,7 @@ class Organization extends Model
      **/
     public function notes()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Note::class, 'organizations_notes');
+        return $this->belongsToMany(\SCCatalog\Models\Note::class, 'note_organizations');
     }
 
 

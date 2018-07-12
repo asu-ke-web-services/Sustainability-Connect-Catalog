@@ -45,7 +45,7 @@ class CreateOrganizationsTables extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('organizations_addresses', function (Blueprint $table) {
+        Schema::create('address_organization', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('organization_id')->unsigned()->unsigned();
             $table->integer('address_id')->unsigned()->unsigned();
@@ -78,7 +78,7 @@ class CreateOrganizationsTables extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('organizations_notes', function (Blueprint $table) {
+        Schema::create('note_organization', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('organization_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -123,8 +123,8 @@ class CreateOrganizationsTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizations_notes');
-        Schema::dropIfExists('organizations_addresses');
+        Schema::dropIfExists('note_organization');
+        Schema::dropIfExists('address_organization');
         Schema::dropIfExists('organizations');
     }
 }

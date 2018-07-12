@@ -18,7 +18,7 @@ class OrganizationsTableSeeder extends Seeder
         DB::table('organization_statuses')->truncate();
         DB::table('organization_types')->truncate();
         DB::table('organizations')->truncate();
-        DB::table('organizations_addresses')->truncate();
+        DB::table('address_organization')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = Faker\Factory::create();
@@ -127,7 +127,7 @@ class OrganizationsTableSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('organizations_addresses')->insert([
+            DB::table('address_organization')->insert([
                 'organization_id' => $i + 1,
                 'address_id' => $i + 1,
                 'primary' => $faker->boolean(90),

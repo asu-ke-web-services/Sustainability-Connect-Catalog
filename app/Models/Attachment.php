@@ -70,7 +70,7 @@ class Attachment extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-        public function user()
+    public function user()
     {
         return $this->belongsTo(\SCCatalog\Models\User::class, 'user_id');
     }

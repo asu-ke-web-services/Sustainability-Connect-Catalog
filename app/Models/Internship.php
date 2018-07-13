@@ -122,22 +122,22 @@ class Internship extends Model
                                         return $data['city'] .
                                                 ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
                                                 ( is_null($data['country']) ? '' : (', ' . $data['country']) );
-                                     })->toArray();
+        })->toArray();
 
         // Index Categories names
         $internship['categories'] = $this->opportunity->categories->map(function ($data) {
                                         return $data['name'];
-                                     })->toArray();
+        })->toArray();
 
         // Index Keywords names
         $internship['keywords'] = $this->opportunity->keywords->map(function ($data) {
                                         return $data['name'];
-                                     })->toArray();
+        })->toArray();
 
         // Index Notes body content
         $internship['notes'] = $this->opportunity->notes->map(function ($data) {
                                         return $data['body'];
-                                     })->toArray();
+        })->toArray();
 
         return $internship;
     }

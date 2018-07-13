@@ -21,7 +21,8 @@ trait HasCategory
     /**
      * @return Category
      */
-    public function getCategory() : Category {
+    public function getCategory() : Category
+    {
         if (!$this->category) {
             $this->category = new Category();
         }

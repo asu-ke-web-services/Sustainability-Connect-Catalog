@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers;
 
-
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -70,7 +69,7 @@ class AttachmentController extends Controller
      *
      * @return Response
      */
-    public function store( AttachmentCreateRequest $request)
+    public function store(AttachmentCreateRequest $request)
     {
         $input = $request->all();
 
@@ -129,7 +128,7 @@ class AttachmentController extends Controller
      *
      * @return Response
      */
-    public function update( $id, AttachmentUpdateRequest $request)
+    public function update($id, AttachmentUpdateRequest $request)
     {
         $attachment = $this->attachments->findWithoutFail($id);
 

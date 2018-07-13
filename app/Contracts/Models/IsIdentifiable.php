@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Contracts\Model;
 
-
 /**
  * Interface IsIdentifiable
  *

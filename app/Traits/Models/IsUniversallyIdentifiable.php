@@ -4,7 +4,8 @@ namespace SCCatalog\Support\Traits\Entity;
 
 use Ramsey\Uuid\Uuid as Uuid;
 
-trait IsUniversallyIdentifiable {
+trait IsUniversallyIdentifiable
+{
     /**
      * @var string
      */

@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers;
 
-
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -80,7 +79,7 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function store( ProjectCreateRequest $request)
+    public function store(ProjectCreateRequest $request)
     {
         $input = $request->all();
 
@@ -139,7 +138,7 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function update( $id, ProjectUpdateRequest $request)
+    public function update($id, ProjectUpdateRequest $request)
     {
         $project = $this->projects->findWithoutFail($id);
 

@@ -137,22 +137,22 @@ class Project extends Model
                                         return $data['city'] .
                                                 ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
                                                 ( is_null($data['country']) ? '' : (', ' . $data['country']) );
-                                     })->toArray();
+        })->toArray();
 
         // Index Categories names
         $project['categories'] = $this->opportunity->categories->map(function ($data) {
                                         return $data['name'];
-                                     })->toArray();
+        })->toArray();
 
         // Index Keywords names
         $project['keywords'] = $this->opportunity->keywords->map(function ($data) {
                                         return $data['name'];
-                                     })->toArray();
+        })->toArray();
 
         // Index Notes body content
         $project['notes'] = $this->opportunity->notes->map(function ($data) {
                                         return $data['body'];
-                                     })->toArray();
+        })->toArray();
 
         return $project;
     }

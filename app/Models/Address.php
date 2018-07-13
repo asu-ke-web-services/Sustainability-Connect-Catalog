@@ -64,6 +64,4 @@ class Address extends Model
     public static $rules = [
 
     ];
-
-
 }

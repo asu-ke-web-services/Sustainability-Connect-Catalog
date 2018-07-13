@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use BlameableTrait;
-	use CrudTrait;
+    use CrudTrait;
     use HasRoles;
     use Notifiable;
     use Searchable;

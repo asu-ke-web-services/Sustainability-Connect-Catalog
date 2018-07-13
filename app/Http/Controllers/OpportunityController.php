@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers;
 
-
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;

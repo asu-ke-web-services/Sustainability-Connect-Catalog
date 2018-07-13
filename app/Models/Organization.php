@@ -104,12 +104,12 @@ class Organization extends Model
                                         return $data['city'] .
                                                 ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
                                                 ( is_null($data['country']) ? '' : (', ' . $data['country']) );
-                                     })->toArray();
+        })->toArray();
 
         // Index Notes body content
         $organization['notes'] = $this->notes->map(function ($data) {
                                         return $data['body'];
-                                     })->toArray();
+        })->toArray();
 
         return $organization;
     }

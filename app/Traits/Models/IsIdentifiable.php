@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Support\Traits\Model;
 
-
 trait IsIdentifiable
 {
     /**

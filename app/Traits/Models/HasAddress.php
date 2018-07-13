@@ -21,7 +21,8 @@ trait HasAddress
     /**
      * @return Address
      */
-    public function getAddress() : Address {
+    public function getAddress() : Address
+    {
         if (!$this->address) {
             $this->address = new Address();
         }

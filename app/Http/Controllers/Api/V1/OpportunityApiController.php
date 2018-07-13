@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers\Api\V1;
 
-
 use Flugg\Responder\Traits\RespondsWithJson;
 use Illuminate\Http\Request;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;

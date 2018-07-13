@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers;
 
-
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -31,7 +30,6 @@ class InternshipController extends Controller
     {
         $this->internships = $repository;
         $this->validator  = $validator;
-
     }
 
     /**
@@ -66,7 +64,7 @@ class InternshipController extends Controller
      *
      * @return Response
      */
-    public function store( InternshipCreateRequest $request)
+    public function store(InternshipCreateRequest $request)
     {
         $input = $request->all();
 
@@ -125,7 +123,7 @@ class InternshipController extends Controller
      *
      * @return Response
      */
-    public function update( $id, InternshipUpdateRequest $request)
+    public function update($id, InternshipUpdateRequest $request)
     {
         $internship = $this->internships->findWithoutFail($id);
 

@@ -21,7 +21,8 @@ trait HasKeyword
     /**
      * @return Keyword
      */
-    public function getKeyword() : Keyword {
+    public function getKeyword() : Keyword
+    {
         if (!$this->keyword) {
             $this->keyword = new Keyword();
         }

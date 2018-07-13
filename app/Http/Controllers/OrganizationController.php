@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers;
 
-
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -73,7 +72,7 @@ class OrganizationController extends Controller
      *
      * @return Response
      */
-    public function store( OrganizationCreateRequest $request)
+    public function store(OrganizationCreateRequest $request)
     {
         $input = $request->all();
 
@@ -132,7 +131,7 @@ class OrganizationController extends Controller
      *
      * @return Response
      */
-    public function update( $id, OrganizationUpdateRequest $request)
+    public function update($id, OrganizationUpdateRequest $request)
     {
         $organization = $this->organizations->findWithoutFail($id);
 

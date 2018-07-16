@@ -30,9 +30,9 @@ class Organization extends Model
     public $table = 'organizations';
 
     public $fillable = [
+        'name',
         'organization_type_id',
         'organization_status_id',
-        'name'
     ];
 
     /**
@@ -41,10 +41,7 @@ class Organization extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'organization_type_id' => 'integer',
-        'organization_status_id' => 'integer',
-        'name' => 'string'
+
     ];
 
     /**

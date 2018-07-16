@@ -58,19 +58,7 @@ class Project extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'compensation' => 'string',
-        'responsibilities' => 'string',
-        'learning_outcomes' => 'string',
-        'sustainability_contribution' => 'string',
-        'qualifications' => 'string',
-        'application_instructions' => 'string',
-        'implementation_paths' => 'string',
-        'budget_type' => 'string',
-        'budget_amount' => 'string',
-        'program_lead' => 'string',
-        'success_story' => 'string',
-        'library_collection' => 'string'
+
     ];
 
     /**
@@ -120,10 +108,10 @@ class Project extends Model
         $project['alt_title']           = $this->opportunity->alt_title;
         $project['description']         = $this->opportunity->description;
         $project['summary']             = $this->opportunity->summary;
-        $project['hidden']              = $this->opportunity->hidden;
+        $project['is_hidden']              = $this->opportunity->hidden;
         $project['startDate']           = $this->opportunity->start_date;
         $project['endDate']             = $this->opportunity->end_date;
-        $project['applicationDeadline'] = ( !is_null( $this->opportunity->application_deadline_text ) ? $this->opportunity->application_deadline_text : $this->opportunity->application_deadline );
+        $project['applicationDeadline'] = ( !is_null($this->opportunity->application_deadline_text) ? $this->opportunity->application_deadline_text : $this->opportunity->application_deadline );
         $project['listingStarts']       = $this->opportunity->listing_starts;
         $project['listingEnds']         = $this->opportunity->listing_ends;
         $project['status']              = $this->opportunity->status->name;

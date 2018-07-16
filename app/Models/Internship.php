@@ -42,12 +42,9 @@ class Internship extends Model
         'responsibilities',
         'qualifications',
         'application_instructions',
-        'comments',
         'program_lead',
         'success_story',
         'library_collection',
-        'publish_on',
-        'publish_until'
     ];
 
     /**
@@ -56,17 +53,7 @@ class Internship extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'compensation' => 'string',
-        'responsibilities' => 'string',
-        'qualifications' => 'string',
-        'application_instructions' => 'string',
-        'comments' => 'string',
-        'program_lead' => 'string',
-        'success_story' => 'string',
-        'library_collection' => 'string',
-        'publish_on' => 'date',
-        'publish_until' => 'date'
+
     ];
 
     /**
@@ -105,10 +92,10 @@ class Internship extends Model
         $internship['alt_title']           = $this->opportunity->alt_title;
         $internship['description']         = $this->opportunity->description;
         $internship['summary']             = $this->opportunity->summary;
-        $internship['hidden']              = $this->opportunity->hidden;
+        $internship['is_hidden']              = $this->opportunity->hidden;
         $internship['startDate']           = $this->opportunity->start_date;
         $internship['endDate']             = $this->opportunity->end_date;
-        $internship['applicationDeadline'] = ( !is_null( $this->opportunity->application_deadline_text ) ? $this->opportunity->application_deadline_text : $this->opportunity->application_deadline );
+        $internship['applicationDeadline'] = ( !is_null($this->opportunity->application_deadline_text) ? $this->opportunity->application_deadline_text : $this->opportunity->application_deadline );
         $internship['listingStarts']       = $this->opportunity->listing_starts;
         $internship['listingEnds']         = $this->opportunity->listing_ends;
         $internship['status']              = $this->opportunity->status->name;

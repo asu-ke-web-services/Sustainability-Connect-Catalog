@@ -46,9 +46,10 @@ class Opportunity extends Model
     protected $dates = [
         'application_deadline',
         'deleted_at',
-        'listing_expires',
-        'start_date',
         'end_date',
+        'listing_ends',
+        'listing_starts',
+        'start_date',
     ];
 
     public $fillable = [
@@ -57,10 +58,12 @@ class Opportunity extends Model
         'slug',
         'start_date',
         'end_date',
-        'listing_expires',
+        'listing_starts',
+        'listing_ends',
         'application_deadline',
+        'application_deadline_text',
         'opportunity_status_id',
-        'hidden',
+        'is_hidden',
         'summary',
         'description',
         'parent_opportunity_id',
@@ -75,24 +78,12 @@ class Opportunity extends Model
      * @var array
      */
     protected $casts = [
-        'id'                    => 'integer',
-        'opportunityable_id'    => 'integer',
-        'opportunityable_type'  => 'string',
-        'title'                 => 'string',
-        'alt_title'             => 'string',
-        'slug'                  => 'string',
-        'start_date'            => 'date',
-        'end_date'              => 'date',
-        'listing_expires'       => 'date',
-        'application_deadline'  => 'string',
-        'opportunity_status_id' => 'integer',
-        'hidden'                => 'boolean',
-        'summary'               => 'string',
-        'description'           => 'string',
-        'parent_opportunity_id' => 'integer',
-        'organization_id'       => 'integer',
-        'owner_user_id'         => 'integer',
-        'submitting_user_id'    => 'integer'
+        'start_date'                => 'date',
+        'end_date'                  => 'date',
+        'listing_ends'              => 'date',
+        'listing_starts'            => 'date',
+        'application_deadline'      => 'date',
+        'is_hidden'                 => 'boolean',
     ];
 
     /**

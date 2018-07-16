@@ -8,11 +8,22 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
-use SCCatalog\Http\Requests\OpportunityCreateRequest;
-use SCCatalog\Http\Requests\OpportunityUpdateRequest;
-use SCCatalog\Http\Requests;
 use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
+use SCCatalog\Http\Requests\CreateOpportunityRequest;
+use SCCatalog\Http\Requests\FollowOpportunityRequest;
+use SCCatalog\Http\Requests\UnfollowOpportunityRequest;
+use SCCatalog\Http\Requests\UpdateOpportunityRequest;
+use SCCatalog\Http\Requests;
+// use SCCatalog\Jobs\Opportunity\CreateOpportunityJob;
+// use SCCatalog\Jobs\Opportunity\FollowOpportunityJob;
+// use SCCatalog\Jobs\Opportunity\UnfollowOpportunityJob;
+// use SCCatalog\Jobs\Opportunity\UpdateOpportunityJob;
 use SCCatalog\Validators\OpportunityValidator;
+use SCCatalog\Models\Category;
+use SCCatalog\Models\Keyword;
+use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Organization;
+use SCCatalog\Models\User;
 
 /**
  * Class OpportunityController.

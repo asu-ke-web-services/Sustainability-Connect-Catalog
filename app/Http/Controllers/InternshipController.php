@@ -8,9 +8,12 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
+use SCCatalog\Http\Requests\CreateOpportunityRequest;
 use SCCatalog\Http\Requests\InternshipCreateRequest;
 use SCCatalog\Http\Requests\InternshipUpdateRequest;
 use SCCatalog\Contracts\Repositories\InternshipRepositoryContract as InternshipRepository;
+use SCCatalog\Http\Requests\UpdateOpportunityRequest;
+use SCCatalog\Models\Internship;
 use SCCatalog\Validators\InternshipValidator;
 
 class InternshipController extends Controller

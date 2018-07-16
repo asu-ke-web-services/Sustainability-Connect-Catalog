@@ -10,7 +10,8 @@ Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
     'namespace'  => 'SCCatalog\Http\Controllers\Backend',
-], function () { // custom admin routes
+], function () {
+ // custom admin routes
     CRUD::resource('category', 'CategoryCrudController');
     CRUD::resource('keyword', 'KeywordCrudController');
     CRUD::resource('opportunity_status', 'OpportunityStatusCrudController');

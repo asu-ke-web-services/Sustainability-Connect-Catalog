@@ -10,10 +10,6 @@ use Laravel\Scout\Searchable;
  * @package SCCatalog\Models
  * @version June 20, 2018, 11:48 pm UTC
  *
- * @property \Illuminate\Database\Eloquent\Collection Addresses
- * @property \Illuminate\Database\Eloquent\Collection Categories
- * @property \Illuminate\Database\Eloquent\Collection Keywords
- * @property \Illuminate\Database\Eloquent\Collection Notes
  * @property string compensation
  * @property string responsibilities
  * @property string learning_outcomes
@@ -80,14 +76,6 @@ class Project extends Model
     //     });
     // }
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function ownerUser()
-    {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'owner_user_id');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne

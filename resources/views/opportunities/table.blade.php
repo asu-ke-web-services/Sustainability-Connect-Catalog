@@ -2,20 +2,20 @@
     <thead>
         <tr>
             <th>Opportunityable Id</th>
-        <th>Opportunityable Type</th>
-        <th>Title</th>
-        <th>Alt Title</th>
-        <th>Slug</th>
-        <th>Listing Expires</th>
-        <th>Application Deadline</th>
-        <th>Opportunity Status Id</th>
-        <th>Hidden</th>
-        <th>Summary</th>
-        <th>Description</th>
-        <th>Parent Opportunity Id</th>
-        <th>Organization Id</th>
-        <th>Owner User Id</th>
-        <th>Submitting User Id</th>
+            <th>Opportunityable Type</th>
+            <th>Title</th>
+            <th>Alt Title</th>
+            <th>Slug</th>
+            <th>Listing Expires</th>
+            <th>Application Deadline</th>
+            <th>Opportunity Status Id</th>
+            <th>Hidden</th>
+            <th>Summary</th>
+            <th>Description</th>
+            <th>Parent Opportunity Id</th>
+            <th>Organization Id</th>
+            <th>Owner User Id</th>
+            <th>Submitting User Id</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>

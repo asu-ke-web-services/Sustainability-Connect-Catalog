@@ -56,6 +56,22 @@ class Organization extends Model
 
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     **/
+    public function addresses()
+    {
+        return $this->MorphMany(\SCCatalog\Models\Address::class, 'addressable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     **/
+    public function notes()
+    {
+        return $this->MorphMany(\SCCatalog\Models\Note::class, 'noteable');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function status()
@@ -69,22 +85,6 @@ class Organization extends Model
     public function type()
     {
         return $this->belongsTo(\SCCatalog\Models\OrganizationType::class, 'organization_type_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
-     **/
-    public function addresses()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Address::class, 'address_organizations');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
-     **/
-    public function notes()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Note::class, 'note_organizations');
     }
 
 
@@ -103,10 +103,10 @@ class Organization extends Model
                                                 ( is_null($data['country']) ? '' : (', ' . $data['country']) );
         })->toArray();
 
-        // Index Notes body content
-        $organization['notes'] = $this->notes->map(function ($data) {
-                                        return $data['body'];
-        })->toArray();
+        // // Index Notes body content
+        // $organization['notes'] = $this->notes->map(function ($data) {
+        //                                 return $data['body'];
+        // })->toArray();
 
         return $organization;
     }

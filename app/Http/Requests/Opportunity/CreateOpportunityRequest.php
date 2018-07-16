@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use SCCatalog\Http\Requests\Request;
 use SCCatalog\Models\Opportunity;
 
-class OpportunityCreateRequest extends FormRequest
+class CreateOpportunityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

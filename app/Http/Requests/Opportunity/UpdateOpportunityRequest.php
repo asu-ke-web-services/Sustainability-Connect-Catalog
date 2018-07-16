@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use SCCatalog\Http\Requests\Request;
 use SCCatalog\Models\Opportunity;
 
-class OpportunityUpdateRequest extends FormRequest
+class UpdateOpportunityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,8 +16,8 @@ class OpportunityUpdateRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return \Auth::check();
-        // return true;
+        // return \Auth::check();
+        return true;
     }
 
     /**

@@ -10,24 +10,23 @@ use Laravel\Scout\Searchable;
  * @package SCCatalog\Models
  * @version June 20, 2018, 11:49 pm UTC
  *
- * @property \Illuminate\Database\Eloquent\Collection Addresses
- * @property \Illuminate\Database\Eloquent\Collection Categories
- * @property \Illuminate\Database\Eloquent\Collection Keywords
- * @property \Illuminate\Database\Eloquent\Collection Notes
  * @property string compensation
  * @property string responsibilities
  * @property string qualifications
  * @property string application_instructions
- * @property string comments
  * @property string program_lead
  * @property string success_story
  * @property string library_collection
- * @property date publish_on
- * @property date publish_until
  */
 class Internship extends Model
 {
     use Searchable;
+
+    /*
+    |--------------------------------------------------------------------------
+    | GLOBAL VARIABLES
+    |--------------------------------------------------------------------------
+    */
 
     public $table = 'internships';
 
@@ -66,6 +65,12 @@ class Internship extends Model
     ];
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
     // public static function boot()
     // {
     //     static::saved(function ($model) {
@@ -76,10 +81,34 @@ class Internship extends Model
     // }
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
     public function opportunity()
     {
         return $this->morphOne('\SCCatalog\Models\Opportunity', 'opportunityable');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | MUTATORS
+    |--------------------------------------------------------------------------
+    */
 
     public function toSearchableArray()
     {

@@ -48,6 +48,12 @@ class Opportunity extends Model
     use Searchable;
     use SoftDeletes;
 
+    /*
+    |--------------------------------------------------------------------------
+    | GLOBAL VARIABLES
+    |--------------------------------------------------------------------------
+    */
+
     public $table = 'opportunities';
 
     protected $dates = [
@@ -103,6 +109,13 @@ class Opportunity extends Model
     ];
 
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
     // public static function boot()
     // {
     //     static::saved(function ($model) {
@@ -112,6 +125,11 @@ class Opportunity extends Model
     //     });
     // }
 
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
@@ -247,6 +265,18 @@ class Opportunity extends Model
     //         ->withPivot('is_primary', 'order')
     //         ->wherePivot('is_primary', 1);
     // }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Get the opportunity's listing start date
@@ -423,6 +453,13 @@ class Opportunity extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | MUTATORS
+    |--------------------------------------------------------------------------
+    */
 
 
     public function toSearchableArray()

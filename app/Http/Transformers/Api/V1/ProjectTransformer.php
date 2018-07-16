@@ -32,7 +32,7 @@ class ProjectTransformer extends TransformerAbstract
             'applicationDeadline'        => $project->opportunity->application_deadline,
             'applicationDeadlineText'    => $project->opportunity->application_deadline_text,
             'status'                     => $project->opportunity->status,
-            'hidden'                     => $project->opportunity->hidden,
+            'is_hidden'                  => $project->opportunity->hidden,
             'description'                => $project->opportunity->description,
             'parentOpportunity'          => $project->opportunity->parentOpportunity,
             'organization'               => $project->opportunity->organization,

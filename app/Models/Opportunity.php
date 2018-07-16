@@ -26,7 +26,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property date listing_expires
  * @property string application_deadline
  * @property integer opportunity_status_id
- * @property boolean hidden
+ * @property boolean is_hidden
  * @property string summary
  * @property string description
  * @property integer parent_opportunity_id

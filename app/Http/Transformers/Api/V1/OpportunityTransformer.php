@@ -32,7 +32,7 @@ class OpportunityTransformer extends TransformerAbstract
             'applicationDeadline'     => $opportunity->application_deadline,
             'applicationDeadlineText' => $opportunity->application_deadline_text,
             'status'                  => $opportunity->status,
-            'hidden'                  => $opportunity->hidden,
+            'is_hidden'               => $opportunity->hidden,
             'description'             => $opportunity->description,
             'parentOpportunity'       => $opportunity->parentOpportunity,
             'organization'            => $opportunity->organization,

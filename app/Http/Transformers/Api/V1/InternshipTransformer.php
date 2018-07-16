@@ -32,7 +32,7 @@ class InternshipTransformer extends TransformerAbstract
             'applicationDeadline'     => $internship->opportunity->application_deadline,
             'applicationDeadlineText' => $internship->opportunity->application_deadline_text,
             'status'                  => $internship->opportunity->status,
-            'hidden'                  => $internship->opportunity->hidden,
+            'is_hidden'               => $internship->opportunity->hidden,
             'description'             => $internship->opportunity->description,
             'parentOpportunity'       => $internship->opportunity->parentOpportunity,
             'organization'            => $internship->opportunity->organization,

@@ -14,6 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrapThree();
+
         Relation::morphMap([
             'Internship'   => \SCCatalog\Models\Internship::class,
             'Opportunity'  => \SCCatalog\Models\Opportunity::class,

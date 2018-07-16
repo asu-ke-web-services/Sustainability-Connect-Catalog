@@ -13,25 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($opportunities as $opportunity)
-                <tr>
-                    <td>{!! $opportunity !!}</td>
-                    <td>{!! $opportunity->application_deadline !!}</td>
-                    <td>{!! $opportunity->parent_opportunity_id !!}</td>
-                    <td>{!! $opportunity->organization_id !!}</td>
-                    <td>{!! $opportunity->owner_user_id !!}</td>
-                    <td>{!! $opportunity->submitting_user_id !!}</td>
-                    <td>
-                        {!! Form::open(['route' => ['projects.destroy', $opportunity->id], 'method' => 'delete']) !!}
-                        <div class='btn-group'>
-                            <a href="{!! route('projects.show', [$opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                            <a href="{!! route('projects.edit', [$opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                            {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                        </div>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-            @endforeach
+                <div id="search"></div>
             </tbody>
         </table>
     </div>

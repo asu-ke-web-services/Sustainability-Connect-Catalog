@@ -15,8 +15,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Relation::morphMap([
-            'Project' => \SCCatalog\Models\Project::class,
-            'Internship' => \SCCatalog\Models\Internship::class,
+            'Internship'   => \SCCatalog\Models\Internship::class,
+            'Opportunity'  => \SCCatalog\Models\Opportunity::class,
+            'Organization' => \SCCatalog\Models\Organization::class,
+            'Project'      => \SCCatalog\Models\Project::class,
         ]);
     }
 

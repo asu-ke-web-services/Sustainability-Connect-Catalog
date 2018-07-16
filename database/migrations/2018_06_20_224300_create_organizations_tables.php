@@ -44,76 +44,6 @@ class CreateOrganizationsTables extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
-
-        Schema::create('address_organization', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('organization_id')->unsigned()->unsigned();
-            $table->integer('address_id')->unsigned()->unsigned();
-            $table->boolean('primary');
-            $table->integer('order')->default(1);
-            $table->timestamps();
-            $table->softDeletes();
-            $table->integer('created_by')->unsigned()->nullable();
-            $table->integer('updated_by')->unsigned()->nullable();
-            $table->integer('deleted_by')->unsigned()->nullable();
-
-            $table->foreign('organization_id')
-                ->references('id')
-                ->on('organizations');
-
-            $table->foreign('address_id')
-                ->references('id')
-                ->on('addresses');
-
-            $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-        });
-
-        Schema::create('note_organization', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('organization_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('note_id')->unsigned();
-            $table->integer('order')->default(1);
-            $table->timestamps();
-            $table->softDeletes();
-            $table->integer('created_by')->unsigned()->nullable();
-            $table->integer('updated_by')->unsigned()->nullable();
-            $table->integer('deleted_by')->unsigned()->nullable();
-
-            $table->foreign('organization_id')
-                ->references('id')
-                ->on('organizations');
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-
-            $table->foreign('note_id')
-                ->references('id')
-                ->on('notes');
-
-            $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-        });
     }
 
     /**
@@ -123,8 +53,6 @@ class CreateOrganizationsTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('note_organization');
-        Schema::dropIfExists('address_organization');
         Schema::dropIfExists('organizations');
     }
 }

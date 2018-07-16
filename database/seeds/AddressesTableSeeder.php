@@ -20,8 +20,6 @@ class AddressesTableSeeder extends Seeder
 
         // Addresses
         for ($i = 0; $i < 200; $i++) {
-            $expirationDate = $faker->date('Y-m-d', '+ 1 year');
-
             DB::table('addresses')->insert([
                 'street1' => $faker->buildingNumber . ' ' . $faker->streetName,
                 'street2' => $faker->secondaryAddress,

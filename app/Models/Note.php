@@ -25,13 +25,13 @@ class Note extends Model
     */
 
     protected $table = 'notes';
-    // protected $primaryKey = 'id';
-    public $timestamps = false;
-    // protected $guarded = ['id'];
+
     protected $fillable = [
-        'body'
+        'body',
+        'order',
+        'user_id',
     ];
-    // protected $hidden = [];
+
     protected $dates = ['deleted_at'];
 
     /**
@@ -40,13 +40,7 @@ class Note extends Model
      * @var array
      */
     protected $casts = [
-        'id'      => 'integer',
-        'street1' => 'string',
-        'street2' => 'string',
-        'city'    => 'string',
-        'state'   => 'string',
-        'country' => 'string',
-        'note'    => 'string',
+
     ];
 
     /**
@@ -69,6 +63,25 @@ class Note extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     **/
+    public function noteable()
+    {
+        return $this->morphTo();
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function user()
+    {
+        return $this->belongsTo(\SCCatalog\Models\User::class);
+    }
+
 
     /*
     |--------------------------------------------------------------------------

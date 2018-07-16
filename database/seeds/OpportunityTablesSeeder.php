@@ -18,11 +18,9 @@ class OpportunityTablesSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('opportunity_statuses')->truncate();
         DB::table('opportunities')->truncate();
-        DB::table('address_opportunity')->truncate();
         DB::table('affiliation_opportunity')->truncate();
         DB::table('category_opportunity')->truncate();
         DB::table('keyword_opportunity')->truncate();
-        DB::table('note_opportunity')->truncate();
         DB::table('projects')->truncate();
         DB::table('internships')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -199,20 +197,27 @@ class OpportunityTablesSeeder extends Seeder
                 // 'updated_by' => 1,
             ]);
 
-            DB::table('address_opportunity')->insert([
-                'opportunity_id' => $i + 1,
-                'address_id' => $i + 1,
-                'primary' => $faker->boolean(90),
+            DB::table('addresses')->insert([
+                'addressable_id' => $i + 1,
+                'addressable_type' => 'Opportunity',
+                'street1' => $faker->buildingNumber . ' ' . $faker->streetName,
+                'street2' => $faker->secondaryAddress,
+                'city' => $faker->city,
+                'state' => $faker->state,
+                'postal_code' => $faker->postcode,
+                'country' => $faker->country,
+                'note' => $faker->sentence,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ]);
 
-            DB::table('note_opportunity')->insert([
-                'opportunity_id' => $i + 1,
-                'user_id' => $faker->numberBetween(55, 80),
-                'note_id' => $i + 1,
+            DB::table('notes')->insert([
+                'noteable_id' => $i + 1,
+                'noteable_type' => 'Opportunity',
+                'user_id' => 1,
+                'body' => $faker->sentence,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -313,20 +318,27 @@ class OpportunityTablesSeeder extends Seeder
                 // 'updated_by' => 1,
             ]);
 
-            DB::table('address_opportunity')->insert([
-                'opportunity_id' => $i + 101,
-                'address_id' => $i + 101,
-                'primary' => $faker->boolean(90),
+            DB::table('addresses')->insert([
+                'addressable_id' => $i + 101,
+                'addressable_type' => 'Opportunity',
+                'street1' => $faker->buildingNumber . ' ' . $faker->streetName,
+                'street2' => $faker->secondaryAddress,
+                'city' => $faker->city,
+                'state' => $faker->state,
+                'postal_code' => $faker->postcode,
+                'country' => $faker->country,
+                'note' => $faker->sentence,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ]);
 
-            DB::table('note_opportunity')->insert([
-                'opportunity_id' => $i + 101,
-                'user_id' => $faker->numberBetween(55, 80),
-                'note_id' => $i + 101,
+            DB::table('notes')->insert([
+                'noteable_id' => $i + 101,
+                'noteable_type' => 'Opportunity',
+                'user_id' => 1,
+                'body' => $faker->sentence,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -379,18 +391,6 @@ class OpportunityTablesSeeder extends Seeder
                 'opportunity_id' => $i + 101,
                 'keyword_id' => $faker->numberBetween(1, 24),
                 'order' => 1,
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ]);
-        }
-
-        for ($i = 0; $i < 100; $i++) {
-            DB::table('note_opportunity')->insert([
-                'opportunity_id' => $i + 101,
-                'user_id' => $faker->numberBetween(55, 80),
-                'note_id' => $i + 101,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,

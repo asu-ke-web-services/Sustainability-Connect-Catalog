@@ -18,7 +18,7 @@ class OrganizationsTableSeeder extends Seeder
         DB::table('organization_statuses')->truncate();
         DB::table('organization_types')->truncate();
         DB::table('organizations')->truncate();
-        DB::table('address_organization')->truncate();
+        DB::table('addresses')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = Faker\Factory::create();
@@ -127,10 +127,28 @@ class OrganizationsTableSeeder extends Seeder
                 'updated_by' => 1,
             ]);
 
-            DB::table('address_organization')->insert([
-                'organization_id' => $i + 1,
-                'address_id' => $i + 1,
-                'primary' => $faker->boolean(90),
+            DB::table('addresses')->insert([
+                'addressable_id' => $i + 1,
+                'addressable_type' => 'Organization',
+                'street1' => $faker->buildingNumber . ' ' . $faker->streetName,
+                'street2' => $faker->secondaryAddress,
+                'city' => $faker->city,
+                'state' => $faker->state,
+                'postal_code' => $faker->postcode,
+                'country' => $faker->country,
+                'note' => $faker->sentence,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+
+            DB::table('notes')->insert([
+                'noteable_id' => $i + 1,
+                'noteable_type' => 'Organization',
+                'user_id' => 1,
+                'body' => $faker->sentence,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,

@@ -64,4 +64,12 @@ class Address extends Model
     public static $rules = [
 
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     **/
+    public function addressable()
+    {
+        return $this->morphTo();
+    }
 }

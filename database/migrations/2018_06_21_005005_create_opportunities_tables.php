@@ -70,39 +70,6 @@ class CreateOpportunitiesTables extends Migration
                 ->onDelete('cascade');
         });
 
-
-        Schema::create('address_opportunity', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('opportunity_id')->unsigned();
-            $table->integer('address_id')->unsigned();
-            $table->boolean('primary');
-            $table->integer('order')->default(1);
-            $table->timestamps();
-            $table->softDeletes();
-            $table->integer('created_by')->unsigned()->nullable();
-            $table->integer('updated_by')->unsigned()->nullable();
-            $table->integer('deleted_by')->unsigned()->nullable();
-
-            $table->foreign('opportunity_id')
-                ->references('id')->on('opportunities');
-
-            $table->foreign('address_id')
-                ->references('id')->on('addresses');
-
-            $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-        });
-
-
         Schema::create('category_opportunity', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('opportunity_id')->unsigned();
@@ -162,39 +129,6 @@ class CreateOpportunitiesTables extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
-
-        Schema::create('note_opportunity', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('opportunity_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('note_id')->unsigned();
-            $table->timestamps();
-            $table->softDeletes();
-            $table->integer('created_by')->unsigned()->nullable();
-            $table->integer('updated_by')->unsigned()->nullable();
-            $table->integer('deleted_by')->unsigned()->nullable();
-
-            $table->foreign('opportunity_id')
-                ->references('id')->on('opportunities');
-
-            $table->foreign('user_id')
-                ->references('id')->on('users');
-
-            $table->foreign('note_id')
-                ->references('id')->on('notes');
-
-            $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-        });
     }
 
     /**
@@ -204,10 +138,8 @@ class CreateOpportunitiesTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('note_opportunity');
         Schema::dropIfExists('keyword_opportunity');
         Schema::dropIfExists('category_opportunity');
-        Schema::dropIfExists('address_opportunity');
         Schema::dropIfExists('opportunities');
     }
 }

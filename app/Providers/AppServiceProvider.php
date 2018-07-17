@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 

@@ -18,7 +18,7 @@ class ProjectController extends Controller
     /**
      * @var ProjectRepository
      */
-    private $projects;
+    private $repository;
 
     /**
      * @var ProjectValidator
@@ -33,7 +33,7 @@ class ProjectController extends Controller
      */
     public function __construct(ProjectRepository $repository, ProjectValidator $validator)
     {
-        $this->projects = $repository;
+        $this->repository = $repository;
         $this->validator  = $validator;
     }
 
@@ -45,8 +45,8 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $this->projects->pushCriteria(new RequestCriteria($request));
-        $projects = $this->projects->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
+        $this->repository->pushCriteria(new RequestCriteria($request));
+        $projects = $this->repository->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
 
         return view('projects.index')
             ->with('projects', $projects);
@@ -83,7 +83,7 @@ class ProjectController extends Controller
     {
         $input = $request->all();
 
-        $project = $this->projects->create($input);
+        $project = $this->repository->create($input);
 
         Flash::success('Project saved successfully.');
 
@@ -99,7 +99,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = $this->projects->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -119,7 +119,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $project = $this->projects->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -140,7 +140,7 @@ class ProjectController extends Controller
      */
     public function update($id, ProjectUpdateRequest $request)
     {
-        $project = $this->projects->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -148,7 +148,7 @@ class ProjectController extends Controller
             return redirect(route('projects.index'));
         }
 
-        $project = $this->projects->update($request->all(), $id);
+        $project = $this->repository->update($request->all(), $id);
 
         Flash::success('Project updated successfully.');
 
@@ -164,7 +164,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $project = $this->projects->findWithoutFail($id);
+        $project = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -172,7 +172,7 @@ class ProjectController extends Controller
             return redirect(route('projects.index'));
         }
 
-        $this->projects->delete($id);
+        $this->repository->delete($id);
 
         Flash::success('Project deleted successfully.');
 

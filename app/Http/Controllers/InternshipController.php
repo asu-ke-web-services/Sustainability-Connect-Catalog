@@ -21,7 +21,7 @@ class InternshipController extends Controller
     /**
      * @var  InternshipRepository
      */
-    private $internships;
+    private $repository;
 
     /**
      * @var InternshipValidator
@@ -31,7 +31,7 @@ class InternshipController extends Controller
 
     public function __construct(InternshipRepository $repository, InternshipValidator $validator)
     {
-        $this->internships = $repository;
+        $this->repository = $repository;
         $this->validator  = $validator;
     }
 
@@ -43,8 +43,8 @@ class InternshipController extends Controller
      */
     public function index(Request $request)
     {
-        $this->internships->pushCriteria(new RequestCriteria($request));
-        $internships = $this->internships->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
+        $this->repository->pushCriteria(new RequestCriteria($request));
+        $internships = $this->repository->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
 
         return view('internships.index')
             ->with('internships', $internships);
@@ -71,7 +71,7 @@ class InternshipController extends Controller
     {
         $input = $request->all();
 
-        $internship = $this->internships->create($input);
+        $internship = $this->repository->create($input);
 
         Flash::success('Internship saved successfully.');
 
@@ -87,7 +87,7 @@ class InternshipController extends Controller
      */
     public function show($id)
     {
-        $internship = $this->internships->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -107,7 +107,7 @@ class InternshipController extends Controller
      */
     public function edit($id)
     {
-        $internship = $this->internships->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -128,7 +128,7 @@ class InternshipController extends Controller
      */
     public function update($id, InternshipUpdateRequest $request)
     {
-        $internship = $this->internships->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -136,7 +136,7 @@ class InternshipController extends Controller
             return redirect(route('internships.index'));
         }
 
-        $internship = $this->internships->update($request->all(), $id);
+        $internship = $this->repository->update($request->all(), $id);
 
         Flash::success('Internship updated successfully.');
 
@@ -152,7 +152,7 @@ class InternshipController extends Controller
      */
     public function destroy($id)
     {
-        $internship = $this->internships->findWithoutFail($id);
+        $internship = $this->repository->findWithoutFail($id);
 
         if (empty($internship)) {
             Flash::error('Internship not found');
@@ -160,7 +160,7 @@ class InternshipController extends Controller
             return redirect(route('internships.index'));
         }
 
-        $this->internships->delete($id);
+        $this->repository->delete($id);
 
         Flash::success('Internship deleted successfully.');
 

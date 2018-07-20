@@ -184,6 +184,7 @@ class OpportunityTablesSeeder extends Seeder
             ]);
 
             DB::table('projects')->insert([
+                'id' => $i + 101,
                 'compensation' => $faker->text,
                 'responsibilities' => $faker->text,
                 'learning_outcomes' => $faker->text,
@@ -281,7 +282,7 @@ class OpportunityTablesSeeder extends Seeder
         // Internships
         for ($i = 0; $i < 100; $i++) {
             DB::table('opportunities')->insert([
-                'opportunityable_id' => $i + 1,
+                'opportunityable_id' => $i + 201,
                 'opportunityable_type' => 'Internship',
                 'title' => $faker->sentence(3, true),
                 'alt_title' => $faker->sentence(3, true),
@@ -305,6 +306,7 @@ class OpportunityTablesSeeder extends Seeder
             ]);
 
             DB::table('internships')->insert([
+                'id' => $i + 201,
                 'compensation' => $faker->text,
                 'responsibilities' => $faker->text,
                 'qualifications' => $faker->text,

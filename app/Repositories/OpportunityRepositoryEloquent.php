@@ -20,27 +20,6 @@ use SCCatalog\Validators\OpportunityValidator;
 class OpportunityRepositoryEloquent extends BaseRepository implements OpportunityRepositoryContract
 {
     /**
-     * @var array
-     */
-    protected $fieldSearchable = [
-        'opportunityable_id',
-        'opportunityable_type',
-        'title',
-        'alt_title',
-        'slug',
-        'listing_expires',
-        'application_deadline',
-        'opportunity_status_id',
-        'hidden',
-        'summary',
-        'description',
-        'parent_opportunity_id',
-        'organization_id',
-        'owner_user_id',
-        'submitting_user_id'
-    ];
-
-    /**
      * Configure the Model
      **/
     public function model()

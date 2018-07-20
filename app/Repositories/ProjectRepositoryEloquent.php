@@ -20,24 +20,6 @@ use SCCatalog\Validators\ProjectValidator;
 class ProjectRepositoryEloquent extends BaseRepository implements ProjectRepositoryContract
 {
     /**
-     * @var array
-     */
-    protected $fieldSearchable = [
-        'compensation',
-        'responsibilities',
-        'learning_outcomes',
-        'sustainability_contribution',
-        'qualifications',
-        'application_overview',
-        'implementation_paths',
-        'budget_type',
-        'budget_amount',
-        'program_lead',
-        'success_story',
-        'library_collection'
-    ];
-
-    /**
      * Configure the Model
      **/
     public function model()

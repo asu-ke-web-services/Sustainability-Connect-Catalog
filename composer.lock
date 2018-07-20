@@ -102,16 +102,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.63.0",
+            "version": "3.63.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "051e84dcc7c672ca385c15703c87610a8dacbe57"
+                "reference": "c90015c87088eb93718d4e1cc418b0a13d9d3356"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/051e84dcc7c672ca385c15703c87610a8dacbe57",
-                "reference": "051e84dcc7c672ca385c15703c87610a8dacbe57",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c90015c87088eb93718d4e1cc418b0a13d9d3356",
+                "reference": "c90015c87088eb93718d4e1cc418b0a13d9d3356",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-07-12T20:22:58+00:00"
+            "time": "2018-07-18T20:14:07+00:00"
         },
         {
             "name": "backpack/base",
@@ -246,16 +246,16 @@
         },
         {
             "name": "backpack/crud",
-            "version": "3.4.23",
+            "version": "3.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "929167a9f42f5deb1450e76016ac2976c19b726c"
+                "reference": "b790c03bbb63b2a45cd53978fa872bcbc95eb19c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/929167a9f42f5deb1450e76016ac2976c19b726c",
-                "reference": "929167a9f42f5deb1450e76016ac2976c19b726c",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/b790c03bbb63b2a45cd53978fa872bcbc95eb19c",
+                "reference": "b790c03bbb63b2a45cd53978fa872bcbc95eb19c",
                 "shasum": ""
             },
             "require": {
@@ -268,7 +268,8 @@
                 "orchestra/database": "~3.4",
                 "orchestra/testbench": "~3.0",
                 "phpunit/phpunit": "~6.0",
-                "scrutinizer/ocular": "~1.1"
+                "scrutinizer/ocular": "~1.1",
+                "spatie/laravel-translatable": "^2.1"
             },
             "type": "library",
             "extra": {
@@ -315,7 +316,7 @@
                 "read",
                 "update"
             ],
-            "time": "2018-07-11T15:41:05+00:00"
+            "time": "2018-07-19T12:39:14+00:00"
         },
         {
             "name": "backpack/permissionmanager",
@@ -435,7 +436,7 @@
             ],
             "authors": [
                 {
-                    "name": "Cristian tabacitu",
+                    "name": "Cristian Tabacitu",
                     "email": "hello@tabacitu.ro",
                     "homepage": "http://www.tabacitu.ro",
                     "role": "Chief Architect & Lead Developer"
@@ -1523,12 +1524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/laravel-generator.git",
-                "reference": "bf34df143a6ded4a6c6483223bcf38d13d90be26"
+                "reference": "3aea0372637deba65788eee708a70ad7cef1851b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/bf34df143a6ded4a6c6483223bcf38d13d90be26",
-                "reference": "bf34df143a6ded4a6c6483223bcf38d13d90be26",
+                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/3aea0372637deba65788eee708a70ad7cef1851b",
+                "reference": "3aea0372637deba65788eee708a70ad7cef1851b",
                 "shasum": ""
             },
             "require": {
@@ -1581,7 +1582,7 @@
                 "test",
                 "view"
             ],
-            "time": "2017-11-25T05:18:22+00:00"
+            "time": "2018-07-17T16:28:58+00:00"
         },
         {
             "name": "intervention/image",
@@ -2730,16 +2731,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "35b8caf75e791ba1b2d24fec1552168d72692b12"
+                "reference": "bd088dc940a418f09cda079a9b5c7c478890fb8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/35b8caf75e791ba1b2d24fec1552168d72692b12",
-                "reference": "35b8caf75e791ba1b2d24fec1552168d72692b12",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/bd088dc940a418f09cda079a9b5c7c478890fb8d",
+                "reference": "bd088dc940a418f09cda079a9b5c7c478890fb8d",
                 "shasum": ""
             },
             "require": {
@@ -2777,7 +2778,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-06-03T11:33:10+00:00"
+            "time": "2018-07-15T17:25:16+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -3509,12 +3510,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "731d60f7fc78a8816dae7049df255cd55e30c313"
+                "reference": "053766d789f6393e5bc0896635d35abf8d2d362e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/731d60f7fc78a8816dae7049df255cd55e30c313",
-                "reference": "731d60f7fc78a8816dae7049df255cd55e30c313",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/053766d789f6393e5bc0896635d35abf8d2d362e",
+                "reference": "053766d789f6393e5bc0896635d35abf8d2d362e",
                 "shasum": ""
             },
             "conflict": {
@@ -3563,7 +3564,7 @@
                 "kreait/firebase-php": ">=3.2,<3.8.1",
                 "laravel/framework": ">=4,<4.0.99|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.40|>=5.6,<5.6.15",
                 "laravel/socialite": ">=1,<1.0.99|>=2,<2.0.10",
-                "magento/magento1ce": ">=1.5.0.1,<1.9.3.2",
+                "magento/magento1ce": "<1.9.3.9",
                 "magento/magento1ee": ">=1.9,<1.14.3.2",
                 "magento/product-community-edition": ">=2,<2.2.5",
                 "monolog/monolog": ">=1.8,<1.12",
@@ -3621,7 +3622,8 @@
                 "thelia/thelia": ">=2.1,<2.1.2|>=2.1.0-beta1,<2.1.3",
                 "titon/framework": ">=0,<9.9.99",
                 "twig/twig": "<1.20",
-                "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.22|>=8,<8.7.5",
+                "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.30|>=8,<8.7.17|>=9,<9.3.2",
+                "typo3/cms-core": ">=8,<8.7.17|>=9,<9.3.2",
                 "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.10|>=3.1,<3.1.7|>=3.2,<3.2.7|>=3.3,<3.3.5",
                 "typo3/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4",
                 "willdurand/js-translation-bundle": "<2.1.1",
@@ -3670,7 +3672,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2018-07-09T14:09:25+00:00"
+            "time": "2018-07-18T13:51:34+00:00"
         },
         {
             "name": "spatie/image",
@@ -4064,16 +4066,16 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.39",
+            "version": "2.1.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "f92460bdf9bb210296e2aaaf47fbe8a04c770937"
+                "reference": "e27196c574118248c83777725fa007182dcc47c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/f92460bdf9bb210296e2aaaf47fbe8a04c770937",
-                "reference": "f92460bdf9bb210296e2aaaf47fbe8a04c770937",
+                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/e27196c574118248c83777725fa007182dcc47c3",
+                "reference": "e27196c574118248c83777725fa007182dcc47c3",
                 "shasum": ""
             },
             "require": {
@@ -4118,7 +4120,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2018-06-05T07:36:51+00:00"
+            "time": "2018-07-14T06:35:49+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5491,16 +5493,16 @@
         },
         {
             "name": "codeception/codeception",
-            "version": "2.4.3",
+            "version": "2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "13b2db0d54068afaabf3ca8ac8b6591d69018f46"
+                "reference": "2060fc1fe8ac2823ff3b8ece04616fc12aca968a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/13b2db0d54068afaabf3ca8ac8b6591d69018f46",
-                "reference": "13b2db0d54068afaabf3ca8ac8b6591d69018f46",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/2060fc1fe8ac2823ff3b8ece04616fc12aca968a",
+                "reference": "2060fc1fe8ac2823ff3b8ece04616fc12aca968a",
                 "shasum": ""
             },
             "require": {
@@ -5578,7 +5580,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2018-06-26T14:09:28+00:00"
+            "time": "2018-07-16T08:14:50+00:00"
         },
         {
             "name": "codeception/phpunit-wrapper",

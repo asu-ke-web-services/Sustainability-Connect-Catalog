@@ -1,48 +1,62 @@
+
 <!-- Title Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('title', 'Project Name:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Project name can be up to 255 characters long']) !!}
+    {!! Form::label('title', 'Name:') !!}
+    {!! Form::text('title', null, [
+        'class' => 'form-control',
+        'placeholder' => 'Name can be up to 255 characters long',
+        'required' => 'required'
+    ]) !!}
 </div>
 
 <!-- Alt Title Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('alt_title', 'Project Name (for non-SOS Users):') !!}
-    {!! Form::text('alt_title', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('alt_title', 'Name (for non-SOS Users):') !!}
+    {!! Form::text('alt_title', null, [
+        'class' => 'form-control',
+        'placeholder' => 'Placeholder help text'
+    ]) !!}
 </div>
 
 <!-- Slug Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('slug', 'Project Slug:') !!}
+    {!! Form::label('slug', 'Slug:') !!}
     {!! Form::text('slug', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Listing Expires Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('listing_expires', 'Listing Expires:') !!}
-    {!! Form::date('listing_expires', null, ['class' => 'form-control']) !!}
+<!-- Listing Starts Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('listing_starts', 'Listing Starts:') !!}
+    {!! Form::date('listing_starts', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Listing Ends Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('listing_ends', 'Listing Ends:') !!}
+    {!! Form::date('listing_ends', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Application Deadline Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-4">
     {!! Form::label('application_deadline', 'Application Deadline:') !!}
     {!! Form::date('application_deadline', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Project Begins Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('start_date', 'Project Begins:') !!}
+<!-- Opportunity Begins Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('start_date', 'Opportunity Begins:') !!}
     {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Project Ends Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('end_date', 'Project Ends:') !!}
+<!-- Opportunity Ends Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('end_date', 'Opportunity Ends:') !!}
     {!! Form::date('end_date', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Opportunity Status Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('opportunity_status_id', 'Status:') !!}
+<div class="form-group col-sm-4">
+    {!! Form::label('opportunity_status_id', 'Opportunity Status:') !!}
     {!! Form::select('opportunity_status_id', [1 => 'Idea Submission', 2 => 'Seeking Champion', 3 => 'Recruiting Participants', 5 => 'In Progress', 6 => 'Completed', 7 => 'Archived', ], '1', ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
 </div>
 
@@ -55,13 +69,39 @@
 <!-- Categories Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('categories', 'Categories:') !!}
-    {!! Form::select('categories', [1 => 'SDG 1: Affordable and Clean Energy', 2 => 'SDG 2: Clean Water and Sanitation', 3 => 'SDG 3: Climate Action', 4 => 'SDG 4: Decent Work and Economic Growth', 5 => 'SDG 5: Gender Equality', 6 => 'SDG 6: Good Health and Well-Being'], null, ['class' => 'form-control', 'placeholder' => 'Example: select a category']) !!}
+    {!! Form::select(
+            'categories[]',
+            $categories->toArray(),
+            null,
+            [
+                'class' => 'form-control',
+                'multiple' => 'multiple'
+            ]
+        ) !!}
 </div>
 
 <!-- Keywords Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('keywords', 'Keywords:') !!}
-    {!! Form::select('keywords', [1 => 'Air Quality', 2 => 'Alternative Fuels', 3 => 'Architecture', 5 => 'Biofuels', 6 => 'Citizen Action', 7 => 'Conservation Biology', ], null, ['class' => 'form-control', 'placeholder' => 'TODO: make into autoselect with multi-choice']) !!}
+    {!! Form::select(
+            'keywords[]',
+            $keywords->toArray(),
+            null,
+            [
+                'class' => 'form-control',
+                'multiple' => 'multiple'
+            ]
+        ) !!}
+</div>
+
+<!-- Addresses Block -->
+<div class="form-group col-sm-6">
+@foreach( $opportunity->addresses as $key => $address)
+    @include('opportunities._address', [
+        'count' => $key + 1,
+        'address' => $address
+    ])
+@endforeach
 </div>
 
 <!-- Compensation Field -->
@@ -119,34 +159,44 @@
 </div>
 
 
-<!-- Parent Opportunity Id Field -->
+<!-- Parent Opportunity Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('parent_opportunity_id', 'Parent Opportunity Id:') !!}
-    {!! Form::number('parent_opportunity_id', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('parent_opportunity_id', 'Parent Opportunity:') !!}
+    {!! Form::select(
+            'parent_opportunity_id',
+            $parentOpportunities->toArray(),
+            null,
+            [
+                'class' => 'form-control'
+            ]
+        ) !!}
 </div>
 
-<!-- Organization Partner Field -->
+<!-- Organization Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('organization', 'Organization Partner:') !!}
-    {!! Form::number('organization', null, ['class' => 'form-control', 'placeholder' => 'TODO: autoselect existing orgnaization or create new record']) !!}
+    {!! Form::label('organization_id', 'Organization:') !!}
+    {!! Form::select(
+            'organization_id',
+            $organizations->toArray(),
+            null,
+            [
+                'class' => 'form-control'
+            ]
+        ) !!}
 </div>
 
-
-<!-- Organization Id Field -->
+<!-- Opportunity Supervisor Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('organization_id', 'Organization Id:') !!}
-    {!! Form::number('organization_id', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('owner_user_id', 'Opportunity Supervisor:') !!}
+    {!! Form::select(
+            'owner_user_id',
+            $users->toArray(),
+            null,
+            [
+                'class' => 'form-control'
+            ]
+        ) !!}
 </div>
-
-<!-- Owner User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('owner_user_id', 'Owner User Id:') !!}
-    {!! Form::number('owner_user_id', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
-</div>
-
-
-
-
 
 <!-- Program Lead Field -->
 <div class="form-group col-sm-6">

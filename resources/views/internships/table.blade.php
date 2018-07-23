@@ -1,42 +1,53 @@
-<table class="table table-responsive" id="internships-table">
-    <thead>
-        <tr>
-            <th>Compensation</th>
-        <th>Responsibilities</th>
-        <th>Qualifications</th>
-        <th>Application Instructions</th>
-        <th>Comments</th>
-        <th>Program Lead</th>
-        <th>Success Story</th>
-        <th>Library Collection</th>
-        <th>Publish On</th>
-        <th>Publish Until</th>
-            <th colspan="3">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($internships as $internship)
-        <tr>
-            <td>{!! $internship->compensation !!}</td>
-            <td>{!! $internship->responsibilities !!}</td>
-            <td>{!! $internship->qualifications !!}</td>
-            <td>{!! $internship->application_instructions !!}</td>
-            <td>{!! $internship->comments !!}</td>
-            <td>{!! $internship->program_lead !!}</td>
-            <td>{!! $internship->success_story !!}</td>
-            <td>{!! $internship->library_collection !!}</td>
-            <td>{!! $internship->publish_on !!}</td>
-            <td>{!! $internship->publish_until !!}</td>
-            <td>
-                {!! Form::open(['route' => ['internships.destroy', $internship->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="{!! route('internships.show', [$internship->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('internships.edit', [$internship->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                </div>
-                {!! Form::close() !!}
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+<div class="col-sm-12">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="tableFloatingHeader">
+                <tr>
+                    <th class="col-md-4">Name</th>
+                    <th class="col-md-4">Managing Organization</th>
+                    <!-- <th class="col col-md-1" data-toggle="tooltip" data-container="body" title="Primary location for this internship">City <i class="fa fa-question-circle-o"></i></th> -->
+                    <th class="col col-md-2" data-toggle="tooltip" data-container="body" title="" data-original-title="Hover mouse over icons for explanation of internship availability options">Availability <i class="fa fa-question-circle-o"></i></th>
+                    <th data-toggle="tooltip" data-container="body" title="" data-original-title="Available in the Fall semester">Fall</th>
+                    <th data-toggle="tooltip" data-container="body" title="" data-original-title="Available in the Spring semester">Spr</th>
+                    <th data-toggle="tooltip" data-container="body" title="" data-original-title="Available in the Summer">Sum</th>
+                    <th class="col col-md-1 text-center" data-toggle="tooltip" data-container="body" title="" data-original-title="Application Deadline">Apply By <i class="fa fa-question-circle-o"></i></th>
+                    {{-- <th>Compensation</th>
+                    <th>Responsibilities</th>
+                    <th>Qualifications</th>
+                    <th>Application Instructions</th>
+                    <th>Comments</th>
+                    <th>Program Lead</th>
+                    <th>Success Story</th>
+                    <th>Library Collection</th>
+                    <th>Publish On</th>
+                    <th>Publish Until</th>
+                    <th colspan="3">Action</th> --}}
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($opportunities as $opportunity)
+                <tr>
+                    <td><a href="internships/{!! $opportunity->id !!}">{!! $opportunity->title !!}</a></td>
+                    <td>{!! $opportunity->organization->name !!}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{!! $opportunity->application_deadline !!}</td>
+                    {{-- <td>
+                        {!! Form::open(['route' => ['projects.destroy', $project->opportunity->id], 'method' => 'delete']) !!}
+                        <div class='btn-group'>
+                            <a href="{!! route('projects.show', [$project->opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="{!! route('projects.edit', [$project->opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                            {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        </div>
+                        {!! Form::close() !!}
+                    </td> --}}
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    <!-- BEGIN Paginator -->
+    <!-- END Paginator -->
+</div>

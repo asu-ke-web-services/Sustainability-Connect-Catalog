@@ -1,52 +1,40 @@
-<table class="table table-responsive" id="opportunities-table">
-    <thead>
-        <tr>
-            <th>Opportunityable Id</th>
-            <th>Opportunityable Type</th>
-            <th>Title</th>
-            <th>Alt Title</th>
-            <th>Slug</th>
-            <th>Listing Expires</th>
-            <th>Application Deadline</th>
-            <th>Opportunity Status Id</th>
-            <th>Hidden</th>
-            <th>Summary</th>
-            <th>Description</th>
-            <th>Parent Opportunity Id</th>
-            <th>Organization Id</th>
-            <th>Owner User Id</th>
-            <th>Submitting User Id</th>
-            <th colspan="3">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($opportunities as $opportunity)
-        <tr>
-            <td>{!! $opportunity->opportunityable_id !!}</td>
-            <td>{!! $opportunity->opportunityable_type !!}</td>
-            <td>{!! $opportunity->title !!}</td>
-            <td>{!! $opportunity->alt_title !!}</td>
-            <td>{!! $opportunity->slug !!}</td>
-            <td>{!! $opportunity->listing_expires !!}</td>
-            <td>{!! $opportunity->application_deadline !!}</td>
-            <td>{!! $opportunity->opportunity_status_id !!}</td>
-            <td>{!! $opportunity->hidden !!}</td>
-            <td>{!! $opportunity->summary !!}</td>
-            <td>{!! $opportunity->description !!}</td>
-            <td>{!! $opportunity->parent_opportunity_id !!}</td>
-            <td>{!! $opportunity->organization_id !!}</td>
-            <td>{!! $opportunity->owner_user_id !!}</td>
-            <td>{!! $opportunity->submitting_user_id !!}</td>
-            <td>
-                {!! Form::open(['route' => ['opportunities.destroy', $opportunity->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="{!! route('opportunities.show', [$opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('opportunities.edit', [$opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                </div>
-                {!! Form::close() !!}
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+<div class="col-sm-12">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="tableFloatingHeader">
+                <tr>
+                    <th class="col col-md-4">Name</th>
+                            {{-- <th class="col col-md-2" data-toggle="tooltip" data-container="body" title="" data-original-title="Hover mouse over icons for explanation of project availability options">Availability <i class="fa fa-question-circle-o"></i></th>
+                            <th class="col col-md-1" data-toggle="tooltip" data-container="body" title="" data-original-title="Primary location for this project">City <i class="fa fa-question-circle-o"></i></th>
+                            <th class="col col-md-1" data-toggle="tooltip" data-container="body" title="Current Recruitment Status">Current Status <i class="fa fa-question-circle-o"></i></th>
+                            <th class="col col-md-2 text-center" data-toggle="tooltip" data-container="body" title="" data-original-title="Project Begins">Begins <i class="fa fa-question-circle-o"></i></th>
+                            <th class="col col-md-2 text-center" data-toggle="tooltip" data-container="body" title="" data-original-title="Project Ends">Ends <i class="fa fa-question-circle-o"></i></th>
+                            <th class="col col-md-1 text-center" data-toggle="tooltip" data-container="body" title="" data-original-title="Application Deadline">Apply By <i class="fa fa-question-circle-o"></i></th> --}}
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($opportunities as $opportunity)
+                <tr>
+                    <td>{!! $opportunity !!}</td>
+                    {{-- <td>{!! $project->opportunity->application_deadline !!}</td>
+                    <td>{!! $project->opportunity->parent_opportunity_id !!}</td>
+                    <td>{!! $project->opportunity->organization_id !!}</td>
+                    <td>{!! $project->opportunity->owner_user_id !!}</td>
+                    <td>{!! $project->opportunity->submitting_user_id !!}</td>
+                    <td>
+                        {!! Form::open(['route' => ['projects.destroy', $project->opportunity->id], 'method' => 'delete']) !!}
+                        <div class='btn-group'>
+                            <a href="{!! route('projects.show', [$project->opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a href="{!! route('projects.edit', [$project->opportunity->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                            {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        </div>
+                        {!! Form::close() !!}
+                    </td> --}}
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    <!-- BEGIN Paginator -->
+    <!-- END Paginator -->
+</div>

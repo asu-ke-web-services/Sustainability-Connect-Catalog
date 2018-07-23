@@ -184,27 +184,8 @@
                     <div class="clearfix">
                         <div id="content" class="site-content">
                             <main id="main" class="site-main">
-
-                                @component('partials.hero_block')
-
-                                <div class="widecolumn">
-                                    <div class="asu-breadcrumbs"><div class="container"><div class="row"><div class="col-md-12">
-                                        <div id="breadcrumbs" class="breadcrumb">
-                                            <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                                                <span itemprop="title">
-                                                    <!-- TODO: Breadcrumbs -->
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div></div></div></div>
-                                </div>
-
-                                <div class="container pad-bot-md pad-top-sm">
-
-                                    <!-- TODO: Flash alerts -->
-                                    @yield('content')
-
-                                </div><!-- .entry-content -->
+                                <!-- TODO: Flash alerts -->
+                                @yield('content')
                             </main><!-- #main -->
                         </div><!-- #content -->
                     </div><!-- .clearfix -->

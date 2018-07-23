@@ -12,33 +12,8 @@ import {
   Menu
 } from 'react-instantsearch-dom';
 
-const Sidebar = () => (
-    <div className="left-column">
-        <h5>Category</h5>
-        <RefinementList attribute="categories"/>
-        <h5>Keywords</h5>
-        <RefinementList attribute="keywords" withSearchBox/>
-    </div>
-);
-
 const Content = () => (
-    <div>
-        <div>
-            <Stats/>
-            <SortBy
-                defaultRefinement="projects"
-                items={[
-                    {value:'projects', label:'Most Relevant'},
-                    {value:'projects_title_asc', label:'Title Asc'},
-                    {value:'projects_title_desc', label:'Title Desc'}
-                ]}
-            />
-        </div>
-        <Hits hitComponent={Hit}/>
-        <div className="pagination">
-            <Pagination showLast/>
-        </div>
-    </div>
+    <Hits hitComponent={Hit}/>
 );
 
 const Hit = ({hit}) => (
@@ -71,7 +46,7 @@ const SearchApp = () => (
     <InstantSearch
         appId="OISWB86UY6"
         apiKey="5b3f49bc4c117cce7b99c028562f51c0"
-        indexName="projects"
+        indexName="opportunities"
     >
         <Content/>
     </InstantSearch>

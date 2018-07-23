@@ -473,6 +473,8 @@ class Opportunity extends Model
         $opportunity['ownerUser']         = $this->ownerUser;
         $opportunity['submittingUser']    = $this->submittingUser;
 
+        $opportunity['opportunityable']   = $this->opportunityable;
+
         // Index Addresses
         $opportunity['addresses'] = $this->addresses->map(function ($data) {
                                         return $data['city'] .

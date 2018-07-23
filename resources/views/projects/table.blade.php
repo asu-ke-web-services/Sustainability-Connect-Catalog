@@ -13,6 +13,7 @@
                 </tr>
             </thead>
             <tbody>
+            @if(count($opportunities) > 0)
             @foreach($opportunities as $opportunity)
                 <tr>
                     <td><a href="projects/{!! $opportunity->id !!}">{!! $opportunity->title !!}</a></td>
@@ -38,6 +39,11 @@
                     </td> --}}
                 </tr>
             @endforeach
+            @else
+                <tr>
+                    <td colspan="7" class="text-danger">Result not found.</td>
+                </tr>
+            @endif
             </tbody>
         </table>
     </div>

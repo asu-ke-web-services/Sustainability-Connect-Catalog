@@ -75,7 +75,20 @@ class ProjectController extends OpportunityController
      */
     public function create()
     {
-        return view('projects.create');
+        $categories = Category::pluck('name', 'id');
+        $keywords = Keyword::pluck('name', 'id');
+        $parentOpportunities = Opportunity::pluck('title', 'id');
+        $organizations = Organization::pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+
+        return view('projects.create', [
+            'categories' => $categories,
+            'keywords' => $keywords,
+            'organizations' => $organizations,
+            'parentOpportunities' => $parentOpportunities,
+            'organizations' => $organizations,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -144,7 +157,21 @@ class ProjectController extends OpportunityController
             return redirect(route('projects.index'));
         }
 
-        return view('projects.edit')->with('project', $project);
+        $categories = Category::pluck('name', 'id');
+        $keywords = Keyword::pluck('name', 'id');
+        $parentOpportunities = Opportunity::pluck('title', 'id');
+        $organizations = Organization::pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+
+        return view('projects.edit', [
+            'opportunity' => $opportunity,
+            'categories' => $categories,
+            'keywords' => $keywords,
+            'organizations' => $organizations,
+            'parentOpportunities' => $parentOpportunities,
+            'organizations' => $organizations,
+            'users' => $users
+        ]);
     }
 
     /**

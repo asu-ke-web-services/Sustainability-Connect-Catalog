@@ -62,7 +62,20 @@ class InternshipController extends OpportunityController
      */
     public function create()
     {
-        return view('internships.create');
+        $categories = Category::pluck('name', 'id');
+        $keywords = Keyword::pluck('name', 'id');
+        $parentOpportunities = Opportunity::pluck('title', 'id');
+        $organizations = Organization::pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+
+        return view('internships.create', [
+            'categories' => $categories,
+            'keywords' => $keywords,
+            'organizations' => $organizations,
+            'parentOpportunities' => $parentOpportunities,
+            'organizations' => $organizations,
+            'users' => $users
+        ]);
     }
 
     /**

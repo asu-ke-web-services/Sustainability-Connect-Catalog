@@ -8,20 +8,33 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
-use SCCatalog\Http\Requests\ProjectCreateRequest;
-use SCCatalog\Http\Requests\ProjectUpdateRequest;
-use SCCatalog\Contracts\Repositories\ProjectRepositoryContract as ProjectRepository;
-use SCCatalog\Validators\ProjectValidator;
+use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
+// use SCCatalog\Contracts\Repositories\ProjectRepositoryContract as ProjectRepository;
+use SCCatalog\Criteria\ProjectCriteria;
+use SCCatalog\Http\Controllers\OpportunityController;
+use SCCatalog\Http\Requests\CreateOpportunityRequest;
+use SCCatalog\Http\Requests\FollowOpportunityRequest;
+use SCCatalog\Http\Requests\UnfollowOpportunityRequest;
+use SCCatalog\Http\Requests\UpdateOpportunityRequest;
+// use SCCatalog\Http\Requests\ProjectCreateRequest;
+// use SCCatalog\Http\Requests\ProjectUpdateRequest;
+// use SCCatalog\Validators\ProjectValidator;
+use SCCatalog\Validators\OpportunityValidator;
+use SCCatalog\Models\Category;
+use SCCatalog\Models\Keyword;
+use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Organization;
+use SCCatalog\Models\User;
 
-class ProjectController extends Controller
+class ProjectController extends OpportunityController
 {
     /**
-     * @var ProjectRepository
+     * @var OpportunityRepository
      */
     private $repository;
 
     /**
-     * @var ProjectValidator
+     * @var OpportunityValidator
      */
     protected $validator;
 
@@ -31,8 +44,10 @@ class ProjectController extends Controller
      * @param ProjectRepository $repository
      * @param ProjectValidator $validator
      */
-    public function __construct(ProjectRepository $repository, ProjectValidator $validator)
+    public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
     {
+        parent::__construct($repository, $validator);
+
         $this->repository = $repository;
         $this->validator  = $validator;
     }
@@ -46,10 +61,11 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $this->repository->pushCriteria(new RequestCriteria($request));
-        $projects = $this->repository->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
+        $this->repository->pushCriteria(ProjectCriteria::class);
+        $opportunities = $this->repository->with(['opportunityable'])->all();
 
         return view('projects.index')
-            ->with('projects', $projects);
+            ->with('opportunities', $opportunities);
     }
 
     /**
@@ -99,15 +115,16 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = $this->repository->findWithoutFail($id);
+        $this->repository->pushCriteria(ProjectCriteria::class);
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
 
-        if (empty($project)) {
+        if (empty($opportunity)) {
             Flash::error('Project not found');
 
             return redirect(route('projects.index'));
         }
 
-        return view('projects.show')->with('project', $project);
+        return view('projects.show')->with('opportunity', $opportunity);
     }
 
     /**

@@ -8,28 +8,32 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
-use SCCatalog\Http\Requests\CreateOpportunityRequest;
-use SCCatalog\Http\Requests\InternshipCreateRequest;
-use SCCatalog\Http\Requests\InternshipUpdateRequest;
-use SCCatalog\Contracts\Repositories\InternshipRepositoryContract as InternshipRepository;
-use SCCatalog\Http\Requests\UpdateOpportunityRequest;
-use SCCatalog\Models\Internship;
-use SCCatalog\Validators\InternshipValidator;
+use SCCatalog\Criteria\InternshipCriteria;
+use SCCatalog\Http\Controllers\OpportunityController;
+// use SCCatalog\Http\Requests\CreateOpportunityRequest;
+// use SCCatalog\Http\Requests\InternshipCreateRequest;
+// use SCCatalog\Http\Requests\InternshipUpdateRequest;
+use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
+// use SCCatalog\Contracts\Repositories\InternshipRepositoryContract as InternshipRepository;
+// use SCCatalog\Http\Requests\UpdateOpportunityRequest;
+// use SCCatalog\Models\Internship;
+use SCCatalog\Validators\OpportunityValidator;
+// use SCCatalog\Validators\InternshipValidator;
 
-class InternshipController extends Controller
+class InternshipController extends OpportunityController
 {
     /**
-     * @var  InternshipRepository
+     * @var OpportunityRepository
      */
     private $repository;
 
     /**
-     * @var InternshipValidator
+     * @var OpportunityValidator
      */
     protected $validator;
 
 
-    public function __construct(InternshipRepository $repository, InternshipValidator $validator)
+    public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -44,10 +48,11 @@ class InternshipController extends Controller
     public function index(Request $request)
     {
         $this->repository->pushCriteria(new RequestCriteria($request));
-        $internships = $this->repository->with(['opportunity'])->paginate($limit = null, $columns = ['*']);
+        $this->repository->pushCriteria(InternshipCriteria::class);
+        $opportunities = $this->repository->with(['opportunityable'])->all();
 
         return view('internships.index')
-            ->with('internships', $internships);
+            ->with('opportunities', $opportunities);
     }
 
     /**
@@ -87,15 +92,16 @@ class InternshipController extends Controller
      */
     public function show($id)
     {
-        $internship = $this->repository->findWithoutFail($id);
+        $this->repository->pushCriteria(InternshipCriteria::class);
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
 
-        if (empty($internship)) {
+        if (empty($opportunity)) {
             Flash::error('Internship not found');
 
             return redirect(route('internships.index'));
         }
 
-        return view('internships.show')->with('internship', $internship);
+        return view('internships.show')->with('opportunity', $opportunity);
     }
 
     /**

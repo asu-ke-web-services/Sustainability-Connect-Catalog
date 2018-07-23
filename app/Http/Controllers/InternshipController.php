@@ -85,16 +85,16 @@ class InternshipController extends OpportunityController
      *
      * @return Response
      */
-    public function store(InternshipCreateRequest $request)
-    {
-        $input = $request->all();
+    // public function store(InternshipCreateRequest $request)
+    // {
+    //     $input = $request->all();
 
-        $internship = $this->repository->create($input);
+    //     $internship = $this->repository->create($input);
 
-        Flash::success('Internship saved successfully.');
+    //     Flash::success('Internship saved successfully.');
 
-        return redirect(route('internships.index'));
-    }
+    //     return redirect(route('internships.index'));
+    // }
 
     /**
      * Display the specified Internship.
@@ -145,22 +145,22 @@ class InternshipController extends OpportunityController
      *
      * @return Response
      */
-    public function update($id, InternshipUpdateRequest $request)
-    {
-        $internship = $this->repository->findWithoutFail($id);
+    // public function update($id, InternshipUpdateRequest $request)
+    // {
+    //     $internship = $this->repository->findWithoutFail($id);
 
-        if (empty($internship)) {
-            Flash::error('Internship not found');
+    //     if (empty($internship)) {
+    //         Flash::error('Internship not found');
 
-            return redirect(route('internships.index'));
-        }
+    //         return redirect(route('internships.index'));
+    //     }
 
-        $internship = $this->repository->update($request->all(), $id);
+    //     $internship = $this->repository->update($request->all(), $id);
 
-        Flash::success('Internship updated successfully.');
+    //     Flash::success('Internship updated successfully.');
 
-        return redirect(route('internships.index'));
-    }
+    //     return redirect(route('internships.index'));
+    // }
 
     /**
      * Remove the specified Internship from storage.
@@ -169,20 +169,20 @@ class InternshipController extends OpportunityController
      *
      * @return Response
      */
-    public function destroy($id)
-    {
-        $internship = $this->repository->findWithoutFail($id);
+    // public function destroy($id)
+    // {
+    //     $internship = $this->repository->findWithoutFail($id);
 
-        if (empty($internship)) {
-            Flash::error('Internship not found');
+    //     if (empty($internship)) {
+    //         Flash::error('Internship not found');
 
-            return redirect(route('internships.index'));
-        }
+    //         return redirect(route('internships.index'));
+    //     }
 
-        $this->repository->delete($id);
+    //     $this->repository->delete($id);
 
-        Flash::success('Internship deleted successfully.');
+    //     Flash::success('Internship deleted successfully.');
 
-        return redirect(route('internships.index'));
-    }
+    //     return redirect(route('internships.index'));
+    // }
 }

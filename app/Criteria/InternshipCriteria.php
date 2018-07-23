@@ -6,11 +6,11 @@ use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Class ProjectCriteria.
+ * Class InternshipCriteria.
  *
  * @package namespace SCCatalog\Criteria;
  */
-class ProjectCriteria implements CriteriaInterface
+class InternshipCriteria implements CriteriaInterface
 {
     /**
      * Apply criteria in query repository
@@ -22,6 +22,6 @@ class ProjectCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        return $model->where('opportunityable_type', 'Project');
+        return $model->where('opportunityable_type', 'Internship');
     }
 }

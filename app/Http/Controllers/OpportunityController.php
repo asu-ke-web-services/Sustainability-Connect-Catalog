@@ -54,7 +54,7 @@ class OpportunityController extends Controller
      */
     public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
     {
-        $this->opportunities = $repository;
+        $this->repository = $repository;
         $this->validator  = $validator;
     }
 
@@ -67,14 +67,7 @@ class OpportunityController extends Controller
     public function index(Request $request)
     {
         $this->repository->pushCriteria(new RequestCriteria($request));
-        $opportunities = $this->repository->all();
-
-        // if (request()->wantsJson()) {
-
-        //     return response()->json([
-        //         'data' => $posts,
-        //     ]);
-        // }
+        $opportunities = $this->repository->with(['opportunityable'])->all();
 
         return view('opportunities.index')
             ->with('opportunities', $opportunities);
@@ -143,14 +136,7 @@ class OpportunityController extends Controller
      */
     public function show($id)
     {
-        $opportunity = $this->repository->findWithoutFail($id);
-
-        // if (request()->wantsJson()) {
-        //     // TODO: handle empty response (add message?)
-        //     return response()->json([
-        //         'data' => $post,
-        //     ]);
-        // }
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Opportunity not found');

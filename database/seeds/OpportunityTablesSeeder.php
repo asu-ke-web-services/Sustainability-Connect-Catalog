@@ -160,7 +160,7 @@ class OpportunityTablesSeeder extends Seeder
         // Projects
         for ($i = 0; $i < 100; $i++) {
             DB::table('opportunities')->insert([
-                'opportunityable_id' => $i + 1,
+                'opportunityable_id' => $i + 101,
                 'opportunityable_type' => 'Project',
                 'title' => $faker->sentence(3, true),
                 'alt_title' => $faker->sentence(3, true),

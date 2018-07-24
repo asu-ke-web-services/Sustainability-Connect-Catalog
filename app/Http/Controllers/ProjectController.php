@@ -158,7 +158,8 @@ class ProjectController extends OpportunityController
      */
     public function edit($id)
     {
-        $project = $this->repository->findWithoutFail($id);
+        // $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository->findWithoutFail($id);
 
         if (empty($project)) {
             Flash::error('Project not found');

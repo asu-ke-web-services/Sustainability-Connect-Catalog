@@ -12,8 +12,7 @@
                     <th class="col col-md-1 text-center" data-toggle="tooltip" data-container="body" title="" data-original-title="Application Deadline">Apply By <i class="fa fa-question-circle-o"></i></th>
                 </tr>
             </thead>
-            <tbody>
-                <div id="search"></div>
+            <tbody id="search">
             </tbody>
         </table>
     </div>

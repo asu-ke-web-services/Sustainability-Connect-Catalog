@@ -106,8 +106,8 @@
 
 <!-- Compensation Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('compensation', 'Student Compensation and Project Funds:') !!}
-    {!! Form::textarea('compensation', null, ['class' => 'form-control', 'placeholder' => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)']) !!}
+    {!! Form::label('opportunityable.compensation', 'Student Compensation and Project Funds:') !!}
+    {!! Form::textarea('opportunityable.compensation', null, ['class' => 'form-control', 'placeholder' => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)']) !!}
 </div>
 
 <!-- Responsibilities Field -->

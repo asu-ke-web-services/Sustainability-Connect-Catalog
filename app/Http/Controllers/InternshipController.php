@@ -10,13 +10,19 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
 use SCCatalog\Criteria\InternshipCriteria;
 use SCCatalog\Http\Controllers\OpportunityController;
-// use SCCatalog\Http\Requests\CreateOpportunityRequest;
+use SCCatalog\Http\Requests\CreateOpportunityRequest;
+use SCCatalog\Http\Requests\FollowOpportunityRequest;
+use SCCatalog\Http\Requests\UnfollowOpportunityRequest;
+use SCCatalog\Http\Requests\UpdateOpportunityRequest;
 // use SCCatalog\Http\Requests\InternshipCreateRequest;
 // use SCCatalog\Http\Requests\InternshipUpdateRequest;
 use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
 // use SCCatalog\Contracts\Repositories\InternshipRepositoryContract as InternshipRepository;
-// use SCCatalog\Http\Requests\UpdateOpportunityRequest;
-// use SCCatalog\Models\Internship;
+use SCCatalog\Models\Category;
+use SCCatalog\Models\Keyword;
+use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Organization;
+use SCCatalog\Models\User;
 use SCCatalog\Validators\OpportunityValidator;
 // use SCCatalog\Validators\InternshipValidator;
 
@@ -85,16 +91,16 @@ class InternshipController extends OpportunityController
      *
      * @return Response
      */
-    // public function store(InternshipCreateRequest $request)
-    // {
-    //     $input = $request->all();
+    public function store(CreateOpportunityRequest $request)
+    {
+        $input = $request->all();
 
-    //     $internship = $this->repository->create($input);
+        $opportunity = $this->repository->create($input);
 
-    //     Flash::success('Internship saved successfully.');
+        Flash::success('Internship saved successfully.');
 
-    //     return redirect(route('internships.index'));
-    // }
+        return redirect(route('internships.index'));
+    }
 
     /**
      * Display the specified Internship.
@@ -126,15 +132,15 @@ class InternshipController extends OpportunityController
      */
     public function edit($id)
     {
-        $internship = $this->repository->findWithoutFail($id);
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
 
-        if (empty($internship)) {
+        if (empty($opportunity)) {
             Flash::error('Internship not found');
 
             return redirect(route('internships.index'));
         }
 
-        return view('internships.edit')->with('internship', $internship);
+        return view('internships.edit')->with('opportunity', $opportunity);
     }
 
     /**
@@ -145,22 +151,22 @@ class InternshipController extends OpportunityController
      *
      * @return Response
      */
-    // public function update($id, InternshipUpdateRequest $request)
-    // {
-    //     $internship = $this->repository->findWithoutFail($id);
+    public function update($id, UpdateOpportunityRequest $request)
+    {
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
 
-    //     if (empty($internship)) {
-    //         Flash::error('Internship not found');
+        if (empty($opportunity)) {
+            Flash::error('Internship not found');
 
-    //         return redirect(route('internships.index'));
-    //     }
+            return redirect(route('internships.index'));
+        }
 
-    //     $internship = $this->repository->update($request->all(), $id);
+        $opportunity = $this->repository->with(['opportunityable'])->update($request->all(), $id);
 
-    //     Flash::success('Internship updated successfully.');
+        Flash::success('Internship updated successfully.');
 
-    //     return redirect(route('internships.index'));
-    // }
+        return redirect(route('internships.index'));
+    }
 
     /**
      * Remove the specified Internship from storage.
@@ -169,20 +175,20 @@ class InternshipController extends OpportunityController
      *
      * @return Response
      */
-    // public function destroy($id)
-    // {
-    //     $internship = $this->repository->findWithoutFail($id);
+    public function destroy($id)
+    {
+        $opportunity = $this->repository->findWithoutFail($id);
 
-    //     if (empty($internship)) {
-    //         Flash::error('Internship not found');
+        if (empty($opportunity)) {
+            Flash::error('Internship not found');
 
-    //         return redirect(route('internships.index'));
-    //     }
+            return redirect(route('internships.index'));
+        }
 
-    //     $this->repository->delete($id);
+        $this->repository->delete($id);
 
-    //     Flash::success('Internship deleted successfully.');
+        Flash::success('Internship deleted successfully.');
 
-    //     return redirect(route('internships.index'));
-    // }
+        return redirect(route('internships.index'));
+    }
 }

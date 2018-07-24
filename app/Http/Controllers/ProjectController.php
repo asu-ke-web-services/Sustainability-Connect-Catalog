@@ -117,16 +117,16 @@ class ProjectController extends OpportunityController
      *
      * @return Response
      */
-    // public function store(OpportunityCreateRequest $request)
-    // {
-    //     $input = $request->all();
+    public function store(CreateOpportunityRequest $request)
+    {
+        $input = $request->all();
 
-    //     $project = $this->repository->create($input);
+        $opportunity = $this->repository->create($input);
 
-    //     Flash::success('Project saved successfully.');
+        Flash::success('Project saved successfully.');
 
-    //     return redirect(route('projects.index'));
-    // }
+        return redirect(route('projects.index'));
+    }
 
     /**
      * Display the specified Project.
@@ -158,10 +158,10 @@ class ProjectController extends OpportunityController
      */
     public function edit($id)
     {
-        // $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
-        $opportunity = $this->repository->findWithoutFail($id);
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        // $opportunity = $this->repository->findWithoutFail($id);
 
-        if (empty($project)) {
+        if (empty($opportunity)) {
             Flash::error('Project not found');
 
             return redirect(route('projects.index'));
@@ -192,22 +192,23 @@ class ProjectController extends OpportunityController
      *
      * @return Response
      */
-    // public function update($id, ProjectUpdateRequest $request)
-    // {
-    //     $project = $this->repository->findWithoutFail($id);
+    public function update($id, UpdateOpportunityRequest $request)
+    {
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        // $opportunity = $this->repository->findWithoutFail($id);
 
-    //     if (empty($project)) {
-    //         Flash::error('Project not found');
+        if (empty($opportunity)) {
+            Flash::error('Project not found');
 
-    //         return redirect(route('projects.index'));
-    //     }
+            return redirect(route('projects.index'));
+        }
 
-    //     $project = $this->repository->update($request->all(), $id);
+        $opportunity = $this->repository->update($request->all(), $id);
 
-    //     Flash::success('Project updated successfully.');
+        Flash::success('Project updated successfully.');
 
-    //     return redirect(route('projects.index'));
-    // }
+        return redirect(route('projects.index'));
+    }
 
     /**
      * Remove the specified Project from storage.
@@ -216,20 +217,20 @@ class ProjectController extends OpportunityController
      *
      * @return Response
      */
-    // public function destroy($id)
-    // {
-    //     $project = $this->repository->findWithoutFail($id);
+    public function destroy($id)
+    {
+        $opportunity = $this->repository->findWithoutFail($id);
 
-    //     if (empty($project)) {
-    //         Flash::error('Project not found');
+        if (empty($opportunity)) {
+            Flash::error('Project not found');
 
-    //         return redirect(route('projects.index'));
-    //     }
+            return redirect(route('projects.index'));
+        }
 
-    //     $this->repository->delete($id);
+        $this->repository->delete($id);
 
-    //     Flash::success('Project deleted successfully.');
+        Flash::success('Project deleted successfully.');
 
-    //     return redirect(route('projects.index'));
-    // }
+        return redirect(route('projects.index'));
+    }
 }

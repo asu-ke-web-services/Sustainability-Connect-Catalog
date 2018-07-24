@@ -92,7 +92,7 @@ class OpportunityController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(OpportunityCreateRequest $request)
+    public function store(CreateOpportunityRequest $request)
     {
         try {
 
@@ -177,7 +177,7 @@ class OpportunityController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update($id, OpportunityUpdateRequest $request)
+    public function update($id, UpdateOpportunityRequest $request)
     {
         try {
 

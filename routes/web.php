@@ -26,4 +26,3 @@ Route::resource('projects', 'ProjectController');
 Route::resource('internships', 'InternshipController');
 
 Route::get('projects/submit_idea', 'ProjectController@create_idea');
-Route::get('projects/search', 'SearchController@search');

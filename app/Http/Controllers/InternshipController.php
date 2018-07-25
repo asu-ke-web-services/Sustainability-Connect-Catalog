@@ -38,9 +38,16 @@ class InternshipController extends OpportunityController
      */
     protected $validator;
 
-
+    /**
+     * InternshipController constructor.
+     *
+     * @param OpportunityRepository $repository
+     * @param OpportunityValidator $validator
+     */
     public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
     {
+        parent::__construct($repository, $validator);
+
         $this->repository = $repository;
         $this->validator  = $validator;
     }
@@ -57,8 +64,11 @@ class InternshipController extends OpportunityController
         $this->repository->pushCriteria(InternshipCriteria::class);
         $opportunities = $this->repository->with(['opportunityable'])->all();
 
-        return view('internships.index')
-            ->with('opportunities', $opportunities);
+        return view('internships.index', [
+            'type' => $opportunities->first()->opportunityable_type,
+            'pageTitle' => str_plural($opportunities->first()->opportunityable_type),
+            'opportunities' => $opportunities
+        ]);
     }
 
     /**
@@ -70,16 +80,19 @@ class InternshipController extends OpportunityController
     {
         $categories = Category::pluck('name', 'id');
         $keywords = Keyword::pluck('name', 'id');
-        $parentOpportunities = Opportunity::pluck('title', 'id');
-        $organizations = Organization::pluck('name', 'id');
+        $allOpportunities = Opportunity::pluck('title', 'id');
+        $allOrganizations = Organization::pluck('name', 'id');
+        $status = OpportunityStatus::where('opportunity_type_id', 2)->pluck('name', 'id')->toArray();
         $users = User::pluck('name', 'id');
 
         return view('internships.create', [
+            'type' => 'Internship',
+            'pageTitle' => 'New Internship',
             'categories' => $categories,
             'keywords' => $keywords,
-            'organizations' => $organizations,
-            'parentOpportunities' => $parentOpportunities,
-            'organizations' => $organizations,
+            'allOrganizations' => $allOrganizations,
+            'allOpportunities' => $allOpportunities,
+            'status' => $status,
             'users' => $users
         ]);
     }
@@ -120,7 +133,36 @@ class InternshipController extends OpportunityController
             return redirect(route('internships.index'));
         }
 
-        return view('internships.show')->with('opportunity', $opportunity);
+        return view('internships.show', [
+            'type' => $opportunity->opportunityable_type,
+            'pageTitle' => $opportunity->title,
+            'opportunity' => $opportunity
+        ]);
+    }
+
+    /**
+     * Display the specified Internship.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function show_admin($id)
+    {
+        $this->repository->pushCriteria(InternshipCriteria::class);
+        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+
+        if (empty($opportunity)) {
+            Flash::error('Internship not found');
+
+            return redirect(route('internships.index'));
+        }
+
+        return view('internships.show_admin', [
+            'type' => $opportunity->opportunityable_type,
+            'pageTitle' => $opportunity->title,
+            'opportunity' => $opportunity
+        ]);
     }
 
     /**
@@ -140,7 +182,24 @@ class InternshipController extends OpportunityController
             return redirect(route('internships.index'));
         }
 
-        return view('internships.edit')->with('opportunity', $opportunity);
+        $categories = Category::pluck('name', 'id')->toArray();
+        $keywords = Keyword::pluck('name', 'id')->toArray();
+        $allOpportunities = Opportunity::pluck('title', 'id')->toArray();
+        $allOrganizations = Organization::pluck('name', 'id')->toArray();
+        $users = User::pluck('name', 'id')->toArray();
+        $status = OpportunityStatus::where('opportunity_type_id', 2)->pluck('name', 'id')->toArray();
+
+        return view('internships.edit', [
+            'type' => $opportunity->opportunityable_type,
+            'pageTitle' => $opportunity->title,
+            'opportunity' => $opportunity,
+            'categories' => $categories,
+            'keywords' => $keywords,
+            'allOrganizations' => $allOrganizations,
+            'allOpportunities' => $allOpportunities,
+            'status' => $status,
+            'users' => $users
+        ]);
     }
 
     /**

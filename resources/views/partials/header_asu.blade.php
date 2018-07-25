@@ -18,10 +18,10 @@
 									<h2 class="hidden">Menu</h2>
 									<div id="asu_universal_nav">
 										<ul>
-											<li class="home"><a target="_top" href="http://www.asu.edu/" id="asu-home-link-asu-header">ASU Home</a></li>
+											<li class="home"><a target="_top" href="https://www.asu.edu/" id="asu-home-link-asu-header">ASU Home</a></li>
 											<li class="myasu"><a target="_top" href="https://my.asu.edu/" id="my-asu-link-asu-header">My ASU</a></li>
 											<li class="parent colleges">
-												<a target="_top" href="http://www.asu.edu/colleges/" id="colleges-and-schools-link-asu-header">Colleges &amp; Schools</a>
+												<a target="_top" href="https://www.asu.edu/colleges/" id="colleges-and-schools-link-asu-header">Colleges &amp; Schools</a>
 												<ul>
 													<li><a class="first" href="//artsandsciences.asu.edu/" target="_top" title="Arts and Sciences website" id="arts-and-sciences-link-asu-header">Arts and Sciences</a></li>
 													<li><a href="//wpcarey.asu.edu/" target="_top" title="W. P. Carey School of Business Web and Morrison School of Agribusiness website" id="business-link-asu-header">Business</a></li>
@@ -38,13 +38,13 @@
 													<li><a href="//copp.asu.edu" target="_top" title="College of Public Programs website" id="public-programs-link-asu-header">Public Service and Community Solutions</a></li>
 													<li><a href="//schoolofsustainability.asu.edu" target="_top" title="School of Sustainability website" id="sustainability-link-asu-header">Sustainability</a></li>
 													<li><a href="//uc.asu.edu/" target="_top" title="University College website" id="university-college-link-asu-header">University College</a></li>
-													<li><a target="_top" href="http://www.thunderbird.edu/" title="Thunderbird School of Global Management website" id="thunderbird-school-link-asu-header">Thunderbird School of Global Management</a></li>
+													<li><a target="_top" href="https://www.thunderbird.edu/" title="Thunderbird School of Global Management website" id="thunderbird-school-link-asu-header">Thunderbird School of Global Management</a></li>
 												</ul>
 											</li>
 											<li class="parent map">
-												<a target="_top" href="http://www.asu.edu/map/" id="map-and-locations-link-asu-header">Map &amp; Locations</a>
+												<a target="_top" href="https://www.asu.edu/map/" id="map-and-locations-link-asu-header">Map &amp; Locations</a>
 												<ul>
-													<li><a target="_top" class="border first" href="http://www.asu.edu/map/" id="map-link-asu-header">Map</a></li>
+													<li><a target="_top" class="border first" href="https://www.asu.edu/map/" id="map-link-asu-header">Map</a></li>
 													<li><a target="_top" href="//campus.asu.edu/tempe/" title="Tempe campus" id="tempe-link-asu-header">Tempe</a></li>
 													<li><a target="_top" href="//campus.asu.edu/west/" title="West campus" id="west-link-asu-header">West</a></li>
 													<li><a target="_top" href="//campus.asu.edu/polytechnic/" title="Polytechnic campus" id="polytechnic-link-asu-header">Polytechnic</a></li>
@@ -57,7 +57,7 @@
 													<li><a target="_top" href="//wpcarey.asu.edu/mba/china-program/english/" id="china-link-asu-header">China</a></li>
 												</ul>
 											</li>
-											<li class="contact"><a target="_top" href="http://www.asu.edu/contactasu/" title="Directory, Index and other info" id="directory-link-asu-header">Directory</a></li>
+											<li class="contact"><a target="_top" href="https://www.asu.edu/contactasu/" title="Directory, Index and other info" id="directory-link-asu-header">Directory</a></li>
 										</ul>
 										<img class="asu_touch" src="//www.asu.edu/asuthemes/4.0-rsp-up.0/images/ipad_close.gif" alt="">
 									</div>
@@ -89,7 +89,7 @@
 						<!-- /#asu_mobile_menu -->
 						<div id="asu_mobile_hdr">
 							<div id="asu_logo">
-								<a target="_top" href="http://www.asu.edu/" title="Arizona State University" id="asu-logo-in-header">
+								<a target="_top" href="https://www.asu.edu/" title="Arizona State University" id="asu-logo-in-header">
 									<img src="//www.asu.edu/asuthemes/4.0-rsp-up.0/images/logos/asu_logo_white.png" alt="Arizona State University" height="32" width="203" style="margin-top:14px" title="Arizona State University">
 								</a>
 							</div>

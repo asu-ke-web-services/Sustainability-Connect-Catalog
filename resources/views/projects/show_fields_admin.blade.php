@@ -27,13 +27,13 @@
                             </span>
                         </td>
                     </tr>
-
+{{--
                     <!-- Project Status -->
                     <tr>
                         <td class="col col-sm-3 view-label">Status</td>
                         <td class="col col-sm-9 view-content">{!! $opportunity->status->name !!}</td>
                     </tr>
-
+ --}}
                     <!-- Description -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Description</td>

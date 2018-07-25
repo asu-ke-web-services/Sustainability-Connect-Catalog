@@ -7,10 +7,16 @@
             <li role="presentation"><a href="{!! route('projects.show', ['id' => $opportunity->id ]) !!}">Standard View</a></li>
             <li role="presentation" class="active"><a href="{!! route('projects.show_admin', ['id' => $opportunity->id ]) !!}">Admin View</a></li>
         </ul>
+        {!! Form::open(['route' => ['projects.destroy', $opportunity->id], 'method' => 'delete']) !!}
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">View</a></li>
+            <li role="presentation"><a href="{!! route('projects.edit', ['id' => $opportunity->id ]) !!}">Edit</a></li>
+            <li role="presentation">{!! Form::button('Delete', ['type' => 'submit', 'class' => 'btn btn-link', 'onclick' => "return confirm('Are you sure?')"]) !!}</li>
+        </ul>
+        {!! Form::close() !!}
         @include('projects.show_fields_admin')
         <a href="{!! route('projects.index') !!}" class="btn btn-default">Back</a>
     </div>
-
 
     <div class="col-sm-3 hidden-xs">
         <div id="secondary" class="widget-area row" role="complementary">

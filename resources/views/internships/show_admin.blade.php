@@ -7,6 +7,13 @@
             <li role="presentation"><a href="{!! route('internships.show', ['id' => $opportunity->id ]) !!}">Standard View</a></li>
             <li role="presentation" class="active"><a href="{!! route('internships.show_admin', ['id' => $opportunity->id ]) !!}">Admin View</a></li>
         </ul>
+        {!! Form::open(['route' => ['internships.destroy', $opportunity->id], 'method' => 'delete']) !!}
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">View</a></li>
+            <li role="presentation"><a href="{!! route('internships.edit', ['id' => $opportunity->id ]) !!}">Edit</a></li>
+            <li role="presentation">{!! Form::button('Delete', ['type' => 'submit', 'class' => 'btn btn-link', 'onclick' => "return confirm('Are you sure?')"]) !!}</li>
+        </ul>
+        {!! Form::close() !!}
         @include('internships.show_fields_admin')
         <a href="{!! route('internships.index') !!}" class="btn btn-default">Back</a>
     </div>

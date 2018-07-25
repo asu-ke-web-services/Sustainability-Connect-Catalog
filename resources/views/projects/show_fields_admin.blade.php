@@ -257,7 +257,12 @@
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>
-                    <!-- Notes loop -->
+                    <!-- Notes -->
+                    @foreach($opportunity->notes as $note)
+                        <tr>
+                            <td class="col col-sm-9 view-content">{!! $note->user->name. ': ' . $note->body !!}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

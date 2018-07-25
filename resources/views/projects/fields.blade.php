@@ -109,7 +109,7 @@
 
 <!-- Addresses Block -->
 <div class="form-group col-sm-6">
-@if( is_set($opportunity) )
+@if( isset($opportunity) )
     @foreach( $opportunity->addresses as $key => $address)
         @include('opportunities._address', [
             'count' => $key + 1,

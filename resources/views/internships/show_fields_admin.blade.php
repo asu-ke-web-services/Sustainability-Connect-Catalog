@@ -10,7 +10,7 @@
                     <!-- Managing Organization -->
                     <tr>
                         <td class="col col-sm-3 view-label">Managing Organization</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->organization->name !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $opportunity->organization->name ?? '' !!}</td>
                     </tr>
 
                     <!-- Internship Supervisor -->
@@ -44,11 +44,11 @@
                         <td class="col col-sm-3 view-label">Status</td>
                         <td class="col col-sm-9 view-content">{!! $opportunity->status->name !!}</td>
                     </tr>
-                    <!-- Urgent -->
+{{--                     <!-- Urgent -->
                     <tr>
                         <td class="col col-sm-3 view-label">Urgent</td>
                         <td class="col col-sm-9 view-content"></td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>

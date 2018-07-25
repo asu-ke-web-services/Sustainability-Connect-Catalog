@@ -234,7 +234,7 @@
                     <!-- Project Supervisor -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Supervisor</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->ownerUser->name !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $opportunity->ownerUser->name ?? '' !!}</td>
                     </tr>
                     <!-- ASU Program Lead -->
                     <tr>
@@ -244,7 +244,7 @@
                     <!-- Project Partner -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Partner</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->organization->name !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $opportunity->organization->name ?? '' !!}</td>
                     </tr>
                     <!-- Participants -->
                     <!-- Mentors -->

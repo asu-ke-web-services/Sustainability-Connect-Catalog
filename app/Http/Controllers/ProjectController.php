@@ -161,13 +161,31 @@ class ProjectController extends OpportunityController
     public function show($id)
     {
         $this->repository->pushCriteria(ProjectCriteria::class);
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'ownerUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+            ])
+            ->findWithoutFail($id);
+
+        // dd($opportunity);
 
         if (empty($opportunity)) {
             Flash::error('Project not found');
 
             return redirect(route('projects.index'));
         }
+
 
         return view('projects.show', [
             'type' => $opportunity->opportunityable_type,
@@ -186,7 +204,28 @@ class ProjectController extends OpportunityController
     public function show_admin($id)
     {
         $this->repository->pushCriteria(ProjectCriteria::class);
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'ownerUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+                // 'participants',
+                // 'activeMembers',
+            ])
+            ->findWithoutFail($id);
+
+        // dd($opportunity);
+
+
 
         if (empty($opportunity)) {
             Flash::error('Project not found');

@@ -125,7 +125,24 @@ class InternshipController extends OpportunityController
     public function show($id)
     {
         $this->repository->pushCriteria(InternshipCriteria::class);
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'ownerUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+                // 'participants',
+                // 'activeMembers',
+            ])
+            ->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Internship not found');
@@ -150,7 +167,24 @@ class InternshipController extends OpportunityController
     public function show_admin($id)
     {
         $this->repository->pushCriteria(InternshipCriteria::class);
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'ownerUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+                // 'participants',
+                // 'activeMembers',
+            ])
+            ->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Internship not found');

@@ -26,3 +26,6 @@ Route::resource('projects', 'ProjectController');
 Route::resource('internships', 'InternshipController');
 
 Route::get('projects/submit_idea', 'ProjectController@create_idea');
+
+Route::get('projects/{project}/admin', 'ProjectController@show_admin')->name('projects.show_admin');
+Route::get('internships/{internship}/admin', 'InternshipController@show_admin')->name('internships.show_admin');

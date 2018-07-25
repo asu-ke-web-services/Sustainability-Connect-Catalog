@@ -14,7 +14,6 @@
     {!! Form::label('alt_title', 'Name (for non-SOS Users):') !!}
     {!! Form::text('alt_title', null, [
         'class' => 'form-control',
-        'placeholder' => 'Placeholder help text'
     ]) !!}
 </div>
 
@@ -62,7 +61,7 @@
 
 <!-- Opportunity Status Field -->
 <div class="form-group col-sm-4">
-    {!! Form::label('status', 'Opportunity Status:') !!}
+    {!! Form::label('status', 'Status:') !!}
     {!! Form::select(
         'status',
         $status,
@@ -221,7 +220,7 @@
 
 <!-- Program Lead Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('program_lead', 'Program Lead:') !!}
+    {!! Form::label('program_lead', 'ASU Program Lead:') !!}
     {!! Form::text('program_lead', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
 </div>
 

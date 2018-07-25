@@ -109,12 +109,20 @@
 
 <!-- Addresses Block -->
 <div class="form-group col-sm-6">
-@foreach( $opportunity->addresses as $key => $address)
-    @include('opportunities._address', [
-        'count' => $key + 1,
-        'address' => $address
-    ])
-@endforeach
+@if( is_set($opportunity) )
+    @foreach( $opportunity->addresses as $key => $address)
+        @include('opportunities._address', [
+            'count' => $key + 1,
+            'address' => $address
+        ])
+    @endforeach
+@else
+    {!! Form::label("addresses[0][count]", "Location 1:") !!}
+    {!! Form::text("addresses[0][city]", '', ['class' => 'form-control', 'placeholder' => 'City']) !!}
+    {!! Form::text("addresses[0][state]", '', ['class' => 'form-control', 'placeholder' => 'State/Prov']) !!}
+    {!! Form::text("addresses[0][country]", '', ['class' => 'form-control', 'placeholder' => 'Country']) !!}
+    {!! Form::textarea("addresses[0][note]", '', ['class' => 'form-control', 'placeholder' => 'Note']) !!}
+@endif
 </div>
 
 <!-- Compensation Field -->

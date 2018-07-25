@@ -14,7 +14,6 @@
     {!! Form::label('alt_title', 'Name (for non-SOS Users):') !!}
     {!! Form::text('alt_title', null, [
         'class' => 'form-control',
-        'placeholder' => 'Placeholder help text'
     ]) !!}
 </div>
 
@@ -42,6 +41,12 @@
     {!! Form::date('application_deadline', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Application Deadline Text Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('application_deadline_text', 'Application Deadline:') !!}
+    {!! Form::text('application_deadline_text', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Opportunity Begins Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('start_date', 'Opportunity Begins:') !!}
@@ -56,14 +61,21 @@
 
 <!-- Opportunity Status Field -->
 <div class="form-group col-sm-4">
-    {!! Form::label('opportunity_status_id', 'Opportunity Status:') !!}
-    {!! Form::select('opportunity_status_id', [1 => 'Idea Submission', 2 => 'Seeking Champion', 3 => 'Recruiting Participants', 5 => 'In Progress', 6 => 'Completed', 7 => 'Archived', ], '1', ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('status', 'Status:') !!}
+    {!! Form::select(
+        'status',
+        $status,
+        1,
+        [
+            'class' => 'form-control'
+        ]
+    ) !!}
 </div>
 
 <!-- Description Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('description', 'Project Description:') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Please describe the project in less than 150 words. Identify sustainability goals and challenges. Keep in mind that some information that could be included here, might have a more appropriate field elsewhere on this form (e.g. Project Deliverables, Application Instructions, etc.)']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Please describe the internship in less than 150 words. Identify sustainability goals and challenges. Keep in mind that some information that could be included here, might have a more appropriate field elsewhere on this form.']) !!}
 </div>
 
 <!-- Categories Field -->
@@ -71,7 +83,7 @@
     {!! Form::label('categories', 'Categories:') !!}
     {!! Form::select(
             'categories[]',
-            $categories->toArray(),
+            $categories,
             null,
             [
                 'class' => 'form-control',
@@ -85,7 +97,7 @@
     {!! Form::label('keywords', 'Keywords:') !!}
     {!! Form::select(
             'keywords[]',
-            $keywords->toArray(),
+            $keywords,
             null,
             [
                 'class' => 'form-control',
@@ -96,36 +108,44 @@
 
 <!-- Addresses Block -->
 <div class="form-group col-sm-6">
-@foreach( $opportunity->addresses as $key => $address)
-    @include('opportunities._address', [
-        'count' => $key + 1,
-        'address' => $address
-    ])
-@endforeach
+@if( isset($opportunity) )
+    @foreach( $opportunity->addresses as $key => $address)
+        @include('opportunities._address', [
+            'count' => $key + 1,
+            'address' => $address
+        ])
+    @endforeach
+@else
+    {!! Form::label("addresses[0][count]", "Location 1:") !!}
+    {!! Form::text("addresses[0][city]", '', ['class' => 'form-control', 'placeholder' => 'City']) !!}
+    {!! Form::text("addresses[0][state]", '', ['class' => 'form-control', 'placeholder' => 'State/Prov']) !!}
+    {!! Form::text("addresses[0][country]", '', ['class' => 'form-control', 'placeholder' => 'Country']) !!}
+    {!! Form::textarea("addresses[0][note]", '', ['class' => 'form-control', 'placeholder' => 'Note']) !!}
+@endif
 </div>
 
 <!-- Compensation Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('compensation', 'Student Compensation and Project Funds:') !!}
-    {!! Form::textarea('compensation', null, ['class' => 'form-control', 'placeholder' => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)']) !!}
+    {!! Form::textarea('compensation', null, ['class' => 'form-control', 'placeholder' => 'Describe how students will be compensated in this internship. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)']) !!}
 </div>
 
 <!-- Responsibilities Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('responsibilities', 'Student Responsibilities:') !!}
-    {!! Form::textarea('responsibilities', null, ['class' => 'form-control', 'placeholder' => 'List tasks and responsibilities for students to perform in the project.']) !!}
+    {!! Form::textarea('responsibilities', null, ['class' => 'form-control', 'placeholder' => 'List tasks and responsibilities for students to perform in the internship.']) !!}
 </div>
 
 <!-- Qualifications Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('qualifications', 'Qualifications:') !!}
-    {!! Form::textarea('qualifications', null, ['class' => 'form-control', 'placeholder' => 'Describe the minimum qualifications students must meet in order to participate in this project, as well as desired qualifications and experiences.']) !!}
+    {!! Form::textarea('qualifications', null, ['class' => 'form-control', 'placeholder' => 'Describe the minimum qualifications students must meet in order to participate in this internship, as well as desired qualifications and experiences.']) !!}
 </div>
 
 <!-- Application Instructions Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('application_overview', 'Application Instructions:') !!}
-    {!! Form::textarea('application_overview', null, ['class' => 'form-control', 'placeholder' => 'Describe the steps the participant must follow to request admission into the project']) !!}
+    {!! Form::textarea('application_overview', null, ['class' => 'form-control', 'placeholder' => 'Describe the steps the participant must follow to request admission into the internship']) !!}
 </div>
 
 <!-- Parent Opportunity Field -->
@@ -169,7 +189,7 @@
 
 <!-- Program Lead Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('program_lead', 'Program Lead:') !!}
+    {!! Form::label('program_lead', 'ASU Program Lead:') !!}
     {!! Form::text('program_lead', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
 </div>
 

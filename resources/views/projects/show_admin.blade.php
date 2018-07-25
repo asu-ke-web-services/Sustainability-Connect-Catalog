@@ -4,10 +4,10 @@
 <div class="container pad-bot-md pad-top-sm">
     <div class="col-sm-9">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="{!! route('projects.show', ['id' => $opportunity->id ]) !!}">Standard View</a></li>
-            <li role="presentation"><a href="{!! route('projects.show_admin', ['id' => $opportunity->id ]) !!}">Admin View</a></li>
+            <li role="presentation"><a href="{!! route('projects.show', ['id' => $opportunity->id ]) !!}">Standard View</a></li>
+            <li role="presentation" class="active"><a href="{!! route('projects.show_admin', ['id' => $opportunity->id ]) !!}">Admin View</a></li>
         </ul>
-        @include('projects.show_fields')
+        @include('projects.show_fields_admin')
         <a href="{!! route('projects.index') !!}" class="btn btn-default">Back</a>
     </div>
 

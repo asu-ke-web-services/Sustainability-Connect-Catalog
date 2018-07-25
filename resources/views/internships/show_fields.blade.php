@@ -1,4 +1,3 @@
-        <h2 style="margin-top:0">{!! $opportunity->title !!}</h2>
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>
@@ -36,6 +35,33 @@
             </table>
         </div>
 
+        <h3>Categories</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Categories -->
+                    @foreach($opportunity->categories as $category)
+                        <tr>
+                            <td class="col col-sm-9 view-content">{!! $category->name !!}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Keywords</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Categories -->
+                    @foreach($opportunity->keywords as $keyword)
+                        <tr>
+                            <td class="col col-sm-9 view-content">{!! $keyword->name !!}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
         <h3>Availability</h3>
         <div class="table-responsive">

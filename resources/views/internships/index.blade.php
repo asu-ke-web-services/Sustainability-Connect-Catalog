@@ -2,10 +2,9 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Internships</h1>
-        <h1 class="pull-right">
+        <div class="pull-right">
            <a class="btn btn-primary pull-right" href="{!! route('internships.create') !!}">Add New</a>
-        </h1>
+        </div>
     </section>
     <div class="content">
         <div class="clearfix"></div>

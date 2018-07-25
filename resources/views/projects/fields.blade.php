@@ -42,6 +42,12 @@
     {!! Form::date('application_deadline', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Application Deadline Text Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('application_deadline_text', 'Application Deadline:') !!}
+    {!! Form::text('application_deadline_text', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Opportunity Begins Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('start_date', 'Opportunity Begins:') !!}
@@ -56,8 +62,15 @@
 
 <!-- Opportunity Status Field -->
 <div class="form-group col-sm-4">
-    {!! Form::label('opportunity_status_id', 'Opportunity Status:') !!}
-    {!! Form::select('opportunity_status_id', [1 => 'Idea Submission', 2 => 'Seeking Champion', 3 => 'Recruiting Participants', 5 => 'In Progress', 6 => 'Completed', 7 => 'Archived', ], '1', ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('status', 'Opportunity Status:') !!}
+    {!! Form::select(
+        'status',
+        $status,
+        1,
+        [
+            'class' => 'form-control'
+        ]
+    ) !!}
 </div>
 
 <!-- Description Field -->
@@ -71,7 +84,7 @@
     {!! Form::label('categories', 'Categories:') !!}
     {!! Form::select(
             'categories[]',
-            $categories->toArray(),
+            $categories,
             null,
             [
                 'class' => 'form-control',
@@ -85,7 +98,7 @@
     {!! Form::label('keywords', 'Keywords:') !!}
     {!! Form::select(
             'keywords[]',
-            $keywords->toArray(),
+            $keywords,
             null,
             [
                 'class' => 'form-control',
@@ -106,56 +119,56 @@
 
 <!-- Compensation Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable.compensation', 'Student Compensation and Project Funds:') !!}
-    {!! Form::textarea('opportunityable.compensation', null, ['class' => 'form-control', 'placeholder' => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)']) !!}
+    {!! Form::label('opportunityable[compensation]', 'Student Compensation and Project Funds:') !!}
+    {!! Form::textarea('opportunityable[compensation]', null, ['class' => 'form-control', 'placeholder' => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)']) !!}
 </div>
 
 <!-- Responsibilities Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('responsibilities', 'Student Responsibilities:') !!}
-    {!! Form::textarea('responsibilities', null, ['class' => 'form-control', 'placeholder' => 'List tasks and responsibilities for students to perform in the project.']) !!}
+    {!! Form::label('opportunityable[responsibilities]', 'Student Responsibilities:') !!}
+    {!! Form::textarea('opportunityable[responsibilities]', null, ['class' => 'form-control', 'placeholder' => 'List tasks and responsibilities for students to perform in the project.']) !!}
 </div>
 
 <!-- Learning Outcomes Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('learning_outcomes', 'Learning Outcomes:') !!}
-    {!! Form::textarea('learning_outcomes', null, ['class' => 'form-control', 'placeholder' => 'Describe what the student might learn from this experience.']) !!}
+    {!! Form::label('opportunityable[learning_outcomes]', 'Learning Outcomes:') !!}
+    {!! Form::textarea('opportunityable[learning_outcomes]', null, ['class' => 'form-control', 'placeholder' => 'Describe what the student might learn from this experience.']) !!}
 </div>
 
 <!-- Project Deliverables Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('sustainability_contribution', 'Project Deliverables:') !!}
-    {!! Form::textarea('sustainability_contribution', null, ['class' => 'form-control', 'placeholder' => 'Describe how the project will contribute towards sustainability.']) !!}
+    {!! Form::label('opportunityable[sustainability_contribution]', 'Project Deliverables:') !!}
+    {!! Form::textarea('opportunityable[sustainability_contribution]', null, ['class' => 'form-control', 'placeholder' => 'Describe how the project will contribute towards sustainability.']) !!}
 </div>
 
 <!-- Qualifications Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('qualifications', 'Qualifications:') !!}
-    {!! Form::textarea('qualifications', null, ['class' => 'form-control', 'placeholder' => 'Describe the minimum qualifications students must meet in order to participate in this project, as well as desired qualifications and experiences.']) !!}
+    {!! Form::label('opportunityable[qualifications]', 'Qualifications:') !!}
+    {!! Form::textarea('opportunityable[qualifications]', null, ['class' => 'form-control', 'placeholder' => 'Describe the minimum qualifications students must meet in order to participate in this project, as well as desired qualifications and experiences.']) !!}
 </div>
 
 <!-- Application Instructions Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('application_overview', 'Application Instructions:') !!}
-    {!! Form::textarea('application_overview', null, ['class' => 'form-control', 'placeholder' => 'Describe the steps the participant must follow to request admission into the project']) !!}
+    {!! Form::label('opportunityable[application_instructions]', 'Application Instructions:') !!}
+    {!! Form::textarea('opportunityable[application_instructions]', null, ['class' => 'form-control', 'placeholder' => 'Describe the steps the participant must follow to request admission into the project']) !!}
 </div>
 
 <!-- Path to Implementation Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('project', 'Implementation Paths:') !!}
-    {!! Form::textarea('implementation_paths', null, ['class' => 'form-control', 'placeholder' => 'Enter any information needed concerning how this project might be implemented.']) !!}
+    {!! Form::label('opportunityable[implementation_paths]', 'Implementation Paths:') !!}
+    {!! Form::textarea('opportunityable[implementation_paths]', null, ['class' => 'form-control', 'placeholder' => 'Enter any information needed concerning how this project might be implemented.']) !!}
 </div>
 
 <!-- Budget Type Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('budget_type', 'Budget Type:') !!}
-    {!! Form::text('budget_type', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('opportunityable[budget_type]', 'Budget Type:') !!}
+    {!! Form::text('opportunityable[budget_type]', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
 </div>
 
 <!-- Budget Amount Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('budget_amount', 'Budget Amount:') !!}
-    {!! Form::text('budget_amount', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('opportunityable[budget_amount]', 'Budget Amount:') !!}
+    {!! Form::text('opportunityable[budget_amount]', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
 </div>
 
 
@@ -164,7 +177,7 @@
     {!! Form::label('parent_opportunity_id', 'Parent Opportunity:') !!}
     {!! Form::select(
             'parent_opportunity_id',
-            $parentOpportunities->toArray(),
+            $allOpportunities,
             null,
             [
                 'class' => 'form-control'
@@ -177,7 +190,7 @@
     {!! Form::label('organization_id', 'Organization:') !!}
     {!! Form::select(
             'organization_id',
-            $organizations->toArray(),
+            $allOrganizations,
             null,
             [
                 'class' => 'form-control'
@@ -190,7 +203,7 @@
     {!! Form::label('owner_user_id', 'Opportunity Supervisor:') !!}
     {!! Form::select(
             'owner_user_id',
-            $users->toArray(),
+            $users,
             null,
             [
                 'class' => 'form-control'

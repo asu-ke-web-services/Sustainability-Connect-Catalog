@@ -3,7 +3,7 @@
     <head>
         @component('partials.head')
             @slot('title')
-                Test
+                {!! $pageTitle !!}
             @endslot
         @endcomponent
     </head>
@@ -159,7 +159,7 @@
                                 <li><a href="/" title="Home"  id="home-icon-main-nav"><span class="fa fa-home hidden-xs hidden-sm" aria-hidden="true"></span><span class="hidden-md hidden-lg">Home</span></a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Projects" href="/projects" id="nav-item_projects">Projects</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Internships" href="/internships" id="nav-item_internships">Internships</a></li>
-                                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Submit Opportunity" href="/projects/submit_idea" id="nav-item_submit-opportunity">Submit Opportunity</a></li>
+                                {{-- <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Submit Opportunity" href="/projects/submit_idea" id="nav-item_submit-opportunity">Submit Opportunity</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="Success Stories" href="#">Success Stories</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="News" href="#" id="nav-item_news">News</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown"><a title="About" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">About <span class="caret"></span></a>
@@ -171,7 +171,7 @@
                                         <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="Why Work With Us" href="#">Why Work With Us</a></li>
                                         <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="FAQ" href="#">FAQ</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div><!-- /.navbar-collapse -->
@@ -184,8 +184,58 @@
                     <div class="clearfix">
                         <div id="content" class="site-content">
                             <main id="main" class="site-main">
-                                <!-- TODO: Flash alerts -->
-                                @yield('content')
+                                <div class="column">
+                                    <div class="region region-content">
+                                        <div class="block block-system">
+                                            <div class="content">
+                                                <div class="panel-display clearfix">
+                                                    <section class="hero-slim theme-color-background">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="fdt-home-container fdt-home-column-content clearfix panel-panel row-fluid container">
+                                                                    <div class="fdt-home-column-content-region fdt-home-row panel-panel span12">
+                                                                        <div class="panel-pane pane-fieldable-panels-pane pane-fpid-12 pane-bundle-text">
+                                                                            <h1 class="pane-title">{!! $pageTitle !!}</h1>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="widecolumn">
+                                    <div class="asu-breadcrumbs"><div class="container"><div class="row"><div class="col-md-12">
+                                        <div id="breadcrumbs" class="breadcrumb">
+                                            <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                                                <span itemprop="title">
+                                                    <!-- TODO: Breadcrumbs -->
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div></div></div></div>
+                                </div>
+
+                                <div class="container pad-bot-md pad-top-sm">
+                                    {{-- <section class="content-header">
+                                        <form method="GET" action="{{ url('projects') }}">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button class="btn btn-info">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </section> --}}
+                                    <!-- TODO: Flash alerts -->
+                                    @yield('content')
+                                </div><!-- .entry-content -->
                             </main><!-- #main -->
                         </div><!-- #content -->
                     </div><!-- .clearfix -->
@@ -210,34 +260,34 @@
                         </div>
                         <ul id="menu-footer-menu" class="menu">
                             <div class="col-md-2 col-sm-3 space-bot-md">
-                                <h2 data-toggle="collapse" data-target="#menu-item-98-nav" >Browse  <span class="caret hidden-sm hidden-md hidden-lg"></span></h2>
-                                <ul class='big-foot-nav collapse' id='menu-item-98-nav'>
+                                <h2 data-toggle="collapse" data-target="#menu-item-98-nav">Browse</h2>
+                                {{-- <ul class='big-foot-nav collapse' id='menu-item-98-nav'>
                                     <ul class="sub-menu">
                                         <li id="menu-item-102" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/projects" id="nav-item_102_under_98">Projects</a></li>
                                         <li id="menu-item-103" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/internships" id="nav-item_103_under_98">Internships</a></li>
                                     </ul>
-                                </ul>
+                                </ul> --}}
                             </div>
                             <div class="col-md-2 col-sm-3 space-bot-md">
-                                <h2 data-toggle="collapse" data-target="#menu-item-100-nav" >Get Involved  <span class="caret hidden-sm hidden-md hidden-lg"></span></h2>
-                                <ul class='big-foot-nav collapse' id='menu-item-100-nav'>
+                                <h2 data-toggle="collapse" data-target="#menu-item-100-nav">Get Involved</h2>
+                                {{-- <ul class='big-foot-nav collapse' id='menu-item-100-nav'>
                                     <ul class="sub-menu">
                                         <li id="menu-item-133" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/projects/submit_idea/" id="nav-item_133_under_135">Submit Your Idea</a></li>
                                         <li id="menu-item-106" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_106_under_99">Types of Opportunities</a></li>
                                         <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_109_under_100">FAQ</a></li>
                                     </ul>
-                                </ul>
+                                </ul> --}}
                             </div>
                             <div class="col-md-2 col-sm-3 space-bot-md">
-                                <h2 data-toggle="collapse" data-target="#menu-item-99-nav" >About  <span class="caret hidden-sm hidden-md hidden-lg"></span></h2>
-                                <ul class='big-foot-nav collapse' id='menu-item-99-nav'>
+                                <h2 data-toggle="collapse" data-target="#menu-item-99-nav" >About</h2>
+                                {{-- <ul class='big-foot-nav collapse' id='menu-item-99-nav'>
                                     <ul class="sub-menu">
                                         <li id="menu-item-104" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_about-us_under_99">About Us</a></li>
                                         <li id="menu-item-108" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_108_under_99">Contact Us</a></li>
                                         <li id="menu-item-107" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_107_under_99">Programs &#038; Partners</a></li>
                                         <li id="menu-item-105" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#" id="nav-item_105_under_99">Why Work With Us</a></li>
                                     </ul>
-                                </ul>
+                                </ul> --}}
                             </div>
                         </ul>
                     </div><!-- /.row -->

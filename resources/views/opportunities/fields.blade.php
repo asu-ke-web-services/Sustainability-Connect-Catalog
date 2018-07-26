@@ -56,10 +56,17 @@
 
 <!-- Opportunity Status Field -->
 <div class="form-group col-sm-4">
-    {!! Form::label('opportunity_status_id', 'Opportunity Status:') !!}
-    {!! Form::select('opportunity_status_id', [1 => 'Idea Submission', 2 => 'Seeking Champion', 3 => 'Recruiting Participants', 5 => 'In Progress', 6 => 'Completed', 7 => 'Archived', ], '1', ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('status', 'Opportunity Status:') !!}
+    {!! Form::select(
+        'status',
+        $status,
+        1,
+        [
+            'class' => 'form-control'
+        ]
+    ) !!}
 </div>
-
+{{--
 <!-- Hidden Field -->
 <div class="form-group col-sm-4">
     {!! Form::label('hidden', 'Hide Opportunity:') !!}
@@ -68,26 +75,26 @@
         {!! Form::checkbox('hidden', '1', false) !!} 1
     </label>
 </div>
-
+ --}}
 <!-- Description Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('description', 'Description:') !!}
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
-
+{{--
 <!-- Summary Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('summary', 'Summary:') !!}
     {!! Form::textarea('summary', null, ['class' => 'form-control']) !!}
 </div>
-
+ --}}
 
 <!-- Categories Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('categories', 'Categories:') !!}
     {!! Form::select(
             'categories[]',
-            $categories->toArray(),
+            $categories,
             null,
             [
                 'class' => 'form-control',
@@ -101,7 +108,7 @@
     {!! Form::label('keywords', 'Keywords:') !!}
     {!! Form::select(
             'keywords[]',
-            $keywords->toArray(),
+            $keywords,
             null,
             [
                 'class' => 'form-control',
@@ -112,12 +119,20 @@
 
 <!-- Addresses Block -->
 <div class="form-group col-sm-6">
-@foreach( $opportunity->addresses as $key => $address)
-    @include('opportunities._address', [
-        'count' => $key + 1,
-        'address' => $address
-    ])
-@endforeach
+@if( isset($opportunity) )
+    @foreach( $opportunity->addresses as $key => $address)
+        @include('opportunities._address', [
+            'count' => $key + 1,
+            'address' => $address
+        ])
+    @endforeach
+@else
+    {!! Form::label("addresses[0][count]", "Location 1:") !!}
+    {!! Form::text("addresses[0][city]", '', ['class' => 'form-control', 'placeholder' => 'City']) !!}
+    {!! Form::text("addresses[0][state]", '', ['class' => 'form-control', 'placeholder' => 'State/Prov']) !!}
+    {!! Form::text("addresses[0][country]", '', ['class' => 'form-control', 'placeholder' => 'Country']) !!}
+    {!! Form::textarea("addresses[0][note]", '', ['class' => 'form-control', 'placeholder' => 'Note']) !!}
+@endif
 </div>
 
 <!-- Parent Opportunity Field -->

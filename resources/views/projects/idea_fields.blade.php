@@ -1,7 +1,11 @@
 <!-- Title Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('title', 'Project Name:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Project name can be up to 255 characters long']) !!}
+    {!! Form::label('title', 'Name:') !!}
+    {!! Form::text('title', null, [
+        'class' => 'form-control',
+        'placeholder' => 'Name can be up to 255 characters long',
+        'required' => 'required'
+    ]) !!}
 </div>
 
 <!-- Slug Field -->
@@ -31,14 +35,62 @@
 <!-- Categories Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('categories', 'Categories:') !!}
-    {!! Form::select('categories', [1 => 'SDG 1: Affordable and Clean Energy', 2 => 'SDG 2: Clean Water and Sanitation', 3 => 'SDG 3: Climate Action', 4 => 'SDG 4: Decent Work and Economic Growth', 5 => 'SDG 5: Gender Equality', 6 => 'SDG 6: Good Health and Well-Being'], null, ['class' => 'form-control', 'placeholder' => 'Example: select a category']) !!}
+    {!! Form::select(
+        'categories[]',
+        $categories,
+        $opportunity->categories ?? null,
+        [
+            'id' => 'select-categories',
+            'class' => 'form-control',
+            'multiple' => 'multiple'
+        ]
+    ) !!}
 </div>
+
+<script>
+$('#select-categories').selectize({
+    create: false,
+    persist: false,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: null,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($categories) !!}
+});
+</script>
 
 <!-- Keywords Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('keywords', 'Keywords:') !!}
-    {!! Form::select('keywords', [1 => 'Air Quality', 2 => 'Alternative Fuels', 3 => 'Architecture', 5 => 'Biofuels', 6 => 'Citizen Action', 7 => 'Conservation Biology', ], null, ['class' => 'form-control', 'placeholder' => 'TODO: make into autoselect with multi-choice']) !!}
+    {!! Form::select(
+            'keywords[]',
+            $keywords,
+            $opportunity->keywords ?? null,
+            [
+                'id' => 'select-keywords',
+                'class' => 'form-control',
+                'multiple' => 'multiple'
+            ]
+        ) !!}
 </div>
+
+<script>
+$('#select-keywords').selectize({
+    create: true,
+    persist: true,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: null,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($keywords) !!}
+});
+</script>
 
 <!-- Compensation Field -->
 <div class="form-group col-sm-12 col-lg-12">
@@ -64,11 +116,34 @@
     {!! Form::textarea('implementation_paths', null, ['class' => 'form-control', 'placeholder' => 'Enter any information needed concerning how this project might be implemented.']) !!}
 </div>
 
-<!-- Organization Partner Field -->
+<!-- Organization Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('organization', 'Organization Partner:') !!}
-    {!! Form::number('organization', null, ['class' => 'form-control', 'placeholder' => 'TODO: autoselect existing orgnaization or create new record']) !!}
+    {!! Form::label('organization_id', 'Project Partner Organization:') !!}
+    {!! Form::select(
+            'organization_id',
+            $allOrganizations,
+            $opportunity->organization->id ?? null,
+            [
+                'id' => 'select-organization',
+                'class' => 'form-control'
+            ]
+        ) !!}
 </div>
+
+<script>
+$('#select-organization').selectize({
+    create: false,
+    persist: false,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: 1,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($allOrganizations) !!}
+});
+</script>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

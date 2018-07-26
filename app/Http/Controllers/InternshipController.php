@@ -21,6 +21,7 @@ use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as Opportunit
 use SCCatalog\Models\Category;
 use SCCatalog\Models\Keyword;
 use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\OpportunityStatus;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
 use SCCatalog\Validators\OpportunityValidator;
@@ -78,12 +79,12 @@ class InternshipController extends OpportunityController
      */
     public function create()
     {
-        $categories = Category::pluck('name', 'id');
-        $keywords = Keyword::pluck('name', 'id');
-        $allOpportunities = Opportunity::pluck('title', 'id');
-        $allOrganizations = Organization::pluck('name', 'id');
-        $status = OpportunityStatus::where('opportunity_type_id', 2)->pluck('name', 'id')->toArray();
-        $users = User::pluck('name', 'id');
+        $categories = Category::select('id', 'name')->get()->toArray();
+        $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
+        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
+        $users = User::select('id', 'name')->get()->toArray();
+        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
 
         return view('internships.create', [
             'type' => 'Internship',
@@ -216,12 +217,12 @@ class InternshipController extends OpportunityController
             return redirect(route('internships.index'));
         }
 
-        $categories = Category::pluck('name', 'id')->toArray();
-        $keywords = Keyword::pluck('name', 'id')->toArray();
-        $allOpportunities = Opportunity::pluck('title', 'id')->toArray();
-        $allOrganizations = Organization::pluck('name', 'id')->toArray();
-        $users = User::pluck('name', 'id')->toArray();
-        $status = OpportunityStatus::where('opportunity_type_id', 2)->pluck('name', 'id')->toArray();
+        $categories = Category::select('id', 'name')->get()->toArray();
+        $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
+        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
+        $users = User::select('id', 'name')->get()->toArray();
+        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
 
         return view('internships.edit', [
             'type' => $opportunity->opportunityable_type,

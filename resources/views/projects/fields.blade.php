@@ -65,12 +65,28 @@
     {!! Form::select(
         'status',
         $status,
-        1,
+        $opportunity->opportunity_status_id ?? null,
         [
+            'id' => 'select-statuses',
             'class' => 'form-control'
         ]
     ) !!}
 </div>
+
+<script>
+$('#select-statuses').selectize({
+    create: false,
+    persist: false,
+    highlight: false,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: 1,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($status) !!}
+});
+</script>
 
 <!-- Description Field -->
 <div class="form-group col-sm-12 col-lg-12">
@@ -82,15 +98,31 @@
 <div class="form-group col-sm-6">
     {!! Form::label('categories', 'Categories:') !!}
     {!! Form::select(
-            'categories[]',
-            $categories,
-            null,
-            [
-                'class' => 'form-control',
-                'multiple' => 'multiple'
-            ]
-        ) !!}
+        'categories[]',
+        $categories,
+        $opportunity->categories ?? null,
+        [
+            'id' => 'select-categories',
+            'class' => 'form-control',
+            'multiple' => 'multiple'
+        ]
+    ) !!}
 </div>
+
+<script>
+$('#select-categories').selectize({
+    create: false,
+    persist: false,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: null,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($categories) !!}
+});
+</script>
 
 <!-- Keywords Field -->
 <div class="form-group col-sm-6">
@@ -98,13 +130,29 @@
     {!! Form::select(
             'keywords[]',
             $keywords,
-            null,
+            $opportunity->keywords ?? null,
             [
+                'id' => 'select-keywords',
                 'class' => 'form-control',
                 'multiple' => 'multiple'
             ]
         ) !!}
 </div>
+
+<script>
+$('#select-keywords').selectize({
+    create: true,
+    persist: true,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: null,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($keywords) !!}
+});
+</script>
 
 <!-- Addresses Block -->
 <div class="form-group col-sm-6">
@@ -168,72 +216,120 @@
 
 <!-- Budget Type Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('opportunityable[budget_type]', 'Budget Type:') !!}
-    {!! Form::text('opportunityable[budget_type]', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::label('opportunityable[budget_type]', 'Budget Available:') !!}
+    {!! Form::text('opportunityable[budget_type]', null, ['class' => 'form-control', 'placeholder' => 'Enter whether there is a budget for the project. THebudget entails monetary and in-kind contributions.']) !!}
 </div>
 
 <!-- Budget Amount Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('opportunityable[budget_amount]', 'Budget Amount:') !!}
-    {!! Form::text('opportunityable[budget_amount]', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::text('opportunityable[budget_amount]', null, ['class' => 'form-control', 'placeholder' => 'If this project has a budget, state how large that budget is.']) !!}
 </div>
 
 
 <!-- Parent Opportunity Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('parent_opportunity_id', 'Parent Opportunity:') !!}
+    {!! Form::label('parent_opportunity_id', 'Predecessor Opportunity:') !!}
     {!! Form::select(
             'parent_opportunity_id',
             $allOpportunities,
-            null,
+            $opportunity->parentOpportunity->id ?? null,
             [
+                'id' => 'select-parent-opportunity',
                 'class' => 'form-control'
             ]
         ) !!}
 </div>
+
+<script>
+$('#select-parent-opportunity').selectize({
+    create: false,
+    persist: false,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: 1,
+    valueField: 'id',
+    labelField: 'title',
+    searchField: 'title',
+    options: {!! json_encode($allOpportunities) !!}
+});
+</script>
 
 <!-- Organization Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('organization_id', 'Organization:') !!}
+    {!! Form::label('organization_id', 'Project Partner Organization:') !!}
     {!! Form::select(
             'organization_id',
             $allOrganizations,
-            null,
+            $opportunity->organization->id ?? null,
             [
+                'id' => 'select-organization',
                 'class' => 'form-control'
             ]
         ) !!}
 </div>
 
+<script>
+$('#select-organization').selectize({
+    create: false,
+    persist: false,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: 1,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($allOrganizations) !!}
+});
+</script>
+
 <!-- Opportunity Supervisor Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('owner_user_id', 'Opportunity Supervisor:') !!}
+    {!! Form::label('owner_user_id', 'Project Supervisor:') !!}
     {!! Form::select(
             'owner_user_id',
             $users,
-            null,
+            $opportunity->ownerUser ?? null,
             [
+                'id' => 'select-supervisor',
                 'class' => 'form-control'
             ]
         ) !!}
 </div>
+
+<script>
+$('#select-supervisor').selectize({
+    create: false,
+    persist: false,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: 1,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($users) !!}
+});
+</script>
 
 <!-- Program Lead Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('program_lead', 'ASU Program Lead:') !!}
-    {!! Form::text('program_lead', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::text('program_lead', null, ['class' => 'form-control', 'placeholder' => 'If this project is part of a larger program, which is run through the School of Sustainability, GIOS, or another ASU initiative, then provide the name of the leader of that bigger program here. The program leader is typically different from the Project Supervisor listed above.']) !!}
 </div>
 
 <!-- Success Story Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('success_story', 'Success Story:') !!}
-    {!! Form::text('success_story', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::text('success_story', null, ['class' => 'form-control', 'placeholder' => 'If a Success Story is published for this project, enter the url here.']) !!}
 </div>
 
 <!-- Library Collection Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('library_collection', 'Library Collection:') !!}
-    {!! Form::text('library_collection', null, ['class' => 'form-control', 'placeholder' => 'Placeholder help text']) !!}
+    {!! Form::text('library_collection', null, ['class' => 'form-control', 'placeholder' => 'If this project has been published in the ASU Library Collection, enter the url to that page.']) !!}
 </div>
 
 <!-- Submit Field -->

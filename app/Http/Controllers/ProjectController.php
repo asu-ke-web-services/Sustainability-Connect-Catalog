@@ -88,12 +88,13 @@ class ProjectController extends OpportunityController
      */
     public function create()
     {
-        $categories = Category::pluck('name', 'id');
-        $keywords = Keyword::pluck('name', 'id');
-        $allOpportunities = Opportunity::pluck('title', 'id');
-        $allOrganizations = Organization::pluck('name', 'id');
-        $status = OpportunityStatus::where('opportunity_type_id', 1)->pluck('name', 'id')->toArray();
-        $users = User::pluck('name', 'id');
+        $categories = Category::select('id', 'name')->get()->toArray();
+        $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
+        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
+        $users = User::select('id', 'name')->get()->toArray();
+        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
+
 
         return view('projects.create', [
             'type' => 'Project',
@@ -114,12 +115,12 @@ class ProjectController extends OpportunityController
      */
     public function create_idea()
     {
-        $categories = Category::pluck('name', 'id');
-        $keywords = Keyword::pluck('name', 'id');
-        $allOpportunities = Opportunity::pluck('title', 'id');
-        $allOrganizations = Organization::pluck('name', 'id');
-        $status = OpportunityStatus::where('opportunity_type_id', 1)->pluck('name', 'id')->toArray();
-        $users = User::pluck('name', 'id');
+        $categories = Category::select('id', 'name')->get()->toArray();
+        $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
+        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
+        $users = User::select('id', 'name')->get()->toArray();
+        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('projects.create_idea', [
             'type' => 'Project',
@@ -249,7 +250,27 @@ class ProjectController extends OpportunityController
      */
     public function edit($id)
     {
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'ownerUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+                // 'participants',
+                // 'activeMembers',
+            ])
+            ->findWithoutFail($id);
+
+        // dd($opportunity);
+
 
         if (empty($opportunity)) {
             Flash::error('Project not found');
@@ -257,13 +278,15 @@ class ProjectController extends OpportunityController
             return redirect(route('projects.index'));
         }
 
-        $categories = Category::pluck('name', 'id')->toArray();
-        $keywords = Keyword::pluck('name', 'id')->toArray();
-        $allOpportunities = Opportunity::pluck('title', 'id')->toArray();
-        $allOrganizations = Organization::pluck('name', 'id')->toArray();
-        $users = User::pluck('name', 'id')->toArray();
-        $status = OpportunityStatus::where('opportunity_type_id', 1)->pluck('name', 'id')->toArray();
+        $categories = Category::select('id', 'name')->get()->toArray();
+        $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
+        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
+        $users = User::select('id', 'name')->get()->toArray();
+        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
+        // dd(json_encode($categories));
+        // dd($categories);
 
         // $project = array();
 
@@ -325,8 +348,6 @@ class ProjectController extends OpportunityController
      */
     public function update($id, UpdateOpportunityRequest $request)
     {
-        // dd($request);
-
         $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
 
         if (empty($opportunity)) {

@@ -13,12 +13,8 @@ class MoreAdminUsersTableSeeder extends Seeder
     public function run()
     {
         Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('users')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = Faker\Factory::create();
-        // $role = Role::where('name', 'admin')->firstOrFail();
 
         // Create Admin
         DB::table('users')->insert([

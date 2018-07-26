@@ -42,7 +42,8 @@
         [
             'id' => 'select-categories',
             'class' => 'form-control',
-            'multiple' => 'multiple'
+            'multiple' => 'multiple',
+            'placeholder' => 'Select or type for categories...',
         ]
     ) !!}
 </div>
@@ -72,7 +73,8 @@ $('#select-categories').selectize({
             [
                 'id' => 'select-keywords',
                 'class' => 'form-control',
-                'multiple' => 'multiple'
+                'multiple' => 'multiple',
+                'placeholder' => 'Select or type for keywords...',
             ]
         ) !!}
 </div>
@@ -125,7 +127,8 @@ $('#select-keywords').selectize({
             $opportunity->organization->id ?? null,
             [
                 'id' => 'select-organization',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Select or type for organization names...',
             ]
         ) !!}
 </div>

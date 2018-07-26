@@ -68,7 +68,8 @@
         $opportunity->opportunity_status_id ?? null,
         [
             'id' => 'select-statuses',
-            'class' => 'form-control'
+            'class' => 'form-control',
+            'placeholder' => 'Select status...',
         ]
     ) !!}
 </div>
@@ -104,7 +105,8 @@ $('#select-statuses').selectize({
         [
             'id' => 'select-categories',
             'class' => 'form-control',
-            'multiple' => 'multiple'
+            'multiple' => 'multiple',
+            'placeholder' => 'Select or type to add categories...',
         ]
     ) !!}
 </div>
@@ -134,7 +136,8 @@ $('#select-categories').selectize({
             [
                 'id' => 'select-keywords',
                 'class' => 'form-control',
-                'multiple' => 'multiple'
+                'multiple' => 'multiple',
+            'placeholder' => 'Select or type to add keywords...',
             ]
         ) !!}
 </div>
@@ -236,7 +239,8 @@ $('#select-keywords').selectize({
             $opportunity->parentOpportunity->id ?? null,
             [
                 'id' => 'select-parent-opportunity',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Select or type for opportunity names...',
             ]
         ) !!}
 </div>
@@ -265,7 +269,8 @@ $('#select-parent-opportunity').selectize({
             $opportunity->organization->id ?? null,
             [
                 'id' => 'select-organization',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Select or type for organization names...',
             ]
         ) !!}
 </div>
@@ -294,7 +299,8 @@ $('#select-organization').selectize({
             $opportunity->ownerUser ?? null,
             [
                 'id' => 'select-supervisor',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Select or type for user names...',
             ]
         ) !!}
 </div>

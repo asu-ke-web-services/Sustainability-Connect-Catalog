@@ -159,8 +159,8 @@
                                 <li><a href="/" title="Home"  id="home-icon-main-nav"><span class="fa fa-home hidden-xs hidden-sm" aria-hidden="true"></span><span class="hidden-md hidden-lg">Home</span></a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Projects" href="/projects" id="nav-item_projects">Projects</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Internships" href="/internships" id="nav-item_internships">Internships</a></li>
-                                {{-- <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Submit Opportunity" href="/projects/submit_idea" id="nav-item_submit-opportunity">Submit Opportunity</a></li>
-                                <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="Success Stories" href="#">Success Stories</a></li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a title="Submit Opportunity" href="/projects/submit_idea" id="nav-item_submit-opportunity">Submit Opportunity</a></li>
+                                {{-- <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="Success Stories" href="#">Success Stories</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom" ><a title="News" href="#" id="nav-item_news">News</a></li>
                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown"><a title="About" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">About <span class="caret"></span></a>
                                     <ul role="menu" class=" dropdown-menu">

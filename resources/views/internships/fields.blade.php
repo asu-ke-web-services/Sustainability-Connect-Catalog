@@ -209,7 +209,7 @@ $('#select-keywords').selectize({
             [
                 'id' => 'select-parent-opportunity',
                 'class' => 'form-control',
-                'placeholder' => 'Select or type for opportunity names...',
+                'placeholder' => 'Select or type opportunity name...',
             ]
         ) !!}
 </div>
@@ -239,7 +239,7 @@ $('#select-parent-opportunity').selectize({
             [
                 'id' => 'select-organization',
                 'class' => 'form-control',
-                'placeholder' => 'Select or type for organization names...',
+                'placeholder' => 'Select or type organization name...',
             ]
         ) !!}
 </div>
@@ -269,7 +269,7 @@ $('#select-organization').selectize({
             [
                 'id' => 'select-supervisor',
                 'class' => 'form-control',
-                'placeholder' => 'Select or type for user names...',
+                'placeholder' => 'Select or type user name...',
             ]
         ) !!}
 </div>

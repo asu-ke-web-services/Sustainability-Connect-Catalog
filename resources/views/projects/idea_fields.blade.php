@@ -128,7 +128,7 @@ $('#select-keywords').selectize({
             [
                 'id' => 'select-organization',
                 'class' => 'form-control',
-                'placeholder' => 'Select or type for organization names...',
+                'placeholder' => 'Select or type organization name...',
             ]
         ) !!}
 </div>

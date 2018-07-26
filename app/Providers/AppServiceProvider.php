@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Providers;
 
+use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
         Relation::morphMap([
             'Internship'   => \SCCatalog\Models\Internship::class,
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
             'Organization' => \SCCatalog\Models\Organization::class,
             'Project'      => \SCCatalog\Models\Project::class,
         ]);
+
+        if(env('ENFORCE_SSL', false)) {
+            $url->forceScheme('https');
+        }
     }
 
     /**

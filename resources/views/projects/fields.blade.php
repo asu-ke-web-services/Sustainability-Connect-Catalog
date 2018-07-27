@@ -18,46 +18,11 @@
 </div>
 
 <!-- Slug Field -->
-<div class="form-group col-sm-12 col-lg-12">
+{{-- <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('slug', 'Slug:') !!}
     {!! Form::text('slug', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
-<!-- Listing Starts Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('listing_starts', 'Listing Starts:') !!}
-    {!! Form::date('listing_starts', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Listing Ends Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('listing_ends', 'Listing Ends:') !!}
-    {!! Form::date('listing_ends', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Application Deadline Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('application_deadline', 'Application Deadline:') !!}
-    {!! Form::date('application_deadline', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Application Deadline Text Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('application_deadline_text', 'Application Deadline:') !!}
-    {!! Form::text('application_deadline_text', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Opportunity Begins Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('start_date', 'Opportunity Begins:') !!}
-    {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Opportunity Ends Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('end_date', 'Opportunity Ends:') !!}
-    {!! Form::date('end_date', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- Opportunity Status Field -->
 <div class="form-group col-sm-4">
@@ -88,6 +53,61 @@ $('#select-statuses').selectize({
     options: {!! json_encode($status) !!}
 });
 </script>
+
+<div id="filler_status" class="form-group col-sm-8"><h2>&nbsp;</h2></div>
+
+
+<!-- Accept Applications Toggle -->
+<div class="form-group col-sm-4">
+    {!! Form::button('Accept Applications', ['id' => 'btn_accept_applications', 'class' => 'btn btn-primary', 'onclick' => '$("#field_application_listing").toggle(); $("#filler_application_listing").toggle();']) !!}
+{{--     {!! Form::button('No Applications', ['id' => 'btn_no_applications', 'class' => 'btn btn-primary', 'style' => 'display: none;', 'onclick' => '$("#field_application_listing").toggle(); $("#filler_application_listing").toggle(); $("#btn_accept_applications").show(); $("#btn_accept_applications").hide();']) !!} --}}
+</div>
+
+
+<div id="field_application_listing" class="form-group col-sm-8" style="display: none;">
+    <!-- Listing Starts Field -->
+    <div class="col-sm-6">
+        {!! Form::label('listing_starts', 'Listing Starts:') !!}
+        {!! Form::date('listing_starts', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <!-- Listing Ends Field -->
+    <div class="col-sm-6">
+        {!! Form::label('listing_ends', 'Listing Ends:') !!}
+        {!! Form::date('listing_ends', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+<div id="filler_application_listing" class="form-group col-sm-8"><p>&nbsp;</p></div>
+
+<div class="form-group col-sm-12">
+    {!! Form::button('Switch Deadline to Text', ['id' => 'btn_text_deadline', 'class' => 'btn btn-primary', 'onclick' => '$("#field_app_deadline_date").toggle(); $("#field_app_deadline_text").toggle();']) !!}
+</div>
+
+<div class="form-group col-sm-4">
+    <!-- Application Deadline Field -->
+    <div id="field_app_deadline_date" class="form-group col-sm-12">
+        {!! Form::label('application_deadline', 'Application Deadline Date:') !!}
+        {!! Form::date('application_deadline', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <!-- Application Deadline Text Field -->
+    <div id="field_app_deadline_text" class="form-group col-sm-12" style="display: none;">
+        {!! Form::label('application_deadline_text', 'Application Deadline Text:') !!}
+        {!! Form::text('application_deadline_text', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+<!-- Opportunity Begins Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('start_date', 'Opportunity Begins:') !!}
+    {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Opportunity Ends Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('end_date', 'Opportunity Ends:') !!}
+    {!! Form::date('end_date', null, ['class' => 'form-control']) !!}
+</div>
 
 <!-- Description Field -->
 <div class="form-group col-sm-12 col-lg-12">

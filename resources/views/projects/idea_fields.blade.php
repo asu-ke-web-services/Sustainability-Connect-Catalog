@@ -9,10 +9,10 @@
 </div>
 
 <!-- Slug Field -->
-<div class="form-group col-sm-12 col-lg-12">
+{{-- <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('slug', 'Project Slug:') !!}
     {!! Form::text('slug', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
 <!-- Project Begins Field -->
 <div class="form-group col-sm-6">

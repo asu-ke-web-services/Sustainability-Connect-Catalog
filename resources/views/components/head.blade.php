@@ -32,21 +32,6 @@
 		<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
 		<script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-KDWN8Z&amp;l=SI_dataLayer"></script>
 		<script async="" src="//www.google-analytics.com/analytics.js"></script>
-		<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"WebSite","url":"https:\/\/sustainabilityconnect.asu.edu\/","name":"Sustainability Connect","potentialAction":{"@type":"SearchAction","target":"https:\/\/sustainabilityconnect.asu.edu\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
-		<style type="text/css">
-			img.wp-smiley,
-			img.emoji {
-				display: inline !important;
-				border: none !important;
-				box-shadow: none !important;
-				height: 1em !important;
-				width: 1em !important;
-				margin: 0 .07em !important;
-				vertical-align: -0.1em !important;
-				background: none !important;
-				padding: 0 !important;
-			}
-		</style>
 		<script type="text/javascript">
             if ( top.frames.length != 0 ) {
                 if ( window.location.href.replace )

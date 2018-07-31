@@ -1,21 +1,20 @@
 
 <!-- Title Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('title', 'Name:') !!}
-    {!! Form::text('title', null, [
-        'class' => 'form-control',
-        'placeholder' => 'Name can be up to 255 characters long',
-        'required' => 'required'
-    ]) !!}
-</div>
+@component('components.form.input', [
+    'name' => 'title',
+    'label' => 'Name:',
+    'placeholder' => 'Names can be up to 255 characters long',
+    'attributes' => 'required autofocus',
+    'object' => $opportunity ?? null,
+])@endcomponent
 
 <!-- Alt Title Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('alt_title', 'Name (for non-SOS Users):') !!}
-    {!! Form::text('alt_title', null, [
-        'class' => 'form-control',
-    ]) !!}
-</div>
+@component('components.form.input', [
+    'name' => 'alt_title',
+    'label' => 'Name (for non-SOS Users):',
+    'placeholder' => 'Alternative name to display to users unpermitted to view full details of opportunity (if needed)',
+    'object' => $opportunity ?? null,
+])@endcomponent
 
 <!-- Slug Field -->
 {{-- <div class="form-group col-sm-12 col-lg-12">
@@ -25,37 +24,28 @@
 
 
 <!-- Opportunity Status Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('status', 'Status:') !!}
-    {!! Form::select(
-        'status',
-        $status,
-        $opportunity->opportunity_status_id ?? null,
-        [
-            'id' => 'select-statuses',
-            'class' => 'form-control',
-            'placeholder' => 'Select status...',
-        ]
-    ) !!}
-</div>
+@component('components.form.select', [
+    'name' => 'status',
+    'label' => 'Status:',
+    'placeholder' => 'Select status...',
+    'optionList' => $statuses,
+    'object' => $opportunity ?? null,
+])@endcomponent
 
 <script>
-$('#select-statuses').selectize({
+$('#status').selectize({
     create: false,
     persist: false,
     highlight: false,
     openOnFocus: true,
-    maxOptions: 10,
+    maxOptions: null,
     maxItems: 1,
     valueField: 'id',
     labelField: 'name',
     searchField: 'name',
-    options: {!! json_encode($status) !!}
+    options: {!! json_encode($statuses) !!}
 });
 </script>
-
-<div id="filler_status" class="form-group col-sm-8"><h2>&nbsp;</h2></div>
-
 
 <!-- Accept Applications Toggle -->
 <div class="form-group col-sm-4">

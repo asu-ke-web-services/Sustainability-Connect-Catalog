@@ -72,13 +72,11 @@ class ProjectController extends OpportunityController
 
         }
 
-        return view('projects.index', [
+        return view('projects.search', [
             'type' => $opportunities->first()->opportunityable_type,
             'pageTitle' => str_plural($opportunities->first()->opportunityable_type),
             'opportunities' => $opportunities
         ]);
-        // return view('projects.search')
-        //     ->with('opportunities', $opportunities);
     }
 
     /**
@@ -93,8 +91,7 @@ class ProjectController extends OpportunityController
         $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
-        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
-
+        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('projects.create', [
             'type' => 'Project',
@@ -103,7 +100,7 @@ class ProjectController extends OpportunityController
             'keywords' => $keywords,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
-            'status' => $status,
+            'statuses' => $statuses,
             'users' => $users
         ]);
     }
@@ -120,7 +117,7 @@ class ProjectController extends OpportunityController
         $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
-        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
+        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('projects.create_idea', [
             'type' => 'Project',
@@ -129,7 +126,7 @@ class ProjectController extends OpportunityController
             'keywords' => $keywords,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
-            'status' => $status,
+            'statuses' => $statuses,
             'users' => $users
         ]);
     }
@@ -137,7 +134,7 @@ class ProjectController extends OpportunityController
     /**
      * Store a newly created Project in storage.
      *
-     * @param ProjectCreateRequest $request
+     * @param CreateOpportunityRequest $request
      *
      * @return Response
      */
@@ -283,47 +280,7 @@ class ProjectController extends OpportunityController
         $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
-        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
-
-        // dd(json_encode($categories));
-        // dd($categories);
-
-        // $project = array();
-
-        // $project['opportunityId'] = $opportunity->id;
-        // $project['projectId'] = $opportunity->opportunityable_id;
-        // $project['opportunityType'] = $opportunity->opportunityable_type;
-        // $project['title'] = $opportunity->title;
-        // $project['altTitle'] = $opportunity->alt_title;
-        // $project['slug'] = $opportunity->slug;
-        // $project['startDate'] = $opportunity->start_date;
-        // $project['endDate'] = $opportunity->end_date;
-        // $project['listingStarts'] = $opportunity->listing_starts;
-        // $project['listingEnds'] = $opportunity->listing_ends;
-        // $project['applicationDeadline'] = $opportunity->application_deadline;
-        // $project['applicationDeadlineText'] = $opportunity->application_deadline_text;
-        // $project['isHidden'] = $opportunity->is_hidden;
-        // $project['summary'] = $opportunity->summary;
-        // $project['description'] = $opportunity->description;
-
-        // $project['statusId'] = $opportunity->opportunity_status_id;
-        // $project['parentOpportunityId'] = $opportunity->parent_opportunity_id;
-        // $project['organizationId'] = $opportunity->organization_id;
-        // $project['supervisorUserId'] = $opportunity->owner_user_id;
-        // $project['submittingUserId'] = $opportunity->submitting_user_id;
-
-        // $project['compensation'] = $opportunity->opportunityable->compensation;
-        // $project['responsibilities'] = $opportunity->opportunityable->responsibilities;
-        // $project['learningOutcomes'] = $opportunity->opportunityable->learning_outcomes;
-        // $project['sustainabilityContribution'] = $opportunity->opportunityable->sustainability_contribution;
-        // $project['qualifications'] = $opportunity->opportunityable->qualifications;
-        // $project['applicationInstructions'] = $opportunity->opportunityable->application_instructions;
-        // $project['implementationPaths'] = $opportunity->opportunityable->implementation_paths;
-        // $project['budgetType'] = $opportunity->opportunityable->budget_type;
-        // $project['budgetAmount'] = $opportunity->opportunityable->budget_amount;
-        // $project['programLead'] = $opportunity->opportunityable->program_lead;
-        // $project['successStory'] = $opportunity->opportunityable->success_story;
-        // $project['libraryCollection'] = $opportunity->opportunityable->library_collection;
+        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('projects.edit', [
             'type' => $opportunity->opportunityable_type,
@@ -333,7 +290,7 @@ class ProjectController extends OpportunityController
             'keywords' => $keywords,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
-            'status' => $status,
+            'statuses' => $statuses,
             'users' => $users
         ]);
     }
@@ -342,19 +299,38 @@ class ProjectController extends OpportunityController
      * Update the specified Project in storage.
      *
      * @param  int                 $id
-     * @param ProjectUpdateRequest $request
+     * @param UpdateOpportunityRequest $request
      *
      * @return Response
      */
     public function update($id, UpdateOpportunityRequest $request)
     {
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'ownerUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+                // 'participants',
+                // 'activeMembers',
+            ])
+            ->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Project not found');
 
             return redirect(route('projects.index'));
         }
+
+        dd($request->all());
 
         $opportunity = $this->repository->with(['opportunityable'])->update($request->all(), $id);
 

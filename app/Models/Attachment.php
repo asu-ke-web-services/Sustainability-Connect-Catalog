@@ -53,9 +53,6 @@ class Attachment extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'status' => 'string',
-        'comments' => 'string'
     ];
 
     /**

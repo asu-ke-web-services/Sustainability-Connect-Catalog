@@ -7,7 +7,7 @@
                type="{{ $type ?? 'text' }}"
                class="form-control"
                name="{{ $name }}"
-               value="{{ old($name) ?: ($object->{$name} ?? '') }}"
+               value="{{ old($name) ?: ($object->{$field} ?? '') }}"
                placeholder="{{ $placeholder ?? '' }}"
                {{ $attributes ?? '' }} >
 
@@ -15,8 +15,6 @@
             <span class="help-block">
                 <strong>{{ $errors->first($name) }}</strong>
             </span>
-        @elseif (isset($help_text))
-            <span class="help-block">{{ $help_text }}</span>
         @endif
     </div>
 </div>

@@ -6,12 +6,12 @@
     <div class="col-md-9">
         <select id="{{ $name }}"
                 class="form-control"
-                name="{{ $name }}"
+                name="{{ $name }}[]"
                 @if (isset($placeholder)) placeholder="{{ $placeholder }}" @endif
                 {{ $attributes ?? '' }} >
 
             @foreach($optionList as $option)
-                <option value="{{ $option['id'] }}" {{ (old($name) ?: ($object->{$name} ?? null)) === $option['id'] ? 'selected' : '' }}>{{ $option['name'] }}</option>
+                <option value="{{ $option['id'] }}">{{ $option['name'] }}</option>
             @endforeach
         </select>
 

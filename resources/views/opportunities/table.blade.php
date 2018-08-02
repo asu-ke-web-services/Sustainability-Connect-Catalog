@@ -19,7 +19,7 @@
                     {{-- <td>{!! $project->opportunity->application_deadline !!}</td>
                     <td>{!! $project->opportunity->parent_opportunity_id !!}</td>
                     <td>{!! $project->opportunity->organization_id !!}</td>
-                    <td>{!! $project->opportunity->owner_user_id !!}</td>
+                    <td>{!! $project->opportunity->supervisor_user_id !!}</td>
                     <td>{!! $project->opportunity->submitting_user_id !!}</td>
                     <td>
                         {!! Form::open(['route' => ['projects.destroy', $project->opportunity->id], 'method' => 'delete']) !!}

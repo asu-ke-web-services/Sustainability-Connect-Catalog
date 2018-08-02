@@ -27,7 +27,7 @@
             <tbody>
             @foreach($opportunities as $opportunity)
                 <tr>
-                    <td><a href="internships/{!! $opportunity->id !!}">{!! $opportunity->title !!}</a></td>
+                    <td><a href="internships/{!! $opportunity->id !!}">{!! $opportunity->name !!}</a></td>
                     <td>{!! $opportunity->organization->name !!}</td>
                     <td></td>
                     <td></td>

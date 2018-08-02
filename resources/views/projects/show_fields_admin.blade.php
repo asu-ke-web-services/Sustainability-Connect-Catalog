@@ -234,7 +234,7 @@
                     <!-- Project Supervisor -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Supervisor</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->ownerUser->name ?? '' !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $opportunity->supervisorUser->name ?? '' !!}</td>
                     </tr>
                     <!-- ASU Program Lead -->
                     <tr>

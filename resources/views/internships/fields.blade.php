@@ -1,8 +1,8 @@
 
 <!-- Title Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('title', 'Name:') !!}
-    {!! Form::text('title', null, [
+    {!! Form::label('name', 'Name:') !!}
+    {!! Form::text('name', null, [
         'class' => 'form-control',
         'placeholder' => 'Name can be up to 255 characters long',
         'required' => 'required'
@@ -11,8 +11,8 @@
 
 <!-- Alt Title Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('alt_title', 'Name (for non-SOS Users):') !!}
-    {!! Form::text('alt_title', null, [
+    {!! Form::label('public_name', 'Public Name (to show non-SOS Users):') !!}
+    {!! Form::text('public_name', null, [
         'class' => 'form-control',
     ]) !!}
 </div>
@@ -223,8 +223,8 @@ $('#select-parent-opportunity').selectize({
     maxOptions: 10,
     maxItems: 1,
     valueField: 'id',
-    labelField: 'title',
-    searchField: 'title',
+    labelField: 'name',
+    searchField: 'name',
     options: {!! json_encode($allOpportunities) !!}
 });
 </script>
@@ -261,11 +261,11 @@ $('#select-organization').selectize({
 
 <!-- Opportunity Supervisor Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('owner_user_id', 'Internship Supervisor:') !!}
+    {!! Form::label('supervisor_user_id', 'Internship Supervisor:') !!}
     {!! Form::select(
-            'owner_user_id',
+            'supervisor_user_id',
             $users,
-            $opportunity->ownerUser ?? null,
+            $opportunity->supervisorUser ?? null,
             [
                 'id' => 'select-supervisor',
                 'class' => 'form-control',

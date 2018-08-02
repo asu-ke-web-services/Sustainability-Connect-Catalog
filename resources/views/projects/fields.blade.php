@@ -53,7 +53,7 @@
 ])@endcomponent
 
 <!-- Addresses Block -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
 @if( isset($opportunity) )
     @foreach( $opportunity->addresses as $key => $address)
         @include('opportunities._address', [

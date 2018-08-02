@@ -23,8 +23,8 @@ class OpportunityTransformer extends TransformerAbstract
     {
         return [
             'id'                      => (int) $opportunity->id,
-            'title'                   => $opportunity->title,
-            'altTitle'                => $opportunity->alt_title,
+            'name'                    => $opportunity->name,
+            'publicName'              => $opportunity->public_name,
             'slug'                    => $opportunity->slug,
             'startDate'               => $opportunity->start_date,
             'endDate'                 => $opportunity->end_date,
@@ -38,7 +38,7 @@ class OpportunityTransformer extends TransformerAbstract
             'organization'            => $opportunity->organization,
             'addresses'               => $opportunity->addresses,
             'primaryAddress'          => $opportunity->primaryAddress,
-            'ownerUser'               => $opportunity->ownerUser,
+            'supervisorUser'          => $opportunity->supervisorUser,
             'submittingUser'          => $opportunity->submittingUser,
             'createdAt'               => $opportunity->created_at,
             'updatedAt'               => $opportunity->updated_at,

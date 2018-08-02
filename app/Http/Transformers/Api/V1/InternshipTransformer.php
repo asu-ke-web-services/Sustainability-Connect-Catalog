@@ -23,8 +23,8 @@ class InternshipTransformer extends TransformerAbstract
     {
         return [
             'id'                      => (int) $internship->id,
-            'title'                   => $internship->opportunity->title,
-            'altTitle'                => $internship->opportunity->alt_title,
+            'name'                    => $internship->opportunity->name,
+            'publicName'              => $internship->opportunity->public_name,
             'slug'                    => $internship->opportunity->slug,
             'startDate'               => $internship->opportunity->start_date,
             'endDate'                 => $internship->opportunity->end_date,
@@ -38,7 +38,7 @@ class InternshipTransformer extends TransformerAbstract
             'organization'            => $internship->opportunity->organization,
             'addresses'               => $internship->opportunity->addresses,
             'primaryAddress'          => $internship->opportunity->primaryAddress,
-            'ownerUser'               => $internship->opportunity->ownerUser,
+            'supervisorUser'          => $internship->opportunity->supervisorUser,
             'submittingUser'          => $internship->opportunity->submittingUser,
             'compensation'            => $internship->compensation,
             'responsibilities'        => $internship->responsibilities,

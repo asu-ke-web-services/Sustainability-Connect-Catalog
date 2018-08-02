@@ -19,8 +19,8 @@ class ProjectValidator extends LaravelValidator
      */
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-            // 'title'                       => 'required',
-            // 'alt_title'                   => 'required',
+            // 'name'                        => 'required',
+            // 'public_name'                 => 'required',
             // 'slug'                        => 'required',
             // 'listing_expires'             => 'nullable|date',
             // 'application_deadline'        => 'nullable',
@@ -30,7 +30,7 @@ class ProjectValidator extends LaravelValidator
             // 'description'                 => 'required',
             // 'parent_opportunity_id'       => 'nullable|integer',
             // 'organization_id'             => 'nullable|integer',
-            // 'owner_user_id'               => 'nullable|integer',
+            // 'supervisor_user_id'          => 'nullable|integer',
             // 'submitting_user_id'          => 'nullable|integer',
             // 'compensation'                => 'nullable',
             // 'responsibilities'            => 'nullable',
@@ -46,8 +46,8 @@ class ProjectValidator extends LaravelValidator
             // 'library_collection'          => 'nullable|active_url',
         ],
         ValidatorInterface::RULE_UPDATE => [
-            // 'title'                       => 'required',
-            // 'alt_title'                   => 'required',
+            // 'name'                        => 'required',
+            // 'public_name'                 => 'required',
             // 'slug'                        => 'required',
             // 'listing_expires'             => 'nullable|date',
             // 'application_deadline'        => 'nullable',
@@ -57,7 +57,7 @@ class ProjectValidator extends LaravelValidator
             // 'description'                 => 'required',
             // 'parent_opportunity_id'       => 'nullable|integer',
             // 'organization_id'             => 'nullable|integer',
-            // 'owner_user_id'               => 'nullable|integer',
+            // 'supervisor_user_id'          => 'nullable|integer',
             // 'submitting_user_id'          => 'nullable|integer',
             // 'compensation'                => 'nullable',
             // 'responsibilities'            => 'nullable',

@@ -127,21 +127,26 @@ class Project extends Model
         // $project['id']                  = $this->opportunity->id;
         $project['slug']                = $this->opportunity->slug;
         $project['type']                = 'Project';
-        $project['title']               = $this->opportunity->title;
-        $project['alt_title']           = $this->opportunity->alt_title;
+        $project['name']                = $this->opportunity->name;
+        $project['publicName']          = $this->opportunity->public_name;
         $project['description']         = $this->opportunity->description;
         $project['summary']             = $this->opportunity->summary;
-        $project['is_hidden']              = $this->opportunity->hidden;
+        $project['isHidden']            = $this->opportunity->is_hidden;
         $project['startDate']           = $this->opportunity->start_date;
         $project['endDate']             = $this->opportunity->end_date;
-        $project['applicationDeadline'] = ( !is_null($this->opportunity->application_deadline_text) ? $this->opportunity->application_deadline_text : $this->opportunity->application_deadline );
+        $project['applicationDeadline'] = (
+                !is_null($this->opportunity->application_deadline_text) ?
+                $this->opportunity->application_deadline_text :
+                $this->opportunity->application_deadline
+            );
         $project['listingStarts']       = $this->opportunity->listing_starts;
         $project['listingEnds']         = $this->opportunity->listing_ends;
         $project['status']              = $this->opportunity->status->name;
-        $project['organization_name']   = $this->opportunity->organization->name;
-        $project['parentOpportunity']   = $this->opportunity->parentOpportunity;
-        $project['ownerUser']           = $this->opportunity->ownerUser;
+        $project['organizationName']   = $this->opportunity->organization->name;
+        // $project['parentOpportunity']   = $this->opportunity->parentOpportunity;
+        $project['supervisorUser']      = $this->opportunity->supervisorUser;
         $project['submittingUser']      = $this->opportunity->submittingUser;
+
 
         // Index Addresses
         $project['addresses'] = $this->opportunity->addresses->map(function ($data) {

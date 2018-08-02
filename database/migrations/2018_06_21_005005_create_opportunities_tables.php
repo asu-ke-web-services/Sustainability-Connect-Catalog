@@ -16,8 +16,8 @@ class CreateOpportunitiesTables extends Migration
         Schema::create('opportunities', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('opportunityable');
-            $table->string('title');
-            $table->string('alt_title')->nullable();
+            $table->string('name');
+            $table->string('public_name')->nullable();
             $table->string('slug')->unique();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
@@ -31,7 +31,7 @@ class CreateOpportunitiesTables extends Migration
             $table->text('description')->nullable();
             $table->integer('parent_opportunity_id')->unsigned()->nullable();
             $table->integer('organization_id')->unsigned()->nullable();
-            $table->integer('owner_user_id')->unsigned()->nullable();
+            $table->integer('supervisor_user_id')->unsigned()->nullable();
             $table->integer('submitting_user_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -51,7 +51,7 @@ class CreateOpportunitiesTables extends Migration
             $table->foreign('organization_id')
                 ->references('id')->on('organizations');
 
-            $table->foreign('owner_user_id')
+            $table->foreign('supervisor_user_id')
                 ->references('id')->on('users');
 
             $table->foreign('submitting_user_id')

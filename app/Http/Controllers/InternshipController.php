@@ -81,7 +81,7 @@ class InternshipController extends OpportunityController
     {
         $categories = Category::select('id', 'name')->get()->toArray();
         $keywords = Keyword::select('id', 'name')->get()->toArray();
-        $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
         $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
@@ -134,7 +134,7 @@ class InternshipController extends OpportunityController
                 'status',
                 'parentOpportunity',
                 'organization',
-                'ownerUser',
+                'supervisorUser',
                 'submittingUser',
                 'categories',
                 'keywords',
@@ -153,7 +153,7 @@ class InternshipController extends OpportunityController
 
         return view('internships.show', [
             'type' => $opportunity->opportunityable_type,
-            'pageTitle' => $opportunity->title,
+            'pageTitle' => $opportunity->name,
             'opportunity' => $opportunity
         ]);
     }
@@ -176,7 +176,7 @@ class InternshipController extends OpportunityController
                 'status',
                 'parentOpportunity',
                 'organization',
-                'ownerUser',
+                'supervisorUser',
                 'submittingUser',
                 'categories',
                 'keywords',
@@ -195,7 +195,7 @@ class InternshipController extends OpportunityController
 
         return view('internships.show_admin', [
             'type' => $opportunity->opportunityable_type,
-            'pageTitle' => $opportunity->title,
+            'pageTitle' => $opportunity->name,
             'opportunity' => $opportunity
         ]);
     }
@@ -219,14 +219,14 @@ class InternshipController extends OpportunityController
 
         $categories = Category::select('id', 'name')->get()->toArray();
         $keywords = Keyword::select('id', 'name')->get()->toArray();
-        $allOpportunities = Opportunity::select('id', 'title')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
         $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
 
         return view('internships.edit', [
             'type' => $opportunity->opportunityable_type,
-            'pageTitle' => $opportunity->title,
+            'pageTitle' => $opportunity->name,
             'opportunity' => $opportunity,
             'categories' => $categories,
             'keywords' => $keywords,

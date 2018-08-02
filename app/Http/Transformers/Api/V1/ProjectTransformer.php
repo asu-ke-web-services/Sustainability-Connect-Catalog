@@ -23,8 +23,8 @@ class ProjectTransformer extends TransformerAbstract
     {
         return [
             'id'                         => (int) $project->id,
-            'title'                      => $project->opportunity->title,
-            'altTitle'                   => $project->opportunity->alt_title,
+            'name'                       => $project->opportunity->name,
+            'publicName'                 => $project->opportunity->public_name,
             'slug'                       => $project->opportunity->slug,
             'startDate'                  => $project->opportunity->start_date,
             'endDate'                    => $project->opportunity->end_date,
@@ -38,7 +38,7 @@ class ProjectTransformer extends TransformerAbstract
             'organization'               => $project->opportunity->organization,
             'addresses'                  => $project->opportunity->addresses,
             'primaryAddress'             => $project->opportunity->primaryAddress,
-            'ownerUser'                  => $project->opportunity->ownerUser,
+            'supervisorUser'             => $project->opportunity->supervisorUser,
             'submittingUser'             => $project->opportunity->submittingUser,
             'compensation'               => $project->compensation,
             'responsibilities'           => $project->responsibilities,

@@ -24,7 +24,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property \SCCatalog\Models\Opportunity parentOpportunity
  * @property \SCCatalog\Models\OpportunityStatus status
  * @property \SCCatalog\Models\Organization organization
- * @property \SCCatalog\Models\User ownerUser
+ * @property \SCCatalog\Models\User supervisorUser
  * @property \SCCatalog\Models\User submittingUser
  * @property integer opportunityable_id
  * @property string opportunityable_type
@@ -66,8 +66,8 @@ class Opportunity extends Model
     ];
 
     public $fillable = [
-        'title',
-        'alt_title',
+        'name',
+        'public_name',
         'slug',
         'start_date',
         'end_date',
@@ -81,7 +81,7 @@ class Opportunity extends Model
         'description',
         'parent_opportunity_id',
         'organization_id',
-        'owner_user_id',
+        'supervisor_user_id',
         'submitting_user_id'
     ];
 
@@ -183,9 +183,9 @@ class Opportunity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function ownerUser()
+    public function supervisorUser()
     {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'owner_user_id');
+        return $this->belongsTo(\SCCatalog\Models\User::class, 'supervisor_user_id');
     }
 
     /**
@@ -450,7 +450,7 @@ class Opportunity extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('title')
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
 
@@ -470,16 +470,16 @@ class Opportunity extends Model
         $opportunity['status']            = $this->status->name;
         $opportunity['organizationName']  = $this->organization->name;
         $opportunity['parentOpportunity'] = $this->parentOpportunity;
-        $opportunity['ownerUser']         = $this->ownerUser;
+        $opportunity['supervisorUser']    = $this->supervisorUser;
         $opportunity['submittingUser']    = $this->submittingUser;
 
         $opportunity['opportunityable']   = $this->opportunityable;
 
         // Index Addresses
         $opportunity['addresses'] = $this->addresses->map(function ($data) {
-                                        return $data['city'] .
-                                                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
-                                                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+                            return $data['city'] .
+                                    ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+                                    ( is_null($data['country']) ? '' : (', ' . $data['country']) );
         })->toArray();
 
         // Index Categories names

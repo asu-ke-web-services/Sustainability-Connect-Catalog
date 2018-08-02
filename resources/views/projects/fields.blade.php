@@ -1,19 +1,21 @@
 
-<!-- Title Field -->
+<!-- Project Name Field -->
 @component('components.form.input', [
-    'name' => 'title',
-    'label' => 'Name:',
-    'placeholder' => 'Names can be up to 255 characters long',
-    'attributes' => 'required autofocus',
-    'object' => $opportunity ?? null,
+    'name'        => 'name',
+    'label'       => 'Name:',
+    'help_text'   => 'Names can be up to 255 characters long',
+    'placeholder' => 'Full project name',
+    'attributes'  => 'required autofocus',
+    'object'      => $opportunity ?? null,
 ])@endcomponent
 
-<!-- Alt Title Field -->
+<!-- Public Name Field -->
 @component('components.form.input', [
-    'name' => 'alt_title',
-    'label' => 'Name (for non-SOS Users):',
-    'placeholder' => 'Alternative name to display to users unpermitted to view full details of opportunity (if needed)',
-    'object' => $opportunity ?? null,
+    'name'        => 'public_name',
+    'label'       => 'Public Name (to show to non-SOS Users):',
+    'help_text'   => 'Alternative name to display to users not permitted to view full details of opportunity (if needed)',
+    'placeholder' => 'Simplified project name',
+    'object'      => $opportunity ?? null,
 ])@endcomponent
 
 <!-- Slug Field -->
@@ -23,15 +25,257 @@
 </div> --}}
 
 
-<!-- Opportunity Status Field -->
-@component('components.form.select', [
-    'name' => 'status',
-    'label' => 'Status:',
-    'placeholder' => 'Select status...',
-    'optionList' => $statuses,
-    'object' => $opportunity ?? null,
+<!-- Description Field -->
+@component('components.form.textarea', [
+    'name'        => 'description',
+    'label'       => 'Describe the Project:',
+    'help_text'   => 'What specific sustainability problem do you need solved?',
+    'placeholder' => 'This project will ...',
+    'object'      => $opportunity ?? null,
 ])@endcomponent
 
+<!-- Envisioned Solution Field -->
+@component('components.form.textarea', [
+    'name'        => 'implementation_paths',
+    'label'       => 'Envisioned Solution:',
+    'help_text'   => 'What sustainability solution do you envision, and how will that solution be derived from this project?',
+    'placeholder' => 'Project participants will ...',
+    'object'      => $opportunity->opportunityable ?? null,
+])@endcomponent
+
+<!-- Project Deliverables Field -->
+@component('components.form.textarea', [
+    'name'        => 'sustainability_contribution',
+    'label'       => 'Project Deliverables:',
+    'help_text'   => 'What deliverables/end product do you expect?',
+    'placeholder' => 'At project end, a new [activity] will be held...',
+    'object'      => $opportunity->opportunityable ?? null,
+])@endcomponent
+
+<!-- Addresses Block -->
+<div class="form-group col-sm-6">
+@if( isset($opportunity) )
+    @foreach( $opportunity->addresses as $key => $address)
+        @include('opportunities._address', [
+            'key'     => $key,
+            'count'   => $key + 1,
+            'address' => $address
+        ])
+    @endforeach
+@else
+    <label for="addresses">Location:</label>
+    @component('components.form.input', [
+        'name'        => 'addresses[0][city]',
+        'label'       => 'City:',
+        'attributes'  => 'required',
+        'placeholder' => 'Tempe',
+        'object'      => $opportunity ?? null,
+    ])@endcomponent
+
+    @component('components.form.input', [
+        'name'        => 'addresses[0][state]',
+        'label'       => 'State/Prov:',
+        'attributes'  => 'required',
+        'placeholder' => 'Arizona',
+        'object'      => $opportunity ?? null,
+    ])@endcomponent
+
+    @component('components.form.input', [
+        'name'        => 'addresses[0][country]',
+        'label'       => 'Country:',
+        'attributes'  => 'required',
+        'placeholder' => 'US',
+        'object'      => $opportunity ?? null,
+    ])@endcomponent
+
+    @component('components.form.textarea', [
+        'name'        => 'addresses[0][note]',
+        'label'       => 'Location Note:',
+        'placeholder' => 'Short note on location...',
+        'object'      => $opportunity ?? null,
+    ])@endcomponent
+@endif
+</div>
+
+<div id="filler_addresses" class="form-group col-sm-12"><p>&nbsp;</p></div>
+
+<!-- Project Timeframe block -->
+
+
+<!-- Accept Applications Toggle -->
+<div class="form-group col-sm-3">
+    @component('components.form.button', [
+        'name'    => 'btn_accept_applications',
+        'text'    => 'Accept Applications',
+        'onclick' => '$("#field_application_listing").show();$("#btn_accept_applications").hide();',
+    ])@endcomponent
+
+{{--     {!! Form::button('No Applications', ['id' => 'btn_no_applications', 'class' => 'btn btn-primary', 'style' => 'display: none;', 'onclick' => '$("#field_application_listing").toggle(); $("#filler_application_listing").toggle(); $("#btn_accept_applications").show(); $("#btn_accept_applications").hide();']) !!} --}}
+</div>
+
+<div id="field_application_listing" class="form-group col-sm-9" style="display: none;">
+    <!-- Listing Starts Field -->
+    <div class="col-sm-6">
+        @component('components.form.input', [
+            'name'   => 'listing_starts',
+            'label'  => 'Listing Starts:',
+            'type'   => 'date',
+            'object' => $opportunity ?? null,
+        ])@endcomponent
+    </div>
+
+    <!-- Listing Ends Field -->
+    <div class="col-sm-6">
+        @component('components.form.input', [
+            'name'   => 'listing_ends',
+            'label'  => 'Listing Ends:',
+            'type'   => 'date',
+            'object' => $opportunity ?? null,
+        ])@endcomponent
+    </div>
+</div>
+
+<div id="filler_application_listing" class="form-group col-sm-12"><p>&nbsp;</p></div>
+
+<!-- Application Deadline Field -->
+<div id="field_app_deadline_date" class="form-group col-sm-6">
+    @component('components.form.input', [
+        'name'   => 'application_deadline',
+        'label'  => 'Application Deadline Date:',
+        'type'   => 'date',
+        'object' => $opportunity ?? null,
+    ])@endcomponent
+</div>
+
+<!-- Application Deadline Text Field -->
+<div id="field_app_deadline_text" class="form-group col-sm-6" style="display: none;">
+    @component('components.form.input', [
+        'name'        => 'application_deadline_text',
+        'label'       => 'Application Deadline Text:',
+        'type'        => 'text',
+        'placeholder' => 'e.g. "When Filled" or "Ongoing"',
+        'object'      => $opportunity ?? null,
+    ])@endcomponent
+</div>
+
+<!-- Application Deadline toggle format -->
+<div class="form-group col-sm-6">
+    @component('components.form.button', [
+        'name'    => 'btn_text_deadline',
+        'text'    => 'Toggle Deadline Date or Text',
+        'onclick' => '$("#field_app_deadline_date").toggle(); $("#field_app_deadline_text").toggle();',
+    ])@endcomponent
+</div>
+
+
+<div id="filler_deadline" class="form-group col-sm-12"><p>&nbsp;</p></div>
+
+
+<!-- Opportunity Begins Field -->
+<div class="form-group col-sm-6">
+    @component('components.form.input', [
+        'name'   => 'start_date',
+        'label'  => 'Project Start Date:',
+        'type'   => 'date',
+        'object' => $opportunity ?? null,
+    ])@endcomponent
+</div>
+
+<!-- Opportunity Ends Field -->
+<div class="form-group col-sm-6">
+    @component('components.form.input', [
+        'name'   => 'end_date',
+        'label'  => 'Project End Date:',
+        'type'   => 'date',
+        'object' => $opportunity ?? null,
+    ])@endcomponent
+</div>
+
+<div id="filler_start_end" class="form-group col-sm-12"><p>&nbsp;</p></div>
+
+
+<!-- Partner Organization Field -->
+<div class="form-group col-sm-6">
+    @component('components.form.select', [
+        'name'        => 'organization_id',
+        'label'       => 'Project Partner Organization:',
+        'placeholder' => 'Select or type organization name...',
+        'optionList'  => $allOrganizations,
+        'object'      => $opportunity->organization ?? null,
+    ])@endcomponent
+</div>
+
+<script>
+$('#organization_id').selectize({
+    create: false,
+    persist: false,
+    highlight: true,
+    openOnFocus: true,
+    maxOptions: 10,
+    maxItems: 1,
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    options: {!! json_encode($allOrganizations) !!}
+});
+</script>
+
+
+<!-- Modal Add New Organization -->
+<div class="form-group col-sm-3">
+    @component('components.form.button', [
+        'name'       => 'btn_add_organization',
+        'class'      => 'btn btn-primary disabled',
+        'text'       => 'Add New Organization (TODO)',
+        'attributes' => 'disabled',
+    ])@endcomponent
+</div>
+
+
+
+<!-- How Many Students are you looking for? Undergraduate or Graduate? -->
+
+
+
+<!-- Qualifications Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    @component('components.form.textarea', [
+        'name'        => 'qualifications',
+        'label'       => 'Qualifications:',
+        'help_text'   => 'What specific skills should the applying students possess?',
+        'placeholder' => 'e.g. Participant must be an enrolled undergraduate student...',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
+</div>
+
+
+<!-- Responsibilities Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    @component('components.form.textarea', [
+        'name'        => 'responsibilities',
+        'label'       => 'Student Responsibilities:',
+        'help_text'   => 'What will the student responsibilities be?',
+        'placeholder' => 'Participants will organize...',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
+</div>
+
+
+<!-- Contact details -->
+
+
+
+
+<!-- Opportunity Status Field -->
+<div class="form-group col-sm-6">
+    @component('components.form.select', [
+        'name'        => 'status',
+        'label'       => 'Status:',
+        'placeholder' => 'Select status...',
+        'optionList'  => $statuses,
+        'object'      => $opportunity ?? null,
+    ])@endcomponent
+</div>
 <script>
 $('#status').selectize({
     create: false,
@@ -47,82 +291,23 @@ $('#status').selectize({
 });
 </script>
 
-<!-- Accept Applications Toggle -->
-<div class="form-group col-sm-4">
-    {!! Form::button('Accept Applications', ['id' => 'btn_accept_applications', 'class' => 'btn btn-primary', 'onclick' => '$("#field_application_listing").toggle(); $("#filler_application_listing").toggle();']) !!}
-{{--     {!! Form::button('No Applications', ['id' => 'btn_no_applications', 'class' => 'btn btn-primary', 'style' => 'display: none;', 'onclick' => '$("#field_application_listing").toggle(); $("#filler_application_listing").toggle(); $("#btn_accept_applications").show(); $("#btn_accept_applications").hide();']) !!} --}}
-</div>
+<div id="filler_status" class="form-group col-sm-12"><p>&nbsp;</p></div>
 
-
-<div id="field_application_listing" class="form-group col-sm-8" style="display: none;">
-    <!-- Listing Starts Field -->
-    <div class="col-sm-6">
-        {!! Form::label('listing_starts', 'Listing Starts:') !!}
-        {!! Form::date('listing_starts', null, ['class' => 'form-control']) !!}
-    </div>
-
-    <!-- Listing Ends Field -->
-    <div class="col-sm-6">
-        {!! Form::label('listing_ends', 'Listing Ends:') !!}
-        {!! Form::date('listing_ends', null, ['class' => 'form-control']) !!}
-    </div>
-</div>
-<div id="filler_application_listing" class="form-group col-sm-8"><p>&nbsp;</p></div>
-
-<div class="form-group col-sm-12">
-    {!! Form::button('Switch Deadline to Text', ['id' => 'btn_text_deadline', 'class' => 'btn btn-primary', 'onclick' => '$("#field_app_deadline_date").toggle(); $("#field_app_deadline_text").toggle();']) !!}
-</div>
-
-<div class="form-group col-sm-4">
-    <!-- Application Deadline Field -->
-    <div id="field_app_deadline_date" class="form-group col-sm-12">
-        {!! Form::label('application_deadline', 'Application Deadline Date:') !!}
-        {!! Form::date('application_deadline', null, ['class' => 'form-control']) !!}
-    </div>
-
-    <!-- Application Deadline Text Field -->
-    <div id="field_app_deadline_text" class="form-group col-sm-12" style="display: none;">
-        {!! Form::label('application_deadline_text', 'Application Deadline Text:') !!}
-        {!! Form::text('application_deadline_text', null, ['class' => 'form-control']) !!}
-    </div>
-</div>
-
-<!-- Opportunity Begins Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('start_date', 'Opportunity Begins:') !!}
-    {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Opportunity Ends Field -->
-<div class="form-group col-sm-4">
-    {!! Form::label('end_date', 'Opportunity Ends:') !!}
-    {!! Form::date('end_date', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Description Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('description', 'Project Description:') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Please describe the project in less than 150 words. Identify sustainability goals and challenges. Keep in mind that some information that could be included here, might have a more appropriate field elsewhere on this form (e.g. Project Deliverables, Application Instructions, etc.)']) !!}
-</div>
 
 <!-- Categories Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('categories', 'Categories:') !!}
-    {!! Form::select(
-        'categories[]',
-        $categories,
-        $opportunity->categories ?? null,
-        [
-            'id' => 'select-categories',
-            'class' => 'form-control',
-            'multiple' => 'multiple',
-            'placeholder' => 'Select or type to add categories...',
-        ]
-    ) !!}
+    @component('components.form.select_array', [
+        'name'        => 'categories',
+        'label'       => 'Categories:',
+        'placeholder' => 'Click or type to add categories...',
+        'optionList'  => $categories,
+        'attributes'  => 'multiple',
+        'object'      => $opportunity->categories ?? null,
+    ])@endcomponent
 </div>
 
 <script>
-$('#select-categories').selectize({
+$('#categories').selectize({
     create: false,
     persist: false,
     highlight: true,
@@ -138,22 +323,18 @@ $('#select-categories').selectize({
 
 <!-- Keywords Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('keywords', 'Keywords:') !!}
-    {!! Form::select(
-            'keywords[]',
-            $keywords,
-            $opportunity->keywords ?? null,
-            [
-                'id' => 'select-keywords',
-                'class' => 'form-control',
-                'multiple' => 'multiple',
-            'placeholder' => 'Select or type to add keywords...',
-            ]
-        ) !!}
+    @component('components.form.select_array', [
+        'name'        => 'keywords',
+        'label'       => 'Keywords:',
+        'placeholder' => 'Click or type to add keywords...',
+        'optionList'  => $keywords,
+        'attributes'  => 'multiple',
+        'object'      => $opportunity->keywords ?? null,
+    ])@endcomponent
 </div>
 
 <script>
-$('#select-keywords').selectize({
+$('#keywords').selectize({
     create: true,
     persist: true,
     highlight: true,
@@ -167,156 +348,104 @@ $('#select-keywords').selectize({
 });
 </script>
 
-<!-- Addresses Block -->
-<div class="form-group col-sm-6">
-@if( isset($opportunity) )
-    @foreach( $opportunity->addresses as $key => $address)
-        @include('opportunities._address', [
-            'count' => $key + 1,
-            'address' => $address
-        ])
-    @endforeach
-@else
-    {!! Form::label("addresses[0][count]", "Location 1:") !!}
-    {!! Form::text("addresses[0][city]", '', ['class' => 'form-control', 'placeholder' => 'City']) !!}
-    {!! Form::text("addresses[0][state]", '', ['class' => 'form-control', 'placeholder' => 'State/Prov']) !!}
-    {!! Form::text("addresses[0][country]", '', ['class' => 'form-control', 'placeholder' => 'Country']) !!}
-    {!! Form::textarea("addresses[0][note]", '', ['class' => 'form-control', 'placeholder' => 'Note']) !!}
-@endif
-</div>
 
 <!-- Compensation Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable[compensation]', 'Student Compensation and Project Funds:') !!}
-    {!! Form::textarea('opportunityable[compensation]', null, ['class' => 'form-control', 'placeholder' => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)']) !!}
-</div>
-
-<!-- Responsibilities Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable[responsibilities]', 'Student Responsibilities:') !!}
-    {!! Form::textarea('opportunityable[responsibilities]', null, ['class' => 'form-control', 'placeholder' => 'List tasks and responsibilities for students to perform in the project.']) !!}
+    @component('components.form.textarea', [
+        'name'        => 'compensation',
+        'label'       => 'Student Compensation and Project Funds:',
+        'help_text'   => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)',
+        'placeholder' => 'Participants will receive...',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
 <!-- Learning Outcomes Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable[learning_outcomes]', 'Learning Outcomes:') !!}
-    {!! Form::textarea('opportunityable[learning_outcomes]', null, ['class' => 'form-control', 'placeholder' => 'Describe what the student might learn from this experience.']) !!}
+    @component('components.form.textarea', [
+        'name'        => 'learning_outcomes',
+        'label'       => 'Learning Outcomes:',
+        'help_text'   => 'Describe what the student might learn from this experience.',
+        'placeholder' => 'Participants should learn ...',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
-<!-- Project Deliverables Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable[sustainability_contribution]', 'Project Deliverables:') !!}
-    {!! Form::textarea('opportunityable[sustainability_contribution]', null, ['class' => 'form-control', 'placeholder' => 'Describe how the project will contribute towards sustainability.']) !!}
-</div>
 
-<!-- Qualifications Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable[qualifications]', 'Qualifications:') !!}
-    {!! Form::textarea('opportunityable[qualifications]', null, ['class' => 'form-control', 'placeholder' => 'Describe the minimum qualifications students must meet in order to participate in this project, as well as desired qualifications and experiences.']) !!}
-</div>
 
 <!-- Application Instructions Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable[application_instructions]', 'Application Instructions:') !!}
-    {!! Form::textarea('opportunityable[application_instructions]', null, ['class' => 'form-control', 'placeholder' => 'Describe the steps the participant must follow to request admission into the project']) !!}
-</div>
-
-<!-- Path to Implementation Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('opportunityable[implementation_paths]', 'Implementation Paths:') !!}
-    {!! Form::textarea('opportunityable[implementation_paths]', null, ['class' => 'form-control', 'placeholder' => 'Enter any information needed concerning how this project might be implemented.']) !!}
+    @component('components.form.textarea', [
+        'name'        => 'application_instructions',
+        'label'       => 'Application Instructions:',
+        'help_text'   => 'Describe the steps the participant must follow to request admission into the project.',
+        'placeholder' => 'Click the "Apply Now" button on this page...',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
 <!-- Budget Type Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('opportunityable[budget_type]', 'Budget Available:') !!}
-    {!! Form::text('opportunityable[budget_type]', null, ['class' => 'form-control', 'placeholder' => 'Enter whether there is a budget for the project. THebudget entails monetary and in-kind contributions.']) !!}
+    @component('components.form.input', [
+        'name'        => 'budget_type',
+        'label'       => 'Budget Available:',
+        'help_text'   => 'Enter whether there is a budget for the project. The budget entails monetary and in-kind contributions.',
+        'placeholder' => 'Monetary',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
 <!-- Budget Amount Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('opportunityable[budget_amount]', 'Budget Amount:') !!}
-    {!! Form::text('opportunityable[budget_amount]', null, ['class' => 'form-control', 'placeholder' => 'If this project has a budget, state how large that budget is.']) !!}
+    @component('components.form.input', [
+        'name'        => 'budget_amount',
+        'label'       => 'Budget Amount:',
+        'help_text'   => 'If this project has a budget, state how large that budget is.',
+        'placeholder' => '$x',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
 
 <!-- Parent Opportunity Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('parent_opportunity_id', 'Predecessor Opportunity:') !!}
-    {!! Form::select(
-            'parent_opportunity_id',
-            $allOpportunities,
-            $opportunity->parentOpportunity->id ?? null,
-            [
-                'id' => 'select-parent-opportunity',
-                'class' => 'form-control',
-                'placeholder' => 'Select or type opportunity name...',
-            ]
-        ) !!}
+<div class="form-group col-sm-12">
+    @component('components.form.select', [
+        'name'        => 'parent_opportunity_id',
+        'label'       => 'Predecessor Opportunity:',
+        'placeholder' => 'Select or type opportunity name...',
+        'optionList'  => $allOpportunities,
+        'object'      => $opportunity->parentOpportunity ?? null,
+    ])@endcomponent
 </div>
 
 <script>
-$('#select-parent-opportunity').selectize({
+$('#parent_opportunity_id').selectize({
     create: false,
     persist: false,
     highlight: true,
     openOnFocus: true,
-    maxOptions: 10,
-    maxItems: 1,
-    valueField: 'id',
-    labelField: 'title',
-    searchField: 'title',
-    options: {!! json_encode($allOpportunities) !!}
-});
-</script>
-
-<!-- Organization Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('organization_id', 'Project Partner Organization:') !!}
-    {!! Form::select(
-            'organization_id',
-            $allOrganizations,
-            $opportunity->organization->id ?? null,
-            [
-                'id' => 'select-organization',
-                'class' => 'form-control',
-                'placeholder' => 'Select or type organization name...',
-            ]
-        ) !!}
-</div>
-
-<script>
-$('#select-organization').selectize({
-    create: false,
-    persist: false,
-    highlight: true,
-    openOnFocus: true,
-    maxOptions: 10,
+    maxOptions: null,
     maxItems: 1,
     valueField: 'id',
     labelField: 'name',
     searchField: 'name',
-    options: {!! json_encode($allOrganizations) !!}
+    options: {!! json_encode($allOpportunities) !!}
 });
 </script>
 
 <!-- Opportunity Supervisor Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('owner_user_id', 'Project Supervisor:') !!}
-    {!! Form::select(
-            'owner_user_id',
-            $users,
-            $opportunity->ownerUser ?? null,
-            [
-                'id' => 'select-supervisor',
-                'class' => 'form-control',
-                'placeholder' => 'Select or type user name...',
-            ]
-        ) !!}
+<div class="form-group col-sm-12">
+    @component('components.form.select', [
+        'name'        => 'supervisor_user_id',
+        'label'       => 'Project Supervisor:',
+        'placeholder' => 'Select or type user name...',
+        'optionList'  => $users,
+        'object'      => $opportunity->supervisorUser ?? null,
+    ])@endcomponent
 </div>
 
 <script>
-$('#select-supervisor').selectize({
+$('#supervisor_user_id').selectize({
     create: false,
     persist: false,
     highlight: true,
@@ -331,25 +460,47 @@ $('#select-supervisor').selectize({
 </script>
 
 <!-- Program Lead Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('program_lead', 'ASU Program Lead:') !!}
-    {!! Form::text('program_lead', null, ['class' => 'form-control', 'placeholder' => 'If this project is part of a larger program, which is run through the School of Sustainability, GIOS, or another ASU initiative, then provide the name of the leader of that bigger program here. The program leader is typically different from the Project Supervisor listed above.']) !!}
+<div class="form-group col-sm-12">
+    @component('components.form.input', [
+        'name'        => 'program_lead',
+        'label'       => 'ASU Program Lead:',
+        'help_text'   => 'If this project is part of a larger program, which is run through the School of Sustainability, GIOS, or another ASU initiative, then provide the name of the leader of that bigger program here. The program leader is typically different from the Project Supervisor listed above.',
+        'placeholder' => 'Professor John Smith, School of Sustainability',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
 <!-- Success Story Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('success_story', 'Success Story:') !!}
-    {!! Form::text('success_story', null, ['class' => 'form-control', 'placeholder' => 'If a Success Story is published for this project, enter the url here.']) !!}
+<div class="form-group col-sm-12">
+    @component('components.form.input', [
+        'name'        => 'success_story',
+        'label'       => 'Success Story:',
+        'help_text'   => 'If a Success Story is published for this project, enter the url here.',
+        'placeholder' => 'http://example.info',
+        'type'        => 'url',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
 <!-- Library Collection Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('library_collection', 'Library Collection:') !!}
-    {!! Form::text('library_collection', null, ['class' => 'form-control', 'placeholder' => 'If this project has been published in the ASU Library Collection, enter the url to that page.']) !!}
+<div class="form-group col-sm-12">
+    @component('components.form.input', [
+        'name'        => 'library_collection',
+        'label'       => 'Library Collection:',
+        'help_text'   => 'If this project has been published in the ASU Library Collection, enter the url to that page.',
+        'placeholder' => 'http://example.info',
+        'type'        => 'url',
+        'object'      => $opportunity->opportunityable ?? null,
+    ])@endcomponent
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    @component('components.form.button', [
+        'name'    => 'btn_submit',
+        'text'    => 'Save',
+        'type'    => 'submit',
+    ])@endcomponent
+
     <a href="{!! route('projects.index') !!}" class="btn btn-default">Cancel</a>
 </div>

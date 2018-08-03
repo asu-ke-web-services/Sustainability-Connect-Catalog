@@ -264,7 +264,7 @@ class OpportunityTablesSeeder extends Seeder
 
             DB::table('category_opportunity')->insert([
                 'opportunity_id' => $i + 1,
-                'category_id' => $faker->numberBetween(1, 17),
+                'category_id' => $faker->numberBetween(1, 6),
                 'order' => 1,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
@@ -274,8 +274,18 @@ class OpportunityTablesSeeder extends Seeder
 
             DB::table('keyword_opportunity')->insert([
                 'opportunity_id' => $i + 1,
-                'keyword_id' => $faker->numberBetween(1, 24),
+                'keyword_id' => $faker->numberBetween(1, 61),
                 'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_opportunity')->insert([
+                'opportunity_id' => $i + 1,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 2,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -386,7 +396,7 @@ class OpportunityTablesSeeder extends Seeder
 
             DB::table('category_opportunity')->insert([
                 'opportunity_id' => $i + 101,
-                'category_id' => $faker->numberBetween(1, 17),
+                'category_id' => $faker->numberBetween(1, 6),
                 'order' => 1,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
@@ -396,8 +406,18 @@ class OpportunityTablesSeeder extends Seeder
 
             DB::table('keyword_opportunity')->insert([
                 'opportunity_id' => $i + 101,
-                'keyword_id' => $faker->numberBetween(1, 24),
+                'keyword_id' => $faker->numberBetween(1, 61),
                 'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_opportunity')->insert([
+                'opportunity_id' => $i + 101,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 2,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,

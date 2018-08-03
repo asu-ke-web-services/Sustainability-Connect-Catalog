@@ -62,13 +62,55 @@ class KeywordsTableSeeder extends Seeder
         }
 
         $keyword = Keyword::firstOrNew([
+            'slug' => 'biodiversity',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 5,
+                'name' => 'Biodiversity',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
             'slug' => 'biofuels',
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 5,
+            	'order' => 6,
             	'parent_id' => 3,
                 'name' => 'Biofuels',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'biogeochemical-processes',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 7,
+                'name' => 'Biogeochemical Processes',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'building-technology',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 8,
+                'name' => 'Building Technology',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -81,8 +123,22 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 6,
+                'order' => 9,
                 'name' => 'Citizen Actions',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'community-development',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 10,
+                'name' => 'Community Development',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -95,8 +151,50 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 7,
+            	'order' => 11,
                 'name' => 'Conservation Biology',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'culture',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 12,
+                'name' => 'Culture',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'decision-making',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 13,
+                'name' => 'Decision Making',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'deforestation',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 14,
+                'name' => 'Deforestation',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -109,8 +207,78 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 8,
+            	'order' => 15,
                 'name' => 'Desertification',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'design',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 16,
+                'name' => 'Design',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'ecological-systems',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 17,
+                'name' => 'Ecological Systems',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'economics',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 18,
+                'name' => 'Economics',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'economic-development',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 19,
+                'name' => 'Economic Development',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'ecosystems',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 20,
+                'name' => 'Ecosystems',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -123,8 +291,50 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 9,
+            	'order' => 21,
                 'name' => 'Ecosystem Restoration',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'ecosystem-services',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 22,
+                'name' => 'Ecosystem Services',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'education',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 23,
+                'name' => 'Education',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'energy',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 24,
+                'name' => 'Energy',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -137,7 +347,7 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 10,
+            	'order' => 25,
                 'name' => 'Energy Policy',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
@@ -151,8 +361,22 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 11,
+            	'order' => 26,
                 'name' => 'Entrepreneurship',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'environmental-humanities',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 27,
+                'name' => 'Environmental Humanities',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -165,8 +389,36 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 12,
+            	'order' => 28,
                 'name' => 'Farmers Markets',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'food-energy-water-nexus',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 29,
+                'name' => 'Food-Energy-Water Nexus',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'food-policy',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 30,
+                'name' => 'Food Policy',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -179,8 +431,22 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 13,
+            	'order' => 31,
                 'name' => 'Food Systems',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'glacial-processes',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 32,
+                'name' => 'Glacial Processes',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -194,7 +460,7 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 1,
-            	'parent_id' => 13,
+            	'parent_id' => 31,
                 'name' => 'Agriculture',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
@@ -208,8 +474,22 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 14,
+            	'order' => 33,
                 'name' => 'Green Marketing',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'geographic-information-science',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 34,
+                'name' => 'Geographic Information Science',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -222,8 +502,36 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 15,
+            	'order' => 35,
                 'name' => 'Groundwater',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'human-health',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 36,
+                'name' => 'Human Health',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'indigenous-knowledge',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 37,
+                'name' => 'Indigenous Knowledge',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -236,8 +544,64 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 16,
+            	'order' => 38,
                 'name' => 'Land Use Change',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'marine-ecology',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 39,
+                'name' => 'Marine Ecology',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'multicultural-perspectives',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 40,
+                'name' => 'Multicultural Perspectives',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'natural-capital',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 41,
+                'name' => 'Natural Capital',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'natural-resource-management',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 42,
+                'name' => 'Natural Resource Management',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -250,8 +614,22 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 17,
+            	'order' => 43,
                 'name' => 'Poverty',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'public-health',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 44,
+                'name' => 'Public Health',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -264,8 +642,36 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 18,
+            	'order' => 45,
                 'name' => 'Recreation',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'recycling',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 46,
+                'name' => 'Recycling',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'refugees',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 47,
+                'name' => 'Refugees',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -278,9 +684,51 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 19,
-            	'parent_id' => 10,
+            	'order' => 48,
+            	'parent_id' => 25,
                 'name' => 'Renewable Energy',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'riparian-ecology',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 49,
+                'name' => 'Riparian Ecology',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'social-capital',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 50,
+                'name' => 'Social Capital',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'social-equity',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 51,
+                'name' => 'Social Equity',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -293,9 +741,37 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 20,
-            	'parent_id' => 19,
+            	'order' => 52,
+            	'parent_id' => 48,
                 'name' => 'Solar Energy Systems',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'solid-waste',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 53,
+                'name' => 'Solid Waste',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'tourism',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 54,
+                'name' => 'Tourism',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -308,7 +784,7 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 21,
+            	'order' => 55,
                 'name' => 'Transportation',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
@@ -322,8 +798,50 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 22,
+            	'order' => 56,
                 'name' => 'Urban Development',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'urban-infrastructure',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 57,
+                'name' => 'Urban Infrastructure',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'water',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 58,
+                'name' => 'Water',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $keyword = Keyword::firstOrNew([
+            'slug' => 'watersheds',
+        ]);
+        if (!$keyword->exists) {
+            $keyword->fill([
+                'order' => 59,
+                'name' => 'Watersheds',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -336,7 +854,7 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 23,
+            	'order' => 60,
                 'name' => 'Wastewater Treatment',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
@@ -350,7 +868,7 @@ class KeywordsTableSeeder extends Seeder
         ]);
         if (!$keyword->exists) {
             $keyword->fill([
-            	'order' => 24,
+            	'order' => 61,
                 'name' => 'Water Resource Management',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),

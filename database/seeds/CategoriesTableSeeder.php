@@ -20,12 +20,12 @@ class CategoriesTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         $category = Category::firstOrNew([
-            'slug' => 'affordable-and-clean-energy',
+            'slug' => 'culminating-experience',
         ]);
         if (!$category->exists) {
             $category->fill([
             	'order' => 1,
-                'name' => 'Affordable and Clean Energy',
+                'name' => 'Culminating Experience',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -34,12 +34,12 @@ class CategoriesTableSeeder extends Seeder
         }
 
         $category = Category::firstOrNew([
-            'slug' => 'clean-water-and-sanitation',
+            'slug' => 'global-development-research-gdr',
         ]);
         if (!$category->exists) {
             $category->fill([
             	'order' => 2,
-                'name' => 'Clean Water and Sanitation',
+                'name' => 'Global Development Research (GDR)',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -48,12 +48,12 @@ class CategoriesTableSeeder extends Seeder
         }
 
         $category = Category::firstOrNew([
-            'slug' => 'climate-action',
+            'slug' => 'internship',
         ]);
         if (!$category->exists) {
             $category->fill([
             	'order' => 3,
-                'name' => 'Climate Action',
+                'name' => 'Internship',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -62,12 +62,12 @@ class CategoriesTableSeeder extends Seeder
         }
 
         $category = Category::firstOrNew([
-            'slug' => 'decent-work-and-economic-growth',
+            'slug' => 'practicum',
         ]);
         if (!$category->exists) {
             $category->fill([
             	'order' => 4,
-                'name' => 'Decent Work and Economic Growth',
+                'name' => 'Practicum',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -76,12 +76,12 @@ class CategoriesTableSeeder extends Seeder
         }
 
         $category = Category::firstOrNew([
-            'slug' => 'gender-equality',
+            'slug' => 'research',
         ]);
         if (!$category->exists) {
             $category->fill([
             	'order' => 5,
-                'name' => 'Gender Equality',
+                'name' => 'Research',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,
@@ -90,166 +90,12 @@ class CategoriesTableSeeder extends Seeder
         }
 
         $category = Category::firstOrNew([
-            'slug' => 'good-health-and-well-being',
+            'slug' => 'workshop',
         ]);
         if (!$category->exists) {
             $category->fill([
             	'order' => 6,
-                'name' => 'Good Health and Well-Being',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'industry-innovation-and-infrastructure',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 7,
-                'name' => 'Industry, Innovation, and Infrastructure',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'life-below-water',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 8,
-                'name' => 'Life Below Water',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'life-on-land',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 9,
-                'name' => 'Life On Land',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'no-poverty',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 10,
-                'name' => 'No Poverty',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'partnership-for-the-goals',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 11,
-                'name' => 'Partnership for the Goals',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'peace-justice-and-strong-institutions',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 12,
-                'name' => 'Peace, Justice, and Strong Institutions',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'quality-education',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 13,
-                'name' => 'Quality Education',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'reduced-inequalities',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 14,
-                'name' => 'Reduced Inequalities',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'responsible-consumption-and-production',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 15,
-                'name' => 'Responsible Consumption and Production',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'sustainable-cities-and-communities',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 16,
-                'name' => 'Sustainable Cities and Communities',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-                'created_by' => 1,
-                'updated_by' => 1,
-            ])->save();
-        }
-
-        $category = Category::firstOrNew([
-            'slug' => 'zero-hunger',
-        ]);
-        if (!$category->exists) {
-            $category->fill([
-            	'order' => 17,
-                'name' => 'Zero Hunger',
+                'name' => 'Workshop',
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
                 'created_by' => 1,

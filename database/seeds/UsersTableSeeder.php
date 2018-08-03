@@ -47,7 +47,40 @@ class UsersTableSeeder extends Seeder
                     'updated_by' => 1,
                 ]);
             }
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 2,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 2,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 2,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 2,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 3,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
         }
+
+
 
         // Faculty
         for ($i = 0; $i < 20; $i++) {
@@ -79,6 +112,37 @@ class UsersTableSeeder extends Seeder
                     'updated_by' => 1,
                 ]);
             }
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 52,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 52,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 2,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 52,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 3,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
         }
 
         // Staff
@@ -98,6 +162,37 @@ class UsersTableSeeder extends Seeder
                 'created_by'         => 1,
                 'updated_by'         => 1,
             ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 72,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 72,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 2,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 72,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 3,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
         }
 
         // Community Partner
@@ -118,6 +213,37 @@ class UsersTableSeeder extends Seeder
                 'created_by'         => 1,
                 'updated_by'         => 1,
             ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 82,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 1,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 82,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 2,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
+            DB::table('keyword_user')->insert([
+                'user_id' => $i + 82,
+                'keyword_id' => $faker->numberBetween(1, 61),
+                'order' => 3,
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]);
+
         }
 
     }

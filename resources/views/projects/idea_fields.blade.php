@@ -88,17 +88,20 @@
 
 
 <!-- Accept Applications Toggle -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-3 col-sm-offset-1">
     @component('components.form.button', [
         'name'    => 'btn_accept_applications',
         'text'    => 'Accept Applications',
-        'onclick' => '$("#field_application_listing").show();$("#btn_accept_applications").hide();',
+        'onclick' => '$("#field_application_listing").show();$("#btn_accept_applications").hide();$("#help_accept_applications").hide();',
     ])@endcomponent
-
 {{--     {!! Form::button('No Applications', ['id' => 'btn_no_applications', 'class' => 'btn btn-primary', 'style' => 'display: none;', 'onclick' => '$("#field_application_listing").toggle(); $("#filler_application_listing").toggle(); $("#btn_accept_applications").show(); $("#btn_accept_applications").hide();']) !!} --}}
 </div>
 
-<div id="field_application_listing" class="form-group col-sm-9" style="display: none;">
+<div id="help_accept_applications" class="form-group col-sm-8">
+    <span class="help-block">If you want to publish this opportunity in order to recruit participants.</span>
+</div>
+
+<div id="field_application_listing" class="form-group col-sm-9 col-sm-offset-2" style="display: none;">
     <!-- Listing Starts Field -->
     <div class="col-sm-6">
         @component('components.form.input', [
@@ -123,7 +126,7 @@
 <div id="filler_application_listing" class="form-group col-sm-12"><p>&nbsp;</p></div>
 
 <!-- Application Deadline Field -->
-<div id="field_app_deadline_date" class="form-group col-sm-6">
+<div id="field_app_deadline_date" class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.input', [
         'name'   => 'application_deadline',
         'label'  => 'Application Deadline Date:',
@@ -133,7 +136,7 @@
 </div>
 
 <!-- Application Deadline Text Field -->
-<div id="field_app_deadline_text" class="form-group col-sm-6" style="display: none;">
+<div id="field_app_deadline_text" class="form-group col-sm-8 col-sm-offset-1" style="display: none;">
     @component('components.form.input', [
         'name'        => 'application_deadline_text',
         'label'       => 'Application Deadline Text:',
@@ -144,7 +147,7 @@
 </div>
 
 <!-- Application Deadline toggle format -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-3">
     @component('components.form.button', [
         'name'    => 'btn_text_deadline',
         'text'    => 'Toggle Deadline Date or Text',
@@ -152,12 +155,10 @@
     ])@endcomponent
 </div>
 
-
 <div id="filler_deadline" class="form-group col-sm-12"><p>&nbsp;</p></div>
 
-
 <!-- Opportunity Begins Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.input', [
         'name'   => 'start_date',
         'label'  => 'Project Start Date:',
@@ -167,7 +168,7 @@
 </div>
 
 <!-- Opportunity Ends Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.input', [
         'name'   => 'end_date',
         'label'  => 'Project End Date:',
@@ -180,7 +181,7 @@
 
 
 <!-- Partner Organization Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.select', [
         'name'        => 'organization_id',
         'label'       => 'Project Partner Organization:',
@@ -216,6 +217,7 @@ $('#organization_id').selectize({
     ])@endcomponent
 </div>
 
+
 <!-- How Many Students are you looking for? Undergraduate or Graduate? -->
 
 
@@ -250,24 +252,25 @@ $('#organization_id').selectize({
 
 
 <!-- Categories Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.select_array', [
         'name'        => 'categories',
         'label'       => 'Categories:',
+        //'help_text'   => 'Begin typing to see available keywords',
         'placeholder' => 'Click or type to add categories...',
         'optionList'  => $categories,
         'attributes'  => 'multiple',
         'object'      => $opportunity->categories ?? null,
     ])@endcomponent
 </div>
-
+{{--
 <script>
 $('#categories').selectize({
     create: false,
     persist: false,
     highlight: true,
     openOnFocus: true,
-    maxOptions: 10,
+    maxOptions: 30,
     maxItems: null,
     valueField: 'id',
     labelField: 'name',
@@ -275,26 +278,27 @@ $('#categories').selectize({
     options: {!! json_encode($categories) !!}
 });
 </script>
-
+ --}}
 <!-- Keywords Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.select_array', [
         'name'        => 'keywords',
         'label'       => 'Keywords:',
+        //'help_text'   => 'Begin typing to see available categories',
         'placeholder' => 'Click or type to add keywords...',
         'optionList'  => $keywords,
         'attributes'  => 'multiple',
         'object'      => $opportunity->keywords ?? null,
     ])@endcomponent
 </div>
-
+{{--
 <script>
 $('#keywords').selectize({
     create: true,
     persist: true,
     highlight: true,
     openOnFocus: true,
-    maxOptions: 10,
+    maxOptions: 30,
     maxItems: null,
     valueField: 'id',
     labelField: 'name',
@@ -302,6 +306,7 @@ $('#keywords').selectize({
     options: {!! json_encode($keywords) !!}
 });
 </script>
+ --}}
 
 <!-- Compensation Field -->
 <div class="form-group col-sm-12 col-lg-12">
@@ -326,7 +331,7 @@ $('#keywords').selectize({
 </div>
 
 <!-- Submit Field -->
-<div class="form-group col-sm-12">
+<div class="form-group col-sm-11 col-sm-offset-1">
     @component('components.form.button', [
         'name'    => 'btn_submit',
         'text'    => 'Save',

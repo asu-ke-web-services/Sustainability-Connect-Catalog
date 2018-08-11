@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SearchApp from './components/SearchApp';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13,4 +16,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/SearchApp');
+// require('./components/SearchApp');
+
+if (document.getElementById('search')) {
+    ReactDOM.render(<SearchApp />, document.querySelector('#search'));
+}

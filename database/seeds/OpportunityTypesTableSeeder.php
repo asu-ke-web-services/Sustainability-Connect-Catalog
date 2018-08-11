@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use SCCatalog\Models\OpportunityType;
 
@@ -17,8 +18,6 @@ class OpportunityTypesTableSeeder extends Seeder
         DB::table('opportunity_types')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $faker = Faker\Factory::create();
-
 		// Pre-fill Opportunity Type options
 
         $opportunity_types = OpportunityType::firstOrNew([
@@ -28,8 +27,8 @@ class OpportunityTypesTableSeeder extends Seeder
             $opportunity_types->fill([
             	'order' => 1,
                 'name' => 'Project',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -42,8 +41,8 @@ class OpportunityTypesTableSeeder extends Seeder
             $opportunity_types->fill([
             	'order' => 2,
                 'name' => 'Internship',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();

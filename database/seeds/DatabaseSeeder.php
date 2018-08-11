@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
         $this->call(KeywordsTableSeeder::class);
         $this->call(RelationshipTypesTableSeeder::class);
         $this->call(StudentDegreeLevelsTableSeeder::class);
-        $this->call(AdminUserTableSeeder::class);
-        $this->call(OrganizationsTableSeeder::class);
+        // $this->call(AdminUserTableSeeder::class);
+        // $this->call(OrganizationsTableSeeder::class);
         $this->call(OpportunityTypesTableSeeder::class);
         $this->call(AffiliationsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(OpportunityTablesSeeder::class);
-        $this->call(MoreAdminUsersTableSeeder::class);
+        $this->call(ProjectsSeeder::class);
+        $this->call(InternshipsSeeder::class);
+        // $this->call(MoreAdminUsersTableSeeder::class);
     }
 }

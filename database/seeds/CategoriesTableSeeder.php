@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use SCCatalog\Models\Category;
 
@@ -17,8 +18,6 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $faker = Faker\Factory::create();
-
         $category = Category::firstOrNew([
             'slug' => 'culminating-experience',
         ]);
@@ -26,8 +25,8 @@ class CategoriesTableSeeder extends Seeder
             $category->fill([
             	'order' => 1,
                 'name' => 'Culminating Experience',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -40,8 +39,8 @@ class CategoriesTableSeeder extends Seeder
             $category->fill([
             	'order' => 2,
                 'name' => 'Global Development Research (GDR)',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -54,8 +53,8 @@ class CategoriesTableSeeder extends Seeder
             $category->fill([
             	'order' => 3,
                 'name' => 'Internship',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -68,8 +67,8 @@ class CategoriesTableSeeder extends Seeder
             $category->fill([
             	'order' => 4,
                 'name' => 'Practicum',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -82,8 +81,8 @@ class CategoriesTableSeeder extends Seeder
             $category->fill([
             	'order' => 5,
                 'name' => 'Research',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -96,8 +95,8 @@ class CategoriesTableSeeder extends Seeder
             $category->fill([
             	'order' => 6,
                 'name' => 'Workshop',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();

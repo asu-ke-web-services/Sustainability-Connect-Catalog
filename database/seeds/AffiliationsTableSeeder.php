@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use SCCatalog\Models\Affiliation;
 
@@ -17,12 +18,10 @@ class AffiliationsTableSeeder extends Seeder
         DB::table('affiliations')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $faker = Faker\Factory::create();
-
         // Project Affiliations
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'urgent',
+            'slug' => 'project-urgent',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -31,15 +30,15 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 1,
                 'access_control' => 0,
                 'name' => 'Urgent',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'sos-majors-only',
+            'slug' => 'project-sos-majors-only',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -48,15 +47,15 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 2,
                 'access_control' => 1,
                 'name' => 'SOS Majors Only',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'available-undergraduate',
+            'slug' => 'project-available-undergraduate',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -65,15 +64,15 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 3,
                 'access_control' => 0,
                 'name' => 'Available for Undergraduates',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'available-graduate',
+            'slug' => 'project-available-graduate',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -82,15 +81,15 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 4,
                 'access_control' => 0,
                 'name' => 'Available for Graduate Students',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'general-project',
+            'slug' => 'project-general-project',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -99,15 +98,15 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 5,
                 'access_control' => 0,
                 'name' => 'General Project',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'culminating-experience',
+            'slug' => 'project-culminating-experience',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -116,15 +115,15 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 6,
                 'access_control' => 0,
                 'name' => 'Culminating Experience',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'class-project',
+            'slug' => 'project-class-project',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -133,15 +132,15 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 7,
                 'access_control' => 0,
                 'name' => 'Class Project',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'other',
+            'slug' => 'project-other',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -150,49 +149,49 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 8,
                 'access_control' => 0,
                 'name' => 'Other',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'research-thesis-dissertation',
+            'slug' => 'project-other-g',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
-            	'opportunity_type_id' => 1,
-            	'order' => 9,
+                'parent_id' => null,
+                'opportunity_type_id' => 1,
+                'order' => 9,
                 'access_control' => 0,
-                'name' => 'Research (Thesis/Dissertation)',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'name' => 'Other (G)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'reu',
+            'slug' => 'project-other-u',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
-            	'opportunity_type_id' => 1,
-            	'order' => 10,
+                'parent_id' => null,
+                'opportunity_type_id' => 1,
+                'order' => 10,
                 'access_control' => 0,
-                'name' => 'REU',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'name' => 'Other (U)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'service-learning',
+            'slug' => 'project-research-thesis-dissertation',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -200,16 +199,16 @@ class AffiliationsTableSeeder extends Seeder
             	'opportunity_type_id' => 1,
             	'order' => 11,
                 'access_control' => 0,
-                'name' => 'Service Learning',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'name' => 'Research (Thesis/Dissertation)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'workshop',
+            'slug' => 'project-reu',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -217,9 +216,43 @@ class AffiliationsTableSeeder extends Seeder
             	'opportunity_type_id' => 1,
             	'order' => 12,
                 'access_control' => 0,
+                'name' => 'REU',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $affiliation = Affiliation::firstOrNew([
+            'slug' => 'project-service-learning',
+        ]);
+        if (!$affiliation->exists) {
+            $affiliation->fill([
+            	'parent_id' => null,
+            	'opportunity_type_id' => 1,
+            	'order' => 13,
+                'access_control' => 0,
+                'name' => 'Service Learning',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $affiliation = Affiliation::firstOrNew([
+            'slug' => 'project-workshop',
+        ]);
+        if (!$affiliation->exists) {
+            $affiliation->fill([
+            	'parent_id' => null,
+            	'opportunity_type_id' => 1,
+            	'order' => 14,
+                'access_control' => 0,
                 'name' => 'Workshop',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -229,24 +262,24 @@ class AffiliationsTableSeeder extends Seeder
         // Internship Affiliations
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'urgent',
+            'slug' => 'internship-urgent',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
-            	'opportunity_type_id' => 2,
-            	'order' => 1,
+                'parent_id' => null,
+                'opportunity_type_id' => 2,
+                'order' => 1,
                 'access_control' => 0,
                 'name' => 'Urgent',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'sos-majors-only',
+            'slug' => 'internship-sos-majors-only',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -255,49 +288,49 @@ class AffiliationsTableSeeder extends Seeder
             	'order' => 2,
                 'access_control' => 1,
                 'name' => 'SOS Majors Only',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'available-fall',
+            'slug' => 'internship-open-all-majors',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
-            	'opportunity_type_id' => 2,
-            	'order' => 3,
-                'access_control' => 0,
-                'name' => 'Available for Fall',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'parent_id' => null,
+                'opportunity_type_id' => 2,
+                'order' => 3,
+                'access_control' => 1,
+                'name' => 'Open to All Majors',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'available-spring',
+            'slug' => 'internship-credit-pending-approval',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
-            	'opportunity_type_id' => 2,
-            	'order' => 4,
-                'access_control' => 0,
-                'name' => 'Available for Spring',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'parent_id' => null,
+                'opportunity_type_id' => 2,
+                'order' => 4,
+                'access_control' => 1,
+                'name' => 'Credit Pending Approval',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'available-summer',
+            'slug' => 'internship-available-fall',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -305,16 +338,16 @@ class AffiliationsTableSeeder extends Seeder
             	'opportunity_type_id' => 2,
             	'order' => 5,
                 'access_control' => 0,
-                'name' => 'Available for Summer',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'name' => 'Available for Fall',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'paid',
+            'slug' => 'internship-available-spring',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
@@ -322,12 +355,81 @@ class AffiliationsTableSeeder extends Seeder
             	'opportunity_type_id' => 2,
             	'order' => 6,
                 'access_control' => 0,
-                'name' => 'Paid Internship',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'name' => 'Available for Spring',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
         }
+
+        $affiliation = Affiliation::firstOrNew([
+            'slug' => 'internship-available-summer',
+        ]);
+        if (!$affiliation->exists) {
+            $affiliation->fill([
+            	'parent_id' => null,
+            	'opportunity_type_id' => 2,
+            	'order' => 7,
+                'access_control' => 0,
+                'name' => 'Available for Summer',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $affiliation = Affiliation::firstOrNew([
+            'slug' => 'internship-paid',
+        ]);
+        if (!$affiliation->exists) {
+            $affiliation->fill([
+            	'parent_id' => null,
+            	'opportunity_type_id' => 2,
+            	'order' => 8,
+                'access_control' => 0,
+                'name' => 'Paid Internship',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $affiliation = Affiliation::firstOrNew([
+            'slug' => 'internship-available-undergraduates',
+        ]);
+        if (!$affiliation->exists) {
+            $affiliation->fill([
+                'parent_id' => null,
+                'opportunity_type_id' => 2,
+                'order' => 9,
+                'access_control' => 0,
+                'name' => 'Available for Undergraduates',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $affiliation = Affiliation::firstOrNew([
+            'slug' => 'internship-available-grad-students',
+        ]);
+        if (!$affiliation->exists) {
+            $affiliation->fill([
+                'parent_id' => null,
+                'opportunity_type_id' => 2,
+                'order' => 10,
+                'access_control' => 0,
+                'name' => 'Available for Grad Students',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
     }
 }

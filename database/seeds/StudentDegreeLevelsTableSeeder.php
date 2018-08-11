@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use SCCatalog\Models\StudentDegreeLevel;
 
@@ -26,8 +27,8 @@ class StudentDegreeLevelsTableSeeder extends Seeder
             $category->fill([
             	'order' => 1,
                 'name' => 'Bachelors',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -40,8 +41,8 @@ class StudentDegreeLevelsTableSeeder extends Seeder
             $category->fill([
             	'order' => 2,
                 'name' => 'Masters',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -54,8 +55,8 @@ class StudentDegreeLevelsTableSeeder extends Seeder
             $category->fill([
             	'order' => 3,
                 'name' => 'Doctoral',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -68,8 +69,8 @@ class StudentDegreeLevelsTableSeeder extends Seeder
             $category->fill([
             	'order' => 4,
                 'name' => 'Professional',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();
@@ -82,8 +83,8 @@ class StudentDegreeLevelsTableSeeder extends Seeder
             $category->fill([
             	'order' => 5,
                 'name' => 'Non-Degree Seeking',
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'created_by' => 1,
                 'updated_by' => 1,
             ])->save();

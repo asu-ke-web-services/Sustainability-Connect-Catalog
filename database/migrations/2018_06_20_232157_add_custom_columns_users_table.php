@@ -19,6 +19,9 @@ class AddCustomColumnsUsersTable extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('login_name')->nullable();
             $table->string('type')->nullable();
             $table->string('asurite')->nullable();
             $table->integer('student_degree_level_id')->unsigned()->nullable();
@@ -65,7 +68,7 @@ class AddCustomColumnsUsersTable extends Migration
             $table->dropForeign('users_organization_id_foreign');
             $table->dropForeign('users_student_degree_level_id_foreign');
             $table->dropForeign('users_updated_by_foreign');
-            $table->dropColumn(['type', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id', 'deleted_at', 'created_by', 'updated_by', 'deleted_by']);
+            $table->dropColumn(['first_name', 'last_name', 'login_name', 'type', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id', 'deleted_at', 'created_by', 'updated_by', 'deleted_by']);
         });
     }
 }

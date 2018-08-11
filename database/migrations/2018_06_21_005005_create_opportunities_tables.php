@@ -29,6 +29,7 @@ class CreateOpportunitiesTables extends Migration
             $table->boolean('is_hidden');
             $table->text('summary')->nullable();
             $table->text('description')->nullable();
+            $table->integer('fav_count')->unsigned()->nullable();
             $table->integer('parent_opportunity_id')->unsigned()->nullable();
             $table->integer('organization_id')->unsigned()->nullable();
             $table->integer('supervisor_user_id')->unsigned()->nullable();

@@ -15,6 +15,7 @@ class CreateInternshipsTable extends Migration
     {
         Schema::create('internships', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('degree_program')->nullable();
             $table->text('compensation')->nullable();
             $table->text('responsibilities')->nullable();
             $table->text('qualifications')->nullable();
@@ -22,6 +23,7 @@ class CreateInternshipsTable extends Migration
             $table->string('program_lead')->nullable();
             $table->string('success_story')->nullable();
             $table->string('library_collection')->nullable();
+            $table->integer('fav_count')->unsigned();
             // $table->timestamps();
             // $table->softDeletes();
             // $table->integer('created_by')->unsigned()->nullable();

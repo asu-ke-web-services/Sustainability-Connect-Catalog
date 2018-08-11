@@ -81,18 +81,6 @@
                                 </div>
 
                                 <div class="container pad-bot-md pad-top-sm">
-                                    {{-- <section class="content-header">
-                                        <form method="GET" action="{{ url('projects') }}">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="text" name="search" class="form-control" placeholder="Search">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <button class="btn btn-info">Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </section> --}}
                                     <!-- TODO: Flash alerts -->
                                     @yield('content')
                                 </div><!-- .entry-content -->

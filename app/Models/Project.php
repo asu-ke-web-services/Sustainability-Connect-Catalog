@@ -35,9 +35,7 @@ class Project extends Model
 
     public $table = 'projects';
 
-    protected $dates = [
-        'deleted_at',
-    ];
+    public $timestamps = false;
 
     public $fillable = [
         'compensation',

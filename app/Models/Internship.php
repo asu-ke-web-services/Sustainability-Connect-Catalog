@@ -30,8 +30,9 @@ class Internship extends Model
 
     public $table = 'internships';
 
+    public $timestamps = false;
+
     protected $dates = [
-        'deleted_at',
         'publish_on',
         'publish_until',
     ];

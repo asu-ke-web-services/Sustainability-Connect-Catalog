@@ -64,19 +64,21 @@ class ProjectController extends OpportunityController
         $this->repository->pushCriteria(new RequestCriteria($request));
         $this->repository->pushCriteria(ProjectCriteria::class);
 
-        if($request->has('search')) {
-            $opportunities = Opportunity::search($request->get('search'))->get();
+        // if($request->has('search')) {
+        //     $opportunities = Opportunity::search($request->get('search'))->get();
 
-        } else {
-            $opportunities = $this->repository->with(['opportunityable'])->all();
+        // } else {
+        //     $opportunities = $this->repository->with(['opportunityable'])->all();
 
-        }
+        // }
 
-        return view('projects.search', [
-            'type' => $opportunities->first()->opportunityable_type,
-            'pageTitle' => str_plural($opportunities->first()->opportunityable_type),
-            'opportunities' => $opportunities
-        ]);
+        // return view('projects.search', [
+        //     'type' => $opportunities->first()->opportunityable_type,
+        //     'pageTitle' => str_plural($opportunities->first()->opportunityable_type),
+        //     'opportunities' => $opportunities
+        // ]);
+
+        return view('projects.search');
     }
 
     /**

@@ -139,7 +139,7 @@ class SearchApp extends Component {
           <InstantSearch
             appId="OISWB86UY6"
             apiKey="5b3f49bc4c117cce7b99c028562f51c0"
-            indexName="opportunities"
+            indexName="projects"
             searchState={this.props.searchState}
             createURL={this.props.createURL}
             onSearchStateChange={this.props.onSearchStateChange}

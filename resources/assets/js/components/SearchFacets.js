@@ -6,8 +6,8 @@ import {
 
 export const SearchFacets = () => (
   <aside>
-    <Panel title="Types" id="type">
-      <RefinementListLinks attribute="type" defaultRefinement="Project"/>
+    <Panel title="Affiliations" id="affiliations">
+      <RefinementListLinks attribute="affiliations"/>
     </Panel>
     <Panel title="Categories" id="categories">
       <RefinementListLinks attribute="categories" />

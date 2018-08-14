@@ -286,6 +286,23 @@ class Opportunity extends Model
     */
 
     /**
+     * Get the published status of this model.
+     *
+     * @return bool
+     */
+    public function isPublished()
+    {
+        if (
+            $this->is_hidden === 1 ||
+            $this->status_id < 3
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions() : SlugOptions

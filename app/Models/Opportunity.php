@@ -189,6 +189,24 @@ class Opportunity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
+    public function affiliations()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Affiliation::class, 'affiliation_opportunity')->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function accessAffiliations()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Affiliation::class, 'affiliation_opportunity')
+            ->where('access_control', 1)
+            ->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
     public function categories()
     {
         return $this->belongsToMany(\SCCatalog\Models\Category::class, 'category_opportunity')->withTimestamps();

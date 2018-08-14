@@ -22,6 +22,7 @@ use SCCatalog\Http\Requests\UpdateOpportunityRequest;
 use SCCatalog\Validators\OpportunityValidator;
 use SCCatalog\Models\Category;
 use SCCatalog\Models\Keyword;
+use SCCatalog\Models\BudgetType;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\OpportunityStatus;
 use SCCatalog\Models\Organization;
@@ -90,6 +91,7 @@ class ProjectController extends OpportunityController
     {
         $categories = Category::select('id', 'name')->get()->toArray();
         $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $budgetTypes = BudgetType::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
@@ -100,6 +102,7 @@ class ProjectController extends OpportunityController
             'pageTitle' => 'New Project',
             'categories' => $categories,
             'keywords' => $keywords,
+            'budgetTypes' => $budgetTypes,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
             'statuses' => $statuses,
@@ -116,6 +119,7 @@ class ProjectController extends OpportunityController
     {
         $categories = Category::select('id', 'name')->get()->toArray();
         $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $budgetTypes = BudgetType::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
@@ -126,6 +130,7 @@ class ProjectController extends OpportunityController
             'pageTitle' => 'New Project Idea',
             'categories' => $categories,
             'keywords' => $keywords,
+            'budgetTypes' => $budgetTypes,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
             'statuses' => $statuses,
@@ -279,6 +284,7 @@ class ProjectController extends OpportunityController
 
         $categories = Category::select('id', 'name')->get()->toArray();
         $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $budgetTypes = BudgetType::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
@@ -290,6 +296,7 @@ class ProjectController extends OpportunityController
             'opportunity' => $opportunity,
             'categories' => $categories,
             'keywords' => $keywords,
+            'budgetTypes' => $budgetTypes,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
             'statuses' => $statuses,

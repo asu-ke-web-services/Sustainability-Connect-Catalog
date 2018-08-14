@@ -389,11 +389,12 @@ $('#keywords').selectize({
 
 <!-- Budget Type Field -->
 <div class="form-group col-sm-8 col-sm-offset-1">
-    @component('components.form.input', [
-        'name'        => 'budget_type',
+    @component('components.form.select', [
+        'name'        => 'budget_type_id',
         'label'       => 'Budget Available:',
-        'help_text'   => 'Enter whether there is a budget for the project. The budget entails monetary and in-kind contributions.',
+        'help_text'   => 'Select budget type for the project...',
         'placeholder' => 'Monetary',
+        'optionList'  => $budgetTypes,
         'object'      => $opportunity->opportunityable ?? null,
     ])@endcomponent
 </div>

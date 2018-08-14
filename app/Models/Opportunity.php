@@ -7,7 +7,6 @@ use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
-use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -45,7 +44,6 @@ class Opportunity extends Model
     use BlameableTrait;
     use FormAccessible;
     use HasSlug;
-    use Searchable;
     use SoftDeletes;
 
     /*
@@ -115,15 +113,6 @@ class Opportunity extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
-    // public static function boot()
-    // {
-    //     static::saved(function ($model) {
-    //         $model->opportunityable->filter(function ($item) {
-    //             return $item->shouldBeSearchable();
-    //         })->searchable();
-    //     });
-    // }
 
     /*
     |--------------------------------------------------------------------------
@@ -461,42 +450,4 @@ class Opportunity extends Model
     |--------------------------------------------------------------------------
     */
 
-
-    public function toSearchableArray()
-    {
-        $opportunity = $this->toArray();
-
-        $opportunity['type']              = $this->opportunityable_type;
-        $opportunity['status']            = $this->status->name;
-        $opportunity['organizationName']  = $this->organization->name;
-        $opportunity['parentOpportunity'] = $this->parentOpportunity;
-        $opportunity['supervisorUser']    = $this->supervisorUser;
-        $opportunity['submittingUser']    = $this->submittingUser;
-
-        $opportunity['opportunityable']   = $this->opportunityable;
-
-        // Index Addresses
-        $opportunity['addresses'] = $this->addresses->map(function ($data) {
-                            return $data['city'] .
-                                    ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
-                                    ( is_null($data['country']) ? '' : (', ' . $data['country']) );
-        })->toArray();
-
-        // Index Categories names
-        $opportunity['categories'] = $this->categories->map(function ($data) {
-                                        return $data['name'];
-        })->toArray();
-
-        // Index Keywords names
-        $opportunity['keywords'] = $this->keywords->map(function ($data) {
-                                        return $data['name'];
-        })->toArray();
-
-        // // Index Notes body content
-        // $opportunity['notes'] = $this->notes->map(function ($data) {
-        //                                 return $data['body'];
-        // })->toArray();
-
-        return $opportunity;
-    }
 }

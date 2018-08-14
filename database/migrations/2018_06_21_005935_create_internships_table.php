@@ -23,7 +23,6 @@ class CreateInternshipsTable extends Migration
             $table->string('program_lead')->nullable();
             $table->string('success_story')->nullable();
             $table->string('library_collection')->nullable();
-            $table->integer('fav_count')->unsigned();
             // $table->timestamps();
             // $table->softDeletes();
             // $table->integer('created_by')->unsigned()->nullable();

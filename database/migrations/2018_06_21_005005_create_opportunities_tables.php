@@ -21,15 +21,15 @@ class CreateOpportunitiesTables extends Migration
             $table->string('slug')->unique();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->date('listing_starts')->nullable();
-            $table->date('listing_ends')->nullable();
+            $table->date('listing_start_date')->nullable();
+            $table->date('listing_end_date')->nullable();
             $table->date('application_deadline')->nullable();
             $table->string('application_deadline_text')->nullable();
             $table->integer('opportunity_status_id')->unsigned();
             $table->boolean('is_hidden');
             $table->text('summary')->nullable();
             $table->text('description')->nullable();
-            $table->integer('fav_count')->unsigned()->nullable();
+            $table->integer('follower_count')->unsigned()->nullable();
             $table->integer('parent_opportunity_id')->unsigned()->nullable();
             $table->integer('organization_id')->unsigned()->nullable();
             $table->integer('supervisor_user_id')->unsigned()->nullable();

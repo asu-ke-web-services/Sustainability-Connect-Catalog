@@ -33,11 +33,10 @@ class Internship extends Model
     public $timestamps = false;
 
     protected $dates = [
-        'publish_on',
-        'publish_until',
     ];
 
     public $fillable = [
+        'degree_program',
         'compensation',
         'responsibilities',
         'qualifications',

@@ -38,6 +38,8 @@ class Project extends Model
     public $timestamps = false;
 
     public $fillable = [
+        'review_status_id',
+        'degree_program',
         'compensation',
         'responsibilities',
         'learning_outcomes',
@@ -45,7 +47,7 @@ class Project extends Model
         'qualifications',
         'application_instructions',
         'implementation_paths',
-        'budget_type',
+        'budget_type_id',
         'budget_amount',
         'program_lead',
         'success_story',

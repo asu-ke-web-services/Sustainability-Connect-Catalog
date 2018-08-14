@@ -31,8 +31,8 @@ use Spatie\Sluggable\SlugOptions;
  * @property string title
  * @property string alt_title
  * @property string slug
- * @property date listing_starts
- * @property date listing_ends
+ * @property date listing_start_date
+ * @property date listing_end_date
  * @property date start_date
  * @property date end_date
  * @property string application_deadline
@@ -60,8 +60,8 @@ class Opportunity extends Model
         'application_deadline',
         'deleted_at',
         'end_date',
-        'listing_ends',
-        'listing_starts',
+        'listing_end_date',
+        'listing_start_date',
         'start_date',
     ];
 
@@ -71,8 +71,8 @@ class Opportunity extends Model
         'slug',
         'start_date',
         'end_date',
-        'listing_starts',
-        'listing_ends',
+        'listing_start_date',
+        'listing_end_date',
         'application_deadline',
         'application_deadline_text',
         'opportunity_status_id',
@@ -91,12 +91,12 @@ class Opportunity extends Model
      * @var array
      */
     protected $casts = [
-        'start_date'                => 'date',
-        'end_date'                  => 'date',
-        'listing_ends'              => 'date',
-        'listing_starts'            => 'date',
-        'application_deadline'      => 'date',
-        'is_hidden'                 => 'boolean',
+        'start_date'           => 'date',
+        'end_date'             => 'date',
+        'listing_end_date'     => 'date',
+        'listing_start_date'   => 'date',
+        'application_deadline' => 'date',
+        'is_hidden'            => 'boolean',
     ];
 
     /**

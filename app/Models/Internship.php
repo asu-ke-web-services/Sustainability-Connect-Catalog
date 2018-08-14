@@ -104,23 +104,60 @@ class Internship extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * Get the value used to index the model.
+     *
+     * @return mixed
+     */
+    public function getScoutKey()
+    {
+        return $this->opportunity->id;
+    }
+
+    /**
+     * Get the published status of this model.
+     *
+     * @return bool
+     */
+    public function isPublished()
+    {
+        $opportunity = $this->opportunity->toArray();
+
+        if (
+            $opportunity['is_hidden'] === 1 ||
+            $opportunity['opportunity_status_id'] === 8
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
     |--------------------------------------------------------------------------
     */
 
+    public function shouldBeSearchable()
+    {
+        if ( $this->isPublished() === false ) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function toSearchableArray()
     {
-        $internship = $this->toArray();
+        // $internship = $this->toArray();
+        $internship = array();
 
-        // $internship['id']                  = $this->opportunity->id;
-        $internship['slug']                = $this->opportunity->slug;
+        $internship['id']                  = $this->opportunity->id;
         $internship['type']                = 'Internship';
         $internship['name']                = $this->opportunity->name;
         $internship['publicName']          = $this->opportunity->public_name;
         $internship['description']         = $this->opportunity->description;
-        $internship['summary']             = $this->opportunity->summary;
         $internship['isHidden']            = $this->opportunity->is_hidden;
         $internship['startDate']           = $this->opportunity->start_date;
         $internship['endDate']             = $this->opportunity->end_date;
@@ -129,34 +166,41 @@ class Internship extends Model
                 $this->opportunity->application_deadline_text :
                 $this->opportunity->application_deadline
             );
-        $internship['listingStarts']       = $this->opportunity->listing_starts;
-        $internship['listingEnds']         = $this->opportunity->listing_ends;
+        $internship['listingStartDate']    = $this->opportunity->listing_start_date;
+        $internship['listingEndDate']      = $this->opportunity->listing_end_date;
+        $internship['followerCount']       = $this->opportunity->follower_count;
         $internship['status']              = $this->opportunity->status->name;
-        $internship['organizationName']   = $this->opportunity->organization->name;
+        $internship['organizationName']    = $this->opportunity->organization->name ?? '';
         // $internship['parentOpportunity']   = $this->opportunity->parentOpportunity;
-        $internship['supervisorUser']      = $this->opportunity->supervisorUser;
-        $internship['submittingUser']      = $this->opportunity->submittingUser;
+        // $internship['supervisorUser']      = $this->opportunity->supervisorUser;
+        // $internship['submittingUser']      = $this->opportunity->submittingUser;
+
+        // Index Location Cities
+        $internship['locations'] = '';
+        foreach ($this->opportunity->addresses as $address) {
+            $internship['locations'] .= $address['city'] . $address['state'];
+        }
 
         // Index Addresses
-        $internship['addresses'] = $this->opportunity->addresses->map(function ($data) {
-                                        return $data['city'] .
-                                                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
-                                                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+        // $internship['addresses'] = $this->opportunity->addresses->map(function ($data) {
+        //                                 return $data['city'] .
+        //                                         ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+        //                                         ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+        // })->toArray();
+
+        // Index Affiliations
+        $internship['affiliations'] = $this->opportunity->affiliations->map(function ($data) {
+            return $data['name'];
         })->toArray();
 
         // Index Categories names
         $internship['categories'] = $this->opportunity->categories->map(function ($data) {
-                                        return $data['name'];
+            return $data['name'];
         })->toArray();
 
         // Index Keywords names
         $internship['keywords'] = $this->opportunity->keywords->map(function ($data) {
-                                        return $data['name'];
-        })->toArray();
-
-        // Index Notes body content
-        $internship['notes'] = $this->opportunity->notes->map(function ($data) {
-                                        return $data['body'];
+            return $data['name'];
         })->toArray();
 
         return $internship;

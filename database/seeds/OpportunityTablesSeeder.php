@@ -18,6 +18,7 @@ class OpportunityTablesSeeder extends Seeder
     {
         Eloquent::unguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('addresses')->truncate();
         DB::table('opportunity_statuses')->truncate();
         DB::table('opportunities')->truncate();
         DB::table('affiliation_opportunity')->truncate();

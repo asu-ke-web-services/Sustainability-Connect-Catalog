@@ -191,7 +191,7 @@ class Opportunity extends Model
      **/
     public function categories()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Category::class, 'category_opportunity');
+        return $this->belongsToMany(\SCCatalog\Models\Category::class, 'category_opportunity')->withTimestamps();
     }
 
     /**
@@ -199,7 +199,7 @@ class Opportunity extends Model
      **/
     public function keywords()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Keyword::class, 'keyword_opportunity');
+        return $this->belongsToMany(\SCCatalog\Models\Keyword::class, 'keyword_opportunity')->withTimestamps();
     }
 
     /**

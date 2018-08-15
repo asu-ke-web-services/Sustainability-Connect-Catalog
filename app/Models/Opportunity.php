@@ -86,11 +86,11 @@ class Opportunity extends Model
      * @var array
      */
     protected $casts = [
-        'start_date'           => 'date',
-        'end_date'             => 'date',
-        'listing_end_date'     => 'date',
-        'listing_start_date'   => 'date',
-        'application_deadline' => 'date',
+        'start_date'           => 'date:Y-m-d',
+        'end_date'             => 'date:Y-m-d',
+        'listing_end_date'     => 'date:Y-m-d',
+        'listing_start_date'   => 'date:Y-m-d',
+        'application_deadline' => 'date:Y-m-d',
         'is_hidden'            => 'boolean',
     ];
 

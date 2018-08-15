@@ -6,8 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
 /**
  * Class Opportunity
@@ -41,7 +39,6 @@ use Spatie\Sluggable\SlugOptions;
 class Opportunity extends Model
 {
     use BlameableTrait;
-    use HasSlug;
     use SoftDeletes;
 
     /*
@@ -299,17 +296,6 @@ class Opportunity extends Model
 
         return true;
     }
-
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
-
 
     /*
     |--------------------------------------------------------------------------

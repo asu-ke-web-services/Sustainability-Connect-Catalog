@@ -50,14 +50,14 @@ class Opportunity extends Model
     public $table = 'opportunities';
 
     protected $dates = [
-        'application_deadline',
         'created_at',
         'updated_at',
         'deleted_at',
-        'end_date',
+        'application_deadline',
         'listing_end_date',
         'listing_start_date',
         'start_date',
+        'end_date',
     ];
 
     public $fillable = [

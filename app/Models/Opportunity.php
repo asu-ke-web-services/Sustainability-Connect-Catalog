@@ -3,7 +3,6 @@
 namespace SCCatalog\Models;
 
 use Carbon\Carbon;
-use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
@@ -42,7 +41,6 @@ use Spatie\Sluggable\SlugOptions;
 class Opportunity extends Model
 {
     use BlameableTrait;
-    use FormAccessible;
     use HasSlug;
     use SoftDeletes;
 

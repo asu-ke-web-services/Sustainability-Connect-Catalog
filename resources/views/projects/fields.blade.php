@@ -18,13 +18,6 @@
     'object'      => $opportunity ?? null,
 ])@endcomponent
 
-<!-- Slug Field -->
-{{-- <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('slug', 'Slug:') !!}
-    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
-</div> --}}
-
-
 <!-- Description Field -->
 @component('components.form.textarea', [
     'name'        => 'description',

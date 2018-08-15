@@ -51,6 +51,8 @@ class Opportunity extends Model
 
     protected $dates = [
         'application_deadline',
+        'created_at',
+        'updated_at',
         'deleted_at',
         'end_date',
         'listing_end_date',

@@ -61,15 +61,8 @@ class InternshipController extends OpportunityController
      */
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new RequestCriteria($request));
-        $this->repository->pushCriteria(InternshipCriteria::class);
-        $opportunities = $this->repository->with(['opportunityable'])->all();
-
-        return view('internships.index', [
-            'type' => $opportunities->first()->opportunityable_type,
-            'pageTitle' => str_plural($opportunities->first()->opportunityable_type),
-            'opportunities' => $opportunities
-        ]);
+        // view React SearchApp
+        return view('internships.search');
     }
 
     /**
@@ -84,7 +77,7 @@ class InternshipController extends OpportunityController
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
-        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
+        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
 
         return view('internships.create', [
             'type' => 'Internship',
@@ -93,7 +86,7 @@ class InternshipController extends OpportunityController
             'keywords' => $keywords,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
-            'status' => $status,
+            'statuses' => $statuses,
             'users' => $users
         ]);
     }
@@ -209,7 +202,24 @@ class InternshipController extends OpportunityController
      */
     public function edit($id)
     {
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'supervisorUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+                // 'participants',
+                // 'activeMembers',
+            ])
+            ->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Internship not found');
@@ -222,7 +232,7 @@ class InternshipController extends OpportunityController
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users = User::select('id', 'name')->get()->toArray();
-        $status = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
+        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
 
         return view('internships.edit', [
             'type' => $opportunity->opportunityable_type,
@@ -232,7 +242,7 @@ class InternshipController extends OpportunityController
             'keywords' => $keywords,
             'allOrganizations' => $allOrganizations,
             'allOpportunities' => $allOpportunities,
-            'status' => $status,
+            'statuses' => $statuses,
             'users' => $users
         ]);
     }
@@ -247,7 +257,24 @@ class InternshipController extends OpportunityController
      */
     public function update($id, UpdateOpportunityRequest $request)
     {
-        $opportunity = $this->repository->with(['opportunityable'])->findWithoutFail($id);
+        $opportunity = $this->repository
+            ->with([
+                'opportunityable',
+                'addresses',
+                'notes',
+                'status',
+                'parentOpportunity',
+                'organization',
+                'supervisorUser',
+                'submittingUser',
+                'categories',
+                'keywords',
+                'followers',
+                'applicants',
+                // 'participants',
+                // 'activeMembers',
+            ])
+            ->findWithoutFail($id);
 
         if (empty($opportunity)) {
             Flash::error('Internship not found');
@@ -255,7 +282,7 @@ class InternshipController extends OpportunityController
             return redirect(route('internships.index'));
         }
 
-        $opportunity = $this->repository->with(['opportunityable'])->update($request->all(), $id);
+        $opportunity = $this->repository->update($request->all(), $id);
 
         Flash::success('Internship updated successfully.');
 

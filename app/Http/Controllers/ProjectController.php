@@ -62,23 +62,7 @@ class ProjectController extends OpportunityController
      */
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new RequestCriteria($request));
-        $this->repository->pushCriteria(ProjectCriteria::class);
-
-        // if($request->has('search')) {
-        //     $opportunities = Opportunity::search($request->get('search'))->get();
-
-        // } else {
-        //     $opportunities = $this->repository->with(['opportunityable'])->all();
-
-        // }
-
-        // return view('projects.search', [
-        //     'type' => $opportunities->first()->opportunityable_type,
-        //     'pageTitle' => str_plural($opportunities->first()->opportunityable_type),
-        //     'opportunities' => $opportunities
-        // ]);
-
+        // view React SearchApp
         return view('projects.search');
     }
 
@@ -228,10 +212,6 @@ class ProjectController extends OpportunityController
             ])
             ->findWithoutFail($id);
 
-        // dd($opportunity);
-
-
-
         if (empty($opportunity)) {
             Flash::error('Project not found');
 
@@ -339,9 +319,9 @@ class ProjectController extends OpportunityController
             return redirect(route('projects.index'));
         }
 
-        dd($request->all());
+        // dd($request->all());
 
-        $opportunity = $this->repository->with(['opportunityable'])->update($request->all(), $id);
+        $opportunity = $this->repository->update($request->all(), $id);
 
         Flash::success('Project updated successfully.');
 

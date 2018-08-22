@@ -18,7 +18,6 @@ class CreateOpportunitiesTables extends Migration
             $table->morphs('opportunityable');
             $table->string('name');
             $table->string('public_name')->nullable();
-            $table->string('slug')->unique();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->date('listing_start_date')->nullable();

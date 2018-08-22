@@ -162,7 +162,7 @@ class Opportunity extends Model
      **/
     public function parentOpportunity()
     {
-        return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'parent_opportunity_id');
+        return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'parent_opportunity_id')->withDefault();
     }
 
     /**
@@ -170,7 +170,7 @@ class Opportunity extends Model
      **/
     public function organization()
     {
-        return $this->belongsTo(\SCCatalog\Models\Organization::class, 'organization_id');
+        return $this->belongsTo(\SCCatalog\Models\Organization::class, 'organization_id')->withDefault();
     }
 
     /**
@@ -178,7 +178,7 @@ class Opportunity extends Model
      **/
     public function supervisorUser()
     {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'supervisor_user_id');
+        return $this->belongsTo(\SCCatalog\Models\User::class, 'supervisor_user_id')->withDefault();
     }
 
     /**
@@ -186,7 +186,7 @@ class Opportunity extends Model
      **/
     public function submittingUser()
     {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'submitting_user_id');
+        return $this->belongsTo(\SCCatalog\Models\User::class, 'submitting_user_id')->withDefault();
     }
 
 

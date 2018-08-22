@@ -9,18 +9,17 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
 use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
+use SCCatalog\Http\Requests\ApproveRequestToJoinRequest;
 use SCCatalog\Http\Requests\AddUserToOpportunityRequest;
-
 use SCCatalog\Jobs\Opportunity\FollowOpportunityJob;
 use SCCatalog\Jobs\Opportunity\UnfollowOpportunityJob;
 use SCCatalog\Jobs\Opportunity\RequestToJoinOpportunity;
 use SCCatalog\Jobs\Opportunity\ApproveRequestToJoinOpportunity;
 use SCCatalog\Jobs\Opportunity\AddUserToOpportunity;
-
-use SCCatalog\Validators\OpportunityValidator;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
+use SCCatalog\Validators\OpportunityValidator;
 
 /**
  * Class OpportunityUserController.

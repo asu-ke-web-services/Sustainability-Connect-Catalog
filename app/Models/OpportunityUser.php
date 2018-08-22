@@ -9,6 +9,8 @@ class OpportunityUser extends Pivot
     public $table = 'opportunities';
 
     protected $dates = [
+        'created_at',
+        'updated_at',
         'deleted_at',
     ];
 
@@ -26,12 +28,7 @@ class OpportunityUser extends Pivot
      * @var array
      */
     protected $casts = [
-        'id'                   => 'integer',
-        'opportunity_id'       => 'integer',
-        'user_id'              => 'integer',
-        'relationship_type_id' => 'integer',
-        'is_primary'              => 'boolean',
-        'comments'             => 'string'
+        'is_primary' => 'boolean',
     ];
 
     /**

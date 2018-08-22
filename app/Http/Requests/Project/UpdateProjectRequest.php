@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use SCCatalog\Models\Project;
 
-class ProjectUpdateRequest extends FormRequest
+class UpdateProjectRequest extends FormRequest
 {
 
     /**
@@ -26,5 +26,29 @@ class ProjectUpdateRequest extends FormRequest
     public function rules()
     {
         return Project::$rules;
+    }
+
+    /**
+     * Get the validation attributes that apply to the request.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            //
+        ];
+    }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            //
+        ];
     }
 }

@@ -128,7 +128,7 @@ class ProjectsSeeder extends Seeder
                     $app_deadline = Carbon::parse($old_project->application_deadline)->toDateString();
                 }
 
-                $new_project = Opportunity::create([
+                $new_opportunity = Opportunity::create([
                     'id'                    => $old_project->id,
                     'opportunityable_id'    => $new_project->id,
                     'opportunityable_type'  => 'Project',

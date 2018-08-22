@@ -24,13 +24,13 @@ class AddCustomColumnsUsersTable extends Migration
             $table->string('login_name')->nullable();
             $table->string('type')->nullable();
             $table->string('asurite')->nullable();
-            $table->integer('student_degree_level_id')->unsigned()->nullable();
+            $table->integer('student_degree_level_id')->unsigned()->index()->nullable();
             $table->text('degree_program')->nullable();
             $table->date('graduation_date')->nullable();
             $table->string('phone')->nullable();
             $table->text('research_interests')->nullable();
             $table->text('department')->nullable();
-            $table->integer('organization_id')->unsigned()->nullable();
+            $table->integer('organization_id')->unsigned()->index()->nullable();
 
             $table->foreign('student_degree_level_id')
                 ->references('id')

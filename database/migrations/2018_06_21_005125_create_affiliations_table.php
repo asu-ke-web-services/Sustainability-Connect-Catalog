@@ -15,8 +15,8 @@ class CreateAffiliationsTable extends Migration
     {
         Schema::create('affiliations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id')->unsigned()->nullable()->default(null);
-            $table->integer('opportunity_type_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->index()->nullable()->default(null);
+            $table->integer('opportunity_type_id')->unsigned()->index();
             $table->integer('order')->default(1);
             $table->string('name');
             $table->string('slug');
@@ -50,8 +50,8 @@ class CreateAffiliationsTable extends Migration
 
         Schema::create('affiliation_opportunity', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('opportunity_id')->unsigned();
-            $table->integer('affiliation_id')->unsigned();
+            $table->integer('opportunity_id')->unsigned()->index();
+            $table->integer('affiliation_id')->unsigned()->index();
             $table->integer('order')->default(1);
             $table->timestamps();
             $table->softDeletes();
@@ -80,8 +80,8 @@ class CreateAffiliationsTable extends Migration
 
         Schema::create('affiliation_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('affiliation_id')->unsigned();
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('affiliation_id')->unsigned()->index();
             $table->integer('order')->default(1);
             $table->timestamps();
             $table->softDeletes();

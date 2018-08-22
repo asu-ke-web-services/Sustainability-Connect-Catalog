@@ -24,7 +24,7 @@ class CreateProjectsTable extends Migration
             $table->text('qualifications')->nullable();
             $table->text('application_instructions')->nullable();
             $table->text('implementation_paths')->nullable();
-            $table->integer('budget_type_id')->unsigned()->nullable();
+            $table->integer('budget_type_id')->unsigned()->index()->nullable();
             $table->string('budget_amount')->nullable();
             $table->string('program_lead')->nullable();
             $table->string('success_story')->nullable();

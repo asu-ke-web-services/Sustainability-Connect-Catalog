@@ -103,14 +103,6 @@ class Opportunity extends Model
 
     ];
 
-    /**
-     * All relationships to be touched.
-     *
-     * @var array
-     */
-    protected $touches = [
-        'opportunityable'
-    ];
 
     /*
     |--------------------------------------------------------------------------

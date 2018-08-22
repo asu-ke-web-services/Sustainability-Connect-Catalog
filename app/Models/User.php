@@ -28,6 +28,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_token',
+        'first_name',
+        'last_name',
+        'login_name',
+        'type',
+        'asurite',
+        'student_degree_level_id',
+        'degree_program',
+        'graduation_date',
+        'phone',
+        'research_interests',
+        'department',
+        'organization_id'
     ];
 
     /**

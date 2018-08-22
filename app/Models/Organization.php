@@ -24,7 +24,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Organization extends Model
 {
     use BlameableTrait;
-    use Searchable;
+    // use Searchable;
     use SoftDeletes;
 
     public $table = 'organizations';

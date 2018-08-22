@@ -7,14 +7,13 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\User;
+use Mail;
+use SCCatalog\Mail\EmailVerification;
 
-class RemoveUserFromOpportunity implements ShouldQueue
+class SendVerificationEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $opportunity;
     protected $user;
 
     /**
@@ -22,9 +21,8 @@ class RemoveUserFromOpportunity implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Opportunity $opportunity, User $user)
+    public function __construct(User $user)
     {
-        $this->opportunity = $opportunity;
         $this->user = $user;
     }
 
@@ -35,8 +33,8 @@ class RemoveUserFromOpportunity implements ShouldQueue
      */
     public function handle()
     {
-        $this->opportunity->allRelatedUsers()->detach([
-            $this->user->id,
-        ]);
+        $email = new EmailVerification($this->user);
+
+        Mail::to($this->user->email)->send($email);
     }
 }

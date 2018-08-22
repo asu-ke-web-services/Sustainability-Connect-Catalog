@@ -72,6 +72,15 @@ class Project extends Model
 
     ];
 
+    /**
+     * All relationships to be touched on model update (touch updated_at).
+     *
+     * @var array
+     */
+    protected $touches = [
+        'opportunity'
+    ];
+
 
     /*
     |--------------------------------------------------------------------------

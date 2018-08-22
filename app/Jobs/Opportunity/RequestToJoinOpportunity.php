@@ -7,19 +7,26 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\RelationshipType;
+use SCCatalog\Models\User;
 
 class RequestToJoinOpportunity implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    protected $opportunity;
+    protected $user;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Opportunity $opportunity, User $user)
     {
-        //
+        $this->opportunity = $opportunity;
+        $this->user = $user;
     }
 
     /**
@@ -29,6 +36,10 @@ class RequestToJoinOpportunity implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $relationship = RelationshipType::where('slug', 'applicant')
+
+        $this->opportunity->allRelatedUsers()->syncWithoutDetaching([
+            $this->user->id => ['relationship_type_id' => $relationship->id],
+        ]);
     }
 }

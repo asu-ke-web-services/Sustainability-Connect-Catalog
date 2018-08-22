@@ -4,10 +4,11 @@ namespace SCCatalog\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use SCCatalog\Http\Requests\Request;
-use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Project;
 
-class CreateOpportunityRequest extends FormRequest
+class CreateProjectRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -15,8 +16,6 @@ class CreateOpportunityRequest extends FormRequest
      */
     public function authorize()
     {
-        // only allow updates if the user is logged in
-        // return \Auth::check();
         return true;
     }
 
@@ -27,7 +26,7 @@ class CreateOpportunityRequest extends FormRequest
      */
     public function rules()
     {
-        return Opportunity::$rules;
+        return Project::$rules;
     }
 
     /**

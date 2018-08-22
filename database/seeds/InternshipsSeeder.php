@@ -97,17 +97,18 @@ class InternshipsSeeder extends Seeder
                     'updated_by'       => 1,
                 ]);
 
-                DB::table('notes')->insert([
-                    'noteable_id'   => $old_internship->id + 450,
-                    'noteable_type' => 'Opportunity',
-                    'user_id'       => 1,
-                    'body'          => 'Comments: ' . $old_internship->comments,
-                    'created_at'    => Carbon::now(),
-                    'updated_at'    => Carbon::now(),
-                    'created_by'    => 1,
-                    'updated_by'    => 1,
-                ]);
-
+                if ($old_internship->comments > ' ') {
+                    DB::table('notes')->insert([
+                        'noteable_id'   => $old_internship->id + 450,
+                        'noteable_type' => 'Opportunity',
+                        'user_id'       => 1,
+                        'body'          => 'Comments: ' . $old_internship->comments,
+                        'created_at'    => Carbon::now(),
+                        'updated_at'    => Carbon::now(),
+                        'created_by'    => 1,
+                        'updated_by'    => 1,
+                    ]);
+                }
 
 
                 // DB::table('category_opportunity')->insert([

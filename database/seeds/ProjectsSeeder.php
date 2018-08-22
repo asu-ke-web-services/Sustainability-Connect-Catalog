@@ -168,28 +168,31 @@ class ProjectsSeeder extends Seeder
                     'updated_by'       => 1,
                 ]);
 
-                DB::table('notes')->insert([
-                    'noteable_id'   => $old_project->id,
-                    'noteable_type' => 'Opportunity',
-                    'user_id'       => 1,
-                    'body'          => 'Project Updates: ' . $old_project->project_updates,
-                    'created_at'    => Carbon::now(),
-                    'updated_at'    => Carbon::now(),
-                    'created_by'    => 1,
-                    'updated_by'    => 1,
-                ]);
+                if ($old_project->project_updates > ' ') {
+                    DB::table('notes')->insert([
+                        'noteable_id'   => $old_project->id,
+                        'noteable_type' => 'Opportunity',
+                        'user_id'       => 1,
+                        'body'          => 'Project Updates: ' . $old_project->project_updates,
+                        'created_at'    => Carbon::now(),
+                        'updated_at'    => Carbon::now(),
+                        'created_by'    => 1,
+                        'updated_by'    => 1,
+                    ]);
+                }
 
-                DB::table('notes')->insert([
-                    'noteable_id'   => $old_project->id,
-                    'noteable_type' => 'Opportunity',
-                    'user_id'       => 1,
-                    'body'          => 'Comments: ' . $old_project->comments,
-                    'created_at'    => Carbon::now(),
-                    'updated_at'    => Carbon::now(),
-                    'created_by'    => 1,
-                    'updated_by'    => 1,
-                ]);
-
+                if ($old_project->comments > ' ') {
+                    DB::table('notes')->insert([
+                        'noteable_id'   => $old_project->id,
+                        'noteable_type' => 'Opportunity',
+                        'user_id'       => 1,
+                        'body'          => 'Comments: ' . $old_project->comments,
+                        'created_at'    => Carbon::now(),
+                        'updated_at'    => Carbon::now(),
+                        'created_by'    => 1,
+                        'updated_by'    => 1,
+                    ]);
+                }
 
 
                 // DB::table('category_opportunity')->insert([

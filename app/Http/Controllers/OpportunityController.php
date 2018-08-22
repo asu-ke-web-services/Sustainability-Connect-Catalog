@@ -264,4 +264,55 @@ class OpportunityController extends Controller
 
         return redirect(route('opportunities.index'));
     }
+
+    /**
+     * Duplicate opportunity.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function clone($id, DuplicateOpportunityRequest $request)
+    {
+        $user = Auth::user();
+        $opportunity = $this->repository->findWithoutFail($id);
+
+        if (empty($opportunity)) {
+            Flash::error('Project not found');
+
+            return redirect(route('projects.index'));
+        }
+
+        DuplicateOpportunity::dispatch($opportunity, $user)
+
+        Flash::success('Successfully duplicated opportunity.');
+
+        return redirect(route('projects.index'));
+    }
+
+    /**
+     * Archive opportunity.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function archive($id, ArchiveOpportunityRequest $request)
+    {
+        $user = Auth::user();
+        $opportunity = $this->repository->findWithoutFail($id);
+
+        if (empty($opportunity)) {
+            Flash::error('Project not found');
+
+            return redirect(route('projects.index'));
+        }
+
+        ArchiveOpportunity::dispatch($opportunity, $user)
+
+        Flash::success('Successfully archived opportunity.');
+
+        return redirect(route('projects.index'));
+    }
+
 }

@@ -29,11 +29,11 @@ use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
 
 /**
- * Class OpportunityController.
+ * Class OpportunityUserController.
  *
  * @package namespace SCCatalog\Http\Controllers;
  */
-class OpportunityController extends Controller
+class OpportunityUserController extends Controller
 {
     /**
      * @var  OpportunityRepository

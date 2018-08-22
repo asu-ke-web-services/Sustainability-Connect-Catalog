@@ -220,6 +220,15 @@ class Opportunity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
+    public function allRelatedUsers()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\User::class, 'opportunity_user', 'opportunity_id', 'user_id')
+            ->using('\SCCatalog\Models\OpportunityUser');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
     public function followers()
     {
         return $this->belongsToMany(\SCCatalog\Models\User::class, 'opportunity_user', 'opportunity_id', 'user_id')

@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Listeners;
+namespace SCCatalog\Listeners\User;
 
 use SCCatalog\Events\UserRegistered;
 use Illuminate\Queue\InteractsWithQueue;

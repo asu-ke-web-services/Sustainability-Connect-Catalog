@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -15,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url)
     {
+        Paginator::useBootstrapThree();
+
         Relation::morphMap([
             'Internship'   => \SCCatalog\Models\Internship::class,
             'Opportunity'  => \SCCatalog\Models\Opportunity::class,

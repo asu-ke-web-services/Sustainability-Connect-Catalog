@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events;
+namespace SCCatalog\Events\User;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use SCCatalog\Models\User;
 
 class UserRegistered
 {

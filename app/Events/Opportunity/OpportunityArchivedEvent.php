@@ -9,19 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use SCCatalog\Models\Opportunity;
 
-class OpportunityParticipantAddedEvent
+class OpportunityArchivedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $opportunity;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Opportunity $opportunity)
     {
-        //
+        $this->opportunity = $opportunity;
     }
 
     /**

@@ -9,19 +9,25 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\User;
 
-class OpportunityClonedEvent
+class UserFollowedOpportunity
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $opportunity;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Opportunity $opportunity, User $user)
     {
-        //
+        $this->opportunity = $opportunity;
+        $this->user = $user;
     }
 
     /**

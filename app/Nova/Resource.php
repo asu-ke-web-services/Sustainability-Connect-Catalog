@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Nova;
+namespace App\Nova;
 
 use Laravel\Nova\Resource as NovaResource;
 use Laravel\Nova\Http\Requests\NovaRequest;

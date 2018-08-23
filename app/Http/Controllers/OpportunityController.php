@@ -283,7 +283,7 @@ class OpportunityController extends Controller
             return redirect(route('projects.index'));
         }
 
-        DuplicateOpportunity::dispatch($opportunity, $user)
+        DuplicateOpportunity::dispatch($opportunity, $user);
 
         Flash::success('Successfully duplicated opportunity.');
 
@@ -308,7 +308,7 @@ class OpportunityController extends Controller
             return redirect(route('projects.index'));
         }
 
-        ArchiveOpportunity::dispatch($opportunity, $user)
+        ArchiveOpportunity::dispatch($opportunity, $user);
 
         Flash::success('Successfully archived opportunity.');
 

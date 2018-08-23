@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Models;
 
-use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
@@ -12,7 +11,6 @@ use Spatie\Sluggable\SlugOptions;
 class OrganizationStatus extends Model
 {
     use BlameableTrait;
-    use CrudTrait;
     use HasSlug;
     use SoftDeletes;
 

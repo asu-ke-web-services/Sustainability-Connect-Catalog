@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\User;
 
-class UserFollowedOpportunity
+class UserRequestToJoinOpportunityApprovedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

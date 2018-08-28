@@ -140,6 +140,18 @@ class Project extends Model
     */
 
     /**
+     * Get the list of Opportunity Statuses.
+     *
+     * @return bool
+     */
+    public function getStatuses()
+    {
+        \SCCatalog\Models\OpportunityStatus::where('opportunity_type_id', 1)
+            ->orderBy('order', 'asc')
+            ->get();
+    }
+
+    /**
      * Get the value used to index the model.
      *
      * @return mixed

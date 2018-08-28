@@ -291,6 +291,27 @@ class Opportunity extends Model
     */
 
     /**
+     * Get the list of Opportunity Types.
+     *
+     * @return bool
+     */
+    public function getTypes()
+    {
+        \SCCatalog\Models\OpportunityType::all();
+    }
+
+    /**
+     * Get the list of Opportunity Statuses.
+     *
+     * @return bool
+     */
+    public function getStatuses()
+    {
+        \SCCatalog\Models\OpportunityStatus::orderBy('order', 'asc')
+            ->get();
+    }
+
+    /**
      * Get the published status of this model.
      *
      * @return bool

@@ -11,7 +11,6 @@ use Spatie\Sluggable\SlugOptions;
 class OpportunityReviewStatus extends Model
 {
     use BlameableTrait;
-    use CrudTrait;
     use HasSlug;
     use SoftDeletes;
 

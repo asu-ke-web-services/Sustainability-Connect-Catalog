@@ -13,13 +13,6 @@ class StudentDegreeLevelsTableSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('student_degree_levels')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-        $faker = Faker\Factory::create();
-
         $category = StudentDegreeLevel::firstOrNew([
             'slug' => 'bachelors',
         ]);

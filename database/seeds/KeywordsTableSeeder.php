@@ -13,11 +13,6 @@ class KeywordsTableSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('keywords')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
         $keyword = Keyword::firstOrNew([
             'slug' => 'air-quality',
         ]);

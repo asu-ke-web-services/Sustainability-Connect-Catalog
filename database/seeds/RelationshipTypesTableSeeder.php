@@ -13,13 +13,6 @@ class RelationshipTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('relationship_types')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-        $faker = Faker\Factory::create();
-
         $category = RelationshipType::firstOrNew([
             'slug' => 'follower',
         ]);

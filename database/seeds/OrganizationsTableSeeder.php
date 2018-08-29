@@ -14,14 +14,6 @@ class OrganizationsTableSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('organization_statuses')->truncate();
-        DB::table('organization_types')->truncate();
-        DB::table('organizations')->truncate();
-        DB::table('addresses')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
         // Pre-fill Organization Status options
 
         $organization_statuses = OrganizationStatus::firstOrNew([

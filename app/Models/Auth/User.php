@@ -2,16 +2,18 @@
 
 namespace SCCatalog\Models\Auth;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Scout\Searchable;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use SCCatalog\Models\Auth\Traits\Attribute\UserAttribute;
+use SCCatalog\Models\Auth\Traits\Method\UserMethod;
+use SCCatalog\Models\Auth\Traits\Relationship\UserRelationship;
+use SCCatalog\Models\Auth\Traits\Scope\UserScope;
+use SCCatalog\Models\Auth\Traits\SendUserPasswordReset;
 use SCCatalog\Models\Traits\Uuid;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
-use SCCatalog\Models\Auth\Traits\Scope\UserScope;
-use SCCatalog\Models\Auth\Traits\Method\UserMethod;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use SCCatalog\Models\Auth\Traits\SendUserPasswordReset;
-use SCCatalog\Models\Auth\Traits\Attribute\UserAttribute;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use SCCatalog\Models\Auth\Traits\Relationship\UserRelationship;
 
 /**
  * Class User.
@@ -20,6 +22,7 @@ class User extends Authenticatable
 {
     use HasRoles,
         Notifiable,
+        Searchable,
         SendUserPasswordReset,
         SoftDeletes,
         UserAttribute,
@@ -47,6 +50,16 @@ class User extends Authenticatable
         'timezone',
         'last_login_at',
         'last_login_ip',
+        'login_name',
+        'type',
+        'asurite',
+        'student_degree_level_id',
+        'degree_program',
+        'graduation_date',
+        'phone',
+        'research_interests',
+        'department',
+        'organization_id'
     ];
 
     /**
@@ -76,4 +89,9 @@ class User extends Authenticatable
         'active' => 'boolean',
         'confirmed' => 'boolean',
     ];
+
+    public function shouldBeSearchable()
+    {
+        return true;
+    }
 }

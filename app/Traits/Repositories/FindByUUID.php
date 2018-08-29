@@ -5,8 +5,8 @@ namespace SCCatalog\Support\Traits\Repository;
 /**
  * Trait FindByUUID
  *
- * @package    App\Support\Traits\Repository
- * @subpackage App\Support\Traits\Repository\FindByUUID
+ * @package    SCCatalog\Support\Traits\Repository
+ * @subpackage SCCatalog\Support\Traits\Repository\FindByUUID
  */
 trait FindByUUID
 {

@@ -7,8 +7,8 @@ use SCCatalog\Models\Address;
 /**
  * Class HasAddress
  *
- * @package    App\Support\Traits\Models
- * @subpackage App\Support\Traits\Models\HasAddress
+ * @package    SCCatalog\Support\Traits\Models
+ * @subpackage SCCatalog\Support\Traits\Models\HasAddress
  */
 trait HasAddress
 {

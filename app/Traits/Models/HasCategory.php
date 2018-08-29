@@ -7,8 +7,8 @@ use SCCatalog\Models\Category;
 /**
  * Class HasCategory
  *
- * @package    App\Support\Traits\Models
- * @subpackage App\Support\Traits\Models\HasCategory
+ * @package    SCCatalog\Support\Traits\Models
+ * @subpackage SCCatalog\Support\Traits\Models\HasCategory
  */
 trait HasCategory
 {

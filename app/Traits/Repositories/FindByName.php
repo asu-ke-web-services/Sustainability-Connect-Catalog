@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Trait FindByName
  *
- * @package    App\Support\Traits\Repository
- * @subpackage App\Support\Traits\Repository\FindByName
+ * @package    SCCatalog\Support\Traits\Repository
+ * @subpackage SCCatalog\Support\Traits\Repository\FindByName
  */
 trait FindByName
 {

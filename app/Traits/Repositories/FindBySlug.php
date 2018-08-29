@@ -5,8 +5,8 @@ namespace SCCatalog\Support\Traits\Repository;
 /**
  * Trait FindBySlug
  *
- * @package    App\Support\Traits\Repository
- * @subpackage App\Support\Traits\Repository\FindBySlug
+ * @package    SCCatalog\Support\Traits\Repository
+ * @subpackage SCCatalog\Support\Traits\Repository\FindBySlug
  */
 trait FindBySlug
 {

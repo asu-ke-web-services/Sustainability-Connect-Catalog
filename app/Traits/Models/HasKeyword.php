@@ -7,8 +7,8 @@ use SCCatalog\Models\Keyword;
 /**
  * Class HasKeyword
  *
- * @package    App\Support\Traits\Models
- * @subpackage App\Support\Traits\Models\HasKeyword
+ * @package    SCCatalog\Support\Traits\Models
+ * @subpackage SCCatalog\Support\Traits\Models\HasKeyword
  */
 trait HasKeyword
 {

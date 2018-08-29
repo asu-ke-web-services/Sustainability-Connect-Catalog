@@ -1,12 +1,9 @@
 <?php
 
-namespace SCCatalog\Http\Controllers;
+namespace SCCatalog\Http\Controllers\Frontend;
 
 use Flash;
 use Illuminate\Http\Request;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
 use SCCatalog\Criteria\InternshipCriteria;
 use SCCatalog\Http\Controllers\OpportunityController;
@@ -14,18 +11,13 @@ use SCCatalog\Http\Requests\CreateOpportunityRequest;
 use SCCatalog\Http\Requests\FollowOpportunityRequest;
 use SCCatalog\Http\Requests\UnfollowOpportunityRequest;
 use SCCatalog\Http\Requests\UpdateOpportunityRequest;
-// use SCCatalog\Http\Requests\InternshipCreateRequest;
-// use SCCatalog\Http\Requests\InternshipUpdateRequest;
 use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
-// use SCCatalog\Contracts\Repositories\InternshipRepositoryContract as InternshipRepository;
 use SCCatalog\Models\Category;
 use SCCatalog\Models\Keyword;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\OpportunityStatus;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
-use SCCatalog\Validators\OpportunityValidator;
-// use SCCatalog\Validators\InternshipValidator;
 
 class InternshipController extends OpportunityController
 {
@@ -72,12 +64,12 @@ class InternshipController extends OpportunityController
      */
     public function create()
     {
-        $categories = Category::select('id', 'name')->get()->toArray();
-        $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $categories       = Category::select('id', 'name')->get()->toArray();
+        $keywords         = Keyword::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users = User::select('id', 'name')->get()->toArray();
-        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
+        $users            = User::select('id', 'name')->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
 
         return view('internships.create', [
             'type' => 'Internship',
@@ -106,7 +98,9 @@ class InternshipController extends OpportunityController
 
         Flash::success('Internship saved successfully.');
 
-        return redirect(route('internships.index'));
+        event(new OpportunityCreatedEvent($opportunity));
+
+        return redirect(route('internships/{$opportunity}'));
     }
 
     /**
@@ -133,8 +127,6 @@ class InternshipController extends OpportunityController
                 'keywords',
                 'followers',
                 'applicants',
-                // 'participants',
-                // 'activeMembers',
             ])
             ->findWithoutFail($id);
 
@@ -175,8 +167,6 @@ class InternshipController extends OpportunityController
                 'keywords',
                 'followers',
                 'applicants',
-                // 'participants',
-                // 'activeMembers',
             ])
             ->findWithoutFail($id);
 
@@ -216,8 +206,6 @@ class InternshipController extends OpportunityController
                 'keywords',
                 'followers',
                 'applicants',
-                // 'participants',
-                // 'activeMembers',
             ])
             ->findWithoutFail($id);
 
@@ -227,12 +215,12 @@ class InternshipController extends OpportunityController
             return redirect(route('internships.index'));
         }
 
-        $categories = Category::select('id', 'name')->get()->toArray();
-        $keywords = Keyword::select('id', 'name')->get()->toArray();
+        $categories       = Category::select('id', 'name')->get()->toArray();
+        $keywords         = Keyword::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users = User::select('id', 'name')->get()->toArray();
-        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
+        $users            = User::select('id', 'name')->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
 
         return view('internships.edit', [
             'type' => $opportunity->opportunityable_type,
@@ -271,8 +259,6 @@ class InternshipController extends OpportunityController
                 'keywords',
                 'followers',
                 'applicants',
-                // 'participants',
-                // 'activeMembers',
             ])
             ->findWithoutFail($id);
 
@@ -283,6 +269,7 @@ class InternshipController extends OpportunityController
         }
 
         $opportunity = $this->repository->update($request->all(), $id);
+        event(new OpportunityUpdatedEvent($opportunity));
 
         Flash::success('Internship updated successfully.');
 
@@ -307,6 +294,7 @@ class InternshipController extends OpportunityController
         }
 
         $this->repository->delete($id);
+        event(new OpportunityDeletedEvent($opportunity));
 
         Flash::success('Internship deleted successfully.');
 

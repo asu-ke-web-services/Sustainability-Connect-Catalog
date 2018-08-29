@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Controllers;
+namespace SCCatalog\Http\Controllers\Frontend;
 
 use Flash;
 use Illuminate\Http\Request;

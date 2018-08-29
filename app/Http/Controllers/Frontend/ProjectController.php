@@ -1,23 +1,13 @@
 <?php
 
-namespace SCCatalog\Http\Controllers;
+namespace SCCatalog\Http\Controllers\Frontend;
 
 use Flash;
 use Illuminate\Http\Request;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
 use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
-// use SCCatalog\Contracts\Repositories\ProjectRepositoryContract as ProjectRepository;
 use SCCatalog\Criteria\ProjectCriteria;
 use SCCatalog\Http\Controllers\OpportunityController;
-use SCCatalog\Http\Requests\CreateOpportunityRequest;
-use SCCatalog\Http\Requests\FollowOpportunityRequest;
-use SCCatalog\Http\Requests\UnfollowOpportunityRequest;
-use SCCatalog\Http\Requests\UpdateOpportunityRequest;
-use SCCatalog\Http\Requests\CreateProjectRequest;
-use SCCatalog\Http\Requests\UpdateProjectRequest;
 // use SCCatalog\Validators\ProjectValidator;
 use SCCatalog\Validators\OpportunityValidator;
 use SCCatalog\Models\Category;
@@ -73,13 +63,13 @@ class ProjectController extends OpportunityController
      */
     public function create()
     {
-        $categories = Category::select('id', 'name')->get()->toArray();
-        $keywords = Keyword::select('id', 'name')->get()->toArray();
-        $budgetTypes = BudgetType::select('id', 'name')->get()->toArray();
+        $categories       = Category::select('id', 'name')->get()->toArray();
+        $keywords         = Keyword::select('id', 'name')->get()->toArray();
+        $budgetTypes      = BudgetType::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users = User::select('id', 'name')->get()->toArray();
-        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
+        $users            = User::select('id', 'name')->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('projects.create', [
             'type' => 'Project',
@@ -101,13 +91,13 @@ class ProjectController extends OpportunityController
      */
     public function create_idea()
     {
-        $categories = Category::select('id', 'name')->get()->toArray();
-        $keywords = Keyword::select('id', 'name')->get()->toArray();
-        $budgetTypes = BudgetType::select('id', 'name')->get()->toArray();
+        $categories       = Category::select('id', 'name')->get()->toArray();
+        $keywords         = Keyword::select('id', 'name')->get()->toArray();
+        $budgetTypes      = BudgetType::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users = User::select('id', 'name')->get()->toArray();
-        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
+        $users            = User::select('id', 'name')->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('projects.create_idea', [
             'type' => 'Project',
@@ -129,15 +119,39 @@ class ProjectController extends OpportunityController
      *
      * @return Response
      */
-    public function store(CreateOpportunityRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
+        $input = $request->only([
+            'name',
+            'public_name',
+            'description',
+            'listing_starts',
+            'listing_ends',
+            'application_deadline',
+            'application_deadline_text',
+            'start_date',
+            'end_date',
+            'organization_id',
+            'parent_opportunity_id',
+            'supervisor_user_id',
+            'addresses',
+            'status',
+            'affiliations',
+            'categories',
+            'keywords',
+        ]);
+
+        $input['opportunityable'] =
+
+        dd($input);
 
         $opportunity = $this->repository->create($input);
 
         Flash::success('Project saved successfully.');
 
-        return redirect(route('projects.index'));
+        event(new OpportunityCreatedEvent($opportunity));
+
+        return redirect(route('projects/{$opportunity}'));
     }
 
     /**
@@ -167,14 +181,11 @@ class ProjectController extends OpportunityController
             ])
             ->findWithoutFail($id);
 
-        // dd($opportunity);
-
         if (empty($opportunity)) {
             Flash::error('Project not found');
 
             return redirect(route('projects.index'));
         }
-
 
         return view('projects.show', [
             'type' => $opportunity->opportunityable_type,
@@ -207,8 +218,6 @@ class ProjectController extends OpportunityController
                 'keywords',
                 'followers',
                 'applicants',
-                // 'participants',
-                // 'activeMembers',
             ])
             ->findWithoutFail($id);
 
@@ -248,13 +257,8 @@ class ProjectController extends OpportunityController
                 'keywords',
                 'followers',
                 'applicants',
-                // 'participants',
-                // 'activeMembers',
             ])
             ->findWithoutFail($id);
-
-        // dd($opportunity);
-
 
         if (empty($opportunity)) {
             Flash::error('Project not found');
@@ -262,13 +266,13 @@ class ProjectController extends OpportunityController
             return redirect(route('projects.index'));
         }
 
-        $categories = Category::select('id', 'name')->get()->toArray();
-        $keywords = Keyword::select('id', 'name')->get()->toArray();
-        $budgetTypes = BudgetType::select('id', 'name')->get()->toArray();
+        $categories       = Category::select('id', 'name')->get()->toArray();
+        $keywords         = Keyword::select('id', 'name')->get()->toArray();
+        $budgetTypes      = BudgetType::select('id', 'name')->get()->toArray();
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users = User::select('id', 'name')->get()->toArray();
-        $statuses = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
+        $users            = User::select('id', 'name')->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('projects.edit', [
             'type' => $opportunity->opportunityable_type,
@@ -292,7 +296,7 @@ class ProjectController extends OpportunityController
      *
      * @return Response
      */
-    public function update($id, UpdateOpportunityRequest $request)
+    public function update($id, Request $request)
     {
         $opportunity = $this->repository
             ->with([
@@ -308,8 +312,6 @@ class ProjectController extends OpportunityController
                 'keywords',
                 'followers',
                 'applicants',
-                // 'participants',
-                // 'activeMembers',
             ])
             ->findWithoutFail($id);
 
@@ -319,13 +321,12 @@ class ProjectController extends OpportunityController
             return redirect(route('projects.index'));
         }
 
-        // dd($request->all());
-
         $opportunity = $this->repository->update($request->all(), $id);
+        event(new OpportunityUpdatedEvent($opportunity));
 
         Flash::success('Project updated successfully.');
 
-        return redirect(route('projects.index'));
+        return redirect(route('projects/{$opportunity}'));
     }
 
     /**
@@ -346,9 +347,10 @@ class ProjectController extends OpportunityController
         }
 
         $this->repository->delete($id);
+        event(new OpportunityDeletedEvent($opportunity));
 
         Flash::success('Project deleted successfully.');
 
-        return redirect(route('projects.index'));
+        return redirect(route('projects/{$opportunity}'));
     }
 }

@@ -1,21 +1,11 @@
 <?php
 
-namespace SCCatalog\Http\Controllers;
+namespace SCCatalog\Http\Controllers\Frontend;
 
 use Flash;
 use Illuminate\Http\Request;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use Response;
 use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
-use SCCatalog\Http\Requests\ApproveRequestToJoinRequest;
-use SCCatalog\Http\Requests\AddUserToOpportunityRequest;
-use SCCatalog\Jobs\Opportunity\FollowOpportunityJob;
-use SCCatalog\Jobs\Opportunity\UnfollowOpportunityJob;
-use SCCatalog\Jobs\Opportunity\RequestToJoinOpportunity;
-use SCCatalog\Jobs\Opportunity\ApproveRequestToJoinOpportunity;
-use SCCatalog\Jobs\Opportunity\AddUserToOpportunity;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
@@ -40,10 +30,6 @@ class OpportunityUserController extends Controller
 
     /**
      * OpportunityController constructor.
-     *
-     *     Note for future maintainers: the Repository Contract is referenced here, and Laravel injects
-     *     the Eloquent Repository because we registered the binding between the
-     *     contract and implementation in Providers\AppServiceProvider
      *
      * @param OpportunityRepository $repository
      * @param OpportunityValidator $validator
@@ -74,6 +60,7 @@ class OpportunityUserController extends Controller
         }
 
         FollowOpportunity::dispatch($opportunity, $user)
+        event(new UserFollowedOpportunityEvent($opportunity, $user));
 
         Flash::success('Project followed successfully.');
 
@@ -100,6 +87,7 @@ class OpportunityUserController extends Controller
         }
 
         UnfollowOpportunity::dispatch($opportunity, $user)
+        event(new UserUnfollowedOpportunityEvent($opportunity, $user));
 
         Flash::success('Project followed successfully.');
 
@@ -126,6 +114,7 @@ class OpportunityUserController extends Controller
         }
 
         RequestToJoinOpportunity::dispatch($opportunity, $user)
+        event(new UserRequestedToJoinOpportunityEvent($opportunity, $user));
 
         Flash::success('Successfully submitted request.');
 
@@ -139,7 +128,7 @@ class OpportunityUserController extends Controller
      *
      * @return Response
      */
-    public function approveRequestToJoin($id, ApproveRequestToJoinRequest $request)
+    public function approveRequestToJoin($id, Request $request)
     {
         $user = $request->user;
         $relationship = $request->relationship;
@@ -153,6 +142,7 @@ class OpportunityUserController extends Controller
         }
 
         ApproveRequestToJoinOpportunity::dispatch($opportunity, $user, $relationship)
+        event(new UserRequestToJoinOpportunityApprovedEvent($opportunity, $user, $relationship));
 
         Flash::success('Successfully approved user.');
 
@@ -166,7 +156,7 @@ class OpportunityUserController extends Controller
      *
      * @return Response
      */
-    public function addUser($id, AddUserToOpportunityRequest $request)
+    public function addUser($id, Request $request)
     {
         $opportunity = $this->repository->findWithoutFail($id);
         if (empty($opportunity)) {
@@ -190,6 +180,7 @@ class OpportunityUserController extends Controller
         }
 
         AddUserToOpportunity::dispatch($opportunity, $user, $relationship)
+        event(new UserAddedToOpportunityEvent($opportunity, $user, $relationship));
 
         Flash::success('Successfully approved user.');
 

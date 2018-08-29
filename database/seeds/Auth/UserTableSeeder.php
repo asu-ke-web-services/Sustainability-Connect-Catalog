@@ -2,12 +2,17 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\User;
+use SCCatalog\Models\Auth\User;
 
-class UsersTableSeeder extends Seeder
+/**
+ * Class UserTableSeeder.
+ */
+class UserTableSeeder extends Seeder
 {
+    use DisableForeignKeys;
+
     /**
-     * Auto generated seed file.
+     * Run the database seed.
      *
      * @return void
      */
@@ -100,12 +105,14 @@ class UsersTableSeeder extends Seeder
 
                 $new_user = User::create([
                     'id'                      => $old_user->ID,
-                    'name'                    => $old_user->display_name ?? null,
                     'first_name'              => $old_user_first_name ?? null,
                     'last_name'               => $old_user_last_name ?? null,
+                    'display_name'            => $old_user->display_name ?? null,
                     'login_name'              => $old_user->user_login ?? null,
                     'email'                   => empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email,
                     'password'                => $old_user->user_pass,
+                    'confirmation_code'       => md5(uniqid(mt_rand(), true)),
+                    'confirmed'               => true,
                     'type'                    => $old_user_type ?? null,
                     'asurite'                 => $old_user_asurite ?? null,
                     'student_degree_level_id' => $degree_level_id ?? null,
@@ -120,7 +127,6 @@ class UsersTableSeeder extends Seeder
                     'created_by'              => 1,
                     'updated_by'              => 1,
                 ]);
-
 
                 if ($old_user_sos_eligible == 1 || $old_user_sos_verified == 1) {
                     DB::table('affiliation_user')->insert([

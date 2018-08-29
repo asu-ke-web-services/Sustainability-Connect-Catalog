@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => SCCatalog\Models\User::class,
+            'model' => SCCatalog\Models\Auth\User::class,
         ],
 
         // 'users' => [

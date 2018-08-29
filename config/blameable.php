@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'user' => \SCCatalog\Models\User::class,
+    'user' => \SCCatalog\Models\Auth\User::class,
 
     /*
     |--------------------------------------------------------------------------

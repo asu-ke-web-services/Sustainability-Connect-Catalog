@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +91,18 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PHP Locale Code
+    |--------------------------------------------------------------------------
+    |
+    | The PHP locale determines the default locale that will be used
+    | by the Carbon library when setting Carbon's localization.
+    |
+    */
+    'locale_php' => env('APP_LOCALE_PHP', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
@@ -157,9 +168,11 @@ return [
          */
         SCCatalog\Providers\AppServiceProvider::class,
         SCCatalog\Providers\AuthServiceProvider::class,
+        SCCatalog\Providers\BladeServiceProvider::class,
         // SCCatalog\Providers\BroadcastServiceProvider::class,
+        SCCatalog\Providers\ComposerServiceProvider::class,
         SCCatalog\Providers\EventServiceProvider::class,
-        SCCatalog\Providers\RepositoryServiceProvider::class,
+        SCCatalog\Providers\ObserverServiceProvider::class,
         SCCatalog\Providers\RouteServiceProvider::class,
 
     ],

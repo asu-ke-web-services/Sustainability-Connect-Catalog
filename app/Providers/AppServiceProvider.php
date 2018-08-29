@@ -3,6 +3,9 @@
 namespace SCCatalog\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Database\Eloquent\Relations\Relation;
+// use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -65,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
         // https://laravel-news.com/laravel-5-4-key-too-long-error
         Schema::defaultStringLength(191);
 
-        Paginator::useBootstrapThree();
+        // Paginator::useBootstrapThree();
 
         // Set the default template for Pagination to use the included Bootstrap 4 template
         \Illuminate\Pagination\AbstractPaginator::defaultView('pagination::bootstrap-4');

@@ -17,22 +17,8 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     include_route_files(__DIR__.'/frontend/');
 });
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index');
-
-// Route::resource('organizations', 'OrganizationController');
-
 // Route::resource('projects', 'ProjectController');
 // Route::resource('internships', 'InternshipController');
-
-
 // Route::get('projects/submit_idea', 'ProjectController@create_idea');
 
 // Route::get('projects/{project}/admin', 'ProjectController@show_admin')->name('projects.show_admin');

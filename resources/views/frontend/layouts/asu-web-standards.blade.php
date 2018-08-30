@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        @component('components.head')
+        @component('frontend.includes.components.asu.head')
             @slot('title')
                 {!! $pageTitle !!}
             @endslot
@@ -18,7 +18,7 @@
         @endunless
         <div id="page-wrapper">
             <div id="page">
-                @include('partials.asu.asu_global_header')
+                @include('frontend.includes.asu.asu_global_header')
                 <!-- Global Navigation -->
                 <nav class="navbar navbar-ws">
                     <div class="container">
@@ -90,7 +90,7 @@
                 </div><!-- #main-wrapper -->
             </div><!-- #page -->
         </div><!-- #page-wrapper -->
-        @include('partials.asu.asu_footer')
+        @include('frontend.includes.asu.asu_footer')
     </body>
     @section('javascript')
     @show

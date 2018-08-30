@@ -1,14 +1,14 @@
-@extends('layouts.asu-web-standards')
+@extends('frontend.layouts.asu-web-standards')
 
 @section('content')
 <div class="container pad-bot-md pad-top-sm">
     <div class="col-sm-9">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="{!! route('projects.show', ['id' => $opportunity->id ]) !!}">Standard View</a></li>
-            <li role="presentation"><a href="{!! route('projects.show_admin', ['id' => $opportunity->id ]) !!}">Admin View</a></li>
+            <li role="presentation" class="active"><a href="{!! route('frontend.project.show', ['id' => $opportunity->id ]) !!}">Standard View</a></li>
+            {{--<li role="presentation"><a href="{!! route('backend.project.show', ['id' => $opportunity->id ]) !!}">Admin View</a></li>--}}
         </ul>
-        @include('projects.show_fields')
-        <a href="{!! route('projects.index') !!}" class="btn btn-default">Back</a>
+        @include('frontend.project.show_fields')
+        <a href="{!! route('frontend.project.index') !!}" class="btn btn-default">Back</a>
     </div>
 
 

@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "7288f9f8cdb6756ff3e69fe4151b5bb3",
@@ -1781,7 +1781,7 @@
         },
         {
             "name": "laravel/nova",
-            "version": "dev-5.6-upgrade",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova",
@@ -2743,16 +2743,16 @@
         },
         {
             "name": "paragonie/sodium_compat",
-            "version": "v1.6.3",
+            "version": "v1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/sodium_compat.git",
-                "reference": "7d0549c3947eaea620f4e523f42ab236cf7fd304"
+                "reference": "3f2fd07977541b4d630ea0365ad0eceddee5179c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/7d0549c3947eaea620f4e523f42ab236cf7fd304",
-                "reference": "7d0549c3947eaea620f4e523f42ab236cf7fd304",
+                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/3f2fd07977541b4d630ea0365ad0eceddee5179c",
+                "reference": "3f2fd07977541b4d630ea0365ad0eceddee5179c",
                 "shasum": ""
             },
             "require": {
@@ -2821,7 +2821,7 @@
                 "secret-key cryptography",
                 "side-channel resistant"
             ],
-            "time": "2018-06-06T17:30:29+00:00"
+            "time": "2018-08-29T22:02:48+00:00"
         },
         {
             "name": "proai/laravel-handlebars",

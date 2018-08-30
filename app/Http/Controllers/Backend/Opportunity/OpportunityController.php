@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
+namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\ArchiveOpportunityRequest;
@@ -63,7 +63,7 @@ class OpportunityController extends Controller
      *
      * @param int $id
      *
-     * @return Response
+     * @return
      */
     public function archive($id, ArchiveOpportunityRequest $request)
     {

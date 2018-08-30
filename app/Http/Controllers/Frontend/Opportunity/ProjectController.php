@@ -2,14 +2,9 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use Flash;
-use Illuminate\Http\Request;
-use Response;
-use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
-use SCCatalog\Criteria\ProjectCriteria;
 use SCCatalog\Http\Controllers\Frontend\Opportunity\OpportunityController;
-// use SCCatalog\Validators\ProjectValidator;
-use SCCatalog\Validators\OpportunityValidator;
+use SCCatalog\Http\Requests\CreateOpportunityRequest;
+use SCCatalog\Http\Requests\UpdateOpportunityRequest;
 use SCCatalog\Models\Category;
 use SCCatalog\Models\Keyword;
 use SCCatalog\Models\BudgetType;
@@ -17,6 +12,7 @@ use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\OpportunityStatus;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
+use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 
 class ProjectController extends OpportunityController
 {
@@ -26,31 +22,23 @@ class ProjectController extends OpportunityController
     private $repository;
 
     /**
-     * @var OpportunityValidator
-     */
-    protected $validator;
-
-    /**
      * ProjectController constructor.
      *
      * @param OpportunityRepository $repository
-     * @param OpportunityValidator $validator
      */
-    public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
+    public function __construct(OpportunityRepository $repository)
     {
-        parent::__construct($repository, $validator);
+        parent::__construct($repository);
 
         $this->repository = $repository;
-        $this->validator  = $validator;
     }
 
     /**
      * Display a listing of the Project.
      *
-     * @param Request $request
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
         // view React SearchApp
         return view('projects.search');
@@ -59,7 +47,7 @@ class ProjectController extends OpportunityController
     /**
      * Show the form for creating a new Project.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -87,7 +75,7 @@ class ProjectController extends OpportunityController
     /**
      * Show the form for submitting project idea.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function create_idea()
     {
@@ -117,9 +105,9 @@ class ProjectController extends OpportunityController
      *
      * @param CreateOpportunityRequest $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function store(Request $request)
+    public function store(CreateOpportunityRequest $request)
     {
         $input = $request->only([
             'name',
@@ -159,11 +147,11 @@ class ProjectController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
-        $this->repository->pushCriteria(ProjectCriteria::class);
+        // $this->repository->pushCriteria(ProjectCriteria::class);
         $opportunity = $this->repository
             ->with([
                 'opportunityable',
@@ -199,11 +187,11 @@ class ProjectController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function show_admin($id)
     {
-        $this->repository->pushCriteria(ProjectCriteria::class);
+        // $this->repository->pushCriteria(ProjectCriteria::class);
         $opportunity = $this->repository
             ->with([
                 'opportunityable',
@@ -239,7 +227,7 @@ class ProjectController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -294,9 +282,9 @@ class ProjectController extends OpportunityController
      * @param  int                 $id
      * @param UpdateOpportunityRequest $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function update($id, Request $request)
+    public function update($id, UpdateOpportunityRequest $request)
     {
         $opportunity = $this->repository
             ->with([
@@ -334,7 +322,7 @@ class ProjectController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function destroy($id)
     {

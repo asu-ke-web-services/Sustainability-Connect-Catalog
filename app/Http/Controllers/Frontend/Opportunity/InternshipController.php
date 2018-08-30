@@ -2,22 +2,16 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use Flash;
-use Illuminate\Http\Request;
-use Response;
-use SCCatalog\Criteria\InternshipCriteria;
-use SCCatalog\Http\Controllers\OpportunityController;
+use SCCatalog\Http\Controllers\Frontend\Opportunity\OpportunityController;
 use SCCatalog\Http\Requests\CreateOpportunityRequest;
-use SCCatalog\Http\Requests\FollowOpportunityRequest;
-use SCCatalog\Http\Requests\UnfollowOpportunityRequest;
 use SCCatalog\Http\Requests\UpdateOpportunityRequest;
-use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
 use SCCatalog\Models\Category;
 use SCCatalog\Models\Keyword;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\OpportunityStatus;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
+use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 
 class InternshipController extends OpportunityController
 {
@@ -27,31 +21,23 @@ class InternshipController extends OpportunityController
     private $repository;
 
     /**
-     * @var OpportunityValidator
-     */
-    protected $validator;
-
-    /**
      * InternshipController constructor.
      *
      * @param OpportunityRepository $repository
-     * @param OpportunityValidator $validator
      */
-    public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
+    public function __construct(OpportunityRepository $repository)
     {
         parent::__construct($repository, $validator);
 
         $this->repository = $repository;
-        $this->validator  = $validator;
     }
 
     /**
      * Display a listing of the Internship.
      *
-     * @param Request $request
-     * @return Response
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
         // view React SearchApp
         return view('internships.search');
@@ -60,7 +46,7 @@ class InternshipController extends OpportunityController
     /**
      * Show the form for creating a new Internship.
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -69,7 +55,7 @@ class InternshipController extends OpportunityController
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users            = User::select('id', 'name')->get()->toArray();
-        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('internships.create', [
             'type' => 'Internship',
@@ -84,15 +70,63 @@ class InternshipController extends OpportunityController
     }
 
     /**
+     * Show the form for submitting project idea.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create_idea()
+    {
+        $categories       = Category::select('id', 'name')->get()->toArray();
+        $keywords         = Keyword::select('id', 'name')->get()->toArray();
+        $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
+        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
+        $users            = User::select('id', 'name')->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
+
+        return view('internships.create_idea', [
+            'type' => 'Internship',
+            'pageTitle' => 'New Internship Idea',
+            'categories' => $categories,
+            'keywords' => $keywords,
+            'allOrganizations' => $allOrganizations,
+            'allOpportunities' => $allOpportunities,
+            'statuses' => $statuses,
+            'users' => $users
+        ]);
+    }
+
+    /**
      * Store a newly created Internship in storage.
      *
-     * @param InternshipCreateRequest $request
+     * @param CreateOpportunityRequest $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function store(CreateOpportunityRequest $request)
     {
-        $input = $request->all();
+        $input = $request->only([
+            'name',
+            'public_name',
+            'description',
+            'listing_starts',
+            'listing_ends',
+            'application_deadline',
+            'application_deadline_text',
+            'start_date',
+            'end_date',
+            'organization_id',
+            'parent_opportunity_id',
+            'supervisor_user_id',
+            'addresses',
+            'status',
+            'affiliations',
+            'categories',
+            'keywords',
+        ]);
+
+        $input['opportunityable'] =
+
+        dd($input);
 
         $opportunity = $this->repository->create($input);
 
@@ -108,11 +142,11 @@ class InternshipController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
-        $this->repository->pushCriteria(InternshipCriteria::class);
+        // $this->repository->pushCriteria(InternshipCriteria::class);
         $opportunity = $this->repository
             ->with([
                 'opportunityable',
@@ -148,11 +182,11 @@ class InternshipController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function show_admin($id)
     {
-        $this->repository->pushCriteria(InternshipCriteria::class);
+        // $this->repository->pushCriteria(InternshipCriteria::class);
         $opportunity = $this->repository
             ->with([
                 'opportunityable',
@@ -188,7 +222,7 @@ class InternshipController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -220,7 +254,7 @@ class InternshipController extends OpportunityController
         $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
         $allOrganizations = Organization::select('id', 'name')->get()->toArray();
         $users            = User::select('id', 'name')->get()->toArray();
-        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 2)->get()->toArray();
+        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
         return view('internships.edit', [
             'type' => $opportunity->opportunityable_type,
@@ -238,10 +272,10 @@ class InternshipController extends OpportunityController
     /**
      * Update the specified Internship in storage.
      *
-     * @param  int                    $id
-     * @param InternshipUpdateRequest $request
+     * @param  int                 $id
+     * @param UpdateOpportunityRequest $request
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function update($id, UpdateOpportunityRequest $request)
     {
@@ -273,7 +307,7 @@ class InternshipController extends OpportunityController
 
         Flash::success('Internship updated successfully.');
 
-        return redirect(route('internships.index'));
+        return redirect(route('internships/{$opportunity}'));
     }
 
     /**
@@ -281,7 +315,7 @@ class InternshipController extends OpportunityController
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\View\View
      */
     public function destroy($id)
     {
@@ -298,6 +332,6 @@ class InternshipController extends OpportunityController
 
         Flash::success('Internship deleted successfully.');
 
-        return redirect(route('internships.index'));
+        return redirect(route('internships/{$opportunity}'));
     }
 }

@@ -2,21 +2,18 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use Flash;
-use Illuminate\Http\Request;
-use Response;
-use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
-use SCCatalog\Validators\OpportunityValidator;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Http\Requests\ArchiveOpportunityRequest;
+use SCCatalog\Http\Requests\DuplicateOpportunityRequest;
 use SCCatalog\Models\Category;
 use SCCatalog\Models\Keyword;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
+use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 
 /**
  * Class OpportunityController.
- *
- * @package namespace SCCatalog\Http\Controllers;
  */
 class OpportunityController extends Controller
 {
@@ -26,28 +23,22 @@ class OpportunityController extends Controller
     private $repository;
 
     /**
-     * @var OpportunityValidator
-     */
-    protected $validator;
-
-    /**
      * OpportunityController constructor.
      *
      * @param OpportunityRepository $repository
-     * @param OpportunityValidator $validator
      */
-    public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
+    public function __construct(OpportunityRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
     }
 
     /**
      * Duplicate opportunity.
      *
      * @param int $id
+     * @param DuplicateOpportunityRequest $request
      *
-     * @return Response
+     * @return
      */
     public function clone($id, DuplicateOpportunityRequest $request)
     {

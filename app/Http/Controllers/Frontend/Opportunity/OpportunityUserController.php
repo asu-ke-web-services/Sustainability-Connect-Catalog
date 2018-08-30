@@ -2,19 +2,14 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use Flash;
-use Illuminate\Http\Request;
-use Response;
-use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
+use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Models\Opportunity;
 use SCCatalog\Models\Organization;
 use SCCatalog\Models\User;
-use SCCatalog\Validators\OpportunityValidator;
+use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 
 /**
  * Class OpportunityUserController.
- *
- * @package namespace SCCatalog\Http\Controllers;
  */
 class OpportunityUserController extends Controller
 {
@@ -24,20 +19,13 @@ class OpportunityUserController extends Controller
     private $repository;
 
     /**
-     * @var OpportunityValidator
-     */
-    protected $validator;
-
-    /**
      * OpportunityController constructor.
      *
      * @param OpportunityRepository $repository
-     * @param OpportunityValidator $validator
      */
-    public function __construct(OpportunityRepository $repository, OpportunityValidator $validator)
+    public function __construct(OpportunityRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
     }
 
     /**
@@ -45,7 +33,7 @@ class OpportunityUserController extends Controller
      *
      * @param int $id
      *
-     * @return Response
+     * @return
      */
     public function follow($id)
     {
@@ -72,7 +60,7 @@ class OpportunityUserController extends Controller
      *
      * @param int $id
      *
-     * @return Response
+     * @return
      */
     public function unfollow($id)
     {
@@ -99,7 +87,7 @@ class OpportunityUserController extends Controller
      *
      * @param int $id
      *
-     * @return Response
+     * @return
      */
     public function requestToJoin($id)
     {
@@ -126,7 +114,7 @@ class OpportunityUserController extends Controller
      *
      * @param int $id
      *
-     * @return Response
+     * @return
      */
     public function approveRequestToJoin($id, Request $request)
     {

@@ -8,10 +8,6 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Note
- * @package SCCatalog\Models
- * @version June 28, 2018, 11:29 pm UTC
- *
- * @property string body
  */
 class Note extends Model
 {

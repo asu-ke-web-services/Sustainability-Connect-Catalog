@@ -10,31 +10,18 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
  * Class Attachment
- * @package SCCatalog\Models
- * @version July 11, 2018
- *
- * @property \Illuminate\Database\Eloquent\Collection Addresses
- * @property \Illuminate\Database\Eloquent\Collection Categories
- * @property \Illuminate\Database\Eloquent\Collection Keywords
- * @property \Illuminate\Database\Eloquent\Collection Notes
- * @property string compensation
- * @property string responsibilities
- * @property string learning_outcomes
- * @property string sustainability_contribution
- * @property string qualifications
- * @property string application_overview
- * @property string implementation_paths
- * @property string budget_type
- * @property string budget_amount
- * @property string program_lead
- * @property string success_story
- * @property string library_collection
  */
 class Attachment extends Model implements HasMedia
 {
     use BlameableTrait;
     use HasMediaTrait;
     use SoftDeletes;
+
+    /*
+    |--------------------------------------------------------------------------
+    | GLOBAL VARIABLES
+    |--------------------------------------------------------------------------
+    */
 
     public $table = 'attachments';
 
@@ -64,6 +51,18 @@ class Attachment extends Model implements HasMedia
 
     ];
 
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
@@ -79,4 +78,23 @@ class Attachment extends Model implements HasMedia
     {
         return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'opportunity_id');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | MUTATORS
+    |--------------------------------------------------------------------------
+    */
+
 }

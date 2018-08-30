@@ -8,28 +8,21 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Address
- * @package SCCatalog\Models
- * @version June 20, 2018, 11:29 pm UTC
- *
- * @property string street1
- * @property string street2
- * @property string city
- * @property string state
- * @property string country
- * @property string note
  */
 class Address extends Model
 {
     use BlameableTrait;
     use SoftDeletes;
 
+    /*
+    |--------------------------------------------------------------------------
+    | GLOBAL VARIABLES
+    |--------------------------------------------------------------------------
+    */
+
     public $table = 'addresses';
 
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'street1',
@@ -65,6 +58,18 @@ class Address extends Model
 
     ];
 
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      **/
@@ -72,4 +77,23 @@ class Address extends Model
     {
         return $this->morphTo();
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | MUTATORS
+    |--------------------------------------------------------------------------
+    */
+
 }

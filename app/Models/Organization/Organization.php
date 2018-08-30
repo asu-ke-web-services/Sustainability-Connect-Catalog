@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Organization;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,17 +9,6 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Organization
- * @package SCCatalog\Models
- * @version June 20, 2018, 11:29 pm UTC
- *
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesAddresses
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesCategories
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesKeywords
- * @property \Illuminate\Database\Eloquent\Collection opportunitiesNotes
- * @property \Illuminate\Database\Eloquent\Collection roleHasPermissions
- * @property integer organization_type_id
- * @property integer organization_status_id
- * @property string name
  */
 class Organization extends Model
 {

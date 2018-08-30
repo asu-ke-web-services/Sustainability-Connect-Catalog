@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Opportunity;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -9,32 +9,6 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
  * Class Opportunity
- * @package SCCatalog\Models
- * @version June 20, 2018, 11:46 pm UTC
- *
- * @property \Illuminate\Database\Eloquent\Collection Address
- * @property \Illuminate\Database\Eloquent\Collection Category
- * @property \Illuminate\Database\Eloquent\Collection Keyword
- * @property \Illuminate\Database\Eloquent\Collection Note
- * @property \Illuminate\Database\Eloquent\Collection User
- * @property \SCCatalog\Models\Opportunity parentOpportunity
- * @property \SCCatalog\Models\OpportunityStatus status
- * @property \SCCatalog\Models\Organization organization
- * @property \SCCatalog\Models\User supervisorUser
- * @property \SCCatalog\Models\User submittingUser
- * @property integer opportunityable_id
- * @property string opportunityable_type
- * @property string title
- * @property string alt_title
- * @property string slug
- * @property date listing_start_date
- * @property date listing_end_date
- * @property date start_date
- * @property date end_date
- * @property string application_deadline
- * @property boolean is_hidden
- * @property string summary
- * @property string description
  */
 class Opportunity extends Model
 {

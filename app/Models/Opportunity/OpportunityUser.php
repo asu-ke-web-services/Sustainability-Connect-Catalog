@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Opportunity;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 

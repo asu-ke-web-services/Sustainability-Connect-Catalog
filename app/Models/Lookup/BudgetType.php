@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Lookup;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

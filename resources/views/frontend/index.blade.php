@@ -11,14 +11,15 @@
                 </div>
                 <div class="card-body">
                     {{ __('strings.frontend.welcome_to', ['place' => app_name()]) }}
+
+                    <div class="card-body">
+                        <div>Jump to:</div>
+                        <div><a href="/projects">Projects</a></div>
+                        <div><a href="/internships">Internships</a></div>
+                        <div><a href="/admin">Backend Admin</a></div>
+                    </div>
                 </div>
             </div><!--card-->
-        </div><!--col-->
-    </div><!--row-->
-
-    <div class="row mb-4">
-        <div class="col">
-            <example-component></example-component>
         </div><!--col-->
     </div><!--row-->
 

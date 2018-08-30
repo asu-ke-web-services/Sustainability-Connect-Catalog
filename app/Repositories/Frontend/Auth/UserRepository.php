@@ -3,17 +3,17 @@
 namespace SCCatalog\Repositories\Frontend\Auth;
 
 use Carbon\Carbon;
-use SCCatalog\Models\Auth\User;
 use Illuminate\Http\UploadedFile;
-use SCCatalog\Models\Auth\SocialAccount;
 use Illuminate\Support\Facades\DB;
-use SCCatalog\Exceptions\GeneralException;
-use SCCatalog\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use SCCatalog\Events\Frontend\Auth\UserConfirmed;
 use SCCatalog\Events\Frontend\Auth\UserProviderRegistered;
+use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Models\Auth\SocialAccount;
 use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class UserRepository.

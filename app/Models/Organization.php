@@ -1,10 +1,10 @@
 <?php
 
-namespace SCCatalog\Models\Organization;
+namespace SCCatalog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**

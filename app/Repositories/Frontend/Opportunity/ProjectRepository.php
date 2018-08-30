@@ -1,20 +1,21 @@
 <?php
 
-namespace SCCatalog\Repositories;
+namespace SCCatalog\Repositories\Frontend\Opportunity;
 
-use SCCatalog\Models\Project;
-use SCCatalog\Repositories\BaseRepository;
+use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 
 /**
  * Class ProjectRepository
  */
-class ProjectRepository extends BaseRepository
+class ProjectRepository extends OpportunityRepository
 {
     /**
-     * Configure the Model
-     **/
-    public function model()
-    {
-        return Project::class;
-    }
+     * Array of one or more where clause parameters.
+     *
+     * @var array
+     */
+    protected $wheres = [
+        ['opportunityable_type', 'Project'],
+    ];
+
 }

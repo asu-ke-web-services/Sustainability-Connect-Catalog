@@ -1,20 +1,21 @@
 <?php
 
-namespace SCCatalog\Repositories;
+namespace SCCatalog\Repositories\Frontend\Opportunity;
 
-use SCCatalog\Models\Internship;
-use SCCatalog\Repositories\BaseRepository;
+use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 
 /**
  * Class InternshipRepository
  */
-class InternshipRepository extends BaseRepository
+class InternshipRepository extends OpportunityRepository
 {
     /**
-     * Configure the Model
-     **/
-    public function model()
-    {
-        return Internship::class;
-    }
+     * Array of one or more where clause parameters.
+     *
+     * @var array
+     */
+    protected $wheres = [
+        ['opportunityable_type', 'Internship'],
+    ];
+
 }

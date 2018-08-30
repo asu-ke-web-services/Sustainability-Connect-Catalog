@@ -1,8 +1,8 @@
 <?php
 
-namespace SCCatalog\Repositories;
+namespace SCCatalog\Repositories\Frontend\Opportunity;
 
-use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Repositories\BaseRepository;
 
 /**
@@ -17,4 +17,35 @@ class OpportunityRepository extends BaseRepository
     {
         return Opportunity::class;
     }
+
+    /**
+     * Array of related models to eager load.
+     *
+     * @var array
+     */
+    protected $with = [
+        'opportunityable',
+        'addresses',
+        'notes',
+        'status',
+        'parentOpportunity',
+        'organization',
+        'supervisorUser',
+        'affiliations',
+        'categories',
+        'keywords',
+        'followers',
+        'applicants',
+    ];
+
+    /**
+     * Array of one or more ORDER BY column/value pairs.
+     *
+     * @var array
+     */
+    protected $orderBys = [
+        ['application_deadline', 'desc'],
+        ['name', 'asc'],
+    ];
+
 }

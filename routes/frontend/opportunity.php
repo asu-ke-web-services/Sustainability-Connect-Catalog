@@ -11,6 +11,13 @@ Route::group([
     /*
      * Project CRUD
      */
-    Route::resource('project', 'ProjectController');
+    Route::post('project', 'ProjectController@index')->name('project.index');
+    Route::post('project/{project}', 'ProjectController@show')->name('project.show');
+
+    /*
+     * Internship CRUD
+     */
+    Route::post('internship', 'InternshipController@index')->name('internship.index');
+    Route::post('internship/{internship}', 'InternshipController@show')->name('internship.show');
 
 });

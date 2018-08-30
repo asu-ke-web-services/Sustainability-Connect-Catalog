@@ -7,21 +7,6 @@ use Laravel\Scout\Searchable;
 
 /**
  * Class Project
- * @package SCCatalog\Models
- * @version June 20, 2018, 11:48 pm UTC
- *
- * @property string compensation
- * @property string responsibilities
- * @property string learning_outcomes
- * @property string sustainability_contribution
- * @property string qualifications
- * @property string application_overview
- * @property string implementation_paths
- * @property string budget_type
- * @property string budget_amount
- * @property string program_lead
- * @property string success_story
- * @property string library_collection
  */
 class Project extends Model
 {
@@ -142,7 +127,7 @@ class Project extends Model
     /**
      * Get the list of Opportunity Statuses.
      *
-     * @return bool
+     * @return mixed
      */
     public function getStatuses()
     {

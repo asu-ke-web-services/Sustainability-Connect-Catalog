@@ -271,7 +271,7 @@ class Opportunity extends Model
      */
     public function getTypes()
     {
-        \SCCatalog\Models\OpportunityType::all();
+        \SCCatalog\Models\Lookup\OpportunityType::all();
     }
 
     /**
@@ -281,7 +281,7 @@ class Opportunity extends Model
      */
     public function getStatuses()
     {
-        \SCCatalog\Models\OpportunityStatus::orderBy('order', 'asc')
+        \SCCatalog\Models\Lookup\OpportunityStatus::orderBy('order', 'asc')
             ->get();
     }
 

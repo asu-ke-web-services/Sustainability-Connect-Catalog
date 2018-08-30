@@ -7,16 +7,6 @@ use Laravel\Scout\Searchable;
 
 /**
  * Class Internship
- * @package SCCatalog\Models
- * @version June 20, 2018, 11:49 pm UTC
- *
- * @property string compensation
- * @property string responsibilities
- * @property string qualifications
- * @property string application_instructions
- * @property string program_lead
- * @property string success_story
- * @property string library_collection
  */
 class Internship extends Model
 {

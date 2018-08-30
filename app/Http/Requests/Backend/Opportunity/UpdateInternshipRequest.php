@@ -1,12 +1,14 @@
 <?php
 
-namespace SCCatalog\Http\Requests;
+namespace SCCatalog\Http\Requests\Backend\Opportunity;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Http\Requests\Request;
+use SCCatalog\Models\Opportunity\Internship;
 
-class OpportunityTypeRequest extends FormRequest
+class UpdateInternshipRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,8 +16,7 @@ class OpportunityTypeRequest extends FormRequest
      */
     public function authorize()
     {
-        // only allow updates if the user is logged in
-        return \Auth::check();
+        return true;
     }
 
     /**
@@ -25,9 +26,7 @@ class OpportunityTypeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            // 'name' => 'required|min:5|max:255'
-        ];
+        return Internship::$rules;
     }
 
     /**

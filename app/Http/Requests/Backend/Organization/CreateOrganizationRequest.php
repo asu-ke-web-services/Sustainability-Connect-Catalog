@@ -1,14 +1,13 @@
 <?php
 
-namespace SCCatalog\Http\Requests;
+namespace SCCatalog\Http\Requests\Backend\Organization;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Http\Requests\Request;
-use SCCatalog\Models\Project;
+use SCCatalog\Models\Organization\Organization;
 
-class CreateProjectRequest extends FormRequest
+class CreateOrganizationRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +25,7 @@ class CreateProjectRequest extends FormRequest
      */
     public function rules()
     {
-        return Project::$rules;
+        return Organization::$rules;
     }
 
     /**

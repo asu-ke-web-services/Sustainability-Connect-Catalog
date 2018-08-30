@@ -1,13 +1,13 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Frontend;
+namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
 use Flash;
 use Illuminate\Http\Request;
 use Response;
 use SCCatalog\Contracts\Repositories\OpportunityRepositoryContract as OpportunityRepository;
 use SCCatalog\Criteria\ProjectCriteria;
-use SCCatalog\Http\Controllers\OpportunityController;
+use SCCatalog\Http\Controllers\Frontend\Opportunity\OpportunityController;
 // use SCCatalog\Validators\ProjectValidator;
 use SCCatalog\Validators\OpportunityValidator;
 use SCCatalog\Models\Category;

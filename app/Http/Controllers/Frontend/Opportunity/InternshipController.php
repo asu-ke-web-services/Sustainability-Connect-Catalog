@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Frontend;
+namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
 use Flash;
 use Illuminate\Http\Request;

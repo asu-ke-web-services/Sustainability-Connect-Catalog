@@ -30,7 +30,7 @@ class ProjectController extends Controller
     public function index()
     {
         // view React SearchApp
-        return view('projects.search');
+        return view('frontend.project.search');
     }
 
     /**
@@ -45,7 +45,7 @@ class ProjectController extends Controller
         $opportunity = $this->repository
             ->getById($id);
 
-        return view('projects.show', [
+        return view('frontend.project.show', [
             'type' => $opportunity->opportunityable_type,
             'pageTitle' => $opportunity->name,
             'opportunity' => $opportunity

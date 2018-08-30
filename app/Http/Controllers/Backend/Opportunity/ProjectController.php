@@ -39,7 +39,7 @@ class ProjectController extends Controller
     public function index()
     {
         // view React SearchApp
-        return view('projects.search');
+        return view('project.search');
     }
 
     /**
@@ -57,7 +57,7 @@ class ProjectController extends Controller
         $users            = User::select('id', 'name')->get()->toArray();
         $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
 
-        return view('projects.create', [
+        return view('project.create', [
             'type' => 'Project',
             'pageTitle' => 'New Project',
             'categories' => $categories,

@@ -3,15 +3,15 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\CreateProjectRequest;
-use SCCatalog\Http\Requests\UpdateProjectRequest;
-use SCCatalog\Models\Category;
-use SCCatalog\Models\Keyword;
-use SCCatalog\Models\BudgetType;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\OpportunityStatus;
+use SCCatalog\Http\Requests\Backend\Opportunity\CreateProjectRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
+use SCCatalog\Models\Lookup\Category;
+use SCCatalog\Models\Lookup\Keyword;
+use SCCatalog\Models\Lookup\BudgetType;
+use SCCatalog\Models\Opportunity\Opportunity;
+use SCCatalog\Models\Lookup\OpportunityStatus;
 use SCCatalog\Models\Organization;
-use SCCatalog\Models\User;
+use SCCatalog\Models\Auth\User;
 use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
 
 class ProjectController extends Controller

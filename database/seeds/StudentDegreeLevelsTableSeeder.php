@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\StudentDegreeLevel;
+use SCCatalog\Models\Lookup\StudentDegreeLevel;
 
 class StudentDegreeLevelsTableSeeder extends Seeder
 {

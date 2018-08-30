@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\OpportunityType;
+use SCCatalog\Models\Lookup\OpportunityType;
 
 class OpportunityTypesTableSeeder extends Seeder
 {

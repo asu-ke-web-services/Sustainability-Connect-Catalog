@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Affiliation;
+use SCCatalog\Models\Lookup\Affiliation;
 
 class AffiliationsTableSeeder extends Seeder
 {

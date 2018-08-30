@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Keyword;
+use SCCatalog\Models\Lookup\Keyword;
 
 class KeywordsTableSeeder extends Seeder
 {

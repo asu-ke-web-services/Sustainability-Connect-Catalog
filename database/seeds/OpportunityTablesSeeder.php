@@ -2,10 +2,9 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\BudgetType;
-use SCCatalog\Models\OpportunityStatus;
-use SCCatalog\Models\OpportunityReviewStatus;
-use SCCatalog\Models\OpportunityType;
+use SCCatalog\Models\Lookup\BudgetType;
+use SCCatalog\Models\Lookup\OpportunityStatus;
+use SCCatalog\Models\Lookup\OpportunityReviewStatus;
 
 class OpportunityTablesSeeder extends Seeder
 {

@@ -2,11 +2,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Address;
-use SCCatalog\Models\Project;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\OpportunityStatus;
-use SCCatalog\Models\OpportunityType;
+use SCCatalog\Models\Opportunity\Project;
+use SCCatalog\Models\Opportunity\Opportunity;
 
 class ProjectsSeeder extends Seeder
 {

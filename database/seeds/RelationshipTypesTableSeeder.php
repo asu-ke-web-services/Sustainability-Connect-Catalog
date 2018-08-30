@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\RelationshipType;
+use SCCatalog\Models\Lookup\RelationshipType;
 
 class RelationshipTypesTableSeeder extends Seeder
 {

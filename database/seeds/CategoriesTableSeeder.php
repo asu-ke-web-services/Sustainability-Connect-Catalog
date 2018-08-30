@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Category;
+use SCCatalog\Models\Lookup\Category;
 
 class CategoriesTableSeeder extends Seeder
 {

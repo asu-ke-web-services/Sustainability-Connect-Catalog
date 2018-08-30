@@ -2,8 +2,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\OrganizationType;
-use SCCatalog\Models\OrganizationStatus;
+use SCCatalog\Models\Lookup\OrganizationType;
+use SCCatalog\Models\Lookup\OrganizationStatus;
 
 class OrganizationsTableSeeder extends Seeder
 {

@@ -3,10 +3,8 @@
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use SCCatalog\Models\Address;
-use SCCatalog\Models\Internship;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\OpportunityStatus;
-use SCCatalog\Models\OpportunityType;
+use SCCatalog\Models\Opportunity\Internship;
+use SCCatalog\Models\Opportunity\Opportunity;
 
 class InternshipsSeeder extends Seeder
 {

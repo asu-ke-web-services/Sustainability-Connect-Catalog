@@ -15,7 +15,7 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = 'SCCatalog\\Models\\User';
+    public static $model = \SCCatalog\Models\Auth\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

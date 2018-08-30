@@ -15,7 +15,7 @@ class BudgetType extends Resource
      *
      * @var string
      */
-    public static $model = 'SCCatalog\\Models\\BudgetType';
+    public static $model = \SCCatalog\Models\Lookup\BudgetType::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

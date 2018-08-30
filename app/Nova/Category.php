@@ -15,7 +15,7 @@ class Category extends Resource
      *
      * @var string
      */
-    public static $model = 'SCCatalog\\Models\\Category';
+    public static $model = \SCCatalog\Models\Lookup\Category::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

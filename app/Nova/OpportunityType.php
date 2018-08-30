@@ -15,7 +15,7 @@ class OpportunityType extends Resource
      *
      * @var string
      */
-    public static $model = 'SCCatalog\\Models\\OpportunityType';
+    public static $model = \SCCatalog\Models\Lookup\OpportunityType::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

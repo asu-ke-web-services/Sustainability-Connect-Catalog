@@ -15,7 +15,7 @@ class OpportunityStatus extends Resource
      *
      * @var string
      */
-    public static $model = 'SCCatalog\\Models\\OpportunityStatus';
+    public static $model = \SCCatalog\Models\Lookup\OpportunityStatus::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

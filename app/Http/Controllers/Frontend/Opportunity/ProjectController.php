@@ -42,29 +42,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        // $this->repository->pushCriteria(ProjectCriteria::class);
         $opportunity = $this->repository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->findWithoutFail($id);
-
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
+            ->getById($id);
 
         return view('projects.show', [
             'type' => $opportunity->opportunityable_type,

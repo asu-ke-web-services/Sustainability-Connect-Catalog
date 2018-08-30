@@ -42,29 +42,8 @@ class InternshipController extends Controller
      */
     public function show($id)
     {
-        // $this->repository->pushCriteria(InternshipCriteria::class);
         $opportunity = $this->repository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->findWithoutFail($id);
-
-        if (empty($opportunity)) {
-            Flash::error('Internship not found');
-
-            return redirect(route('internships.index'));
-        }
+            ->getById($id);
 
         return view('internships.show', [
             'type' => $opportunity->opportunityable_type,

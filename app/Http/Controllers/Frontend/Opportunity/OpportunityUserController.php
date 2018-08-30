@@ -2,9 +2,14 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
+use Illuminate\Support\Facades\Auth;
+use SCCatalog\Events\UserFollowedOpportunityEvent;
+use SCCatalog\Events\UserRequestedToJoinOpportunityEvent;
+use SCCatalog\Events\UserUnfollowedOpportunityEvent;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\User;
+use SCCatalog\Jobs\FollowOpportunity;
+use SCCatalog\Jobs\RequestToJoinOpportunity;
+use SCCatalog\Jobs\UnfollowOpportunity;
 use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 
 /**
@@ -38,18 +43,12 @@ class OpportunityUserController extends Controller
     {
         $user = Auth::user();
 
-        $opportunity = $this->repository->findWithoutFail($id);
+        $opportunity = $this->repository->getById($id);
 
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
-
-        FollowOpportunity::dispatch($opportunity, $user)
+        FollowOpportunity::dispatch($opportunity, $user);
         event(new UserFollowedOpportunityEvent($opportunity, $user));
 
-        Flash::success('Project followed successfully.');
+        // Flash::success('Project followed successfully.');
 
         return redirect(route('projects.index'));
     }
@@ -65,18 +64,12 @@ class OpportunityUserController extends Controller
     {
         $user = Auth::user();
 
-        $opportunity = $this->repository->findWithoutFail($id);
+        $opportunity = $this->repository->getById($id);
 
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
-
-        UnfollowOpportunity::dispatch($opportunity, $user)
+        UnfollowOpportunity::dispatch($opportunity, $user);
         event(new UserUnfollowedOpportunityEvent($opportunity, $user));
 
-        Flash::success('Project followed successfully.');
+        // Flash::success('Project followed successfully.');
 
         return redirect(route('projects.index'));
     }
@@ -92,18 +85,12 @@ class OpportunityUserController extends Controller
     {
         $user = Auth::user();
 
-        $opportunity = $this->repository->findWithoutFail($id);
+        $opportunity = $this->repository->getById($id);
 
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
-
-        RequestToJoinOpportunity::dispatch($opportunity, $user)
+        RequestToJoinOpportunity::dispatch($opportunity, $user);
         event(new UserRequestedToJoinOpportunityEvent($opportunity, $user));
 
-        Flash::success('Successfully submitted request.');
+        // Flash::success('Successfully submitted request.');
 
         return redirect(route('projects.index'));
     }

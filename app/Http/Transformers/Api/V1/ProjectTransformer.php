@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Transformers\Api\V1;
 
 use League\Fractal\TransformerAbstract;
-use SCCatalog\Models\Project;
+use SCCatalog\Models\Opportunity\Project;
 
 /**
  * Class ProjectTransformer.

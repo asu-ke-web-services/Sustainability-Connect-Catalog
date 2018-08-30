@@ -88,7 +88,7 @@ class Internship extends Model
 
     public function opportunity()
     {
-        return $this->morphOne('\SCCatalog\Models\Opportunity', 'opportunityable');
+        return $this->morphOne(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunityable');
     }
 
     /*

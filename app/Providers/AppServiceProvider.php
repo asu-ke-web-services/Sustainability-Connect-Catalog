@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url)
     {
         Relation::morphMap([
-            'Internship'   => \SCCatalog\Models\Internship::class,
-            'Opportunity'  => \SCCatalog\Models\Opportunity::class,
+            'Internship'   => \SCCatalog\Models\Opportunity\Internship::class,
+            'Opportunity'  => \SCCatalog\Models\Opportunity\Opportunity::class,
             'Organization' => \SCCatalog\Models\Organization::class,
-            'Project'      => \SCCatalog\Models\Project::class,
+            'Project'      => \SCCatalog\Models\Opportunity\Project::class,
         ]);
         /*
          * setLocale for php. Enables ->formatLocalized() with localized values for dates

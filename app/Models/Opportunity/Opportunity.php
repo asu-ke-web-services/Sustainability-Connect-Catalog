@@ -103,7 +103,7 @@ class Opportunity extends Model
      **/
     public function addresses()
     {
-        return $this->MorphMany(\SCCatalog\Models\Address::class, 'addressable');
+        return $this->morphMany(\SCCatalog\Models\Address::class, 'addressable');
     }
 
     /**
@@ -111,7 +111,7 @@ class Opportunity extends Model
      **/
     public function notes()
     {
-        return $this->MorphMany(\SCCatalog\Models\Note::class, 'noteable');
+        return $this->morphMany(\SCCatalog\Models\Note::class, 'noteable');
     }
 
 
@@ -120,7 +120,7 @@ class Opportunity extends Model
      **/
     public function status()
     {
-        return $this->belongsTo(\SCCatalog\Models\OpportunityStatus::class, 'opportunity_status_id');
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityStatus::class, 'opportunity_status_id');
     }
 
     /**
@@ -128,7 +128,7 @@ class Opportunity extends Model
      **/
     public function parentOpportunity()
     {
-        return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'parent_opportunity_id')->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Opportunity\Opportunity::class, 'parent_opportunity_id')->withDefault();
     }
 
     /**
@@ -144,7 +144,7 @@ class Opportunity extends Model
      **/
     public function supervisorUser()
     {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'supervisor_user_id')->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'supervisor_user_id')->withDefault();
     }
 
     /**
@@ -152,7 +152,7 @@ class Opportunity extends Model
      **/
     public function submittingUser()
     {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'submitting_user_id')->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'submitting_user_id')->withDefault();
     }
 
 
@@ -161,7 +161,7 @@ class Opportunity extends Model
      **/
     public function affiliations()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Affiliation::class, 'affiliation_opportunity')->withTimestamps();
+        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_opportunity')->withTimestamps();
     }
 
     /**
@@ -169,7 +169,7 @@ class Opportunity extends Model
      **/
     public function accessAffiliations()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Affiliation::class, 'affiliation_opportunity')
+        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_opportunity')
             ->where('access_control', 1)
             ->withTimestamps();
     }
@@ -179,7 +179,7 @@ class Opportunity extends Model
      **/
     public function categories()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Category::class, 'category_opportunity')->withTimestamps();
+        return $this->belongsToMany(\SCCatalog\Models\Lookup\Category::class, 'category_opportunity')->withTimestamps();
     }
 
     /**
@@ -187,7 +187,7 @@ class Opportunity extends Model
      **/
     public function keywords()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Keyword::class, 'keyword_opportunity')->withTimestamps();
+        return $this->belongsToMany(\SCCatalog\Models\Lookup\Keyword::class, 'keyword_opportunity')->withTimestamps();
     }
 
     /**
@@ -195,7 +195,7 @@ class Opportunity extends Model
      **/
     public function allRelatedUsers()
     {
-        return $this->belongsToMany(\SCCatalog\Models\User::class, 'opportunity_user', 'opportunity_id', 'user_id')
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user', 'opportunity_id', 'user_id')
             ->using('\SCCatalog\Models\OpportunityUser');
     }
 
@@ -204,7 +204,7 @@ class Opportunity extends Model
      **/
     public function followers()
     {
-        return $this->belongsToMany(\SCCatalog\Models\User::class, 'opportunity_user', 'opportunity_id', 'user_id')
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user', 'opportunity_id', 'user_id')
             ->using('\SCCatalog\Models\OpportunityUser')
             ->wherePivot('relationship_type_id', 1);
     }
@@ -214,7 +214,7 @@ class Opportunity extends Model
      **/
     public function applicants()
     {
-        return $this->belongsToMany(\SCCatalog\Models\User::class, 'opportunity_user')
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
             ->using('\SCCatalog\Models\OpportunityUser')
             ->wherePivot('relationship_type_id', 2);
     }
@@ -224,7 +224,7 @@ class Opportunity extends Model
      **/
     public function participants()
     {
-        return $this->belongsToMany(\SCCatalog\Models\User::class, 'opportunity_user')
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
             ->using('\SCCatalog\Models\OpportunityUser')
             ->wherePivot('relationship_type_id', 3)
             ->wherePivot('pending', 0);
@@ -235,7 +235,7 @@ class Opportunity extends Model
      **/
     public function activeMembers()
     {
-        return $this->belongsToMany(\SCCatalog\Models\User::class, 'opportunity_user')
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
             ->using('\SCCatalog\Models\OpportunityUser')
             ->wherePivotIn('relationship_type_id', [2,3,4,5])
             ->wherePivot('pending', 0);

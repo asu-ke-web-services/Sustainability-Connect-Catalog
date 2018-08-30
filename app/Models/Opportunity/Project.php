@@ -93,7 +93,7 @@ class Project extends Model
      **/
     public function opportunity()
     {
-        return $this->morphOne(\SCCatalog\Models\Opportunity::class, 'opportunityable');
+        return $this->morphOne(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunityable');
     }
 
     /**
@@ -101,7 +101,7 @@ class Project extends Model
      **/
     public function budgetType()
     {
-        return $this->belongsTo(\SCCatalog\Models\BudgetType::class, 'budget_type_id');
+        return $this->belongsTo(\SCCatalog\Models\Lookup\BudgetType::class, 'budget_type_id');
     }
 
     /**
@@ -109,7 +109,7 @@ class Project extends Model
      **/
     public function reviewStatus()
     {
-        return $this->belongsTo(\SCCatalog\Models\OpportunityReviewStatus::class, 'review_status_id');
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityReviewStatus::class, 'review_status_id');
     }
 
     /*
@@ -131,7 +131,7 @@ class Project extends Model
      */
     public function getStatuses()
     {
-        \SCCatalog\Models\OpportunityStatus::where('opportunity_type_id', 1)
+        \SCCatalog\Models\Lookup\OpportunityStatus::where('opportunity_type_id', 1)
             ->orderBy('order', 'asc')
             ->get();
     }

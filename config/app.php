@@ -161,7 +161,6 @@ return [
         /*
          * Package Service Providers...
          */
-        SCCatalog\Providers\NovaServiceProvider::class,
 
         /*
          * Application Service Providers...

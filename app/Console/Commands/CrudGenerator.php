@@ -77,7 +77,7 @@ class CrudGenerator extends Command
             $this->getStub('Repository')
         );
 
-        file_put_contents(app_path("/Repository/{$name}Repository.php"), $repositoryTemplate);
+        file_put_contents(app_path("/Repositories/{$name}Repository.php"), $repositoryTemplate);
     }
 
     protected function controller($name)

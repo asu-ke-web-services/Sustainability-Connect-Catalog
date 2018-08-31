@@ -102,8 +102,11 @@ class CrudGenerator extends Command
             $this->getStub('Request')
         );
 
-        if(!file_exists($path = app_path('/Http/Requests')))
-            mkdir($path, 0777, true);
+        if (!file_exists($path = app_path('/Http/Requests'))) {
+            if ( !mkdir( $path, 0777, true ) && !is_dir( $path ) ) {
+                throw new \RuntimeException( sprintf( 'Directory "%s" was not created', $path ) );
+            }
+        }
 
         file_put_contents(app_path("/Http/Requests/{$name}Request.php"), $requestTemplate);
     }

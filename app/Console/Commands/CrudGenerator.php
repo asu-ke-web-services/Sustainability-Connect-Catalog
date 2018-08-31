@@ -83,7 +83,12 @@ class CrudGenerator extends Command
             $this->getStub('Model')
         );
 
-        file_put_contents(app_path("/Models{$path}/{$modelName}.php"), $modelTemplate);
+        $destination_folder = app_path("Models{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . "/{$modelName}.php", $modelTemplate);
     }
 
     protected function repository($modelName, $namespace, $path)
@@ -100,7 +105,12 @@ class CrudGenerator extends Command
             $this->getStub('Repository')
         );
 
-        file_put_contents(app_path("/Repositories{$path}/{$modelName}Repository.php"), $repositoryTemplate);
+        $destination_folder = app_path("Repositories{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . "/{$modelName}Repository.php", $repositoryTemplate);
     }
 
     protected function controller($modelName, $namespace, $path)
@@ -121,7 +131,12 @@ class CrudGenerator extends Command
             $this->getStub('Controller')
         );
 
-        file_put_contents(app_path("/Http/Controllers{$path}/{$modelName}Controller.php"), $controllerTemplate);
+        $destination_folder = app_path("Http/Controllers{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . "/{$modelName}Controller.php", $controllerTemplate);
     }
 
     protected function request($modelName, $namespace, $path)
@@ -138,13 +153,12 @@ class CrudGenerator extends Command
             $this->getStub('Request')
         );
 
-        if (!file_exists($filepath = app_path('/Http/Requests'))) {
-            if (!mkdir($filepath, 0777, true) && !is_dir($filepath)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $filepath));
-            }
+        $destination_folder = app_path("Http/Requests{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }
 
-        file_put_contents(app_path("/Http/Requests{$path}/{$modelName}Request.php"), $requestTemplate);
+        file_put_contents($destination_folder . "/{$modelName}Request.php", $requestTemplate);
     }
 
     protected function views_create($modelName)
@@ -164,7 +178,7 @@ class CrudGenerator extends Command
             $this->getStub('views.create')
         );
 
-        $destination_folder = resource_path("/views/{$modelName_lcase}");
+        $destination_folder = resource_path("views/{$modelName_lcase}");
         if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }
@@ -189,7 +203,7 @@ class CrudGenerator extends Command
             $this->getStub('views.edit')
         );
 
-        $destination_folder = resource_path("/views/{$modelName_lcase}");
+        $destination_folder = resource_path("views/{$modelName_lcase}");
 
         file_put_contents($destination_folder . '/edit.blade.php', $viewTemplate);
     }
@@ -211,7 +225,7 @@ class CrudGenerator extends Command
             $this->getStub('views.index')
         );
 
-        $destination_folder = resource_path("/views/{$modelName_lcase}");
+        $destination_folder = resource_path("views/{$modelName_lcase}");
 
         file_put_contents($destination_folder . '/index.blade.php', $viewTemplate);
     }
@@ -233,7 +247,7 @@ class CrudGenerator extends Command
             $this->getStub('views.include.header-buttons')
         );
 
-        $destination_folder = resource_path("/views/{$modelName_lcase}/include");
+        $destination_folder = resource_path("views/{$modelName_lcase}/include");
         if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }

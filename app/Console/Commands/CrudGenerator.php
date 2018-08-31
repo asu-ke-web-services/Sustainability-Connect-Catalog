@@ -61,7 +61,7 @@ class CrudGenerator extends Command
         $this->views_header_buttons($modelName);
 
         File::append(base_path('routes/web.php'), PHP_EOL . "/* {$modelName} CRUD */" . PHP_EOL);
-        File::append(base_path('routes/web.php'), 'Route::resource(' . strtolower($path . '/' . $modelName) . "', '{$modelName}Controller');" . PHP_EOL);
+        File::append(base_path('routes/web.php'), 'Route::resource(\'' . strtolower($modelName) . "', '{$modelName}Controller');" . PHP_EOL);
     }
 
     protected function getStub($type)

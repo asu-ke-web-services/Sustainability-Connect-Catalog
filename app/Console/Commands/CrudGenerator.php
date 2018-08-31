@@ -44,6 +44,10 @@ class CrudGenerator extends Command
         $this->model($name);
         $this->repository($name);
         $this->request($name);
+        $this->views_create($name);
+        $this->views_edit($name);
+        $this->views_index($name);
+        $this->views_header_buttons($name);
 
         File::append(base_path('routes/api.php'), 'Route::resource(\'' . str_plural(strtolower($name)) . "', '{$name}Controller');");
     }
@@ -110,4 +114,99 @@ class CrudGenerator extends Command
 
         file_put_contents(app_path("/Http/Requests/{$name}Request.php"), $requestTemplate);
     }
+
+    protected function views_create($name)
+    {
+        $name_lcase = strtolower($name);
+        $viewTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('views.create')
+        );
+
+        $destination_folder = resource_path("/views/{$name_lcase}");
+        if (!mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . '/create.blade.php', $viewTemplate);
+    }
+
+    protected function views_edit($name)
+    {
+        $name_lcase = strtolower($name);
+        $viewTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('views.edit')
+        );
+
+        $destination_folder = resource_path("/views/{$name_lcase}");
+
+        file_put_contents($destination_folder . '/edit.blade.php', $viewTemplate);
+    }
+
+    protected function views_index($name)
+    {
+        $name_lcase = strtolower($name);
+        $viewTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('views.index')
+        );
+
+        $destination_folder = resource_path("/views/{$name_lcase}");
+
+        file_put_contents($destination_folder . '/index.blade.php', $viewTemplate);
+    }
+
+    protected function views_header_buttons($name)
+    {
+        $name_lcase = strtolower($name);
+        $viewTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('views.include.header-buttons')
+        );
+
+        $destination_folder = resource_path("/views/{$name_lcase}/include");
+        if (!mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . '/header-buttons.blade.php', $viewTemplate);
+    }
+
 }

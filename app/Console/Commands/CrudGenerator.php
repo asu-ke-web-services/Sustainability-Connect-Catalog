@@ -51,9 +51,9 @@ class CrudGenerator extends Command
             $path = '/' . implode('/', $namespaces);
         }
 
-        $this->controller($modelName, $namespace, $path);
         $this->model($modelName, $namespace, $path);
         $this->repository($modelName, $namespace, $path);
+        $this->controller($modelName, $namespace, $path);
         $this->request($modelName, $namespace, $path);
         $this->views_create($modelName);
         $this->views_edit($modelName);

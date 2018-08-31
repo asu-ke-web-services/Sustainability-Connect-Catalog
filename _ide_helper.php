@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.35 on 2018-08-30 21:10:29.
+ * Generated for Laravel 5.6.35 on 2018-08-31 19:10:52.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13701,14 +13701,6 @@ namespace Intervention\Image\Facades {
  
 }
 
-namespace Laravel\Nova { 
-
-    class Nova {
-         
-    }
- 
-}
-
 namespace Laravel\Socialite\Facades { 
 
     class Socialite {
@@ -17010,8 +17002,6 @@ namespace  {
     class Active extends \HieuLe\Active\Facades\Active {}
 
     class Image extends \Intervention\Image\Facades\Image {}
-
-    class Nova extends \Laravel\Nova\Nova {}
 
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
 

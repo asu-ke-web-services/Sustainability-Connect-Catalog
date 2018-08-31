@@ -23,7 +23,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/behat/gherkin" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-self-diagnosis" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/chronos" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/codeception" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/phpunit-wrapper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/stub" />
@@ -69,7 +68,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laracasts/flash" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laracasts/generators" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/nova" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/scout" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/socialite" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/tinker" />
@@ -83,7 +81,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mccool/laravel-auto-presenter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/moontoast/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mtdowling/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mtdowling/jmespath.php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
@@ -137,7 +134,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-medialibrary" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-permission" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-sluggable" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/once" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/pdf-to-image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/temporary-directory" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />

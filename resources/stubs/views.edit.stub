@@ -1,56 +1,68 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __('labels.backend.access.roles.management') . ' | ' . __('labels.backend.access.roles.edit'))
+@section ('title', __('{{modelName}}') . ' Management | Edit ' . __('{{modelName}}'))
 
 @section('content')
-{{ html()->modelForm($role, 'PATCH', route('admin.auth.role.update', $role))->class('form-horizontal')->open() }}
+{{ html()->form('POST', route('{{modelNameSingularLowerCase}}.store'))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('labels.backend.access.roles.management') }}
-                        <small class="text-muted">{{ __('labels.backend.access.roles.edit') }}</small>
+                        {{ __('{{modelName}} Management') }}
+                        <small class="text-muted">{{ __('Edit {{modelName}}') }}</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
-            <!--row-->
 
             <hr />
 
             <div class="row mt-4">
                 <div class="col">
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.roles.name'))
+                        {{ html()->label(__('Text Field'))
                             ->class('col-md-2 form-control-label')
-                            ->for('name') }}
+                            ->for('text_field') }}
 
                         <div class="col-md-10">
-                            {{ html()->text('name')
+                            {{ html()->text('text_field')
                                 ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.access.roles.name'))
+                                ->placeholder(__('Text Field'))
+                                ->attribute('maxlength', 191)
+                                ->required()
+                                ->autofocus() }}
+                        </div><!--col-->
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        {{ html()->label(__('Email'))->class('col-md-2 form-control-label')->for('email') }}
+
+                        <div class="col-md-10">
+                            {{ html()->email('email')
+                                ->class('form-control')
+                                ->placeholder(__('Email'))
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div><!--col-->
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.roles.associated_permissions'))
+                        {{ html()->label(__('Associated Models'))
                             ->class('col-md-2 form-control-label')
-                            ->for('permissions') }}
+                            ->for('associated_models') }}
 
                         <div class="col-md-10">
-                            @if ($permissions->count())
-                                @foreach($permissions as $permission)
+                            @if ($associated_models->count())
+                                @foreach($associated_models as $associated_model)
                                     <div class="checkbox">
                                         {{ html()->label(
-                                                html()->checkbox('permissions[]', in_array($permission->name, $rolePermissions), $permission->name)
+                                                html()->checkbox('associated_models[]', old('associated_models') && in_array($associated_model->name, old('associated_models')) ? true : false, $associated_model->name)
                                                       ->class('switch-input')
-                                                      ->id('permission-'.$permission->id)
+                                                      ->id('associated-model-'.$associated_model->id)
                                                 . '<span class="switch-label"></span><span class="switch-handle"></span>')
                                             ->class('switch switch-sm switch-3d switch-primary')
-                                            ->for('permission-'.$permission->id) }}
-                                        {{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}
+                                            ->for('associated-model-'.$associated_model->id) }}
+                                        {{ html()->label(ucwords($associated_model->name))->for('associated-model-'.$associated_model->id) }}
                                     </div>
                                 @endforeach
                             @endif
@@ -63,14 +75,14 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col">
-                    {{ form_cancel(route('admin.auth.role.index'), __('buttons.general.cancel')) }}
+                    {{ form_cancel(route('{{modelNameSingularLowerCase}}.index'), 'Cancel') }}
                 </div><!--col-->
 
                 <div class="col text-right">
-                    {{ form_submit(__('buttons.general.crud.update')) }}
+                    {{ form_submit('Edit') }}
                 </div><!--col-->
             </div><!--row-->
         </div><!--card-footer-->
     </div><!--card-->
-{{ html()->closeModelForm() }}
+{{ html()->form()->close() }}
 @endsection

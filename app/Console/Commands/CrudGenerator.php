@@ -12,7 +12,7 @@ class CrudGenerator extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:generate {modelName : Class (singular) for example User} {--namespace=}';
+    protected $signature = 'crud:generate {modelName : Class (singular) for example User} {--namespace=none}';
 
     /**
      * The console command description.
@@ -39,24 +39,29 @@ class CrudGenerator extends Command
     public function handle()
     {
         $modelName = $this->argument('modelName');
-        $namespace = $this->argument('namespace');
+        $namespace = $this->option('namespace');
 
-        // clean and format namespace option with trailing separator
-        $namespaces = array_filter(explode('\\', $namespace), 'strlen');
-        $namespace = '\\' . implode('\\', $namespaces);
-        $path = '/' . implode('/', $namespaces);
+        if ($namespace === 'none') {
+            $namespace = '';
+            $path = '';
+        } else {
+            // clean and format namespace option with trailing separator
+            $namespaces = array_filter(explode('\\', $namespace), 'strlen');
+            $namespace = implode('\\', $namespaces);
+            $path = '/' . implode('/', $namespaces);
+        }
 
         $this->controller($modelName, $namespace, $path);
-        $this->model($modelName, $namespace, $path);
+        $this->model($modelName, $path);
         $this->repository($modelName, $namespace, $path);
         $this->request($modelName, $namespace, $path);
-        $this->views_create($modelName, $namespace, $path);
-        $this->views_edit($modelName, $namespace, $path);
-        $this->views_index($modelName, $namespace, $path);
-        $this->views_header_buttons($modelName, $namespace, $path);
+        $this->views_create($modelName);
+        $this->views_edit($modelName);
+        $this->views_index($modelName);
+        $this->views_header_buttons($modelName);
 
         File::append(base_path('routes/web.php'), PHP_EOL . "/* {$modelName} CRUD */" . PHP_EOL);
-        File::append(base_path('routes/web.php'), 'Route::resource(' . strtolower($path . $modelName) . "', '{$modelName}Controller');" . PHP_EOL);
+        File::append(base_path('routes/web.php'), 'Route::resource(' . strtolower($path . '/' . $modelName) . "', '{$modelName}Controller');" . PHP_EOL);
     }
 
     protected function getStub($type)

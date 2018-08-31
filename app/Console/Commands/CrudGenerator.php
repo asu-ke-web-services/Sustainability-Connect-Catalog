@@ -47,7 +47,7 @@ class CrudGenerator extends Command
         } else {
             // clean and format namespace option with trailing separator
             $namespaces = array_filter(explode('\\', $namespace), 'strlen');
-            $namespace = implode('\\', $namespaces);
+            $namespace = '\\' . implode('\\', $namespaces);
             $path = '/' . implode('/', $namespaces);
         }
 

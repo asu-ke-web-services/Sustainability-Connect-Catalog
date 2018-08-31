@@ -1,10 +1,10 @@
 <?php
 
-namespace SCCatalog\Http\Controllers;
+namespace SCCatalog\Http\Controllers{{namespace}};
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\{{modelName}}Request;
-use SCCatalog\Repositories\{{modelName}}Repository;
+use SCCatalog\Http\Requests{{namespace}}\{{modelName}}Request;
+use SCCatalog\Repositories{{namespace}}\{{modelName}}Repository;
 
 class {{modelName}}Controller extends Controller
 {
@@ -119,7 +119,7 @@ class {{modelName}}Controller extends Controller
         $this->repository->delete($id);
 
         event(new {{modelName}}DeletedEvent(${{modelNameSingularLowerCase}}));
-        
+
         return redirect()->route('{{modelNameSingularLowerCase}}.index')
                         ->with('success','{{modelName}} deleted successfully');
     }

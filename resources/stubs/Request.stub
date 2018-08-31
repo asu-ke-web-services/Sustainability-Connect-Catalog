@@ -1,9 +1,9 @@
 <?php
 
-namespace SCCatalog\Http\Requests;
+namespace SCCatalog\Http\Requests{{namespace}};
 
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models\{{modelName}};
+use SCCatalog\Models{{namespace}}\{{modelName}};
 
 /**
  * Class {{modelName}}Request.

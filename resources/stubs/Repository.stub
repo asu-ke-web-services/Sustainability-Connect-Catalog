@@ -1,8 +1,8 @@
 <?php
 
-namespace SCCatalog\Repositories;
+namespace SCCatalog\Repositories{{namespace}};
 
-use SCCatalog\Models\{{modelName}};
+use SCCatalog\Models{{namespace}}\{{modelName}};
 use SCCatalog\Repositories\BaseRepository;
 
 /**

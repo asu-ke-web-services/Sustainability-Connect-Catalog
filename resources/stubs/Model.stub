@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models{{namespace}};
 
 use Illuminate\Database\Eloquent\Model;
 

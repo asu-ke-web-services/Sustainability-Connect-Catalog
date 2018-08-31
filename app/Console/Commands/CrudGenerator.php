@@ -12,7 +12,7 @@ class CrudGenerator extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:generator {name : Class (singular) for example User}';
+    protected $signature = 'crud:generate {modelName : Class (singular) for example User} {--namespace=}';
 
     /**
      * The console command description.
@@ -38,19 +38,25 @@ class CrudGenerator extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        $modelName = $this->argument('modelName');
+        $namespace = $this->argument('namespace');
 
-        $this->controller($name);
-        $this->model($name);
-        $this->repository($name);
-        $this->request($name);
-        $this->views_create($name);
-        $this->views_edit($name);
-        $this->views_index($name);
-        $this->views_header_buttons($name);
+        // clean and format namespace option with trailing separator
+        $namespaces = array_filter(explode('\\', $namespace), 'strlen');
+        $namespace = '\\' . implode('\\', $namespaces);
+        $path = '/' . implode('/', $namespaces);
 
-        File::append(base_path('routes/web.php'), PHP_EOL . "/* {$name} CRUD */" . PHP_EOL);
-        File::append(base_path('routes/web.php'), 'Route::resource(\'' . strtolower($name) . "', '{$name}Controller');" . PHP_EOL);
+        $this->controller($modelName, $namespace, $path);
+        $this->model($modelName, $namespace, $path);
+        $this->repository($modelName, $namespace, $path);
+        $this->request($modelName, $namespace, $path);
+        $this->views_create($modelName, $namespace, $path);
+        $this->views_edit($modelName, $namespace, $path);
+        $this->views_index($modelName, $namespace, $path);
+        $this->views_header_buttons($modelName, $namespace, $path);
+
+        File::append(base_path('routes/web.php'), PHP_EOL . "/* {$modelName} CRUD */" . PHP_EOL);
+        File::append(base_path('routes/web.php'), 'Route::resource(' . strtolower($path . $modelName) . "', '{$modelName}Controller');" . PHP_EOL);
     }
 
     protected function getStub($type)
@@ -58,82 +64,96 @@ class CrudGenerator extends Command
         return file_get_contents(resource_path("stubs/$type.stub"));
     }
 
-    protected function model($name)
+    protected function model($modelName, $path)
     {
         $modelTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
+            '{{modelName}}',
+            $modelName,
             $this->getStub('Model')
         );
 
-        file_put_contents(app_path("/Models/{$name}.php"), $modelTemplate);
+        file_put_contents(app_path("/Models{$path}/{$modelName}.php"), $modelTemplate);
     }
 
-    protected function repository($name)
+    protected function repository($modelName, $namespace, $path)
     {
         $repositoryTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
+            [
+                '{{modelName}}',
+                '{{namespace}}',
+            ],
+            [
+                $modelName,
+                $namespace,
+            ],
             $this->getStub('Repository')
         );
 
-        file_put_contents(app_path("/Repositories/{$name}Repository.php"), $repositoryTemplate);
+        file_put_contents(app_path("/Repositories{$path}/{$modelName}Repository.php"), $repositoryTemplate);
     }
 
-    protected function controller($name)
+    protected function controller($modelName, $namespace, $path)
     {
         $controllerTemplate = str_replace(
             [
                 '{{modelName}}',
                 '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
+                '{{modelNameSingularLowerCase}}',
+                '{{namespace}}',
             ],
             [
-                $name,
-                strtolower(str_plural($name)),
-                strtolower($name)
+                $modelName,
+                strtolower(str_plural($modelName)),
+                strtolower($modelName),
+                $namespace,
             ],
             $this->getStub('Controller')
         );
 
-        file_put_contents(app_path("/Http/Controllers/{$name}Controller.php"), $controllerTemplate);
+        file_put_contents(app_path("/Http/Controllers{$path}/{$modelName}Controller.php"), $controllerTemplate);
     }
 
-    protected function request($name)
+    protected function request($modelName, $namespace, $path)
     {
         $requestTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
+            [
+                '{{modelName}}',
+                '{{namespace}}',
+            ],
+            [
+                $modelName,
+                $namespace,
+            ],
             $this->getStub('Request')
         );
 
-        if (!file_exists($path = app_path('/Http/Requests'))) {
-            if ( !mkdir( $path, 0777, true ) && !is_dir( $path ) ) {
-                throw new \RuntimeException( sprintf( 'Directory "%s" was not created', $path ) );
+        if (!file_exists($filepath = app_path('/Http/Requests'))) {
+            if (!mkdir($filepath, 0777, true) && !is_dir($filepath)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $filepath));
             }
         }
 
-        file_put_contents(app_path("/Http/Requests/{$name}Request.php"), $requestTemplate);
+        file_put_contents(app_path("/Http/Requests{$path}/{$modelName}Request.php"), $requestTemplate);
     }
 
-    protected function views_create($name)
+    protected function views_create($modelName)
     {
-        $name_lcase = strtolower($name);
+        $modelName_lcase = strtolower($modelName);
         $viewTemplate = str_replace(
             [
                 '{{modelName}}',
                 '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
+                '{{modelNameSingularLowerCase}}',
             ],
             [
-                $name,
-                strtolower(str_plural($name)),
-                strtolower($name)
+                $modelName,
+                strtolower(str_plural($modelName)),
+                strtolower($modelName),
             ],
             $this->getStub('views.create')
         );
 
-        $destination_folder = resource_path("/views/{$name_lcase}");
+        $destination_folder = resource_path("/views/{$modelName_lcase}");
         if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }
@@ -141,68 +161,68 @@ class CrudGenerator extends Command
         file_put_contents($destination_folder . '/create.blade.php', $viewTemplate);
     }
 
-    protected function views_edit($name)
+    protected function views_edit($modelName)
     {
-        $name_lcase = strtolower($name);
+        $modelName_lcase = strtolower($modelName);
         $viewTemplate = str_replace(
             [
                 '{{modelName}}',
                 '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
+                '{{modelNameSingularLowerCase}}',
             ],
             [
-                $name,
-                strtolower(str_plural($name)),
-                strtolower($name)
+                $modelName,
+                strtolower(str_plural($modelName)),
+                strtolower($modelName),
             ],
             $this->getStub('views.edit')
         );
 
-        $destination_folder = resource_path("/views/{$name_lcase}");
+        $destination_folder = resource_path("/views/{$modelName_lcase}");
 
         file_put_contents($destination_folder . '/edit.blade.php', $viewTemplate);
     }
 
-    protected function views_index($name)
+    protected function views_index($modelName)
     {
-        $name_lcase = strtolower($name);
+        $modelName_lcase = strtolower($modelName);
         $viewTemplate = str_replace(
             [
                 '{{modelName}}',
                 '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
+                '{{modelNameSingularLowerCase}}',
             ],
             [
-                $name,
-                strtolower(str_plural($name)),
-                strtolower($name)
+                $modelName,
+                strtolower(str_plural($modelName)),
+                strtolower($modelName),
             ],
             $this->getStub('views.index')
         );
 
-        $destination_folder = resource_path("/views/{$name_lcase}");
+        $destination_folder = resource_path("/views/{$modelName_lcase}");
 
         file_put_contents($destination_folder . '/index.blade.php', $viewTemplate);
     }
 
-    protected function views_header_buttons($name)
+    protected function views_header_buttons($modelName)
     {
-        $name_lcase = strtolower($name);
+        $modelName_lcase = strtolower($modelName);
         $viewTemplate = str_replace(
             [
                 '{{modelName}}',
                 '{{modelNamePluralLowerCase}}',
-                '{{modelNameSingularLowerCase}}'
+                '{{modelNameSingularLowerCase}}',
             ],
             [
-                $name,
-                strtolower(str_plural($name)),
-                strtolower($name)
+                $modelName,
+                strtolower(str_plural($modelName)),
+                strtolower($modelName),
             ],
             $this->getStub('views.include.header-buttons')
         );
 
-        $destination_folder = resource_path("/views/{$name_lcase}/include");
+        $destination_folder = resource_path("/views/{$modelName_lcase}/include");
         if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }

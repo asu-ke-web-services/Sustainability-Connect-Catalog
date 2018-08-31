@@ -52,7 +52,7 @@ class CrudGenerator extends Command
         }
 
         $this->controller($modelName, $namespace, $path);
-        $this->model($modelName, $path);
+        $this->model($modelName, $namespace, $path);
         $this->repository($modelName, $namespace, $path);
         $this->request($modelName, $namespace, $path);
         $this->views_create($modelName);
@@ -69,11 +69,17 @@ class CrudGenerator extends Command
         return file_get_contents(resource_path("stubs/$type.stub"));
     }
 
-    protected function model($modelName, $path)
+    protected function model($modelName, $namespace, $path)
     {
         $modelTemplate = str_replace(
-            '{{modelName}}',
-            $modelName,
+            [
+                '{{modelName}}',
+                '{{namespace}}',
+            ],
+            [
+                $modelName,
+                $namespace,
+            ],
             $this->getStub('Model')
         );
 

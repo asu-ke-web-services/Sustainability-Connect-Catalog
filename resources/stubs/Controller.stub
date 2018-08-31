@@ -30,7 +30,9 @@ class {{modelName}}Controller extends Controller
      */
     public function index()
     {
-        return view('{{modelNameSingularLowerCase}}.index');
+        ${{modelNamePluralLowerCase}} = $this->repository->latest()->paginate(5);
+        return view('{{modelNameSingularLowerCase}}.index',compact('{{modelNamePluralLowerCase}}'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -42,7 +44,8 @@ class {{modelName}}Controller extends Controller
      */
     public function show($id)
     {
-        return view('{{modelNameSingularLowerCase}}.show');
+        ${{modelNameSingularLowerCase}} = $this->repository->find($id);
+        return view('{{modelNameSingularLowerCase}}.show',compact('{{modelNameSingularLowerCase}}'));
     }
 
     /**
@@ -64,13 +67,12 @@ class {{modelName}}Controller extends Controller
      */
     public function store({{modelName}}Request $request)
     {
-        $input = $request->all();
-
-        ${{modelNameSingularLowerCase}} = $this->repository->create($input);
+        ${{modelNameSingularLowerCase}} = $this->repository->create($request->all());
 
         event(new {{modelName}}CreatedEvent(${{modelNameSingularLowerCase}}));
 
-        return redirect(route('{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}'));
+        return redirect()->route('{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}')
+                        ->with('success','{{modelName}} created successfully');
     }
 
     /**
@@ -82,9 +84,8 @@ class {{modelName}}Controller extends Controller
      */
     public function edit($id)
     {
-        ${{modelNameSingularLowerCase}} = $this->repository->findWithoutFail($id);
-
-        return view('{{modelNameSingularLowerCase}}.edit');
+        ${{modelNameSingularLowerCase}} = $this->repository->find($id);
+        return view('{{modelNameSingularLowerCase}}.edit',compact('{{modelNameSingularLowerCase}}'));
     }
 
     /**
@@ -97,12 +98,12 @@ class {{modelName}}Controller extends Controller
      */
     public function update({{modelName}}Request $request, $id)
     {
-        ${{modelNameSingularLowerCase}} = $this->repository->findWithoutFail($id);
-
         ${{modelNameSingularLowerCase}} = $this->repository->update($request->all(), $id);
+
         event(new {{modelName}}UpdatedEvent(${{modelNameSingularLowerCase}}));
 
-        return redirect(route('{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}'));
+        return redirect()->route('{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}')
+                        ->with('success','{{modelName}} updated successfully');
     }
 
     /**
@@ -114,11 +115,12 @@ class {{modelName}}Controller extends Controller
      */
     public function destroy($id)
     {
-        ${{modelNameSingularLowerCase}} = $this->repository->findWithoutFail($id);
-
+        ${{modelNameSingularLowerCase}} = $this->repository->find($id);
         $this->repository->delete($id);
-        event(new {{modelName}}DeletedEvent(${{modelNameSingularLowerCase}}));
 
-        return redirect(route('{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}'));
+        event(new {{modelName}}DeletedEvent(${{modelNameSingularLowerCase}}));
+        
+        return redirect()->route('{{modelNameSingularLowerCase}}.index')
+                        ->with('success','{{modelName}} deleted successfully');
     }
 }

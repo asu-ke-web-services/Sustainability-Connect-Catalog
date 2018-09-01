@@ -201,7 +201,7 @@ class CrudGenerator extends Command
             $this->getStub('Listener')
         );
 
-        $destination_folder = app_path("Listener{$path}");
+        $destination_folder = app_path("Listeners{$path}");
         if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }

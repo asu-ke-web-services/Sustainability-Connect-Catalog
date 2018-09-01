@@ -163,7 +163,7 @@ class CrudGenerator extends Command
         file_put_contents($destination_folder . "/{$modelName}Request.php", $requestTemplate);
     }
 
-    protected function event($modelName, $namespace, $path)
+    protected function eventCreated($modelName, $namespace, $path)
     {
         $eventTemplate = str_replace(
             [
@@ -176,7 +176,7 @@ class CrudGenerator extends Command
                 strtolower($modelName),
                 $namespace,
             ],
-            $this->getStub('Event')
+            $this->getStub('EventCreated')
         );
 
         $destination_folder = app_path("Events{$path}");
@@ -184,7 +184,55 @@ class CrudGenerator extends Command
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }
 
-        file_put_contents($destination_folder . "/{$modelName}Event.php", $eventTemplate);
+        file_put_contents($destination_folder . "/{$modelName}CreatedEvent.php", $eventTemplate);
+    }
+
+    protected function eventUpdated($modelName, $namespace, $path)
+    {
+        $eventTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNameSingularLowerCase}}',
+                '{{namespace}}',
+            ],
+            [
+                $modelName,
+                strtolower($modelName),
+                $namespace,
+            ],
+            $this->getStub('EventUpdated')
+        );
+
+        $destination_folder = app_path("Events{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . "/{$modelName}UpdatedEvent.php", $eventTemplate);
+    }
+
+    protected function eventDeleted($modelName, $namespace, $path)
+    {
+        $eventTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNameSingularLowerCase}}',
+                '{{namespace}}',
+            ],
+            [
+                $modelName,
+                strtolower($modelName),
+                $namespace,
+            ],
+            $this->getStub('EventDeleted')
+        );
+
+        $destination_folder = app_path("Events{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . "/{$modelName}DeletedEvent.php", $eventTemplate);
     }
 
     protected function listener($modelName, $namespace, $path)

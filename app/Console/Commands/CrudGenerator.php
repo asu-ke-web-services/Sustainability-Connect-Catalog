@@ -342,10 +342,10 @@ class CrudGenerator extends Command
                 strtolower(str_plural($modelName)),
                 strtolower($modelName),
             ],
-            $this->getStub('views.include.header-buttons')
+            $this->getStub('views.includes.header-buttons')
         );
 
-        $destination_folder = resource_path("views/{$modelName_lcase}/include");
+        $destination_folder = resource_path("views/{$modelName_lcase}/includes");
         if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }

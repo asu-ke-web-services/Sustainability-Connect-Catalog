@@ -3,7 +3,6 @@
 namespace SCCatalog\Http\Requests{{namespace}};
 
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models{{namespace}}\{{modelName}};
 
 /**
  * Class {{modelName}}Request.

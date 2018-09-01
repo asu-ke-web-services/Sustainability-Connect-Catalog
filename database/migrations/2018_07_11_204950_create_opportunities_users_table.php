@@ -27,8 +27,7 @@ class CreateOpportunitiesUsersTable extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->foreign('relationship_type_id')
-                ->references('id')->on('relationship_types')
-                ->onDelete('set null');
+                ->references('id')->on('relationship_types');
 
             $table->foreign('opportunity_id')
                 ->references('id')->on('opportunities')

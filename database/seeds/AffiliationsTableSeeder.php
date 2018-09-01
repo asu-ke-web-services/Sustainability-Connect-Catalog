@@ -20,7 +20,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 1,
                 'access_control' => 0,
@@ -37,7 +36,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 2,
                 'access_control' => 1,
@@ -54,7 +52,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 3,
                 'access_control' => 0,
@@ -71,7 +68,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 4,
                 'access_control' => 0,
@@ -88,7 +84,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 5,
                 'access_control' => 0,
@@ -105,7 +100,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 6,
                 'access_control' => 0,
@@ -122,7 +116,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 7,
                 'access_control' => 0,
@@ -139,7 +132,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 8,
                 'access_control' => 0,
@@ -156,7 +148,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'parent_id' => null,
                 'opportunity_type_id' => 1,
                 'order' => 9,
                 'access_control' => 0,
@@ -173,7 +164,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'parent_id' => null,
                 'opportunity_type_id' => 1,
                 'order' => 10,
                 'access_control' => 0,
@@ -190,7 +180,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 11,
                 'access_control' => 0,
@@ -207,7 +196,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 12,
                 'access_control' => 0,
@@ -224,7 +212,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 13,
                 'access_control' => 0,
@@ -241,7 +228,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 1,
             	'order' => 14,
                 'access_control' => 0,
@@ -261,7 +247,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'parent_id' => null,
                 'opportunity_type_id' => 2,
                 'order' => 1,
                 'access_control' => 0,
@@ -278,7 +263,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 2,
             	'order' => 2,
                 'access_control' => 1,
@@ -295,7 +279,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'parent_id' => null,
                 'opportunity_type_id' => 2,
                 'order' => 3,
                 'access_control' => 1,
@@ -312,7 +295,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'parent_id' => null,
                 'opportunity_type_id' => 2,
                 'order' => 4,
                 'access_control' => 1,
@@ -329,7 +311,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 2,
             	'order' => 5,
                 'access_control' => 0,
@@ -346,7 +327,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 2,
             	'order' => 6,
                 'access_control' => 0,
@@ -363,7 +343,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 2,
             	'order' => 7,
                 'access_control' => 0,
@@ -380,7 +359,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'parent_id' => null,
             	'opportunity_type_id' => 2,
             	'order' => 8,
                 'access_control' => 0,
@@ -397,7 +375,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'parent_id' => null,
                 'opportunity_type_id' => 2,
                 'order' => 9,
                 'access_control' => 0,
@@ -414,7 +391,6 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'parent_id' => null,
                 'opportunity_type_id' => 2,
                 'order' => 10,
                 'access_control' => 0,

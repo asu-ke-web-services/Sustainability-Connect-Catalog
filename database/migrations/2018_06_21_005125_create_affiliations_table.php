@@ -15,7 +15,6 @@ class CreateAffiliationsTable extends Migration
     {
         Schema::create('affiliations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id')->unsigned()->index()->nullable()->default(null);
             $table->integer('opportunity_type_id')->unsigned()->index();
             $table->integer('order')->default(1);
             $table->string('name');
@@ -26,11 +25,6 @@ class CreateAffiliationsTable extends Migration
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
-
-            $table->foreign('parent_id')
-                ->references('id')->on('affiliations')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
 
             $table->foreign('opportunity_type_id')
                 ->references('id')->on('opportunity_types')

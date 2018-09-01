@@ -61,7 +61,7 @@ class {{modelName}}Controller extends Controller
     /**
      * Store a newly created {{modelName}} in storage.
      *
-     * @param CreateProjectRequest $request
+     * @param {{modelName}}Request $request
      *
      * @return \Illuminate\View\View
      */
@@ -92,7 +92,7 @@ class {{modelName}}Controller extends Controller
      * Update the specified {{modelName}} in storage.
      *
      * @param  int                 $id
-     * @param UpdateProjectRequest $request
+     * @param {{modelName}}Request $request
      *
      * @return \Illuminate\View\View
      */

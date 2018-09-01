@@ -15,7 +15,6 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->unsigned()->nullable()->default(null);
-            $table->foreign('parent_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('set null');
             $table->integer('order')->default(1);
             $table->string('name');
             $table->string('slug')->unique();
@@ -25,17 +24,18 @@ class CreateCategoriesTable extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
+            $table->foreign('parent_id')
+                ->references('id')->on('categories')
+                ->onDelete('set null');
+
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
     }
 

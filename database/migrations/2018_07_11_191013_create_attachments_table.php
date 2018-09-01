@@ -24,6 +24,22 @@ class CreateAttachmentsTable extends Migration
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->foreign('opportunity_id')
+                ->references('id')->on('opportunities')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users');
+
+            $table->foreign('created_by')
+                ->references('id')->on('users');
+
+            $table->foreign('updated_by')
+                ->references('id')->on('users');
+
+            $table->foreign('deleted_by')
+                ->references('id')->on('users');
         });
     }
 

@@ -39,9 +39,6 @@ class CreateOpportunitiesTables extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
-//            $table->foreign('opportunityable_type')
-//                ->references('slug')->on('opportunity_types');
-
             $table->foreign('opportunity_status_id')
                 ->references('id')->on('opportunity_statuses');
 
@@ -58,16 +55,13 @@ class CreateOpportunitiesTables extends Migration
                 ->references('id')->on('users');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
 
         Schema::create('category_opportunity', function (Blueprint $table) {
@@ -82,22 +76,21 @@ class CreateOpportunitiesTables extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->foreign('opportunity_id')
-                ->references('id')->on('opportunities');
+                ->references('id')->on('opportunities')
+                ->onDelete('cascade');
 
-            // $table->foreign('category_id')
-            //     ->references('id')->on('categories');
+            $table->foreign('category_id')
+                 ->references('id')->on('categories')
+                 ->onDelete('cascade');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
 
         Schema::create('keyword_opportunity', function (Blueprint $table) {
@@ -112,22 +105,21 @@ class CreateOpportunitiesTables extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->foreign('opportunity_id')
-                ->references('id')->on('opportunities');
+                ->references('id')->on('opportunities')
+                ->onDelete('cascade');
 
-            // $table->foreign('keyword_id')
-            //     ->references('id')->on('keywords');
+            $table->foreign('keyword_id')
+                 ->references('id')->on('keywords')
+                ->onDelete('cascade');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
     }
 

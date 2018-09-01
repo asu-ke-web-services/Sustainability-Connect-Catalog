@@ -27,25 +27,25 @@ class CreateOpportunitiesUsersTable extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->foreign('relationship_type_id')
-                ->references('id')->on('relationship_types');
+                ->references('id')->on('relationship_types')
+                ->onDelete('set null');
 
             $table->foreign('opportunity_id')
-                ->references('id')->on('opportunities');
+                ->references('id')->on('opportunities')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
-                ->references('id')->on('users');
+                ->references('id')->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
     }
 

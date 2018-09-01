@@ -55,6 +55,8 @@ class CrudGenerator extends Command
         $this->repository($modelName, $namespace, $path);
         $this->controller($modelName, $namespace, $path);
         $this->request($modelName, $namespace, $path);
+        $this->event($modelName, $namespace, $path);
+        $this->listener($modelName, $namespace, $path);
         $this->views_create($modelName);
         $this->views_edit($modelName);
         $this->views_index($modelName);
@@ -159,6 +161,52 @@ class CrudGenerator extends Command
         }
 
         file_put_contents($destination_folder . "/{$modelName}Request.php", $requestTemplate);
+    }
+
+    protected function event($modelName, $namespace, $path)
+    {
+        $eventTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNameSingularLowerCase}}',
+                '{{namespace}}',
+            ],
+            [
+                $modelName,
+                strtolower($modelName),
+                $namespace,
+            ],
+            $this->getStub('Event')
+        );
+
+        $destination_folder = app_path("Events{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . "/{$modelName}Event.php", $eventTemplate);
+    }
+
+    protected function listener($modelName, $namespace, $path)
+    {
+        $listenerTemplate = str_replace(
+            [
+                '{{modelName}}',
+                '{{namespace}}',
+            ],
+            [
+                $modelName,
+                $namespace,
+            ],
+            $this->getStub('Listener')
+        );
+
+        $destination_folder = app_path("Listener{$path}");
+        if (!is_dir($destination_folder) && !mkdir($destination_folder) && !is_dir($destination_folder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
+        }
+
+        file_put_contents($destination_folder . "/{$modelName}Listener.php", $listenerTemplate);
     }
 
     protected function views_create($modelName)

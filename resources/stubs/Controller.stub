@@ -3,6 +3,9 @@
 namespace SCCatalog\Http\Controllers{{namespace}};
 
 use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Events{{namespace}}\{{modelName}}CreatedEvent;
+use SCCatalog\Events{{namespace}}\{{modelName}}UpdatedEvent;
+use SCCatalog\Events{{namespace}}\{{modelName}}DeletedEvent;
 use SCCatalog\Http\Requests{{namespace}}\{{modelName}}Request;
 use SCCatalog\Repositories{{namespace}}\{{modelName}}Repository;
 

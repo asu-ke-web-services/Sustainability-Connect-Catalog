@@ -31,7 +31,7 @@ class {{modelName}}Controller extends Controller
     public function index()
     {
         ${{modelNamePluralLowerCase}} = $this->repository->all()->paginate(5);
-        return view('{{modelNameSingularLowerCase}}.index',compact('{{modelNamePluralLowerCase}}'))
+        return view('{{modelNameSingularLowerCase}}.index', compact('{{modelNamePluralLowerCase}}'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -45,7 +45,7 @@ class {{modelName}}Controller extends Controller
     public function show($id)
     {
         ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
-        return view('{{modelNameSingularLowerCase}}.show',compact('{{modelNameSingularLowerCase}}'));
+        return view('{{modelNameSingularLowerCase}}.show', compact('{{modelNameSingularLowerCase}}'));
     }
 
     /**
@@ -85,7 +85,7 @@ class {{modelName}}Controller extends Controller
     public function edit($id)
     {
         ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
-        return view('{{modelNameSingularLowerCase}}.edit',compact('{{modelNameSingularLowerCase}}'));
+        return view('{{modelNameSingularLowerCase}}.edit', compact('{{modelNameSingularLowerCase}}'));
     }
 
     /**

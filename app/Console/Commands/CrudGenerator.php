@@ -254,7 +254,7 @@ class CrudGenerator extends Command
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $destination_folder));
         }
 
-        file_put_contents($destination_folder . "/{$modelName}Listener.php", $listenerTemplate);
+        file_put_contents($destination_folder . "/{$modelName}EventListener.php", $listenerTemplate);
     }
 
     protected function views_create($modelName)

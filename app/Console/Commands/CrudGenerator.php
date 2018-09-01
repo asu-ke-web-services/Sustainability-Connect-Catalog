@@ -55,7 +55,9 @@ class CrudGenerator extends Command
         $this->repository($modelName, $namespace, $path);
         $this->controller($modelName, $namespace, $path);
         $this->request($modelName, $namespace, $path);
-        $this->event($modelName, $namespace, $path);
+        $this->eventCreated($modelName, $namespace, $path);
+        $this->eventUpdated($modelName, $namespace, $path);
+        $this->eventDeleted($modelName, $namespace, $path);
         $this->listener($modelName, $namespace, $path);
         $this->views_create($modelName);
         $this->views_edit($modelName);

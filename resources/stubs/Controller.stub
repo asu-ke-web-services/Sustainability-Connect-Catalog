@@ -75,7 +75,7 @@ class {{modelName}}Controller extends Controller
         event(new {{modelName}}CreatedEvent(${{modelNameSingularLowerCase}}));
 
         return redirect()->route("{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}")
-                        ->with('success','{{modelName}} created successfully');
+            ->withFlashSuccess('{{modelName}} created successfully');
     }
 
     /**
@@ -106,7 +106,7 @@ class {{modelName}}Controller extends Controller
         event(new {{modelName}}UpdatedEvent(${{modelNameSingularLowerCase}}));
 
         return redirect()->route("{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}")
-                        ->with('success','{{modelName}} updated successfully');
+            ->withFlashSuccess('{{modelName}} updated successfully');
     }
 
     /**
@@ -124,6 +124,6 @@ class {{modelName}}Controller extends Controller
         event(new {{modelName}}DeletedEvent(${{modelNameSingularLowerCase}}));
 
         return redirect()->route('{{modelNameSingularLowerCase}}.index')
-                        ->with('success','{{modelName}} deleted successfully');
+            ->withFlashSuccess('{{modelName}} deleted successfully');
     }
 }

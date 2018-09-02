@@ -25,22 +25,21 @@ class CreateKeywordUserTable extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->foreign('user_id')
-                ->references('id')->on('users');
+                ->references('id')->on('users')
+                ->onDelete('cascade');
 
-            // $table->foreign('keyword_id')
-            //     ->references('id')->on('keywords');
+            $table->foreign('keyword_id')
+                 ->references('id')->on('keywords')
+                ->onDelete('cascade');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
     }
 

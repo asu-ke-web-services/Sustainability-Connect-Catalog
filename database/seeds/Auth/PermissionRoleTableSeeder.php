@@ -66,36 +66,7 @@ class PermissionRoleTableSeeder extends Seeder
         $admin->givePermissionTo(Permission::all());
 
         // Assign Permissions to other Roles
-        $manager->givePermissionTo(
-            'view personal dashboard',
-            'view admin dashboard',
-            'view all profiles',
-            'update all profiles',
-            'create registered user',
-            'create unregistered user',
-            'read user',
-            'update user',
-            'delete user',
-            'submit project idea',
-            'create opportunity',
-            'read opportunity',
-            'update opportunity',
-            'delete opportunity',
-            'follow opportunity',
-            'clone opportunity',
-            'add opportunity user',
-            'remove opportunity user',
-            'create attachment',
-            'read attachment',
-            'update attachment',
-            'delete attachment',
-            'publish attachment',
-            'create lookup records',
-            'read lookup records',
-            'update lookup records',
-            'delete lookup records',
-            'masquerade as user'
-        );
+        $manager->givePermissionTo(Permission::all());
 
         $mentor->givePermissionTo(
             'view personal dashboard',

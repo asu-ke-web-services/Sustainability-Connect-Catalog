@@ -1,36 +1,45 @@
 <?php
 
-namespace SCCatalog\Models\Lookup;
+namespace SCCatalog\Models{{namespace}};
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use RichanFongdasen\EloquentBlameable\BlameableTrait;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
-class Keyword extends Model
+/**
+ * Class {{modelName}}
+ */
+class {{modelName}} extends Model
 {
-    use BlameableTrait;
-    use HasSlug;
-    use SoftDeletes;
-
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
-
-    protected $table = 'keywords';
+    // protected $table = '';
     // protected $primaryKey = 'id';
-    public $timestamps = false;
+    // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [
-        'order',
-        'name',
-        'slug'
-    ];
+    // protected $fillable = [];
     // protected $hidden = [];
-    protected $dates = ['deleted_at'];
+    // protected $dates = [];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+
+    ];
+
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +61,7 @@ class Keyword extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | ACCESORS
+    | ACCESSORS
     |--------------------------------------------------------------------------
     */
 
@@ -62,14 +71,4 @@ class Keyword extends Model
     |--------------------------------------------------------------------------
     */
 
-   /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug')
-            ->doNotGenerateSlugsOnUpdate();
-    }
 }

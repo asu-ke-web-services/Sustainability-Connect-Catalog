@@ -1,0 +1,129 @@
+<?php
+
+namespace SCCatalog\Http\Controllers{{namespace}};
+
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Events{{namespace}}\{{modelName}}CreatedEvent;
+use SCCatalog\Events{{namespace}}\{{modelName}}UpdatedEvent;
+use SCCatalog\Events{{namespace}}\{{modelName}}DeletedEvent;
+use SCCatalog\Http\Requests{{namespace}}\{{modelName}}Request;
+use SCCatalog\Repositories{{namespace}}\{{modelName}}Repository;
+
+class {{modelName}}Controller extends Controller
+{
+    /**
+     * @var {{modelName}}Repository
+     */
+    private $repository;
+
+    /**
+     * {{modelName}}Controller constructor.
+     *
+     * @param {{modelName}}Repository $repository
+     */
+    public function __construct({{modelName}}Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Display a listing of the {{modelName}}.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        ${{modelNamePluralLowerCase}} = $this->repository->all()->paginate(5);
+        return view('{{modelNameSingularLowerCase}}.index', compact('{{modelNamePluralLowerCase}}'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    /**
+     * Display the specified {{modelName}}.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
+        return view('{{modelNameSingularLowerCase}}.show', compact('{{modelNameSingularLowerCase}}'));
+    }
+
+    /**
+     * Show the form for creating a new {{modelName}}.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('{{modelNameSingularLowerCase}}.create');
+    }
+
+    /**
+     * Store a newly created {{modelName}} in storage.
+     *
+     * @param {{modelName}}Request $request
+     *
+     * @return \Illuminate\View\View
+     */
+    public function store({{modelName}}Request $request)
+    {
+        ${{modelNameSingularLowerCase}} = $this->repository->create($request->all());
+
+        event(new {{modelName}}CreatedEvent(${{modelNameSingularLowerCase}}));
+
+        return redirect()->route("{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}")
+                        ->with('success','{{modelName}} created successfully');
+    }
+
+    /**
+     * Show the form for editing the specified {{modelName}}.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
+        return view('{{modelNameSingularLowerCase}}.edit', compact('{{modelNameSingularLowerCase}}'));
+    }
+
+    /**
+     * Update the specified {{modelName}} in storage.
+     *
+     * @param  int                 $id
+     * @param {{modelName}}Request $request
+     *
+     * @return \Illuminate\View\View
+     */
+    public function update($id, {{modelName}}Request $request)
+    {
+        ${{modelNameSingularLowerCase}} = $this->repository->updateById($id, $request->all());
+
+        event(new {{modelName}}UpdatedEvent(${{modelNameSingularLowerCase}}));
+
+        return redirect()->route("{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}")
+                        ->with('success','{{modelName}} updated successfully');
+    }
+
+    /**
+     * Remove the specified {{modelName}} from storage.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function destroy($id)
+    {
+        ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
+        $this->repository->deleteById($id);
+
+        event(new {{modelName}}DeletedEvent(${{modelNameSingularLowerCase}}));
+
+        return redirect()->route('{{modelNameSingularLowerCase}}.index')
+                        ->with('success','{{modelName}} deleted successfully');
+    }
+}

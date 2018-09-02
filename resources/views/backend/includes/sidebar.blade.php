@@ -40,6 +40,29 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/lookup*'), 'open') }}">
+                    <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/lookup*')) }}" href="#">
+                        <i class="icon-user"></i> {{ __('Metadata') }}
+
+                        @if ($pending_approval > 0)
+                            <span class="badge badge-danger">{{ $pending_approval }}</span>
+                        @endif
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/category*')) }}" href="{{ route('admin.lookup.category.index') }}">
+                                {{ __('Categories') }}
+
+                                @if ($pending_approval > 0)
+                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
+                                @endif
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
             @endif
 
             <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/log-viewer*'), 'open') }}">

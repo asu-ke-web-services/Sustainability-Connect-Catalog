@@ -1,3 +1,3 @@
 <?php
 
-require __DIR__.'/lookup/affiliation.php';
+require __DIR__.'/lookup/category.php';

@@ -92,7 +92,9 @@
                                                             @if ($role->id != 1)
                                                                 @if ($role->permissions->count())
                                                                     @foreach ($role->permissions as $permission)
-                                                                        <i class="fas fa-dot-circle"></i> {{ ucwords($permission->name) }}
+                                                                        <div>
+                                                                            <i class="fas fa-dot-circle"></i> {{ ucwords($permission->name) }}
+                                                                        </div>
                                                                     @endforeach
                                                                 @else
                                                                     {{ __('labels.general.none') }}

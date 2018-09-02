@@ -39,7 +39,9 @@
                                     @else
                                         @if ($role->permissions->count())
                                             @foreach ($role->permissions as $permission)
+                                            <div>
                                                 {{ ucwords($permission->name) }}
+                                            </div>
                                             @endforeach
                                         @else
                                             {{ __('labels.general.none') }}

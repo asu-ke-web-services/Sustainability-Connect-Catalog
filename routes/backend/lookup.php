@@ -16,7 +16,7 @@ Route::group([
     Route::resource('affiliation', 'AffiliationController');
 
     /* BudgetType CRUD */
-    Route::resource('budgettype', 'BudgetTypeController');
+    Route::resource('budget_type', 'BudgetTypeController');
 
     /* Category CRUD */
     Route::resource('category', 'CategoryController');
@@ -25,24 +25,24 @@ Route::group([
     Route::resource('keyword', 'KeywordController');
 
     /* OpportunityReviewStatus CRUD */
-    Route::resource('opportunityreviewstatus', 'OpportunityReviewStatusController');
+    Route::resource('opportunity_review_status', 'OpportunityReviewStatusController');
 
     /* OpportunityStatus CRUD */
-    Route::resource('opportunitystatus', 'OpportunityStatusController');
+    Route::resource('opportunity_status', 'OpportunityStatusController');
 
     /* OpportunityType CRUD */
-    Route::resource('opportunitytype', 'OpportunityTypeController');
+    Route::resource('opportunity_type', 'OpportunityTypeController');
 
     /* OrganizationStatus CRUD */
-    Route::resource('organizationstatus', 'OrganizationStatusController');
+    Route::resource('organization_status', 'OrganizationStatusController');
 
     /* OrganizationType CRUD */
-    Route::resource('organizationtype', 'OrganizationTypeController');
+    Route::resource('organization_type', 'OrganizationTypeController');
 
     /* RelationshipType CRUD */
-    Route::resource('relationshiptype', 'RelationshipTypeController');
+    Route::resource('relationship_type', 'RelationshipTypeController');
 
     /* StudentDegreeLevel CRUD */
-    Route::resource('studentdegreelevel', 'StudentDegreeLevelController');
+    Route::resource('student_degree_level', 'StudentDegreeLevelController');
 
 });

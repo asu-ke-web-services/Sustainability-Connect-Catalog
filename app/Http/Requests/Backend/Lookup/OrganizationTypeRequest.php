@@ -5,9 +5,9 @@ namespace SCCatalog\Http\Requests\Backend\Lookup;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class CategoryRequest.
+ * Class OrganizationTypeRequest.
  */
-class CategoryRequest extends FormRequest
+class OrganizationTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

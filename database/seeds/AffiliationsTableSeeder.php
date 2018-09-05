@@ -281,7 +281,7 @@ class AffiliationsTableSeeder extends Seeder
             $affiliation->fill([
                 'opportunity_type_id' => 2,
                 'order' => 3,
-                'access_control' => 1,
+                'access_control' => 0,
                 'name' => 'Open to All Majors',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -297,7 +297,7 @@ class AffiliationsTableSeeder extends Seeder
             $affiliation->fill([
                 'opportunity_type_id' => 2,
                 'order' => 4,
-                'access_control' => 1,
+                'access_control' => 0,
                 'name' => 'Credit Pending Approval',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

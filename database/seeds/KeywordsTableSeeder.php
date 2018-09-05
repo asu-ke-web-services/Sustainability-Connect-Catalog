@@ -75,7 +75,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 6,
-            	'parent_id' => 3,
                 'name' => 'Biofuels',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -454,7 +453,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 1,
-            	'parent_id' => 31,
                 'name' => 'Agriculture',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -679,7 +677,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 48,
-            	'parent_id' => 25,
                 'name' => 'Renewable Energy',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -736,7 +733,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 52,
-            	'parent_id' => 48,
                 'name' => 'Solar Energy Systems',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

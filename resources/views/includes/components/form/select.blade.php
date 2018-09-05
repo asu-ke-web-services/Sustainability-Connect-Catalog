@@ -1,9 +1,9 @@
-<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }} col-md-12">
+<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }} row">
     @if (isset($label))
-        <label for="{{ $name }}" class="col-md-3 control-label">{{ $label }}</label>
+        <label for="{{ $name }}" class="col-md-2 form-control-label">{{ $label }}</label>
     @endif
 
-    <div class="col-md-9">
+    <div class="col-md-10">
         <select id="{{ $name }}"
                 class="form-control"
                 name="{{ $name }}"
@@ -22,5 +22,5 @@
         @elseif (isset($help_text))
             <span class="help-block">{{ $help_text }}</span>
         @endif
-    </div>
-</div>
+    </div><!--col-->
+</div><!--form-group-->

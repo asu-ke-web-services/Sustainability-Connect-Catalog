@@ -1,17 +1,14 @@
-<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }} col-md-12">
+<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }} row">
     @if (isset($label))
-        <label for="{{ $name }}" class="col-md-3 control-label">{{ $label }}</label>
+        {{ html()->label($label)
+                ->class('col-md-2 form-control-label')
+                ->for($name) }}
     @endif
-    <div class="col-md-9">
-        <textarea
-                id="{{ $name }}"
-                class="form-control"
-                name="{{ $name }}"
-                placeholder="{{ $placeholder ?? '' }}"
-                rows="{{ $rows ?? 5 }}"
-                cols="{{ $columns ?? 20 }}"
-                {{ $attributes ?? '' }}
-        >{{ old($name) ?: ($object->{$name} ?? '') }}</textarea>
+    <div class="col-md-10">
+        {{ html()->textarea($name, old($name) ?: ($object->{$name} ?? ''))
+                ->class('form-control')
+                ->placeholder($placeholder ?? '')
+                ->attributes($attributes ?? []) }}
 
         @if ($errors->has($name))
             <span class="help-block">

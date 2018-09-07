@@ -1,19 +1,14 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }} row">
     @if (isset($label))
-        <label for="{{ $name }}" class="col-md-2 form-control-label">{{ $label }}</label>
+        {{ html()->label($label)
+                ->class('col-md-2 form-control-label')
+                ->for($name) }}
     @endif
-
     <div class="col-md-10">
-        <select id="{{ $name }}"
-                class="form-control"
-                name="{{ $name }}"
-                @if (isset($placeholder)) placeholder="{{ $placeholder }}" @endif
-                {{ $attributes ?? '' }} >
-
-            @foreach($optionList as $option)
-                <option value="{{ $option['id'] }}" {{ (old($name) ?: ($object->{$name} ?? null)) === $option['id'] ? 'selected' : '' }}>{{ $option['name'] }}</option>
-            @endforeach
-        </select>
+        {{ html()->select($name, $optionList, old($name) ?: ($object->{$name} ?? null))
+                ->class('form-control')
+                ->placeholder($placeholder ?? null)
+                ->attributes($attributes ?? []) }}
 
         @if ($errors->has($name))
             <span class="help-block">

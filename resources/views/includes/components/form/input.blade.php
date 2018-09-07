@@ -8,7 +8,7 @@
         {{ html()->input($type ?? 'text', $name, old($name) ?: ($object->{$name} ?? ''))
                 ->class('form-control')
                 ->placeholder($placeholder ?? '')
-                ->attributes($attributes) }}
+                ->attributes($attributes ?? []) }}
 
         @if ($errors->has($name))
             <span class="help-block">

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'addresses',
             'opportunity_statuses',
             'opportunities',
+            'opportunities_organizations',
             'affiliation_opportunity',
             'category_opportunity',
             'keyword_opportunity',
@@ -45,7 +46,6 @@ class DatabaseSeeder extends Seeder
         $this->call(KeywordsTableSeeder::class);
         $this->call(RelationshipTypesTableSeeder::class);
         $this->call(StudentDegreeLevelsTableSeeder::class);
-        // $this->call(OrganizationsTableSeeder::class);
         $this->call(OpportunityTypesTableSeeder::class);
         $this->call(AffiliationsTableSeeder::class);
 
@@ -54,6 +54,8 @@ class DatabaseSeeder extends Seeder
         $this->call(OpportunityTablesSeeder::class);
         $this->call(ProjectsSeeder::class);
         $this->call(InternshipsSeeder::class);
+
+        $this->call(OrganizationsTableSeeder::class);
 
         Model::reguard();
     }

@@ -9,6 +9,9 @@ use SCCatalog\Events{{namespace}}\{{modelName}}DeletedEvent;
 use SCCatalog\Http\Requests{{namespace}}\{{modelName}}Request;
 use SCCatalog\Repositories{{namespace}}\{{modelName}}Repository;
 
+/**
+ * Class {{modelName}}Controller.
+ */
 class {{modelName}}Controller extends Controller
 {
     /**
@@ -29,34 +32,24 @@ class {{modelName}}Controller extends Controller
     /**
      * Display a listing of the {{modelName}}.
      *
-     * @return \Illuminate\View\View
-     */
-    public function index()
-    {
-        ${{modelNamePluralLowerCase}} = $this->repository->all()->paginate(5);
-        return view('{{modelNameSingularLowerCase}}.index', compact('{{modelNamePluralLowerCase}}'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-    /**
-     * Display the specified {{modelName}}.
+     * @param Manage{{modelName}}Request $request
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function index(View{{modelName}}Request $request)
     {
-        ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
-        return view('{{modelNameSingularLowerCase}}.show', compact('{{modelNameSingularLowerCase}}'));
+        return view('{{modelNameSingularLowerCase}}.index')
+            ->with{{modelNamePlural}}($this->repository->paginate(25));
     }
 
     /**
      * Show the form for creating a new {{modelName}}.
      *
+     * @param Manage{{modelName}}Request $request
+     *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Manage{{modelName}}Request $request)
     {
         return view('{{modelNameSingularLowerCase}}.create');
     }
@@ -67,15 +60,33 @@ class {{modelName}}Controller extends Controller
      * @param {{modelName}}Request $request
      *
      * @return \Illuminate\View\View
+     * @throws \Throwable
      */
     public function store({{modelName}}Request $request)
     {
-        ${{modelNameSingularLowerCase}} = $this->repository->create($request->all());
+        $this->repository->create($request->only(
+            'field1',
+            'field2',
+        ));
 
         event(new {{modelName}}CreatedEvent(${{modelNameSingularLowerCase}}));
 
-        return redirect()->route("{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}")
-            ->withFlashSuccess('{{modelName}} created successfully');
+        return redirect()->route('{{modelNameSingularLowerCase}}.index')
+            ->withFlashSuccess(__('{{modelName}} created successfully'));
+    }
+
+    /**
+     * Display the specified {{modelName}}.
+     *
+     * @param Manage{{modelName}}Request $request
+     * @param {{modelName}}            $user
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show(Manage{{modelName}}Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        return view('{{modelNameSingularLowerCase}}.show')
+            ->with{{modelNamePlural}}(${{modelNameSingularLowerCase}});
     }
 
     /**
@@ -85,10 +96,10 @@ class {{modelName}}Controller extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Manage{{modelName}}Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
     {
-        ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
-        return view('{{modelNameSingularLowerCase}}.edit', compact('{{modelNameSingularLowerCase}}'));
+        return view('{{modelNameSingularLowerCase}}.edit')
+            ->with{{modelName}}(${{modelNameSingularLowerCase}});
     }
 
     /**
@@ -99,14 +110,17 @@ class {{modelName}}Controller extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function update($id, {{modelName}}Request $request)
+    public function update({{modelName}}Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
     {
-        ${{modelNameSingularLowerCase}} = $this->repository->updateById($id, $request->all());
+        ${{modelNameSingularLowerCase}} = $this->repository->updateById(${{modelNameSingularLowerCase}}->id, $request->only(
+            'field1',
+            'field2'
+        ));
 
         event(new {{modelName}}UpdatedEvent(${{modelNameSingularLowerCase}}));
 
-        return redirect()->route("{{modelNameSingularLowerCase}}/{${{modelNameSingularLowerCase}}}")
-            ->withFlashSuccess('{{modelName}} updated successfully');
+        return redirect()->route('{{modelNameSingularLowerCase}}.index')
+            ->withFlashSuccess(__('{{modelName}} updated successfully'));
     }
 
     /**
@@ -116,8 +130,13 @@ class {{modelName}}Controller extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function destroy($id)
+    public function destroy(Manage{{modelName}}Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
     {
+        $this->repository->deleteById(${{modelNameSingularLowerCase}}->id);
+        return redirect()->route('{{modelNameSingularLowerCase}}.index')
+            ->withFlashSuccess('{{modelName}} deleted successfully');
+
+
         ${{modelNameSingularLowerCase}} = $this->repository->getById($id);
         $this->repository->deleteById($id);
 

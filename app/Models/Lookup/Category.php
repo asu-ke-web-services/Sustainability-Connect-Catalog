@@ -24,7 +24,6 @@ class Category extends Model
     */
 
     protected $fillable = [
-        'parent_id',
         'order',
         'name',
         'slug',
@@ -66,14 +65,6 @@ class Category extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function parent()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\Category::class, 'parent_id');
-    }
 
     /*
     |--------------------------------------------------------------------------

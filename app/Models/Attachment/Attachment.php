@@ -1,17 +1,20 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Attachment;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
- * Class Address
+ * Class Attachment
  */
-class Address extends Model
+class Attachment extends Model implements HasMedia
 {
     use BlameableTrait;
+    use HasMediaTrait;
     use SoftDeletes;
 
     /*
@@ -20,18 +23,15 @@ class Address extends Model
     |--------------------------------------------------------------------------
     */
 
-    public $table = 'addresses';
+    public $table = 'attachments';
 
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+    ];
 
     public $fillable = [
-        'street1',
-        'street2',
-        'city',
-        'state',
-        'post_code',
-        'country',
-        'note'
+        'status',
+        'comments',
     ];
 
     /**
@@ -40,13 +40,6 @@ class Address extends Model
      * @var array
      */
     protected $casts = [
-        'id'      => 'integer',
-        'street1' => 'string',
-        'street2' => 'string',
-        'city'    => 'string',
-        'state'   => 'string',
-        'country' => 'string',
-        'note'    => 'string',
     ];
 
     /**
@@ -71,11 +64,19 @@ class Address extends Model
     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function addressable()
+    public function user()
     {
-        return $this->morphTo();
+        return $this->belongsTo(\SCCatalog\Models\User::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function opportunity()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'opportunity_id');
     }
 
     /*

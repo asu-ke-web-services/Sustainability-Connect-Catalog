@@ -1,20 +1,17 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Note;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
- * Class Attachment
+ * Class Note
  */
-class Attachment extends Model implements HasMedia
+class Note extends Model
 {
     use BlameableTrait;
-    use HasMediaTrait;
     use SoftDeletes;
 
     /*
@@ -23,16 +20,15 @@ class Attachment extends Model implements HasMedia
     |--------------------------------------------------------------------------
     */
 
-    public $table = 'attachments';
+    protected $table = 'notes';
 
-    protected $dates = [
-        'deleted_at',
+    protected $fillable = [
+        'body',
+        'order',
+        'user_id',
     ];
 
-    public $fillable = [
-        'status',
-        'comments',
-    ];
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be casted to native types.
@@ -40,6 +36,7 @@ class Attachment extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
+
     ];
 
     /**
@@ -63,21 +60,24 @@ class Attachment extends Model implements HasMedia
     |--------------------------------------------------------------------------
     */
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     **/
+    public function noteable()
+    {
+        return $this->morphTo();
+    }
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function user()
     {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'user_id');
+        return $this->belongsTo(\SCCatalog\Models\User::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function opportunity()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'opportunity_id');
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ class Attachment extends Model implements HasMedia
 
     /*
     |--------------------------------------------------------------------------
-    | ACCESSORS
+    | ACCESORS
     |--------------------------------------------------------------------------
     */
 
@@ -96,5 +96,4 @@ class Attachment extends Model implements HasMedia
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
 }

@@ -3,8 +3,6 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\User;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 
 /**
@@ -47,7 +45,7 @@ class OpportunityUserController extends Controller
             return redirect(route('projects.index'));
         }
 
-        ApproveRequestToJoinOpportunity::dispatch($opportunity, $user, $relationship)
+        ApproveRequestToJoinOpportunity::dispatch($opportunity, $user, $relationship);
         event(new UserRequestToJoinOpportunityApprovedEvent($opportunity, $user, $relationship));
 
         Flash::success('Successfully approved user.');
@@ -85,7 +83,7 @@ class OpportunityUserController extends Controller
             return redirect(route('projects.index'));
         }
 
-        AddUserToOpportunity::dispatch($opportunity, $user, $relationship)
+        AddUserToOpportunity::dispatch($opportunity, $user, $relationship);
         event(new UserAddedToOpportunityEvent($opportunity, $user, $relationship));
 
         Flash::success('Successfully approved user.');

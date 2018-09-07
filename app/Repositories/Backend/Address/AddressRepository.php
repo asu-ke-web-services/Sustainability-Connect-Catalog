@@ -2,7 +2,7 @@
 
 namespace SCCatalog\Repositories\Frontend;
 
-use SCCatalog\Models\Address;
+use SCCatalog\Models\Address\Address;
 use SCCatalog\Repositories\BaseRepository;
 
 /**

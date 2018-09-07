@@ -1,15 +1,15 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Address;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
- * Class Note
+ * Class Address
  */
-class Note extends Model
+class Address extends Model
 {
     use BlameableTrait;
     use SoftDeletes;
@@ -20,15 +20,19 @@ class Note extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'notes';
-
-    protected $fillable = [
-        'body',
-        'order',
-        'user_id',
-    ];
+    public $table = 'addresses';
 
     protected $dates = ['deleted_at'];
+
+    public $fillable = [
+        'street1',
+        'street2',
+        'city',
+        'state',
+        'post_code',
+        'country',
+        'note'
+    ];
 
     /**
      * The attributes that should be casted to native types.
@@ -36,7 +40,13 @@ class Note extends Model
      * @var array
      */
     protected $casts = [
-
+        'id'      => 'integer',
+        'street1' => 'string',
+        'street2' => 'string',
+        'city'    => 'string',
+        'state'   => 'string',
+        'country' => 'string',
+        'note'    => 'string',
     ];
 
     /**
@@ -60,24 +70,13 @@ class Note extends Model
     |--------------------------------------------------------------------------
     */
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      **/
-    public function noteable()
+    public function addressable()
     {
         return $this->morphTo();
     }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function user()
-    {
-        return $this->belongsTo(\SCCatalog\Models\User::class);
-    }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +86,7 @@ class Note extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | ACCESORS
+    | ACCESSORS
     |--------------------------------------------------------------------------
     */
 
@@ -96,4 +95,5 @@ class Note extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
 }

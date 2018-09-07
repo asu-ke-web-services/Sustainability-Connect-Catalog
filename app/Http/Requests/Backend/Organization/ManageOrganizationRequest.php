@@ -2,11 +2,12 @@
 
 namespace SCCatalog\Http\Requests\Backend\Organization;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models\Organization\Organization;
 
-class CreateOrganizationRequest extends FormRequest
+/**
+ * Class ManageOrganizationRequest.
+ */
+class ManageOrganizationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,9 @@ class CreateOrganizationRequest extends FormRequest
      */
     public function rules()
     {
-        return Organization::$rules;
+        return [
+        	//
+        ];
     }
 
     /**

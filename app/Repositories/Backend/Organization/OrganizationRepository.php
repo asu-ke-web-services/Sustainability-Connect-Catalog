@@ -1,8 +1,8 @@
 <?php
 
-namespace SCCatalog\Repositories\Backend;
+namespace SCCatalog\Repositories\Backend\Organization;
 
-use SCCatalog\Models\Organization;
+use SCCatalog\Models\Organization\Organization;
 use SCCatalog\Repositories\BaseRepository;
 
 /**
@@ -24,9 +24,8 @@ class OrganizationRepository extends BaseRepository
      * @var array
      */
     protected $with = [
-        'organization_type_id',
-        'organization_status_id',
-        'name',
+        'status',
+        'type',
     ];
 
     /**

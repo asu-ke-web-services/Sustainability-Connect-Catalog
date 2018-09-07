@@ -1,10 +1,9 @@
 <?php
 
-namespace SCCatalog\Models;
+namespace SCCatalog\Models\Organization;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-// use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 /**
@@ -13,7 +12,6 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Organization extends Model
 {
     use BlameableTrait;
-    // use Searchable;
     use SoftDeletes;
 
     public $table = 'organizations';
@@ -49,7 +47,7 @@ class Organization extends Model
      **/
     public function addresses()
     {
-        return $this->MorphMany(\SCCatalog\Models\Address::class, 'addressable');
+        return $this->morphMany(\SCCatalog\Models\Address\Address::class, 'addressable');
     }
 
     /**
@@ -57,7 +55,7 @@ class Organization extends Model
      **/
     public function notes()
     {
-        return $this->MorphMany(\SCCatalog\Models\Note::class, 'noteable');
+        return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'noteable');
     }
 
     /**
@@ -65,7 +63,7 @@ class Organization extends Model
      **/
     public function status()
     {
-        return $this->belongsTo(\SCCatalog\Models\OrganizationStatus::class, 'organization_status_id');
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationStatus::class, 'organization_status_id');
     }
 
     /**
@@ -73,7 +71,7 @@ class Organization extends Model
      **/
     public function type()
     {
-        return $this->belongsTo(\SCCatalog\Models\OrganizationType::class, 'organization_type_id');
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationType::class, 'organization_type_id');
     }
 
 

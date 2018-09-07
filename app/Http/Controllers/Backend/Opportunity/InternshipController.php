@@ -3,150 +3,90 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\CreateInternshipRequest;
-use SCCatalog\Http\Requests\UpdateInternshipRequest;
-use SCCatalog\Models\Category;
-use SCCatalog\Models\Keyword;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\OpportunityStatus;
-use SCCatalog\Models\Organization;
-use SCCatalog\Models\User;
+use SCCatalog\Events\Backend\Opportunity\InternshipCreatedEvent;
+use SCCatalog\Events\Backend\Opportunity\InternshipUpdatedEvent;
+use SCCatalog\Events\Backend\Opportunity\InternshipDeletedEvent;
+use SCCatalog\Http\Requests\Backend\Opportunity\InternshipRequest;
 use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
 
+/**
+ * Class InternshipController.
+ */
 class InternshipController extends Controller
 {
     /**
      * @var InternshipRepository
      */
-    private $repository;
+    private $internshipRepository;
 
     /**
      * InternshipController constructor.
      *
-     * @param InternshipRepository $repository
+     * @param InternshipRepository $internshipRepository
      */
-    public function __construct(InternshipRepository $repository)
+    public function __construct(InternshipRepository $internshipRepository)
     {
-        $this->repository = $repository;
+        $this->internshipRepository = $internshipRepository;
     }
 
     /**
      * Display a listing of the Internship.
      *
-     * @return \Illuminate\View\View
+     * @param ManageInternshipRequest $request
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(ManageInternshipRequest $request)
     {
-        // view React SearchApp
-        return view('internships.search');
+        return view('backend.opportunity.internship.index')
+            ->withInternships($this->internshipRepository->paginate(25));
     }
 
     /**
      * Show the form for creating a new Internship.
      *
+     * @param ManageInternshipRequest $request
+     *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(ManageInternshipRequest $request)
     {
-        $categories       = Category::select('id', 'name')->get()->toArray();
-        $keywords         = Keyword::select('id', 'name')->get()->toArray();
-        $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
-        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users            = User::select('id', 'name')->get()->toArray();
-        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
-
-        return view('internships.create', [
-            'type' => 'Internship',
-            'pageTitle' => 'New Internship',
-            'categories' => $categories,
-            'keywords' => $keywords,
-            'allOrganizations' => $allOrganizations,
-            'allOpportunities' => $allOpportunities,
-            'statuses' => $statuses,
-            'users' => $users
-        ]);
+        return view('backend.opportunity.internship.create');
     }
 
     /**
      * Store a newly created Internship in storage.
      *
-     * @param CreateInternshipRequest $request
+     * @param InternshipRequest $request
      *
      * @return \Illuminate\View\View
+     * @throws \Throwable
      */
-    public function store(CreateInternshipRequest $request)
+    public function store(InternshipRequest $request)
     {
-        $input = $request->only([
-            'name',
-            'public_name',
-            'description',
-            'listing_starts',
-            'listing_ends',
-            'application_deadline',
-            'application_deadline_text',
-            'start_date',
-            'end_date',
-            'organization_id',
-            'parent_opportunity_id',
-            'supervisor_user_id',
-            'addresses',
-            'status',
-            'affiliations',
-            'categories',
-            'keywords',
-        ]);
+        $this->internshipRepository->create($request->only(
+            'field1',
+            'field2',
+        ));
 
-        $input['opportunityable'] =
+        // event(new InternshipCreated($internship));
 
-        dd($input);
-
-        $opportunity = $this->repository->create($input);
-
-        Flash::success('Internship saved successfully.');
-
-        event(new OpportunityCreatedEvent($opportunity));
-
-        return redirect(route('internships/{$opportunity}'));
+        return redirect()->route('admin.opportunity.internship.index')
+            ->withFlashSuccess(__('Internship created successfully'));
     }
 
     /**
      * Display the specified Internship.
      *
-     * @param  int $id
+     * @param ManageInternshipRequest $request
+     * @param Internship            $user
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(ManageInternshipRequest $request, $id)
     {
-        // $this->repository->pushCriteria(InternshipCriteria::class);
-        $opportunity = $this->repository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->findWithoutFail($id);
-
-        if (empty($opportunity)) {
-            Flash::error('Internship not found');
-
-            return redirect(route('internships.index'));
-        }
-
-        return view('internships.show', [
-            'type' => $opportunity->opportunityable_type,
-            'pageTitle' => $opportunity->name,
-            'opportunity' => $opportunity
-        ]);
+        return view('backend.opportunity.internship.show')
+            ->withInternships($internship);
     }
 
     /**
@@ -156,90 +96,31 @@ class InternshipController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(ManageInternshipRequest $request, $id)
     {
-        $opportunity = $this->repository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->findWithoutFail($id);
-
-        if (empty($opportunity)) {
-            Flash::error('Internship not found');
-
-            return redirect(route('internships.index'));
-        }
-
-        $categories       = Category::select('id', 'name')->get()->toArray();
-        $keywords         = Keyword::select('id', 'name')->get()->toArray();
-        $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
-        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users            = User::select('id', 'name')->get()->toArray();
-        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
-
-        return view('internships.edit', [
-            'type' => $opportunity->opportunityable_type,
-            'pageTitle' => $opportunity->name,
-            'opportunity' => $opportunity,
-            'categories' => $categories,
-            'keywords' => $keywords,
-            'allOrganizations' => $allOrganizations,
-            'allOpportunities' => $allOpportunities,
-            'statuses' => $statuses,
-            'users' => $users
-        ]);
+        return view('backend.opportunity.internship.edit')
+            ->withInternship($internship);
     }
 
     /**
      * Update the specified Internship in storage.
      *
      * @param  int                 $id
-     * @param UpdateInternshipRequest $request
+     * @param InternshipRequest $request
      *
      * @return \Illuminate\View\View
      */
-    public function update($id, UpdateInternshipRequest $request)
+    public function update(InternshipRequest $request, $id)
     {
-        $opportunity = $this->repository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->findWithoutFail($id);
+        $internship = $this->internshipRepository->updateById($internship->id, $request->only(
+            'field1',
+            'field2'
+        ));
 
-        if (empty($opportunity)) {
-            Flash::error('Internship not found');
+        // event(new InternshipUpdated($internship));
 
-            return redirect(route('internships.index'));
-        }
-
-        $opportunity = $this->repository->update($request->all(), $id);
-        event(new OpportunityUpdatedEvent($opportunity));
-
-        Flash::success('Internship updated successfully.');
-
-        return redirect(route('internships/{$opportunity}'));
+        return redirect()->route('admin.opportunity.internship.index')
+            ->withFlashSuccess(__('Internship updated successfully'));
     }
 
     /**
@@ -249,21 +130,19 @@ class InternshipController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function destroy($id)
+    public function destroy(ManageInternshipRequest $request, $id)
     {
-        $opportunity = $this->repository->findWithoutFail($id);
+        $this->internshipRepository->deleteById($internship->id);
+        return redirect()->route('admin.opportunity.internship.index')
+            ->withFlashSuccess('Internship deleted successfully');
 
-        if (empty($opportunity)) {
-            Flash::error('Internship not found');
 
-            return redirect(route('internships.index'));
-        }
+        $internship = $this->internshipRepository->getById($id);
+        $this->internshipRepository->deleteById($id);
 
-        $this->repository->delete($id);
-        event(new OpportunityDeletedEvent($opportunity));
+        // event(new InternshipDeleted($internship));
 
-        Flash::success('Internship deleted successfully.');
-
-        return redirect(route('internships/{$opportunity}'));
+        return redirect()->route('admin.opportunity.internship.index')
+            ->withFlashSuccess('Internship deleted successfully');
     }
 }

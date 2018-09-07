@@ -3,14 +3,11 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\ArchiveOpportunityRequest;
-use SCCatalog\Http\Requests\DuplicateOpportunityRequest;
-use SCCatalog\Models\Category;
-use SCCatalog\Models\Keyword;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\Organization;
-use SCCatalog\Models\User;
-use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
+use SCCatalog\Events\Backend\Opportunity\OpportunityCreatedEvent;
+use SCCatalog\Events\Backend\Opportunity\OpportunityUpdatedEvent;
+use SCCatalog\Events\Backend\Opportunity\OpportunityDeletedEvent;
+use SCCatalog\Http\Requests\Backend\Opportunity\OpportunityRequest;
+use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 
 /**
  * Class OpportunityController.
@@ -18,69 +15,134 @@ use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 class OpportunityController extends Controller
 {
     /**
-     * @var  OpportunityRepository
+     * @var OpportunityRepository
      */
-    private $repository;
+    private $opportunityRepository;
 
     /**
      * OpportunityController constructor.
      *
-     * @param OpportunityRepository $repository
+     * @param OpportunityRepository $opportunityRepository
      */
-    public function __construct(OpportunityRepository $repository)
+    public function __construct(OpportunityRepository $opportunityRepository)
     {
-        $this->repository = $repository;
+        $this->opportunityRepository = $opportunityRepository;
     }
 
     /**
-     * Duplicate opportunity.
+     * Display a listing of the Opportunity.
      *
-     * @param int $id
-     * @param DuplicateOpportunityRequest $request
+     * @param ManageOpportunityRequest $request
      *
-     * @return
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function clone($id, DuplicateOpportunityRequest $request)
+    public function index(ViewOpportunityRequest $request)
     {
-        $user = Auth::user();
-        $opportunity = $this->repository->findWithoutFail($id);
-
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
-
-        DuplicateOpportunity::dispatch($opportunity, $user);
-
-        Flash::success('Successfully duplicated opportunity.');
-
-        return redirect(route('projects.index'));
+        return view('opportunity.index')
+            ->withOpportunities($this->opportunityRepository->paginate(25));
     }
 
     /**
-     * Archive opportunity.
+     * Show the form for creating a new Opportunity.
      *
-     * @param int $id
+     * @param ManageOpportunityRequest $request
      *
-     * @return
+     * @return \Illuminate\View\View
      */
-    public function archive($id, ArchiveOpportunityRequest $request)
+    public function create(ManageOpportunityRequest $request)
     {
-        $user = Auth::user();
-        $opportunity = $this->repository->findWithoutFail($id);
-
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
-
-        ArchiveOpportunity::dispatch($opportunity, $user);
-
-        Flash::success('Successfully archived opportunity.');
-
-        return redirect(route('projects.index'));
+        return view('opportunity.create');
     }
 
+    /**
+     * Store a newly created Opportunity in storage.
+     *
+     * @param OpportunityRequest $request
+     *
+     * @return \Illuminate\View\View
+     * @throws \Throwable
+     */
+    public function store(OpportunityRequest $request)
+    {
+        $this->opportunityRepository->create($request->only(
+            'field1',
+            'field2',
+        ));
+
+        event(new OpportunityCreatedEvent($opportunity));
+
+        return redirect()->route('opportunity.index')
+            ->withFlashSuccess(__('Opportunity created successfully'));
+    }
+
+    /**
+     * Display the specified Opportunity.
+     *
+     * @param ManageOpportunityRequest $request
+     * @param Opportunity            $user
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show(ManageOpportunityRequest $request, Opportunity $opportunity)
+    {
+        return view('opportunity.show')
+            ->withOpportunities($opportunity);
+    }
+
+    /**
+     * Show the form for editing the specified Opportunity.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit(ManageOpportunityRequest $request, Opportunity $opportunity)
+    {
+        return view('opportunity.edit')
+            ->withOpportunity($opportunity);
+    }
+
+    /**
+     * Update the specified Opportunity in storage.
+     *
+     * @param  int                 $id
+     * @param OpportunityRequest $request
+     *
+     * @return \Illuminate\View\View
+     */
+    public function update(OpportunityRequest $request, Opportunity $opportunity)
+    {
+        $opportunity = $this->opportunityRepository->updateById($opportunity->id, $request->only(
+            'field1',
+            'field2'
+        ));
+
+        event(new OpportunityUpdatedEvent($opportunity));
+
+        return redirect()->route('opportunity.index')
+            ->withFlashSuccess(__('Opportunity updated successfully'));
+    }
+
+    /**
+     * Remove the specified Opportunity from storage.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function destroy(ManageOpportunityRequest $request, Opportunity $opportunity)
+    {
+        $this->opportunityRepository->deleteById($opportunity->id);
+        return redirect()->route('opportunity.index')
+            ->withFlashSuccess('Opportunity deleted successfully');
+
+
+        $opportunity = $this->opportunityRepository->getById($id);
+        $this->opportunityRepository->deleteById($id);
+
+        event(new OpportunityDeletedEvent($opportunity));
+
+        return redirect()->route('opportunity.index')
+            ->withFlashSuccess('Opportunity deleted successfully');
+    }
 }

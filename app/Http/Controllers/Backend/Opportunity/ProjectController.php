@@ -3,83 +3,104 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Backend\Opportunity\CreateProjectRequest;
-use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
-use SCCatalog\Models\Lookup\Category;
-use SCCatalog\Models\Lookup\Keyword;
-use SCCatalog\Models\Lookup\BudgetType;
-use SCCatalog\Models\Opportunity\Opportunity;
-use SCCatalog\Models\Lookup\OpportunityStatus;
-use SCCatalog\Models\Organization;
-use SCCatalog\Models\Auth\User;
+use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
+use SCCatalog\Events\Backend\Opportunity\ProjectUpdated;
+use SCCatalog\Events\Backend\Opportunity\ProjectDeleted;
+use SCCatalog\Http\Requests\Backend\Opportunity\ProjectRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
+use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
+use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Backend\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Backend\Lookup\OpportunityReviewStatusRepository;
+use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Backend\OrganizationRepository;
 
+/**
+ * Class ProjectController.
+ */
 class ProjectController extends Controller
 {
     /**
      * @var ProjectRepository
      */
-    private $repository;
+    private $projectRepository;
 
     /**
      * ProjectController constructor.
      *
-     * @param ProjectRepository $repository
+     * @param ProjectRepository $projectRepository
      */
-    public function __construct(ProjectRepository $repository)
+    public function __construct(ProjectRepository $projectRepository)
     {
-        $this->repository = $repository;
+        $this->projectRepository = $projectRepository;
     }
 
     /**
      * Display a listing of the Project.
      *
-     * @return \Illuminate\View\View
+     * @param ManageProjectRequest $request
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(ManageProjectRequest $request)
     {
-        // view React SearchApp
-        return view('project.search');
+        // dd($this->projectRepository->paginate(25));
+
+        return view('backend.opportunity.project.index')
+            ->with('projects', $this->projectRepository->paginate(25));
     }
 
     /**
      * Show the form for creating a new Project.
      *
+     * @param ManageProjectRequest        $request
+     * @param BudgetTypeRepository        $budgetTypeRepository
+     * @param CategoryRepository          $categoryRepository
+     * @param KeywordRepository           $keywordRepository
+     * @param OpportunityRepository       $opportunityRepository
+     * @param OpportunityStatusRepository $opportunityStatusRepository
+     * @param OrganizationRepository      $organizationRepository
+     * @param UserRepository              $userRepository
+     *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(
+            ManageProjectRequest $request,
+            BudgetTypeRepository $budgetTypeRepository,
+            CategoryRepository $categoryRepository,
+            KeywordRepository $keywordRepository,
+            OpportunityRepository $opportunityRepository,
+            OpportunityStatusRepository $opportunityStatusRepository,
+            OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
+            OrganizationRepository $organizationRepository,
+            UserRepository $userRepository
+    )
     {
-        $categories       = Category::select('id', 'name')->get()->toArray();
-        $keywords         = Keyword::select('id', 'name')->get()->toArray();
-        $budgetTypes      = BudgetType::select('id', 'name')->get()->toArray();
-        $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
-        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users            = User::select('id', 'name')->get()->toArray();
-        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
-
-        return view('project.create', [
-            'type' => 'Project',
-            'pageTitle' => 'New Project',
-            'categories' => $categories,
-            'keywords' => $keywords,
-            'budgetTypes' => $budgetTypes,
-            'allOrganizations' => $allOrganizations,
-            'allOpportunities' => $allOpportunities,
-            'statuses' => $statuses,
-            'users' => $users
-        ]);
+        return view('backend.opportunity.project.create')
+            ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
      * Store a newly created Project in storage.
      *
-     * @param CreateProjectRequest $request
+     * @param ProjectRequest $request
      *
      * @return \Illuminate\View\View
+     * @throws \Throwable
      */
-    public function store(CreateProjectRequest $request)
+    public function store(ProjectRequest $request)
     {
-        $input = $request->only([
+        $project = $this->projectRepository->create($request->only(
             'name',
             'public_name',
             'description',
@@ -91,38 +112,33 @@ class ProjectController extends Controller
             'end_date',
             'organization_id',
             'parent_opportunity_id',
-            'supervisor_user_id',
-            'addresses',
-            'status',
-            'affiliations',
-            'categories',
-            'keywords',
-        ]);
+            'supervisor_user_id'
+            // 'addresses',
+            // 'status',
+            // 'affiliations',
+            // 'categories',
+            // 'keywords'
+        ));
 
-        $input['opportunityable'] =
+        dd($project);
 
-        dd($input);
+        // event(new ProjectCreated($project));
 
-        $opportunity = $this->repository->create($input);
-
-        Flash::success('Project saved successfully.');
-
-        event(new OpportunityCreatedEvent($opportunity));
-
-        return redirect(route('projects/{$opportunity}'));
+        return redirect()->route('admin.opportunity.project.index')
+            ->withFlashSuccess(__('Project created successfully'));
     }
 
     /**
      * Display the specified Project.
      *
-     * @param  int $id
+     * @param ManageProjectRequest $request
+     * @param Project            $user
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(ManageProjectRequest $request, $id)
     {
-        // $this->repository->pushCriteria(ProjectCriteria::class);
-        $opportunity = $this->repository
+        $project = $this->projectRepository
             ->with([
                 'opportunityable',
                 'addresses',
@@ -137,31 +153,40 @@ class ProjectController extends Controller
                 'followers',
                 'applicants',
             ])
-            ->findWithoutFail($id);
+            ->getById($id);
 
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
-
-        return view('projects.show', [
-            'type' => $opportunity->opportunityable_type,
-            'pageTitle' => $opportunity->name,
-            'opportunity' => $opportunity
-        ]);
+        return view('backend.opportunity.project.show')
+            ->withProject($project);
     }
 
     /**
      * Show the form for editing the specified Project.
      *
-     * @param  int $id
+     * @param ManageProjectRequest        $request
+     * @param BudgetTypeRepository        $budgetTypeRepository
+     * @param CategoryRepository          $categoryRepository
+     * @param KeywordRepository           $keywordRepository
+     * @param OpportunityRepository       $opportunityRepository
+     * @param OpportunityStatusRepository $opportunityStatusRepository
+     * @param OrganizationRepository      $organizationRepository
+     * @param UserRepository              $userRepository
+     * @param  int                        $id
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(
+            ManageProjectRequest $request,
+            BudgetTypeRepository $budgetTypeRepository,
+            CategoryRepository $categoryRepository,
+            KeywordRepository $keywordRepository,
+            OpportunityRepository $opportunityRepository,
+            OpportunityStatusRepository $opportunityStatusRepository,
+            OrganizationRepository $organizationRepository,
+            UserRepository $userRepository,
+            $id
+    )
     {
-        $opportunity = $this->repository
+        $project = $this->projectRepository
             ->with([
                 'opportunityable',
                 'addresses',
@@ -176,99 +201,72 @@ class ProjectController extends Controller
                 'followers',
                 'applicants',
             ])
-            ->findWithoutFail($id);
+            ->getById($id);
 
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
-
-            return redirect(route('projects.index'));
-        }
-
-        $categories       = Category::select('id', 'name')->get()->toArray();
-        $keywords         = Keyword::select('id', 'name')->get()->toArray();
-        $budgetTypes      = BudgetType::select('id', 'name')->get()->toArray();
-        $allOpportunities = Opportunity::select('id', 'name')->get()->toArray();
-        $allOrganizations = Organization::select('id', 'name')->get()->toArray();
-        $users            = User::select('id', 'name')->get()->toArray();
-        $statuses         = OpportunityStatus::select('id', 'name')->where('opportunity_type_id', 1)->get()->toArray();
-
-        return view('projects.edit', [
-            'type' => $opportunity->opportunityable_type,
-            'pageTitle' => $opportunity->name,
-            'opportunity' => $opportunity,
-            'categories' => $categories,
-            'keywords' => $keywords,
-            'budgetTypes' => $budgetTypes,
-            'allOrganizations' => $allOrganizations,
-            'allOpportunities' => $allOpportunities,
-            'statuses' => $statuses,
-            'users' => $users
-        ]);
+        return view('backend.opportunity.project.edit')
+            ->with('project', $project)
+            ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name']))
+            ->with('categories', $categoryRepository->get(['id', 'name']))
+            ->with('keywords', $keywordRepository->get(['id', 'name']))
+            ->with('opportunities', $opportunityRepository->get(['id', 'name']))
+            ->with('organizations', $organizationRepository->get(['id', 'name']))
+            ->with('users', $userRepository->get(['id', 'name']))
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name']));
     }
 
     /**
      * Update the specified Project in storage.
      *
      * @param  int                 $id
-     * @param UpdateProjectRequest $request
+     * @param ProjectRequest $request
      *
      * @return \Illuminate\View\View
      */
-    public function update($id, UpdateProjectRequest $request)
+    public function update(ProjectRequest $request, $id)
     {
-        $opportunity = $this->repository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->findWithoutFail($id);
+        $project = $this->projectRepository->update($request->only(
+            'name',
+            'public_name',
+            'description',
+            'listing_starts',
+            'listing_ends',
+            'application_deadline',
+            'application_deadline_text',
+            'start_date',
+            'end_date',
+            'organization_id',
+            'parent_opportunity_id',
+            'supervisor_user_id'
+            // 'addresses',
+            // 'status',
+            // 'affiliations',
+            // 'categories',
+            // 'keywords'
+        ));
 
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
+        // event(new ProjectUpdated($project));
 
-            return redirect(route('projects.index'));
-        }
-
-        $opportunity = $this->repository->update($request->all(), $id);
-        event(new OpportunityUpdatedEvent($opportunity));
-
-        Flash::success('Project updated successfully.');
-
-        return redirect(route('projects/{$opportunity}'));
+        return redirect()->route('admin.opportunity.project.index')
+            ->withFlashSuccess(__('Project updated successfully'));
     }
 
     /**
      * Remove the specified Project from storage.
      *
-     * @param  int $id
+     * @param ManageProjectRequest $request
+     * @param  int                 $id
      *
      * @return \Illuminate\View\View
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(ManageProjectRequest $request, $id)
     {
-        $opportunity = $this->repository->findWithoutFail($id);
+        $project = $this->projectRepository->getById($id);
+        $this->projectRepository->deleteById($id);
 
-        if (empty($opportunity)) {
-            Flash::error('Project not found');
+        // event(new ProjectDeleted($project));
 
-            return redirect(route('projects.index'));
-        }
-
-        $this->repository->delete($id);
-        event(new OpportunityDeletedEvent($opportunity));
-
-        Flash::success('Project deleted successfully.');
-
-        return redirect(route('projects/{$opportunity}'));
+        return redirect()->route('admin.opportunity.project.index')
+            ->withFlashSuccess('Project deleted successfully');
     }
 }

@@ -43,9 +43,9 @@ class OpportunityRepository extends BaseRepository
      *
      * @var array
      */
-    protected $orderBys = [
-        ['application_deadline', 'desc'],
-        ['name', 'asc'],
-    ];
+    // protected $orderBys = [
+    //     ['application_deadline', 'desc'],
+    //     ['name', 'asc'],
+    // ];
 
 }

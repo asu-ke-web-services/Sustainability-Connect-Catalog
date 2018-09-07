@@ -163,26 +163,40 @@
 
                     </ul>
                 </li>
+
+
+                <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/opportunity*'), 'open') }}">
+                    <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/opportunity*')) }}" href="#">
+                        <i class="icon-user"></i> {{ __('Opportunity') }}
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/opportunity/project*')) }}" href="{{ route('admin.opportunity.project.index') }}">
+                                {{ __('Projects') }}
+
+                                @if ($pending_approval > 0)
+                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
+                                @endif
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/opportunity/internship*')) }}" href="{{ route('admin.opportunity.internship.index') }}">
+                                {{ __('Internships') }}
+
+                                @if ($pending_approval > 0)
+                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
+                                @endif
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
             @endif
 
-            <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/log-viewer*'), 'open') }}">
-                <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/log-viewer*')) }}" href="#">
-                    <i class="icon-list"></i> {{ __('menus.backend.log-viewer.main') }}
-                </a>
-
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link {{ active_class(Active::checkUriPattern('admin/log-viewer')) }}" href="{{ route('log-viewer::dashboard') }}">
-                            {{ __('menus.backend.log-viewer.dashboard') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ active_class(Active::checkUriPattern('admin/log-viewer/logs*')) }}" href="{{ route('log-viewer::logs.list') }}">
-                            {{ __('menus.backend.log-viewer.logs') }}
-                        </a>
-                    </li>
-                </ul>
-            </li>
         </ul>
     </nav>
 </div><!--sidebar-->

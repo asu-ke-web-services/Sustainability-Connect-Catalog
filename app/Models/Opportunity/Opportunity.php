@@ -21,8 +21,6 @@ class Opportunity extends Model
     |--------------------------------------------------------------------------
     */
 
-    public $table = 'opportunities';
-
     protected $dates = [
         'created_at',
         'updated_at',
@@ -37,7 +35,6 @@ class Opportunity extends Model
     public $fillable = [
         'name',
         'public_name',
-        'slug',
         'start_date',
         'end_date',
         'listing_start_date',
@@ -258,32 +255,33 @@ class Opportunity extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @param $query
+     * @param bool $confirmed
+     *
+     * @return mixed
+     */
+    // public function scopeProject($query)
+    // {
+    //     return $query->where('opportunityable_type', 'Project');
+    // }
+
+    /**
+     * @param $query
+     * @param bool $status
+     *
+     * @return mixed
+     */
+    // public function scopeActive($query, $status = true)
+    // {
+    //     return $query->where('active', $status);
+    // }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * Get the list of Opportunity Types.
-     *
-     * @return bool
-     */
-    public function getTypes()
-    {
-        \SCCatalog\Models\Lookup\OpportunityType::all();
-    }
-
-    /**
-     * Get the list of Opportunity Statuses.
-     *
-     * @return bool
-     */
-    public function getStatuses()
-    {
-        \SCCatalog\Models\Lookup\OpportunityStatus::orderBy('order', 'asc')
-            ->get();
-    }
 
     /**
      * Get the published status of this model.

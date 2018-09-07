@@ -14,8 +14,8 @@ class InternshipRepository extends OpportunityRepository
      *
      * @var array
      */
-    protected $wheres = [
-        ['opportunityable_type', 'Internship'],
-    ];
+    // protected $wheres = [
+    //     ['opportunityable_type', 'Internship'],
+    // ];
 
 }

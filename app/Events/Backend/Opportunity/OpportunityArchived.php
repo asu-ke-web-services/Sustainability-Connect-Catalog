@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use SCCatalog\Models\Opportunity;
 
-class OpportunityDuplicatedEvent
+class OpportunityArchived
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

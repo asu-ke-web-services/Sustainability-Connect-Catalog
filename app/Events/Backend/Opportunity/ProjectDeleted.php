@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events;
+namespace SCCatalog\Events\Backend\Opportunity;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,22 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Opportunity\Project;
 
-class OpportunityCreatedEvent
+class ProjectDeleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $opportunity;
+    public $project;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Project $project
      */
-    public function __construct(Opportunity $opportunity)
+    public function __construct(Project $project)
     {
-        $this->opportunity = $opportunity;
+        $this->project = $project;
     }
 
     /**

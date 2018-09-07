@@ -4,11 +4,9 @@ namespace SCCatalog\Http\Requests\Backend\Opportunity;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models\Opportunity\Project;
 
-class UpdateProjectRequest extends FormRequest
+class ManageInternshipRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +24,9 @@ class UpdateProjectRequest extends FormRequest
      */
     public function rules()
     {
-        return Project::$rules;
+        return [
+            //
+        ];
     }
 
     /**

@@ -2,11 +2,12 @@
 
 namespace SCCatalog\Http\Requests\Backend\Opportunity;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models\Opportunity\Opportunity;
 
-class DuplicateOpportunityRequest extends FormRequest
+/**
+ * Class InternshipRequest.
+ */
+class InternshipRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,9 @@ class DuplicateOpportunityRequest extends FormRequest
      */
     public function rules()
     {
-        return Opportunity::$rules;
+        return [
+        	//
+        ];
     }
 
     /**

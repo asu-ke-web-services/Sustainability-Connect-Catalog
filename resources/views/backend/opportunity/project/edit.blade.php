@@ -1,11 +1,11 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __('Project') . ' Management | Edit ' . __('Project'))
+@section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.edit'))
 
 @section('content')
-{{ html()->form('POST', route('admin.opportunity.project.store'))->class('form-horizontal')->open() }}
+{{ html()->modelForm($project, 'PATCH', route('admin.opportunity.project.update', $project))->class('form-horizontal')->open() }}
 
 @include('backend.opportunity.project.includes.fields')
 
-{{ html()->form()->close() }}
+{{ html()->closeModelForm() }}
 @endsection

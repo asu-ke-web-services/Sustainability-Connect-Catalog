@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __('Project') . ' Management | Create New ' . __('Project'))
+@section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.create'))
 
 @section('content')
 {{ html()->form('POST', route('admin.opportunity.project.store'))->class('form-horizontal')->open() }}

@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('Project Management') }}
-                        <small class="text-muted">{{ __('Create New Project') }}</small>
+                        {{ __('labels.backend.opportunity.projects.management') }}
+                        <small class="text-muted">{{ __('labels.backend.opportunity.projects.create') }}</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -134,7 +134,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('Accept Applications') }}
+                        {{ __('labels.backend.opportunity.projects.accept_application') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -206,7 +206,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('Applicant Details') }}
+                            {{ __('labels.backend.opportunity.projects.applicant_details') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -295,7 +295,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('Application Process') }}
+                        {{ __('labels.backend.opportunity.projects.application_process') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -405,16 +405,12 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col">
-                    {{ form_cancel(route('admin.opportunity.project.index'), 'Cancel') }}
+                    {{ form_cancel(route('admin.opportunity.project.index'), __('buttons.general.cancel')) }}
                 </div><!--col-->
 
                 <div class="col text-right">
-                    {{ form_submit('Create') }}
+                    {{ form_submit(__('buttons.general.crud.create')) }}
                 </div><!--col-->
             </div><!--row-->
         </div><!--card-footer-->
     </div><!--card-->
-
-
-
-

@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', app_name() . ' | '. __('Project Management'))
+@section ('title', app_name() . ' | '. __('labels.backend.opportunity.projects.management'))
 
 @section('content')
 <div class="card">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('Project Management') }}
+                    {{ __('labels.backend.opportunity.projects.management') }}
                 </h4>
             </div><!--col-->
 
@@ -23,12 +23,12 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Project') }}</th>
-                            <th>{{ __('Status') }}</th>
-                            <th>{{ __('Location') }}</th>
-                            <th>{{ __('Start Date') }}</th>
-                            <th>{{ __('Apply By') }}</th>
-                            <th>{{ __('Actions') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.name') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.status') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.start_date') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.application_deadline') }}</th>
+                            <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,7 +42,7 @@
                                             {{ ucwords($address->city) }}
                                         @endforeach
                                     @else
-                                        {{ __('None') }}
+                                        {{ __('labels.general.none') }}
                                     @endif
                                 </td>
                                 <td>{{ $project->start_date }}</td>
@@ -58,8 +58,7 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                                <td>{{ ucwords($project->status->name) }}</td>
-                    {!! $projects->total() !!} {{ str_plural('project', $projects->total()) . ' total' }}
+                    {!! $projects->total() !!} {{ trans_choice('labels.backend.opportunity.projects.table.total', $projects->total()) }}
                 </div>
             </div><!--col-->
 

@@ -26,8 +26,8 @@ class Opportunity extends Model
         'updated_at',
         'deleted_at',
         'application_deadline',
-        'listing_end_date',
         'listing_start_date',
+        'listing_end_date',
         'start_date',
         'end_date',
     ];
@@ -100,7 +100,7 @@ class Opportunity extends Model
      **/
     public function addresses()
     {
-        return $this->morphMany(\SCCatalog\Models\Address::class, 'addressable');
+        return $this->morphMany(\SCCatalog\Models\Address\Address::class, 'addressable');
     }
 
     /**
@@ -108,7 +108,7 @@ class Opportunity extends Model
      **/
     public function notes()
     {
-        return $this->morphMany(\SCCatalog\Models\Note::class, 'noteable');
+        return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'noteable');
     }
 
 
@@ -133,7 +133,7 @@ class Opportunity extends Model
      **/
     public function organization()
     {
-        return $this->belongsTo(\SCCatalog\Models\Organization::class, 'organization_id')->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id')->withDefault();
     }
 
     /**
@@ -244,7 +244,7 @@ class Opportunity extends Model
      **/
     // public function primaryAddress()
     // {
-    //     return $this->belongsToMany(\SCCatalog\Models\Address::class, 'address_opportunity')
+    //     return $this->belongsToMany(\SCCatalog\Models\Address\Address::class, 'address_opportunity')
     //         ->withPivot('is_primary', 'order')
     //         ->wherePivot('is_primary', 1);
     // }

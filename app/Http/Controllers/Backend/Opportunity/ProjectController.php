@@ -16,7 +16,7 @@ use SCCatalog\Repositories\Backend\Lookup\OpportunityStatusRepository;
 use SCCatalog\Repositories\Backend\Lookup\OpportunityReviewStatusRepository;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
-use SCCatalog\Repositories\Backend\OrganizationRepository;
+use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
 
 /**
  * Class ProjectController.
@@ -181,6 +181,7 @@ class ProjectController extends Controller
             KeywordRepository $keywordRepository,
             OpportunityRepository $opportunityRepository,
             OpportunityStatusRepository $opportunityStatusRepository,
+            OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
             OrganizationRepository $organizationRepository,
             UserRepository $userRepository,
             $id
@@ -205,13 +206,14 @@ class ProjectController extends Controller
 
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
-            ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name']))
-            ->with('categories', $categoryRepository->get(['id', 'name']))
-            ->with('keywords', $keywordRepository->get(['id', 'name']))
-            ->with('opportunities', $opportunityRepository->get(['id', 'name']))
-            ->with('organizations', $organizationRepository->get(['id', 'name']))
-            ->with('users', $userRepository->get(['id', 'name']))
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name']));
+            ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**

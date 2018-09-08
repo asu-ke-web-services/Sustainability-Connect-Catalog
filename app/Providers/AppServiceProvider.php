@@ -22,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url)
     {
         Relation::morphMap([
-            'Address'      => \SCCatalog\Models\Address::class,
-            'Note'         => \SCCatalog\Models\Note::class,
-            'Organization' => \SCCatalog\Models\Organization::class,
+            'Address'      => \SCCatalog\Models\Address\Address::class,
+            'Note'         => \SCCatalog\Models\Note\Note::class,
+            'Organization' => \SCCatalog\Models\Organization\Organization::class,
             'Internship'   => \SCCatalog\Models\Opportunity\Internship::class,
             'Opportunity'  => \SCCatalog\Models\Opportunity\Opportunity::class,
             'Project'      => \SCCatalog\Models\Opportunity\Project::class,

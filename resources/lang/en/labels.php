@@ -108,6 +108,110 @@ return [
                 'view' => 'View User',
             ],
         ],
+
+        'opportunity' => [
+            'projects' => [
+                'active'              => 'Active Projects',
+                'create'              => 'Create Project',
+                'deactivated'         => 'Deactivated Projects',
+                'deleted'             => 'Deleted Projects',
+                'edit'                => 'Edit Project',
+                'management'          => 'Project Management',
+
+                'table' => [
+                    'created'              => 'Created',
+                    'id'                   => 'ID',
+                    'last_updated'         => 'Last Updated',
+                    'name'                 => 'Name',
+                    'status'               => 'Status',
+                    'location'             => 'Location',
+                    'start_date'           => 'Start Date',
+                    'application_deadline' => 'Apply By',
+                    'no_deactivated'       => 'No Deactivated Projects',
+                    'no_deleted'           => 'No Deleted Projects',
+                    'total'                => 'project total|projects total',
+                ],
+
+                'tabs' => [
+                    'titles' => [
+                        'overview' => 'Overview',
+                        'history'  => 'History',
+                    ],
+
+                    'content' => [
+                        'overview' => [
+                            'name'                      => 'Name',
+                            'public_name'               => 'Public Name',
+                            'description'               => 'Description',
+                            'status'                    => 'Status',
+                            'review_status'             => 'Review Status',
+                            'start_date'                => 'Start Date',
+                            'end_date'                  => 'End Date',
+                            'listing_starts'            => 'Listing Starts',
+                            'listing_ends'              => 'Listing Ends',
+                            'application_deadline'      => 'Application Deadline Date',
+                            'application_deadline_text' => 'Application Deadline Text',
+                            'created_at'                => 'Created At',
+                            'deleted_at'                => 'Deleted At',
+                            'last_updated'              => 'Last Updated',
+                        ],
+                    ],
+                ],
+
+                'view' => 'View Project',
+            ],
+
+            'internships' => [
+                'active'              => 'Active Internships',
+                'create'              => 'Create Internship',
+                'deactivated'         => 'Deactivated Internships',
+                'deleted'             => 'Deleted Internships',
+                'edit'                => 'Edit Internship',
+                'management'          => 'Internship Management',
+
+                'table' => [
+                    'created'              => 'Created',
+                    'id'                   => 'ID',
+                    'last_updated'         => 'Last Updated',
+                    'name'                 => 'Name',
+                    'status'               => 'Status',
+                    'location'             => 'Location',
+                    'start_date'           => 'Start Date',
+                    'application_deadline' => 'Apply By',
+                    'no_deactivated'       => 'No Deactivated Internships',
+                    'no_deleted'           => 'No Deleted Internships',
+                    'total'                => 'internship total|internships total',
+                ],
+
+                'tabs' => [
+                    'titles' => [
+                        'overview' => 'Overview',
+                        'history'  => 'History',
+                    ],
+
+                    'content' => [
+                        'overview' => [
+                            'name'                      => 'Name',
+                            'public_name'               => 'Public Name',
+                            'description'               => 'Description',
+                            'status'                    => 'Status',
+                            'start_date'                => 'Start Date',
+                            'end_date'                  => 'End Date',
+                            'listing_starts'            => 'Listing Starts',
+                            'listing_ends'              => 'Listing Ends',
+                            'application_deadline'      => 'Application Deadline Date',
+                            'application_deadline_text' => 'Application Deadline Text',
+                            'created_at'                => 'Created At',
+                            'deleted_at'                => 'Deleted At',
+                            'last_updated'              => 'Last Updated',
+                        ],
+                    ],
+                ],
+
+                'view' => 'View Internship',
+            ],
+        ],
+
     ],
 
     'frontend' => [

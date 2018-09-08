@@ -43,6 +43,36 @@ return [
             'logs'      => 'Logs',
         ],
 
+        'opportunity' => [
+            'title' => 'Opportunity',
+
+            'internships' => [
+                'all'        => 'All Internships',
+                'create'     => 'Create Internship',
+                'edit'       => 'Edit Internship',
+                'management' => 'Internship Management',
+                'main'       => 'Internships',
+                'view'       => 'View Internship',
+            ],
+
+            'projects' => [
+                'all'        => 'All Projects',
+                'create'     => 'Create Project',
+                'edit'       => 'Edit Project',
+                'management' => 'Project Management',
+                'main'       => 'Projects',
+                'view'       => 'View Project',
+            ],
+        ],
+
+        'organizations' => [
+            'all'        => 'All Organization',
+            'create'     => 'Create Organization',
+            'edit'       => 'Edit Organization',
+            'management' => 'Organization Management',
+            'main'       => 'Organizations',
+        ],
+
         'sidebar' => [
             'dashboard' => 'Dashboard',
             'general'   => 'General',

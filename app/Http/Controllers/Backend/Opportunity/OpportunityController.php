@@ -7,6 +7,7 @@ use SCCatalog\Events\Backend\Opportunity\OpportunityCreatedEvent;
 use SCCatalog\Events\Backend\Opportunity\OpportunityUpdatedEvent;
 use SCCatalog\Events\Backend\Opportunity\OpportunityDeletedEvent;
 use SCCatalog\Http\Requests\Backend\Opportunity\OpportunityRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\ManageOpportunityRequest;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 
 /**
@@ -66,7 +67,7 @@ class OpportunityController extends Controller
     {
         $this->opportunityRepository->create($request->only(
             'field1',
-            'field2',
+            'field2'
         ));
 
         event(new OpportunityCreatedEvent($opportunity));

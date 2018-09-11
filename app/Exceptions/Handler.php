@@ -7,6 +7,9 @@ use Illuminate\Auth\AuthenticationException;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+/**
+ * Class Handler.
+ */
 class Handler extends ExceptionHandler
 {
     /**

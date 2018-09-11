@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Frontend\Auth;
+namespace SCCatalog\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Arcanedev\NoCaptcha\Rules\CaptchaRule;

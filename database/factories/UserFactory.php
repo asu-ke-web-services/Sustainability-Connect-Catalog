@@ -1,6 +1,6 @@
 <?php
 
-use Faker\Generator as Faker;
+use Faker\Generator;
 use Webpatser\Uuid\Uuid;
 use SCCatalog\Models\Auth\User;
 
@@ -9,15 +9,15 @@ use SCCatalog\Models\Auth\User;
 | Model Factories
 |--------------------------------------------------------------------------
 |
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
 |
 */
 
-$factory->define(SCCatalog\Models\User::class, function (Faker $faker) {
+$factory->define(User::class, function (Generator $faker) {
     return [
-        'uuid'              => Uuid::generate(4)->string,
+        'uuid' 			    => Uuid::generate(4)->string,
         'first_name'        => $faker->firstName,
         'last_name'         => $faker->lastName,
         'email'             => $faker->safeEmail,

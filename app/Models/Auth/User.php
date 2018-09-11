@@ -92,6 +92,6 @@ class User extends Authenticatable
 
     public function shouldBeSearchable()
     {
-        return true;
+        return false;
     }
 }

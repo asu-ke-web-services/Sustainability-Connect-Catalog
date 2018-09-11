@@ -3,14 +3,14 @@
 namespace SCCatalog\Models\Opportunity;
 
 use Illuminate\Database\Eloquent\Model;
-// use Laravel\Scout\Searchable;
+use Laravel\Scout\Searchable;
 
 /**
  * Class Project
  */
 class Project extends Model
 {
-    // use Searchable;
+     use Searchable;
 
     /*
     |--------------------------------------------------------------------------
@@ -170,30 +170,30 @@ class Project extends Model
      *
      * @return mixed
      */
-    // public function getScoutKey()
-    // {
-    //     return $this->opportunity->id;
-    // }
+     public function getScoutKey()
+     {
+         return $this->opportunity->id;
+     }
 
     /**
      * Get the published status of this model.
      *
      * @return bool
      */
-    // public function isPublished()
-    // {
-    //     $opportunity = $this->opportunity->toArray();
+     public function isPublished()
+     {
+         $opportunity = $this->opportunity->toArray();
 
-    //     if (
-    //         $opportunity['is_hidden'] === 1 ||
-    //         $opportunity['opportunity_status_id'] < 3 ||
-    //         $this->review_status_id !== 1
-    //     ) {
-    //         return false;
-    //     }
+         if (
+             $opportunity['is_hidden'] === 1 ||
+             $opportunity['opportunity_status_id'] < 3 ||
+             $this->review_status_id !== 1
+         ) {
+             return false;
+         }
 
-    //     return true;
-    // }
+         return true;
+     }
 
     /*
     |--------------------------------------------------------------------------
@@ -201,76 +201,77 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
 
-    // public function shouldBeSearchable()
-    // {
-    //     if (
-    //         $this->review_status_id !== 1 ||
-    //         $this->isPublished() === false
-    //     ) {
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
-
-
-    // public function toSearchableArray()
-    // {
-    //     // $project = $this->toArray();
-    //     $project = array();
-
-    //     $project['id']                  = $this->opportunity->id;
-    //     $project['type']                = 'Project';
-    //     $project['name']                = $this->opportunity->name;
-    //     $project['publicName']          = $this->opportunity->public_name;
-    //     $project['description']         = $this->opportunity->description;
-    //     $project['isHidden']            = $this->opportunity->is_hidden;
-    //     $project['startDate']           = $this->opportunity->start_date;
-    //     $project['endDate']             = $this->opportunity->end_date;
-    //     $project['applicationDeadline'] = (
-    //             !is_null($this->opportunity->application_deadline_text) ?
-    //             $this->opportunity->application_deadline_text :
-    //             $this->opportunity->application_deadline
-    //         );
-    //     $project['listingStartDate']    = $this->opportunity->listing_start_date;
-    //     $project['listingEndDate']      = $this->opportunity->listing_end_date;
-    //     $project['followerCount']       = $this->opportunity->follower_count;
-    //     $project['status']              = $this->opportunity->status->name;
-    //     $project['reviewStatus']        = $this->reviewStatus->name;
-    //     $project['organizationName']    = $this->opportunity->organization->name ?? '';
-    //     // $project['parentOpportunity']   = $this->opportunity->parentOpportunity;
-    //     // $project['supervisorUser']      = $this->opportunity->supervisorUser;
-    //     // $project['submittingUser']      = $this->opportunity->submittingUser;
+     public function shouldBeSearchable()
+     {
+         return false;
+//         if (
+//             $this->review_status_id !== 1 ||
+//             $this->isPublished() === false
+//         ) {
+//             return false;
+//         }
+//
+//         return true;
+     }
 
 
-    //     // Index Location Cities
-    //     $project['locations'] = '';
-    //     foreach ($this->opportunity->addresses as $address) {
-    //         $project['locations'] .= $address['city'] . $address['state'];
-    //     }
+     public function toSearchableArray()
+     {
+         // $project = $this->toArray();
+         $project = array();
 
-    //     // Index Addresses
-    //     // $project['addresses'] = $this->opportunity->addresses->map(function ($data) {
-    //     //                                 return $data['city'] .
-    //     //                                         ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
-    //     //                                         ( is_null($data['country']) ? '' : (', ' . $data['country']) );
-    //     // })->toArray();
+         $project['id']                  = $this->opportunity->id;
+         $project['type']                = 'Project';
+         $project['name']                = $this->opportunity->name;
+         $project['publicName']          = $this->opportunity->public_name;
+         $project['description']         = $this->opportunity->description;
+         $project['isHidden']            = $this->opportunity->is_hidden;
+         $project['startDate']           = $this->opportunity->start_date;
+         $project['endDate']             = $this->opportunity->end_date;
+         $project['applicationDeadline'] = (
+                 !is_null($this->opportunity->application_deadline_text) ?
+                 $this->opportunity->application_deadline_text :
+                 $this->opportunity->application_deadline
+             );
+         $project['listingStartDate']    = $this->opportunity->listing_start_date;
+         $project['listingEndDate']      = $this->opportunity->listing_end_date;
+         $project['followerCount']       = $this->opportunity->follower_count;
+         $project['status']              = $this->opportunity->status->name;
+         $project['reviewStatus']        = $this->reviewStatus->name;
+         $project['organizationName']    = $this->opportunity->organization->name ?? '';
+         // $project['parentOpportunity']   = $this->opportunity->parentOpportunity;
+         // $project['supervisorUser']      = $this->opportunity->supervisorUser;
+         // $project['submittingUser']      = $this->opportunity->submittingUser;
 
-    //     // Index Affiliations
-    //     $project['affiliations'] = $this->opportunity->affiliations->map(function ($data) {
-    //         return $data['name'];
-    //     })->toArray();
 
-    //     // Index Categories names
-    //     $project['categories'] = $this->opportunity->categories->map(function ($data) {
-    //         return $data['name'];
-    //     })->toArray();
+         // Index Location Cities
+         $project['locations'] = '';
+         foreach ($this->opportunity->addresses as $address) {
+             $project['locations'] .= $address['city'] . $address['state'];
+         }
 
-    //     // Index Keywords names
-    //     $project['keywords'] = $this->opportunity->keywords->map(function ($data) {
-    //         return $data['name'];
-    //     })->toArray();
+         // Index Addresses
+         // $project['addresses'] = $this->opportunity->addresses->map(function ($data) {
+         //                                 return $data['city'] .
+         //                                         ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+         //                                         ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+         // })->toArray();
 
-    //     return $project;
-    // }
+         // Index Affiliations
+         $project['affiliations'] = $this->opportunity->affiliations->map(function ($data) {
+             return $data['name'];
+         })->toArray();
+
+         // Index Categories names
+         $project['categories'] = $this->opportunity->categories->map(function ($data) {
+             return $data['name'];
+         })->toArray();
+
+         // Index Keywords names
+         $project['keywords'] = $this->opportunity->keywords->map(function ($data) {
+             return $data['name'];
+         })->toArray();
+
+         return $project;
+     }
 }

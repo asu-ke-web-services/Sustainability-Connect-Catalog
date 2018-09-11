@@ -68,7 +68,7 @@ class Attachment extends Model implements HasMedia
      **/
     public function user()
     {
-        return $this->belongsTo(\SCCatalog\Models\User::class, 'user_id');
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'user_id');
     }
 
     /**
@@ -76,7 +76,7 @@ class Attachment extends Model implements HasMedia
      **/
     public function opportunity()
     {
-        return $this->belongsTo(\SCCatalog\Models\Opportunity::class, 'opportunity_id');
+        return $this->belongsTo(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_id');
     }
 
     /*

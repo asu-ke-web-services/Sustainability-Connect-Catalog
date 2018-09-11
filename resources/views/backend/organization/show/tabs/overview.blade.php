@@ -7,11 +7,6 @@
             </tr>
 
             <tr>
-                <th>Slug</th>
-                <td>{{ $organization->slug }}</td>
-            </tr>
-
-            <tr>
                 <th>Type</th>
                 <td>{!! ucwords($organization->type->name) !!}</td>
             </tr>

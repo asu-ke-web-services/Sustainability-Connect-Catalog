@@ -24,9 +24,9 @@
                         <thead>
                         <tr>
                             <th>{{ __('Organization') }}</th>
-                            <th>{{ __('Slug') }}</th>
                             <th>{{ __('Type') }}</th>
                             <th>{{ __('Status') }}</th>
+                            <th>{{ __('Location') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
@@ -34,9 +34,17 @@
                         @foreach ($organizations as $organization)
                             <tr>
                                 <td>{{ ucwords($organization->name) }}</td>
-                                <td>{{ $organization->slug }}</td>
                                 <td>{{ ucwords($organization->type->name) }}</td>
                                 <td>{{ ucwords($organization->status->name) }}</td>
+                                <td>
+                                    @if ($organization->addresses->count())
+                                        @foreach ($organization->addresses as $address)
+                                            {{ ucwords($address->city) }}
+                                        @endforeach
+                                    @else
+                                        {{ __('labels.general.none') }}
+                                    @endif
+                                </td>
                                 <td>{!! $organization->action_buttons !!}</td>
                             </tr>
                         @endforeach

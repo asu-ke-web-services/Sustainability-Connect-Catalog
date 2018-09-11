@@ -6,7 +6,10 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
 use SCCatalog\Events\Backend\Opportunity\ProjectUpdated;
 use SCCatalog\Events\Backend\Opportunity\ProjectDeleted;
-use SCCatalog\Http\Requests\Backend\Opportunity\ProjectRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\StoreProjectRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\DeleteProjectRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\ViewProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
 use SCCatalog\Repositories\Backend\Auth\UserRepository;
 use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
@@ -93,12 +96,12 @@ class ProjectController extends Controller
     /**
      * Store a newly created Project in storage.
      *
-     * @param ProjectRequest $request
+     * @param StoreProjectRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(ProjectRequest $request)
+    public function store(StoreProjectRequest $request)
     {
         $project = $this->projectRepository->create($request->only(
             'name',
@@ -224,7 +227,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function update(ProjectRequest $request, $id)
+    public function update(UpdateProjectRequest $request, $id)
     {
         $project = $this->projectRepository->update($request->only(
             'name',

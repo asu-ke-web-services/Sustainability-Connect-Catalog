@@ -26,6 +26,7 @@
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="REGISTRATION_CAPTCHA_STATUS" value="false"/>
         <env name="SESSION_DRIVER" value="array"/>
+        <env name="SCOUT_DRIVER" value="null"/>
     </php>
     <testsuites>
         <testsuite name="Unit">

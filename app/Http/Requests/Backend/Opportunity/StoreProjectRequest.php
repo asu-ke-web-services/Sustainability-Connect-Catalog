@@ -5,9 +5,9 @@ namespace SCCatalog\Http\Requests\Backend\Opportunity;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class OpportunityRequest.
+ * Class StoreProjectRequest.
  */
-class OpportunityRequest extends FormRequest
+class StoreProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

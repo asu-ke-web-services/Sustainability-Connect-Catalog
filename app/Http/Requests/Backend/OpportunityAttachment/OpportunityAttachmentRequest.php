@@ -1,13 +1,11 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\Opportunity;
+namespace SCCatalog\Http\Requests\Backend\OpportunityAttachment;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class ProjectRequest.
- */
-class ProjectRequest extends FormRequest
+class OpportunityAttachmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +25,7 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

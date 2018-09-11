@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Address;
+use SCCatalog\Models\Address\Address;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Models\Opportunity\Opportunity;
 

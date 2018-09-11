@@ -1,8 +1,8 @@
 <?php
 
-namespace SCCatalog\Repositories;
+namespace SCCatalog\Repositories\Backend\Attachment;
 
-use SCCatalog\Models\Attachment;
+use SCCatalog\Models\Attachment\Attachment;
 use SCCatalog\Repositories\BaseRepository;
 
 /**

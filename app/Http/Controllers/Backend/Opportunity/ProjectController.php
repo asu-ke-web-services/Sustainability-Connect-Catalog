@@ -12,6 +12,7 @@ use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ViewProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
 use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
 use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
 use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
@@ -50,28 +51,29 @@ class ProjectController extends Controller
      */
     public function index(ManageProjectRequest $request)
     {
-        // dd($this->projectRepository->paginate(25));
-
         return view('backend.opportunity.project.index')
-            ->with('projects', $this->projectRepository->paginate(25));
+            ->with('projects', $this->projectRepository->getActivePaginated(25, 'application_deadline', 'asc'));
     }
 
     /**
      * Show the form for creating a new Project.
      *
-     * @param ManageProjectRequest        $request
-     * @param BudgetTypeRepository        $budgetTypeRepository
-     * @param CategoryRepository          $categoryRepository
-     * @param KeywordRepository           $keywordRepository
-     * @param OpportunityRepository       $opportunityRepository
+     * @param ManageProjectRequest $request
+     * @param BudgetTypeRepository $budgetTypeRepository
+     * @param AffiliationRepository $affiliationRepository
+     * @param CategoryRepository $categoryRepository
+     * @param KeywordRepository $keywordRepository
+     * @param OpportunityRepository $opportunityRepository
      * @param OpportunityStatusRepository $opportunityStatusRepository
-     * @param OrganizationRepository      $organizationRepository
-     * @param UserRepository              $userRepository
+     * @param OpportunityReviewStatusRepository $opportunityReviewStatusRepository
+     * @param OrganizationRepository $organizationRepository
+     * @param UserRepository $userRepository
      *
      * @return \Illuminate\View\View
      */
     public function create(
             ManageProjectRequest $request,
+            AffiliationRepository $affiliationRepository,
             BudgetTypeRepository $budgetTypeRepository,
             CategoryRepository $categoryRepository,
             KeywordRepository $keywordRepository,
@@ -83,6 +85,7 @@ class ProjectController extends Controller
     )
     {
         return view('backend.opportunity.project.create')
+            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -110,24 +113,25 @@ class ProjectController extends Controller
             'listing_starts',
             'listing_ends',
             'application_deadline',
-            'application_deadline_text',
+            'opportunity_status_id',
             'start_date',
             'end_date',
             'organization_id',
             'parent_opportunity_id',
-            'supervisor_user_id'
-            // 'addresses',
-            // 'status',
-            // 'affiliations',
-            // 'categories',
-            // 'keywords'
+            'supervisor_user_id',
+            'opportunity_status_id',
+            'opportunityable',
+            'affiliations',
+            'categories',
+            'keywords',
+            'addresses'
         ));
 
-        dd($project);
+//         dd($project);
 
         // event(new ProjectCreated($project));
 
-        return redirect()->route('admin.opportunity.project.index')
+        return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project created successfully'));
     }
 
@@ -151,6 +155,7 @@ class ProjectController extends Controller
                 'organization',
                 'supervisorUser',
                 'submittingUser',
+                'affiliations',
                 'categories',
                 'keywords',
                 'followers',
@@ -165,20 +170,23 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified Project.
      *
-     * @param ManageProjectRequest        $request
-     * @param BudgetTypeRepository        $budgetTypeRepository
-     * @param CategoryRepository          $categoryRepository
-     * @param KeywordRepository           $keywordRepository
-     * @param OpportunityRepository       $opportunityRepository
+     * @param ManageProjectRequest $request
+     * @param AffiliationRepository $affiliationRepository
+     * @param BudgetTypeRepository $budgetTypeRepository
+     * @param CategoryRepository $categoryRepository
+     * @param KeywordRepository $keywordRepository
+     * @param OpportunityRepository $opportunityRepository
      * @param OpportunityStatusRepository $opportunityStatusRepository
-     * @param OrganizationRepository      $organizationRepository
-     * @param UserRepository              $userRepository
-     * @param  int                        $id
+     * @param OpportunityReviewStatusRepository $opportunityReviewStatusRepository
+     * @param OrganizationRepository $organizationRepository
+     * @param UserRepository $userRepository
+     * @param  int $id
      *
      * @return \Illuminate\View\View
      */
     public function edit(
             ManageProjectRequest $request,
+            AffiliationRepository $affiliationRepository,
             BudgetTypeRepository $budgetTypeRepository,
             CategoryRepository $categoryRepository,
             KeywordRepository $keywordRepository,
@@ -200,6 +208,7 @@ class ProjectController extends Controller
                 'organization',
                 'supervisorUser',
                 'submittingUser',
+                'affiliations',
                 'categories',
                 'keywords',
                 'followers',
@@ -209,6 +218,7 @@ class ProjectController extends Controller
 
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
+            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -229,29 +239,30 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, $id)
     {
-        $project = $this->projectRepository->update($request->only(
+        $project = $this->projectRepository->update($id, $request->only(
             'name',
             'public_name',
             'description',
             'listing_starts',
             'listing_ends',
             'application_deadline',
-            'application_deadline_text',
+            'opportunity_status_id',
             'start_date',
             'end_date',
             'organization_id',
             'parent_opportunity_id',
-            'supervisor_user_id'
-            // 'addresses',
-            // 'status',
-            // 'affiliations',
-            // 'categories',
-            // 'keywords'
+            'supervisor_user_id',
+            'opportunity_status_id',
+            'opportunityable',
+            'affiliations',
+            'categories',
+            'keywords',
+            'addresses'
         ));
 
         // event(new ProjectUpdated($project));
 
-        return redirect()->route('admin.opportunity.project.index')
+        return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project updated successfully'));
     }
 

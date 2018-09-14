@@ -16,6 +16,10 @@
                     <small class="text-muted">{{ __('labels.backend.opportunity.projects.view') }}</small>
                 </h4>
             </div><!--col-->
+
+            <div class="col-sm-7 pull-right">
+                @include('backend.opportunity.project.includes.header-buttons')
+            </div><!--col-->
         </div><!--row-->
 
         <div class="row mt-4 mb-4">

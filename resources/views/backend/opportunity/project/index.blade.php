@@ -2,6 +2,10 @@
 
 @section ('title', app_name() . ' | '. __('labels.backend.opportunity.projects.management'))
 
+@section('breadcrumb-links')
+    @include('backend.opportunity.project.includes.breadcrumb-links')
+@endsection
+
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -13,7 +17,7 @@
             </div><!--col-->
 
             <div class="col-sm-7 pull-right">
-                @include('backend.opportunity.project.includes.header-buttons')
+                @include('backend.opportunity.project.includes.header-buttons-add')
             </div><!--col-->
         </div><!--row-->
 

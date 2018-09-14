@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.38 on 2018-09-08 00:08:06.
+ * Generated for Laravel 5.6.38 on 2018-09-14 13:54:44.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13440,6 +13440,336 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace HieuLe\Active\Facades { 
+
+    /**
+     * Active facade class
+     *
+     * @author Hieu Le
+     */ 
+    class Active {
+        
+        /**
+         * Update the route and request instances
+         *
+         * @param \Route $route
+         * @param \Request $request
+         * @static 
+         */ 
+        public static function updateInstances($route, $request)
+        {
+            return \HieuLe\Active\Active::updateInstances($route, $request);
+        }
+        
+        /**
+         * Get the active class if the condition is not falsy
+         *
+         * @param $condition
+         * @param string $activeClass
+         * @param string $inactiveClass
+         * @return string 
+         * @static 
+         */ 
+        public static function getClassIf($condition, $activeClass = 'active', $inactiveClass = '')
+        {
+            return \HieuLe\Active\Active::getClassIf($condition, $activeClass, $inactiveClass);
+        }
+        
+        /**
+         * Check if the URI of the current request matches one of the specific URIs
+         *
+         * @param array|string $uris
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkUri($uris)
+        {
+            return \HieuLe\Active\Active::checkUri($uris);
+        }
+        
+        /**
+         * Check if the current URI matches one of specific patterns (using `str_is`)
+         *
+         * @param array|string $patterns
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkUriPattern($patterns)
+        {
+            return \HieuLe\Active\Active::checkUriPattern($patterns);
+        }
+        
+        /**
+         * Check if one of the following condition is true:
+         * + the value of $value is `false` and the current querystring contain the key $key
+         * + the value of $value is not `false` and the current value of the $key key in the querystring equals to $value
+         * + the value of $value is not `false` and the current value of the $key key in the querystring is an array that
+         * contains the $value
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkQuery($key, $value)
+        {
+            return \HieuLe\Active\Active::checkQuery($key, $value);
+        }
+        
+        /**
+         * Check if the name of the current route matches one of specific values
+         *
+         * @param array|string $routeNames
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkRoute($routeNames)
+        {
+            return \HieuLe\Active\Active::checkRoute($routeNames);
+        }
+        
+        /**
+         * Check the current route name with one or some patterns
+         *
+         * @param array|string $patterns
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkRoutePattern($patterns)
+        {
+            return \HieuLe\Active\Active::checkRoutePattern($patterns);
+        }
+        
+        /**
+         * Check if the parameter of the current route has the correct value
+         *
+         * @param $param
+         * @param $value
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkRouteParam($param, $value)
+        {
+            return \HieuLe\Active\Active::checkRouteParam($param, $value);
+        }
+        
+        /**
+         * Return 'active' class if current route action match one of provided action names
+         *
+         * @param array|string $actions
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkAction($actions)
+        {
+            return \HieuLe\Active\Active::checkAction($actions);
+        }
+        
+        /**
+         * Check if the current controller class matches one of specific values
+         *
+         * @param array|string $controllers
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkController($controllers)
+        {
+            return \HieuLe\Active\Active::checkController($controllers);
+        }
+        
+        /**
+         * Get the current controller method
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getMethod()
+        {
+            return \HieuLe\Active\Active::getMethod();
+        }
+        
+        /**
+         * Get the current action string
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAction()
+        {
+            return \HieuLe\Active\Active::getAction();
+        }
+        
+        /**
+         * Get the current controller class
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getController()
+        {
+            return \HieuLe\Active\Active::getController();
+        }
+         
+    }
+ 
+}
+
+namespace Creativeorange\Gravatar\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Gravatar {
+        
+        /**
+         * Override the default image fallback set in the config.
+         * 
+         * Can either be a public URL to an image or a valid themed image.
+         * For more info, visit http://en.gravatar.com/site/implement/images/#default-image
+         *
+         * @param string $fallback
+         * @return $this 
+         * @static 
+         */ 
+        public static function fallback($fallback)
+        {
+            return \Creativeorange\Gravatar\Gravatar::fallback($fallback);
+        }
+        
+        /**
+         * Check if Gravatar has an avatar for the given email address
+         *
+         * @param $email
+         * @return bool 
+         * @throws InvalidEmailException
+         * @static 
+         */ 
+        public static function exists($email)
+        {
+            return \Creativeorange\Gravatar\Gravatar::exists($email);
+        }
+        
+        /**
+         * Get the gravatar url
+         *
+         * @param $email
+         * @param string $configGroup
+         * @return string 
+         * @throws InvalidEmailException
+         * @static 
+         */ 
+        public static function get($email, $configGroup = 'default')
+        {
+            return \Creativeorange\Gravatar\Gravatar::get($email, $configGroup);
+        }
+         
+    }
+ 
+}
+
+namespace Laravel\Socialite\Facades { 
+
+    /**
+     * 
+     *
+     * @see \Laravel\Socialite\SocialiteManager
+     */ 
+    class Socialite {
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */ 
+        public static function with($driver)
+        {
+            return \Laravel\Socialite\SocialiteManager::with($driver);
+        }
+        
+        /**
+         * Build an OAuth 2 provider instance.
+         *
+         * @param string $provider
+         * @param array $config
+         * @return \Laravel\Socialite\Two\AbstractProvider 
+         * @static 
+         */ 
+        public static function buildProvider($provider, $config)
+        {
+            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
+        }
+        
+        /**
+         * Format the server configuration.
+         *
+         * @param array $config
+         * @return array 
+         * @static 
+         */ 
+        public static function formatConfig($config)
+        {
+            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
+        }
+        
+        /**
+         * Get the default driver name.
+         *
+         * @throws \InvalidArgumentException
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultDriver()
+        {
+            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function driver($driver = null)
+        {
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */ 
+        public static function extend($driver, $callback)
+        {
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDrivers()
+        {
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::getDrivers();
+        }
+         
+    }
+ 
+}
+
 namespace Arcanedev\NoCaptcha\Facades { 
 
     /**
@@ -14145,60 +14475,6 @@ namespace Barryvdh\Debugbar {
  
 }
 
-namespace Creativeorange\Gravatar\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class Gravatar {
-        
-        /**
-         * Override the default image fallback set in the config.
-         * 
-         * Can either be a public URL to an image or a valid themed image.
-         * For more info, visit http://en.gravatar.com/site/implement/images/#default-image
-         *
-         * @param string $fallback
-         * @return $this 
-         * @static 
-         */ 
-        public static function fallback($fallback)
-        {
-            return \Creativeorange\Gravatar\Gravatar::fallback($fallback);
-        }
-        
-        /**
-         * Check if Gravatar has an avatar for the given email address
-         *
-         * @param $email
-         * @return bool 
-         * @throws InvalidEmailException
-         * @static 
-         */ 
-        public static function exists($email)
-        {
-            return \Creativeorange\Gravatar\Gravatar::exists($email);
-        }
-        
-        /**
-         * Get the gravatar url
-         *
-         * @param $email
-         * @param string $configGroup
-         * @return string 
-         * @throws InvalidEmailException
-         * @static 
-         */ 
-        public static function get($email, $configGroup = 'default')
-        {
-            return \Creativeorange\Gravatar\Gravatar::get($email, $configGroup);
-        }
-         
-    }
- 
-}
-
 namespace DaveJamesMiller\Breadcrumbs\Facades { 
 
     /**
@@ -14418,180 +14694,6 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
  
 }
 
-namespace HieuLe\Active\Facades { 
-
-    /**
-     * Active facade class
-     *
-     * @author Hieu Le
-     */ 
-    class Active {
-        
-        /**
-         * Update the route and request instances
-         *
-         * @param \Route $route
-         * @param \Request $request
-         * @static 
-         */ 
-        public static function updateInstances($route, $request)
-        {
-            return \HieuLe\Active\Active::updateInstances($route, $request);
-        }
-        
-        /**
-         * Get the active class if the condition is not falsy
-         *
-         * @param $condition
-         * @param string $activeClass
-         * @param string $inactiveClass
-         * @return string 
-         * @static 
-         */ 
-        public static function getClassIf($condition, $activeClass = 'active', $inactiveClass = '')
-        {
-            return \HieuLe\Active\Active::getClassIf($condition, $activeClass, $inactiveClass);
-        }
-        
-        /**
-         * Check if the URI of the current request matches one of the specific URIs
-         *
-         * @param array|string $uris
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkUri($uris)
-        {
-            return \HieuLe\Active\Active::checkUri($uris);
-        }
-        
-        /**
-         * Check if the current URI matches one of specific patterns (using `str_is`)
-         *
-         * @param array|string $patterns
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkUriPattern($patterns)
-        {
-            return \HieuLe\Active\Active::checkUriPattern($patterns);
-        }
-        
-        /**
-         * Check if one of the following condition is true:
-         * + the value of $value is `false` and the current querystring contain the key $key
-         * + the value of $value is not `false` and the current value of the $key key in the querystring equals to $value
-         * + the value of $value is not `false` and the current value of the $key key in the querystring is an array that
-         * contains the $value
-         *
-         * @param string $key
-         * @param mixed $value
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkQuery($key, $value)
-        {
-            return \HieuLe\Active\Active::checkQuery($key, $value);
-        }
-        
-        /**
-         * Check if the name of the current route matches one of specific values
-         *
-         * @param array|string $routeNames
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkRoute($routeNames)
-        {
-            return \HieuLe\Active\Active::checkRoute($routeNames);
-        }
-        
-        /**
-         * Check the current route name with one or some patterns
-         *
-         * @param array|string $patterns
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkRoutePattern($patterns)
-        {
-            return \HieuLe\Active\Active::checkRoutePattern($patterns);
-        }
-        
-        /**
-         * Check if the parameter of the current route has the correct value
-         *
-         * @param $param
-         * @param $value
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkRouteParam($param, $value)
-        {
-            return \HieuLe\Active\Active::checkRouteParam($param, $value);
-        }
-        
-        /**
-         * Return 'active' class if current route action match one of provided action names
-         *
-         * @param array|string $actions
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkAction($actions)
-        {
-            return \HieuLe\Active\Active::checkAction($actions);
-        }
-        
-        /**
-         * Check if the current controller class matches one of specific values
-         *
-         * @param array|string $controllers
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkController($controllers)
-        {
-            return \HieuLe\Active\Active::checkController($controllers);
-        }
-        
-        /**
-         * Get the current controller method
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getMethod()
-        {
-            return \HieuLe\Active\Active::getMethod();
-        }
-        
-        /**
-         * Get the current action string
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getAction()
-        {
-            return \HieuLe\Active\Active::getAction();
-        }
-        
-        /**
-         * Get the current controller class
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getController()
-        {
-            return \HieuLe\Active\Active::getController();
-        }
-         
-    }
- 
-}
-
 namespace Intervention\Image\Facades { 
 
     /**
@@ -14651,108 +14753,6 @@ namespace Intervention\Image\Facades {
         public static function cache($callback, $lifetime = null, $returnObj = false)
         {
             return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
-        }
-         
-    }
- 
-}
-
-namespace Laravel\Socialite\Facades { 
-
-    /**
-     * 
-     *
-     * @see \Laravel\Socialite\SocialiteManager
-     */ 
-    class Socialite {
-        
-        /**
-         * Get a driver instance.
-         *
-         * @param string $driver
-         * @return mixed 
-         * @static 
-         */ 
-        public static function with($driver)
-        {
-            return \Laravel\Socialite\SocialiteManager::with($driver);
-        }
-        
-        /**
-         * Build an OAuth 2 provider instance.
-         *
-         * @param string $provider
-         * @param array $config
-         * @return \Laravel\Socialite\Two\AbstractProvider 
-         * @static 
-         */ 
-        public static function buildProvider($provider, $config)
-        {
-            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
-        }
-        
-        /**
-         * Format the server configuration.
-         *
-         * @param array $config
-         * @return array 
-         * @static 
-         */ 
-        public static function formatConfig($config)
-        {
-            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
-        }
-        
-        /**
-         * Get the default driver name.
-         *
-         * @throws \InvalidArgumentException
-         * @return string 
-         * @static 
-         */ 
-        public static function getDefaultDriver()
-        {
-            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
-        }
-        
-        /**
-         * Get a driver instance.
-         *
-         * @param string $driver
-         * @return mixed 
-         * @throws \InvalidArgumentException
-         * @static 
-         */ 
-        public static function driver($driver = null)
-        {
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::driver($driver);
-        }
-        
-        /**
-         * Register a custom driver creator Closure.
-         *
-         * @param string $driver
-         * @param \Closure $callback
-         * @return $this 
-         * @static 
-         */ 
-        public static function extend($driver, $callback)
-        {
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
-        }
-        
-        /**
-         * Get all of the created "drivers".
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getDrivers()
-        {
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::getDrivers();
         }
          
     }
@@ -17979,19 +17979,19 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
+    class Active extends \HieuLe\Active\Facades\Active {}
+
+    class Gravatar extends \Creativeorange\Gravatar\Facades\Gravatar {}
+
+    class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+
     class Captcha extends \Arcanedev\NoCaptcha\Facades\NoCaptcha {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
-    class Gravatar extends \Creativeorange\Gravatar\Facades\Gravatar {}
-
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
-    class Active extends \HieuLe\Active\Facades\Active {}
-
     class Image extends \Intervention\Image\Facades\Image {}
-
-    class Socialite extends \Laravel\Socialite\Facades\Socialite {}
 
     class Html extends \Spatie\Html\Facades\Html {}
 

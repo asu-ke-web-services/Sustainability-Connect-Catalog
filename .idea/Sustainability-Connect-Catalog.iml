@@ -15,11 +15,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-elfinder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-ide-helper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/reflection-docblock" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/behat/gherkin" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-self-diagnosis" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/codeception" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/phpunit-wrapper" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/stub" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codedungeon/php-cli-colors" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codedungeon/phpunit-result-printer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
@@ -38,7 +34,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/elic-dev/laravel-site-protection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/erusev/parsedown" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/facebook/webdriver" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fideloper/proxy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/filp/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/php-cs-fixer" />
@@ -126,14 +121,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-sluggable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/pdf-to-image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/temporary-directory" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/studio-42/elfinder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/browser-kit" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/css-selector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/debug" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/dom-crawler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/finder" />

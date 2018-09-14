@@ -18,12 +18,12 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.status') }}</th>
-                <td>{!! ucwords($project->status->name) !!}</td>
+                <td>{!! ucwords($project->status->name ?? '') !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.review_status') }}</th>
-                <td>{!! ucwords($project->opportunityable->reviewStatus->name) !!}</td>
+                <td>{!! ucwords($project->opportunityable->reviewStatus->name ?? '') !!}</td>
             </tr>
 
             <tr>
@@ -51,9 +51,49 @@
                 <td>{{ isset($project->application_deadline) ? $project->application_deadline->toFormattedDateString() : '' }} {{ isset($project->application_deadline) ? $project->application_deadline->diffForHumans() . ')' : '' }}</td>
             </tr>
 
+
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.application_deadline_text') }}</th>
-                <td>{!! $project->application_deadline_text !!}</td>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.affiliations') }}</th>
+                <td>
+                    <ul>
+                        @foreach($project->affiliations as $affiliation)
+                            <li>{!! $affiliation->name !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.categories') }}</th>
+                <td>
+                    <ul>
+                        @foreach($project->categories as $category)
+                            <li>{!! $category->name !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.keywords') }}</th>
+                <td>
+                    <ul>
+                        @foreach($project->keywords as $keyword)
+                            <li>{!! $keyword->name !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.location') }}</th>
+                <td>
+                    <ul>
+                        @foreach($project->addresses as $address)
+                            <li>{!! $address->city . ', ' . $address->state !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
             </tr>
 
         </table>

@@ -238,25 +238,37 @@ class Opportunity extends Model
 
     /**
      * @param $query
-     * @param bool $confirmed
-     *
+     * @param $type
      * @return mixed
      */
-    // public function scopeProject($query)
-    // {
-    //     return $query->where('opportunityable_type', 'Project');
-    // }
+    public function scopeFilterByType($query, $type)
+    {
+        return $query->where('opportunityable_type', $type);
+    }
 
     /**
      * @param $query
-     * @param bool $status
+     * @param bool $active
      *
      * @return mixed
      */
-    // public function scopeActive($query, $status = true)
-    // {
-    //     return $query->where('active', $status);
-    // }
+    public function scopeActive($query, $active = true)
+    {
+        if ($active) {
+            return $query->whereIn('opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                6, // In Progress
+            ]);
+        } else {
+            // Closed or archived
+            return $query->whereIn('opportunity_status_id', [
+                2, // Archived/Closed
+                5, // Positions Filled
+                7, // Completed
+            ]);
+        }
+    }
 
     /*
     |--------------------------------------------------------------------------

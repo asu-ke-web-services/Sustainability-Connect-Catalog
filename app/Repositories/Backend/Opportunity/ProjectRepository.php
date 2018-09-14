@@ -2,22 +2,20 @@
 
 namespace SCCatalog\Repositories\Backend\Opportunity;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use SCCatalog\Models\Address\Address;
+use SCCatalog\Models\Lookup\Affiliation;
+use SCCatalog\Models\Lookup\Category;
+use SCCatalog\Models\Lookup\Keyword;
+use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
+use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class ProjectRepository
  */
 class ProjectRepository extends OpportunityRepository
 {
-    /**
-     * Array of one or more where clause parameters.
-     *
-     * @var array
-     */
-    // protected $wheres = [
-    //     ['opportunityable_type', 'Project'],
-    // ];
-
 
     /**
      * @param int    $paged
@@ -26,14 +24,32 @@ class ProjectRepository extends OpportunityRepository
      *
      * @return mixed
      */
-    // public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
-    // {
-    //     return $this->model
-    //         // ->with('roles', 'permissions', 'providers')
-    //         ->active()
-    //         ->orderBy($orderBy, $sort)
-    //         ->paginate($paged);
-    // }
+    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            // ->with('roles', 'permissions', 'providers')
+            ->active()
+            ->filterByType('Project')
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getClosedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            // ->with('roles', 'permissions', 'providers')
+            ->active(false)
+            ->filterByType('Project')
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
 
     /**
      * @param int    $paged
@@ -42,46 +58,115 @@ class ProjectRepository extends OpportunityRepository
      *
      * @return LengthAwarePaginator
      */
-    // public function getInactivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
-    // {
-    //     return $this->model
-    //         // ->with('roles', 'permissions', 'providers')
-    //         ->active(false)
-    //         ->orderBy($orderBy, $sort)
-    //         ->paginate($paged);
-    // }
+    public function getDeletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            // ->with('roles', 'permissions', 'providers')
+            ->onlyTrashed()
+            ->filterByType('Project')
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
 
     /**
-     * @param int    $paged
-     * @param string $orderBy
-     * @param string $sort
+     * Create a new Project record in the database.
      *
-     * @return LengthAwarePaginator
+     * @param array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    // public function getClosedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
-    // {
-    //     return $this->model
-    //         // ->with('roles', 'permissions', 'providers')
-    //         ->closed()
-    //         ->orderBy($orderBy, $sort)
-    //         ->paginate($paged);
-    // }
+    public function create(array $data)
+    {
+//        dd($data);
+        BaseRepository::unsetClauses();
+
+        // Create child project record
+        $project = Project::create($data['opportunityable']);
+        // Create base opportunity record
+        $opportunity = $this->model->create($data);
+        // Link project to opportunity
+        $project->opportunity()->save($opportunity);
+
+        // sync Addresses
+        foreach ($data['addresses'] as $address) {
+            $newAddress = Address::create($address);
+            $opportunity->addresses()->attach($newAddress);
+        }
+
+        // sync Affiliations
+        foreach ($data['affiliations'] as $affiliation) {
+            $opportunity->affiliations()->attach($affiliation);
+        }
+
+        // sync Categories
+        foreach ($data['categories'] as $category) {
+            $opportunity->categories()->attach($category);
+        }
+
+        // sync Keywords
+        foreach ($data['keywords'] as $keyword) {
+            $opportunity->keywords()->attach($keyword);
+        }
+
+        // Set other opportunity relationships
+//        $opportunity = BaseRepository::updateRelations($opportunity, $data);
+//        $opportunity->save();
+
+        return $opportunity;
+    }
 
     /**
-     * @param int    $paged
-     * @param string $orderBy
-     * @param string $sort
+     * Create a new Project record in the database.
      *
-     * @return LengthAwarePaginator
+     * @param array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    // public function getDeletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
-    // {
-    //     return $this->model
-    //         ->with('roles', 'permissions', 'providers')
-    //         ->onlyTrashed()
-    //         ->orderBy($orderBy, $sort)
-    //         ->paginate($paged);
-    // }
+    public function update($id, array $data)
+    {
+        BaseRepository::unsetClauses();
 
+        $opportunity = BaseRepository::getById($id);
+
+        // Update project record
+        $opportunity->opportunityable()->update($data['opportunityable']);
+
+        // Update opportunity base record
+        $opportunity->update($data);
+
+        // sync Addresses
+        $addresses = [];
+        foreach ($data['addresses'] as $address) {
+            $addresses[] = Address::firstOrCreate($address);
+        }
+        $addressIds = array_map(function($address) { return $address->id; }, $addresses);
+        $opportunity->addresses()->sync($addressIds);
+
+        // sync Affiliations
+        $opportunity->affiliations()->sync($data['affiliations']);
+//        foreach ($data['affiliations'] as $affiliation) {
+//        }
+
+        // sync Categories
+        $opportunity->categories()->attach($data['categories']);
+//        foreach ($data['categories'] as $category) {
+//            $opportunity->categories()->attach($category);
+//        }
+
+        // sync Keywords
+        $opportunity->keywords()->attach($data['keywords']);
+//        foreach ($data['keywords'] as $keyword) {
+//            $opportunity->keywords()->attach($keyword);
+//        }
+
+
+
+
+        // Update opportunity relations
+//        $opportunity = BaseRepository::updateRelations($opportunity, $data);
+//        $opportunity->save();
+
+        return $opportunity;
+    }
 
 }

@@ -37,15 +37,4 @@ class OpportunityRepository extends BaseRepository
         'followers',
         'applicants',
     ];
-
-    /**
-     * Array of one or more ORDER BY column/value pairs.
-     *
-     * @var array
-     */
-    // protected $orderBys = [
-    //     ['application_deadline', 'desc'],
-    //     ['name', 'asc'],
-    // ];
-
 }

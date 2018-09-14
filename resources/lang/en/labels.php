@@ -14,19 +14,20 @@ return [
     */
 
     'general' => [
-        'all'     => 'All',
-        'yes'     => 'Yes',
-        'no'      => 'No',
+        'all'       => 'All',
+        'yes'       => 'Yes',
+        'no'        => 'No',
         'copyright' => 'Copyright',
-        'custom'  => 'Custom',
-        'actions' => 'Actions',
-        'active'  => 'Active',
-        'buttons' => [
+        'custom'    => 'Custom',
+        'actions'   => 'Actions',
+        'active'    => 'Active',
+        'buttons'   => [
             'save'   => 'Save',
             'update' => 'Update',
         ],
         'hide'              => 'Hide',
         'inactive'          => 'Inactive',
+        'more'              => 'More',
         'none'              => 'None',
         'show'              => 'Show',
         'toggle_navigation' => 'Toggle Navigation',
@@ -117,6 +118,11 @@ return [
                 'deleted'             => 'Deleted Projects',
                 'edit'                => 'Edit Project',
                 'management'          => 'Project Management',
+                'accept_application'  => 'Accept Applications?',
+                'project_details'     => 'Project Details',
+                'locations'           => 'Locations',
+                'applicant_details'   => 'Applicant Details',
+                'application_process' => 'Application Process',
 
                 'table' => [
                     'created'              => 'Created',
@@ -135,25 +141,68 @@ return [
                 'tabs' => [
                     'titles' => [
                         'overview' => 'Overview',
+                        'details' => 'Project Details',
+                        'people' => 'Related Users',
+                        'attachments' => 'Uploaded Attachments',
+                        'notes' => 'Notes',
                         'history'  => 'History',
                     ],
 
                     'content' => [
                         'overview' => [
-                            'name'                      => 'Name',
-                            'public_name'               => 'Public Name',
-                            'description'               => 'Description',
-                            'status'                    => 'Status',
-                            'review_status'             => 'Review Status',
-                            'start_date'                => 'Start Date',
-                            'end_date'                  => 'End Date',
-                            'listing_starts'            => 'Listing Starts',
-                            'listing_ends'              => 'Listing Ends',
-                            'application_deadline'      => 'Application Deadline Date',
-                            'application_deadline_text' => 'Application Deadline Text',
-                            'created_at'                => 'Created At',
-                            'deleted_at'                => 'Deleted At',
-                            'last_updated'              => 'Last Updated',
+                            'name'                        => 'Name',
+                            'public_name'                 => 'Public Name',
+                            'description'                 => 'Description',
+                            'status'                      => 'Status',
+                            'review_status'               => 'Review Status',
+                            'start_date'                  => 'Start Date',
+                            'end_date'                    => 'End Date',
+                            'listing_starts'              => 'Listing Starts',
+                            'listing_ends'                => 'Listing Ends',
+                            'application_deadline'        => 'Application Deadline Date',
+                            'affiliations'                => 'Affiliations',
+                            'categories'                  => 'Categories',
+                            'keywords'                    => 'Keywords',
+                            'location'                    => 'Location',
+                            'location_city'               => 'City',
+                            'location_state'              => 'State',
+                            'location_country'            => 'Country',
+                            'location_note'               => 'Note',
+                            'created_at'                  => 'Created At',
+                            'deleted_at'                  => 'Deleted At',
+                            'last_updated'                => 'Last Updated',
+                        ],
+                        'details' => [
+                            'implementation_paths'        => 'Envisioned Solution',
+                            'sustainability_contribution' => 'Sustainability Contribution',
+                            'qualifications'              => 'Qualitifcations',
+                            'responsibilities'            => 'Responsibilities',
+                            'learning_outcomes'           => 'Learning Outcomes',
+                            'compensation'                => 'Compensation',
+                            'budget_type'                 => 'Budget Type',
+                            'budget_amount'               => 'Budget Amount',
+                            'application_instructions'    => 'Application Instructions',
+                            'success_story'               => 'Success Story',
+                            'library_collection'          => 'Library Collection',
+                            'parent_opportunity'          => 'Parent Opportunity',
+
+                        ],
+                        'people' => [
+                            'organization'    => 'Partner Organization',
+                            'supervisor_user' => 'Project Supervisor',
+                            'submitting_user' => 'Submitting User',
+                            'program_lead'    => 'ASU Program Lead',
+                            'members'         => 'Project Members',
+                            'followers'       => 'Followers',
+                        ],
+                        'attachments' => [
+
+                        ],
+                        'notes' => [
+
+                        ],
+                        'history' => [
+
                         ],
                     ],
                 ],

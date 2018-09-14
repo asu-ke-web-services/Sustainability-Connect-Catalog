@@ -131,7 +131,7 @@ class Project extends Model
      */
     public function getShowButtonAttribute()
     {
-        return '<a href="'.route('admin.opportunity.project.show', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+        return '<a href="'.route('admin.opportunity.project.show', $this->opportunity).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
 
     /**
@@ -139,7 +139,7 @@ class Project extends Model
      */
     public function getEditButtonAttribute()
     {
-        return '<a href="'.route('admin.opportunity.project.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
+        return '<a href="'.route('admin.opportunity.project.edit', $this->opportunity).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
     }
 
     /**
@@ -147,7 +147,7 @@ class Project extends Model
      */
     public function getDeleteButtonAttribute()
     {
-        return '<a href="'.route('admin.opportunity.project.destroy', $this).'"
+        return '<a href="'.route('admin.opportunity.project.destroy', $this->opportunity).'"
              data-method="delete"
              data-trans-button-cancel="'.__('buttons.general.cancel').'"
              data-trans-button-confirm="'.__('buttons.general.crud.delete').'"

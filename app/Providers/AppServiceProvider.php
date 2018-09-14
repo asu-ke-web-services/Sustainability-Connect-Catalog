@@ -93,10 +93,13 @@ class AppServiceProvider extends ServiceProvider
              */
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
 
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+
             /*
              * Load third party local aliases
              */
             $loader->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
+
         }
     }
 }

@@ -5,10 +5,16 @@
                 ->for($name) }}
     @endif
     <div class="col-md-10">
-        {{ html()->select($name, $optionList, old($name) ?: ($object->{$name} ?? null))
-                ->class('form-control')
-                ->placeholder($placeholder ?? null)
-                ->attributes($attributes ?? []) }}
+        {{ html()->select(
+            $name . (($multivalue ?? false) ? '[]' : ''),
+            $optionList,
+            old($name) ?: ($object->{$name} ?? null)
+        )
+            ->class('form-control')
+            ->placeholder($placeholder ?? null)
+            ->attribute($attribute ?? null)
+            ->attributes($attributes ?? [])
+        }}
 
         @if ($errors->has($name))
             <span class="help-block">

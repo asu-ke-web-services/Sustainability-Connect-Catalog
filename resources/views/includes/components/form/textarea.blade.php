@@ -8,6 +8,7 @@
         {{ html()->textarea($name, old($name) ?: ($object->{$name} ?? ''))
                 ->class('form-control')
                 ->placeholder($placeholder ?? '')
+                ->attribute($attribute ?? null)
                 ->attributes($attributes ?? []) }}
 
         @if ($errors->has($name))

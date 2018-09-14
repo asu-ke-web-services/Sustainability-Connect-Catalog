@@ -4,13 +4,15 @@ namespace SCCatalog\Models\Opportunity;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+// use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * Class Internship
  */
 class Internship extends Model
 {
-     use Searchable;
+    use Searchable;
+    // use RevisionableTrait;
 
     /*
     |--------------------------------------------------------------------------

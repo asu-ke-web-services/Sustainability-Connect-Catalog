@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+// use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * Class Opportunity
@@ -13,6 +14,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Opportunity extends Model
 {
     use BlameableTrait;
+    // use RevisionableTrait;
     use SoftDeletes;
 
     /*

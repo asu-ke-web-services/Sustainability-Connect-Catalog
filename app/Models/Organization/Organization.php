@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+// use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * Class Organization
@@ -13,6 +14,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Organization extends Model
 {
     use BlameableTrait;
+    // use RevisionableTrait;
     use Searchable;
     use SoftDeletes;
 

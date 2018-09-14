@@ -40,7 +40,6 @@ class Opportunity extends Model
         'listing_start_date',
         'listing_end_date',
         'application_deadline',
-        'application_deadline_text',
         'opportunity_status_id',
         'is_hidden',
         'summary',

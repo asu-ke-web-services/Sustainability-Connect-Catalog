@@ -29,7 +29,7 @@ class Address extends Model
         'state',
         'post_code',
         'country',
-        'note'
+        'comment'
     ];
 
     /**
@@ -38,13 +38,7 @@ class Address extends Model
      * @var array
      */
     protected $casts = [
-        'id'      => 'integer',
-        'street1' => 'string',
-        'street2' => 'string',
-        'city'    => 'string',
-        'state'   => 'string',
-        'country' => 'string',
-        'note'    => 'string',
+
     ];
 
     /**

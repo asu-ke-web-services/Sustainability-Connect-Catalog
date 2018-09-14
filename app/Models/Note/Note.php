@@ -20,8 +20,6 @@ class Note extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'notes';
-
     protected $fillable = [
         'body',
         'order',
@@ -59,16 +57,6 @@ class Note extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     **/
-    public function noteable()
-    {
-        return $this->morphTo();
-    }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

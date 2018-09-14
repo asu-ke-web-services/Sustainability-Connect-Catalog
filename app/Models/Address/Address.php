@@ -20,8 +20,6 @@ class Address extends Model
     |--------------------------------------------------------------------------
     */
 
-    public $table = 'addresses';
-
     protected $dates = ['deleted_at'];
 
     public $fillable = [
@@ -69,14 +67,6 @@ class Address extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     **/
-    public function addressable()
-    {
-        return $this->morphTo();
-    }
 
     /*
     |--------------------------------------------------------------------------

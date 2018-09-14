@@ -59,22 +59,6 @@ class Organization extends Model
     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     **/
-    public function addresses()
-    {
-        return $this->morphMany(\SCCatalog\Models\Address\Address::class, 'addressable');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     **/
-    public function notes()
-    {
-        return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'noteable');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function status()
@@ -88,6 +72,22 @@ class Organization extends Model
     public function type()
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationType::class, 'organization_type_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function addresses()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Address\Address::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function notes()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Note\Note::class);
     }
 
     /*

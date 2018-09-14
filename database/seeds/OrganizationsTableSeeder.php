@@ -2,6 +2,8 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use SCCatalog\Models\Address\Address;
+use SCCatalog\Models\Note\Note;
 use SCCatalog\Models\Lookup\OrganizationType;
 use SCCatalog\Models\Lookup\OrganizationStatus;
 use SCCatalog\Models\Organization\Organization;
@@ -488,36 +490,44 @@ Our vision is to empower communities to break the cycle of poverty through innov
 
             foreach ($starterOrgs as $organization) {
                 $newOrganization = Organization::create([
-                    'organization_type_id' => $organization['type'],
+                    'organization_type_id'   => $organization['type'],
                     'organization_status_id' => 2,
-                    'name' => $organization['name'],
+                    'name'                   => $organization['name'],
+                    'created_at'             => Carbon::now(),
+                    'updated_at'             => Carbon::now(),
+                    'created_by'             => 1,
+                    'updated_by'             => 1,
+                ]);
+
+                $newNote = Note::create([
+                    'user_id'    => 1,
+                    'body'       => $organization['note'],
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                     'created_by' => 1,
                     'updated_by' => 1,
                 ]);
 
-                DB::table('notes')->insert([
-                    'noteable_id' => $newOrganization->id,
-                    'noteable_type' => 'Organization',
-                    'user_id' => 1,
-                    'body' => $organization['note'],
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                    'created_by' => 1,
-                    'updated_by' => 1,
+                DB::table('note_organization')->insert([
+                    'note_id'         => $newNote->id,
+                    'organization_id' => $newOrganization->id,
+                    'order'           => 1,
+                    'created_at'      => Carbon::now(),
+                    'updated_at'      => Carbon::now(),
+                    'created_by'      => 1,
+                    'updated_by'      => 1,
                 ]);
 
                 foreach ($organization['ids'] as $order => $opportunity_id) {
-                    DB::table('opportunities_organizations')->insert([
-                        'opportunity_id' => $opportunity_id,
-                        'organization_id' => $newOrganization->id,
-                        'opportunity_order' => 1,
+                    DB::table('opportunity_organization')->insert([
+                        'opportunity_id'     => $opportunity_id,
+                        'organization_id'    => $newOrganization->id,
+                        'opportunity_order'  => 1,
                         'organization_order' => $order + 1,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
-                        'created_by' => 1,
-                        'updated_by' => 1,
+                        'created_at'         => Carbon::now(),
+                        'updated_at'         => Carbon::now(),
+                        'created_by'         => 1,
+                        'updated_by'         => 1,
                     ]);
                 }
 

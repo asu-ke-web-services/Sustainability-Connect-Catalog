@@ -95,22 +95,6 @@ class Opportunity extends Model
         return $this->morphTo();
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     **/
-    public function addresses()
-    {
-        return $this->morphMany(\SCCatalog\Models\Address\Address::class, 'addressable');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     **/
-    public function notes()
-    {
-        return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'noteable');
-    }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -190,10 +174,12 @@ class Opportunity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function allRelatedUsers()
+    public function activeMembers()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user', 'opportunity_id', 'user_id')
-            ->using('\SCCatalog\Models\OpportunityUser');
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
+            ->using('\SCCatalog\Models\OpportunityUser')
+            ->wherePivotIn('relationship_type_id', [2,3,4,5])
+            ->wherePivot('pending', 0);
     }
 
     /**
@@ -230,24 +216,18 @@ class Opportunity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function activeMembers()
+    public function addresses()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
-            ->using('\SCCatalog\Models\OpportunityUser')
-            ->wherePivotIn('relationship_type_id', [2,3,4,5])
-            ->wherePivot('pending', 0);
+        return $this->belongsToMany(\SCCatalog\Models\Address\Address::class);
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    // public function primaryAddress()
-    // {
-    //     return $this->belongsToMany(\SCCatalog\Models\Address\Address::class, 'address_opportunity')
-    //         ->withPivot('is_primary', 'order')
-    //         ->wherePivot('is_primary', 1);
-    // }
+    public function notes()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Note\Note::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

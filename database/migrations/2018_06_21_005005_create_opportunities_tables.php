@@ -15,20 +15,20 @@ class CreateOpportunitiesTables extends Migration
     {
         Schema::create('opportunities', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('opportunityable');
+            $table->string('opportunityable_type')->nullable();
+            $table->integer('opportunityable_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('public_name')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->date('listing_start_date')->nullable();
             $table->date('listing_end_date')->nullable();
-            $table->date('application_deadline')->nullable();
-            $table->string('application_deadline_text')->nullable();
+            $table->string('application_deadline')->nullable();
             $table->integer('opportunity_status_id')->unsigned()->index();
-            $table->boolean('is_hidden');
+            $table->boolean('is_hidden')->default(0);
             $table->text('summary')->nullable();
             $table->text('description')->nullable();
-            $table->integer('follower_count')->unsigned()->nullable();
+            $table->integer('follower_count')->unsigned()->nullable()->default(0);
             $table->integer('parent_opportunity_id')->unsigned()->index()->nullable();
             $table->integer('organization_id')->unsigned()->index()->nullable();
             $table->integer('supervisor_user_id')->unsigned()->index()->nullable();
@@ -121,6 +121,64 @@ class CreateOpportunitiesTables extends Migration
             $table->foreign('deleted_by')
                 ->references('id')->on('users');
         });
+
+        Schema::create('address_opportunity', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('address_id')->unsigned()->index();
+            $table->integer('opportunity_id')->unsigned()->index();
+            $table->integer('order')->default(1);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->foreign('address_id')
+                 ->references('id')->on('addresses')
+                ->onDelete('cascade');
+
+            $table->foreign('opportunity_id')
+                ->references('id')->on('opportunities')
+                ->onDelete('cascade');
+
+            $table->foreign('created_by')
+                ->references('id')->on('users');
+
+            $table->foreign('updated_by')
+                ->references('id')->on('users');
+
+            $table->foreign('deleted_by')
+                ->references('id')->on('users');
+        });
+
+        Schema::create('note_opportunity', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('note_id')->unsigned()->index();
+            $table->integer('opportunity_id')->unsigned()->index();
+            $table->integer('order')->default(1);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->foreign('note_id')
+                 ->references('id')->on('notes')
+                ->onDelete('cascade');
+
+            $table->foreign('opportunity_id')
+                ->references('id')->on('opportunities')
+                ->onDelete('cascade');
+
+            $table->foreign('created_by')
+                ->references('id')->on('users');
+
+            $table->foreign('updated_by')
+                ->references('id')->on('users');
+
+            $table->foreign('deleted_by')
+                ->references('id')->on('users');
+        });
     }
 
     /**
@@ -130,6 +188,8 @@ class CreateOpportunitiesTables extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('note_opportunity');
+        Schema::dropIfExists('address_opportunity');
         Schema::dropIfExists('keyword_opportunity');
         Schema::dropIfExists('category_opportunity');
         Schema::dropIfExists('opportunities');

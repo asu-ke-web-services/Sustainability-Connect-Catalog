@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use SCCatalog\Models\Address\Address;
+use SCCatalog\Models\Note\Note;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Models\Opportunity\Opportunity;
 
@@ -79,55 +80,51 @@ class InternshipsSeeder extends Seeder
                     'updated_by'            => 1,
                 ]);
 
-                $new_address = Address::create([
-                    'addressable_id'   => $old_internship->id + 450,
-                    'addressable_type' => 'Opportunity',
-                    // 'street1'          => '',
-                    // 'street2'          => '',
-                    'city'             => $old_internship->location_city,
-                    'state'            => $old_internship->location_state,
-                    // 'postal_code'      => $faker->postcode,
-                    'country'          => $old_internship->location_country,
-                    'note'             => $old_internship->location,
-                    'created_at'       => Carbon::now(),
-                    'updated_at'       => Carbon::now(),
-                    'created_by'       => 1,
-                    'updated_by'       => 1,
+                $newAddress = Address::create([
+                    // 'street1'     => '',
+                    // 'street2'     => '',
+                    'city'           => $old_internship->location_city,
+                    'state'          => $old_internship->location_state,
+                    // 'postal_code' => $faker->postcode,
+                    'country'        => $old_internship->location_country,
+                    'comment'           => $old_internship->location,
+                    'created_at'     => Carbon::now(),
+                    'updated_at'     => Carbon::now(),
+                    'created_by'     => 1,
+                    'updated_by'     => 1,
+                ]);
+
+                DB::table('address_opportunity')->insert([
+                    'address_id'     => $newAddress->id,
+                    'opportunity_id' => $old_internship->id + 450,
+                    'order'          => 1,
+                    'created_at'     => Carbon::now(),
+                    'updated_at'     => Carbon::now(),
+                    'created_by'     => 1,
+                    'updated_by'     => 1,
                 ]);
 
                 if ($old_internship->comments > ' ') {
-                    DB::table('notes')->insert([
-                        'noteable_id'   => $old_internship->id + 450,
-                        'noteable_type' => 'Opportunity',
-                        'user_id'       => 1,
-                        'body'          => 'Comments: ' . $old_internship->comments,
-                        'created_at'    => Carbon::now(),
-                        'updated_at'    => Carbon::now(),
-                        'created_by'    => 1,
-                        'updated_by'    => 1,
+
+                    $newNote = Note::create([
+                        'user_id'    => 1,
+                        'body'       => 'Comments: ' . $old_internship->comments,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                        'created_by' => 1,
+                        'updated_by' => 1,
+                    ]);
+
+                    DB::table('note_opportunity')->insert([
+                        'note_id'         => $newNote->id,
+                        'opportunity_id' => $old_internship->id + 450,
+                        'order'           => 1,
+                        'created_at'      => Carbon::now(),
+                        'updated_at'      => Carbon::now(),
+                        'created_by'      => 1,
+                        'updated_by'      => 1,
                     ]);
                 }
-
-
-                // DB::table('category_opportunity')->insert([
-                //     'opportunity_id' => $i + 1,
-                //     'category_id' => $faker->numberBetween(1, 6),
-                //     'order' => 1,
-                //     'created_at' => Carbon::now(),
-                //     'updated_at' => Carbon::now(),
-                //     'created_by' => 1,
-                //     'updated_by' => 1,
-                // ]);
-
-                // DB::table('keyword_opportunity')->insert([
-                //     'opportunity_id' => $i + 1,
-                //     'keyword_id' => $faker->numberBetween(1, 61),
-                //     'order' => 1,
-                //     'created_at' => Carbon::now(),
-                //     'updated_at' => Carbon::now(),
-                //     'created_by' => 1,
-                //     'updated_by' => 1,
-                // ]);
 
 
                 // Affiliations

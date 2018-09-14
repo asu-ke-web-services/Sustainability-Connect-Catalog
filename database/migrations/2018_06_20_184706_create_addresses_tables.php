@@ -15,16 +15,14 @@ class CreateAddressesTables extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('addressable');
             $table->boolean('is_primary')->default(true);
-            $table->integer('order')->default(1);
             $table->string('street1')->nullable();
             $table->string('street2')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('country')->nullable();
-            $table->text('note')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned()->nullable();

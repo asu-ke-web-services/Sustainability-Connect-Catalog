@@ -33,7 +33,7 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.end_date') }}</th>
-                <td>{{ isset($project->end_date) ? $project->end_date->toFormattedDateString() : '' }} {{ isset($project->end_date) ? '(' . $project->end_date->diffForHumans() . ')' : '' }})</td>
+                <td>{{ isset($project->end_date) ? $project->end_date->toFormattedDateString() : '' }} {{ isset($project->end_date) ? '(' . $project->end_date->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
@@ -48,7 +48,7 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.application_deadline') }}</th>
-                <td>{{ isset($project->application_deadline) ? $project->application_deadline->toFormattedDateString() : '' }} {{ isset($project->application_deadline) ? $project->application_deadline->diffForHumans() . ')' : '' }}</td>
+                <td>{{ isset($project->application_deadline) ? $project->application_deadline->toFormattedDateString() : '' }} {{ isset($project->application_deadline) ? '(' . $project->application_deadline->diffForHumans() . ')' : '' }}</td>
             </tr>
 
 

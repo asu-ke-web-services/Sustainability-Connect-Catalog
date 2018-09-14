@@ -182,6 +182,16 @@
                         'object'      => $opportunity->opportunityable ?? null,
                     ])@endcomponent
 
+                    <!-- Affiliations Field -->
+                    @component('includes.components.form.select', [
+                        'name'        => 'affiliations',
+                        'label'       => 'Affiliations',
+                        'optionList'  => $affiliations,
+                        'multivalue'  => true,
+                        'attribute'  => 'multiple',
+                        'object'      => $opportunity->affiliations ?? null,
+                    ])@endcomponent
+
                     <!-- Categories Field -->
                     @component('includes.components.form.select', [
                         'name'        => 'categories',
@@ -254,8 +264,8 @@
                     ])@endcomponent
 
                     @component('includes.components.form.textarea', [
-                        'name'        => 'addresses[0][note]',
-                        'label'       => 'Location Note:',
+                        'name'        => 'addresses[0][comment]',
+                        'label'       => 'Location Comment:',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
                 @endif

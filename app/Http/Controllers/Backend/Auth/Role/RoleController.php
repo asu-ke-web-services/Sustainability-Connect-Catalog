@@ -44,10 +44,12 @@ class RoleController extends Controller
     public function index(ManageRoleRequest $request)
     {
         return view('backend.auth.role.index')
-            ->withRoles($this->roleRepository
-                ->with('users', 'permissions')
-                ->orderBy('id', 'asc')
-                ->paginate(25));
+            ->withRoles(
+                $this->roleRepository
+                    ->with('users', 'permissions')
+                    ->orderBy('id', 'asc')
+                    ->paginate(25)
+            );
     }
 
     /**

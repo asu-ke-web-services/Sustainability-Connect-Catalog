@@ -2,11 +2,10 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Address;
-use SCCatalog\Models\Project;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\OpportunityStatus;
-use SCCatalog\Models\OpportunityType;
+use SCCatalog\Models\Address\Address;
+use SCCatalog\Models\Note\Note;
+use SCCatalog\Models\Opportunity\Project;
+use SCCatalog\Models\Opportunity\Opportunity;
 
 class ProjectsSeeder extends Seeder
 {
@@ -152,68 +151,72 @@ class ProjectsSeeder extends Seeder
                     'updated_by'            => 1,
                 ]);
 
-                DB::table('addresses')->insert([
-                    'addressable_id'   => $old_project->id,
-                    'addressable_type' => 'Opportunity',
-                    // 'street1'          => '',
-                    // 'street2'          => '',
-                    'city'             => $old_project->location_city,
-                    'state'            => $old_project->location_state,
-                    // 'postal_code'      => $faker->postcode,
-                    'country'          => $old_project->location_country,
-                    'note'             => $old_project->location,
-                    'created_at'       => Carbon::now(),
-                    'updated_at'       => Carbon::now(),
-                    'created_by'       => 1,
-                    'updated_by'       => 1,
+
+                $newAddress = Address::create([
+                    // 'street1'     => '',
+                    // 'street2'     => '',
+                    'city'           => $old_project->location_city,
+                    'state'          => $old_project->location_state,
+                    // 'postal_code' => $faker->postcode,
+                    'country'        => $old_project->location_country,
+                    'comment'        => $old_project->location,
+                    'created_at'     => Carbon::now(),
+                    'updated_at'     => Carbon::now(),
+                    'created_by'     => 1,
+                    'updated_by'     => 1,
+                ]);
+
+                DB::table('address_opportunity')->insert([
+                    'address_id'     => $newAddress->id,
+                    'opportunity_id' => $old_project->id,
+                    'order'          => 1,
+                    'created_at'     => Carbon::now(),
+                    'updated_at'     => Carbon::now(),
+                    'created_by'     => 1,
+                    'updated_by'     => 1,
                 ]);
 
                 if ($old_project->project_updates > ' ') {
-                    DB::table('notes')->insert([
-                        'noteable_id'   => $old_project->id,
-                        'noteable_type' => 'Opportunity',
-                        'user_id'       => 1,
-                        'body'          => 'Project Updates: ' . $old_project->project_updates,
-                        'created_at'    => Carbon::now(),
-                        'updated_at'    => Carbon::now(),
-                        'created_by'    => 1,
-                        'updated_by'    => 1,
+                    $newNote = Note::create([
+                        'user_id'    => 1,
+                        'body'       => 'Project Updates: ' . $old_project->project_updates,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                        'created_by' => 1,
+                        'updated_by' => 1,
+                    ]);
+
+                    DB::table('note_opportunity')->insert([
+                        'note_id'        => $newNote->id,
+                        'opportunity_id' => $old_project->id,
+                        'order'          => 1,
+                        'created_at'     => Carbon::now(),
+                        'updated_at'     => Carbon::now(),
+                        'created_by'     => 1,
+                        'updated_by'     => 1,
                     ]);
                 }
 
                 if ($old_project->comments > ' ') {
-                    DB::table('notes')->insert([
-                        'noteable_id'   => $old_project->id,
-                        'noteable_type' => 'Opportunity',
-                        'user_id'       => 1,
-                        'body'          => 'Comments: ' . $old_project->comments,
-                        'created_at'    => Carbon::now(),
-                        'updated_at'    => Carbon::now(),
-                        'created_by'    => 1,
-                        'updated_by'    => 1,
+                    $newNote = Note::create([
+                        'user_id'    => 1,
+                        'body'       => 'Comments: ' . $old_project->comments,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                        'created_by' => 1,
+                        'updated_by' => 1,
+                    ]);
+
+                    DB::table('note_opportunity')->insert([
+                        'note_id'        => $newNote->id,
+                        'opportunity_id' => $old_project->id,
+                        'order'          => 2,
+                        'created_at'     => Carbon::now(),
+                        'updated_at'     => Carbon::now(),
+                        'created_by'     => 1,
+                        'updated_by'     => 1,
                     ]);
                 }
-
-
-                // DB::table('category_opportunity')->insert([
-                //     'opportunity_id' => $i + 1,
-                //     'category_id' => $faker->numberBetween(1, 6),
-                //     'order' => 1,
-                //     'created_at' => Carbon::now(),
-                //     'updated_at' => Carbon::now(),
-                //     'created_by' => 1,
-                //     'updated_by' => 1,
-                // ]);
-
-                // DB::table('keyword_opportunity')->insert([
-                //     'opportunity_id' => $i + 1,
-                //     'keyword_id' => $faker->numberBetween(1, 61),
-                //     'order' => 1,
-                //     'created_at' => Carbon::now(),
-                //     'updated_at' => Carbon::now(),
-                //     'created_by' => 1,
-                //     'updated_by' => 1,
-                // ]);
 
 
                 // Affiliations

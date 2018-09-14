@@ -29,11 +29,6 @@ class CreateProjectsTable extends Migration
             $table->string('program_lead')->nullable();
             $table->string('success_story')->nullable();
             $table->string('library_collection')->nullable();
-            // $table->timestamps();
-            // $table->softDeletes();
-            // $table->integer('created_by')->unsigned()->nullable();
-            // $table->integer('updated_by')->unsigned()->nullable();
-            // $table->integer('deleted_by')->unsigned()->nullable();
         });
     }
 

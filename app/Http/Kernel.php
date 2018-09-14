@@ -4,6 +4,9 @@ namespace SCCatalog\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/**
+ * Class Kernel.
+ */
 class Kernel extends HttpKernel
 {
     /**
@@ -36,11 +39,18 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \SCCatalog\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \SCCatalog\Http\Middleware\LocaleMiddleware::class,
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
+        ],
+
+        'admin' => [
+            'auth',
+            'password_expires',
+            'permission:view admin dashboard',
         ],
     ];
 
@@ -57,6 +67,10 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \SCCatalog\Http\Middleware\RedirectIfAuthenticated::class,
+        'password_expires' => \SCCatalog\Http\Middleware\PasswordExpires::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 }

@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Keyword;
+use SCCatalog\Models\Lookup\Keyword;
 
 class KeywordsTableSeeder extends Seeder
 {
@@ -13,11 +13,6 @@ class KeywordsTableSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('keywords')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
         $keyword = Keyword::firstOrNew([
             'slug' => 'air-quality',
         ]);
@@ -80,7 +75,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 6,
-            	'parent_id' => 3,
                 'name' => 'Biofuels',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -459,7 +453,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 1,
-            	'parent_id' => 31,
                 'name' => 'Agriculture',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -684,7 +677,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 48,
-            	'parent_id' => 25,
                 'name' => 'Renewable Energy',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -741,7 +733,6 @@ class KeywordsTableSeeder extends Seeder
         if (!$keyword->exists) {
             $keyword->fill([
             	'order' => 52,
-            	'parent_id' => 48,
                 'name' => 'Solar Energy Systems',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

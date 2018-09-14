@@ -15,7 +15,6 @@ class CreateAffiliationsTable extends Migration
     {
         Schema::create('affiliations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id')->unsigned()->index()->nullable()->default(null);
             $table->integer('opportunity_type_id')->unsigned()->index();
             $table->integer('order')->default(1);
             $table->string('name');
@@ -27,25 +26,18 @@ class CreateAffiliationsTable extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
-            $table->foreign('parent_id')
-                ->references('id')->on('affiliations')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-
             $table->foreign('opportunity_type_id')
-                ->references('id')->on('opportunity_types');
+                ->references('id')->on('opportunity_types')
+                ->onDelete('cascade');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
 
         Schema::create('affiliation_opportunity', function (Blueprint $table) {
@@ -60,22 +52,21 @@ class CreateAffiliationsTable extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->foreign('opportunity_id')
-                ->references('id')->on('opportunities');
+                ->references('id')->on('opportunities')
+                ->onDelete('cascade');
 
             $table->foreign('affiliation_id')
-                ->references('id')->on('affiliations');
+                ->references('id')->on('affiliations')
+                ->onDelete('cascade');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
 
         Schema::create('affiliation_user', function (Blueprint $table) {
@@ -90,22 +81,21 @@ class CreateAffiliationsTable extends Migration
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->foreign('user_id')
-                ->references('id')->on('users');
+                ->references('id')->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('affiliation_id')
-                ->references('id')->on('affiliations');
+                ->references('id')->on('affiliations')
+                ->onDelete('cascade');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
 
     }

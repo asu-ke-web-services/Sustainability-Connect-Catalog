@@ -2,13 +2,13 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Frontend\Auth\ResetPasswordRequest;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Http\Requests\Frontend\Auth\ResetPasswordRequest;
 
 /**
  * Class ResetPasswordController.
@@ -71,7 +71,8 @@ class ResetPasswordController extends Controller
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
         $response = $this->broker()->reset(
-            $this->credentials($request), function ($user, $password) {
+            $this->credentials($request),
+            function ($user, $password) {
                 $this->resetPassword($user, $password);
             }
         );

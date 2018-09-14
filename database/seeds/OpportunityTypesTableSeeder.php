@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\OpportunityType;
+use SCCatalog\Models\Lookup\OpportunityType;
 
 class OpportunityTypesTableSeeder extends Seeder
 {
@@ -13,11 +13,6 @@ class OpportunityTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('opportunity_types')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
 		// Pre-fill Opportunity Type options
 
         $opportunity_types = OpportunityType::firstOrNew([

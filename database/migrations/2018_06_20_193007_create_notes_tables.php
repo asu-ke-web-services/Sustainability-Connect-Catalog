@@ -15,9 +15,7 @@ class CreateNotesTables extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('noteable');
             $table->integer('user_id')->unsigned();
-            $table->integer('order')->default(1);
             $table->text('body')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -29,16 +27,13 @@ class CreateNotesTables extends Migration
                 ->references('id')->on('users');
 
             $table->foreign('created_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('updated_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
 
             $table->foreign('deleted_by')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+                ->references('id')->on('users');
         });
     }
 

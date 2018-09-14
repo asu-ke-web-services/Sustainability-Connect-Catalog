@@ -2,10 +2,9 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\BudgetType;
-use SCCatalog\Models\OpportunityStatus;
-use SCCatalog\Models\OpportunityReviewStatus;
-use SCCatalog\Models\OpportunityType;
+use SCCatalog\Models\Lookup\BudgetType;
+use SCCatalog\Models\Lookup\OpportunityStatus;
+use SCCatalog\Models\Lookup\OpportunityReviewStatus;
 
 class OpportunityTablesSeeder extends Seeder
 {
@@ -16,18 +15,6 @@ class OpportunityTablesSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('addresses')->truncate();
-        DB::table('opportunity_statuses')->truncate();
-        DB::table('opportunities')->truncate();
-        DB::table('affiliation_opportunity')->truncate();
-        DB::table('category_opportunity')->truncate();
-        DB::table('keyword_opportunity')->truncate();
-        DB::table('projects')->truncate();
-        DB::table('internships')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
         // Pre-fill Opportunity Status options
 
         $opportunity_statuses = OpportunityStatus::firstOrNew([

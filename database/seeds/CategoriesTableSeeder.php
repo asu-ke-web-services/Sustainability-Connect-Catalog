@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Category;
+use SCCatalog\Models\Lookup\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -13,11 +13,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Eloquent::unguard();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('categories')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
         $category = Category::firstOrNew([
             'slug' => 'culminating-experience',
         ]);

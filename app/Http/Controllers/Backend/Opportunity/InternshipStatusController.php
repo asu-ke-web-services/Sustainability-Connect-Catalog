@@ -48,25 +48,6 @@ class InternshipStatusController extends Controller
 
     /**
      * @param ManageInternshipRequest $request
-     * @param int                     $id
-     * @param                         $status
-     *
-     * @return mixed
-     * @throws \SCCatalog\Exceptions\GeneralException
-     */
-    public function mark(ManageInternshipRequest $request, $id, $status)
-    {
-        $this->internshipRepository->mark($id, $status);
-
-        return redirect()->route(
-            $status == 1 ?
-            'admin.opportunity.internship.index' :
-            'admin.opportunity.internship.deactivated'
-        )->withFlashSuccess(__('alerts.backend.opportunity.internships.updated'));
-    }
-
-    /**
-     * @param ManageInternshipRequest $request
      * @param int                     $deletedInternshipId
      *
      * @return mixed

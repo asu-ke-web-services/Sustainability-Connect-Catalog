@@ -48,25 +48,6 @@ class ProjectStatusController extends Controller
 
     /**
      * @param ManageProjectRequest $request
-     * @param int                  $id
-     * @param                      $status
-     *
-     * @return mixed
-     * @throws \SCCatalog\Exceptions\GeneralException
-     */
-    public function mark(ManageProjectRequest $request, $id, $status)
-    {
-        $this->projectRepository->mark($id, $status);
-
-        return redirect()->route(
-            $status == 1 ?
-            'admin.opportunity.project.index' :
-            'admin.opportunity.project.deactivated'
-        )->withFlashSuccess(__('alerts.backend.opportunity.projects.updated'));
-    }
-
-    /**
-     * @param ManageProjectRequest $request
      * @param int                  $deletedProjectId
      *
      * @return mixed

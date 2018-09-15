@@ -19,7 +19,9 @@ class CreateAffiliationsTable extends Migration
             $table->integer('order')->default(1);
             $table->string('name');
             $table->string('slug');
-            $table->boolean('access_control'); // if true = opportunity and user affiliations must match for access
+            $table->string('help_text')->nullable();
+            $table->string('fa_icon')->nullable();
+            $table->boolean('access_control')->default(0); // if true = opportunity and user affiliations must match for access
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned()->nullable();

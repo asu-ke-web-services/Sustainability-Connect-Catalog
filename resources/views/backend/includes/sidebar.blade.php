@@ -40,9 +40,14 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-title">
+                    {{ __('menus.backend.sidebar.catalog') }}
+                </li>
+
                 <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/lookup*'), 'open') }}">
                     <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/lookup*')) }}" href="#">
-                        <i class="icon-user"></i> {{ __('Lookup') }}
+                        <i class="icon-list"></i> {{ __('Lookup') }}
 
                         @if ($pending_approval > 0)
                             <span class="badge badge-danger">{{ $pending_approval }}</span>
@@ -167,7 +172,7 @@
 
                 <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/opportunity*'), 'open') }}">
                     <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/opportunity*')) }}" href="#">
-                        <i class="icon-user"></i> {{ __('Opportunity') }}
+                        <i class="icon-notebook"></i> {{ __('Opportunity') }}
                     </a>
 
                     <ul class="nav-dropdown-items">
@@ -195,24 +200,14 @@
                     </ul>
                 </li>
 
-                <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/organization*'), 'open') }}">
-                    <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/organization*')) }}" href="#">
-                        <i class="icon-user"></i> {{ __('Organization') }}
+                <li class="nav-item">
+                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/organization*')) }}" href="{{ route('admin.organization.index') }}">
+                        <i class="icon-organization"></i> {{ __('Organizations') }}
+
+                        @if ($pending_approval > 0)
+                            <span class="badge badge-danger">{{ $pending_approval }}</span>
+                        @endif
                     </a>
-
-                    <ul class="nav-dropdown-items">
-
-                        <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/organization*')) }}" href="{{ route('admin.organization.index') }}">
-                                {{ __('Organizations') }}
-
-                                @if ($pending_approval > 0)
-                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
-                                @endif
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
 
             @endif

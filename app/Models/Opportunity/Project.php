@@ -114,18 +114,6 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
 
-    // /**
-    //  * Get the list of Opportunity Statuses.
-    //  *
-    //  * @return mixed
-    //  */
-    // public function getStatuses()
-    // {
-    //     \SCCatalog\Models\Lookup\OpportunityStatus::where('opportunity_type_id', 1)
-    //         ->orderBy('order', 'asc')
-    //         ->get();
-    // }
-
     /**
      * @return string
      */
@@ -230,11 +218,7 @@ class Project extends Model
          $project['isHidden']            = $this->opportunity->is_hidden;
          $project['startDate']           = $this->opportunity->start_date;
          $project['endDate']             = $this->opportunity->end_date;
-         $project['applicationDeadline'] = (
-                 !is_null($this->opportunity->application_deadline_text) ?
-                 $this->opportunity->application_deadline_text :
-                 $this->opportunity->application_deadline
-             );
+         $project['applicationDeadline'] = $this->opportunity->application_deadline;
          $project['listingStartDate']    = $this->opportunity->listing_start_date;
          $project['listingEndDate']      = $this->opportunity->listing_end_date;
          $project['followerCount']       = $this->opportunity->follower_count;

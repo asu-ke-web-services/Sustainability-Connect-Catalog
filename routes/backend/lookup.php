@@ -28,7 +28,7 @@ Route::group([
     Route::resource('opportunity_review_status', 'OpportunityReviewStatusController');
 
     /* OpportunityStatus CRUD */
-    Route::resource('opportunity_status', 'ProjectStatusController');
+    Route::resource('opportunity_status', 'OpportunityStatusController');
 
     /* OpportunityType CRUD */
     Route::resource('opportunity_type', 'OpportunityTypeController');

@@ -17,7 +17,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('frontend.contact');
+        // return view('frontend.contact');
+        return redirect('https://sustainabilityconnect.dev.gios.asu.edu/about/contact-us/');
     }
 
     /**

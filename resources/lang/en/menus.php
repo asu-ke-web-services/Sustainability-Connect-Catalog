@@ -84,6 +84,7 @@ return [
             'general'   => 'General',
             'history'   => 'History',
             'system'    => 'System',
+            'catalog'   => 'Catalog',
         ],
     ],
 

@@ -27,6 +27,9 @@ return [
         'dashboard' => [
             'title'   => 'Dashboard',
             'welcome' => 'Welcome',
+            'new_user_accounts' => 'New Users Accounts To Approve',
+            'projects_under_review' => 'Projects Under Review',
+            'all_active_project_members' => 'All Active Project Members',
         ],
 
         'general' => [
@@ -64,12 +67,9 @@ return [
             'results'    => 'Search Results for :query',
         ],
 
-        'welcome' => '<p>This is the CoreUI theme by <a href="https://coreui.io/" target="_blank">creativeLabs</a>. This is a stripped down version with only the necessary styles and scripts to get it running. Download the full version to start adding components to your dashboard.</p>
-<p>All the functionality is for show with the exception of the <strong>Access</strong> to the left. This boilerplate comes with a fully functional access control library to manage users & roles powered by <a href="https://github.com/spatie/laravel-permission" target="_blank">spatie/laravel-permission</a>.</p>
-<p>Keep in mind it is a work in progress and their may be bugs or other issues I have not come across. I will do my best to fix them as I receive them.</p>
-<p>Hope you enjoy all of the work I have put into this. Please visit the <a href="https://github.com/rappasoft/laravel-5-boilerplate" target="_blank">GitHub</a> page for more information and report any <a href="https://github.com/rappasoft/Laravel-5-Boilerplate/issues" target="_blank">issues here</a>.</p>
-<p><strong>This project is very demanding to keep up with given the rate at which the master Laravel branch changes, so any help is appreciated.</strong></p>
-<p>- Anthony Rappa</p>',
+        'welcome' => '<p>This is the preview Admin Dashboard for Sustainability Connect Catalog. Feel free to explore this system, and "kick the tires" so to speak.</p>
+<p>All functionality is currently unrestricted so everyone can explore all aspects of the system during this preview period. This dashboard comes with a fully functional access control system to manage users & roles. Also, you may explore the administrative tools for managing the Lookup option lists that populate all dropdown menus in the SC Catalog. Feel free to add and edit the Lookup lists and opportunities records.</p>
+<p>Keep in mind it is a work in progress and there may be bugs or other issues I am still working on. I will do my best to fix them as I receive them.</p>',
     ],
 
     'emails' => [

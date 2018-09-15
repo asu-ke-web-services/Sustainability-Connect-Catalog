@@ -4,31 +4,39 @@
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <span class="fa-stack" data-toggle="tooltip" data-container="body" title="" data-original-title="Restricted to students majoring in degrees from The School of Sustainability">
-                                <i class="fa fa-square fa-green fa-stack-2x"></i>
-                                <i class="fa fa-leaf fa-stack-1x"></i>
+                        <!-- Affiliations -->
+                        @foreach($internship->affiliations as $affiliation)
+                            <span
+                                @unless(empty($affiliation->fa_icon))
+                                    class="fa-stack"
+                                @endunless
+                                @unless(empty($affiliation->help_text))
+                                    data-toggle="tooltip"
+                                    data-container="body"
+                                    title=""
+                                    data-original-title="{{ $affiliation->help_text }}"
+                                @endunless
+                            >
+                                @unless(empty($affiliation->fa_icon))
+                                    {!! $affiliation->fa_icon !!}
+                                @else
+                                    <span class="badge badge-success">{{ ucwords($affiliation->name) }}</span>
+                                @endunless
                             </span>
-                            <span class="fa-stack" data-toggle="tooltip" data-container="body" title="" data-original-title="Available for Undergraduate Students">
-                                <i class="fa fa-square fa-blue fa-stack-2x"></i>
-                                <strong class="fa-stack-1x fa-inverse">U</strong>
-                            </span>
-                            <span class="fa-stack" data-toggle="tooltip" data-container="body" title="" data-original-title="Available for Graduate Students">
-                                <i class="fa fa-square fa-blue-darkened fa-stack-2x"></i>
-                                <strong class="fa-stack-1x fa-inverse">G</strong>
-                            </span>
+                        @endforeach
                         </td>
                     </tr>
 
                     <!-- Opportunity Status -->
                     <tr>
                         <td class="col col-sm-3 view-label">Status</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->status->name !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->status->name !!}</td>
                     </tr>
 
                     <!-- Description -->
                     <tr>
                         <td class="col col-sm-3 view-label">Internship Description</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->description !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->description !!}</td>
                     </tr>
 
                 </tbody>
@@ -40,7 +48,7 @@
             <table class="table table-striped">
                 <tbody>
                     <!-- Categories -->
-                    @foreach($opportunity->categories as $category)
+                    @foreach($internship->categories as $category)
                         <tr>
                             <td class="col col-sm-9 view-content">{!! $category->name !!}</td>
                         </tr>
@@ -54,7 +62,7 @@
             <table class="table table-striped">
                 <tbody>
                     <!-- Categories -->
-                    @foreach($opportunity->keywords as $keyword)
+                    @foreach($internship->keywords as $keyword)
                         <tr>
                             <td class="col col-sm-9 view-content">{!! $keyword->name !!}</td>
                         </tr>
@@ -70,17 +78,17 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Apply By</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->application_deadline !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->application_deadline !!}</td>
                     </tr>
                     <!-- Semester Offered -->
                     <tr>
                         <td class="col col-sm-3 view-label">Semester Offered</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->start_date !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->start_date !!}</td>
                     </tr>
                     <!-- Application Instructions -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Instructions</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->opportunityable->application_instructions !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->application_instructions !!}</td>
                     </tr>
                 </tbody>
             </table>
@@ -91,7 +99,7 @@
             <table class="table table-striped">
                 <tbody>
                     <!-- Location -->
-                    @foreach($opportunity->addresses as $address)
+                    @foreach($internship->addresses as $address)
                         <tr>
                             <td class="col col-sm-3 view-label">City, State</td>
                             <td class="col col-sm-9 view-content">{!! $address->city . ', ' . $address->state !!}</td>
@@ -108,25 +116,25 @@
                     <!-- Student Responsibilities -->
                     <tr>
                         <td class="col col-sm-3 view-label">Student Responsibilities</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->opportunityable->responsibilities !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->responsibilities !!}</td>
                     </tr>
 
                     <!-- Qualifications -->
                     <tr>
                         <td class="col col-sm-3 view-label">Minimum and Desired Qualifications</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->opportunityable->qualifications !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->qualifications !!}</td>
                     </tr>
 
                     <!-- Degrees Offering Credit -->
                     <tr>
                         <td class="col col-sm-3 view-label">Degrees Offering Credit</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->opportunityable->learning_outcomes !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->learning_outcomes !!}</td>
                     </tr>
 
                     <!-- Other Compensation -->
                     <tr>
                         <td class="col col-sm-3 view-label">Other Compensation</td>
-                        <td class="col col-sm-9 view-content">{!! $opportunity->opportunityable->compensation !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->compensation !!}</td>
                     </tr>
 
                     <!-- Notes -->

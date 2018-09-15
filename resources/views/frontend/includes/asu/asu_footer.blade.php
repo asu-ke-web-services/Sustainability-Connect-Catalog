@@ -8,7 +8,7 @@
                         a Unit of: <br/>
                         <a href="https://sustainability.asu.edu">Julie Ann Wrigley Global Institute of Sustainability</a><br/><br/>
                     </address>
-                    <p><a class="contact-link" href="/about/contact-us/" id="contact-us-link-in-footer">Contact Us</a></p>
+                    <p><a class="contact-link" href="https://sustainabilityconnect.dev.gios.asu.edu/about/contact-us/" id="contact-us-link-in-footer">Contact Us</a></p>
                     <ul class="social-media">
                         <li><a href="https://www.facebook.com/asusustainabilityconnect/" title="Facebook" id="facebook-link-in-footer"><i class="fa fa-facebook-square"></i><span class="sr-only">Facebook</span></a></li>
                         <li><a href="https://twitter.com/ASUSustConnect" title="Twitter" id="twitter-link-in-footer"><i class="fa fa-twitter-square"></i><span class="sr-only">Twitter</span></a></li>

@@ -1,6 +1,0 @@
-.git/
-.dockerignore
-.sass-cache/
-Dockerfile
-docker-compose.yml
-node_modules/

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f31a5f01-6529-40ef-8adf-db020e13769a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/OpportunityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/OpportunityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo-symbol.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/logo-symbol.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/img/logo-symbol.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/img/logo-symbol.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,78 +133,7 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/DashboardController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-              <folding>
-                <element signature="e#54#96#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/dashboard.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="806">
-              <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
-              <folding>
-                <element signature="e#2419#2437#0#HTML" expanded="true" />
-                <element signature="e#3033#3051#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/includes/sidebar.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3511">
-              <caret line="174" column="47" selection-start-line="174" selection-start-column="34" selection-end-line="174" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1902">
-              <caret line="43" lean-forward="true" selection-start-line="33" selection-end-line="43" />
-              <folding>
-                <element signature="e#66#108#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Auth/User/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-390" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Repositories/Backend/Opportunity/ProjectRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="581">
-              <caret line="48" column="37" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="37" />
-              <folding>
-                <element signature="e#62#109#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Repositories/RepositoryContract.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -666,6 +596,19 @@
               <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -776,16 +719,15 @@
       <workItem from="1536720534205" duration="7510000" />
       <workItem from="1536893309490" duration="10751000" />
       <workItem from="1536931664142" duration="1725000" />
-      <workItem from="1537390795673" duration="1313000" />
+      <workItem from="1537390795673" duration="1844000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206304000" />
+    <option name="totallyTimeSpent" value="206835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1418" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49926144" visible="true" weight="0.18943606" />
       <window_info id="Structure" order="1" sideWeight="0.50073856" side_tool="true" weight="0.16679905" />
@@ -1105,12 +1047,12 @@
     <entry file="file://$PROJECT_DIR$/app/Repositories/RepositoryContract.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectController.php">
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Backend/Opportunity/ProjectRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1902">
-          <caret line="43" lean-forward="true" selection-start-line="33" selection-end-line="43" />
+        <state relative-caret-position="581">
+          <caret line="48" column="37" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="37" />
           <folding>
-            <element signature="e#66#108#0#PHP" expanded="true" />
+            <element signature="e#62#109#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1120,12 +1062,12 @@
         <state relative-caret-position="-390" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Backend/Opportunity/ProjectRepository.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="48" column="37" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="37" />
+        <state relative-caret-position="-1902">
+          <caret line="43" lean-forward="true" selection-start-line="33" selection-end-line="43" />
           <folding>
-            <element signature="e#62#109#0#PHP" expanded="true" />
+            <element signature="e#66#108#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1137,23 +1079,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/dashboard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+          <folding>
+            <element signature="e#2419#2437#0#HTML" expanded="true" />
+            <element signature="e#3033#3051#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/DashboardController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
           <folding>
             <element signature="e#54#96#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/dashboard.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
-          <folding>
-            <element signature="e#2419#2437#0#HTML" expanded="true" />
-            <element signature="e#3033#3051#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

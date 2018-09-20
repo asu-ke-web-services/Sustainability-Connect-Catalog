@@ -25,7 +25,7 @@ Route::group([
     /*
      * Internship Status'
      */
-    // Route::get('internship/deactivated', 'InternshipStatusController@getDeactivated')->name('internship.deactivated');
-    // Route::get('internship/deleted', 'InternshipStatusController@getDeleted')->name('internship.deleted');
+    Route::get('internship/deactivated', 'InternshipStatusController@getDeactivated')->name('internship.deactivated');
+    Route::get('internship/deleted', 'InternshipStatusController@getDeleted')->name('internship.deleted');
 
 });

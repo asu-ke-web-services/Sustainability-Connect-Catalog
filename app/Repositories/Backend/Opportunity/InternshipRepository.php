@@ -77,7 +77,6 @@ class InternshipRepository extends OpportunityRepository
      */
     public function create(array $data)
     {
-//        dd($data);
         BaseRepository::unsetClauses();
 
         // Create child internship record
@@ -107,10 +106,6 @@ class InternshipRepository extends OpportunityRepository
         foreach ($data['keywords'] as $keyword) {
             $opportunity->keywords()->attach($keyword);
         }
-
-        // Set other opportunity relationships
-//        $opportunity = BaseRepository::updateRelations($opportunity, $data);
-//        $opportunity->save();
 
         return $opportunity;
     }
@@ -144,25 +139,12 @@ class InternshipRepository extends OpportunityRepository
 
         // sync Affiliations
         $opportunity->affiliations()->sync($data['affiliations']);
-//        foreach ($data['affiliations'] as $affiliation) {
-//        }
 
         // sync Categories
         $opportunity->categories()->attach($data['categories']);
-//        foreach ($data['categories'] as $category) {
-//            $opportunity->categories()->attach($category);
-//        }
 
         // sync Keywords
         $opportunity->keywords()->attach($data['keywords']);
-//        foreach ($data['keywords'] as $keyword) {
-//            $opportunity->keywords()->attach($keyword);
-//        }
-
-
-        // Update opportunity relations
-//        $opportunity = BaseRepository::updateRelations($opportunity, $data);
-//        $opportunity->save();
 
         return $opportunity;
     }

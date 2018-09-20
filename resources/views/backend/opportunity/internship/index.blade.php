@@ -1,6 +1,10 @@
 @extends ('backend.layouts.app')
 
-@section ('title', app_name() . ' | '. __('Internship Management'))
+@section ('title', app_name() . ' | '. __('labels.backend.opportunity.internships.management'))
+
+@section('breadcrumb-links')
+    @include('backend.opportunity.internship.includes.breadcrumb-links')
+@endsection
 
 @section('content')
 <div class="card">
@@ -8,12 +12,12 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('Internship Management') }}
+                    {{ __('labels.backend.opportunity.internships.management') }}
                 </h4>
             </div><!--col-->
 
             <div class="col-sm-7 pull-right">
-                @include('backend.opportunity.internship.includes.header-buttons')
+                @include('backend.opportunity.internship.includes.header-buttons-add')
             </div><!--col-->
         </div><!--row-->
 
@@ -23,27 +27,31 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Internship') }}</th>
-                            <th>{{ __('Email') }}</th>
-                            <th>{{ __('Associated Models') }}</th>
-                            <th>{{ __('Actions') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.name') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.status') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.location') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.start_date') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.application_deadline') }}</th>
+                            <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($internships as $internship)
                             <tr>
                                 <td>{{ ucwords($internship->name) }}</td>
-                                <td>{{ ucwords($internship->email) }}</td>
+                                <td>{{ ucwords($internship->status->name) }}</td>
                                 <td>
-                                    @if ($internship->associated_models->count())
-                                        @foreach ($internship->associated_models as $associated_model)
-                                            {{ ucwords($associated_model->name) }}
+                                    @if ($internship->addresses->count())
+                                        @foreach ($internship->addresses as $address)
+                                            {{ ucwords($address->city) }}
                                         @endforeach
                                     @else
-                                        {{ __('None') }}
+                                        {{ __('labels.general.none') }}
                                     @endif
                                 </td>
-                                <td>{!! $internship->action_buttons !!}</td>
+                                <td>{{ $internship->start_date }}</td>
+                                <td>{{ $internship->application_deadline }}</td>
+                                <td>{!! $internship->opportunityable->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -54,7 +62,7 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $internships->total() !!} {{ str_plural('internship', $internships->total()) . ' total' }}
+                    {!! $internships->total() !!} {{ trans_choice('labels.backend.opportunity.internships.table.total', $internships->total()) }}
                 </div>
             </div><!--col-->
 

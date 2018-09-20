@@ -127,9 +127,7 @@ class ProjectController extends Controller
             'addresses'
         ));
 
-//         dd($project);
-
-        // event(new ProjectCreated($project));
+        event(new ProjectCreated($project));
 
         return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project created successfully'));
@@ -246,13 +244,12 @@ class ProjectController extends Controller
             'listing_starts',
             'listing_ends',
             'application_deadline',
-            'opportunity_status_id',
             'start_date',
             'end_date',
+            'opportunity_status_id',
             'organization_id',
             'parent_opportunity_id',
             'supervisor_user_id',
-            'opportunity_status_id',
             'opportunityable',
             'affiliations',
             'categories',
@@ -260,7 +257,7 @@ class ProjectController extends Controller
             'addresses'
         ));
 
-        // event(new ProjectUpdated($project));
+        event(new ProjectUpdated($project));
 
         return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project updated successfully'));
@@ -280,7 +277,7 @@ class ProjectController extends Controller
         $project = $this->projectRepository->getById($id);
         $this->projectRepository->deleteById($id);
 
-        // event(new ProjectDeleted($project));
+        event(new ProjectDeleted($project));
 
         return redirect()->route('admin.opportunity.project.index')
             ->withFlashSuccess('Project deleted successfully');

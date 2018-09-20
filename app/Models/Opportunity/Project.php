@@ -160,30 +160,30 @@ class Project extends Model
      *
      * @return mixed
      */
-     public function getScoutKey()
-     {
-         return $this->opportunity->id;
-     }
+    public function getScoutKey()
+    {
+        return $this->opportunity->id;
+    }
 
     /**
      * Get the published status of this model.
      *
      * @return bool
      */
-     public function isPublished()
-     {
-         $opportunity = $this->opportunity->toArray();
+    public function isPublished()
+    {
+        $opportunity = $this->opportunity->toArray();
 
-         if (
-             $opportunity['is_hidden'] === 1 ||
-             $opportunity['opportunity_status_id'] < 3 ||
-             $this->review_status_id !== 1
-         ) {
-             return false;
-         }
+        if (
+            $opportunity['is_hidden'] === 1 ||
+            $opportunity['opportunity_status_id'] < 3 ||
+            $this->review_status_id !== 1
+        ) {
+            return false;
+        }
 
-         return true;
-     }
+        return true;
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -191,73 +191,63 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
 
-     public function shouldBeSearchable()
-     {
-         return false;
-//         if (
-//             $this->review_status_id !== 1 ||
-//             $this->isPublished() === false
-//         ) {
-//             return false;
-//         }
-//
-//         return true;
-     }
+    public function shouldBeSearchable()
+    {
+        if (
+            $this->review_status_id !== 1 ||
+            $this->isPublished() === false
+        ) {
+            return false;
+        }
+
+        return true;
+    }
 
 
-     public function toSearchableArray()
-     {
-         // $project = $this->toArray();
-         $project = array();
+    public function toSearchableArray()
+    {
+        $project = array();
 
-         $project['id']                  = $this->opportunity->id;
-         $project['type']                = 'Project';
-         $project['name']                = $this->opportunity->name;
-         $project['publicName']          = $this->opportunity->public_name;
-         $project['description']         = $this->opportunity->description;
-         $project['isHidden']            = $this->opportunity->is_hidden;
-         $project['startDate']           = $this->opportunity->start_date;
-         $project['endDate']             = $this->opportunity->end_date;
-         $project['applicationDeadline'] = $this->opportunity->application_deadline;
-         $project['listingStartDate']    = $this->opportunity->listing_start_date;
-         $project['listingEndDate']      = $this->opportunity->listing_end_date;
-         $project['followerCount']       = $this->opportunity->follower_count;
-         $project['status']              = $this->opportunity->status->name;
-         $project['reviewStatus']        = $this->reviewStatus->name;
-         $project['organizationName']    = $this->opportunity->organization->name ?? '';
-         // $project['parentOpportunity']   = $this->opportunity->parentOpportunity;
-         // $project['supervisorUser']      = $this->opportunity->supervisorUser;
-         // $project['submittingUser']      = $this->opportunity->submittingUser;
+        $project['id']                  = $this->opportunity->id;
+        $project['type']                = 'Project';
+        $project['name']                = e($this->opportunity->name);
+        $project['publicName']          = e($this->opportunity->public_name);
+        $project['description']         = e($this->opportunity->description);
+        $project['isHidden']            = $this->opportunity->is_hidden;
+        $project['startDate']           = $this->opportunity->start_date;
+        $project['endDate']             = $this->opportunity->end_date;
+        $project['applicationDeadline'] = e($this->opportunity->application_deadline);
+        $project['listingStartDate']    = $this->opportunity->listing_start_date;
+        $project['listingEndDate']      = $this->opportunity->listing_end_date;
+        $project['followerCount']       = $this->opportunity->follower_count;
+        $project['status']              = e($this->opportunity->status->name);
+        $project['reviewStatus']        = e($this->reviewStatus->name);
+        $project['organizationName']    = e($this->opportunity->organization->name) ?? '';
 
+        // Index Location Cities
+        $project['locations'] = '';
+        foreach ($this->opportunity->addresses as $address) {
+            $project['locations'] .= e($address['city']) . ' ' . e($address['state']);
+        }
 
-         // Index Location Cities
-         $project['locations'] = '';
-         foreach ($this->opportunity->addresses as $address) {
-             $project['locations'] .= $address['city'] . $address['state'];
-         }
+        // Index Affiliations
+        $project['affiliations'] = $this->opportunity->affiliations->map(function ($data) {
+            return [
+                'name' => e($data['name']),
+                'access_control' => $data['access_control'],
+            ];
+        })->toArray();
 
-         // Index Addresses
-         // $project['addresses'] = $this->opportunity->addresses->map(function ($data) {
-         //                                 return $data['city'] .
-         //                                         ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
-         //                                         ( is_null($data['country']) ? '' : (', ' . $data['country']) );
-         // })->toArray();
+        // Index Categories names
+        $project['categories'] = $this->opportunity->categories->map(function ($data) {
+            return e($data['name']);
+        })->toArray();
 
-         // Index Affiliations
-         $project['affiliations'] = $this->opportunity->affiliations->map(function ($data) {
-             return $data['name'];
-         })->toArray();
+        // Index Keywords names
+        $project['keywords'] = $this->opportunity->keywords->map(function ($data) {
+            return e($data['name']);
+        })->toArray();
 
-         // Index Categories names
-         $project['categories'] = $this->opportunity->categories->map(function ($data) {
-             return $data['name'];
-         })->toArray();
-
-         // Index Keywords names
-         $project['keywords'] = $this->opportunity->keywords->map(function ($data) {
-             return $data['name'];
-         })->toArray();
-
-         return $project;
-     }
+        return $project;
+    }
 }

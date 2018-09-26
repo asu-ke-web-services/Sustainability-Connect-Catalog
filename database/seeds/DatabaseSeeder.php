@@ -61,6 +61,7 @@ class DatabaseSeeder extends Seeder
             'sessions',
             'social_accounts',
             'student_degree_levels',
+            'user_types',
             'users',
         ]);
         $this->enableForeignKeys();
@@ -69,6 +70,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KeywordsTableSeeder::class);
         $this->call(RelationshipTypesTableSeeder::class);
         $this->call(StudentDegreeLevelsTableSeeder::class);
+        $this->call(UserTypesTableSeeder::class);
         $this->call(OpportunityTypesTableSeeder::class);
         $this->call(AffiliationsTableSeeder::class);
 

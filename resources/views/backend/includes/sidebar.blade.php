@@ -166,6 +166,16 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/user_type*')) }}" href="{{ route('admin.lookup.user_type.index') }}">
+                                {{ __('User Types') }}
+
+                                @if ($pending_approval > 0)
+                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
+                                @endif
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
 

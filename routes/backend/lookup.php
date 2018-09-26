@@ -45,4 +45,7 @@ Route::group([
     /* StudentDegreeLevel CRUD */
     Route::resource('student_degree_level', 'StudentDegreeLevelController');
 
+    /* UserType CRUD */
+    Route::resource('user_type', 'UserTypeController');
+
 });

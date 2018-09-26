@@ -91,6 +91,29 @@ class UserTableSeeder extends Seeder
                         ->value('meta_value');
 
 
+                $user_type_id = null;
+                switch ($old_user_type) {
+                    case 'student':
+                        $user_type_id = 1;
+                        break;
+
+                    case 'alumni':
+                        $user_type_id = 2;
+                        break;
+
+                    case 'faculty':
+                        $user_type_id = 3;
+                        break;
+
+                    case 'staff':
+                        $user_type_id = 4;
+                        break;
+
+                    case 'professional':
+                        $user_type_id = 5;
+                        break;
+                }
+
                 if ($old_user_degree_level === "Bachelors") {
                     $degree_level_id = 1;
                 } elseif ($old_user_degree_level === "Masters") {
@@ -114,7 +137,7 @@ class UserTableSeeder extends Seeder
                     'password'                => bcrypt('secret'),
                     'confirmation_code'       => md5(uniqid(mt_rand(), true)),
                     'confirmed'               => true,
-                    'type'                    => $old_user_type ?? null,
+                    'user_type_id'                    => $user_type_id ?? null,
                     'asurite'                 => $old_user_asurite ?? null,
                     'student_degree_level_id' => $degree_level_id ?? null,
                     'degree_program'          => $old_user_degree_program ?? null,

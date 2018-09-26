@@ -232,9 +232,24 @@ class Project extends Model
 
         // Index Affiliations
         $project['affiliations'] = $this->opportunity->affiliations->map(function ($data) {
+            return e($data['name']);
+        })->toArray();
+
+        // Index AccessAffiliations
+        $project['accessAffiliations'] = $this->opportunity->affiliations->where('access_control', true)->map(function ($data) {
             return [
                 'name' => e($data['name']),
-                'access_control' => $data['access_control'],
+                'slug' => e($data['slug']),
+            ];
+        })->toArray();
+
+        // Index AffiliationIcons
+        $project['affiliationIcons'] = $this->opportunity->affiliations->map(function ($data) {
+            return [
+                'slug'             => e($data['slug']),
+                'frontend_fa_icon' => json_decode($data['frontend_fa_icon']),
+                'backend_fa_icon'  => json_decode($data['backend_fa_icon']),
+                'help_text'        => $data['help_text'],
             ];
         })->toArray();
 

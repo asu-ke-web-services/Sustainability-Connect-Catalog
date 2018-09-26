@@ -235,7 +235,7 @@ class ProjectsSeeder extends Seeder
                 }
 
                 // SOS?
-                if ($old_project->sos_affiliation === 1) {
+                // if ($old_project->sos_affiliation === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_project->id,
                         'affiliation_id' => 2,
@@ -245,10 +245,10 @@ class ProjectsSeeder extends Seeder
                         'created_by'     => 1,
                         'updated_by'     => 1,
                     ]);
-                }
+                // }
 
                 // Undergrad?
-                if ($old_project->available_for_undergraduates === 1) {
+                // if ($old_project->available_for_undergraduates === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_project->id,
                         'affiliation_id' => 3,
@@ -258,10 +258,10 @@ class ProjectsSeeder extends Seeder
                         'created_by'     => 1,
                         'updated_by'     => 1,
                     ]);
-                }
+                // }
 
                 // Grad?
-                if ($old_project->available_for_graduates === 1) {
+                // if ($old_project->available_for_graduates === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_project->id,
                         'affiliation_id' => 4,
@@ -271,7 +271,7 @@ class ProjectsSeeder extends Seeder
                         'created_by'     => 1,
                         'updated_by'     => 1,
                     ]);
-                }
+                // }
 
                 // Class Project?
                 if ($old_project->type === 'General Project') {
@@ -300,7 +300,7 @@ class ProjectsSeeder extends Seeder
                 }
 
                 // Culminating Experience?
-                if ($old_project->type === 'Culminating Experience') {
+                // if ($old_project->type === 'Culminating Experience') {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_project->id,
                         'affiliation_id' => 6,
@@ -310,7 +310,7 @@ class ProjectsSeeder extends Seeder
                         'created_by'     => 1,
                         'updated_by'     => 1,
                     ]);
-                }
+                // }
                 if ($old_project->type === 'Culminating Experience') {
                     DB::table('category_opportunity')->insert([
                         'opportunity_id' => $old_project->id,

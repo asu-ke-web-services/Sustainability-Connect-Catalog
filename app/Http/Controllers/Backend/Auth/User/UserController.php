@@ -11,6 +11,10 @@ use SCCatalog\Repositories\Backend\Auth\PermissionRepository;
 use SCCatalog\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserRequest;
+use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Backend\Lookup\StudentDegreeLevelRepository;
+use SCCatalog\Repositories\Backend\Lookup\UserTypeRepository;
+use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
 
 /**
  * Class UserController.
@@ -50,9 +54,21 @@ class UserController extends Controller
      *
      * @return mixed
      */
-    public function create(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository)
+    public function create(
+            ManageUserRequest $request,
+            RoleRepository $roleRepository,
+            PermissionRepository $permissionRepository,
+            AffiliationRepository $affiliationRepository,
+            OrganizationRepository $organizationRepository,
+            StudentDegreeLevelRepository $studentDegreeLevelRepository,
+            UserTypeRepository $userTypeRepository
+    )
     {
         return view('backend.auth.user.create')
+            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('studentDegreeLevels', $studentDegreeLevelRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('userTypes', $userTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->withRoles($roleRepository->with('permissions')->get(['id', 'name']))
             ->withPermissions($permissionRepository->get(['id', 'name']));
     }
@@ -74,7 +90,16 @@ class UserController extends Controller
             'confirmed',
             'confirmation_email',
             'roles',
-            'permissions'
+            'permissions',
+            'user_type_id',
+            'student_degree_level_id',
+            'degree_program',
+            'graduation_date',
+            'phone',
+            'research_interests',
+            'department',
+            'organization_id',
+            'affiliations'
         ));
 
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.created'));
@@ -89,7 +114,13 @@ class UserController extends Controller
     public function show(ManageUserRequest $request, User $user)
     {
         return view('backend.auth.user.show')
-            ->withUser($user);
+            ->withUser($user)
+            ->with([
+                'affiliations',
+                'organization',
+                'studentDegreeLevel',
+                'userType',
+            ]);
     }
 
     /**
@@ -100,14 +131,27 @@ class UserController extends Controller
      *
      * @return mixed
      */
-    public function edit(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository, User $user)
+    public function edit(
+            ManageUserRequest $request,
+            RoleRepository $roleRepository,
+            PermissionRepository $permissionRepository,
+            AffiliationRepository $affiliationRepository,
+            OrganizationRepository $organizationRepository,
+            StudentDegreeLevelRepository $studentDegreeLevelRepository,
+            UserTypeRepository $userTypeRepository,
+            User $user
+    )
     {
         return view('backend.auth.user.edit')
             ->withUser($user)
             ->withRoles($roleRepository->get())
             ->withUserRoles($user->roles->pluck('name')->all())
             ->withPermissions($permissionRepository->get(['id', 'name']))
-            ->withUserPermissions($user->permissions->pluck('name')->all());
+            ->withUserPermissions($user->permissions->pluck('name')->all())
+            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('studentDegreeLevels', $studentDegreeLevelRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('userTypes', $userTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -125,7 +169,16 @@ class UserController extends Controller
             'last_name',
             'email',
             'roles',
-            'permissions'
+            'permissions',
+            'user_type_id',
+            'student_degree_level_id',
+            'degree_program',
+            'graduation_date',
+            'phone',
+            'research_interests',
+            'department',
+            'organization_id',
+            'affiliations'
         ));
 
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.updated'));

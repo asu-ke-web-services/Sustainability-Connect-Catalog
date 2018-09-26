@@ -51,7 +51,7 @@ class User extends Authenticatable
         'last_login_at',
         'last_login_ip',
         'login_name',
-        'type',
+        'user_type_id',
         'asurite',
         'student_degree_level_id',
         'degree_program',

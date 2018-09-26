@@ -7,7 +7,7 @@
     <div class="col-md-10">
         <div class="form-check checkbox">
             <label class="switch switch-3d switch-primary">
-                {{ html()->checkbox($name, old($name) ?: ($object->{$name} ?? 0), '1')->class('switch-input') }}
+                {{ html()->checkbox($name, old($name) ?: ($object->{$name} ?? $default), '1')->class('switch-input') }}
                 <span class="switch-label"></span>
                 <span class="switch-handle"></span>
             </label>

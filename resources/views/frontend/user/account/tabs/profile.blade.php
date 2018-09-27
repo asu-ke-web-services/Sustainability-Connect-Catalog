@@ -12,6 +12,9 @@
             <th>{{ __('labels.frontend.user.profile.email') }}</th>
             <td>{{ $logged_in_user->email }}</td>
         </tr>
+
+        @include('frontend.user.account.tabs.'.$logged_in_user->userType->slug)
+
         <tr>
             <th>{{ __('labels.frontend.user.profile.created_at') }}</th>
             <td>{{ timezone()->convertToLocal($logged_in_user->created_at) }} ({{ $logged_in_user->created_at->diffForHumans() }})</td>

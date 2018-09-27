@@ -328,6 +328,31 @@ return [
                 'first_name'         => 'First Name',
                 'last_name'          => 'Last Name',
                 'update_information' => 'Update Information',
+
+                'student' => [
+                    'student_degree_level' => 'Degree Level',
+                    'degree_program'       => 'Degree Program',
+                    'graduation_date'      => 'Graduation Date',
+                    'phone'                => 'Phone',
+                    'research_interests'   => 'Research Interest',
+                ],
+
+                'staff' => [
+                    'department' => 'Department',
+                    'phone'      => 'Phone',
+                ],
+
+                'faculty' => [
+                    'department'        => 'Department',
+                    'phone'              => 'Phone',
+                    'research_interests' => 'Research Interests',
+                ],
+
+                'professional' => [
+                    'organization' => 'Organization',
+                    'phone'        => 'Phone',
+                ],
+
             ],
         ],
 

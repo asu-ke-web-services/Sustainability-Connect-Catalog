@@ -1,18 +1,19 @@
 import React from 'react';
-import {
-  connectSearchBox,
-} from 'react-instantsearch-dom';
+import { connectSearchBox } from 'react-instantsearch-dom';
 
 export const SearchBox = connectSearchBox(({ currentRefinement, refine }) => (
-  <span className="layout-topbar-search">
+  <div className="input-group">
     <input
       type="text"
       value={currentRefinement}
       onChange={e => refine(e.target.value)}
       autoComplete="off"
-      className="ui-inputtext ui-state-default ui-corner-all ui-widget"
-      placeholder="Search"
+      className="form-control"
     />
-    <span className="layout-topbar-search-icon fa fa-search"/>
-  </span>
+    <span className="input-group-btn">
+      <button className="btn btn-default">
+        <i className="fa fa-search" />
+      </button>
+    </span>
+  </div>
 ));

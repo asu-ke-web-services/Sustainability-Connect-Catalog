@@ -1,0 +1,103 @@
+
+/* Set $icon-font-path from sass-loader issue #40, https://github.com/webpack-contrib/sass-loader/issues/40#issuecomment-70269553 */
+$icon-font-path: './bootstrap/fonts/bootstrap/';
+
+@import './bootstrap/stylesheets/_bootstrap.scss';
+
+@import './bootstrap-asu/bootstrap-asu.scss';
+
+@import './bootstrap-ais/bootstrap-ais.scss';
+
+/*
+// Burger menu custom styles
+*/
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+.right .bm-burger-button {
+  left: initial;
+  right: 36px;
+}
+
+.bm-burger-bars {
+  background: #373a47;
+}
+
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: .8em;
+
+  a {
+    color: #b8b7ad;
+    border-bottom: 0;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: #c94e50;
+    }
+  }
+}
+
+.bm-item-list a {
+  padding: 0.8em;
+
+  span {
+    margin-left: 10px;
+    font-weight: 700;
+  }
+}
+
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+ Font Awesome custom styles - for Affiliation Icons
+ */
+
+.icon-column .fa,
+.icon-legend .fa {
+  margin-right: .5rem;
+}
+
+.fa-maroon {
+  color: #8c1d40;
+}
+.fa-brick-red {
+  color: #d23153;
+}
+.fa-blue {
+  color: #00a3e0;
+}
+.fa-blue-darkened {
+  color: #010598;
+}
+.fa-green {
+  color: #78be20;
+}
+.fa-green-darkened {
+  color: #168026;
+}
+.fa-orange {
+  color: #ff7f32;
+}
+.fa-gold {
+  color: #ffc627;
+}
+.fa-gold-darkened {
+  color: #c69304;
+}
+.fa-abbey {
+  color: #4f5557;
+}

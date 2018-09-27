@@ -1,0 +1,16 @@
+/*!
+ * Bootstrap v3.3.7 adjusted to work with Algolia Instant Search components
+ * Currently only Pagination
+ */
+
+// Core variables and mixins
+@import "variables";
+@import "mixins";
+
+// Components
+@import "pagination";
+
+// Highlighted Hits
+.ais-Highlight-highlighted, .ais-Snippet-highlighted {
+  background-color: #ffc168;
+}

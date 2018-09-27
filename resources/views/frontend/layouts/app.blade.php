@@ -38,6 +38,9 @@
         {!! script(mix('js/frontend.js')) !!}
         @stack('after-scripts')
 
+        @section('javascript')
+        @show
+
         @include('includes.partials.ga')
     </body>
 </html>

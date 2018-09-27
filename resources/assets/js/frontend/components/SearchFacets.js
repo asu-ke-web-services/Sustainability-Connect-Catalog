@@ -4,34 +4,6 @@ import {
   connectRefinementList,
 } from 'react-instantsearch-dom';
 
-export const SearchFacets = () => (
-  <aside>
-    <Panel title="Affiliations" id="affiliations">
-      <RefinementListLinks attribute="affiliations"/>
-    </Panel>
-    <Panel title="Categories" id="categories">
-      <RefinementListLinks attribute="categories" />
-    </Panel>
-    <Panel title="Keywords" id="keywords">
-      <RefinementListLinks attribute="keywords" />
-    </Panel>
-    <ClearRefinements
-      translations={{
-        reset: 'Clear all filters',
-      }}
-    />
-  </aside>
-);
-
-const Panel = ({ title, children, id }) => (
-  <div id={id}>
-    <h5>
-      <i className="fa fa-chevron-right" /> {title}
-    </h5>
-    {children}
-  </div>
-);
-
 const RefinementListLinks = connectRefinementList(
   ({ items, refine, createURL }) => {
     const hitComponents = items.map(item => (
@@ -52,4 +24,32 @@ const RefinementListLinks = connectRefinementList(
 
     return <div className="nav nav-list">{hitComponents}</div>;
   }
+);
+
+export const SearchFacets = () => (
+  <div>
+    <h3>
+      <i className="fa fa-fw fa-inbox fa-2x" />
+      <span>Affiliations</span>
+    </h3>
+    <RefinementListLinks attribute="affiliations" />
+
+    <h3>
+      <i className="fa fa-fw fa-inbox fa-2x" />
+      <span>Categories</span>
+    </h3>
+    <RefinementListLinks attribute="categories" />
+
+    <h3 key="4">
+      <i className="fa fa-fw fa-inbox fa-2x" />
+      <span>Keywords</span>
+    </h3>
+    <RefinementListLinks attribute="keywords" />
+
+    <ClearRefinements
+      translations={{
+        reset: 'Clear all filters',
+      }}
+    />
+  </div>
 );

@@ -1,0 +1,92 @@
+/*!
+ * Bootstrap v3.3.7 adjusted to work with Algolia Instant Search components
+ * Currently only Pagination
+ */
+.ais-Pagination-list {
+  display: inline-block;
+  padding-left: 0;
+  margin: 25px 0;
+  border-radius: 4px; }
+  .ais-Pagination-list > li.ais-Pagination-item {
+    display: inline; }
+    .ais-Pagination-list > li.ais-Pagination-item > a,
+    .ais-Pagination-list > li.ais-Pagination-item > span {
+      position: relative;
+      float: left;
+      padding: 5px 20px;
+      line-height: 1.44;
+      text-decoration: none;
+      color: #8c1d40;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      margin-left: -1px; }
+    .ais-Pagination-list > li.ais-Pagination-item:first-child > a,
+    .ais-Pagination-list > li.ais-Pagination-item:first-child > span {
+      margin-left: 0;
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px; }
+    .ais-Pagination-list > li.ais-Pagination-item:last-child > a,
+    .ais-Pagination-list > li.ais-Pagination-item:last-child > span {
+      border-bottom-right-radius: 4px;
+      border-top-right-radius: 4px; }
+  .ais-Pagination-list > li > a:hover, .ais-Pagination-list > li > a:focus,
+  .ais-Pagination-list > li > span:hover,
+  .ais-Pagination-list > li > span:focus {
+    z-index: 2;
+    background-color: #ededed;
+    border-color: #ededed;
+    color: #d23153; }
+  .ais-Pagination-list > .ais-Pagination-item--selected > a, .ais-Pagination-list > .ais-Pagination-item--selected > a:hover, .ais-Pagination-list > .ais-Pagination-item--selected > a:focus,
+  .ais-Pagination-list > .ais-Pagination-item--selected > span,
+  .ais-Pagination-list > .ais-Pagination-item--selected > span:hover,
+  .ais-Pagination-list > .ais-Pagination-item--selected > span:focus {
+    z-index: 3;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    cursor: default; }
+  .ais-Pagination-list > .ais-Pagination-item--disabled > span,
+  .ais-Pagination-list > .ais-Pagination-item--disabled > span:hover,
+  .ais-Pagination-list > .ais-Pagination-item--disabled > span:focus,
+  .ais-Pagination-list > .ais-Pagination-item--disabled > a,
+  .ais-Pagination-list > .ais-Pagination-item--disabled > a:hover,
+  .ais-Pagination-list > .ais-Pagination-item--disabled > a:focus {
+    color: #777777;
+    background-color: #fff;
+    border-color: #ddd;
+    cursor: not-allowed; }
+
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33; }
+
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px; }
+
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px; }
+
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5; }
+
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px; }
+
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px; }
+
+.ais-Highlight-highlighted, .ais-Snippet-highlighted {
+  background-color: #ffc168; }

@@ -9,13 +9,13 @@
     </head>
     <body class="home page page-template page-template-page-full-width page-template-page-full-width-php logged-in admin-bar  customize-support">
         <a href="#skippy" class="sr-only">Skip to Content</a>
-        @unless (config('app.debug'))
-            @component('components.asu.asu-gtm')
-                @slot('gtm-id')
-                    {!! $googleTagManagerId !!}
-                @endslot
-            @endcomponent
-        @endunless
+        {{--@unless (config('app.debug'))--}}
+            {{--@component('components.asu.asu-gtm')--}}
+                {{--@slot('gtm-id')--}}
+                    {{--{!! $googleTagManagerId !!}--}}
+                {{--@endslot--}}
+            {{--@endcomponent--}}
+        {{--@endunless--}}
         <div id="page-wrapper">
             <div id="page">
                 @include('frontend.includes.asu.asu_global_header')

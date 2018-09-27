@@ -12,9 +12,9 @@ let mix = require('laravel-mix');
  */
 mix.setPublicPath('public')
 
-// mix.react('resources/assets/js/search.js', 'public/js')
-//    .sass('resources/assets/sass/app.scss', 'public/css')
-//    .sass('resources/assets/sass/layout.scss', 'public/css');
+mix.sass('resources/assets/sass/frontend/SearchApp.scss', '../resources/assets/sass/frontend')
+    .react('resources/assets/js/frontend/searchProject.js', 'public/js')
+    .react('resources/assets/js/frontend/searchInternship.js', 'public/js');
 
 mix.sass('resources/assets/sass/frontend/app.scss', 'css/frontend.css')
     .sass('resources/assets/sass/backend/app.scss', 'css/backend.css')

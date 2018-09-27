@@ -46,7 +46,7 @@ class ProjectController extends Controller
      */
     public function index(ViewProjectRequest $request)
     {
-        return view('frontend.opportunity.project.index')
+        return view('frontend.opportunity.project.search')
             ->with('projects', $this->projectRepository->getActivePaginated(25, 'application_deadline', 'asc'))
             ->with('type', 'Project')
             ->with('pageTitle', 'Projects');

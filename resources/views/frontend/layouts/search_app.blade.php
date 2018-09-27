@@ -23,24 +23,12 @@
         @stack('after-styles')
     </head>
     <body>
-        <div id="app">
-            @include('includes.partials.logged-in-as')
-            @include('frontend.includes.nav')
 
-            <div class="container">
-                @include('includes.partials.messages')
-                @yield('content')
-            </div><!-- container -->
-        </div><!-- #app -->
+        @yield('content')
 
         <!-- Scripts -->
-        @stack('before-scripts')
-        {!! script(mix('js/frontend.js')) !!}
-        @stack('after-scripts')
-
         @section('javascript')
         @show
 
-        @include('includes.partials.ga')
     </body>
 </html>

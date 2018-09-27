@@ -487,8 +487,25 @@ class AffiliationsTableSeeder extends Seeder
                 'access_control'      => 0,
                 'name'                => 'Credit',
                 'help_text'           => 'Earning college credit for this internship is subject to prior approval',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
+                'frontend_fa_icon'        => json_encode(array(
+                        array(
+                            'tag' => 'span',
+                            'className' => 'fa fa-square fa-gold fa-stack-2x',
+                            'content' => null,
+                        ),
+                        array(
+                            'tag' => 'span',
+                            'className' => 'fa fa-graduation-cap fa-stack-1x',
+                            'content' => null,
+                        ),
+                )),
+                'backend_fa_icon'  => json_encode(array(
+                        array(
+                            'tag' => 'span',
+                            'className' => 'fa fa-graduation-cap',
+                            'content' => null,
+                        ),
+                )),
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -505,17 +522,17 @@ class AffiliationsTableSeeder extends Seeder
                 'order'          => 5,
                 'access_control' => 0,
                 'name'           => 'Fall',
-                'help_text'      => 'Available for Fall',
+                'help_text'      => 'Available in the Fall semester',
                 'frontend_fa_icon'        => json_encode(array(
                         array(
                             'tag' => 'span',
-                            'className'   => 'fa fa-square fa-green fa-stack-2x',
+                            'className'   => 'fa fa-square fa-blue fa-stack-2x',
                             'content'    => null,
                         ),
                         array(
-                            'tag' => 'span',
-                            'className'   => 'fa fa-leaf fa-stack-1x',
-                            'content'    => null,
+                            'tag' => 'strong',
+                            'className'   => '',
+                            'content'    => 'F',
                         ),
                 )),
                 'backend_fa_icon' => json_encode(array(
@@ -541,17 +558,17 @@ class AffiliationsTableSeeder extends Seeder
                 'order'          => 6,
                 'access_control' => 0,
                 'name'           => 'Spring',
-                'help_text'      => 'Available for Spring',
+                'help_text'      => 'Available in the Spring semester',
                 'frontend_fa_icon'        => json_encode(array(
                         array(
                             'tag' => 'span',
-                            'className' => 'fa fa-square fa-green fa-stack-2x',
+                            'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
                         ),
                         array(
-                            'tag' => 'span',
-                            'className' => 'fa fa-leaf fa-stack-1x',
-                            'content' => null,
+                            'tag' => 'strong',
+                            'className' => '',
+                            'content' => 'S',
                         ),
                 )),
                 'backend_fa_icon'  => json_encode(array(
@@ -577,17 +594,17 @@ class AffiliationsTableSeeder extends Seeder
                 'order'          => 7,
                 'access_control' => 0,
                 'name'           => 'Summer',
-                'help_text'      => 'Available for Summer',
+                'help_text'      => 'Available during Summer Break',
                 'frontend_fa_icon'        => json_encode(array(
                         array(
                             'tag' => 'span',
-                            'className' => 'fa fa-square fa-green fa-stack-2x',
+                            'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
                         ),
                         array(
-                            'tag' => 'span',
-                            'className' => 'fa fa-leaf fa-stack-1x',
-                            'content' => null,
+                            'tag' => 'strong',
+                            'className' => '',
+                            'content' => 'B',
                         ),
                 )),
                 'backend_fa_icon'  => json_encode(array(
@@ -622,7 +639,7 @@ class AffiliationsTableSeeder extends Seeder
                         ),
                         array(
                             'tag' => 'span',
-                            'className' => 'fa fa-leaf fa-stack-1x',
+                            'className' => 'fa fa-usd fa-stack-1x',
                             'content' => null,
                         ),
                 )),
@@ -653,13 +670,13 @@ class AffiliationsTableSeeder extends Seeder
                 'frontend_fa_icon'        => json_encode(array(
                         array(
                             'tag' => 'span',
-                            'className' => 'fa fa-square fa-green fa-stack-2x',
+                            'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
                         ),
                         array(
-                            'tag' => 'span',
-                            'className' => 'fa fa-leaf fa-stack-1x',
-                            'content' => null,
+                            'tag' => 'strong',
+                            'className' => 'fa-stack-1x fa-inverse',
+                            'content' => 'U',
                         ),
                 )),
                 'backend_fa_icon'  => json_encode(array(
@@ -689,13 +706,13 @@ class AffiliationsTableSeeder extends Seeder
                 'frontend_fa_icon'        => json_encode(array(
                         array(
                             'tag' => 'span',
-                            'className' => 'fa fa-square fa-green fa-stack-2x',
+                            'className' => 'fa fa-square fa-blue-darkened fa-stack-2x',
                             'content' => null,
                         ),
                         array(
-                            'tag' => 'span',
-                            'className' => 'fa fa-leaf fa-stack-1x',
-                            'content' => null,
+                            'tag' => 'strong',
+                            'className' => 'fa-stack-1x fa-inverse',
+                            'content' => 'G',
                         ),
                 )),
                 'backend_fa_icon'  => json_encode(array(

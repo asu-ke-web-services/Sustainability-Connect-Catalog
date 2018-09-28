@@ -94,7 +94,7 @@ return [
 
                     'content' => [
                         'overview' => [
-                            'avatar'       => 'Avatar',
+                            'avatar'       => 'Profile Picture',
                             'confirmed'    => 'Confirmed',
                             'created_at'   => 'Created At',
                             'deleted_at'   => 'Deleted At',
@@ -319,7 +319,7 @@ return [
             ],
 
             'profile' => [
-                'avatar'             => 'Avatar',
+                'avatar'             => 'Profile Picture',
                 'created_at'         => 'Created At',
                 'edit_information'   => 'Edit Information',
                 'email'              => 'E-mail',

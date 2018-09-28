@@ -1,48 +1,90 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <a href="{{ route('frontend.index') }}" class="navbar-brand">{{ app_name() }}</a>
-
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            @if (config('locale.status') && count(config('locale.languages')) > 1)
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownLanguageLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">{{ __('menus.language-picker.language') }} ({{ strtoupper(app()->getLocale()) }})</a>
-
-                    @include('includes.partials.lang')
+<nav class="navbar navbar-ws affix-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#ws-navbar-collapse-1" style="display: inline-block;">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://sustainability.asu.edu">Julie Ann Wrigley Global Institute of
+                Sustainability</a>
+        </div>
+        <div id="ws-navbar-collapse-1" class="collapse navbar-collapse">
+            <ul id="menu-header-menu-gios-simple" class="nav navbar-nav">
+                <li class="menu_item active">
+                    <a href="/" title="Home" id="home-icon-main-nav">
+                        <span class="fa fa-home hidden-xs hidden-sm" aria-hidden="true"></span>
+                        <span class="hidden-md hidden-lg">Home</span>
+                    </a>
                 </li>
-            @endif
-
-            @auth
-                <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
-            @endauth
-
-            @guest
-                <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
-
-                @if (config('access.registration'))
-                    <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
-                @endif
-            @else
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuUser" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">{{ $logged_in_user->name }}</a>
-
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuUser">
-                        @can('view admin dashboard')
-                            <a href="{{ route('admin.dashboard') }}" class="dropdown-item">{{ __('navs.frontend.user.administration') }}</a>
-                        @endcan
-
-                        <a href="{{ route('frontend.user.account') }}" class="dropdown-item {{ active_class(Active::checkRoute('frontend.user.account')) }}">{{ __('navs.frontend.user.account') }}</a>
-                        <a href="{{ route('frontend.auth.logout') }}" class="dropdown-item">{{ __('navs.general.logout') }}</a>
-                    </div>
+                <li id="menu-item-1" class="menu-item">
+                    <a title="Projects" href="/project" class="menu-item">Projects</a>
                 </li>
-            @endguest
-
-            <li class="nav-item"><a href="https://sustainabilityconnect.dev.gios.asu.edu/about/contact-us/" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">{{ __('navs.frontend.contact') }}</a></li>
-        </ul>
-    </div>
+                <li id="menu-item-2" class="menu-item">
+                    <a title="Internships" href="/internship" class="menu-item">Internships</a>
+                </li>
+                <li id="menu-item-3" class="menu-item">
+                    <a title="Submit Opportunity" href="/project/submit" class="menu-item">Submit
+                        Opportunity</a>
+                </li>
+                <li id="menu-item-4" class="menu-item">
+                    <a title="Success Stories"
+                       href="https://sustainabilityconnect.dev.gios.asu.edu/news/sustainability-connect-successes/"
+                       class="menu-item">Success Stories</a>
+                </li>
+                <li id="menu-item-5" class="menu-item">
+                    <a title="News" href="https://sustainabilityconnect.dev.gios.asu.edu/news/sustainability-connect-news/"
+                       class="menu-item">News</a>
+                </li>
+                <li id="menu-item-6" class="menu-item menu-item-has-children dropdown">
+                    <a title="About" href="https://sustainabilityconnect.dev.gios.asu.edu/about/" data-toggle="dropdown" class="menu-item" aria-haspopup="true">About <span class="caret"></span></a>
+                    <ul role="menu" class=" dropdown-menu">
+                        <li id="menu-item-7" class="menu-item">
+                            <a
+                                title="About Us" href="https://sustainabilityconnect.dev.gios.asu.edu/about/"
+                                class="menu-item">About Us</a>
+                        </li>
+                        <li id="menu-item-8" class="menu-item">
+                            <a
+                                title="Contact Us" href="https://sustainabilityconnect.dev.gios.asu.edu/about/contact-us/"
+                                class="menu-item">Contact Us</a>
+                        </li>
+                        <li id="menu-item-9" class="menu-item">
+                            <a
+                                title="Programs &amp; Partners"
+                                href="https://sustainabilityconnect.dev.gios.asu.edu/about/programs-partners/"
+                                class="menu-item">Programs &amp;
+                                Partners</a>
+                        </li>
+                        <li id="menu-item-10" class="menu-item">
+                            <a
+                                title="Types of Opportunities"
+                                href="https://sustainabilityconnect.dev.gios.asu.edu/about/types-of-opportunities/"
+                                class="menu-item">Types of Opportunities</a>
+                        </li>
+                        <li id="menu-item-11" class="menu-item">
+                            <a
+                                title="Why Work With Us"
+                                href="https://sustainabilityconnect.dev.gios.asu.edu/about/why-work-with-us/"
+                                class="menu-item">Why Work With Us</a>
+                        </li>
+                        <li id="menu-item-12" class="menu-item"><a
+                                title="Resources" href="https://sustainabilityconnect.dev.gios.asu.edu/about/resources/"
+                                class="menu-item">Resources</a>
+                        </li>
+                        <li id="menu-item-13" class="menu-item">
+                            <a title="FAQ"
+                               href="https://sustainabilityconnect.dev.gios.asu.edu/about/faq/"
+                               class="menu-item">FAQ</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="menu-item-14" class="menu-item">
+                    <a title="Sign In" href="/projects" class="menu-item">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.navbar-collapse -->
 </nav>

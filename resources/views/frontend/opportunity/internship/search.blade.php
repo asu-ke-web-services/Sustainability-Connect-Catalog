@@ -1,4 +1,4 @@
-@extends('frontend.layouts.search_app')
+@extends('frontend.layouts.app')
 
 @section('content')
     <noscript>

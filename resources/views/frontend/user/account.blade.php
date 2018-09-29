@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<div class="container">
     <div class="row justify-content-center align-items-center mb-3">
         <div class="col col-sm-10 align-self-center">
             <div class="card">
@@ -48,4 +49,5 @@
             </div><!-- card -->
         </div><!-- col-xs-12 -->
     </div><!-- row -->
+</div>
 @endsection

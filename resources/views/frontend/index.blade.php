@@ -3,6 +3,7 @@
 @section('title', app_name() . ' | '.__('navs.general.home'))
 
 @section('content')
+<div class="container">
     <div class="row mb-4">
         <div class="col">
             <div class="card">
@@ -22,5 +23,5 @@
             </div><!--card-->
         </div><!--col-->
     </div><!--row-->
-
+</div>
 @endsection

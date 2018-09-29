@@ -3,6 +3,7 @@
 @section ('title', app_name() . ' | '. __('labels.backend.opportunity.projects.management'))
 
 @section('content')
+<div class="container">
 <div class="card">
     <div class="card-body">
         <div class="row">
@@ -91,4 +92,5 @@
         </div><!--row-->
     </div><!--card-body-->
 </div><!--card-->
+<div class="container">
 @endsection

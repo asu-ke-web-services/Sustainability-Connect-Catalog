@@ -3,6 +3,7 @@
 @section ('title', __('labels.frontend.opportunity.projects.proposal') . ' | ' . __('labels.frontend.opportunity.projects.submit_opportunity'))
 
 @section('content')
+<div class="container">
 {{ html()->form('POST', route('admin.opportunity.project.store'))->class('form-horizontal')->open() }}
 
     <div class="card">
@@ -36,4 +37,5 @@
     </div><!--card-->
 
 {{ html()->form()->close() }}
+</div>
 @endsection

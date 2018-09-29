@@ -3,6 +3,7 @@
 @section('title', app_name() . ' | '.__('labels.frontend.passwords.reset_password_box_title'))
 
 @section('content')
+<div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col col-sm-6 align-self-center">
             <div class="card">
@@ -48,4 +49,5 @@
             </div><!-- card -->
         </div><!-- col-6 -->
     </div><!-- row -->
+</div>
 @endsection

@@ -88,10 +88,8 @@
                 <div id="main-wrapper" class="clearfix">
                     <div class="clearfix">
                         <div id="content" class="site-content">
-                            <div class="container">
-                                @include('includes.partials.messages')
-                                @yield('content')
-                            </div><!-- container -->
+                            @include('includes.partials.messages')
+                            @yield('content')
                         </div>
                     </div><!-- #main -->
                 </div><!-- #main-wrapper -->

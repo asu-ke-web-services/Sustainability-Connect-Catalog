@@ -8,9 +8,9 @@ import { Sidebar } from './Sidebar';
 export class SearchPage extends Component {
   render() {
     return (
-      <div id="outer-container" style={{ height: '100%' }}>
+      <div id="outer-container">
         <Sidebar indexName={this.props.indexName} />
-        <Grid id="page-wrap">
+        <Grid id="page-wrap" >
           <Header />
           <hr />
           <Row>

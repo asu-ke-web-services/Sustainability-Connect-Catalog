@@ -229,7 +229,7 @@ return [
         'Active' => HieuLe\Active\Facades\Active::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'Cas' => Subfission\Cas\Facades\Cas::class,
     ],
 
 ];

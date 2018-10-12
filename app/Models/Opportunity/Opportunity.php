@@ -258,13 +258,13 @@ class Opportunity extends Model
             return $query->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
                 4, // Recruiting Participants
+                5, // Positions Filled
                 6, // In Progress
             ]);
         } else {
             // Closed or archived
             return $query->whereIn('opportunity_status_id', [
                 2, // Archived/Closed
-                5, // Positions Filled
                 7, // Completed
             ]);
         }

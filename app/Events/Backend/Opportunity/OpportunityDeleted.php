@@ -9,22 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity\Project;
+use SCCatalog\Models\Opportunity\Opportunity;
 
-class ProjectDeleted
+class OpportunityDeleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $project;
+    public $opportunity;
 
     /**
      * Create a new event instance.
      *
-     * @param Project $project
+     * @param Opportunity $opportunity
      */
-    public function __construct(Project $project)
+    public function __construct(Opportunity $opportunity)
     {
-        $this->project = $project;
+        $this->opportunity = $opportunity;
     }
 
     /**

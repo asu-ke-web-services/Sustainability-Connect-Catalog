@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events\Opportunity;
+namespace SCCatalog\Events\Backend\Opportunity;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,22 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity\Internship;
+use SCCatalog\Models\Opportunity\Opportunity;
 
-class InternshipDeleted
+class OpportunityUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $internship;
+    public $opportunity;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Opportunity $opportunity
      */
-    public function __construct(Internship $internship)
+    public function __construct(Opportunity $opportunity)
     {
-        $this->internship = $internship;
+        $this->opportunity = $opportunity;
     }
 
     /**

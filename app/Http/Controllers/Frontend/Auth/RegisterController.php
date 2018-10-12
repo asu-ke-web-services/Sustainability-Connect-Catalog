@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use SCCatalog\Events\Frontend\Auth\UserRegistered;
 use SCCatalog\Helpers\Frontend\Auth\Socialite;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\RegisterRequest;
+use SCCatalog\Http\Requests\Frontend\Auth\RegisterRequest;
 use SCCatalog\Repositories\Frontend\Auth\UserRepository;
 
 /**

@@ -4,6 +4,7 @@ use Faker\Generator;
 use Illuminate\Support\Carbon;
 use Webpatser\Uuid\Uuid;
 use SCCatalog\Models\Opportunity\Opportunity;
+use SCCatalog\Models\Opportunity\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,42 +19,12 @@ use SCCatalog\Models\Opportunity\Opportunity;
 
 $factory->define(Opportunity::class, function (Generator $faker) {
     return [
-        'name' => $faker->words(3, true),
-        'public_name' => $faker->words(3, true),
-        'start_date' => Carbon::yesterday(),
-        'end_date' => Carbon::tomorrow(),
-        'listing_start_date' => Carbon::yesterday(),
-        'listing_end_date' => Carbon::now(),
-        'application_deadline' => Carbon::now(),
-        'application_deadline_text' => 'Ongoing',
-        'opportunity_status_id' => $faker->numberBetween(1, 7),
-        'is_hidden' => false,
-        'description' => $faker->words(4, true),
-        'summary' => $faker->words(4, true),
-        'follower_count' => $faker->numberBetween(0, 10),
-        'parent_opportunity_id' => null,
-        'organization_id' => 1,
-        'supervisor_user_id' => 1,
-        'submitting_user_id' => 1,
-        'opportunityable' => [
-            'review_status_id' => '1',
-            'degree_program' => 'School of Sustainability',
-            'compensation' => 'Lorem compensation',
-            'responsiblities' => 'Lorem responsiblities',
-            'learning_outcomes' => 'Lorem learning outcomes',
-            'sustainability_outcomes' => 'Lorem sustainability outcomes',
-            'qualifications' => 'Lorem qualifications',
-            'application_instructions' => 'Lorem application instructions',
-            'implementation_paths' => 'Lorem implementation',
-            'budget_type_id' => '3',
-            'budget_amount' => 'Lorem budget notes',
-            'program_lead' => 'Lorem program lead',
-            'success_story' => 'https://example.test',
-            'library_collection' => 'https://example.test',
-        ]
+        'name'                  => $faker->words(3, true),
+        'opportunity_status_id' => 4,
+        'is_hidden'             => false,
+        'description'           => $faker->words(4, true)
     ];
 });
-
 
 $factory->state(Opportunity::class, 'hidden', function () {
     return [
@@ -63,13 +34,13 @@ $factory->state(Opportunity::class, 'hidden', function () {
 
 $factory->state(Opportunity::class, 'active', function () {
     return [
-        'active' => 1,
+        'opportunity_status_id' => $faker->numberBetween(3, 6),
     ];
 });
 
 $factory->state(Opportunity::class, 'closed', function () {
     return [
-        'active' => 0,
+        'opportunity_status_id' => 7,
     ];
 });
 

@@ -127,8 +127,6 @@ class ProjectController extends Controller
             'addresses'
         ));
 
-        event(new ProjectCreated($project));
-
         return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project created successfully'));
     }
@@ -256,8 +254,6 @@ class ProjectController extends Controller
             'keywords',
             'addresses'
         ));
-
-        event(new ProjectUpdated($project));
 
         return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project updated successfully'));

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Notification;
 use SCCatalog\Events\Backend\Auth\User\UserCreated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use Webpatser\Uuid\Uuid;
 
 class CreateUserTest extends TestCase
 {
@@ -42,6 +43,7 @@ class CreateUserTest extends TestCase
         factory(User::class)->create(['email' => 'john@example.com']);
 
         $response = $this->post('/admin/auth/user', [
+                'uuid'      => Uuid::generate(4)->string,
                 'first_name' => 'John',
                 'last_name' => 'Doe',
                 'email' => 'john@example.com',

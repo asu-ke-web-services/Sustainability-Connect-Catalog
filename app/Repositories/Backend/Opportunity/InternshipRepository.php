@@ -3,13 +3,16 @@
 namespace SCCatalog\Repositories\Backend\Opportunity;
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
+use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Events\Backend\Opportunity\OpportunityCreated;
+use SCCatalog\Events\Backend\Opportunity\OpportunityUpdated;
 use SCCatalog\Models\Address\Address;
 use SCCatalog\Models\Lookup\Affiliation;
 use SCCatalog\Models\Lookup\Category;
 use SCCatalog\Models\Lookup\Keyword;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
-use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class InternshipRepository
@@ -77,37 +80,52 @@ class InternshipRepository extends OpportunityRepository
      */
     public function create(array $data)
     {
-        BaseRepository::unsetClauses();
+        return DB::transaction(function () use ($data) {
 
-        // Create child internship record
-        $internship = Internship::create($data['opportunityable']);
-        // Create base opportunity record
-        $opportunity = $this->model->create($data);
-        // Link internship to opportunity
-        $internship->opportunity()->save($opportunity);
+            // Create child internship record
+            $internship = Internship::create($data['opportunityable']);
+            // Create base opportunity record
+            $opportunity = $this->model->create($data);
+            // Link internship to opportunity
+            $internship->opportunity()->save($opportunity);
 
-        // sync Addresses
-        foreach ($data['addresses'] as $address) {
-            $newAddress = Address::create($address);
-            $opportunity->addresses()->attach($newAddress);
-        }
+            if ($opportunity) {
+                // sync Addresses
+                if ( isset($data['addresses'] ) ) {
+                    foreach ($data['addresses'] as $address) {
+                        $newAddress = Address::create($address);
+                        $opportunity->addresses()->attach($newAddress);
+                    }
+                }
 
-        // sync Affiliations
-        foreach ($data['affiliations'] as $affiliation) {
-            $opportunity->affiliations()->attach($affiliation);
-        }
+                // sync Affiliations
+                if ( isset($data['addresses'] ) ) {
+                    foreach ($data['affiliations'] as $affiliation) {
+                        $opportunity->affiliations()->attach($affiliation);
+                    }
+                }
 
-        // sync Categories
-        foreach ($data['categories'] as $category) {
-            $opportunity->categories()->attach($category);
-        }
+                // sync Categories
+                if ( isset($data['addresses'] ) ) {
+                    foreach ($data['categories'] as $category) {
+                        $opportunity->categories()->attach($category);
+                    }
+                }
 
-        // sync Keywords
-        foreach ($data['keywords'] as $keyword) {
-            $opportunity->keywords()->attach($keyword);
-        }
+                // sync Keywords
+                if ( isset($data['addresses'] ) ) {
+                    foreach ($data['keywords'] as $keyword) {
+                        $opportunity->keywords()->attach($keyword);
+                    }
+                }
 
-        return $opportunity;
+                event(new OpportunityCreated($opportunity));
+
+                return $opportunity;
+            }
+
+            throw new GeneralException(__('exceptions.backend.opportunity.projects.create_error'));
+        });
     }
 
     /**
@@ -119,34 +137,51 @@ class InternshipRepository extends OpportunityRepository
      */
     public function update($id, array $data)
     {
-        BaseRepository::unsetClauses();
+        $opportunity = $this->model
+            ->with([
+                'opportunityable',
+                'addresses',
+                'affiliations',
+                'categories',
+                'keywords',
+            ])
+            ->find($id)->first();
 
-        $opportunity = BaseRepository::getById($id);
+        return DB::transaction(function () use ($opportunity, $data) {
+            // Update opportunity base record
+            if ($opportunity->update($data)) {
+                // sync Addresses
+                if ( isset($data['addresses'] ) ) {
+                    $addresses = [];
+                    foreach ($data['addresses'] as $address) {
+                        $addresses[] = Address::firstOrCreate($address);
+                    }
+                    $addressIds = array_map(function($address) { return $address->id; }, $addresses);
+                    $opportunity->addresses()->sync($addressIds);
+                }
 
-        // Update internship record
-        $opportunity->opportunityable()->update($data['opportunityable']);
+                // sync Affiliations
+                if ( isset($data['addresses'] ) ) {
+                    $opportunity->affiliations()->sync($data['affiliations']);
+                }
 
-        // Update opportunity base record
-        $opportunity->update($data);
+                // sync Categories
+                if ( isset($data['addresses'] ) ) {
+                    $opportunity->categories()->sync($data['categories']);
+                }
 
-        // sync Addresses
-        $addresses = [];
-        foreach ($data['addresses'] as $address) {
-            $addresses[] = Address::firstOrCreate($address);
-        }
-        $addressIds = array_map(function($address) { return $address->id; }, $addresses);
-        $opportunity->addresses()->sync($addressIds);
+                // sync Keywords
+                if ( isset($data['addresses'] ) ) {
+                    $opportunity->keywords()->sync($data['keywords']);
+                }
 
-        // sync Affiliations
-        $opportunity->affiliations()->sync($data['affiliations']);
+                event(new OpportunityUpdated($opportunity));
 
-        // sync Categories
-        $opportunity->categories()->attach($data['categories']);
-
-        // sync Keywords
-        $opportunity->keywords()->attach($data['keywords']);
-
-        return $opportunity;
+                return $opportunity;
+            }
+            
+            throw new GeneralException(__('exceptions.backend.opportunity.projects.update_error'));
+        });
     }
 
 }

@@ -16,8 +16,14 @@ use SCCatalog\Models\Lookup\OpportunityType;
 
 $factory->define(OpportunityType::class, function (Generator $faker) {
     return [
-        'order'               => $faker->numberBetween(1, 2),
-        'name'                => $faker->words(3, true),
+        'order'               => 1,
+        'name'                => 'Project',
+    ];
+});
+
+$factory->state(OpportunityType::class, 'project', function () {
+    return [
+        'opportunity_type_id' => 1,
     ];
 });
 

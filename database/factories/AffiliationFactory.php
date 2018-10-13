@@ -16,10 +16,28 @@ use SCCatalog\Models\Lookup\Affiliation;
 
 $factory->define(Affiliation::class, function (Generator $faker) {
     return [
-        'opportunity_type_id' => '1',
-        'order'               => $faker->numberBetween(1, 2),
-        'name'                => $faker->words(3, true),
-        'access_control'      => $faker->boolean(20),
+        'opportunity_type_id' => 1,
+        'order'               => 1,
+        'name'                => 'undergraduate',
+        'access_control'      => 0,
+    ];
+});
+
+$factory->state(Affiliation::class, 'project', function () {
+    return [
+        'opportunity_type_id' => 1,
+    ];
+});
+
+$factory->state(Affiliation::class, 'internship', function () {
+    return [
+        'opportunity_type_id' => 2,
+    ];
+});
+
+$factory->state(Affiliation::class, 'access_restricted', function () {
+    return [
+        'access_control' => 1,
     ];
 });
 

@@ -44,10 +44,6 @@ class UpdateUserTest extends TestCase
         $user = factory(User::class)->create();
         Event::fake();
 
-        $this->assertNotEquals('John', $user->first_name);
-        $this->assertNotEquals('Doe', $user->last_name);
-        $this->assertNotEquals('john@example.com', $user->email);
-
         $this->patch("/admin/auth/user/{$user->id}", [
             'first_name' => 'John',
             'last_name' => 'Doe',

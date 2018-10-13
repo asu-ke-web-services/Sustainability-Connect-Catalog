@@ -13,7 +13,6 @@ use SCCatalog\Models\Lookup\Category;
 use SCCatalog\Models\Lookup\Keyword;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
-use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class ProjectRepository

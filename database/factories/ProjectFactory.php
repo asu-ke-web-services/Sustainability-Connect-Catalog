@@ -1,9 +1,6 @@
 <?php
 
 use Faker\Generator;
-use Illuminate\Support\Carbon;
-use Webpatser\Uuid\Uuid;
-use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Models\Opportunity\Project;
 
 /*

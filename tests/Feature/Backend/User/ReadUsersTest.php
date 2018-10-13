@@ -4,6 +4,7 @@ namespace Tests\Feature\Backend\User;
 
 use Tests\TestCase;
 use SCCatalog\Models\Auth\User;
+use SCCatalog\Models\Lookup\UserType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReadUsersTest extends TestCase
@@ -23,8 +24,10 @@ class ReadUsersTest extends TestCase
     /** @test */
     public function an_admin_can_view_single_user_page()
     {
+
         $this->loginAsAdmin();
-        $user = factory(User::class)->create();
+        factory(UserType::class)->create();
+        $user = factory(User::class)->states('student')->create();
 
         $response = $this->get("/admin/auth/user/{$user->id}");
 

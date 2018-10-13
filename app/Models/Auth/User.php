@@ -90,6 +90,32 @@ class User extends Authenticatable
         'confirmed' => 'boolean',
     ];
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function organization()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class)->withDefault();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function userType()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class, 'user_type_id')->withDefault();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function studentDegreeLevel()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class)->withDefault();
+    }
+
+
     public function shouldBeSearchable()
     {
         return false;

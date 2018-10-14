@@ -29,7 +29,8 @@
     "spatie/laravel-sluggable": "^2.1",
     "torann/geoip": "^1.0",
     "venturecraft/revisionable": "1.*",
-    "webpatser/laravel-uuid": "^3.0"
+    "webpatser/laravel-uuid": "^3.0",
+    "ext-json": "*"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.0",

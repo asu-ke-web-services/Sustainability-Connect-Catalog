@@ -29,42 +29,6 @@ class ProjectRepositoryTest extends TestCase
         $this->projectRepository = $this->app->make(ProjectRepository::class);
     }
 
-    protected function getValidProjectData($projectData = [])
-    {
-        return array_merge([
-            'name' => 'Test Project',
-            'name' => 'Public Test Project',
-            'start_date' => '2018-10-01',
-            'end_date' => '2018-12-01',
-            'listing_start_date' => '2018-08-01',
-            'listing_end_date' => '2018-09-30',
-            'application_deadline' => '2018-10-01',
-            'opportunity_status_id' => 5,
-            'is_hidden' => false,
-            'description' => 'Lorem ipsum',
-            'parent_opportunity_id' => null,
-            'organization_id' => 1,
-            'supervisor_user_id' => 1,
-            'submitting_user_id' => 1,
-            'opportunityable' => [
-                'review_status_id' => 1,
-                'degree_program' => 'School of Sustainability',
-                'compensation' => 'Lorem compensation',
-                'responsiblities' => 'Lorem responsiblities',
-                'learning_outcomes' => 'Lorem learning outcomes',
-                'sustainability_outcomes' => 'Lorem sustainability outcomes',
-                'qualifications' => 'Lorem qualifications',
-                'application_instructions' => 'Lorem application instructions',
-                'implementation_paths' => 'Lorem implementation',
-                'budget_type_id' => '3',
-                'budget_amount' => 'Lorem budget notes',
-                'program_lead' => 'Lorem program lead',
-                'success_story' => 'https://example.test',
-                'library_collection' => 'https://example.test',
-            ]
-        ], $projectData);
-    }
-
     /** @test */
     public function it_can_paginate_the_active_projects()
     {
@@ -90,7 +54,7 @@ class ProjectRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_paginate_the_closed_opportunities()
+    public function it_can_paginate_the_closed_projects()
     {
         factory(Project::class, 30)
             ->create()
@@ -122,7 +86,7 @@ class ProjectRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_paginate_the_soft_deleted_opportunities()
+    public function it_can_paginate_the_soft_deleted_projects()
     {
         factory(Project::class, 30)
             ->create()
@@ -151,43 +115,5 @@ class ProjectRepositoryTest extends TestCase
         $this->assertEquals(3, $paginatedProjects->lastPage());
         $this->assertEquals(10, $paginatedProjects->perPage());
         $this->assertEquals(25, $paginatedProjects->total());
-    }
-
-    /** @test */
-    public function it_can_create_new_opportunities()
-    {
-        $initialDispatcher = Event::getFacadeRoot();
-        Event::fake();
-        Model::setEventDispatcher($initialDispatcher);
-
-        $this->assertEquals(0, Opportunity::count());
-
-        $this->projectRepository->create($this->getValidProjectData());
-
-        $this->assertEquals(1, Opportunity::count());
-
-        Event::assertDispatched(OpportunityCreated::class);
-    }
-
-    /** @test */
-    public function it_can_update_existing_opportunities()
-    {
-        $initialDispatcher = Event::getFacadeRoot();
-        Event::fake();
-        Model::setEventDispatcher($initialDispatcher);
-        // We need at least one role to create a opportunity
-        $opportunity = factory(Opportunity::class)->create();
-
-        $this->projectRepository->update($opportunity, $this->getValidProjectData([
-            'name'                  => 'updated name',
-            'description'           => 'updated description',
-            'opportunity_status_id' => 3,
-        ]));
-
-        $this->assertEquals('updated name', $opportunity->fresh()->name);
-        $this->assertEquals('updated description', $opportunity->fresh()->description);
-        $this->assertEquals(3, $opportunity->fresh()->opportunity_status_id);
-
-        Event::assertDispatched(OpportunityUpdated::class);
     }
 }

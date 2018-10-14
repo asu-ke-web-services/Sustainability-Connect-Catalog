@@ -29,34 +29,6 @@ class InternshipRepositoryTest extends TestCase
         $this->internshipRepository = $this->app->make(InternshipRepository::class);
     }
 
-    protected function getValidInternshipData($internshipData = [])
-    {
-        return array_merge([
-            'name' => 'Test Internship',
-            'name' => 'Public Test Internship',
-            'start_date' => '2018-10-01',
-            'end_date' => '2018-12-01',
-            'listing_start_date' => '2018-08-01',
-            'listing_end_date' => '2018-09-30',
-            'application_deadline' => '2018-10-01',
-            'opportunity_status_id' => 5,
-            'is_hidden' => false,
-            'description' => 'Lorem ipsum',
-            'parent_opportunity_id' => null,
-            'organization_id' => 1,
-            'supervisor_user_id' => 1,
-            'submitting_user_id' => 1,
-            'opportunityable' => [
-                'degree_program' => 'School of Sustainability',
-                'compensation' => 'Lorem compensation',
-                'responsiblities' => 'Lorem responsiblities',
-                'qualifications' => 'Lorem qualifications',
-                'application_instructions' => 'Lorem application instructions',
-                'success_story' => 'https://example.test',
-            ]
-        ], $internshipData);
-    }
-
     /** @test */
     public function it_can_paginate_the_active_internships()
     {
@@ -82,7 +54,7 @@ class InternshipRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_paginate_the_closed_opportunities()
+    public function it_can_paginate_the_closed_internships()
     {
         factory(Internship::class, 30)
             ->create()
@@ -114,7 +86,7 @@ class InternshipRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_paginate_the_soft_deleted_opportunities()
+    public function it_can_paginate_the_soft_deleted_internships()
     {
         factory(Internship::class, 30)
             ->create()
@@ -143,43 +115,5 @@ class InternshipRepositoryTest extends TestCase
         $this->assertEquals(3, $paginatedInternships->lastPage());
         $this->assertEquals(10, $paginatedInternships->perPage());
         $this->assertEquals(25, $paginatedInternships->total());
-    }
-
-    /** @test */
-    public function it_can_create_new_opportunities()
-    {
-        $initialDispatcher = Event::getFacadeRoot();
-        Event::fake();
-        Model::setEventDispatcher($initialDispatcher);
-
-        $this->assertEquals(0, Opportunity::count());
-
-        $this->internshipRepository->create($this->getValidInternshipData());
-
-        $this->assertEquals(1, Opportunity::count());
-
-        Event::assertDispatched(OpportunityCreated::class);
-    }
-
-    /** @test */
-    public function it_can_update_existing_opportunities()
-    {
-        $initialDispatcher = Event::getFacadeRoot();
-        Event::fake();
-        Model::setEventDispatcher($initialDispatcher);
-        // We need at least one role to create a opportunity
-        $opportunity = factory(Opportunity::class)->create();
-
-        $this->internshipRepository->update($opportunity, $this->getValidInternshipData([
-            'name'                  => 'updated name',
-            'description'           => 'updated description',
-            'opportunity_status_id' => 3,
-        ]));
-
-        $this->assertEquals('updated name', $opportunity->fresh()->name);
-        $this->assertEquals('updated description', $opportunity->fresh()->description);
-        $this->assertEquals(3, $opportunity->fresh()->opportunity_status_id);
-
-        Event::assertDispatched(OpportunityUpdated::class);
     }
 }

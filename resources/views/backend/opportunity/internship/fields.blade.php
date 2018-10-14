@@ -2,6 +2,12 @@
             <div class="row mt-4">
                 <div class="col">
 
+                    <!-- Opportunity Type field -->
+                    @component('includes.components.form.hidden', [
+                        'name'  => 'opportunityable_type',
+                        'value' => 'SCCatalog\Models\Opportunity\Internship',
+                    ])@endcomponent
+
                     <!-- Project Name Field -->
                     @component('includes.components.form.input', [
                         'name'        => 'name',

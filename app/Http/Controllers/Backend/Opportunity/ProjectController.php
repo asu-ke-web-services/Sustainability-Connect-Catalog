@@ -135,29 +135,26 @@ class ProjectController extends Controller
      * Display the specified Project.
      *
      * @param ManageProjectRequest $request
-     * @param Project            $user
+     * @param Opportunity          $project
      *
      * @return \Illuminate\View\View
      */
-    public function show(ManageProjectRequest $request, $id)
+    public function show(ManageProjectRequest $request, Opportunity $project)
     {
-        $project = $this->projectRepository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'affiliations',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->getById($id);
+        $project->loadMissing(
+            'opportunityable',
+            'addresses',
+            'notes',
+            'status',
+            'parentOpportunity',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'affiliations',
+            'categories',
+            'keywords',
+            'users'
+        );
 
         return view('backend.opportunity.project.show')
             ->withProject($project);
@@ -176,7 +173,7 @@ class ProjectController extends Controller
      * @param OpportunityReviewStatusRepository $opportunityReviewStatusRepository
      * @param OrganizationRepository $organizationRepository
      * @param UserRepository $userRepository
-     * @param  int $id
+     * @param Opportunity $project
      *
      * @return \Illuminate\View\View
      */
@@ -191,26 +188,23 @@ class ProjectController extends Controller
             OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
             OrganizationRepository $organizationRepository,
             UserRepository $userRepository,
-            $id
+            Opportunity $project
     )
     {
-        $project = $this->projectRepository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'affiliations',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->getById($id);
+        $project->loadMissing(
+            'opportunityable',
+            'addresses',
+            'notes',
+            'status',
+            'parentOpportunity',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'affiliations',
+            'categories',
+            'keywords',
+            'users'
+        );
 
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
@@ -228,14 +222,14 @@ class ProjectController extends Controller
     /**
      * Update the specified Project in storage.
      *
-     * @param  int                 $id
+     * @param Opportunity $project
      * @param ProjectRequest $request
      *
      * @return \Illuminate\View\View
      */
-    public function update(UpdateProjectRequest $request, $id)
+    public function update(UpdateProjectRequest $request, Opportunity $project)
     {
-        $project = $this->projectRepository->update($id, $request->only(
+        $project = $this->projectRepository->update($project, $request->only(
             'name',
             'public_name',
             'description',
@@ -263,15 +257,14 @@ class ProjectController extends Controller
      * Remove the specified Project from storage.
      *
      * @param ManageProjectRequest $request
-     * @param  int                 $id
+     * @param Opportunity $project
      *
      * @return \Illuminate\View\View
      * @throws \Exception
      */
-    public function destroy(ManageProjectRequest $request, $id)
+    public function destroy(ManageProjectRequest $request, Opportunity $project)
     {
-        $project = $this->projectRepository->getById($id);
-        $this->projectRepository->deleteById($id);
+        $this->projectRepository->deleteById($project);
 
         event(new ProjectDeleted($project));
 

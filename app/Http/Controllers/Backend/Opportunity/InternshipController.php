@@ -57,12 +57,13 @@ class InternshipController extends Controller
      * Show the form for creating a new Internship.
      *
      * @param ManageInternshipRequest $request
-     * @param CategoryRepository          $categoryRepository
-     * @param KeywordRepository           $keywordRepository
-     * @param OpportunityRepository       $opportunityRepository
+     * @param AffiliationRepository $affiliationRepository
+     * @param CategoryRepository $categoryRepository
+     * @param KeywordRepository $keywordRepository
+     * @param OpportunityRepository $opportunityRepository
      * @param OpportunityStatusRepository $opportunityStatusRepository
-     * @param OrganizationRepository      $organizationRepository
-     * @param UserRepository              $userRepository
+     * @param OrganizationRepository $organizationRepository
+     * @param UserRepository $userRepository
      *
      * @return \Illuminate\View\View
      */
@@ -90,7 +91,7 @@ class InternshipController extends Controller
     /**
      * Store a newly created Internship in storage.
      *
-     * @param InternshipRequest $request
+     * @param StoreInternshipRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
@@ -126,28 +127,27 @@ class InternshipController extends Controller
      * Display the specified Internship.
      *
      * @param ManageInternshipRequest $request
-     * @param Internship            $user
+     * @param Opportunity $internship
      *
      * @return \Illuminate\View\View
      */
-    public function show(ManageInternshipRequest $request, $id)
+    public function show(ManageInternshipRequest $request, Opportunity $internship)
     {
-        $internship = $this->internshipRepository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->getById($id);
+        $internship->loadMissing(
+            'opportunityable',
+            'addresses',
+            'notes',
+            'status',
+            'parentOpportunity',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'affiliations',
+            'categories',
+            'keywords',
+            'followers',
+            'applicants'
+        );
 
         return view('backend.opportunity.internship.show')
             ->withInternship($internship);
@@ -156,7 +156,7 @@ class InternshipController extends Controller
     /**
      * Show the form for editing the specified Internship.
      *
-     * @param  int $id
+     * @param  Opportunity $internship
      *
      * @return \Illuminate\View\View
      */
@@ -169,26 +169,24 @@ class InternshipController extends Controller
             OpportunityStatusRepository $opportunityStatusRepository,
             OrganizationRepository $organizationRepository,
             UserRepository $userRepository,
-            $id
+            Opportunity $internship
     )
     {
-        $internship = $this->internshipRepository
-            ->with([
-                'opportunityable',
-                'addresses',
-                'notes',
-                'status',
-                'parentOpportunity',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'affiliations',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->getById($id);
+        $internship->loadMissing(
+            'opportunityable',
+            'addresses',
+            'notes',
+            'status',
+            'parentOpportunity',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'affiliations',
+            'categories',
+            'keywords',
+            'followers',
+            'applicants'
+        );
 
         return view('backend.opportunity.internship.edit')
             ->with('internship', $internship)
@@ -204,12 +202,12 @@ class InternshipController extends Controller
     /**
      * Update the specified Internship in storage.
      *
-     * @param  int                 $id
+     * @param Opportunity $internship
      * @param InternshipRequest $request
      *
      * @return \Illuminate\View\View
      */
-    public function update(UpdateInternshipRequest $request, $id)
+    public function update(UpdateInternshipRequest $request, Opportunity $internship)
     {
         $internship = $this->internshipRepository->updateById($internship->id, $request->only(
             'name',
@@ -240,11 +238,13 @@ class InternshipController extends Controller
     /**
      * Remove the specified Internship from storage.
      *
-     * @param  int $id
+     * @param ManageInternshipRequest $request
+     * @param Opportunity $internship
      *
      * @return \Illuminate\View\View
+     * @throws \Exception
      */
-    public function destroy(ManageInternshipRequest $request, $id)
+    public function destroy(ManageInternshipRequest $request, Opportunity $internship)
     {
         $internship = $this->internshipRepository->getById($id);
         $this->internshipRepository->deleteById($id);

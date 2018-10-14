@@ -175,12 +175,20 @@ class Opportunity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
+    public function users()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
+            ->using('\SCCatalog\Models\OpportunityUser');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
     public function activeMembers()
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
             ->using('\SCCatalog\Models\OpportunityUser')
-            ->wherePivotIn('relationship_type_id', [2,3,4,5])
-            ->wherePivot('pending', 0);
+            ->wherePivotIn('relationship_type_id', [2,3,4,5]);
     }
 
     /**
@@ -210,8 +218,17 @@ class Opportunity extends Model
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
             ->using('\SCCatalog\Models\OpportunityUser')
-            ->wherePivot('relationship_type_id', 3)
-            ->wherePivot('pending', 0);
+            ->wherePivot('relationship_type_id', 3);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function mentors()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
+            ->using('\SCCatalog\Models\OpportunityUser')
+            ->wherePivotIn('relationship_type_id', [4,5]);
     }
 
     /**

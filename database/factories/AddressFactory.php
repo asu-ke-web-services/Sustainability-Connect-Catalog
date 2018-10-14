@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\OrganizationStatus;
+use SCCatalog\Models\Address\Address;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,14 @@ use SCCatalog\Models\Lookup\OrganizationStatus;
 |
 */
 
-$factory->define(OrganizationStatus::class, function (Generator $faker) {
+$factory->define(Address::class, function (Generator $faker) {
     return [
-        'order' => 2,
-        'name'  => 'Active',
+        'city'  => 'Tempe',
+        'state' => 'AZ',
     ];
 });
 
-$factory->state(OrganizationStatus::class, 'softDeleted', function () {
+$factory->state(Address::class, 'softDeleted', function () {
     return [
         'deleted_at' => \Illuminate\Support\Carbon::now(),
     ];

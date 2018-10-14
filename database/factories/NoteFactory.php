@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\OrganizationStatus;
+use SCCatalog\Models\Note\Note;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,14 @@ use SCCatalog\Models\Lookup\OrganizationStatus;
 |
 */
 
-$factory->define(OrganizationStatus::class, function (Generator $faker) {
+$factory->define(Note::class, function (Generator $faker) {
     return [
-        'order' => 2,
-        'name'  => 'Active',
+		'order' => 1,
+		'body'  => 'Test note',
     ];
 });
 
-$factory->state(OrganizationStatus::class, 'softDeleted', function () {
+$factory->state(Note::class, 'softDeleted', function () {
     return [
         'deleted_at' => \Illuminate\Support\Carbon::now(),
     ];

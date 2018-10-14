@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\OrganizationStatus;
+use SCCatalog\Models\Attachment\Attachment;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,13 @@ use SCCatalog\Models\Lookup\OrganizationStatus;
 |
 */
 
-$factory->define(OrganizationStatus::class, function (Generator $faker) {
+$factory->define(Attachment::class, function (Generator $faker) {
     return [
-        'order' => 2,
-        'name'  => 'Active',
+        'status'  => 'Tempe',
     ];
 });
 
-$factory->state(OrganizationStatus::class, 'softDeleted', function () {
+$factory->state(Attachment::class, 'softDeleted', function () {
     return [
         'deleted_at' => \Illuminate\Support\Carbon::now(),
     ];

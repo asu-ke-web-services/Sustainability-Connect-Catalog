@@ -178,7 +178,8 @@ class Opportunity extends Model
     public function users()
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
-            ->using('\SCCatalog\Models\OpportunityUser');
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps();
     }
 
     /**
@@ -187,7 +188,8 @@ class Opportunity extends Model
     public function activeMembers()
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
-            ->using('\SCCatalog\Models\OpportunityUser')
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [2,3,4,5]);
     }
 
@@ -197,7 +199,8 @@ class Opportunity extends Model
     public function followers()
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user', 'opportunity_id', 'user_id')
-            ->using('\SCCatalog\Models\OpportunityUser')
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps()
             ->wherePivot('relationship_type_id', 1);
     }
 
@@ -207,7 +210,8 @@ class Opportunity extends Model
     public function applicants()
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
-            ->using('\SCCatalog\Models\OpportunityUser')
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps()
             ->wherePivot('relationship_type_id', 2);
     }
 
@@ -217,7 +221,8 @@ class Opportunity extends Model
     public function participants()
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
-            ->using('\SCCatalog\Models\OpportunityUser')
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps()
             ->wherePivot('relationship_type_id', 3);
     }
 
@@ -227,7 +232,8 @@ class Opportunity extends Model
     public function mentors()
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'opportunity_user')
-            ->using('\SCCatalog\Models\OpportunityUser')
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [4,5]);
     }
 

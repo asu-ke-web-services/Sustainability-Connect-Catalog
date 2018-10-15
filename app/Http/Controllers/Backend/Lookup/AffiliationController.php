@@ -80,7 +80,8 @@ class AffiliationController extends Controller
      * Show the form for editing the specified Affiliation.
      *
      * @param ManageLookupRequest $request
-     * @param int                 $id
+     * @param OpportunityTypeRepository $opportunityTypeRepository
+     * @param int $id
      *
      * @return mixed
      */

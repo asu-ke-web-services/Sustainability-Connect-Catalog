@@ -51,7 +51,6 @@ class InternshipStatusController extends Controller
      * @param int                     $deletedInternshipId
      *
      * @return mixed
-     * @throws \SCCatalog\Exceptions\GeneralException
      * @throws \Throwable
      */
     public function delete(ManageInternshipRequest $request, $deletedInternshipId)
@@ -66,7 +65,6 @@ class InternshipStatusController extends Controller
      * @param int                     $deletedInternshipId
      *
      * @return mixed
-     * @throws \SCCatalog\Exceptions\GeneralException
      */
     public function restore(ManageInternshipRequest $request, $deletedInternshipId)
     {

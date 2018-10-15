@@ -27,6 +27,7 @@ class RoleRepository extends BaseRepository
      *
      * @return Role
      * @throws GeneralException
+     * @throws \Throwable
      */
     public function create(array $data) : Role
     {

@@ -120,9 +120,11 @@ class UserTypeController extends Controller
     /**
      * Remove the specified UserType from storage.
      *
+     * @param ManageLookupRequest $request
      * @param  int $id
      *
      * @return \Illuminate\View\View
+     * @throws \Exception
      */
     public function destroy(ManageLookupRequest $request, $id)
     {

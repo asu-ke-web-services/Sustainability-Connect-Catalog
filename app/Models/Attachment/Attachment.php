@@ -30,6 +30,8 @@ class Attachment extends Model implements HasMedia
     ];
 
     public $fillable = [
+        'opportunity_id',
+        'user_id',
         'status',
         'comments',
     ];

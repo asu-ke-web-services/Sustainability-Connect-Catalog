@@ -2,17 +2,12 @@
 
 namespace SCCatalog\Repositories\Backend\Opportunity;
 
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Events\Backend\Opportunity\OpportunityCreated;
 use SCCatalog\Events\Backend\Opportunity\OpportunityUpdated;
 use SCCatalog\Events\Backend\Opportunity\OpportunityCloned;
-use SCCatalog\Events\Backend\Opportunity\OpportunityDeleted;
 use SCCatalog\Models\Address\Address;
-use SCCatalog\Models\Lookup\Affiliation;
-use SCCatalog\Models\Lookup\Category;
-use SCCatalog\Models\Lookup\Keyword;
 use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Repositories\BaseRepository;
 
@@ -80,21 +75,21 @@ class OpportunityRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                if ( isset($data['addresses'] ) ) {
+                if ( isset($data['affiliations'] ) ) {
                     foreach ($data['affiliations'] as $affiliation) {
                         $opportunity->affiliations()->attach($affiliation);
                     }
                 }
 
                 // sync Categories
-                if ( isset($data['addresses'] ) ) {
+                if ( isset($data['categories'] ) ) {
                     foreach ($data['categories'] as $category) {
                         $opportunity->categories()->attach($category);
                     }
                 }
 
                 // sync Keywords
-                if ( isset($data['addresses'] ) ) {
+                if ( isset($data['keywords'] ) ) {
                     foreach ($data['keywords'] as $keyword) {
                         $opportunity->keywords()->attach($keyword);
                     }
@@ -105,16 +100,18 @@ class OpportunityRepository extends BaseRepository
                 return $opportunity;
             }
 
-            throw new GeneralException(__('exceptions.backend.opportunity.projects.create_error'));
+            throw new GeneralException(__('exceptions.backend.opportunity.create_error'));
         });
     }
 
     /**
      * Create a new Opportunity record in the database.
      *
+     * @param Opportunity $opportunity
      * @param array $data
      *
      * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Throwable
      */
     public function update(Opportunity $opportunity, array $data)
     {
@@ -141,17 +138,17 @@ class OpportunityRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                if ( isset($data['addresses'] ) ) {
+                if ( isset($data['affiliations'] ) ) {
                     $opportunity->affiliations()->sync($data['affiliations']);
                 }
 
                 // sync Categories
-                if ( isset($data['addresses'] ) ) {
+                if ( isset($data['categories'] ) ) {
                     $opportunity->categories()->sync($data['categories']);
                 }
 
                 // sync Keywords
-                if ( isset($data['addresses'] ) ) {
+                if ( isset($data['keywords'] ) ) {
                     $opportunity->keywords()->sync($data['keywords']);
                 }
 
@@ -160,7 +157,7 @@ class OpportunityRepository extends BaseRepository
                 return $opportunity;
             }
 
-            throw new GeneralException(__('exceptions.backend.opportunity.projects.update_error'));
+            throw new GeneralException(__('exceptions.backend.opportunity.update_error'));
         });
     }
 
@@ -233,7 +230,7 @@ class OpportunityRepository extends BaseRepository
                 return $clone;
             }
 
-            throw new GeneralException(__('exceptions.backend.opportunity.projects.clone_error'));
+            throw new GeneralException(__('exceptions.backend.opportunity.clone_error'));
         });
     }
 }

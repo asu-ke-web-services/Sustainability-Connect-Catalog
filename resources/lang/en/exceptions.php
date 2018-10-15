@@ -52,6 +52,19 @@ return [
                 'update_password_error' => 'There was a problem changing this users password. Please try again.',
             ],
         ],
+
+        'opportunity' => [
+            'create_error'      => 'There was a problem creating this opportunity. Please try again.',
+            'delete_error'      => 'There was a problem deleting this opportunity. Please try again.',
+            'not_found'         => 'That opportunity does not exist.',
+            'update_error'      => 'There was a problem updating this opportunity. Please try again.',
+
+            'users' => [
+                'attach_error'          => 'There was a problem attaching this user relationship. Please try again.',
+                'detach_error'          => 'There was a problem detaching this user relationship. Please try again.',
+                'update_error'          => 'There was a problem updating this user relationship. Please try again.',
+            ],
+        ],
     ],
 
     'frontend' => [

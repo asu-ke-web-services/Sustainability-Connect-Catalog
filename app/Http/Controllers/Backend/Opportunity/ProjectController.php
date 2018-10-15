@@ -3,14 +3,12 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
-use SCCatalog\Events\Backend\Opportunity\ProjectUpdated;
-use SCCatalog\Events\Backend\Opportunity\ProjectDeleted;
-use SCCatalog\Http\Requests\Backend\Opportunity\StoreProjectRequest;
+use SCCatalog\Events\Backend\Opportunity\OpportunityDeleted;
+use SCCatalog\Http\Requests\Backend\Opportunity\CreateProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\DeleteProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
-use SCCatalog\Http\Requests\Backend\Opportunity\ViewProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
+use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Repositories\Backend\Auth\UserRepository;
 use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
@@ -58,7 +56,7 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new Project.
      *
-     * @param ManageProjectRequest $request
+     * @param CreateProjectRequest $request
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
@@ -72,7 +70,7 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-            ManageProjectRequest $request,
+            CreateProjectRequest $request,
             AffiliationRepository $affiliationRepository,
             BudgetTypeRepository $budgetTypeRepository,
             CategoryRepository $categoryRepository,
@@ -99,12 +97,12 @@ class ProjectController extends Controller
     /**
      * Store a newly created Project in storage.
      *
-     * @param StoreProjectRequest $request
+     * @param CreateProjectRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(StoreProjectRequest $request)
+    public function store(CreateProjectRequest $request)
     {
         $project = $this->projectRepository->create($request->only(
             'name',
@@ -163,7 +161,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified Project.
      *
-     * @param ManageProjectRequest $request
+     * @param UpdateProjectRequest $request
      * @param AffiliationRepository $affiliationRepository
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param CategoryRepository $categoryRepository
@@ -178,17 +176,17 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit(
-            ManageProjectRequest $request,
-            AffiliationRepository $affiliationRepository,
-            BudgetTypeRepository $budgetTypeRepository,
-            CategoryRepository $categoryRepository,
-            KeywordRepository $keywordRepository,
-            OpportunityRepository $opportunityRepository,
-            OpportunityStatusRepository $opportunityStatusRepository,
-            OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
-            OrganizationRepository $organizationRepository,
-            UserRepository $userRepository,
-            Opportunity $project
+        UpdateProjectRequest $request,
+        AffiliationRepository $affiliationRepository,
+        BudgetTypeRepository $budgetTypeRepository,
+        CategoryRepository $categoryRepository,
+        KeywordRepository $keywordRepository,
+        OpportunityRepository $opportunityRepository,
+        OpportunityStatusRepository $opportunityStatusRepository,
+        OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
+        OrganizationRepository $organizationRepository,
+        UserRepository $userRepository,
+        Opportunity $project
     )
     {
         $project->loadMissing(
@@ -222,10 +220,11 @@ class ProjectController extends Controller
     /**
      * Update the specified Project in storage.
      *
-     * @param Opportunity $project
-     * @param ProjectRequest $request
+     * @param UpdateProjectRequest $request
      *
+     * @param Opportunity $project
      * @return \Illuminate\View\View
+     * @throws \Throwable
      */
     public function update(UpdateProjectRequest $request, Opportunity $project)
     {
@@ -256,17 +255,17 @@ class ProjectController extends Controller
     /**
      * Remove the specified Project from storage.
      *
-     * @param ManageProjectRequest $request
+     * @param DeleteProjectRequest $request
      * @param Opportunity $project
      *
      * @return \Illuminate\View\View
      * @throws \Exception
      */
-    public function destroy(ManageProjectRequest $request, Opportunity $project)
+    public function destroy(DeleteProjectRequest $request, Opportunity $project)
     {
         $this->projectRepository->deleteById($project);
 
-        event(new ProjectDeleted($project));
+        event(new OpportunityDeleted($project));
 
         return redirect()->route('admin.opportunity.project.index')
             ->withFlashSuccess('Project deleted successfully');

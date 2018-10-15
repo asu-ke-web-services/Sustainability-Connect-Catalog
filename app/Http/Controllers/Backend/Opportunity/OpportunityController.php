@@ -2,7 +2,10 @@
 
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
+use SCCatalog\Events\Backend\Opportunity\OpportunityCloned;
 use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Http\Requests\Backend\Opportunity\CloneOpportunityRequest;
+use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 
 /**
@@ -28,21 +31,18 @@ class OpportunityController extends Controller
     /**
      * Clone opportunity.
      *
-     * @param OpportunityRequest $request
-     * @param int $opportunityId
-     * @param int $userId
-     * @param int $relationshipId
+     * @param CloneOpportunityRequest $request
+     * @param Opportunity $opportunity
      * @return
+     * @throws \Throwable
      */
     public function clone(CloneOpportunityRequest $request, Opportunity $opportunity)
     {
         // $opportunity = $this->opportunityRepository->getById($opportunityId);
 
-        $opportunity = $this->participantRepository->clone($opportunity);
+        $opportunity = $this->opportunityRepository->clone($opportunity);
 
-        event(new OpportunityCloned(
-            $opportunity
-        ));
+        event(new OpportunityCloned($opportunity));
 
         return redirect()->route('admin.backend.opportunity.cloned')
             ->withFlashSuccess('Opportunity cloned successfully');

@@ -3,14 +3,12 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Events\Backend\Opportunity\InternshipCreated;
-use SCCatalog\Events\Backend\Opportunity\InternshipUpdated;
-use SCCatalog\Events\Backend\Opportunity\InternshipDeleted;
-use SCCatalog\Http\Requests\Backend\Opportunity\StoreInternshipRequest;
+use SCCatalog\Events\Backend\Opportunity\OpportunityDeleted;
+use SCCatalog\Http\Requests\Backend\Opportunity\CreateInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\DeleteInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateInternshipRequest;
-use SCCatalog\Http\Requests\Backend\Opportunity\ViewInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipRequest;
+use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Repositories\Backend\Auth\UserRepository;
 use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
@@ -56,7 +54,7 @@ class InternshipController extends Controller
     /**
      * Show the form for creating a new Internship.
      *
-     * @param ManageInternshipRequest $request
+     * @param CreateInternshipRequest $request
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
@@ -68,14 +66,14 @@ class InternshipController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-            ManageInternshipRequest $request,
-            AffiliationRepository $affiliationRepository,
-            CategoryRepository $categoryRepository,
-            KeywordRepository $keywordRepository,
-            OpportunityRepository $opportunityRepository,
-            OpportunityStatusRepository $opportunityStatusRepository,
-            OrganizationRepository $organizationRepository,
-            UserRepository $userRepository
+        CreateInternshipRequest $request,
+        AffiliationRepository $affiliationRepository,
+        CategoryRepository $categoryRepository,
+        KeywordRepository $keywordRepository,
+        OpportunityRepository $opportunityRepository,
+        OpportunityStatusRepository $opportunityStatusRepository,
+        OrganizationRepository $organizationRepository,
+        UserRepository $userRepository
     )
     {
         return view('backend.opportunity.internship.create')
@@ -91,12 +89,12 @@ class InternshipController extends Controller
     /**
      * Store a newly created Internship in storage.
      *
-     * @param StoreInternshipRequest $request
+     * @param CreateInternshipRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(StoreInternshipRequest $request)
+    public function store(CreateInternshipRequest $request)
     {
         $internship = $this->internshipRepository->create($request->only(
             'name',
@@ -105,6 +103,7 @@ class InternshipController extends Controller
             'listing_starts',
             'listing_ends',
             'application_deadline',
+            'opportunity_status_id',
             'start_date',
             'end_date',
             'organization_id',
@@ -116,8 +115,6 @@ class InternshipController extends Controller
             'keywords',
             'addresses'
         ));
-
-        event(new InternshipCreated($internship));
 
         return redirect()->route('admin.opportunity.internship.show', $internship)
             ->withFlashSuccess(__('Internship created successfully'));
@@ -145,8 +142,7 @@ class InternshipController extends Controller
             'affiliations',
             'categories',
             'keywords',
-            'followers',
-            'applicants'
+            'users'
         );
 
         return view('backend.opportunity.internship.show')
@@ -156,20 +152,28 @@ class InternshipController extends Controller
     /**
      * Show the form for editing the specified Internship.
      *
-     * @param  Opportunity $internship
+     * @param UpdateInternshipRequest $request
+     * @param AffiliationRepository $affiliationRepository
+     * @param CategoryRepository $categoryRepository
+     * @param KeywordRepository $keywordRepository
+     * @param OpportunityRepository $opportunityRepository
+     * @param OpportunityStatusRepository $opportunityStatusRepository
+     * @param OrganizationRepository $organizationRepository
+     * @param UserRepository $userRepository
+     * @param Opportunity $internship
      *
      * @return \Illuminate\View\View
      */
     public function edit(
-            ManageInternshipRequest $request,
-            AffiliationRepository $affiliationRepository,
-            CategoryRepository $categoryRepository,
-            KeywordRepository $keywordRepository,
-            OpportunityRepository $opportunityRepository,
-            OpportunityStatusRepository $opportunityStatusRepository,
-            OrganizationRepository $organizationRepository,
-            UserRepository $userRepository,
-            Opportunity $internship
+        UpdateInternshipRequest $request,
+        AffiliationRepository $affiliationRepository,
+        CategoryRepository $categoryRepository,
+        KeywordRepository $keywordRepository,
+        OpportunityRepository $opportunityRepository,
+        OpportunityStatusRepository $opportunityStatusRepository,
+        OrganizationRepository $organizationRepository,
+        UserRepository $userRepository,
+        Opportunity $internship
     )
     {
         $internship->loadMissing(
@@ -184,8 +188,7 @@ class InternshipController extends Controller
             'affiliations',
             'categories',
             'keywords',
-            'followers',
-            'applicants'
+            'users'
         );
 
         return view('backend.opportunity.internship.edit')
@@ -202,14 +205,15 @@ class InternshipController extends Controller
     /**
      * Update the specified Internship in storage.
      *
-     * @param Opportunity $internship
-     * @param InternshipRequest $request
+     * @param UpdateInternshipRequest $request
      *
+     * @param Opportunity $internship
      * @return \Illuminate\View\View
+     * @throws \Throwable
      */
     public function update(UpdateInternshipRequest $request, Opportunity $internship)
     {
-        $internship = $this->internshipRepository->updateById($internship->id, $request->only(
+        $internship = $this->internshipRepository->update($internship, $request->only(
             'name',
             'public_name',
             'description',
@@ -229,27 +233,24 @@ class InternshipController extends Controller
             'addresses'
         ));
 
-        event(new InternshipUpdated($internship));
-
-        return redirect()->route('admin.opportunity.internship.show', $project)
+        return redirect()->route('admin.opportunity.internship.show', $internship)
             ->withFlashSuccess(__('Internship updated successfully'));
     }
 
     /**
      * Remove the specified Internship from storage.
      *
-     * @param ManageInternshipRequest $request
+     * @param DeleteInternshipRequest $request
      * @param Opportunity $internship
      *
      * @return \Illuminate\View\View
      * @throws \Exception
      */
-    public function destroy(ManageInternshipRequest $request, Opportunity $internship)
+    public function destroy(DeleteInternshipRequest $request, Opportunity $internship)
     {
-        $internship = $this->internshipRepository->getById($id);
-        $this->internshipRepository->deleteById($id);
+        $this->internshipRepository->deleteById($internship);
 
-        event(new InternshipDeleted($internship));
+        event(new OpportunityDeleted($internship));
 
         return redirect()->route('admin.opportunity.internship.index')
             ->withFlashSuccess('Internship deleted successfully');

@@ -3,10 +3,11 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Backend\OpportunityUser\OpportunityUserRequest;
-use SCCatalog\Jobs\RemoveUserFromOpportunity;
+use SCCatalog\Http\Requests\Backend\OpportunityUser\ManageOpportunityUserRequest;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Lookup\RelationshipTypeRepository;
+use SCCatalog\Repositories\Backend\Opportunity\OpportunityUserRepository;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 
 /**
@@ -20,9 +21,9 @@ class OpportunityUserController extends Controller
     private $opportunityRepository;
 
     /**
-     * @var  RelationshipTypeRepository
+     * @var  OpportunityUserRepository
      */
-    private $relationshipRepository;
+    private $opportunityUserRepository;
 
     /**
      * @var  UserRepository
@@ -33,79 +34,90 @@ class OpportunityUserController extends Controller
      * OpportunityController constructor.
      *
      * @param OpportunityRepository $opportunityRepository
+     * @param OpportunityUserRepository $opportunityUserRepository
      * @param UserRepository $userRepository
-     * @param RelationshipTypeRepository $relationshipRepository
      */
-    public function __construct(OpportunityRepository $opportunityRepository, UserRepository $userRepository, RelationshipTypeRepository $relationshipRepository)
+    public function __construct(
+        OpportunityRepository $opportunityRepository,
+        OpportunityUserRepository $opportunityUserRepository,
+        UserRepository $userRepository
+    )
     {
         $this->opportunityRepository = $opportunityRepository;
-        $this->relationshipRepository = $relationshipRepository;
+        $this->opportunityUserRepository = $opportunityUserRepository;
         $this->userRepository = $userRepository;
+    }
+
+    /**
+     * Add user to Opportunity.
+     *
+     * @param ManageOpportunityUserRequest $request
+     * @param Opportunity $opportunity
+     * @param User $user
+     * @return
+     */
+    public function add(ManageOpportunityUserRequest $request, Opportunity $opportunity, User $user)
+    {
+        // $opportunity = $this->opportunityRepository->getById($request->input('opportunity_id'));
+        // $user = $this->userRepository->getById($request->input('user_id'));
+
+        $opportunity = $this->opportunityUserRepository->create(
+            $opportunity,
+            $user,
+            $request->only([
+                'relationship_type_id',
+                'comment',
+            ])
+        );
+
+        return redirect()->route('admin.backend.opportunity.user.added')
+            ->withFlashSuccess('User added successfully');
     }
 
     /**
      * Approve user's request to join Opportunity.
      *
      *
-     * @param OpportunityUserRequest $request
-     * @param int $opportunityId
-     * @param int $userId
-     * @param int $relationshipId
+     * @param ManageOpportunityUserRequest $request
+     * @param Opportunity $opportunity
+     * @param User $user
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Throwable
      */
-    public function approveRequestToJoin(OpportunityUserRequest $request, $opportunityId, $userId, $relationshipId)
+    public function update(ManageOpportunityUserRequest $request, Opportunity $opportunity, User $user)
     {
-        $opportunity = $this->opportunityRepository->getById($opportunityId);
-        $user = $this->userRepository->getById($userId);
-        $relationship = $this->relationshipRepository->getById($relationshipId);
+        $opportunity = $this->opportunityUserRepository->update(
+            $opportunity,
+            $user,
+            $request->only([
+                'relationship_type_id',
+                'comment',
+            ])
+        );
 
-        ApproveUserJoiningOpportunity::dispatch($opportunity, $user, $relationship);
-        event(new UserApprovedForOpportunity($opportunity, $user, $relationship));
-
-        return redirect()->route('admin.backend.opportunity.project.index')
+        return redirect()->route('admin.backend.opportunity.user.updated')
             ->withFlashSuccess('User approved successfully');
     }
 
     /**
-     * Add user to Opportunity.
+     * Remove user relationship from Opportunity.
      *
-     * @param OpportunityUserRequest $request
-     * @param int $opportunityId
-     * @param int $userId
-     * @param int $relationshipId
+     * @param ManageOpportunityUserRequest $request
+     * @param Opportunity $opportunity
+     * @param User $user
      * @return
      */
-    public function addUser(OpportunityUserRequest $request, $opportunityId, $userId, $relationshipId)
+    public function remove(ManageOpportunityUserRequest $request, Opportunity $opportunity, User $user)
     {
-        $opportunity = $this->opportunityRepository->getById($opportunityId);
-        $user = $this->userRepository->getById($userId);
-        $relationship = $this->relationshipRepository->getById($relationshipId);
-
-        AddUserToOpportunity::dispatch($opportunity, $user, $relationship);
-        event(new UserAddedToOpportunity($opportunity, $user, $relationship));
-
-        return redirect()->route('admin.backend.opportunity.project.index')
-            ->withFlashSuccess('User added successfully');
-    }
-
-    /**
-     * Remove user from Opportunity.
-     *
-     * @param OpportunityUserRequest $request
-     * @param int $opportunityId
-     * @param int $userId
-     * @return
-     */
-    public function removeUser(OpportunityUserRequest $request, $opportunityId, $userId)
-    {
-        $opportunity = $this->opportunityRepository->getById($opportunityId);
-        $user = $this->userRepository->getById($userId);
-
-        RemoveUserFromOpportunity::dispatch($opportunity, $user);
-        event(new UserRemovedFromOpportunity($opportunity, $user));
+        $opportunity = $this->opportunityUserRepository->delete(
+            $opportunity,
+            $user,
+            $request->only([
+                'relationship_type_id',
+            ])
+        );
 
         return redirect()->route('admin.backend.opportunity.project.index')
             ->withFlashSuccess('User removed successfully');
     }
-
 }

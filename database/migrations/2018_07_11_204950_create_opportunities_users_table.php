@@ -18,7 +18,6 @@ class CreateOpportunitiesUsersTable extends Migration
             $table->integer('opportunity_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('relationship_type_id')->unsigned();
-            $table->boolean('is_primary');
             $table->text('comments')->nullable();
             $table->timestamps();
             $table->softDeletes();

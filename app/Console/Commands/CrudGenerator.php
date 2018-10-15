@@ -66,6 +66,8 @@ class CrudGenerator extends Command
 
         File::append(base_path('routes/web.php'), PHP_EOL . "/* {$modelName} CRUD */" . PHP_EOL);
         File::append(base_path('routes/web.php'), 'Route::resource(\'' . strtolower($modelName) . "', '{$modelName}Controller');" . PHP_EOL);
+
+        return;
     }
 
     protected function getStub($type)

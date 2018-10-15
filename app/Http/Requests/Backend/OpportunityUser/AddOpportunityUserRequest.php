@@ -1,13 +1,11 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\Opportunity;
+namespace SCCatalog\Http\Requests\Backend\OpportunityUser;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class StoreInternshipRequest.
- */
-class StoreInternshipRequest extends FormRequest
+class AddOpportunityUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +25,7 @@ class StoreInternshipRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

@@ -1,13 +1,11 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Frontend\Opportunity;
+namespace SCCatalog\Http\Requests\Backend\OpportunityUser;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class CreateProjectRequest.
- */
-class StoreProjectRequest extends FormRequest
+class RemoveOpportunityUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +25,7 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

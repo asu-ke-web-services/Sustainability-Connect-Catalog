@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events;
+namespace SCCatalog\Events\Backend\Opportunity;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,7 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity;
+use SCCatalog\Models\Opportunity\Opportunity;
 
 class OpportunityIdeaSubmitted
 {
@@ -20,7 +20,7 @@ class OpportunityIdeaSubmitted
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Opportunity $opportunity
      */
     public function __construct(Opportunity $opportunity)
     {

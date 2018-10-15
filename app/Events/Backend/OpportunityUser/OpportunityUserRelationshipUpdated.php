@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events\Backend\Opportunity;
+namespace SCCatalog\Events\Backend\OpportunityUser;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -10,21 +10,25 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use SCCatalog\Models\Opportunity\Opportunity;
+use SCCatalog\Models\Auth\User;
 
-class OpportunityIdeaApproved
+class OpportunityUserRelationshipUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $opportunity;
+    public $user;
 
     /**
      * Create a new event instance.
      *
-     * @param Opportunity $opportunity
+     * @return void
      */
-    public function __construct(Opportunity $opportunity)
+    public function __construct(Opportunity $opportunity, User $user, array $data)
     {
         $this->opportunity = $opportunity;
+        $this->user = $user;
+        $this->data = $data;
     }
 
     /**

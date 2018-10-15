@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events;
+namespace SCCatalog\Events\Backend\OpportunityUser;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,8 +9,8 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity;
-use SCCatalog\Models\User;
+use SCCatalog\Models\Opportunity\Opportunity;
+use SCCatalog\Models\Auth\User;
 
 class UserFollowedOpportunityEvent
 {
@@ -22,7 +22,8 @@ class UserFollowedOpportunityEvent
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Opportunity $opportunity
+     * @param User $user
      */
     public function __construct(Opportunity $opportunity, User $user)
     {

@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 // use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
@@ -14,6 +16,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 class Opportunity extends Model
 {
     use BlameableTrait;
+    use HasMediaTrait;
     // use RevisionableTrait;
     use SoftDeletes;
 

@@ -2,19 +2,18 @@
 
 namespace SCCatalog\Models\Attachment;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Spatie\MediaLibrary\Media as BaseMedia;
+// use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * Class Attachment
  */
-class Attachment extends Model implements HasMedia
+class Attachment extends BaseMedia
 {
     use BlameableTrait;
-    use HasMediaTrait;
+    // use RevisionableTrait;
     use SoftDeletes;
 
     /*
@@ -23,15 +22,11 @@ class Attachment extends Model implements HasMedia
     |--------------------------------------------------------------------------
     */
 
-    public $table = 'attachments';
-
     protected $dates = [
         'deleted_at',
     ];
 
     public $fillable = [
-        'opportunity_id',
-        'user_id',
         'status',
         'comments',
     ];
@@ -64,22 +59,6 @@ class Attachment extends Model implements HasMedia
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function user()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function opportunity()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_id');
-    }
 
     /*
     |--------------------------------------------------------------------------

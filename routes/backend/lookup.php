@@ -15,6 +15,9 @@ Route::group([
      */
     Route::resource('affiliation', 'AffiliationController');
 
+    /* AttachmentType CRUD */
+    Route::resource('attachment_type', 'AttachmentTypeController');
+
     /* BudgetType CRUD */
     Route::resource('budget_type', 'BudgetTypeController');
 

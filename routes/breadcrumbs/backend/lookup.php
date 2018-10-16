@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__.'/lookup/affiliation.php';
+require __DIR__.'/lookup/attachment_type.php';
 require __DIR__.'/lookup/budget_type.php';
 require __DIR__.'/lookup/category.php';
 require __DIR__.'/lookup/keyword.php';

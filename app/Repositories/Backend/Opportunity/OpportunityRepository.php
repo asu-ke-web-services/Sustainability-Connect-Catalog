@@ -233,4 +233,27 @@ class OpportunityRepository extends BaseRepository
             throw new GeneralException(__('exceptions.backend.opportunity.clone_error'));
         });
     }
+
+    /**
+     * (Soft)-delete an Opportunity record in the database.
+     *
+     * @param int $opportunity_id
+     * @return bool
+     * @throws \Throwable
+     */
+    public function deleteById($opportunity_id) : bool
+    {
+        return DB::transaction(function () use ($opportunity_id) {
+            $opportunity = parent::getById($opportunity_id);
+
+            if (parent::deleteById($opportunity_id)) {
+
+                event(new OpportunityUpdated($opportunity));
+
+                return true;
+            }
+
+            throw new GeneralException(__('exceptions.backend.opportunity.destroy_error'));
+        });
+    }
 }

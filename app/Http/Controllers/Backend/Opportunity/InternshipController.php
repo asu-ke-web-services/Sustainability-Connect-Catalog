@@ -244,11 +244,11 @@ class InternshipController extends Controller
      * @param Opportunity $internship
      *
      * @return \Illuminate\View\View
-     * @throws \Exception
+     * @throws \Throwable
      */
     public function destroy(DeleteInternshipRequest $request, Opportunity $internship)
     {
-        $this->internshipRepository->deleteById($internship);
+        $this->internshipRepository->deleteById($internship->id);
 
         event(new OpportunityDeleted($internship));
 

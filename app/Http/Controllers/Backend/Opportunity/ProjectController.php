@@ -259,13 +259,11 @@ class ProjectController extends Controller
      * @param Opportunity $project
      *
      * @return \Illuminate\View\View
-     * @throws \Exception
+     * @throws \Throwable
      */
     public function destroy(DeleteProjectRequest $request, Opportunity $project)
     {
-        $this->projectRepository->deleteById($project);
-
-        event(new OpportunityDeleted($project));
+        $this->projectRepository->deleteById($project->id);
 
         return redirect()->route('admin.opportunity.project.index')
             ->withFlashSuccess('Project deleted successfully');

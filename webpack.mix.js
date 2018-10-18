@@ -10,9 +10,9 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.setPublicPath('public')
+mix.setPublicPath('public');
 
-mix.sass('resources/assets/sass/frontend/SearchApp.scss', '../resources/assets/sass/frontend')
+mix.sass('resources/assets/sass/frontend/SearchApp.scss', 'public/css')
     .react('resources/assets/js/frontend/searchProject.js', 'public/js')
     .react('resources/assets/js/frontend/searchInternship.js', 'public/js');
 

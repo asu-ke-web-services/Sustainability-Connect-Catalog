@@ -14648,12 +14648,36 @@ figure[class^="effect-"].effect-sarah p {
   background-color: #ffc168;
 }
 
+button {
+  background-color: #f3b300;
+  border-color: #e9ab00;
+  color: #373a47;
+  outline: 0;
+  line-height: 1.33;
+  padding: 8px 25px;
+  font-size: 1.125rem;
+  border-radius: 4px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
+}
+
 /*
 // Burger menu custom styles
 */
 
+.fa-inbox {
+  color: #FFC627;
+}
+
+.fa-2x {
+  font-size: 1em !important;
+  margin-right: 4px;
+}
+
 .bm-burger-button {
-  position: fixed;
+  position: relative;
   width: 36px;
   height: 30px;
   left: 36px;
@@ -14663,6 +14687,7 @@ figure[class^="effect-"].effect-sarah p {
 .right .bm-burger-button {
   left: initial;
   right: 36px;
+  float: right;
 }
 
 .bm-burger-bars {
@@ -14674,13 +14699,17 @@ figure[class^="effect-"].effect-sarah p {
 }
 
 .bm-menu {
-  background: #373a47;
+  background: #353535;
   padding: 2.5em 1.5em 0;
   font-size: .8em;
 }
 
+.bm-menu h3 {
+  color: #FFC627;
+}
+
 .bm-menu a {
-  color: #b8b7ad;
+  color: white;
   border-bottom: 0;
   text-decoration: none;
 }
@@ -14688,6 +14717,10 @@ figure[class^="effect-"].effect-sarah p {
 .bm-menu a:hover,
 .bm-menu a:focus {
   color: #c94e50;
+}
+
+td a {
+  font-weight: 600;
 }
 
 .bm-item-list a {
@@ -14701,6 +14734,32 @@ figure[class^="effect-"].effect-sarah p {
 
 .bm-cross {
   background: #bdc3c7;
+}
+
+thead {
+  background-color: #353535;
+  color: #fff;
+}
+
+.divTableCell {
+  padding-left: 15px !important;
+  padding-top: 15px !important;
+}
+
+.table-responsive {
+  border-radius: 9px;
+}
+
+.table > thead > tr > th {
+  border: 1px solid #353535;
+}
+
+.table-bordered {
+  border: none;
+}
+
+.table-responsive {
+  border-radius: 4px;
 }
 
 /*

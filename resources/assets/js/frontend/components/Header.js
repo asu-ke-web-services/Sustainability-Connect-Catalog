@@ -7,7 +7,7 @@ export class Header extends Component {
   render() {
     return (
       <Row>
-        <Col sm={8} />
+        <Col sm={12} />
         <Col sm={4}>
           <SearchBox />
           <div className="text-muted">

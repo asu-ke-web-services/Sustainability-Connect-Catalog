@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.39 on 2018-10-18 19:29:34.
+ * Generated for Laravel 5.6.39 on 2018-10-19 12:10:02.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3473,6 +3473,105 @@ namespace Illuminate\Support\Facades {
         public static function getQueuedCookies()
         {
             return \Illuminate\Cookie\CookieJar::getQueuedCookies();
+        }
+         
+    }
+
+    /**
+     * 
+     *
+     * @method static string encrypt(string $value, bool $serialize = true)
+     * @method static string decrypt(string $payload, bool $unserialize = true)
+     * @see \Illuminate\Encryption\Encrypter
+     */ 
+    class Crypt {
+        
+        /**
+         * Determine if the given key and cipher combination is valid.
+         *
+         * @param string $key
+         * @param string $cipher
+         * @return bool 
+         * @static 
+         */ 
+        public static function supported($key, $cipher)
+        {
+            return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
+        }
+        
+        /**
+         * Create a new encryption key for the given cipher.
+         *
+         * @param string $cipher
+         * @return string 
+         * @static 
+         */ 
+        public static function generateKey($cipher)
+        {
+            return \Illuminate\Encryption\Encrypter::generateKey($cipher);
+        }
+        
+        /**
+         * Encrypt the given value.
+         *
+         * @param mixed $value
+         * @param bool $serialize
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\EncryptException
+         * @static 
+         */ 
+        public static function encrypt($value, $serialize = true)
+        {
+            return \Illuminate\Encryption\Encrypter::encrypt($value, $serialize);
+        }
+        
+        /**
+         * Encrypt a string without serialization.
+         *
+         * @param string $value
+         * @return string 
+         * @static 
+         */ 
+        public static function encryptString($value)
+        {
+            return \Illuminate\Encryption\Encrypter::encryptString($value);
+        }
+        
+        /**
+         * Decrypt the given value.
+         *
+         * @param mixed $payload
+         * @param bool $unserialize
+         * @return mixed 
+         * @throws \Illuminate\Contracts\Encryption\DecryptException
+         * @static 
+         */ 
+        public static function decrypt($payload, $unserialize = true)
+        {
+            return \Illuminate\Encryption\Encrypter::decrypt($payload, $unserialize);
+        }
+        
+        /**
+         * Decrypt the given string without unserialization.
+         *
+         * @param string $payload
+         * @return string 
+         * @static 
+         */ 
+        public static function decryptString($payload)
+        {
+            return \Illuminate\Encryption\Encrypter::decryptString($payload);
+        }
+        
+        /**
+         * Get the encryption key.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getKey()
+        {
+            return \Illuminate\Encryption\Encrypter::getKey();
         }
          
     }
@@ -13671,6 +13770,169 @@ namespace Laravel\Socialite\Facades {
  
 }
 
+namespace Subfission\Cas\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Cas {
+        
+        /**
+         * Authenticates the user based on the current request.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function authenticate()
+        {
+            return \Subfission\Cas\CasManager::authenticate();
+        }
+        
+        /**
+         * Returns the current config.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getConfig()
+        {
+            return \Subfission\Cas\CasManager::getConfig();
+        }
+        
+        /**
+         * Retrieve authenticated credentials.
+         * 
+         * Returns either the masqueraded account or the phpCAS user.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function user()
+        {
+            return \Subfission\Cas\CasManager::user();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getCurrentUser()
+        {
+            return \Subfission\Cas\CasManager::getCurrentUser();
+        }
+        
+        /**
+         * Retrieve a specific attribute by key name.  The
+         * attribute returned can be either a string or
+         * an array based on matches.
+         *
+         * @param $key
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getAttribute($key)
+        {
+            return \Subfission\Cas\CasManager::getAttribute($key);
+        }
+        
+        /**
+         * Check for the existence of a key in attributes.
+         *
+         * @param $key
+         * @return boolean 
+         * @static 
+         */ 
+        public static function hasAttribute($key)
+        {
+            return \Subfission\Cas\CasManager::hasAttribute($key);
+        }
+        
+        /**
+         * Logout of the CAS session and redirect users.
+         *
+         * @param string $url
+         * @param string $service
+         * @static 
+         */ 
+        public static function logout($url = '', $service = '')
+        {
+            return \Subfission\Cas\CasManager::logout($url, $service);
+        }
+        
+        /**
+         * Logout the user using the provided URL.
+         *
+         * @param $url
+         * @static 
+         */ 
+        public static function logoutWithUrl($url)
+        {
+            return \Subfission\Cas\CasManager::logoutWithUrl($url);
+        }
+        
+        /**
+         * Get the attributes for for the currently connected user. This method
+         * can only be called after authenticate() or an error wil be thrown.
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getAttributes()
+        {
+            return \Subfission\Cas\CasManager::getAttributes();
+        }
+        
+        /**
+         * Checks to see is user is authenticated locally
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function isAuthenticated()
+        {
+            return \Subfission\Cas\CasManager::isAuthenticated();
+        }
+        
+        /**
+         * Checks to see is user is globally in CAS
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function checkAuthentication()
+        {
+            return \Subfission\Cas\CasManager::checkAuthentication();
+        }
+        
+        /**
+         * Checks to see if masquerading is enabled
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function isMasquerading()
+        {
+            return \Subfission\Cas\CasManager::isMasquerading();
+        }
+        
+        /**
+         * Set the attributes for a user when masquerading. This
+         * method has no effect when not masquerading.
+         *
+         * @param array $attr : the attributes of the user.
+         * @static 
+         */ 
+        public static function setAttributes($attr)
+        {
+            return \Subfission\Cas\CasManager::setAttributes($attr);
+        }
+         
+    }
+ 
+}
+
 namespace Arcanedev\NoCaptcha\Facades { 
 
     /**
@@ -15473,6 +15735,8 @@ namespace  {
     class Config extends \Illuminate\Support\Facades\Config {}
 
     class Cookie extends \Illuminate\Support\Facades\Cookie {}
+
+    class Crypt extends \Illuminate\Support\Facades\Crypt {}
 
     class DB extends \Illuminate\Support\Facades\DB {}
 
@@ -17800,6 +18064,8 @@ namespace  {
     class Gravatar extends \Creativeorange\Gravatar\Facades\Gravatar {}
 
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+
+    class Cas extends \Subfission\Cas\Facades\Cas {}
 
     class Captcha extends \Arcanedev\NoCaptcha\Facades\NoCaptcha {}
 

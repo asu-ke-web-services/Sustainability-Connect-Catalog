@@ -14664,6 +14664,14 @@ button {
 }
 
 /*
+ * Override font size
+ */
+
+div.table-responsive {
+  font-size: 0.9rem;
+}
+
+/*
 // Burger menu custom styles
 */
 

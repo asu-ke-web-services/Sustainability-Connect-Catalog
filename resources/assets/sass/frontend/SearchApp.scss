@@ -8,6 +8,13 @@ $icon-font-path: 'bootstrap/fonts/bootstrap/';
 @import 'bootstrap-ais/bootstrap-ais.scss';
 
 /*
+ * Override font size
+ */
+div.table-responsive {
+    font-size: 0.9rem;
+}
+
+/*
 // Burger menu custom styles
 */
 .fa-inbox {

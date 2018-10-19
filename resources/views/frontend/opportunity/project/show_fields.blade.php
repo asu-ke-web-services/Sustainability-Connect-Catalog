@@ -1,3 +1,7 @@
+
+        <!-- Project Name -->
+        <h1>{!! $project->name !!}</h1>
+
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>

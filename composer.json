@@ -27,6 +27,7 @@
     "spatie/laravel-medialibrary": "^6.0.0",
     "spatie/laravel-permission": "^2.17",
     "spatie/laravel-sluggable": "^2.1",
+    "subfission/cas": "dev-master",
     "torann/geoip": "^1.0",
     "venturecraft/revisionable": "1.*",
     "webpatser/laravel-uuid": "^3.0",

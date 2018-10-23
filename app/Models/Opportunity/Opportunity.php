@@ -2,18 +2,17 @@
 
 namespace SCCatalog\Models\Opportunity;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 // use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * Class Opportunity
  */
-class Opportunity extends Model
+class Opportunity extends Model implements HasMedia
 {
     use BlameableTrait;
     use HasMediaTrait;

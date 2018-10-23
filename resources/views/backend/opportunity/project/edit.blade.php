@@ -19,6 +19,8 @@
             <hr />
 
             @include('backend.opportunity.project.fields')
+        </div><!--card-body-->
+    </div><!--card-->
 
     <div class="card">
         <div class="card-footer">

@@ -3,12 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Event;
-use SCCatalog\Events\Backend\Opportunity\OpportunityCreated;
-use SCCatalog\Events\Backend\Opportunity\OpportunityUpdated;
 use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;

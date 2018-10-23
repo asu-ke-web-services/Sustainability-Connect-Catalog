@@ -115,6 +115,23 @@ class User extends Authenticatable
         return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class)->withDefault();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function affiliations()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_user')->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function accessAffiliations()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_user')
+            ->where('access_control', 1)
+            ->withTimestamps();
+    }
 
     public function shouldBeSearchable()
     {

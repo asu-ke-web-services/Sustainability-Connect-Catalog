@@ -81,9 +81,15 @@
                         </li>
                     </ul>
                 </li>
+                @if (Auth::check())
                 <li id="menu-item-14" class="menu-item">
-                    <a title="Sign In" href="/projects" class="menu-item">Sign In</a>
+                    <a title="Sign In" href="/dashboard" class="menu-item">Sign In</a>
                 </li>
+                @else
+                <li id="menu-item-14" class="menu-item">
+                    <a title="Sign In" href="/dashboard" class="menu-item">Dashboard</a>
+                </li>
+                @endif
             </ul>
         </div>
     </div><!-- /.navbar-collapse -->

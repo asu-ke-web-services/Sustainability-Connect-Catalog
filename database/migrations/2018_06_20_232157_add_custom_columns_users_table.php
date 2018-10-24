@@ -14,6 +14,7 @@ class AddCustomColumnsUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->tinyInteger('access_validated')->default(0)->unsigned();
             $table->string('login_name')->nullable();
             $table->integer('user_type_id')->unsigned()->index()->nullable();
             $table->string('asurite')->nullable();

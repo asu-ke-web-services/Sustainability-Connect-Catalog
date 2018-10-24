@@ -145,7 +145,11 @@ class Opportunity extends Model implements HasMedia
      **/
     public function affiliations()
     {
-        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_opportunity')->withTimestamps();
+        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_opportunity')
+            ->where([
+                ['public', 1],
+            ])
+            ->withTimestamps();
     }
 
     /**
@@ -154,7 +158,10 @@ class Opportunity extends Model implements HasMedia
     public function accessAffiliations()
     {
         return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_opportunity')
-            ->where('access_control', 1)
+            ->where([
+                ['access_control', 1],
+                ['public', 1],
+            ])
             ->withTimestamps();
     }
 

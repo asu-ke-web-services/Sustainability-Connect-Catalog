@@ -141,6 +141,7 @@ class UserTableSeeder extends Seeder
                     'password'                => bcrypt('secret'),
                     'confirmation_code'       => md5(uniqid(mt_rand(), true)),
                     'confirmed'               => true,
+                    'access_validated'        => true,
                     'user_type_id'            => $user_type_id ?? null,
                     'asurite'                 => $old_user_asurite ?? null,
                     'student_degree_level_id' => $degree_level_id ?? null,

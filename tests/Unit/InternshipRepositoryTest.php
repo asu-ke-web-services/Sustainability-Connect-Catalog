@@ -27,6 +27,7 @@ class InternshipRepositoryTest extends TestCase
     /** @test */
     public function it_can_paginate_the_active_internships()
     {
+        Internship::withoutSyncingToSearch(function () {
         factory(Internship::class, 30)
             ->create()
             ->each(function($internship) {
@@ -36,6 +37,7 @@ class InternshipRepositoryTest extends TestCase
                     factory(Opportunity::class)->make()
                 );
             });
+        });
 
         $paginatedInternships = $this->internshipRepository->getActivePaginated(25);
 
@@ -51,27 +53,29 @@ class InternshipRepositoryTest extends TestCase
     /** @test */
     public function it_can_paginate_the_closed_internships()
     {
-        factory(Internship::class, 30)
-            ->create()
-            ->each(function($internship) {
-                $internship
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Internship::withoutSyncingToSearch(function () {
+            factory(Internship::class, 30)
+                ->create()
+                ->each(function($internship) {
+                    $internship
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)->make()
+                    );
+                });
 
-        factory(Internship::class, 25)
-            ->create()
-            ->each(function($internship) {
-                $internship
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)
-                    ->states('closed')
-                    ->make()
-                );
-            });
+            factory(Internship::class, 25)
+                ->create()
+                ->each(function($internship) {
+                    $internship
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)
+                        ->states('closed')
+                        ->make()
+                    );
+                });
+        });
 
         $paginatedInternships = $this->internshipRepository->getClosedPaginated(10);
 
@@ -83,27 +87,29 @@ class InternshipRepositoryTest extends TestCase
     /** @test */
     public function it_can_paginate_the_soft_deleted_internships()
     {
-        factory(Internship::class, 30)
-            ->create()
-            ->each(function($internship) {
-                $internship
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Internship::withoutSyncingToSearch(function () {
+            factory(Internship::class, 30)
+                ->create()
+                ->each(function($internship) {
+                    $internship
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)->make()
+                    );
+                });
 
-        factory(Internship::class, 25)
-            ->create()
-            ->each(function($internship) {
-                $internship
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)
-                    ->states('softDeleted')
-                    ->make()
-                );
-            });
+            factory(Internship::class, 25)
+                ->create()
+                ->each(function($internship) {
+                    $internship
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)
+                        ->states('softDeleted')
+                        ->make()
+                    );
+                });
+        });
 
         $paginatedInternships = $this->internshipRepository->getDeletedPaginated(10);
 

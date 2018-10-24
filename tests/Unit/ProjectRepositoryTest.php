@@ -32,15 +32,17 @@ class ProjectRepositoryTest extends TestCase
     /** @test */
     public function it_can_paginate_the_active_projects()
     {
-        factory(Project::class, 30)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Project::withoutSyncingToSearch(function () {
+            factory(Project::class, 30)
+                ->create()
+                ->each(function($project) {
+                    $project
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)->make()
+                    );
+                });
+        });
 
         $paginatedProjects = $this->projectRepository->getActivePaginated(25);
 
@@ -56,27 +58,29 @@ class ProjectRepositoryTest extends TestCase
     /** @test */
     public function it_can_paginate_the_closed_projects()
     {
-        factory(Project::class, 30)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Project::withoutSyncingToSearch(function () {
+            factory(Project::class, 30)
+                ->create()
+                ->each(function($project) {
+                    $project
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)->make()
+                    );
+                });
 
-        factory(Project::class, 25)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)
-                    ->states('closed')
-                    ->make()
-                );
-            });
+            factory(Project::class, 25)
+                ->create()
+                ->each(function($project) {
+                    $project
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)
+                        ->states('closed')
+                        ->make()
+                    );
+                });
+        });
 
         $paginatedProjects = $this->projectRepository->getClosedPaginated(10);
 
@@ -88,27 +92,29 @@ class ProjectRepositoryTest extends TestCase
     /** @test */
     public function it_can_paginate_the_soft_deleted_projects()
     {
-        factory(Project::class, 30)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Project::withoutSyncingToSearch(function () {
+            factory(Project::class, 30)
+                ->create()
+                ->each(function($project) {
+                    $project
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)->make()
+                    );
+                });
 
-        factory(Project::class, 25)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)
-                    ->states('softDeleted')
-                    ->make()
-                );
-            });
+            factory(Project::class, 25)
+                ->create()
+                ->each(function($project) {
+                    $project
+                    ->opportunity()
+                    ->save(
+                        factory(Opportunity::class)
+                        ->states('softDeleted')
+                        ->make()
+                    );
+                });
+        });
 
         $paginatedProjects = $this->projectRepository->getDeletedPaginated(10);
 

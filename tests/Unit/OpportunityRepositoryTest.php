@@ -76,7 +76,9 @@ class OpportunityRepositoryTest extends TestCase
 
         $this->assertEquals(0, Opportunity::count());
 
-        $this->opportunityRepository->create($this->getValidProjectData());
+        Project::withoutSyncingToSearch(function () {
+            $this->opportunityRepository->create($this->getValidProjectData());
+        });
 
         $this->assertEquals(1, Opportunity::count());
 
@@ -90,13 +92,15 @@ class OpportunityRepositoryTest extends TestCase
         Event::fake();
         Model::setEventDispatcher($initialDispatcher);
 
-        $opportunity = factory(Opportunity::class)->create();
+        Project::withoutSyncingToSearch(function () {
+            $opportunity = factory(Opportunity::class)->create();
 
-        $this->opportunityRepository->update($opportunity, $this->getValidProjectData([
-            'name'                  => 'updated name',
-            'description'           => 'updated description',
-            'opportunity_status_id' => 3,
-        ]));
+            $this->opportunityRepository->update($opportunity, $this->getValidProjectData([
+                'name'                  => 'updated name',
+                'description'           => 'updated description',
+                'opportunity_status_id' => 3,
+            ]));
+        });
 
         $this->assertEquals('updated name', $opportunity->fresh()->name);
         $this->assertEquals('updated description', $opportunity->fresh()->description);
@@ -112,11 +116,13 @@ class OpportunityRepositoryTest extends TestCase
         Event::fake();
         Model::setEventDispatcher($initialDispatcher);
 
-        $opportunity = $this->opportunityRepository->create($this->getValidProjectData());
+        Project::withoutSyncingToSearch(function () {
+            $opportunity = $this->opportunityRepository->create($this->getValidProjectData());
 
-        $this->assertEquals(1, Opportunity::count());
+            $this->assertEquals(1, Opportunity::count());
 
-        $this->opportunityRepository->deleteById($opportunity->id);
+            $this->opportunityRepository->deleteById($opportunity->id);
+        });
 
         $this->assertEquals(0, Opportunity::count());
 

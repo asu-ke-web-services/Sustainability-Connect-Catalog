@@ -8,7 +8,7 @@ export class Header extends Component {
     return (
       <Row>
         <Col sm={12} />
-        <Col sm={4}>
+        <Col sm={7} xs={10}>
           <SearchBox />
           <div className="text-muted">
             <Stats />

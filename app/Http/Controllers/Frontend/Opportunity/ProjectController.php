@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
+use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Frontend\Opportunity\ProjectCreated;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreProjectRequest;
@@ -46,6 +47,25 @@ class ProjectController extends Controller
      */
     public function index(ViewProjectRequest $request)
     {
+        // dd(auth()->user()->id);
+        // dd(auth()->user()->affiliations->map(function ($affiliation) {
+        //     return $affiliation['slug'];
+        // })->toJson());
+
+        if ( auth()->user() !== null ) {
+            $accessAffiliations = auth()->user()->accessAffiliations
+                ->map(function ($affiliation) {
+                    return $affiliation['slug'];
+                })->toJson();
+
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+        }
+
+        JavaScript::put([
+            'accessAffiliations' => $accessAffiliations ?? null,
+            'canViewRestricted' => $canViewRestricted ?? false
+        ]);
+
         return view('frontend.opportunity.project.search')
             ->with('projects', $this->projectRepository->getActivePaginated(25, 'application_deadline', 'asc'))
             ->with('type', 'Project')
@@ -159,6 +179,20 @@ class ProjectController extends Controller
                 'applicants',
             ])
             ->getById($id);
+
+        if ( auth()->user() !== null ) {
+            $accessAffiliations = auth()->user()->accessAffiliations
+                ->map(function ($affiliation) {
+                    return $affiliation['slug'];
+                })->toJson();
+
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+        }
+
+        JavaScript::put([
+            'accessAffiliations' => $accessAffiliations ?? null,
+            'canViewRestricted' => $canViewRestricted ?? false
+        ]);
 
         return view('frontend.opportunity.project.show')
             ->withProject($project)

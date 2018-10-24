@@ -18,7 +18,9 @@ export class Results extends Component {
               <th className="col col-md-1 text-center">Apply By</th>
             </tr>
           </thead>
-          <Hits indexName={this.props.indexName} />
+          <Hits indexName={this.props.indexName}
+                accessAffiliations={this.props.accessAffiliations}
+                canViewRestricted={this.props.canViewRestricted} /> />
         </Table>
       );
     } else {
@@ -34,7 +36,9 @@ export class Results extends Component {
               <th className="col col-md-1 text-center">Apply By</th>
             </tr>
           </thead>
-          <Hits indexName={this.props.indexName} />
+          <Hits indexName={this.props.indexName}
+                accessAffiliations={this.props.accessAffiliations}
+                canViewRestricted={this.props.canViewRestricted} />
         </Table>
       );
     }

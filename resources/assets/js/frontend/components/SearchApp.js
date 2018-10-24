@@ -17,7 +17,9 @@ class SearchApp extends Component {
         onSearchStateChange={this.props.onSearchStateChange}
       >
         <Configure hitsPerPage={20} />
-        <SearchPage indexName={this.props.indexName} />
+        <SearchPage indexName={this.props.indexName}
+                    accessAffiliations={this.props.accessAffiliations}
+                    canViewRestricted={this.props.canViewRestricted} />
       </InstantSearch>
     );
   }

@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
+use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
 use SCCatalog\Repositories\Frontend\Auth\UserRepository;
@@ -37,8 +38,27 @@ class InternshipController extends Controller
      */
     public function index(ViewInternshipRequest $request)
     {
+        if ( auth()->user() !== null ) {
+            $accessAffiliations = auth()->user()->accessAffiliations
+                ->map(function ($affiliation) {
+                    return $affiliation['slug'];
+                })->toJson();
+
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+        }
+
+        JavaScript::put([
+            'accessAffiliations' => $accessAffiliations ?? null,
+            'canViewRestricted' => $canViewRestricted ?? false
+        ]);
+
         return view('frontend.opportunity.internship.index')
             ->with('internships', $this->internshipRepository->getActivePaginated(25, 'application_deadline', 'asc'))
+            ->with('accessAffiliations', auth()->user()->accessAffiliations
+                ->map(function ($affiliation) {
+                    return $affiliation['slug'];
+                })->toJson())
+            ->with('canViewRestricted', auth()->user()->hasPermissionTo('read restricted opportunity'))
             ->with('type', 'Internship')
             ->with('pageTitle', 'Internships');
     }
@@ -70,6 +90,20 @@ class InternshipController extends Controller
                 'applicants',
             ])
             ->getById($id);
+
+        if ( auth()->user() !== null ) {
+            $accessAffiliations = auth()->user()->accessAffiliations
+                ->map(function ($affiliation) {
+                    return $affiliation['slug'];
+                })->toJson();
+
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+        }
+
+        JavaScript::put([
+            'accessAffiliations' => $accessAffiliations ?? null,
+            'canViewRestricted' => $canViewRestricted ?? false
+        ]);
 
         return view('frontend.opportunity.internship.show')
             ->withInternship($internship)

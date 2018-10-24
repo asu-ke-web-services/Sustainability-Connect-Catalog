@@ -19,5 +19,11 @@ import SearchApp from './components/SearchApp';
 // require('./components/SearchApp');
 
 if (document.getElementById('search')) {
-    ReactDOM.render(<SearchApp indexName="projects"/>, document.querySelector('#search'));
+    ReactDOM.render(
+      <SearchApp
+        indexName="projects"
+        accessAffiliations={JSON.parse(algolia.accessAffiliations)}
+        canViewRestricted={algolia.canViewRestricted}
+      />, document.querySelector('#search')
+    );
 }

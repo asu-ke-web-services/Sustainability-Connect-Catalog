@@ -133,7 +133,7 @@ class InternshipsSeeder extends Seeder
                 if ($old_internship->urgent === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 15,
+                        'affiliation_id' => 1,
                         'order'          => 1,
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now(),
@@ -146,7 +146,7 @@ class InternshipsSeeder extends Seeder
                 if ($old_internship->affiliation === 'Sustainability Majors Only') {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 16,
+                        'affiliation_id' => 2,
                         'order'          => 2,
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now(),
@@ -156,23 +156,23 @@ class InternshipsSeeder extends Seeder
                 }
 
                 // All Majors?
-                if ($old_internship->affiliation === 'Open to all Majors') {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 17,
-                        'order'          => 3,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
-                    ]);
-                }
+                // if ($old_internship->affiliation === 'Open to all Majors') {
+                //     DB::table('affiliation_opportunity')->insert([
+                //         'opportunity_id' => $old_internship->id + 450,
+                //         'affiliation_id' => 17,
+                //         'order'          => 3,
+                //         'created_at'     => Carbon::now(),
+                //         'updated_at'     => Carbon::now(),
+                //         'created_by'     => 1,
+                //         'updated_by'     => 1,
+                //     ]);
+                // }
 
                 // Credit Pending Approval?
                 if ($old_internship->affiliation === 'Credit Pending Approval') {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 18,
+                        'affiliation_id' => 15,
                         'order'          => 4,
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now(),
@@ -185,7 +185,7 @@ class InternshipsSeeder extends Seeder
                 if ($old_internship->fall === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 19,
+                        'affiliation_id' => 16,
                         'order'          => 5,
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now(),
@@ -198,7 +198,7 @@ class InternshipsSeeder extends Seeder
                 if ($old_internship->spring === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 20,
+                        'affiliation_id' => 17,
                         'order'          => 6,
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now(),
@@ -211,7 +211,7 @@ class InternshipsSeeder extends Seeder
                 if ($old_internship->summer === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 21,
+                        'affiliation_id' => 18,
                         'order'          => 7,
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now(),
@@ -224,7 +224,7 @@ class InternshipsSeeder extends Seeder
                 if ($old_internship->paid === 1) {
                     DB::table('affiliation_opportunity')->insert([
                         'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 22,
+                        'affiliation_id' => 19,
                         'order'          => 8,
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now(),

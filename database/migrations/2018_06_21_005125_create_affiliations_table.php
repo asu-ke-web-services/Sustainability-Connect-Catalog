@@ -15,7 +15,7 @@ class CreateAffiliationsTable extends Migration
     {
         Schema::create('affiliations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('opportunity_type_id')->unsigned()->index();
+            $table->integer('opportunity_type_id')->nullable()->unsigned()->index();
             $table->integer('order')->default(1);
             $table->string('name');
             $table->string('slug');

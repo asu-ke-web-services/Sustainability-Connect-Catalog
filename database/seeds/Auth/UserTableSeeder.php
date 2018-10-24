@@ -152,10 +152,10 @@ class UserTableSeeder extends Seeder
                     'updated_by'              => 1,
                 ]);
 
-                if ($old_user_sos_eligible == 1 || $old_user_sos_verified == 1) {
+                if ($old_user_sos_eligible == '1' || $old_user_sos_verified == '1') {
                     DB::table('affiliation_user')->insert([
                         'user_id' => $old_user->ID,
-                        'affiliation_id' => 16,
+                        'affiliation_id' => 2,
                         'order' => 1,
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),

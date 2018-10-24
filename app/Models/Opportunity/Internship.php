@@ -153,11 +153,9 @@ class Internship extends Model
      */
     public function isPublished()
     {
-        $opportunity = $this->opportunity->toArray();
-
         if (
-            $opportunity['is_hidden'] === 1 ||
-            $opportunity['opportunity_status_id'] === 8
+            $this->is_hidden === 1 ||
+            $this->opportunity->status->slug === 'inactive'
         ) {
             return false;
         }
@@ -173,11 +171,7 @@ class Internship extends Model
 
     public function shouldBeSearchable()
     {
-        // return false;
-        if ( $this->isPublished() === false ) {
-            return false;
-        }
-
+        // return $this->isPublished();
         return true;
     }
 

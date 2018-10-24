@@ -172,12 +172,13 @@ class Project extends Model
      */
     public function isPublished()
     {
-        $opportunity = $this->opportunity->toArray();
-
         if (
-            $opportunity['is_hidden'] === 1 ||
-            $opportunity['opportunity_status_id'] < 3 ||
-            $this->review_status_id !== 1
+            $this->is_hidden === 1 ||
+            $this->review_status_id === 1 ||
+            \in_array($this->opportunity->status->slug, [
+                'idea-submission',
+                'closed',
+            ], true)
         ) {
             return false;
         }
@@ -193,14 +194,8 @@ class Project extends Model
 
     public function shouldBeSearchable()
     {
-        if (
-            $this->review_status_id !== 1 ||
-            $this->isPublished() === false
-        ) {
-            return false;
-        }
-
-        return true;
+        return $this->isPublished();
+        // return true;
     }
 
 

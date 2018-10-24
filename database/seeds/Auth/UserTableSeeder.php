@@ -73,6 +73,10 @@ class UserTableSeeder extends Seeder
                         ->where('user_id', $old_user->ID)
                         ->where('meta_key', 'degree_level')
                         ->value('meta_value');
+                $old_user_department        = DB::connection('old')->table('wp_usermeta')
+                    ->where('user_id', $old_user->ID)
+                    ->where('meta_key', 'department')
+                    ->value('meta_value');
                 $old_user_organization_name  = DB::connection('old')->table('wp_usermeta')
                         ->where('user_id', $old_user->ID)
                         ->where('meta_key', 'organization_name')

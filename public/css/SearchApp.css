@@ -14667,7 +14667,7 @@ button {
  * Override font size
  */
 
-div.table-responsive table {
+div.table-responsive {
   font-size: 0.9rem;
 }
 
@@ -14689,7 +14689,7 @@ div.table-responsive table {
   width: 36px;
   height: 30px;
   left: 36px;
-  top: 36px;
+  top: 35px;
 }
 
 .right .bm-burger-button {
@@ -14817,5 +14817,16 @@ thead {
 
 .fa-abbey {
   color: #4f5557;
+}
+
+.text-muted {
+  margin-top: 9px;
+  margin-left: 7px;
+}
+
+@media (max-width: 768px) {
+  .input-group {
+    margin-top: 30px;
+  }
 }
 

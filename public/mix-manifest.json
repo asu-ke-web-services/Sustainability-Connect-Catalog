@@ -1,9 +1,10 @@
 {
-    "/js/searchProject.js": "/js/searchProject.js?id=16ae6f5790ca31f5b699",
-    "/js/searchInternship.js": "/js/searchInternship.js?id=a845e095f633ed7041c1",
+    "/js/searchProject.js": "/js/searchProject.js?id=0903c8449c45744b2ba2",
+    "/js/searchInternship.js": "/js/searchInternship.js?id=f01173bbe83090267637",
     "/js/backend.js": "/js/backend.js?id=f8956399222a97c1a56a",
     "/js/frontend.js": "/js/frontend.js?id=3ce5dacd3e820a1813a0",
-    "/../resources/assets/sass/frontend/SearchApp.css": "/../resources/assets/sass/frontend/SearchApp.css?id=89c566f82d8cb8d1d683",
+    "/../resources/assets/sass/frontend/SearchApp.css": "/../resources/assets/sass/frontend/SearchApp.css?id=50b3209e5870185fd66e",
     "/css/frontend.css": "/css/frontend.css?id=8e0a12bb094b00165ad7",
-    "/css/backend.css": "/css/backend.css?id=9ef92108fbb1dbea1e84"
+    "/css/backend.css": "/css/backend.css?id=9ef92108fbb1dbea1e84",
+    "/css/SearchApp.css": "/css/SearchApp.css?id=50b3209e5870185fd66e"
 }

@@ -39,7 +39,8 @@ class PermissionRoleTableSeeder extends Seeder
             'delete user',
             'submit project idea',
             'create opportunity',
-            'read opportunity',
+            'read unrestricted opportunity',
+            'read restricted opportunity',
             'update opportunity',
             'delete opportunity',
             'follow opportunity',
@@ -71,7 +72,7 @@ class PermissionRoleTableSeeder extends Seeder
         $mentor->givePermissionTo(
             'view personal dashboard',
             'submit project idea',
-            'read opportunity',
+            'read restricted opportunity',
             'follow opportunity',
             'read attachment',
             'read lookup records'
@@ -80,7 +81,7 @@ class PermissionRoleTableSeeder extends Seeder
         $user->givePermissionTo(
             'view personal dashboard',
             'submit project idea',
-            'read opportunity',
+            'read unrestricted opportunity',
             'follow opportunity',
             'read attachment',
             'read lookup records'

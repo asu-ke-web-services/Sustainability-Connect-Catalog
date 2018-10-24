@@ -48,7 +48,17 @@ class DashboardController extends Controller
     {
         return view('backend.dashboard')
             ->with('projectsTotal', $this->projectRepository->where('opportunityable_type', 'Project')->count())
+            ->with('projectsUnderReview', $this->projectRepository->where([
+                ['opportunityable_type', 'Project'],
+                ['review_status_id', 3],
+            ]))
             ->with('internshipsTotal', $this->internshipRepository->where('opportunityable_type', 'Internship')->count())
-            ->with('activeUsersTotal', $this->userRepository->count());
+            ->with('activeUsersTotal', $this->userRepository->count())
+            ->with('newUsersToReview', $this->userRepository->where([
+                ['reviewed', 0],
+            ]))
+            ->with('activeProjectMembers', $this->opportunityUserRepository->where([
+                ['reviewed', 0],
+            ]));
     }
 }

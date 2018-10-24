@@ -23,6 +23,7 @@ class CreateAffiliationsTable extends Migration
             $table->string('frontend_fa_icon')->nullable();
             $table->string('backend_fa_icon')->nullable();
             $table->boolean('access_control')->default(0); // if true = opportunity and user affiliations must match for access
+            $table->boolean('public')->default(1); // if true = affiliation is publicly visible in all vieews (otherwise an admin-tag only)
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned()->nullable();

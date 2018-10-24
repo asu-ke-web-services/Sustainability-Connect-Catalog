@@ -155,6 +155,9 @@
       <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
       <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/apereo/phpcas" />
+      <path value="$PROJECT_DIR$/vendor/subfission/cas" />
+      <path value="$PROJECT_DIR$/vendor/laracasts/utilities" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

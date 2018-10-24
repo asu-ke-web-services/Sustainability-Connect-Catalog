@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.39 on 2018-10-19 12:10:02.
+ * Generated for Laravel 5.6.39 on 2018-10-23 20:44:41.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3148,29 +3148,18 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function flush()
         {
-            return \Illuminate\Cache\FileStore::flush();
+            return \Illuminate\Cache\DatabaseStore::flush();
         }
         
         /**
-         * Get the Filesystem instance.
+         * Get the underlying database connection.
          *
-         * @return \Illuminate\Filesystem\Filesystem 
+         * @return \Illuminate\Database\MySqlConnection 
          * @static 
          */ 
-        public static function getFilesystem()
+        public static function getConnection()
         {
-            return \Illuminate\Cache\FileStore::getFilesystem();
-        }
-        
-        /**
-         * Get the working directory of the cache.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getDirectory()
-        {
-            return \Illuminate\Cache\FileStore::getDirectory();
+            return \Illuminate\Cache\DatabaseStore::getConnection();
         }
         
         /**
@@ -3181,7 +3170,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getPrefix()
         {
-            return \Illuminate\Cache\FileStore::getPrefix();
+            return \Illuminate\Cache\DatabaseStore::getPrefix();
         }
          
     }
@@ -14922,6 +14911,40 @@ namespace Intervention\Image\Facades {
  
 }
 
+namespace Laracasts\Utilities\JavaScript { 
+
+    /**
+     * 
+     *
+     */ 
+    class JavaScriptFacade {
+        
+        /**
+         * Bind the given array of variables to the view.
+         *
+         * @static 
+         */ 
+        public static function put()
+        {
+            return \Laracasts\Utilities\JavaScript\Transformers\Transformer::put();
+        }
+        
+        /**
+         * Translate the array of PHP variables to a JavaScript syntax.
+         *
+         * @param array $variables
+         * @return array 
+         * @static 
+         */ 
+        public static function constructJavaScript($variables)
+        {
+            return \Laracasts\Utilities\JavaScript\Transformers\Transformer::constructJavaScript($variables);
+        }
+         
+    }
+ 
+}
+
 namespace Spatie\Html\Facades { 
 
     /**
@@ -18074,6 +18097,8 @@ namespace  {
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
     class Image extends \Intervention\Image\Facades\Image {}
+
+    class JavaScript extends \Laracasts\Utilities\JavaScript\JavaScriptFacade {}
 
     class Html extends \Spatie\Html\Facades\Html {}
 

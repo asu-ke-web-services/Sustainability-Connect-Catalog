@@ -13,6 +13,7 @@ let mix = require('laravel-mix');
 mix.setPublicPath('public');
 
 mix.sass('resources/assets/sass/frontend/SearchApp.scss', '../resources/assets/sass/frontend')
+    .copy('resources/assets/sass/frontend/SearchApp.css', 'public/css')
     .react('resources/assets/js/frontend/searchProject.js', 'public/js')
     .react('resources/assets/js/frontend/searchInternship.js', 'public/js');
 

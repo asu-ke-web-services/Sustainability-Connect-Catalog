@@ -1,0 +1,96 @@
+version: '2'
+
+services:
+  ### https-redirect - http to https all traffic ###################
+  https-redirect:
+    image: picoded/https-redirect
+    ports:
+      - 80:80
+
+
+  ### reverse proxy and SSL termination #############################
+  proxy:
+    image: mnuessler/tls-termination-proxy
+    depends_on:
+      - app
+    ports:
+      - 443:443
+    environment:
+      HTTPS_UPSTREAM_SERVER_ADDRESS: app
+      HTTPS_UPSTREAM_SERVER_PORT: 8080
+    volumes:
+      - ./deploy/gios.asu.edu-20180410.pem:/cert.pem
+
+
+  ### App Container #############################
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: catalog-sconnect-app:develop
+    depends_on:
+      - mysql
+#    ports:
+#      - 9000:9000
+#      - elasticsearch
+#    logging:
+#      driver: awslogs
+#      options:
+#        awslogs-region: "us-east-1"
+#        awslogs-group: "laravel"
+#        awslogs-create-group: "true"
+    volumes:
+#      - .:/var/www/html
+      - ./public:/var/www/html/public
+      - ./storage:/var/www/html/storage
+    env_file:
+      - .env.local
+
+
+  ### Web Server Container #############################
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: catalog-sconnect-web:develop
+    depends_on:
+      - app
+    ports:
+      - 8080:80
+    # logging:
+    #   driver: awslogs
+    #   options:
+    #     awslogs-region: "eu-east-1"
+    #     awslogs-group: "nginx"
+    #     awslogs-create-group: "true"
+
+
+  ### Database Container #############################
+  mysql:
+    image: mysql:5.7
+#    command: --sql-mode=STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+       - ./deploy/mysql/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+  ### Cron Container #############################
+#  cron:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.cron
+#    image: catalog-sconnect-cron:develop
+#    environment:
+
+  ### ElasticSearch Container #############################
+#  elasticsearch:
+#    image: elasticsearch:5.5
+
+
+  ### Redis Container #############################
+#  redis:
+#    image: redis

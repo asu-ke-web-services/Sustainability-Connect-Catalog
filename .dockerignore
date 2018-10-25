@@ -4,3 +4,11 @@ node_modules/
 public/js/
 public/css/
 yarn-error.log
+
+.dockerignore
+Dockerfile
+docker-compose.yml
+.env*
+ci/
+*.pem
+server.pid

@@ -51,7 +51,7 @@ class AddCustomColumnsUsersTable extends Migration
             $table->dropForeign('users_organization_id_foreign');
             $table->dropForeign('users_student_degree_level_id_foreign');
             $table->dropForeign('users_user_type_id_foreign');
-            $table->dropColumn(['login_name', 'user_type_id', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id']);
+            $table->dropColumn(['access_validated', 'login_name', 'user_type_id', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id']);
         });
     }
 }

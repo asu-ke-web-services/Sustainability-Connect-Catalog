@@ -30,7 +30,7 @@ class AddColumnsMediaTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('media', function (Blueprint $table) {
             $table->dropColumn(['comments', 'deleted_at', 'created_by', 'updated_by', 'deleted_by']);
         });
     }

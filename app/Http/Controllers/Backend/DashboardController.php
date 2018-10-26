@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Controllers\Backend;
 
 use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Backend\Auth\UserRepository;
 use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
 use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
@@ -12,6 +13,11 @@ use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
  */
 class DashboardController extends Controller
 {
+    /**
+     * @var Project
+     */
+    private $project;
+
     /**
      * @var ProjectRepository
      */
@@ -30,12 +36,14 @@ class DashboardController extends Controller
     /**
      * DashboardController constructor.
      *
+     * @param Project              $project
      * @param InternshipRepository $internshipRepository
      * @param ProjectRepository    $projectRepository
      * @param UserRepository       $userRepository
      */
-    public function __construct(InternshipRepository $internshipRepository, ProjectRepository $projectRepository, UserRepository $userRepository)
+    public function __construct(Project $project, InternshipRepository $internshipRepository, ProjectRepository $projectRepository, UserRepository $userRepository)
     {
+        $this->project = $project;
         $this->projectRepository = $projectRepository;
         $this->internshipRepository = $internshipRepository;
         $this->userRepository = $userRepository;
@@ -48,17 +56,11 @@ class DashboardController extends Controller
     {
         return view('backend.dashboard')
             ->with('projectsTotal', $this->projectRepository->where('opportunityable_type', 'Project')->count())
-            ->with('projectsUnderReview', $this->projectRepository->where([
-                ['opportunityable_type', 'Project'],
-                ['review_status_id', 3],
-            ]))
             ->with('internshipsTotal', $this->internshipRepository->where('opportunityable_type', 'Internship')->count())
             ->with('activeUsersTotal', $this->userRepository->count())
-            ->with('newUsersToReview', $this->userRepository->where([
-                ['reviewed', 0],
-            ]))
-            ->with('activeProjectMembers', $this->opportunityUserRepository->where([
-                ['reviewed', 0],
-            ]));
+            ->with('projectsUnderReview', $this->project::with('opportunity')->inReview()->get())
+            ->with('newUsersToReview', $this->userRepository->where('access_validated', 0)->get())
+            // ->with('activeProjectMembers', $this->userRepository->getActiveOpportunityMembersPaginated(25, 'application_deadline', 'asc'));
+            ->with('activeProjectMembers', $this->userRepository->has('projects')->get()->load('opportunities'));
     }
 }

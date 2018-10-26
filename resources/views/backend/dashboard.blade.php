@@ -80,70 +80,37 @@
                             <tr>
                                 <th>Username</th>
                                 <th>Date registered</th>
-                                <th>Role</th>
+                                <th>Type</th>
                                 <th>Status</th>
+                                <th>{{ __('labels.general.actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($newUsersToReview as $user)
                             <tr>
-                                <td>Yiorgos Avraamu</td>
-                                <td>2012/01/01</td>
-                                <td>Member</td>
+                                <td>{{ $user->full_name }}</td>
+                                <td>{{ $user->created_at }}</td>
+                                <td>{{ $user->userType->name }}</td>
                                 <td>
-                                    <span class="badge badge-success">Active</span>
+                                    @if($user->asurite)
+                                        <span class="badge badge-pill badge-success">Yes</span>
+                                    @else
+                                        <span class="badge badge-pill badge-secondary">No</span>
+                                    @endif
                                 </td>
+                                <td>{!! $user->action_buttons !!}</td>
                             </tr>
-                            <tr>
-                                <td>Avram Tarasios</td>
-                                <td>2012/02/01</td>
-                                <td>Staff</td>
-                                <td>
-                                    <span class="badge badge-danger">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Quintin Ed</td>
-                                <td>2012/02/01</td>
-                                <td>Admin</td>
-                                <td>
-                                    <span class="badge badge-secondary">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Enéas Kwadwo</td>
-                                <td>2012/03/01</td>
-                                <td>Member</td>
-                                <td>
-                                    <span class="badge badge-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Agapetus Tadeáš</td>
-                                <td>2012/01/21</td>
-                                <td>Staff</td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <ul class="pagination">
-                        <li class="page-item">
+                        <li class="page-item disabled">
                             <a class="page-link" href="#">Prev</a>
                         </li>
                         <li class="page-item active">
                             <a class="page-link" href="#">1</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
+                        <li class="page-item disabled">
                             <a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
@@ -151,8 +118,11 @@
             </div>
         </div>
         <!-- /.col-->
+    </div>
+    <!-- /.row-->
 
-        <div class="col-lg-6">
+    <div class="row">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <strong>{{ __('strings.backend.dashboard.projects_under_review') }}</strong>
@@ -160,73 +130,34 @@
                 <div class="card-body">
                     <table class="table table-responsive-sm table-striped">
                         <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                            </tr>
+                        <tr>
+                            <th>Project</th>
+                            <th>Coordinator</th>
+                            <th>Submitted</th>
+                            <th>Updated Last</th>
+                            <th>{{ __('labels.general.actions') }}</th>
+                        </tr>
                         </thead>
                         <tbody>
+                        @foreach($projectsUnderReview as $project)
                             <tr>
-                                <td>Yiorgos Avraamu</td>
-                                <td>2012/01/01</td>
-                                <td>Member</td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
-                                </td>
+                                <td>{!! $project->opportunity->name !!}</td>
+                                <td>{!! $project->opportunity->supervisorUser->full_name ?? null !!}</td>
+                                <td>{!! $project->opportunity->created_at !!}</td>
+                                <td>{!! $project->opportunity->updated_at !!}</td>
+                                <td>{!! $project->action_buttons !!}</td>
                             </tr>
-                            <tr>
-                                <td>Avram Tarasios</td>
-                                <td>2012/02/01</td>
-                                <td>Staff</td>
-                                <td>
-                                    <span class="badge badge-danger">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Quintin Ed</td>
-                                <td>2012/02/01</td>
-                                <td>Admin</td>
-                                <td>
-                                    <span class="badge badge-secondary">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Enéas Kwadwo</td>
-                                <td>2012/03/01</td>
-                                <td>Member</td>
-                                <td>
-                                    <span class="badge badge-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Agapetus Tadeáš</td>
-                                <td>2012/01/21</td>
-                                <td>Staff</td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                     <ul class="pagination">
-                        <li class="page-item">
+                        <li class="page-item disabled">
                             <a class="page-link" href="#">Prev</a>
                         </li>
                         <li class="page-item active">
                             <a class="page-link" href="#">1</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
+                        <li class="page-item disabled">
                             <a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
@@ -247,73 +178,36 @@
                     <table class="table table-responsive-sm table-bordered table-striped table-sm">
                         <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Date registered</th>
+                                <th>User</th>
                                 <th>Role</th>
-                                <th>Status</th>
+                                <th>Project</th>
+                                <th>Project Status</th>
+                                <th>{{ __('labels.general.actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($activeProjectMembers as $member)
+                            @foreach($member->projects as $project)
                             <tr>
-                                <td>Vishnu Serghei</td>
-                                <td>2012/01/01</td>
-                                <td>Member</td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
-                                </td>
+                                <td>{{ $member->full_name }}</td>
+                                <td>&nbsp;</td>
+                                <td>{{ $project->name }}</td>
+                                <td>{{ $project->status->name }}</td>
+                                <td>{!! $project->opportunityable->action_buttons !!}</td>
                             </tr>
-                            <tr>
-                                <td>Zbyněk Phoibos</td>
-                                <td>2012/02/01</td>
-                                <td>Staff</td>
-                                <td>
-                                    <span class="badge badge-danger">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Einar Randall</td>
-                                <td>2012/02/01</td>
-                                <td>Admin</td>
-                                <td>
-                                    <span class="badge badge-secondary">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Félix Troels</td>
-                                <td>2012/03/01</td>
-                                <td>Member</td>
-                                <td>
-                                    <span class="badge badge-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Aulus Agmundr</td>
-                                <td>2012/01/21</td>
-                                <td>Staff</td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
-                                </td>
-                            </tr>
+                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                     <nav>
                         <ul class="pagination">
-                            <li class="page-item">
+                            <li class="page-item disabled">
                                 <a class="page-link" href="#">Prev</a>
                             </li>
                             <li class="page-item active">
                                 <a class="page-link" href="#">1</a>
                             </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">4</a>
-                            </li>
-                            <li class="page-item">
+                            <li class="page-item disabled">
                                 <a class="page-link" href="#">Next</a>
                             </li>
                         </ul>

@@ -80,6 +80,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectsSeeder::class);
         $this->call(InternshipsSeeder::class);
 
+        $this->call(OpportunityUsersSeeder::class);
+
         $this->call(OrganizationsTableSeeder::class);
 
         Model::reguard();

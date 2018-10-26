@@ -29,6 +29,8 @@ interface RepositoryContract
 
     public function getByColumn($item, $column, array $columns = ['*']);
 
+    public function has($relationship, $operator = '>=', $count = 1);
+
     public function paginate($limit = 25, array $columns = ['*'], $pageName = 'page', $page = null);
 
     public function updateById($id, array $data, array $options = []);

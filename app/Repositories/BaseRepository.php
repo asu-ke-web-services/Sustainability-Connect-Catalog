@@ -12,6 +12,13 @@ use Illuminate\Database\Eloquent\Collection;
 abstract class BaseRepository implements RepositoryContract
 {
     /**
+     * Array of one or more has clause parameters.
+     *
+     * @var array
+     */
+    protected $hases = [];
+
+    /**
      * The repository model.
      *
      * @var \Illuminate\Database\Eloquent\Model
@@ -270,6 +277,21 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
+     * Add a simple has clause to the query.
+     *
+     * @param string $relationship
+     * @param string $operator
+     * @param int    $count
+     * @return $this
+     */
+    public function has($relationship, $operator = '>=', $count = 1)
+    {
+        $this->hases[] = compact('relationship', 'operator', 'count');
+
+        return $this;
+    }
+
+    /**
      * @param int    $limit
      * @param array  $columns
      * @param string $pageName
@@ -353,6 +375,22 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
+     * Add a simple whereHas clause to the query.
+     *
+     * @param string $column
+     * @param string $value
+     * @param string $operator
+     *
+     * @return $this
+     */
+    // public function whereHas($column, $value, $operator = '=')
+    // {
+    //     $this->wheres[] = compact('column', 'value', 'operator');
+    //
+    //     return $this;
+    // }
+
+    /**
      * Add a simple where in clause to the query.
      *
      * @param string $column
@@ -420,6 +458,10 @@ abstract class BaseRepository implements RepositoryContract
      */
     protected function setClauses()
     {
+        foreach ($this->hases as $has) {
+            $this->query->has($has['relationship'], $has['operator'], $has['count']);
+        }
+
         foreach ($this->wheres as $where) {
             $this->query->where($where['column'], $where['operator'], $where['value']);
         }
@@ -460,6 +502,7 @@ abstract class BaseRepository implements RepositoryContract
      */
     protected function unsetClauses()
     {
+        $this->hases = [];
         $this->wheres = [];
         $this->whereIns = [];
         $this->scopes = [];

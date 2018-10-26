@@ -6,7 +6,7 @@
  */
 Route::get('/', function () {
     return redirect()->route('frontend.user.dashboard');
-});
+})->name('index');
 // Route::get('contact', 'ContactController@index')->name('contact');
 // Route::post('contact/send', 'ContactController@send')->name('contact.send');
 

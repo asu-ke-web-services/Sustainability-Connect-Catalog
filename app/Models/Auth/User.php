@@ -20,7 +20,8 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use HasRoles,
+    use BlameableTrait,
+        HasRoles,
         Notifiable,
         Searchable,
         SendUserPasswordReset,
@@ -131,6 +132,74 @@ class User extends Authenticatable
         return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_user')
             ->where('access_control', 1)
             ->withTimestamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function opportunities()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
+            ->whereIn('opportunities.opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6  // In Progress
+            ])
+            ->withTimestamps()
+            ->withPivot('relationship_type_id', 'comments')
+            ->wherePivotIn('relationship_type_id', [
+                3, // Particiapnt
+                4, // Manager
+                5, // Practitioner Mentor
+                6  // Academic Mentor
+            ]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function projects()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
+            ->whereIn('opportunities.opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6  // In Progress
+            ])
+            ->filterByType('Project')
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps()
+            ->wherePivotIn('relationship_type_id', [
+                3, // Particiapnt
+                4, // Manager
+                5, // Practitioner Mentor
+                6  // Academic Mentor
+            ]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function internships()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
+            ->whereIn('opportunities.opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6  // In Progress
+            ])
+            ->filterByType('Internship')
+            ->withPivot('relationship_type_id', 'comments')
+            ->withTimestamps()
+            ->wherePivotIn('relationship_type_id', [
+                3, // Particiapnt
+                4, // Manager
+                5, // Practitioner Mentor
+                6  // Academic Mentor
+            ]);
     }
 
     public function shouldBeSearchable()

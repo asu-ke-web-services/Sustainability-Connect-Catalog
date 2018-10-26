@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.39 on 2018-10-23 20:44:41.
+ * Generated for Laravel 5.6.39 on 2018-10-26 08:51:00.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3148,18 +3148,29 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function flush()
         {
-            return \Illuminate\Cache\DatabaseStore::flush();
+            return \Illuminate\Cache\FileStore::flush();
         }
         
         /**
-         * Get the underlying database connection.
+         * Get the Filesystem instance.
          *
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Illuminate\Filesystem\Filesystem 
          * @static 
          */ 
-        public static function getConnection()
+        public static function getFilesystem()
         {
-            return \Illuminate\Cache\DatabaseStore::getConnection();
+            return \Illuminate\Cache\FileStore::getFilesystem();
+        }
+        
+        /**
+         * Get the working directory of the cache.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDirectory()
+        {
+            return \Illuminate\Cache\FileStore::getDirectory();
         }
         
         /**
@@ -3170,7 +3181,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getPrefix()
         {
-            return \Illuminate\Cache\DatabaseStore::getPrefix();
+            return \Illuminate\Cache\FileStore::getPrefix();
         }
          
     }

@@ -32,45 +32,52 @@ class CasLoginController extends Controller
      */
     public function __construct(UserRepository $userRepository, AsuDirectoryHelper $asuDirectoryHelper)
     {
+        // $this->middleware('cas.auth');
+
         $this->userRepository = $userRepository;
         $this->asuDirectoryHelper = $asuDirectoryHelper;
     }
 
     /**
      * @param Request $request
-     * @param $provider
      *
      * @throws GeneralException
      *
      * @return \Illuminate\Http\RedirectResponse|mixed
      */
-    public function login(Request $request, $provider)
+    public function login(Request $request)
     {
         // There's a high probability something will go wrong
         $user = null;
-
-        // If the provider is not an acceptable third party than kick back
-        if (! in_array($provider, $this->socialiteHelper->getAcceptedProviders())) {
-            return redirect()->route(home_route())->withFlashDanger(__('auth.socialite.unacceptable', ['provider' => $provider]));
-        }
 
         /*
          * The first time this is hit, request is empty
          * It's redirected to the provider and then back here, where request is populated
          * So it then continues creating the user
          */
-        if (! $request->all()) {
-            return $this->getAuthorizationFirst($provider);
+        // if (! $request->all()) {
+        //     return $this->getAuthorizationFirst();
+        // }
+
+        if ( ! cas()->checkAuthentication() )
+        {
+            if ($request->ajax()) {
+                return response('Unauthorized.', 401);
+            }
+            cas()->authenticate();
         }
+
+        // dd(cas()->getCurrentUser());
+
 
         // Create the user if this is a new social account or find the one that is already there.
         try {
-            $user = $this->userRepository->findOrCreateProvider($this->getProviderUser($provider), $provider);
+            $user = $this->userRepository->findOrCreateASU(cas()->getCurrentUser());
         } catch (GeneralException $e) {
             return redirect()->route(home_route())->withFlashDanger($e->getMessage());
         }
 
-        if (is_null($user)) {
+        if ( $user === null ) {
             return redirect()->route(home_route())->withFlashDanger(__('exceptions.frontend.auth.unknown'));
         }
 
@@ -88,7 +95,7 @@ class CasLoginController extends Controller
         auth()->login($user, true);
 
         // Set session variable so we know which provider user is logged in as, if ever needed
-        session([config('access.socialite_session_name') => $provider]);
+        session([config('access.socialite_session_name') => 'AsuCas']);
 
         event(new UserLoggedIn(auth()->user()));
 
@@ -97,30 +104,12 @@ class CasLoginController extends Controller
     }
 
     /**
-     * @param  $provider
      *
      * @return mixed
      */
-    protected function getAuthorizationFirst($provider)
+    protected function getAuthorizationFirst()
     {
-        $socialite = Socialite::driver($provider);
-        $scopes = empty(config("services.{$provider}.scopes")) ? false : config("services.{$provider}.scopes");
-        $with = empty(config("services.{$provider}.with")) ? false : config("services.{$provider}.with");
-        $fields = empty(config("services.{$provider}.fields")) ? false : config("services.{$provider}.fields");
-
-        if ($scopes) {
-            $socialite->scopes($scopes);
-        }
-
-        if ($with) {
-            $socialite->with($with);
-        }
-
-        if ($fields) {
-            $socialite->fields($fields);
-        }
-
-        return $socialite->redirect();
+        return cas()->authenticate();
     }
 
     /**

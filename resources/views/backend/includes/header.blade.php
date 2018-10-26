@@ -27,17 +27,17 @@
         <li class="nav-item d-md-down-none">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="icon-bell"></i>
-                <span class="badge badge-pill badge-danger">5</span>
+                {{-- <span class="badge badge-pill badge-danger">5</span> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
                 <div class="dropdown-header text-center">
-                    <strong>You have 5 notifications</strong>
+                    <strong>You have 2 notifications</strong>
                 </div>
                 <a class="dropdown-item" href="#">
                     <i class="icon-user-follow text-success"></i> New user registered</a>
                 <a class="dropdown-item" href="#">
                     <i class="icon-user-unfollow text-danger"></i> User deleted</a>
-                <a class="dropdown-item" href="#">
+{{--                 <a class="dropdown-item" href="#">
                     <i class="icon-chart text-info"></i> Sales report is ready</a>
                 <a class="dropdown-item" href="#">
                     <i class="icon-basket-loaded text-primary"></i> New client</a>
@@ -78,19 +78,19 @@
                         <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                     </span>
                     <small class="text-muted">243GB/256GB</small>
-                </a>
+                </a> --}}
             </div>
         </li>
         <li class="nav-item dropdown d-md-down-none">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="icon-list"></i>
-                <span class="badge badge-pill badge-danger">5</span>
+                {{-- <span class="badge badge-pill badge-danger">5</span> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
                 <div class="dropdown-header text-center">
-                    <strong>You have 5 pending tasks</strong>
+                    <strong>You have 0 pending tasks</strong>
                 </div>
-                <a class="dropdown-item" href="#">
+{{--                 <a class="dropdown-item" href="#">
                     <div class="small mb-1">Upgrade NPM & Bower
                         <span class="float-right">
                             <strong>0%</strong>
@@ -142,7 +142,7 @@
                 </a>
                 <a class="dropdown-item text-center" href="#">
                     <strong>View all tasks</strong>
-                </a>
+                </a> --}}
             </div>
         </li>
         <li class="nav-item dropdown d-md-down-none">

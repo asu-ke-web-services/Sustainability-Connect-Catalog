@@ -30,6 +30,7 @@ services:
     image: catalog-sconnect-app:develop
     depends_on:
       - mysql
+    env_file: '.env'
 #    ports:
 #      - 9000:9000
 #      - elasticsearch
@@ -43,8 +44,6 @@ services:
 #      - .:/var/www/html
       - ./public:/var/www/html/public
       - ./storage:/var/www/html/storage
-    env_file:
-      - .env.local
 
 
   ### Web Server Container #############################

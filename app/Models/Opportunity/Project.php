@@ -108,6 +108,37 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeInReview($query)
+    {
+        return $query->where('review_status_id', 3);
+    }
+
+    /**
+     * @param $query
+     * @param bool $approved
+     *
+     * @return mixed
+     */
+    public function scopeApproved($query, $approved = true)
+    {
+        if ($approved) {
+            return $query->where('review_status_id', 1);
+        } else {
+            // Closed or archived or otherwise not approved
+            return $query->whereIn('review_status_id', [
+                2, // Archived
+                4, // Hidden
+                5, // Draft
+                6, // Trash
+            ]);
+        }
+    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS

@@ -124,9 +124,11 @@ class UserTableSeeder extends Seeder
                     $degree_level_id = 2;
                 }
 
-                if ($old_user_graduation_date != '' && $old_user_graduation_date != '00000000') {
-                    $old_user_graduation_date = substr($old_user_graduation_date, 0, 4) .'-'. substr($old_user_graduation_date, 4, 2) .'-'. substr($old_user_graduation_date, 6, 2);
-                } else {
+                if (
+                    $old_user_graduation_date === '' ||
+                    $old_user_graduation_date === '00000000' ||
+                    $old_user_graduation_date === '1'
+                ) {
                     $old_user_graduation_date = null;
                 }
 
@@ -146,7 +148,7 @@ class UserTableSeeder extends Seeder
                     'asurite'                 => $old_user_asurite ?? null,
                     'student_degree_level_id' => $degree_level_id ?? null,
                     'degree_program'          => $old_user_degree_program ?? null,
-                    'graduation_date'         => $old_user_graduation_date ?? null,
+                    'graduation_date'         => Carbon::parse($old_user_graduation_date)->toDateString() ?? null,
                     'phone'                   => $old_user_phone ?? null,
                     'research_interests'      => $old_user_research_interests ?? null,
                     'department'              => $old_user_department ?? null,

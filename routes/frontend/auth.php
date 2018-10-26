@@ -36,6 +36,10 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
         Route::get('login', 'LoginController@showLoginForm')->name('login');
         Route::post('login', 'LoginController@login')->name('login.post');
 
+        // ASU CAS Routes
+        Route::get('login/asu', 'CasLoginController@login')->name('cas.login');
+        Route::get('login/asu/callback', 'CasLoginController@login');
+
         // Socialite Routes
         Route::get('login/{provider}', 'SocialLoginController@login')->name('social.login');
         Route::get('login/{provider}/callback', 'SocialLoginController@login');

@@ -82,7 +82,7 @@ if (! function_exists('home_route')) {
             }
         }
 
-        return 'frontend.index';
+        return config('app.url');
     }
 }
 

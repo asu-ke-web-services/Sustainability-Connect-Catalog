@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -49335,7 +49335,7 @@ function _interopRequireDefault(obj) {
 }
 
 /**
- * This bootstrap file is used for both frontend and backend
+ * This bootstrap file is used for the backend
  */
 
 window._ = __webpack_require__("./node_modules/lodash/lodash.js");
@@ -49499,12 +49499,60 @@ $(function () {
 
 /***/ }),
 
-/***/ 1:
+/***/ "./resources/assets/sass/backend/app.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/frontend/SearchApp.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/frontend/gentelella/app.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/frontend/gentelella/dashboard.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/frontend/gentelella/home.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/frontend/gentelella/login.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/assets/js/backend/before.js");
 __webpack_require__("./resources/assets/js/backend/app.js");
-module.exports = __webpack_require__("./resources/assets/js/backend/after.js");
+__webpack_require__("./resources/assets/js/backend/after.js");
+__webpack_require__("./resources/assets/sass/frontend/SearchApp.scss");
+__webpack_require__("./resources/assets/sass/backend/app.scss");
+__webpack_require__("./resources/assets/sass/frontend/gentelella/app.scss");
+__webpack_require__("./resources/assets/sass/frontend/gentelella/dashboard.scss");
+__webpack_require__("./resources/assets/sass/frontend/gentelella/home.scss");
+module.exports = __webpack_require__("./resources/assets/sass/frontend/gentelella/login.scss");
 
 
 /***/ })

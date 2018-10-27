@@ -100550,8 +100550,6 @@ function _interopRequireDefault(obj) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// require('./components/SearchApp');
-
 if (document.getElementById('search')) {
   _reactDom2.default.render(_react2.default.createElement(_SearchApp2.default, {
     indexName: 'projects',

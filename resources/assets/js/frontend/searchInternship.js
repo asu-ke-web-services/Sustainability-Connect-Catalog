@@ -16,8 +16,6 @@ import SearchApp from './components/SearchApp';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// require('./components/SearchApp');
-
 if (document.getElementById('search')) {
     ReactDOM.render(
       <SearchApp

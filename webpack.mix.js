@@ -12,19 +12,26 @@ let mix = require('laravel-mix');
  */
 mix.setPublicPath('public');
 
-mix.sass('resources/assets/sass/frontend/SearchApp.scss', '../resources/assets/sass/frontend')
-    .copy('resources/assets/sass/frontend/SearchApp.css', 'public/css')
-    .react('resources/assets/js/frontend/searchProject.js', 'public/js')
-    .react('resources/assets/js/frontend/searchInternship.js', 'public/js');
+let public_js = 'public/js/';
+let public_css = 'public/css/';
+let resource_sass = 'resources/assets/sass/';
+let resource_js = 'resources/assets/js/';
 
-mix.sass('resources/assets/sass/frontend/app.scss', 'css/frontend.css')
-    .sass('resources/assets/sass/backend/app.scss', 'css/backend.css')
-    .js('resources/assets/js/frontend/app.js', 'js/frontend.js')
-    .js([
-        'resources/assets/js/backend/before.js',
-        'resources/assets/js/backend/app.js',
-        'resources/assets/js/backend/after.js'
-    ], 'js/backend.js');
+
+mix.sass(resource_sass + 'frontend/SearchApp.scss', resource_sass + 'frontend')
+  .copy(resource_sass + 'frontend/SearchApp.css', public_css)
+  .react(resource_js + 'frontend/searchProject.js', public_js)
+  .react(resource_js + 'frontend/searchInternship.js', public_js);
+
+mix.sass(resource_sass + 'backend/app.scss', public_css + 'backend.css')
+  .js([
+    resource_js + 'backend/before.js',
+    resource_js + 'backend/app.js',
+    resource_js + 'backend/after.js'
+  ], public_js + 'backend.js');
+
+// mix.sass('resources/assets/sass/frontend/app.scss', 'css/frontend.css')
+//   .js('resources/assets/js/frontend/app.js', 'js/frontend.js');
 
 if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
     mix.version();

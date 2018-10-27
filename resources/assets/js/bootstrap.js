@@ -1,5 +1,5 @@
 /**
- * This bootstrap file is used for both frontend and backend
+ * This bootstrap file is used for the backend
  */
 
 window._ = require('lodash');
@@ -19,7 +19,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fab, far, fas);
 
 // Kicks off the process of finding <i> tags and replacing with <svg>
-dom.watch()
+dom.watch();
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

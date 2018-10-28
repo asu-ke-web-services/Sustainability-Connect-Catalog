@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Models\Opportunity;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 // use Venturecraft\Revisionable\RevisionableTrait;
@@ -209,7 +210,15 @@ class Project extends Model
             \in_array($this->opportunity->status->slug, [
                 'idea-submission',
                 'closed',
-            ], true)
+            ], true) ||
+            (
+                $this->opportunity->listing_start_date !== null &&
+                Carbon::parse($this->opportunity->listing_start_date)->greaterThan(Carbon::today())
+            ) ||
+            (
+                $this->opportunity->listing_end_date !== null &&
+                Carbon::parse($this->opportunity->listing_end_date)->lessThan(Carbon::today())
+            )
         ) {
             return false;
         }
@@ -226,7 +235,6 @@ class Project extends Model
     public function shouldBeSearchable()
     {
         return $this->isPublished();
-        // return true;
     }
 
 

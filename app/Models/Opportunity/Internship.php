@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Models\Opportunity;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 // use Venturecraft\Revisionable\RevisionableTrait;
@@ -155,7 +156,15 @@ class Internship extends Model
     {
         if (
             $this->is_hidden === 1 ||
-            $this->opportunity->status->slug === 'inactive'
+            $this->opportunity->status->slug === 'inactive' ||
+            (
+                $this->opportunity->listing_start_date !== null &&
+                Carbon::parse($this->opportunity->listing_start_date)->greaterThan(Carbon::today())
+            ) ||
+            (
+                $this->opportunity->listing_end_date !== null &&
+                Carbon::parse($this->opportunity->listing_end_date)->lessThan(Carbon::today())
+            )
         ) {
             return false;
         }
@@ -171,8 +180,7 @@ class Internship extends Model
 
     public function shouldBeSearchable()
     {
-        // return $this->isPublished();
-        return true;
+        return $this->isPublished();
     }
 
     public function toSearchableArray()

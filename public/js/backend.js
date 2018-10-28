@@ -49513,6 +49513,13 @@ $(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/frontend/app.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/frontend/gentelella/app.scss":
 /***/ (function(module, exports) {
 
@@ -49549,6 +49556,7 @@ __webpack_require__("./resources/assets/js/backend/app.js");
 __webpack_require__("./resources/assets/js/backend/after.js");
 __webpack_require__("./resources/assets/sass/frontend/SearchApp.scss");
 __webpack_require__("./resources/assets/sass/backend/app.scss");
+__webpack_require__("./resources/assets/sass/frontend/app.scss");
 __webpack_require__("./resources/assets/sass/frontend/gentelella/app.scss");
 __webpack_require__("./resources/assets/sass/frontend/gentelella/dashboard.scss");
 __webpack_require__("./resources/assets/sass/frontend/gentelella/home.scss");

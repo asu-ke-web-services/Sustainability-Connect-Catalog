@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use SCCatalog\Events\Frontend\Auth\UserConfirmed;
 use SCCatalog\Events\Frontend\Auth\UserProviderRegistered;
 use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Helpers\Frontend\Auth\AsuDirectoryHelper;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Auth\SocialAccount;
 use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
@@ -241,15 +242,15 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * @param $data
+     * @param string $asurite
      *
      * @return mixed
      * @throws GeneralException
      */
-    public function findOrCreateASU($data)
+    public function findOrCreateASU($asurite)
     {
-        // User email may not provided.
-        $user_email = $data->email ?: "{$data->id}@{$provider}.com";
+        // User email based on ASURITE
+        $user_email = "{$asurite}@asu.edu";
 
         // Check to see if there is a user with this email first.
         $user = $this->getByColumn($user_email, 'email');
@@ -265,40 +266,35 @@ class UserRepository extends BaseRepository
                 throw new GeneralException(__('exceptions.frontend.auth.registration_disabled'));
             }
 
-            // Get users first name and last name from their full name
-            $nameParts = $this->getNameParts($data->getName());
+            // Lookup ASURITE in iSearch
+            $directoryInfo = AsuDirectoryHelper::getDirectoryInfoByAsurite($asurite);
+
+            dd(AsuDirectoryHelper::getDirectoryInfoByAsurite($asurite));
+
+            $firstName = AsuDirectoryHelper::getFirstName($directoryInfo);
+            $lastName = AsuDirectoryHelper::getLastName($directoryInfo);
+            $phone = AsuDirectoryHelper::getLastName($directoryInfo);
+            $email =  AsuDirectoryHelper::getEmail($directoryInfo);
+
+            $userType = AsuDirectoryHelper::getUserType($directoryInfo);
+
+            // $primaryEmplClass = AsuDirectoryHelper::getUserType($directoryInfo);
+            // $primaryDepartment = AsuDirectoryHelper::getUserType($directoryInfo);
+
+            // $photoUrl = AsuDirectoryHelper::getUserType($directoryInfo);
+            // $photoPermission = AsuDirectoryHelper::getUserType($directoryInfo);
 
             $user = parent::create([
-                'first_name'  => $nameParts['first_name'],
-                'last_name'  => $nameParts['last_name'],
-                'email' => $user_email,
-                'active' => 1,
-                'confirmed' => 1,
-                'password' => null,
-                'avatar_type' => $provider,
+                'first_name'  => $firstName,
+                'last_name'   => $lastName,
+                'email'       => $user_email,
+                'active'      => 1,
+                'confirmed'   => 1,
+                'password'    => null,
+                // 'avatar_type' => $provider,
             ]);
 
             event(new UserProviderRegistered($user));
-        }
-
-        // See if the user has logged in with this social account before
-        if (! $user->hasProvider($provider)) {
-            // Gather the provider data for saving and associate it with the user
-            $user->providers()->save(new SocialAccount([
-                'provider'    => $provider,
-                'provider_id' => $data->id,
-                'token'       => $data->token,
-                'avatar'      => $data->avatar,
-            ]));
-        } else {
-            // Update the users information, token and avatar can be updated.
-            $user->providers()->update([
-                'token'       => $data->token,
-                'avatar'      => $data->avatar,
-            ]);
-
-            $user->avatar_type = $provider;
-            $user->update();
         }
 
         // Return the user object

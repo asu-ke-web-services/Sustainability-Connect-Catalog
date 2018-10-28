@@ -82,7 +82,8 @@ if (! function_exists('home_route')) {
             }
         }
 
-        return config('app.url');
+        return 'frontend.project.index';
+        // return config('app.url');
     }
 }
 

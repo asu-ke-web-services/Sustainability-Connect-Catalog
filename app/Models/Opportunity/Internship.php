@@ -23,10 +23,6 @@ class Internship extends Model
 
     public $timestamps = false;
 
-    protected $dates = [
-
-    ];
-
     public $fillable = [
         'degree_program',
         'compensation',
@@ -65,8 +61,6 @@ class Internship extends Model
         'opportunity'
     ];
 
-
-
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -79,6 +73,9 @@ class Internship extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     **/
     public function opportunity()
     {
         return $this->morphOne(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunityable');

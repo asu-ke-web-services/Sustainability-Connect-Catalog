@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "501a426e33f639629e0c47470b5f609b",
+    "content-hash": "a5915c00af18b1789017be59687f92f8",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -7298,7 +7298,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2018-10-21T18:01:48+00:00"
+            "time": "2018-10-15T15:36:51+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

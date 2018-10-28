@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { AffiliationIcons } from './AffiliationIcons';
 
-export const Hits = connectHits(({ hits, indexName, accessAffiliations, canViewRestricted }) => {
+export const Hits = connectHits(({ hits, indexName, userAccessAffiliations, canViewRestricted }) => {
   const hs = hits.map(
     hit => <HitComponent
       key={hit.objectID}
       hit={hit}
       indexName={indexName}
-      accessAffiliations={accessAffiliations}
+      userAccessAffiliations={userAccessAffiliations}
       canViewRestricted={canViewRestricted}
     />);
   return <tbody id="hits">{hs}</tbody>;
@@ -19,23 +19,31 @@ export const Hits = connectHits(({ hits, indexName, accessAffiliations, canViewR
 HitComponent.propTypes = {
   hit: PropTypes.object,
   indexName: PropTypes.string,
-  accessAffiliations: PropTypes.array,
+  userAccessAffiliations: PropTypes.array,
   canViewRestricted: PropTypes.bool
 };
 
-function HitComponent({ hit, indexName, accessAffiliations, canViewRestricted }) {
+function HitComponent({ hit, indexName, userAccessAffiliations, canViewRestricted }) {
 
   // check for access restrictions; if present, check if user has access
   // access determined by user permissions or possessing same access affiliations
   let canView = (
+    hit.accessAffiliations != null &&
     hit.accessAffiliations.length > 0 &&
     ! canViewRestricted &&
     (
-      accessAffiliations == null ||
-      ! accessAffiliations.some(v => hit.accessAffiliations.indexOf(v))
+      userAccessAffiliations == null ||
+      ! userAccessAffiliations.some(v => hit.accessAffiliations.indexOf(v))
     )
   );
 
+  // format application_deadline, which might be a text string or a date
+  let deadline = '';
+  if (moment(hit.applicationDeadline).isValid()) {
+    deadline = moment(hit.applicationDeadline).format('YYYY-MM-DD');
+  } else {
+    deadline = hit.applicationDeadline;
+  }
 
   if (indexName === 'internships') {
     if (canView) {
@@ -43,12 +51,10 @@ function HitComponent({ hit, indexName, accessAffiliations, canViewRestricted })
         <tr className="disabled">
           <td>View Restricted: {canView}</td>
           <td>View Restricted</td>
-          <td>{hit.affiliationIcons !== null
+          <td>{hit.affiliationIcons != null
               ? <AffiliationIcons canView={canView} icons={hit.affiliationIcons.filter(Boolean)} />
               : ''}</td>
-          <td>{hit.applicationDeadline !== null
-              ? moment(hit.applicationDeadline).format('YYYY-MM-DD')
-              : ''}</td>
+          <td>{deadline}</td>
         </tr>
       );
     }
@@ -57,12 +63,10 @@ function HitComponent({ hit, indexName, accessAffiliations, canViewRestricted })
       <tr>
         <td><a href={`/internship/${hit.id}`}><Highlight attribute="name" hit={hit} /></a></td>
         <td>{hit.organizationName}</td>
-        <td>{hit.affiliationIcons !== null
+        <td>{hit.affiliationIcons != null
             ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
             : ''}</td>
-        <td>{hit.applicationDeadline !== null
-            ? moment(hit.applicationDeadline).format('YYYY-MM-DD')
-            : ''}</td>
+        <td>{deadline}</td>
       </tr>
     );
   }
@@ -73,17 +77,15 @@ function HitComponent({ hit, indexName, accessAffiliations, canViewRestricted })
     return (
       <tr className="disabled">
         <td>View Restricted</td>
-        <td>{hit.affiliationIcons !== null
+        <td>{hit.affiliationIcons != null
             ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
             : ''}</td>
         <td><Highlight attribute="locations" hit={hit} /></td>
-        <td>{hit.applicationDeadline !== null
-            ? moment(hit.applicationDeadline).format('YYYY-MM-DD')
-            : ''}</td>
-        <td>{hit.startDate !== null
+        <td>{deadline}</td>
+        <td>{hit.startDate != null
             ? moment(hit.startDate.date).format('YYYY-MM-DD')
             : ''}</td>
-        <td>{hit.endDate !== null
+        <td>{hit.endDate != null
             ? moment(hit.endDate.date).format('YYYY-MM-DD')
             : ''}</td>
       </tr>
@@ -93,17 +95,15 @@ function HitComponent({ hit, indexName, accessAffiliations, canViewRestricted })
   return (
     <tr>
       <td><a href={`/project/${hit.id}`}><Highlight attribute="name" hit={hit} /></a></td>
-      <td>{hit.affiliationIcons !== null
+      <td>{hit.affiliationIcons != null
           ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
           : ''}</td>
       <td><Highlight attribute="locations" hit={hit} /></td>
-      <td>{hit.applicationDeadline !== null
-          ? moment(hit.applicationDeadline).format('YYYY-MM-DD')
-          : ''}</td>
-      <td>{hit.startDate !== null
+      <td>{deadline}</td>
+      <td>{hit.startDate != null
           ? moment(hit.startDate.date).format('YYYY-MM-DD')
           : ''}</td>
-      <td>{hit.endDate !== null
+      <td>{hit.endDate != null
           ? moment(hit.endDate.date).format('YYYY-MM-DD')
           : ''}</td>
     </tr>

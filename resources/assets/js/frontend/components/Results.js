@@ -20,7 +20,7 @@ export class Results extends Component {
           </thead>
           <Hits indexName={this.props.indexName}
                 userAccessAffiliations={this.props.userAccessAffiliations}
-                canViewRestricted={this.props.canViewRestricted} /> />
+                canViewRestricted={this.props.canViewRestricted} />
         </Table>
       );
     } else {

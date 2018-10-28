@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'affiliation_user',
             'affiliations',
             'attachments',
+            'attachment_types',
             'budget_types',
             'cache',
             'categories',
@@ -80,7 +81,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectsSeeder::class);
         $this->call(InternshipsSeeder::class);
 
-        $this->call(OpportunityUsersSeeder::class);
+        $this->call(OpportunityUsersTableSeeder::class);
 
         $this->call(OrganizationsTableSeeder::class);
 

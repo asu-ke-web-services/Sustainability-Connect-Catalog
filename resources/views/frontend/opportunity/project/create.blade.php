@@ -1,4 +1,4 @@
-@extends ('frontend.layouts.app')
+@extends ('frontend.layouts.asu')
 
 @section ('title', __('labels.frontend.opportunity.projects.proposal') . ' | ' . __('labels.frontend.opportunity.projects.submit_opportunity'))
 

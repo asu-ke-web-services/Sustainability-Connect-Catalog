@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.asu')
 
 @section('content')
 <div class="container pad-bot-md pad-top-sm">

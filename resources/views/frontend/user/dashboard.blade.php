@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.asu')
 
 @section('title', app_name() . ' | '. __('navs.frontend.dashboard') )
 

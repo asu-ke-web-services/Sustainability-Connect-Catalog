@@ -137,6 +137,46 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
+    public function followedOpportunities()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
+            ->whereIn('opportunities.opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6  // In Progress
+            ])
+            ->withTimestamps()
+            ->withPivot('relationship_type_id', 'comments')
+            ->wherePivotIn('relationship_type_id', [
+                1, // Follower
+            ])
+            ->orderBy('opportunities.opportunityable_type');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function opportunityApplications()
+    {
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
+            ->whereIn('opportunities.opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6  // In Progress
+            ])
+            ->withTimestamps()
+            ->withPivot('relationship_type_id', 'comments')
+            ->wherePivotIn('relationship_type_id', [
+                2, // Applicant
+            ])
+            ->orderBy('opportunities.opportunityable_type');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
     public function opportunities()
     {
         return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')

@@ -41,17 +41,16 @@ class FollowerController extends Controller
      *
      * @param FollowerRequest $request
      * @param Opportunity     $opportunity
-     * @param User            $user
      * @return
      * @throws \Throwable
      */
-    public function follow(FollowerRequest $request, Opportunity $opportunity, User $user)
+    public function follow(FollowerRequest $request, Opportunity $opportunity)
     {
         $relationship = $this->relationshipTypeRepository->getByColumn('follower', 'slug');
-        $this->opportunityUserRepository->attach($opportunity, $user, ['relationship_type_id' => $relationship->id]);
+        $this->opportunityUserRepository->follow($opportunity, $request->user(), ['relationship_type_id' => $relationship->id]);
 
         return redirect()->route('frontend.project.show', $opportunity)
-            ->withFlashSuccess('Follower added successfully');
+            ->withFlashSuccess('Successfully followed opportunity');
     }
 
     /**
@@ -59,16 +58,15 @@ class FollowerController extends Controller
      *
      * @param FollowerRequest $request
      * @param Opportunity     $opportunity
-     * @param User            $user
      * @return
      * @throws \Throwable
      */
-    public function unfollow(FollowerRequest $request, Opportunity $opportunity, User $user)
+    public function unfollow(FollowerRequest $request, Opportunity $opportunity)
     {
         $relationship = $this->relationshipTypeRepository->getByColumn('follower', 'slug');
-        $this->opportunityUserRepository->detach($opportunity, $user, ['relationship_type_id' => $relationship->id]);
+        $this->opportunityUserRepository->unfollow($opportunity, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('admin.backend.opportunity.project.index')
-            ->withFlashSuccess('Follower removed successfully');
+        return redirect()->route('frontend.project.show', $opportunity)
+            ->withFlashSuccess('Successfully unfollowed opportunity');
     }
 }

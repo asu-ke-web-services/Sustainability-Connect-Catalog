@@ -3,8 +3,8 @@
 namespace SCCatalog\Repositories\Frontend\Opportunity;
 
 use Illuminate\Support\Facades\DB;
-use SCCatalog\Events\Frontend\OpportunityUser\UserAddedToOpportunity;
-use SCCatalog\Events\Frontend\OpportunityUser\UserRemovedFromOpportunity;
+use SCCatalog\Events\Frontend\OpportunityUser\UserFollowedOpportunity;
+use SCCatalog\Events\Frontend\OpportunityUser\UserUnfollowedOpportunity;
 use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Models\Auth\User;
@@ -24,7 +24,7 @@ class OpportunityUserRepository
      * @return \Illuminate\Database\Eloquent\Model
      * @throws \Throwable
      */
-    public function attach(Opportunity $opportunity, User $user, array $data)
+    public function follow(Opportunity $opportunity, User $user, array $data)
     {
         return DB::transaction(function () use ($opportunity, $user, $data) {
 
@@ -38,19 +38,9 @@ class OpportunityUserRepository
                     ]
                 );
 
-            event(new UserAddedToOpportunity($opportunity, $user, $data));
+            event(new UserFollowedOpportunity($opportunity, $user, $data));
 
             return $opportunity;
-
-            // if (
-
-            // ) {
-            //     event(new UserAddedToOpportunity($opportunity, $user, $data));
-
-            //     return $opportunity;
-            // }
-
-            // throw new GeneralException(__('exceptions.backend.opportunity.users.attach_error'));
         });
     }
 
@@ -63,7 +53,7 @@ class OpportunityUserRepository
      * @return \Illuminate\Database\Eloquent\Model
      * @throws \Throwable
      */
-    public function detach(Opportunity $opportunity, User $user, array $data)
+    public function unfollow(Opportunity $opportunity, User $user, array $data)
     {
         return DB::transaction(function () use ($opportunity, $user, $data) {
 
@@ -72,19 +62,9 @@ class OpportunityUserRepository
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])
                 ->detach();
 
-            event(new UserRemovedFromOpportunity($opportunity, $user, $data));
+            event(new UserUnfollowedOpportunity($opportunity, $user, $data));
 
             return $opportunity;
-
-            // if (
-            // ) {
-
-            //     event(new UserRemovedFromOpportunity($opportunity, $user, $data));
-
-            //     return $opportunity;
-            // }
-
-            // throw new GeneralException(__('exceptions.backend.opportunity.users.detach_error'));
         });
     }
 }

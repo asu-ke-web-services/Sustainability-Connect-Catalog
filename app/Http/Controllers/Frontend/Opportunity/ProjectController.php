@@ -187,7 +187,16 @@ class ProjectController extends Controller
                 })->toJson();
 
             $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+
+            $followedOpportunities = auth()->user()->followedOpportunities
+                ->map(function ($opportunity) {
+                    return $opportunity['id'];
+                })->toArray();
+
+            $isFollowed = in_array($id, $followedOpportunities);
+
         }
+
 
         JavaScript::put([
             'accessAffiliations' => $accessAffiliations ?? null,
@@ -197,6 +206,7 @@ class ProjectController extends Controller
         return view('frontend.opportunity.project.show')
             ->withProject($project)
             ->with('type', 'Project')
-            ->with('pageTitle', $project->name);
+            ->with('pageTitle', $project->name)
+            ->with('isFollowed', $isFollowed);
     }
 }

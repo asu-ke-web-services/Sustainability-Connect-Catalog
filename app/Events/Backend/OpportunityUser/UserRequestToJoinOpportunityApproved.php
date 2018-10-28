@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Models\Auth\User;
 
-class UserUnfollowedOpportunityEvent
+class UserRequestToJoinOpportunityApproved
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

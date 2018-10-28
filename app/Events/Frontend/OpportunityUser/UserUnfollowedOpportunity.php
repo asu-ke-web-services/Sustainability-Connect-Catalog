@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events\Backend\OpportunityUser;
+namespace SCCatalog\Events\Frontend\OpportunityUser;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use SCCatalog\Models\Opportunity\Opportunity;
 use SCCatalog\Models\Auth\User;
 
-class UserFollowedOpportunityEvent
+class UserUnfollowedOpportunity
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

@@ -132,6 +132,10 @@ class UserTableSeeder extends Seeder
                     $old_user_graduation_date = null;
                 }
 
+                if ($old_user_asurite == '1') {
+                    $asurite = $old_user->user_login;
+                }
+
                 $new_user = User::create([
                     'id'                      => $old_user->ID,
                     'first_name'              => $old_user_first_name ?? null,

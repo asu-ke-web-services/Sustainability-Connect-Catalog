@@ -46,13 +46,6 @@
                                 </div>
                             </div>
 
-                            <div class="card mb-4">
-                                <div class="card-header">User Status</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Info card title</h4>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div><!--card-->
                         </div><!--col-md-4-->
 
                         <div class="col-md-8 order-2 order-sm-1">
@@ -64,7 +57,24 @@
                                         </div><!--card-header-->
 
                                         <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
+                                            <table class="table table-responsive-sm table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Opportunity</th>
+                                                        <th>Coordinator</th>
+                                                        <th>Updated Last</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($followedOpportunities as $opportunity)
+                                                    <tr>
+                                                        <td>{!! $opportunity->name !!}</td>
+                                                        <td>{!! $opportunity->supervisorUser->full_name ?? null !!}</td>
+                                                        <td>{!! $opportunity->updated_at !!}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
                                         </div><!--card-body-->
                                     </div><!--card-->
                                 </div><!--col-md-6-->
@@ -78,21 +88,24 @@
                                         </div><!--card-header-->
 
                                         <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            My Todos
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
+                                            <table class="table table-responsive-sm table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Opportunity</th>
+                                                        <th>Coordinator</th>
+                                                        <th>Updated Last</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($activeOpportunities as $opportunity)
+                                                    <tr>
+                                                        <td>{!! $opportunity->name !!}</td>
+                                                        <td>{!! $opportunity->supervisorUser->full_name ?? null !!}</td>
+                                                        <td>{!! $opportunity->updated_at !!}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
                                         </div><!--card-body-->
                                     </div><!--card-->
                                 </div><!--col-md-6-->
@@ -104,12 +117,29 @@
                                         </div><!--card-header-->
 
                                         <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
+                                            <table class="table table-responsive-sm table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Opportunity</th>
+                                                        <th>Coordinator</th>
+                                                        <th>Updated Last</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($applications as $application)
+                                                    <tr>
+                                                        <td>{!! $application->name !!}</td>
+                                                        <td>{!! $application->supervisorUser->full_name ?? null !!}</td>
+                                                        <td>{!! $application->updated_at !!}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
                                         </div><!--card-body-->
                                     </div><!--card-->
                                 </div><!--col-md-6-->
-
                             </div><!--row-->
+
                         </div><!--col-md-8-->
                     </div><!-- row -->
                 </div> <!-- card-body -->

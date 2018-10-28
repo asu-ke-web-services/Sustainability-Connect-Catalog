@@ -17,11 +17,12 @@ let public_css = 'public/css/';
 let resource_sass = 'resources/assets/sass/';
 let resource_js = 'resources/assets/js/';
 
-
 mix.sass(resource_sass + 'frontend/SearchApp.scss', resource_sass + 'frontend')
-  .copy(resource_sass + 'frontend/SearchApp.css', public_css)
-  .react(resource_js + 'frontend/searchProject.js', public_js)
-  .react(resource_js + 'frontend/searchInternship.js', public_js);
+  .copy(resource_sass + 'frontend/SearchApp.css', public_css);
+
+mix.react(resource_js + 'frontend/searchProject.js', public_js);
+
+mix.react(resource_js + 'frontend/searchInternship.js', public_js);
 
 mix.sass(resource_sass + 'backend/app.scss', public_css + 'backend.css')
   .js([

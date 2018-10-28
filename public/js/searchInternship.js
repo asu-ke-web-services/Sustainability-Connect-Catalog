@@ -99861,7 +99861,7 @@ function _interopRequireDefault(obj) {
 var Hits = exports.Hits = (0, _reactInstantsearchDom.connectHits)(function (_ref) {
   var hits = _ref.hits,
       indexName = _ref.indexName,
-      accessAffiliations = _ref.accessAffiliations,
+      userAccessAffiliations = _ref.userAccessAffiliations,
       canViewRestricted = _ref.canViewRestricted;
 
   var hs = hits.map(function (hit) {
@@ -99869,7 +99869,7 @@ var Hits = exports.Hits = (0, _reactInstantsearchDom.connectHits)(function (_ref
       key: hit.objectID,
       hit: hit,
       indexName: indexName,
-      accessAffiliations: accessAffiliations,
+      userAccessAffiliations: userAccessAffiliations,
       canViewRestricted: canViewRestricted
     });
   });
@@ -99879,37 +99879,45 @@ var Hits = exports.Hits = (0, _reactInstantsearchDom.connectHits)(function (_ref
 HitComponent.propTypes = {
   hit: _propTypes2.default.object,
   indexName: _propTypes2.default.string,
-  accessAffiliations: _propTypes2.default.array,
+  userAccessAffiliations: _propTypes2.default.array,
   canViewRestricted: _propTypes2.default.bool
 };
 
 function HitComponent(_ref2) {
   var hit = _ref2.hit,
       indexName = _ref2.indexName,
-      accessAffiliations = _ref2.accessAffiliations,
+      userAccessAffiliations = _ref2.userAccessAffiliations,
       canViewRestricted = _ref2.canViewRestricted;
 
   // check for access restrictions; if present, check if user has access
   // access determined by user permissions or possessing same access affiliations
-  var canView = hit.accessAffiliations.length > 0 && !canViewRestricted && (accessAffiliations == null || !accessAffiliations.some(function (v) {
+  var canView = hit.accessAffiliations != null && hit.accessAffiliations.length > 0 && !canViewRestricted && (userAccessAffiliations == null || !userAccessAffiliations.some(function (v) {
     return hit.accessAffiliations.indexOf(v);
   }));
 
+  // format application_deadline, which might be a text string or a date
+  var deadline = '';
+  if ((0, _moment2.default)(hit.applicationDeadline).isValid()) {
+    deadline = (0, _moment2.default)(hit.applicationDeadline).format('YYYY-MM-DD');
+  } else {
+    deadline = hit.applicationDeadline;
+  }
+
   if (indexName === 'internships') {
     if (canView) {
-      return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted: ', canView), _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons !== null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { canView: canView, icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, hit.applicationDeadline !== null ? (0, _moment2.default)(hit.applicationDeadline).format('YYYY-MM-DD') : ''));
+      return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted: ', canView), _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { canView: canView, icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
     }
 
-    return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/internship/' + hit.id }, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'name', hit: hit }))), _react2.default.createElement('td', null, hit.organizationName), _react2.default.createElement('td', null, hit.affiliationIcons !== null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, hit.applicationDeadline !== null ? (0, _moment2.default)(hit.applicationDeadline).format('YYYY-MM-DD') : ''));
+    return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/internship/' + hit.id }, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'name', hit: hit }))), _react2.default.createElement('td', null, hit.organizationName), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
   }
 
   // Render Project view
 
   if (canView) {
-    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons !== null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'locations', hit: hit })), _react2.default.createElement('td', null, hit.applicationDeadline !== null ? (0, _moment2.default)(hit.applicationDeadline).format('YYYY-MM-DD') : ''), _react2.default.createElement('td', null, hit.startDate !== null ? (0, _moment2.default)(hit.startDate.date).format('YYYY-MM-DD') : ''), _react2.default.createElement('td', null, hit.endDate !== null ? (0, _moment2.default)(hit.endDate.date).format('YYYY-MM-DD') : ''));
+    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'locations', hit: hit })), _react2.default.createElement('td', null, deadline), _react2.default.createElement('td', null, hit.startDate != null ? (0, _moment2.default)(hit.startDate.date).format('YYYY-MM-DD') : ''), _react2.default.createElement('td', null, hit.endDate != null ? (0, _moment2.default)(hit.endDate.date).format('YYYY-MM-DD') : ''));
   }
 
-  return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/project/' + hit.id }, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'name', hit: hit }))), _react2.default.createElement('td', null, hit.affiliationIcons !== null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'locations', hit: hit })), _react2.default.createElement('td', null, hit.applicationDeadline !== null ? (0, _moment2.default)(hit.applicationDeadline).format('YYYY-MM-DD') : ''), _react2.default.createElement('td', null, hit.startDate !== null ? (0, _moment2.default)(hit.startDate.date).format('YYYY-MM-DD') : ''), _react2.default.createElement('td', null, hit.endDate !== null ? (0, _moment2.default)(hit.endDate.date).format('YYYY-MM-DD') : ''));
+  return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/project/' + hit.id }, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'name', hit: hit }))), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'locations', hit: hit })), _react2.default.createElement('td', null, deadline), _react2.default.createElement('td', null, hit.startDate != null ? (0, _moment2.default)(hit.startDate.date).format('YYYY-MM-DD') : ''), _react2.default.createElement('td', null, hit.endDate != null ? (0, _moment2.default)(hit.endDate.date).format('YYYY-MM-DD') : ''));
 }
 
 /***/ }),
@@ -99983,11 +99991,11 @@ var Results = exports.Results = function (_Component) {
 
       if (this.props.indexName === 'internships') {
         jsx = _react2.default.createElement(_reactBootstrap.Table, { striped: true, bordered: true, responsive: true }, _react2.default.createElement('thead', null, _react2.default.createElement('tr', null, _react2.default.createElement('th', { className: 'col col-md-4' }, 'Name'), _react2.default.createElement('th', { className: 'col col-md-4' }, 'Organization'), _react2.default.createElement('th', { className: 'col col-md-3' }, 'Availability'), _react2.default.createElement('th', { className: 'col col-md-1 text-center' }, 'Apply By'))), _react2.default.createElement(_Hits.Hits, { indexName: this.props.indexName,
-          accessAffiliations: this.props.accessAffiliations,
-          canViewRestricted: this.props.canViewRestricted }), ' />');
+          userAccessAffiliations: this.props.userAccessAffiliations,
+          canViewRestricted: this.props.canViewRestricted }));
       } else {
         jsx = _react2.default.createElement(_reactBootstrap.Table, { striped: true, bordered: true, responsive: true }, _react2.default.createElement('thead', null, _react2.default.createElement('tr', null, _react2.default.createElement('th', { className: 'col col-md-5 text-center' }, 'Name'), _react2.default.createElement('th', { className: 'col col-md-2 text-center' }, 'Availability'), _react2.default.createElement('th', { className: 'col col-md-2 text-center' }, 'City'), _react2.default.createElement('th', { className: 'col col-md-1 text-center' }, 'Begins'), _react2.default.createElement('th', { className: 'col col-md-1 text-center' }, 'Ends'), _react2.default.createElement('th', { className: 'col col-md-1 text-center' }, 'Apply By'))), _react2.default.createElement(_Hits.Hits, { indexName: this.props.indexName,
-          accessAffiliations: this.props.accessAffiliations,
+          userAccessAffiliations: this.props.userAccessAffiliations,
           canViewRestricted: this.props.canViewRestricted }));
       }
 
@@ -100083,7 +100091,7 @@ var SearchApp = function (_Component) {
         createURL: this.props.createURL,
         onSearchStateChange: this.props.onSearchStateChange
       }, _react2.default.createElement(_reactInstantsearchDom.Configure, { hitsPerPage: 20 }), _react2.default.createElement(_SearchPage.SearchPage, { indexName: this.props.indexName,
-        accessAffiliations: this.props.accessAffiliations,
+        userAccessAffiliations: this.props.userAccessAffiliations,
         canViewRestricted: this.props.canViewRestricted }));
     }
   }]);
@@ -100254,7 +100262,7 @@ var SearchPage = exports.SearchPage = function (_Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement('div', { id: 'outer-container' }, _react2.default.createElement(_Sidebar.Sidebar, { indexName: this.props.indexName }), _react2.default.createElement(_reactBootstrap.Grid, { id: 'page-wrap' }, _react2.default.createElement(_Header.Header, null), _react2.default.createElement('hr', null), _react2.default.createElement(_reactBootstrap.Row, null, _react2.default.createElement(_reactBootstrap.Col, { sm: 12 }, _react2.default.createElement(_Results.Results, { indexName: this.props.indexName,
-        accessAffiliations: this.props.accessAffiliations,
+        userAccessAffiliations: this.props.userAccessAffiliations,
         canViewRestricted: this.props.canViewRestricted }))), _react2.default.createElement(_reactBootstrap.Row, null, _react2.default.createElement(_reactBootstrap.Col, { sm: 12 }, _react2.default.createElement(_Footer.Footer, null)))));
     }
   }]);
@@ -100553,7 +100561,7 @@ function _interopRequireDefault(obj) {
 if (document.getElementById('search')) {
   _reactDom2.default.render(_react2.default.createElement(_SearchApp2.default, {
     indexName: 'internships',
-    accessAffiliations: JSON.parse(algolia.accessAffiliations),
+    userAccessAffiliations: JSON.parse(algolia.userAccessAffiliations),
     canViewRestricted: algolia.canViewRestricted
   }), document.querySelector('#search'));
 }

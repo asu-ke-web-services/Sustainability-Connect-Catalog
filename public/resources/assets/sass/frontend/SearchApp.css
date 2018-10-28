@@ -13472,6 +13472,7 @@ div.table-responsive {
   background: #353535;
   padding: 2.5em 1.5em 0;
   font-size: .8em;
+  overflow-y: hidden !important;
 }
 
 .bm-menu h3 {
@@ -13492,6 +13493,10 @@ td a {
   font-weight: 600;
 }
 
+.bm-item-list {
+  overflow-y: hidden !important;
+}
+
 .bm-item-list a {
   padding: 0.8em;
 }
@@ -13503,6 +13508,14 @@ td a {
 
 .bm-cross {
   background: #bdc3c7;
+}
+
+.bm-cross-button {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 24px;
+  top: 8px;
 }
 
 thead {

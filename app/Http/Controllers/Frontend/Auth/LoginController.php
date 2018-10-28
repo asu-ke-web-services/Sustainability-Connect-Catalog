@@ -39,6 +39,14 @@ class LoginController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showLoginSplash()
+    {
+        return view('frontend.auth.login_splash');
+    }
+
+    /**
      * Get the login username to be used by the controller.
      *
      * @return string

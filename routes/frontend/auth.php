@@ -32,12 +32,15 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
      * These routes require no user to be logged in
      */
     Route::group(['middleware' => 'guest'], function () {
+        // Login Splash Page
+        Route::get('login', 'LoginController@showLoginSplash')->name('login');
+
         // Authentication Routes
-        Route::get('login', 'LoginController@showLoginForm')->name('login');
+        Route::get('login/basic', 'LoginController@showLoginForm')->name('basic.login');
         Route::post('login', 'LoginController@login')->name('login.post');
 
         // ASU CAS Routes
-        Route::get('login/asu', 'CasLoginController@login')->name('cas.login');
+        Route::get('login/asu', 'CasLoginController@login')->name('asu.login');
         Route::get('login/asu/callback', 'CasLoginController@login');
 
         // Socialite Routes

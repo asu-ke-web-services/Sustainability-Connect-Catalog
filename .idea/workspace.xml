@@ -7,8 +7,6 @@
     <list default="true" id="f31a5f01-6529-40ef-8adf-db020e13769a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,17 +139,19 @@
     <session id="-744050668">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="js" value="20" />
           <entry key="json" value="4" />
-          <entry key="php" value="423" />
+          <entry key="php" value="447" />
           <entry key="stub" value="4" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="44" />
+          <entry key="Blade" value="52" />
           <entry key="JSON" value="4" />
-          <entry key="PHP" value="378" />
+          <entry key="JavaScript" value="20" />
+          <entry key="PHP" value="394" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Scratch" value="1" />
           <entry key="XML" value="1" />
@@ -160,8 +160,9 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="163" />
+          <entry key="js" value="313" />
           <entry key="json" value="1" />
-          <entry key="php" value="3442" />
+          <entry key="php" value="3553" />
           <entry key="stub" value="45" />
           <entry key="xml" value="8" />
         </counts>
@@ -170,15 +171,16 @@
         <counts>
           <entry key="Blade" value="327" />
           <entry key="JSON" value="1" />
-          <entry key="PHP" value="3115" />
+          <entry key="JavaScript" value="313" />
+          <entry key="PHP" value="3226" />
           <entry key="PLAIN_TEXT" value="208" />
           <entry key="XML" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
-          <entry key="project.open.time.10" value="3" />
+          <entry key="project.closed" value="17" />
+          <entry key="project.open.time.10" value="4" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
@@ -186,7 +188,7 @@
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
     </session>
@@ -201,7 +203,7 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -213,12 +215,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>{{modelNamePlural}</find>
-      <find>ManageAttachmentTypeRequest</find>
-      <find>Budget</find>
-      <find>budget</find>
-      <find>UserType</find>
-      <find>budget_type</find>
       <find>BudgetType</find>
       <find>Project</find>
       <find>project</find>
@@ -243,13 +239,14 @@
       <find>gentella</find>
       <find>&lt;nav&gt;</find>
       <find>logout</find>
+      <find>$accessAffiliations</find>
+      <find>accessAffiliations</find>
+      <find>'accessAffiliations</find>
+      <find>Carbon</find>
+      <find>!==</find>
+      <find>applicationDeadline</find>
     </findStrings>
     <replaceStrings>
-      <replace>OrganizationRepository</replace>
-      <replace>organizationRepository</replace>
-      <replace>ManageOrganizationRequest</replace>
-      <replace>organization</replace>
-      <replace>$organization</replace>
       <replace>$project</replace>
       <replace>Follower</replace>
       <replace>Frontend</replace>
@@ -275,6 +272,11 @@
       <replace>$relationship</replace>
       <replace>gentelella</replace>
       <replace>frontend.gentelella.core.</replace>
+      <replace>$userAccessAffiliations</replace>
+      <replace>'userAccessAffiliations</replace>
+      <replace>userAccessAffiliations</replace>
+      <replace>!=</replace>
+      <replace>deadline</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app/Models</dir>
@@ -291,14 +293,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Helpers/Frontend/Auth/AsuDirectoryHelper.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/Auth/CasLoginController.php" />
-        <option value="$PROJECT_DIR$/ci/build-image.sh" />
-        <option value="$PROJECT_DIR$/ci/deploy-production.sh" />
-        <option value="$PROJECT_DIR$/gios.asu.edu-20180410.pem" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
-        <option value="$PROJECT_DIR$/apache.site.conf" />
-        <option value="$PROJECT_DIR$/.env.local" />
         <option value="$PROJECT_DIR$/docker-entrypoint.sh" />
         <option value="$PROJECT_DIR$/Dockerfile.app" />
         <option value="$PROJECT_DIR$/Dockerfile.web" />
@@ -308,7 +302,6 @@
         <option value="$PROJECT_DIR$/.dockerignore" />
         <option value="$PROJECT_DIR$/config/cas.php" />
         <option value="$PROJECT_DIR$/routes/frontend/home.php" />
-        <option value="$PROJECT_DIR$/app/Models/Opportunity/Project.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_10_16_042636_add_columns_media_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_06_20_232157_add_custom_columns_users_table.php" />
         <option value="$PROJECT_DIR$/app/Repositories/RepositoryContract.php" />
@@ -337,11 +330,20 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/frontend/gentelella/dashboard.scss" />
         <option value="$PROJECT_DIR$/resources/assets/sass/frontend/gentelella/home.scss" />
         <option value="$PROJECT_DIR$/resources/views/frontend/gentelella/dashboard/main.blade.php" />
-        <option value="$PROJECT_DIR$/resources/assets/js/frontend/searchInternship.js" />
-        <option value="$PROJECT_DIR$/resources/assets/js/frontend/searchProject.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/User/DashboardController.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/gentelella/core/nav_top.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/frontend/opportunity/internship/search.blade.php" />
         <option value="$PROJECT_DIR$/webpack.mix.js" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/searchProject.js" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/searchInternship.js" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/SearchApp.js" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/SearchPage.js" />
+        <option value="$PROJECT_DIR$/app/Models/Opportunity/Project.php" />
+        <option value="$PROJECT_DIR$/app/Models/Opportunity/Internship.php" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/Results.js" />
+        <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/Hits.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/Opportunity/ProjectController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Frontend/Opportunity/InternshipController.php" />
       </list>
     </option>
   </component>
@@ -529,9 +531,9 @@
       <path value="$PROJECT_DIR$/vendor/predis/predis" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="2560" />
-    <option name="height" value="1440" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="3201" />
+    <option name="height" value="1801" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -547,6 +549,59 @@
             <path>
               <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="Opportunity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -652,16 +707,17 @@
       <workItem from="1540222180105" duration="48813000" />
       <workItem from="1540483462812" duration="240000" />
       <workItem from="1540483746144" duration="34396000" />
+      <workItem from="1540745182221" duration="9442000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="327657000" />
+    <option name="totallyTimeSpent" value="337099000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <frame x="0" y="0" width="1829" height="1029" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49926144" visible="true" weight="0.17235902" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49926144" visible="true" weight="0.17540891" />
       <window_info id="Structure" order="1" sideWeight="0.50073856" side_tool="true" weight="0.16679905" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.50073856" side_tool="true" weight="0.16679905" />
@@ -680,7 +736,7 @@
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50039065" weight="0.32545045" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24972005" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24958031" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
@@ -700,76 +756,6 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="54" column="27" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="35" column="6" lean-forward="true" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="909">
-          <caret line="65" column="72" selection-start-line="65" selection-start-column="72" selection-end-line="65" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/subfission/cas/src/Subfission/Cas/Middleware/RedirectCASAuthenticated.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#44#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/subfission/cas/src/Subfission/Cas/Middleware/CASAuth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Middleware/AuthenticateWithBasicAuth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/bootstrap-old.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/plugins.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/backend/after.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -783,9 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1160">
           <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#241#306#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -847,26 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/searchInternship.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/searchProject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/SearchBox.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -877,77 +840,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/SearchFacets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/SearchApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Results.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Hits.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1071">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Footer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/AffiliationIcons.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/AffiliationIcon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/urlSync.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -959,22 +861,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Sidebar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/SearchPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/frontend/gentelella/app.scss">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1001,13 +888,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/app.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1023,25 +904,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/gentelella/core/nav_top.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="820">
-          <caret line="41" column="29" lean-forward="true" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/gentelella/core/nav_left.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/gentelella/core/common.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/gentelella/core/nav_top.blade.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/gentelella/core/nav_left.blade.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/gentelella/core/common.blade.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/User/DashboardController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -1049,10 +914,156 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/opportunity/project/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.mix.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="451">
+          <caret line="22" column="3" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/frontend/opportunity.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/opportunity/internship/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/searchProject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Opportunity/Opportunity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding>
+            <element signature="e#48#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/Auth/UserTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="3" />
+          <folding>
+            <element signature="e#7#25#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Opportunity/Internship.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1578">
+          <caret line="163" column="13" selection-start-line="163" selection-start-column="13" selection-end-line="163" selection-end-column="13" />
+          <folding>
+            <element signature="e#48#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Opportunity/Project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="220" column="13" selection-start-line="212" selection-start-column="23" selection-end-line="220" selection-end-column="13" />
+          <folding>
+            <element signature="e#48#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/searchInternship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/SearchApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Results.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="22" column="67" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/SearchPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="80" selection-start-line="18" selection-start-column="80" selection-end-line="18" selection-end-column="80" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/opportunity/internship/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/frontend/opportunity/project/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/frontend/components/Hits.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="746">
+          <caret line="101" column="25" selection-start-line="101" selection-start-column="25" selection-end-line="101" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/Opportunity/InternshipController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="108" column="46" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/Opportunity/ProjectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="197" column="46" lean-forward="true" selection-start-line="196" selection-start-column="47" selection-end-line="197" selection-end-column="46" />
         </state>
       </provider>
     </entry>

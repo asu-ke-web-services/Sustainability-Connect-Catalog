@@ -59,6 +59,8 @@ class CasLoginController extends Controller
         //     return $this->getAuthorizationFirst();
         // }
 
+        // dd(cas()->checkAuthentication());
+
         if ( ! cas()->checkAuthentication() )
         {
             if ($request->ajax()) {
@@ -66,9 +68,6 @@ class CasLoginController extends Controller
             }
             cas()->authenticate();
         }
-
-        // dd(cas()->getCurrentUser());
-
 
         // Create the user if this is a new social account or find the one that is already there.
         try {
@@ -110,15 +109,5 @@ class CasLoginController extends Controller
     protected function getAuthorizationFirst()
     {
         return cas()->authenticate();
-    }
-
-    /**
-     * @param $provider
-     *
-     * @return mixed
-     */
-    protected function getProviderUser($provider)
-    {
-        return Socialite::driver($provider)->user();
     }
 }

@@ -87,7 +87,7 @@
                 </li>
                 @else
                 <li id="menu-item-14" class="menu-item">
-                    <a title="Sign In" href="/dashboard" class="menu-item">Sign In</a>
+                    <a title="Sign In" href="#" class="menu-item" data-toggle="modal" data-target="#loginModal">Sign In</a>
                 </li>
                 @endif
             </ul>

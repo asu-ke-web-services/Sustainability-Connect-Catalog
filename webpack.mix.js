@@ -30,7 +30,7 @@ mix.sass(resource_sass + 'backend/app.scss', public_css + 'backend.css')
     resource_js + 'backend/after.js'
   ], public_js + 'backend.js');
 
-// mix.sass('resources/assets/sass/frontend/app.scss', 'css/frontend.css')
+mix.sass('resources/assets/sass/frontend/app.scss', 'css/frontend.css');
 //   .js('resources/assets/js/frontend/app.js', 'js/frontend.js');
 
 mix.js('resources/assets/js/frontend/app.js', public_js).

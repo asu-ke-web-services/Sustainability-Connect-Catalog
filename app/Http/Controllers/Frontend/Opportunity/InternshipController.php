@@ -53,12 +53,6 @@ class InternshipController extends Controller
         ]);
 
         return view('frontend.opportunity.internship.index')
-            ->with('internships', $this->internshipRepository->getActivePaginated(25, 'application_deadline', 'asc'))
-            ->with('accessAffiliations', auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson())
-            ->with('canViewRestricted', auth()->user()->hasPermissionTo('read restricted opportunity'))
             ->with('type', 'Internship')
             ->with('pageTitle', 'Internships');
     }

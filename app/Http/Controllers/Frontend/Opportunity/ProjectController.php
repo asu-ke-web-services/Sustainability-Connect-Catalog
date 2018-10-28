@@ -47,11 +47,6 @@ class ProjectController extends Controller
      */
     public function index(ViewProjectRequest $request)
     {
-        // dd(auth()->user()->id);
-        // dd(auth()->user()->affiliations->map(function ($affiliation) {
-        //     return $affiliation['slug'];
-        // })->toJson());
-
         if ( auth()->user() !== null ) {
             $accessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
@@ -66,8 +61,7 @@ class ProjectController extends Controller
             'canViewRestricted' => $canViewRestricted ?? false
         ]);
 
-        return view('frontend.opportunity.project.search')
-            ->with('projects', $this->projectRepository->getActivePaginated(25, 'application_deadline', 'asc'))
+        return view('frontend.opportunity.project.index')
             ->with('type', 'Project')
             ->with('pageTitle', 'Projects');
     }

@@ -66,8 +66,6 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'cas.auth'  => \Subfission\Cas\Middleware\CASAuth::class,
-        'cas.guest' => \Subfission\Cas\Middleware\RedirectCASAuthenticated::class,
         'guest' => \SCCatalog\Http\Middleware\RedirectIfAuthenticated::class,
         'password_expires' => \SCCatalog\Http\Middleware\PasswordExpires::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,

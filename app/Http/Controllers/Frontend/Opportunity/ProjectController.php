@@ -191,12 +191,6 @@ class ProjectController extends Controller
 
         }
 
-
-        JavaScript::put([
-            'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
-        ]);
-
         return view('frontend.opportunity.project.show')
             ->withProject($project)
             ->with('type', 'Project')

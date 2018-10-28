@@ -92,16 +92,20 @@ class InternshipController extends Controller
                 })->toJson();
 
             $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
-        }
 
-        JavaScript::put([
-            'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
-        ]);
+            $followedOpportunities = auth()->user()->followedOpportunities
+                ->map(function ($opportunity) {
+                    return $opportunity['id'];
+                })->toArray();
+
+            $isFollowed = in_array($id, $followedOpportunities);
+
+        }
 
         return view('frontend.opportunity.internship.show')
             ->withInternship($internship)
             ->with('type', 'Internship')
-            ->with('pageTitle', $internship->name);
+            ->with('pageTitle', $internship->name)
+            ->with('isFollowed', $isFollowed);
     }
 }

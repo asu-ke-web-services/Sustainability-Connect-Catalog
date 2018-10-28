@@ -20,7 +20,7 @@ if (document.getElementById('search')) {
     ReactDOM.render(
       <SearchApp
         indexName="internships"
-        accessAffiliations={JSON.parse(algolia.accessAffiliations)}
+        userAccessAffiliations={JSON.parse(algolia.userAccessAffiliations)}
         canViewRestricted={algolia.canViewRestricted}
       />, document.querySelector('#search')
     );

@@ -48,7 +48,7 @@ class ProjectController extends Controller
     public function index(ViewProjectRequest $request)
     {
         if ( auth()->user() !== null ) {
-            $accessAffiliations = auth()->user()->accessAffiliations
+            $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
                 })->toJson();
@@ -57,7 +57,7 @@ class ProjectController extends Controller
         }
 
         JavaScript::put([
-            'accessAffiliations' => $accessAffiliations ?? null,
+            'userAccessAffiliations' => $userAccessAffiliations ?? null,
             'canViewRestricted' => $canViewRestricted ?? false
         ]);
 
@@ -175,7 +175,7 @@ class ProjectController extends Controller
             ->getById($id);
 
         if ( auth()->user() !== null ) {
-            $accessAffiliations = auth()->user()->accessAffiliations
+            $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
                 })->toJson();
@@ -193,7 +193,7 @@ class ProjectController extends Controller
 
 
         JavaScript::put([
-            'accessAffiliations' => $accessAffiliations ?? null,
+            'userAccessAffiliations' => $userAccessAffiliations ?? null,
             'canViewRestricted' => $canViewRestricted ?? false
         ]);
 

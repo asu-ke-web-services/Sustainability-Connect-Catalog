@@ -19,7 +19,7 @@ export class Results extends Component {
             </tr>
           </thead>
           <Hits indexName={this.props.indexName}
-                accessAffiliations={this.props.accessAffiliations}
+                userAccessAffiliations={this.props.userAccessAffiliations}
                 canViewRestricted={this.props.canViewRestricted} /> />
         </Table>
       );
@@ -37,7 +37,7 @@ export class Results extends Component {
             </tr>
           </thead>
           <Hits indexName={this.props.indexName}
-                accessAffiliations={this.props.accessAffiliations}
+                userAccessAffiliations={this.props.userAccessAffiliations}
                 canViewRestricted={this.props.canViewRestricted} />
         </Table>
       );

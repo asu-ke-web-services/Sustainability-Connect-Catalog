@@ -16,7 +16,7 @@ export class SearchPage extends Component {
           <Row>
             <Col sm={12}>
               <Results indexName={this.props.indexName}
-                       accessAffiliations={this.props.accessAffiliations}
+                       userAccessAffiliations={this.props.userAccessAffiliations}
                        canViewRestricted={this.props.canViewRestricted} />
             </Col>
           </Row>

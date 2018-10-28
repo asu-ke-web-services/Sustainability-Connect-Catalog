@@ -39,7 +39,7 @@ class InternshipController extends Controller
     public function index(ViewInternshipRequest $request)
     {
         if ( auth()->user() !== null ) {
-            $accessAffiliations = auth()->user()->accessAffiliations
+            $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
                 })->toJson();
@@ -48,7 +48,7 @@ class InternshipController extends Controller
         }
 
         JavaScript::put([
-            'accessAffiliations' => $accessAffiliations ?? null,
+            'userAccessAffiliations' => $userAccessAffiliations ?? null,
             'canViewRestricted' => $canViewRestricted ?? false
         ]);
 
@@ -86,7 +86,7 @@ class InternshipController extends Controller
             ->getById($id);
 
         if ( auth()->user() !== null ) {
-            $accessAffiliations = auth()->user()->accessAffiliations
+            $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
                 })->toJson();
@@ -95,7 +95,7 @@ class InternshipController extends Controller
         }
 
         JavaScript::put([
-            'accessAffiliations' => $accessAffiliations ?? null,
+            'userAccessAffiliations' => $userAccessAffiliations ?? null,
             'canViewRestricted' => $canViewRestricted ?? false
         ]);
 

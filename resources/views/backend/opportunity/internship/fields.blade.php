@@ -42,6 +42,13 @@
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
 
+                    <!-- Needs Review Field -->
+                    @component('includes.components.form.checkbox', [
+                        'name'    => 'needs_review',
+                        'label'   => 'Needs Review?',
+                        'object'  => $opportunity->opportunityable ?? null,
+                    ])@endcomponent
+
                 </div><!--col-->
             </div><!--row-->
         </div><!--card-body-->

@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Lookup;
+namespace SCCatalog\Http\Controllers\Backend\Lookup;
 
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Lookup\UserTypeRequest;

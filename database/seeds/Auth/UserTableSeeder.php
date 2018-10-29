@@ -74,9 +74,9 @@ class UserTableSeeder extends Seeder
                         ->where('meta_key', 'degree_level')
                         ->value('meta_value');
                 $old_user_department        = DB::connection('old')->table('wp_usermeta')
-                    ->where('user_id', $old_user->ID)
-                    ->where('meta_key', 'department')
-                    ->value('meta_value');
+                        ->where('user_id', $old_user->ID)
+                        ->where('meta_key', 'department')
+                        ->value('meta_value');
                 $old_user_organization_name  = DB::connection('old')->table('wp_usermeta')
                         ->where('user_id', $old_user->ID)
                         ->where('meta_key', 'organization_name')
@@ -143,13 +143,12 @@ class UserTableSeeder extends Seeder
                     'display_name'            => $old_user->display_name ?? null,
                     'login_name'              => $old_user->user_login ?? null,
                     'email'                   => empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email,
-                    // 'password'                => $old_user->user_pass,
-                    'password'                => bcrypt('secret'),
+                    'password'                => Hash::make($old_user->user_pass),
                     'confirmation_code'       => md5(uniqid(mt_rand(), true)),
                     'confirmed'               => true,
                     'access_validated'        => true,
                     'user_type_id'            => $user_type_id ?? null,
-                    'asurite'                 => $old_user_asurite ?? null,
+                    'asurite'                 => $asurite ?? null,
                     'student_degree_level_id' => $degree_level_id ?? null,
                     'degree_program'          => $old_user_degree_program ?? null,
                     'graduation_date'         => Carbon::parse($old_user_graduation_date)->toDateString() ?? null,

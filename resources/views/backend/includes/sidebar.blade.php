@@ -179,7 +179,6 @@
                     </ul>
                 </li>
 
-
                 <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/opportunity*'), 'open') }}">
                     <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/opportunity*')) }}" href="#">
                         <i class="icon-notebook"></i> {{ __('Opportunity') }}
@@ -218,6 +217,28 @@
                             <span class="badge badge-danger">{{ $pending_approval }}</span>
                         @endif
                     </a>
+                </li>
+
+                <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/reports*'), 'open') }}">
+                    <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/reports*')) }}" href="#">
+                        <i class="icon-notebook"></i> {{ __('Reports') }}
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+{{--
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project_review*')) }}" href="{{ route('admin.reports.project_review') }}">
+                                {{ __('Project Review') }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/internship_review*')) }}" href="{{ route('admin.reports.internship_review') }}">
+                                {{ __('Internship Review') }}
+                            </a>
+                        </li>
+ --}}
+                    </ul>
                 </li>
 
             @endif

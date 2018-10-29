@@ -18,7 +18,7 @@
 
             <tr>
                 <th>{{ __('Needs Review') }}</th>
-                <td>{!! $project->opportunityable->needs_review === 1 ? true : false) !!}</td>
+                <td>{{ $project->opportunityable->needs_review === 1 ? true : false }}</td>
             </tr>
 
             <tr>

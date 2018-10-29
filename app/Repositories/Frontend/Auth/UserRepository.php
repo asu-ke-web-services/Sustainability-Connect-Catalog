@@ -269,8 +269,6 @@ class UserRepository extends BaseRepository
             // Lookup ASURITE in iSearch
             $directoryInfo = AsuDirectoryHelper::getDirectoryInfoByAsurite($asurite);
 
-            dd(AsuDirectoryHelper::getDirectoryInfoByAsurite($asurite));
-
             $firstName = AsuDirectoryHelper::getFirstName($directoryInfo);
             $lastName = AsuDirectoryHelper::getLastName($directoryInfo);
             $phone = AsuDirectoryHelper::getLastName($directoryInfo);

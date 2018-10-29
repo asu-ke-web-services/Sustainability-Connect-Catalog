@@ -295,7 +295,7 @@ class UserRepository extends BaseRepository
                 'last_name'   => $lastName,
                 'email'       => $user_email,
                 'asurite'     => $asurite,
-                'user_type_id' => $user_types[$userType]
+                'user_type_id' => $user_types[$userType],
                 'active'      => 1,
                 'confirmed'   => 1,
                 'password'    => null,

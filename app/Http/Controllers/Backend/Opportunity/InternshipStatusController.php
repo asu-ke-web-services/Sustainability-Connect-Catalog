@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Controllers\Backend\Internship;
+namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;

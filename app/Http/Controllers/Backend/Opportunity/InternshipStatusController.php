@@ -47,6 +47,17 @@ class InternshipStatusController extends Controller
     }
 
     /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getNeedsReview(ManageInternshipRequest $request)
+    {
+        return view('backend.opportunity.internship.review')
+            ->withProjects($this->internshipRepository->getReviewPaginated(25, 'id', 'asc'));
+    }
+
+    /**
      * @param ManageInternshipRequest $request
      * @param int                     $deletedInternshipId
      *

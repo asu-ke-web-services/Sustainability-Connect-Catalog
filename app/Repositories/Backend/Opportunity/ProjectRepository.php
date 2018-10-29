@@ -58,4 +58,20 @@ class ProjectRepository extends OpportunityRepository
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return LengthAwarePaginator
+     */
+    public function getNeedsReviewPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->needsReview()
+            ->filterByType('Project')
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
 }

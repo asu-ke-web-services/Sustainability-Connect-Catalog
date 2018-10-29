@@ -87,6 +87,19 @@ class Internship extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @param $query
+     * @param bool $approved
+     *
+     * @return mixed
+     */
+    public function scopeNeedsReview($query, $review)
+    {
+        if ($review) {
+            return $query->where('needs_review', 1);
+        }
+    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS

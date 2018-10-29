@@ -34,7 +34,7 @@
                         <tbody>
                         @foreach ($affiliations as $affiliation)
                             <tr>
-                                <td>{{ ucwords($affiliation->opportunityType->name) }}</td>
+                                <td>{{ ucwords($affiliation->opportunityType->name ?? null) }}</td>
                                 <td>{{ $affiliation->order }}</td>
                                 <td>{{ ucwords($affiliation->name) }}</td>
                                 <td>{{ $affiliation->slug }}</td>

@@ -25,6 +25,7 @@ class InternshipsSeeder extends Seeder
             foreach ($old_internships as $old_internship) {
 
                 $new_internship = Internship::create([
+                    'needs_review'             => 1,
                     'degree_program'           => $old_internship->degree_program,
                     'compensation'             => $old_internship->compensation,
                     'responsibilities'         => $old_internship->student_responsibilities,

@@ -143,6 +143,7 @@ return [
                 'deleted'             => 'Deleted Projects',
                 'edit'                => 'Edit Project',
                 'management'          => 'Project Management',
+                'review'              => 'Project Review',
                 'accept_application'  => 'Accept Applications?',
                 'project_details'     => 'Project Details',
                 'locations'           => 'Locations',
@@ -241,6 +242,7 @@ return [
                 'deactivated'         => 'Deactivated Internships',
                 'deleted'             => 'Deleted Internships',
                 'edit'                => 'Edit Internship',
+                'review'              => 'Internship Review',
                 'management'          => 'Internship Management',
 
                 'table' => [

@@ -48,6 +48,17 @@ class ProjectStatusController extends Controller
 
     /**
      * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getNeedsReview(ManageProjectRequest $request)
+    {
+        return view('backend.opportunity.project.review')
+            ->withProjects($this->projectRepository->getReviewPaginated(25, 'id', 'asc'));
+    }
+
+    /**
+     * @param ManageProjectRequest $request
      * @param int                  $deletedProjectId
      *
      * @return mixed

@@ -15,6 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('needs_review')->default(0)->unsigned();
             $table->integer('review_status_id')->unsigned();
             $table->text('degree_program')->nullable();
             $table->text('compensation')->nullable();

@@ -57,4 +57,21 @@ class InternshipRepository extends OpportunityRepository
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getNeedsReviewPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->needsReview()
+            ->filterByType('Internship')
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
 }

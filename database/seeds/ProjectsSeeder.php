@@ -46,6 +46,7 @@ class ProjectsSeeder extends Seeder
 
 
                 $new_project = Project::create([
+                    'needs_review'                => 1,
                     'review_status_id'            => $review_status_id ?? null,
                     'degree_program'              => $old_project->degree_program,
                     'compensation'                => $old_project->compensation_description,
@@ -424,7 +425,6 @@ class ProjectsSeeder extends Seeder
                         'updated_by'     => 1,
                     ]);
                 }
-
             }
         });
 

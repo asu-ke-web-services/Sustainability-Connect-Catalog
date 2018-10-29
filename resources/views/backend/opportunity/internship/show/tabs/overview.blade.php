@@ -17,6 +17,11 @@
             </tr>
 
             <tr>
+                <th>{{ __('Needs Review') }}</th>
+                <td>{!! $project->opportunityable->needs_review === 1 ? true : false) !!}</td>
+            </tr>
+
+            <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.status') }}</th>
                 <td>{!! ucwords($internship->status->name ?? '') !!}</td>
             </tr>

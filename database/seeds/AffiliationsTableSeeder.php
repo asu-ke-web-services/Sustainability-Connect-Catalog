@@ -169,7 +169,7 @@ class AffiliationsTableSeeder extends Seeder
                 'access_control'      => 0,
                 'name'                => 'General Project',
                 'help_text'           => 'General Project',
-                'frontend_fa_icon'             => null,
+                'frontend_fa_icon'    => null,
                 'backend_fa_icon'     => null,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
@@ -565,6 +565,5 @@ class AffiliationsTableSeeder extends Seeder
                 'updated_by'     => 1,
             ])->save();
         }
-
     }
 }

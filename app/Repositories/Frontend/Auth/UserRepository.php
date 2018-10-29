@@ -282,10 +282,20 @@ class UserRepository extends BaseRepository
             // $photoUrl = AsuDirectoryHelper::getUserType($directoryInfo);
             // $photoPermission = AsuDirectoryHelper::getUserType($directoryInfo);
 
+            $user_types = [
+                'student' => 1,
+                'alumni' => 2,
+                'faculty' => 3,
+                'staff' => 4,
+                'professional' => 5,
+            ];
+
             $user = parent::create([
                 'first_name'  => $firstName,
                 'last_name'   => $lastName,
                 'email'       => $user_email,
+                'asurite'     => $asurite,
+                'user_type_id' => $user_types[$userType]
                 'active'      => 1,
                 'confirmed'   => 1,
                 'password'    => null,

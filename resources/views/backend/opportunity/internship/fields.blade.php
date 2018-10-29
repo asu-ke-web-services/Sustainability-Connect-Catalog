@@ -43,7 +43,8 @@
                     ])@endcomponent
 
                     <!-- Needs Review Field -->
-                    @component('includes.components.form.checkbox', [
+                    @component('includes.components.form.input', [
+                        'type'    => 'text',
                         'name'    => 'needs_review',
                         'label'   => 'Needs Review?',
                         'object'  => $opportunity->opportunityable ?? null,

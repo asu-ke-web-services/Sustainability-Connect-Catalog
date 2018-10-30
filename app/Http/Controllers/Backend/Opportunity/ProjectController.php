@@ -49,6 +49,18 @@ class ProjectController extends Controller
      */
     public function index(ManageProjectRequest $request)
     {
+        $userAccessAffiliations = auth()->user()->accessAffiliations
+            ->map(function ($affiliation) {
+                return $affiliation['slug'];
+            })->toJson();
+
+        $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+
+        JavaScript::put([
+            'userAccessAffiliations' => $userAccessAffiliations ?? null,
+            'canViewRestricted' => $canViewRestricted ?? false
+        ]);
+
         return view('backend.opportunity.project.index')
             ->with('projects', $this->projectRepository->getActivePaginated(25, 'application_deadline', 'asc'));
     }

@@ -55,6 +55,7 @@ return [
                 'management'  => 'Internship Management',
                 'main'        => 'Internships',
                 'view'        => 'View Internship',
+                'needs_review' => 'Review Internships',
             ],
 
             'projects' => [
@@ -66,6 +67,7 @@ return [
                 'management'  => 'Project Management',
                 'main'        => 'Projects',
                 'view'        => 'View Project',
+                'needs_review' => 'Review Projects',
             ],
         ],
 

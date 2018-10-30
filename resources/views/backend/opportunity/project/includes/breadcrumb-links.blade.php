@@ -5,7 +5,7 @@
 
             <div class="dropdown-menu" aria-labelledby="breadcrumb-dropdown-1">
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.index') }}">{{ __('menus.backend.opportunity.projects.all') }}</a>
-                <a class="dropdown-item" href="{{ route('admin.opportunity.project.need_review') }}">{{ _('Need Review') }}</a>
+                <a class="dropdown-item" href="{{ route('admin.opportunity.project.needs_review') }}">{{ __('menus.backend.opportunity.projects.needs_review') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.create') }}">{{ __('menus.backend.opportunity.projects.create') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.deactivated') }}">{{ __('menus.backend.opportunity.projects.deactivated') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.deleted') }}">{{ __('menus.backend.opportunity.projects.deleted') }}</a>

@@ -5,7 +5,7 @@
 
             <div class="dropdown-menu" aria-labelledby="breadcrumb-dropdown-1">
                 <a class="dropdown-item" href="{{ route('admin.opportunity.internship.index') }}">{{ __('menus.backend.opportunity.internships.all') }}</a>
-                <a class="dropdown-item" href="{{ route('admin.opportunity.internship.need_review') }}">{{ _('Need Review') }}</a>
+                <a class="dropdown-item" href="{{ route('admin.opportunity.internship.need_review') }}">{{ __('menus.backend.opportunity.internships.needs_review') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.internship.create') }}">{{ __('menus.backend.opportunity.internships.create') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.internship.deactivated') }}">{{ __('menus.backend.opportunity.internships.deactivated') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.internship.deleted') }}">{{ __('menus.backend.opportunity.internships.deleted') }}</a>

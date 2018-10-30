@@ -18,7 +18,7 @@ Route::group([
      */
     Route::get('project/deactivated', 'ProjectController@getDeactivated')->name('project.deactivated');
     Route::get('project/deleted', 'ProjectController@getDeleted')->name('project.deleted');
-    Route::get('project/review', 'ProjectController@getNeedsReview')->name('project.need_review');
+    Route::get('project/review', 'ProjectController@getNeedsReview')->name('project.needs_review');
 
     /* Internship CRUD */
     Route::resource('internship', 'InternshipController');
@@ -28,6 +28,6 @@ Route::group([
      */
     Route::get('internship/deactivated', 'InternshipController@getDeactivated')->name('internship.deactivated');
     Route::get('internship/deleted', 'InternshipController@getDeleted')->name('internship.deleted');
-    Route::get('internship/review', 'InternshipController@getNeedsReview')->name('internship.need_review');
+    Route::get('internship/review', 'InternshipController@getNeedsReview')->name('internship.needs_review');
 
 });

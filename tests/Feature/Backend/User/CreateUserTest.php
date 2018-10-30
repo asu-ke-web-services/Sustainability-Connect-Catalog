@@ -119,6 +119,7 @@ class CreateUserTest extends TestCase
         $response->assertSessionHas(['flash_success' => __('alerts.backend.users.created')]);
 
         $user = User::where('email', 'john@example.com')->first();
+
         Notification::assertSentTo($user, UserNeedsConfirmation::class);
     }
 }

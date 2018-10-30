@@ -11,7 +11,7 @@ use SCCatalog\Events\Backend\Opportunity\OpportunityCreated;
 use SCCatalog\Events\Backend\Opportunity\OpportunityUpdated;
 use SCCatalog\Models\Opportunity\Opportunity;
 //use SCCatalog\Models\Opportunity\Internship;
-//use SCCatalog\Models\Opportunity\Project;
+use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 
 class OpportunityRepositoryTest extends TestCase
@@ -78,9 +78,9 @@ class OpportunityRepositoryTest extends TestCase
 
         Project::withoutSyncingToSearch(function () {
             $this->opportunityRepository->create($this->getValidProjectData());
-        });
 
-        $this->assertEquals(1, Opportunity::count());
+            $this->assertEquals(1, Opportunity::count());
+        });
 
         Event::assertDispatched(OpportunityCreated::class);
     }
@@ -100,11 +100,11 @@ class OpportunityRepositoryTest extends TestCase
                 'description'           => 'updated description',
                 'opportunity_status_id' => 3,
             ]));
-        });
 
-        $this->assertEquals('updated name', $opportunity->fresh()->name);
-        $this->assertEquals('updated description', $opportunity->fresh()->description);
-        $this->assertEquals(3, $opportunity->fresh()->opportunity_status_id);
+            $this->assertEquals('updated name', $opportunity->fresh()->name);
+            $this->assertEquals('updated description', $opportunity->fresh()->description);
+            $this->assertEquals(3, $opportunity->fresh()->opportunity_status_id);
+        });
 
         Event::assertDispatched(OpportunityUpdated::class);
     }
@@ -122,9 +122,9 @@ class OpportunityRepositoryTest extends TestCase
             $this->assertEquals(1, Opportunity::count());
 
             $this->opportunityRepository->deleteById($opportunity->id);
-        });
 
-        $this->assertEquals(0, Opportunity::count());
+            $this->assertEquals(0, Opportunity::count());
+        });
 
         Event::assertDispatched(OpportunityCreated::class);
     }

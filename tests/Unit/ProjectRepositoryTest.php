@@ -42,17 +42,17 @@ class ProjectRepositoryTest extends TestCase
                         factory(Opportunity::class)->make()
                     );
                 });
+
+            $paginatedProjects = $this->projectRepository->getActivePaginated(25);
+
+            $this->assertEquals(2, $paginatedProjects->lastPage());
+            $this->assertEquals(25, $paginatedProjects->perPage());
+            $this->assertEquals(30, $paginatedProjects->total());
+
+            $newPaginatedProjects = $this->projectRepository->getActivePaginated(5);
+
+            $this->assertEquals(5, $newPaginatedProjects->perPage());
         });
-
-        $paginatedProjects = $this->projectRepository->getActivePaginated(25);
-
-        $this->assertEquals(2, $paginatedProjects->lastPage());
-        $this->assertEquals(25, $paginatedProjects->perPage());
-        $this->assertEquals(30, $paginatedProjects->total());
-
-        $newPaginatedProjects = $this->projectRepository->getActivePaginated(5);
-
-        $this->assertEquals(5, $newPaginatedProjects->perPage());
     }
 
     /** @test */
@@ -80,13 +80,13 @@ class ProjectRepositoryTest extends TestCase
                         ->make()
                     );
                 });
+
+            $paginatedProjects = $this->projectRepository->getClosedPaginated(10);
+
+            $this->assertEquals(3, $paginatedProjects->lastPage());
+            $this->assertEquals(10, $paginatedProjects->perPage());
+            $this->assertEquals(25, $paginatedProjects->total());
         });
-
-        $paginatedProjects = $this->projectRepository->getClosedPaginated(10);
-
-        $this->assertEquals(3, $paginatedProjects->lastPage());
-        $this->assertEquals(10, $paginatedProjects->perPage());
-        $this->assertEquals(25, $paginatedProjects->total());
     }
 
     /** @test */
@@ -114,12 +114,12 @@ class ProjectRepositoryTest extends TestCase
                         ->make()
                     );
                 });
+
+            $paginatedProjects = $this->projectRepository->getDeletedPaginated(10);
+
+            $this->assertEquals(3, $paginatedProjects->lastPage());
+            $this->assertEquals(10, $paginatedProjects->perPage());
+            $this->assertEquals(25, $paginatedProjects->total());
         });
-
-        $paginatedProjects = $this->projectRepository->getDeletedPaginated(10);
-
-        $this->assertEquals(3, $paginatedProjects->lastPage());
-        $this->assertEquals(10, $paginatedProjects->perPage());
-        $this->assertEquals(25, $paginatedProjects->total());
     }
 }

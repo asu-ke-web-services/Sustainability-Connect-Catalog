@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Events\Backend\OpportunityUser\UserAddedToOpportunity;
 use SCCatalog\Events\Backend\OpportunityUser\OpportunityUserRelationshipUpdated;
@@ -46,30 +45,28 @@ class OpportunityUserRepositoryTest extends TestCase
         Event::fake();
         Model::setEventDispatcher($initialDispatcher);
 
-        factory(Project::class)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Project::withoutSyncingToSearch(function () {
+            factory(Project::class)
+                ->create()
+                ->each(function($project) {
+                    $project
+                        ->opportunity()
+                        ->save(
+                            factory(Opportunity::class)->make()
+                        );
+                });
 
-        factory(User::class)->create();
+            factory(User::class)->create();
 
-        $opportunity = Opportunity::first();
-        $user = User::first();
+            $opportunity = Opportunity::first();
+            $user = User::first();
 
-        $this->assertEquals(0, $opportunity->users()->count());
+            $this->assertEquals(0, $opportunity->users()->count());
 
-        // dd($opportunity);
-        // dd($user);
-        // dd($this->getValidOpportunityUserData());
+            $this->opportunityUserRepository->attach($opportunity, $user, $this->getValidOpportunityUserData());
 
-        $this->opportunityUserRepository->attach($opportunity, $user, $this->getValidOpportunityUserData());
-
-        $this->assertEquals(1, $opportunity->users()->count());
+            $this->assertEquals(1, $opportunity->users()->count());
+        });
 
         Event::assertDispatched(UserAddedToOpportunity::class);
     }
@@ -81,29 +78,31 @@ class OpportunityUserRepositoryTest extends TestCase
         Event::fake();
         Model::setEventDispatcher($initialDispatcher);
 
-        factory(Project::class)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Project::withoutSyncingToSearch(function () {
+            factory(Project::class)
+                ->create()
+                ->each(function($project) {
+                    $project
+                        ->opportunity()
+                        ->save(
+                            factory(Opportunity::class)->make()
+                        );
+                });
 
-        factory(User::class)->create();
+            factory(User::class)->create();
 
-        $opportunity = Opportunity::first();
-        $user = User::first();
-        $opportunity = $this->opportunityUserRepository->attach($opportunity, $user, $this->getValidOpportunityUserData());
+            $opportunity = Opportunity::first();
+            $user = User::first();
+            $opportunity = $this->opportunityUserRepository->attach($opportunity, $user, $this->getValidOpportunityUserData());
 
-        $opportunity = $this->opportunityUserRepository->update($opportunity, $user, $this->getValidOpportunityUserData([
-            'relationship_type_id' => 2,
-            'comments' => 'updated comment',
-        ]));
+            $opportunity = $this->opportunityUserRepository->update($opportunity, $user, $this->getValidOpportunityUserData([
+                'relationship_type_id' => 2,
+                'comments' => 'updated comment',
+            ]));
 
-        $this->assertEquals(2, $opportunity->users->first()->pivot->relationship_type_id);
-        $this->assertEquals('updated comment', $opportunity->users->first()->pivot->comments);
+            $this->assertEquals(2, $opportunity->users->first()->pivot->relationship_type_id);
+            $this->assertEquals('updated comment', $opportunity->users->first()->pivot->comments);
+        });
 
         Event::assertDispatched(OpportunityUserRelationshipUpdated::class);
     }
@@ -115,27 +114,29 @@ class OpportunityUserRepositoryTest extends TestCase
         Event::fake();
         Model::setEventDispatcher($initialDispatcher);
 
-        factory(Project::class)
-            ->create()
-            ->each(function($project) {
-                $project
-                ->opportunity()
-                ->save(
-                    factory(Opportunity::class)->make()
-                );
-            });
+        Project::withoutSyncingToSearch(function () {
+            factory(Project::class)
+                ->create()
+                ->each(function($project) {
+                    $project
+                        ->opportunity()
+                        ->save(
+                            factory(Opportunity::class)->make()
+                        );
+                });
 
-        factory(User::class)->create();
+            factory(User::class)->create();
 
-        $opportunity = Opportunity::first();
-        $user = User::first();
-        $this->opportunityUserRepository->attach($opportunity, $user, $this->getValidOpportunityUserData());
+            $opportunity = Opportunity::first();
+            $user = User::first();
+            $this->opportunityUserRepository->attach($opportunity, $user, $this->getValidOpportunityUserData());
 
-        $this->assertEquals(1, $opportunity->users()->count());
+            $this->assertEquals(1, $opportunity->users()->count());
 
-        $this->opportunityUserRepository->detach($opportunity, $user, $this->getValidOpportunityUserData());
+            $this->opportunityUserRepository->detach($opportunity, $user, $this->getValidOpportunityUserData());
 
-        $this->assertEquals(0, $opportunity->users()->count());
+            $this->assertEquals(0, $opportunity->users()->count());
+        });
 
         Event::assertDispatched(UserRemovedFromOpportunity::class);
     }

@@ -46,15 +46,15 @@ class InternshipsSeeder extends Seeder
 
 
                 if (is_null($old_internship->publish_on)) {
-                    $listing_start_date =  null;
+                    $listing_start_at =  null;
                 } else {
-                    $listing_start_date = Carbon::parse($old_internship->publish_on)->toDateString();
+                    $listing_start_at = Carbon::parse($old_internship->publish_on)->toDateString();
                 }
 
                 if (is_null($old_internship->published_until)) {
-                    $listing_end_date =  null;
+                    $listing_end_at =  null;
                 } else {
-                    $listing_end_date = Carbon::parse($old_internship->published_until)->toDateString();
+                    $listing_end_at = Carbon::parse($old_internship->published_until)->toDateString();
                 }
 
 
@@ -66,10 +66,10 @@ class InternshipsSeeder extends Seeder
                     'opportunity_status_id' => $status_id ?? null,
                     'is_hidden'             => 0,
                     'description'           => $old_internship->internship_description,
-                    // 'start_date'            => $project_start,
-                    // 'end_date'              => $project_end,
-                    'listing_start_date'    => $listing_start_date,
-                    'listing_end_date'      => $listing_end_date,
+                    // 'opportunity_start_at'            => $project_start,
+                    // 'opportunity_end_at'              => $project_end,
+                    'listing_start_at'      => $listing_start_at,
+                    'listing_end_at'        => $listing_end_at,
                     // 'application_deadline'  => $old_internship->application_deadline,
                     // 'organization_id'       => $old_internship->,
                     // 'submitting_user_id'    => $old_internship->project_submitted_by,

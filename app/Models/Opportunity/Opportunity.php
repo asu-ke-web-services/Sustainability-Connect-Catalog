@@ -29,21 +29,22 @@ class Opportunity extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
-        'application_deadline',
-        'listing_start_date',
-        'listing_end_date',
-        'start_date',
-        'end_date',
+        'application_deadline_at',
+        'listing_start_at',
+        'listing_end_at',
+        'opportunity_start_at',
+        'opportunity_end_at',
     ];
 
     public $fillable = [
         'name',
         'public_name',
-        'start_date',
-        'end_date',
-        'listing_start_date',
-        'listing_end_date',
-        'application_deadline',
+        'opportunity_start_at',
+        'opportunity_end_at',
+        'listing_start_at',
+        'listing_end_at',
+        'application_deadline_at',
+        'application_deadline_text',
         'opportunity_status_id',
         'is_hidden',
         'summary',
@@ -60,11 +61,11 @@ class Opportunity extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
-        'start_date'           => 'date:Y-m-d',
-        'end_date'             => 'date:Y-m-d',
-        'listing_end_date'     => 'date:Y-m-d',
-        'listing_start_date'   => 'date:Y-m-d',
-        'application_deadline' => 'date:Y-m-d',
+        'opportunity_start_at'    => 'date:Y-m-d',
+        'opportunity_end_at'      => 'date:Y-m-d',
+        'listing_end_at'          => 'date:Y-m-d',
+        'listing_start_at'        => 'date:Y-m-d',
+        'application_deadline_at' => 'date:Y-m-d',
         'is_hidden'            => 'boolean',
     ];
 

@@ -82,12 +82,12 @@
                     <!-- Project Starts -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Starts</td>
-                        <td class="col col-sm-9 view-content">{!! $project->start_date !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity_start_at !!}</td>
                     </tr>
                     <!-- Project Ends -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Ends</td>
-                        <td class="col col-sm-9 view-content">{!! $project->end_date !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity_end_at !!}</td>
                     </tr>
                         </tbody>
             </table>
@@ -100,7 +100,7 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Deadline</td>
-                        <td class="col col-sm-9 view-content">{!! $project->application_deadline !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->application_deadline_at !!}</td>
                     </tr>
                             <!-- Application Instructions -->
                     <tr>

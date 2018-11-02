@@ -32,28 +32,28 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.start_date') }}</th>
-                <td>{{ isset($internship->start_date) ? $internship->start_date->toFormattedDateString() : '' }} {{ isset($internship->start_date) ? '(' . $internship->start_date->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.opportunity_start_at') }}</th>
+                <td>{{ isset($internship->opportunity_start_at) ? $internship->opportunity_start_at->toFormattedDateString() : '' }} {{ isset($internship->opportunity_start_at) ? '(' . $internship->opportunity_start_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.end_date') }}</th>
-                <td>{{ isset($internship->end_date) ? $internship->end_date->toFormattedDateString() : '' }} {{ isset($internship->end_date) ? '(' . $internship->end_date->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.opportunity_end_at') }}</th>
+                <td>{{ isset($internship->opportunity_end_at) ? $internship->opportunity_end_at->toFormattedDateString() : '' }} {{ isset($internship->opportunity_end_at) ? '(' . $internship->opportunity_end_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.listing_starts') }}</th>
-                <td>{{ isset($internship->listing_starts) ? $internship->listing_starts->toFormattedDateString() : '' }} {{ isset($internship->listing_starts) ? '(' . $internship->listing_starts->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.listing_start_at') }}</th>
+                <td>{{ isset($internship->listing_start_at) ? $internship->listing_start_at->toFormattedDateString() : '' }} {{ isset($internship->listing_start_at) ? '(' . $internship->listing_start_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.listing_ends') }}</th>
-                <td>{{ isset($internship->listing_ends) ? $internship->listing_ends->toFormattedDateString() : '' }} {{ isset($internship->listing_ends) ? '(' . $internship->listing_ends->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.listing_end_at') }}</th>
+                <td>{{ isset($internship->listing_end_at) ? $internship->listing_end_at->toFormattedDateString() : '' }} {{ isset($internship->listing_end_at) ? '(' . $internship->listing_end_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.application_deadline') }}</th>
-                <td>{{ isset($internship->application_deadline) ? $internship->application_deadline->toFormattedDateString() : '' }} {{ isset($internship->application_deadline) ? '(' . $internship->application_deadline->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.application_deadline_at') }}</th>
+                <td>{{ isset($internship->application_deadline_at) ? $internship->application_deadline_at->toFormattedDateString() : '' }} {{ isset($internship->application_deadline_at) ? '(' . $internship->application_deadline_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
 

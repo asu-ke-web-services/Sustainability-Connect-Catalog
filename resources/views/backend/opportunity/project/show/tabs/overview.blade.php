@@ -32,28 +32,28 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.start_date') }}</th>
-                <td>{{ isset($project->start_date) ? $project->start_date->toFormattedDateString() : '' }} {{ isset($project->start_date) ? '(' . $project->start_date->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.opportunity_start_at') }}</th>
+                <td>{{ isset($project->opportunity_start_at) ? $project->opportunity_start_at->toFormattedDateString() : '' }} {{ isset($project->opportunity_start_at) ? '(' . $project->opportunity_start_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.end_date') }}</th>
-                <td>{{ isset($project->end_date) ? $project->end_date->toFormattedDateString() : '' }} {{ isset($project->end_date) ? '(' . $project->end_date->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.opportunity_end_at') }}</th>
+                <td>{{ isset($project->opportunity_end_at) ? $project->opportunity_end_at->toFormattedDateString() : '' }} {{ isset($project->opportunity_end_at) ? '(' . $project->opportunity_end_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.listing_starts') }}</th>
-                <td>{{ isset($project->listing_starts) ? $project->listing_starts->toFormattedDateString() : '' }} {{ isset($project->listing_starts) ? '(' . $project->listing_starts->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.listing_start_at') }}</th>
+                <td>{{ isset($project->listing_start_at) ? $project->listing_start_at->toFormattedDateString() : '' }} {{ isset($project->listing_start_at) ? '(' . $project->listing_start_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.listing_ends') }}</th>
-                <td>{{ isset($project->listing_ends) ? $project->listing_ends->toFormattedDateString() : '' }} {{ isset($project->listing_ends) ? '(' . $project->listing_ends->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.listing_end_at') }}</th>
+                <td>{{ isset($project->listing_end_at) ? $project->listing_end_at->toFormattedDateString() : '' }} {{ isset($project->listing_end_at) ? '(' . $project->listing_end_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.application_deadline') }}</th>
-                <td>{{ isset($project->application_deadline) ? $project->application_deadline->toFormattedDateString() : '' }} {{ isset($project->application_deadline) ? '(' . $project->application_deadline->diffForHumans() . ')' : '' }}</td>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.application_deadline_at') }}</th>
+                <td>{{ isset($project->application_deadline_at) ? $project->application_deadline_at->toFormattedDateString() : '' }} {{ isset($project->application_deadline_at) ? '(' . $project->application_deadline_at->diffForHumans() . ')' : '' }}</td>
             </tr>
 
 

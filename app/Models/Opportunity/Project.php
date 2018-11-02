@@ -225,12 +225,12 @@ class Project extends Model
                 'closed',
             ], true) ||
             (
-                $this->opportunity->listing_start_date !== null &&
-                Carbon::parse($this->opportunity->listing_start_date)->greaterThan(Carbon::today())
+                $this->opportunity->listing_start_at !== null &&
+                Carbon::parse($this->opportunity->listing_start_at)->greaterThan(Carbon::today())
             ) ||
             (
-                $this->opportunity->listing_end_date !== null &&
-                Carbon::parse($this->opportunity->listing_end_date)->lessThan(Carbon::today())
+                $this->opportunity->listing_end_at !== null &&
+                Carbon::parse($this->opportunity->listing_end_at)->lessThan(Carbon::today())
             )
         ) {
             return false;
@@ -260,12 +260,12 @@ class Project extends Model
         $project['name']                = e($this->opportunity->name);
         $project['publicName']          = e($this->opportunity->public_name);
         $project['description']         = e($this->opportunity->description);
-        $project['isHidden']            = $this->opportunity->is_hidden;
-        $project['startDate']           = $this->opportunity->start_date;
-        $project['endDate']             = $this->opportunity->end_date;
-        $project['applicationDeadline'] = e($this->opportunity->application_deadline);
-        $project['listingStartDate']    = $this->opportunity->listing_start_date;
-        $project['listingEndDate']      = $this->opportunity->listing_end_date;
+        $project['opportunityStartAt']    = $this->opportunity->opportunity_start_at;
+        $project['opportunityEndAt']      = $this->opportunity->opportunity_end_at;
+        $project['applicationDeadlineAt'] = e($this->opportunity->application_deadline_at);
+        $project['applicationDeadlineText'] = e($this->opportunity->application_deadline_text);
+        $project['listingStartAt']        = $this->opportunity->listing_start_at;
+        $project['listingEndAt']          = $this->opportunity->listing_end_at;
         $project['followerCount']       = $this->opportunity->follower_count;
         $project['status']              = e($this->opportunity->status->name);
         $project['reviewStatus']        = e($this->reviewStatus->name);

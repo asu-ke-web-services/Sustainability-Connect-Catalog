@@ -82,12 +82,12 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Apply By</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->application_deadline !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->application_deadline_at !!}</td>
                     </tr>
                     <!-- Semester Offered -->
                     <tr>
                         <td class="col col-sm-3 view-label">Semester Offered</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->start_date !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->opportunity_start_at !!}</td>
                     </tr>
                     <!-- Application Instructions -->
                     <tr>

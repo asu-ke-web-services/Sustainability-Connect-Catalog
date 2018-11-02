@@ -33,7 +33,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{!! $opportunity->application_deadline !!}</td>
+                    <td>{!! $opportunity->application_deadline_at !!}</td>
                     {{-- <td>
                         {!! Form::open(['route' => ['projects.destroy', $project->opportunity->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

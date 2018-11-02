@@ -113,7 +113,7 @@
     <!-- Listing Starts Field -->
     <div class="col-sm-6">
         @component('components.form.input', [
-            'name'   => 'listing_starts',
+            'name'   => 'listing_start_at',
             'label'  => 'Listing Starts:',
             'type'   => 'date',
             'object' => $opportunity ?? null,
@@ -123,7 +123,7 @@
     <!-- Listing Ends Field -->
     <div class="col-sm-6">
         @component('components.form.input', [
-            'name'   => 'listing_ends',
+            'name'   => 'listing_end_at',
             'label'  => 'Listing Ends:',
             'type'   => 'date',
             'object' => $opportunity ?? null,
@@ -168,7 +168,7 @@
 <!-- Opportunity Begins Field -->
 <div class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.input', [
-        'name'   => 'start_date',
+        'name'   => 'opportunity_start_at',
         'label'  => 'Project Start Date:',
         'type'   => 'date',
         'object' => $opportunity ?? null,
@@ -178,7 +178,7 @@
 <!-- Opportunity Ends Field -->
 <div class="form-group col-sm-8 col-sm-offset-1">
     @component('components.form.input', [
-        'name'   => 'end_date',
+        'name'   => 'opportunity_end_at',
         'label'  => 'Project End Date:',
         'type'   => 'date',
         'object' => $opportunity ?? null,

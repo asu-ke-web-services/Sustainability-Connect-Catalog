@@ -30,8 +30,8 @@
                             <th>{{ __('labels.backend.opportunity.internships.table.name') }}</th>
                             <th>{{ __('labels.backend.opportunity.internships.table.status') }}</th>
                             <th>{{ __('labels.backend.opportunity.internships.table.location') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.start_date') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.application_deadline') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.opportunity_start_at') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.application_deadline_at') }}</th>
                             <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
@@ -49,8 +49,8 @@
                                         {{ __('labels.general.none') }}
                                     @endif
                                 </td>
-                                <td>{{ $internship->start_date }}</td>
-                                <td>{{ $internship->application_deadline }}</td>
+                                <td>{{ $internship->opportunity_start_at }}</td>
+                                <td>{{ $internship->application_deadline_at }}</td>
                                 <td>{!! $internship->opportunityable->action_buttons !!}</td>
                             </tr>
                         @endforeach

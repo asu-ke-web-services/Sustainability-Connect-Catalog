@@ -102,7 +102,7 @@
                     <!-- Listing Starts Field -->
                     @component('includes.components.form.input', [
                         'type'        => 'date',
-                        'name'        => 'listing_starts',
+                        'name'        => 'listing_start_at',
                         'label'       => 'Listing Starts',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
@@ -110,14 +110,14 @@
                     <!-- Listing Ends Field -->
                     @component('includes.components.form.input', [
                         'type'        => 'date',
-                        'name'        => 'listing_ends',
+                        'name'        => 'listing_end_at',
                         'label'       => 'Listing Ends',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Application Deadline Field -->
                     @component('includes.components.form.input', [
-                        'name'   => 'application_deadline',
+                        'name'   => 'application_deadline_at',
                         'label'  => 'Application Deadline (Date or Short Text)',
                         'object' => $opportunity ?? null,
                     ])@endcomponent
@@ -161,7 +161,7 @@
                     <!-- Opportunity Begins Field -->
                     @component('includes.components.form.input', [
                         'type'        => 'date',
-                        'name'        => 'start_date',
+                        'name'        => 'opportunity_start_at',
                         'label'       => 'Project Start Date',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
@@ -169,7 +169,7 @@
                     <!-- Opportunity Ends Field -->
                     @component('includes.components.form.input', [
                         'type'        => 'date',
-                        'name'        => 'end_date',
+                        'name'        => 'opportunity_end_at',
                         'label'       => 'Project End Date',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent

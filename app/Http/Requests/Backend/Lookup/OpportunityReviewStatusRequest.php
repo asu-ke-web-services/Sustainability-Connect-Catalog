@@ -27,8 +27,10 @@ class OpportunityReviewStatusRequest extends FormRequest
     public function rules()
     {
         return [
-        	'order' => 'required',
-            'name'  => 'required|max:250',
+            'opportunity_type_id' => 'nullable|integer|exists:opportunity_types,id',
+            'order'               => 'nullable|integer',
+            'name'                => ['required', 'string', 'max:250', Rule::unique('opportunity_review_statuses')],
+            'slug'                => 'nullable|string|max:255',
         ];
     }
 

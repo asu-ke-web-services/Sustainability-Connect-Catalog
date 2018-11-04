@@ -1,13 +1,13 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\Opportunity;
+namespace SCCatalog\Http\Requests\Backend\Note;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class CreateProjectRequest.
+ * Class ManageNoteRequest.
  */
-class CreateProjectRequest extends FormRequest
+class ManageNoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,8 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            'body'    => 'required',
+            'user_id' => 'integer|exists:users,id',
         ];
     }
 

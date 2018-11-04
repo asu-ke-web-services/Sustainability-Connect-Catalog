@@ -27,8 +27,9 @@ class StudentDegreeLevelRequest extends FormRequest
     public function rules()
     {
         return [
-        	'order' => 'required',
-            'name'  => 'required|max:250',
+            'order' => 'nullable|integer',
+            'name'  => ['required', 'string', 'max:250', Rule::unique('student_degree_levels')],
+            'slug'  => 'nullable|string|max:255',
         ];
     }
 

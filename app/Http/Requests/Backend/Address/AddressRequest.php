@@ -1,13 +1,13 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\Lookup;
+namespace SCCatalog\Http\Requests\Backend\Address;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RelationshipTypeRequest.
+ * Class AddressRequest.
  */
-class RelationshipTypeRequest extends FormRequest
+class AddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,14 @@ class RelationshipTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'order' => 'nullable|integer',
-            'name'  => ['required', 'string', 'max:250', Rule::unique('relationship_types')],
-            'slug'  => 'nullable|string|max:255',
+            'primary'   => 'nullable|boolean',
+            'street1'   => 'nullable|max:255',
+            'street2'   => 'nullable|max:255',
+            'city'      => 'nullable|max:255',
+            'state'     => 'nullable|max:255',
+            'post_code' => 'nullable|max:255',
+            'country'   => 'nullable|max:255',
+            'comment'   => 'nullable',
         ];
     }
 

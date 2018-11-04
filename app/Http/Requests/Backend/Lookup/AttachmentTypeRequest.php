@@ -27,7 +27,9 @@ class AttachmentTypeRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            'order' => 'nullable|integer',
+            'name'  => ['required', 'string', 'max:250', Rule::unique('attachments')],
+            'slug'  => 'nullable|string|max:255',
         ];
     }
 

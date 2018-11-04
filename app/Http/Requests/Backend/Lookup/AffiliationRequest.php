@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Http\Requests\Backend\Lookup;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -27,8 +28,15 @@ class AffiliationRequest extends FormRequest
     public function rules()
     {
         return [
-        	'order' => 'required',
-            'name'  => 'required|max:250',
+            'opportunity_type_id' => 'nullable|integer|exists:opportunity_types,id',
+            'order'               => 'nullable|integer',
+            'name'                => ['required', 'string', 'max:250', Rule::unique('affiliations')],
+            'slug'                => 'nullable|string|max:255',
+            'help_text'           => 'nullable|string|max:255',
+            'frontend_fa_icon'    => 'nullable|string|max:255',
+            'backend_fa_icon'     => 'nullable|string|max:255',
+            'access_control'      => 'nullable|boolean',
+            'public'              => 'nullable|boolean',
         ];
     }
 

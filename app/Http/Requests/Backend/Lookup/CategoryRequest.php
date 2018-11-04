@@ -27,8 +27,9 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-        	'order' => 'required',
-            'name'  => 'required|max:250',
+            'order' => 'nullable|integer',
+            'name'  => ['required', 'string', 'max:250', Rule::unique('categories')],
+            'slug'  => 'nullable|string|max:255',
         ];
     }
 

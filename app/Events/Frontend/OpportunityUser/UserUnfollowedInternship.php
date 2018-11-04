@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events\Backend\OpportunityUser;
+namespace SCCatalog\Events\Frontend\OpportunityUser;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,26 +9,26 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity\Opportunity;
+use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Models\Auth\User;
 
-class OpportunityUserRelationshipUpdated
+class UserUnfollowedInternship
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $opportunity;
+    public $internship;
     public $user;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Internship $internship
+     * @param User $user
      */
-    public function __construct(Opportunity $opportunity, User $user, array $data)
+    public function __construct(Internship $internship, User $user)
     {
-        $this->opportunity = $opportunity;
+        $this->internship = $internship;
         $this->user = $user;
-        $this->data = $data;
     }
 
     /**

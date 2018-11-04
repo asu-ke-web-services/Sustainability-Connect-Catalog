@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events\Frontend\OpportunityUser;
+namespace SCCatalog\Events\Backend\Opportunity;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -9,26 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity\Opportunity;
-use SCCatalog\Models\Auth\User;
+use SCCatalog\Models\Opportunity\Project;
 
-class UserRequestedToJoinOpportunity
+class ProjectIdeaApproved
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $opportunity;
-    public $user;
+    public $project;
 
     /**
      * Create a new event instance.
      *
-     * @param Opportunity $opportunity
-     * @param User $user
+     * @param Project $project
      */
-    public function __construct(Opportunity $opportunity, User $user)
+    public function __construct(Project $project)
     {
-        $this->opportunity = $opportunity;
-        $this->user = $user;
+        $this->project = $project;
     }
 
     /**

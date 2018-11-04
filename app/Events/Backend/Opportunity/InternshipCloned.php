@@ -9,22 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use SCCatalog\Models\Opportunity\Opportunity;
+use SCCatalog\Models\Opportunity\Internship;
 
-class OpportunityDeleted
+class InternshipCloned
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $opportunity;
+    public $internship;
 
     /**
      * Create a new event instance.
      *
-     * @param Opportunity $opportunity
+     * @param Internship $internship
      */
-    public function __construct(Opportunity $opportunity)
+    public function __construct(Internship $internship)
     {
-        $this->opportunity = $opportunity;
+        $this->internship = $internship;
     }
 
     /**

@@ -40,7 +40,9 @@ class KeywordRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'order' => 'nullable|integer',
+            'name'  => ['required', 'string', 'max:250', Rule::unique('keywords')],
+            'slug'  => 'nullable|string|max:255',
         ];
     }
 

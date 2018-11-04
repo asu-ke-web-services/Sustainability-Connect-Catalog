@@ -45,7 +45,6 @@
                                     </p>
                                 </div>
                             </div>
-
                         </div><!--col-md-4-->
 
                         <div class="col-md-8 order-2 order-sm-1">
@@ -53,24 +52,24 @@
                                 <div class="col">
                                     <div class="card mb-4">
                                         <div class="card-header">
-                                            Opportunities I'm Following
+                                            Projects I'm Following
                                         </div><!--card-header-->
 
                                         <div class="card-body">
                                             <table class="table table-responsive-sm table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Opportunity</th>
+                                                        <th>Project</th>
                                                         <th>Coordinator</th>
                                                         <th>Updated Last</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($followedOpportunities as $opportunity)
+                                                @foreach($followedProjects as $project)
                                                     <tr>
-                                                        <td>{!! $opportunity->name !!}</td>
-                                                        <td>{!! $opportunity->supervisorUser->full_name ?? null !!}</td>
-                                                        <td>{!! $opportunity->updated_at !!}</td>
+                                                        <td>{!! $project->name !!}</td>
+                                                        <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
+                                                        <td>{!! $project->updated_at !!}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -84,24 +83,57 @@
                                 <div class="col">
                                     <div class="card mb-4">
                                         <div class="card-header">
-                                            My Active Opportunities
+                                            Internships I'm Following
+                                        </div><!--card-header-->
+
+                                        <div class="card-body">
+                                            <table class="table table-responsive-sm table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Internship</th>
+                                                    <th>Coordinator</th>
+                                                    <th>Updated Last</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($followedInternships as $internship)
+                                                    <tr>
+                                                        <td>{!! $internship->name !!}</td>
+                                                        <td>{!! $internship->supervisorUser->full_name ?? null !!}</td>
+                                                        <td>{!! $internship->updated_at !!}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div><!--card-body-->
+                                    </div><!--card-->
+                                </div><!--col-md-6-->
+                            </div><!--row-->
+                        </div><!--col-md-8-->
+
+                        <div class="col-md-8 order-3 order-sm-3">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            My Active Projects
                                         </div><!--card-header-->
 
                                         <div class="card-body">
                                             <table class="table table-responsive-sm table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Opportunity</th>
+                                                        <th>Project</th>
                                                         <th>Coordinator</th>
                                                         <th>Updated Last</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($activeOpportunities as $opportunity)
+                                                @foreach($participatingInProjects as $project)
                                                     <tr>
-                                                        <td>{!! $opportunity->name !!}</td>
-                                                        <td>{!! $opportunity->supervisorUser->full_name ?? null !!}</td>
-                                                        <td>{!! $opportunity->updated_at !!}</td>
+                                                        <td>{!! $project->name !!}</td>
+                                                        <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
+                                                        <td>{!! $project->updated_at !!}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -126,11 +158,11 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($applications as $application)
+                                                @foreach($projectApplications as $project)
                                                     <tr>
-                                                        <td>{!! $application->name !!}</td>
-                                                        <td>{!! $application->supervisorUser->full_name ?? null !!}</td>
-                                                        <td>{!! $application->updated_at !!}</td>
+                                                        <td>{!! $project->name !!}</td>
+                                                        <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
+                                                        <td>{!! $project->updated_at !!}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -146,5 +178,5 @@
             </div><!-- card -->
         </div><!-- row -->
     </div><!-- row -->
-<div class="container">
+</div>
 @endsection

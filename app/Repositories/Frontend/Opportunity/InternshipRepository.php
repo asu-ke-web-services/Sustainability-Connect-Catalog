@@ -3,13 +3,22 @@
 namespace SCCatalog\Repositories\Frontend\Opportunity;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
+use SCCatalog\Models\Opportunity\Project;
+use SCCatalog\Repositories\BaseRepository;
 
 /**
  * Class InternshipRepository
  */
-class InternshipRepository extends OpportunityRepository
+class InternshipRepository extends BaseRepository
 {
+    /**
+     * Configure the Model
+     **/
+    public function model()
+    {
+        return Internship::class;
+    }
+
     /**
      * @param int    $paged
      * @param string $orderBy
@@ -20,9 +29,7 @@ class InternshipRepository extends OpportunityRepository
     public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
-            // ->with('roles', 'permissions', 'providers')
-            // ->active()
-            ->filterByType('Internship')
+            ->active()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
@@ -34,14 +41,11 @@ class InternshipRepository extends OpportunityRepository
      *
      * @return mixed
      */
-    public function getClosedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getInactivePaginated($paged = 25, $orderBy = 'updated_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
-            // ->with('roles', 'permissions', 'providers')
             ->active(false)
-            ->filterByType('Internship')
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
-
 }

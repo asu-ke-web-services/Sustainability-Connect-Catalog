@@ -17,24 +17,4 @@ class OrganizationRepository extends BaseRepository
     {
         return Organization::class;
     }
-
-    /**
-     * Array of related models to eager load.
-     *
-     * @var array
-     */
-    protected $with = [
-        'status',
-        'type',
-    ];
-
-    /**
-     * Array of one or more ORDER BY column/value pairs.
-     *
-     * @var array
-     */
-    // protected $orderBys = [
-    //     ['name', 'asc'],
-    // ];
-
 }

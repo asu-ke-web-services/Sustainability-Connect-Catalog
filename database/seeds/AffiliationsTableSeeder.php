@@ -52,14 +52,14 @@ class AffiliationsTableSeeder extends Seeder
         }
 
         $affiliation = Affiliation::firstOrNew([
-            'slug' => 'sos-majors-only',
+            'slug' => 'school-of-sustainability',
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
             	// 'opportunity_type_id' => 1,
                 'order'          => 2,
                 'access_control' => 1,
-                'name'           => 'SOS Majors Only',
+                'name'           => 'School of Sustainability',
                 'help_text'      => 'Restricted to students majoring in degrees from The School of Sustainability',
                 'frontend_fa_icon'        => json_encode(array(
                         array(

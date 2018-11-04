@@ -29,10 +29,21 @@ class ProjectStatusController extends Controller
      *
      * @return mixed
      */
-    public function getDeactivated(ManageProjectRequest $request)
+    public function getArchived(ManageProjectRequest $request)
     {
-        return view('backend.opportunity.project.deactivated')
-            ->withProjects($this->projectRepository->getInactivePaginated(25, 'id', 'asc'));
+        return view('backend.opportunity.project.archived')
+            ->withProjects($this->projectRepository->getArchivedPaginated(25, 'updated_at', 'desc'));
+    }
+
+    /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getClosed(ManageProjectRequest $request)
+    {
+        return view('backend.opportunity.project.closed')
+            ->withProjects($this->projectRepository->getClosedPaginated(25, 'updated_at', 'desc'));
     }
 
     /**
@@ -43,7 +54,7 @@ class ProjectStatusController extends Controller
     public function getDeleted(ManageProjectRequest $request)
     {
         return view('backend.opportunity.project.deleted')
-            ->withProjects($this->projectRepository->getDeletedPaginated(25, 'id', 'asc'));
+            ->withProjects($this->projectRepository->getDeletedPaginated(25, 'deleted_at', 'desc'));
     }
 
     /**
@@ -51,10 +62,21 @@ class ProjectStatusController extends Controller
      *
      * @return mixed
      */
-    public function getNeedsReview(ManageProjectRequest $request)
+    public function getImportReview(ManageProjectRequest $request)
     {
-        return view('backend.opportunity.project.review')
-            ->withProjects($this->projectRepository->getReviewPaginated(25, 'id', 'asc'));
+        return view('backend.opportunity.project.import_review')
+            ->withProjects($this->projectRepository->getImportReviewsPaginated(25, 'created_at', 'desc'));
+    }
+
+    /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getProposalReviews(ManageProjectRequest $request)
+    {
+        return view('backend.opportunity.project.reviews')
+            ->withProjects($this->projectRepository->getProposalReviewsPaginated(25, 'created_at', 'desc'));
     }
 
     /**

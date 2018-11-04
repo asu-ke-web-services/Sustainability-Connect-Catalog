@@ -5,9 +5,14 @@ Breadcrumbs::for('admin.opportunity.project.index', function ($trail) {
     $trail->push(__('labels.backend.opportunity.projects.management'), route('admin.opportunity.project.index'));
 });
 
-Breadcrumbs::for('admin.opportunity.project.deactivated', function ($trail) {
+Breadcrumbs::for('admin.opportunity.project.archived', function ($trail) {
     $trail->parent('admin.opportunity.project.index');
-    $trail->push(__('menus.backend.opportunity.projects.deactivated'), route('admin.opportunity.project.deactivated'));
+    $trail->push(__('menus.backend.opportunity.projects.archived'), route('admin.opportunity.project.archived'));
+});
+
+Breadcrumbs::for('admin.opportunity.project.create', function ($trail) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push(__('labels.backend.opportunity.projects.create'), route('admin.opportunity.project.create'));
 });
 
 Breadcrumbs::for('admin.opportunity.project.deleted', function ($trail) {
@@ -15,9 +20,14 @@ Breadcrumbs::for('admin.opportunity.project.deleted', function ($trail) {
     $trail->push(__('menus.backend.opportunity.projects.deleted'), route('admin.opportunity.project.deleted'));
 });
 
-Breadcrumbs::for('admin.opportunity.project.create', function ($trail) {
+Breadcrumbs::for('admin.opportunity.project.import_review', function ($trail) {
     $trail->parent('admin.opportunity.project.index');
-    $trail->push(__('labels.backend.opportunity.projects.create'), route('admin.opportunity.project.create'));
+    $trail->push(__('menus.backend.opportunity.projects.import_review'), route('admin.opportunity.project.import_review'));
+});
+
+Breadcrumbs::for('admin.opportunity.project.reviews', function ($trail) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push(__('menus.backend.opportunity.projects.reviews'), route('admin.opportunity.project.reviews'));
 });
 
 Breadcrumbs::for('admin.opportunity.project.show', function ($trail, $id) {

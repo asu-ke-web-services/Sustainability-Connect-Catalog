@@ -3,7 +3,7 @@
 @section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.deleted'))
 
 @section('breadcrumb-links')
-    @include('backend.auth.user.includes.breadcrumb-links')
+    @include('backend.opportunity.project.includes.breadcrumb-links')
 @endsection
 
 @section('content')
@@ -24,29 +24,32 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('labels.backend.opportunity.projects.table.last_name') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.first_name') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.email') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.confirmed') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.roles') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.other_permissions') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.social') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.name') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.status') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.opportunity_start_at') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.application_deadline_at') }}</th>
                             <th>{{ __('labels.backend.opportunity.projects.table.last_updated') }}</th>
                             <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-
                         @if ($projects->count())
                             @foreach ($projects as $project)
                                 <tr>
-                                    <td>{{ $project->last_name }}</td>
-                                    <td>{{ $project->first_name }}</td>
-                                    <td>{{ $project->email }}</td>
-                                    <td>{!! $project->confirmed_label !!}</td>
-                                    <td>{!! $project->roles_label !!}</td>
-                                    <td>{!! $project->permissions_label !!}</td>
-                                    <td>{!! $project->social_buttons !!}</td>
+                                    <td>{{ ucwords($project->name) }}</td>
+                                    <td>{{ ucwords($project->status->name) }}</td>
+                                    <td>
+                                        @if ($project->addresses->count())
+                                            @foreach ($project->addresses as $address)
+                                                {{ ucwords($address->city) }}
+                                            @endforeach
+                                        @else
+                                            {{ __('labels.general.none') }}
+                                        @endif
+                                    </td>
+                                    <td>{{ $project->opportunity_start_at }}</td>
+                                    <td>{{ $project->application_deadline_at }}</td>
                                     <td>{{ $project->updated_at->diffForHumans() }}</td>
                                     <td>{!! $project->action_buttons !!}</td>
                                 </tr>

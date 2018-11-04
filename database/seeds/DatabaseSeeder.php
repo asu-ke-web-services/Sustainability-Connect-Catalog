@@ -19,51 +19,35 @@ class DatabaseSeeder extends Seeder
 
         $this->truncateMultiple([
             'addresses',
-            'address_opportunity',
-            'address_organization',
-            'affiliation_opportunity',
-            'affiliation_user',
+            'affiliationables',
             'affiliations',
-            'attachments',
             'attachment_types',
             'budget_types',
             'cache',
             'categories',
-            'category_opportunity',
+            'categorisables',
             'failed_jobs',
+            'internship_user',
             'internships',
             'jobs',
-            'keyword_opportunity',
-            'keyword_user',
+            'keywordables',
             'keywords',
             'media',
-            'model_has_permissions',
-            'model_has_roles',
             'notes',
-            'note_opportunity',
-            'note_organization',
-            'opportunities',
-            'opportunity_organization',
             'opportunity_review_statuses',
             'opportunity_statuses',
             'opportunity_types',
-            'opportunity_user',
             'organization_statuses',
             'organization_types',
             'organizations',
-            'password_histories',
-            'password_resets',
-            'permissions',
+            'project_user',
             'projects',
             'relationship_types',
             'revisions',
-            'role_has_permissions',
-            'roles',
             'sessions',
             'social_accounts',
             'student_degree_levels',
             'user_types',
-            'users',
         ]);
         $this->enableForeignKeys();
 
@@ -81,9 +65,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectsSeeder::class);
         $this->call(InternshipsSeeder::class);
 
-        $this->call(OpportunityUsersTableSeeder::class);
-
         $this->call(OrganizationsTableSeeder::class);
+        $this->call(OpportunityUsersTablesSeeder::class);
 
         Model::reguard();
     }

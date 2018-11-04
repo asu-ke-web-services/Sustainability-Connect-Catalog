@@ -14,21 +14,35 @@ return [
     */
 
     'backend' => [
+        'opportunity' => [
+            'internships' => [
+                'delete_internship_confirm'  => 'Are you sure you want to delete this internship permanently? Anywhere in the application that references this internship\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+                'no_archived'                => 'There are no archived internships.',
+                'no_deleted'                 => 'There are no deleted internships.',
+                'restore_internship_confirm' => 'Restore this internship to its original state?',
+            ],
+            'projects' => [
+                'delete_project_confirm'  => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+                'no_archived'             => 'There are no archived projects.',
+                'no_deleted'              => 'There are no deleted projects.',
+                'restore_project_confirm' => 'Restore this project to its original state?',
+            ],
+        ],
         'access' => [
             'users' => [
                 'delete_user_confirm'  => 'Are you sure you want to delete this user permanently? Anywhere in the application that references this user\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
                 'if_confirmed_off'     => '(If confirmed is off)',
-                'no_deactivated' => 'There are no deactivated users.',
-                'no_deleted' => 'There are no deleted users.',
+                'no_deactivated'       => 'There are no deactivated users.',
+                'no_deleted'           => 'There are no deleted users.',
                 'restore_user_confirm' => 'Restore this user to its original state?',
             ],
         ],
 
         'dashboard' => [
-            'title'   => 'Dashboard',
-            'welcome' => 'Welcome',
-            'new_user_accounts' => 'New Users Accounts To Approve',
-            'projects_under_review' => 'Projects Under Review',
+            'title'                      => 'Dashboard',
+            'welcome'                    => 'Welcome',
+            'new_user_accounts'          => 'New Users Accounts To Approve',
+            'projects_under_review'      => 'Projects Under Review',
             'all_active_project_members' => 'All Active Project Members',
         ],
 

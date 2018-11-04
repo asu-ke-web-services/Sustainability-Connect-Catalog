@@ -47,7 +47,7 @@
                         'type'    => 'text',
                         'name'    => 'needs_review',
                         'label'   => 'Needs Review?',
-                        'object'  => $opportunity->opportunityable ?? null,
+                        'object'  => $opportunity ?? null,
                     ])@endcomponent
 
                 </div><!--col-->
@@ -182,7 +182,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Project Deliverables Field -->
@@ -193,7 +193,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Affiliations Field -->
@@ -315,7 +315,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Responsibilities Field -->
@@ -326,7 +326,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Learning Outcomes Field -->
@@ -337,7 +337,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Compensation Field -->
@@ -348,7 +348,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Budget Type Field -->
@@ -357,7 +357,7 @@
                         'label'       => 'Budget Available',
                         'help_text'   => 'Select budget type for the internship...',
                         'optionList'  => $budgetTypes,
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Budget Amount Field -->
@@ -365,7 +365,7 @@
                         'name'        => 'opportunityable[budget_amount]',
                         'label'       => 'Budget Amount',
                         'help_text'   => 'If this internship has a budget, state how large that budget is.',
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                 </div><!--col-->
@@ -396,7 +396,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Contact details -->
@@ -432,7 +432,7 @@
                         'name'        => 'opportunityable[program_lead]',
                         'label'       => 'ASU Program Lead',
                         'help_text'   => 'If this internship is part of a larger program, which is run through the School of Sustainability, GIOS, or another ASU initiative, then provide the name of the leader of that bigger program here. The program leader is typically different from the Project Supervisor listed above.',
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                 </div><!--col-->
@@ -460,7 +460,7 @@
                         'name'        => 'opportunityable[success_story]',
                         'label'       => 'Success Story',
                         'help_text'   => 'If a Success Story is published for this internship, enter the url here.',
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Library Collection Field -->
@@ -469,7 +469,7 @@
                         'name'        => 'opportunityable[library_collection]',
                         'label'       => 'Library Collection',
                         'help_text'   => 'If this internship has been published in the ASU Library Collection, enter the url to that page.',
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                 </div><!--col-->

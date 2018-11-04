@@ -24,26 +24,11 @@ class InternshipsSeeder extends Seeder
 
             foreach ($old_internships as $old_internship) {
 
-                $new_internship = Internship::create([
-                    'needs_review'             => 1,
-                    'degree_program'           => $old_internship->degree_program,
-                    'compensation'             => $old_internship->compensation,
-                    'responsibilities'         => $old_internship->student_responsibilities,
-                    'qualifications'           => $old_internship->qualifications,
-                    'application_instructions' => $old_internship->application_instructions,
-                    // 'program_lead'             => $old_internship->program_lead,
-                    'success_story'            => $old_internship->internship_story,
-                    // 'library_collection'       => $old_internship->library_collection,
-                ]);
-
-
-
                 if ($old_internship->status === "inactive") {
                     $status_id = 8;
                 } elseif ($old_internship->status === "active") {
                     $status_id = 9;
                 }
-
 
                 if (is_null($old_internship->publish_on)) {
                     $listing_start_at =  null;
@@ -57,73 +42,62 @@ class InternshipsSeeder extends Seeder
                     $listing_end_at = Carbon::parse($old_internship->published_until)->toDateString();
                 }
 
-
-                $new_opportunity = Opportunity::create([
-                    'id'                    => $old_internship->id + 450,
-                    'opportunityable_id'    => $new_internship->id,
-                    'opportunityable_type'  => 'Internship',
-                    'name'                  => $old_internship->title,
-                    'opportunity_status_id' => $status_id ?? null,
-                    'is_hidden'             => 0,
-                    'description'           => $old_internship->internship_description,
-                    // 'opportunity_start_at'            => $project_start,
-                    // 'opportunity_end_at'              => $project_end,
-                    'listing_start_at'      => $listing_start_at,
-                    'listing_end_at'        => $listing_end_at,
+                $new_internship = Internship::create([
+                    'id'                       => $old_internship->id,
+                    'needs_review'             => 1,
+                    'name'                     => $old_internship->title,
+                    'opportunity_status_id'    => $status_id ?? null,
+                    'description'              => $old_internship->internship_description,
+                    // 'opportunity_start_at'  => $project_start,
+                    // 'opportunity_end_at'    => $project_end,
+                    'listing_start_at'         => $listing_start_at,
+                    'listing_end_at'           => $listing_end_at,
                     // 'application_deadline'  => $old_internship->application_deadline,
                     // 'organization_id'       => $old_internship->,
                     // 'submitting_user_id'    => $old_internship->project_submitted_by,
-                    'supervisor_user_id'    => $old_internship->owner_user_id,
-                    'follower_count'        => $old_internship->fav_count,
-                    'created_at'            => $old_internship->created,
-                    'updated_at'            => $old_internship->updated,
-                    'created_by'            => 1,
-                    'updated_by'            => 1,
+                    'supervisor_user_id'       => $old_internship->owner_user_id,
+                    'follower_count'           => $old_internship->fav_count,
+                    'degree_program'           => $old_internship->degree_program,
+                    'compensation'             => $old_internship->compensation,
+                    'responsibilities'         => $old_internship->student_responsibilities,
+                    'qualifications'           => $old_internship->qualifications,
+                    'application_instructions' => $old_internship->application_instructions,
+                    // 'program_lead'          => $old_internship->program_lead,
+                    'success_story'            => $old_internship->internship_story,
+                    // 'library_collection'    => $old_internship->library_collection,
+                    'created_at'               => $old_internship->created,
+                    'updated_at'               => $old_internship->updated,
+                    'created_by'               => 1,
+                    'updated_by'               => 1,
                 ]);
 
                 $newAddress = Address::create([
+                    'addressable_id' => $new_internship->id,
+                    'addressable_type' => 'Internship',
                     // 'street1'     => '',
                     // 'street2'     => '',
                     'city'           => $old_internship->location_city,
                     'state'          => $old_internship->location_state,
                     // 'postal_code' => $faker->postcode,
                     'country'        => $old_internship->location_country,
-                    'comment'           => $old_internship->location,
+                    'comment'        => $old_internship->location,
                     'created_at'     => Carbon::now(),
                     'updated_at'     => Carbon::now(),
                     'created_by'     => 1,
                     'updated_by'     => 1,
                 ]);
 
-                DB::table('address_opportunity')->insert([
-                    'address_id'     => $newAddress->id,
-                    'opportunity_id' => $old_internship->id + 450,
-                    'order'          => 1,
-                    'created_at'     => Carbon::now(),
-                    'updated_at'     => Carbon::now(),
-                    'created_by'     => 1,
-                    'updated_by'     => 1,
-                ]);
 
                 if ($old_internship->comments > ' ') {
-
                     $newNote = Note::create([
-                        'user_id'    => 1,
-                        'body'       => 'Comments: ' . $old_internship->comments,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
-                        'created_by' => 1,
-                        'updated_by' => 1,
-                    ]);
-
-                    DB::table('note_opportunity')->insert([
-                        'note_id'         => $newNote->id,
-                        'opportunity_id' => $old_internship->id + 450,
-                        'order'           => 1,
-                        'created_at'      => Carbon::now(),
-                        'updated_at'      => Carbon::now(),
-                        'created_by'      => 1,
-                        'updated_by'      => 1,
+                        'notable_id'   => $new_internship->id,
+                        'notable_type' => 'Internship',
+                        'user_id'      => 1,
+                        'body'         => 'Comments: ' . $old_internship->comments,
+                        'created_at'   => Carbon::now(),
+                        'updated_at'   => Carbon::now(),
+                        'created_by'   => 1,
+                        'updated_by'   => 1,
                     ]);
                 }
 
@@ -132,131 +106,127 @@ class InternshipsSeeder extends Seeder
 
                 // Urgent?
                 if ($old_internship->urgent === 1) {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 1,
-                        'order'          => 1,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 1,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 1,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
                 // SOS?
                 if ($old_internship->affiliation === 'Sustainability Majors Only') {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 2,
-                        'order'          => 2,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 2,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 2,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
-                // All Majors?
-                // if ($old_internship->affiliation === 'Open to all Majors') {
-                //     DB::table('affiliation_opportunity')->insert([
-                //         'opportunity_id' => $old_internship->id + 450,
-                //         'affiliation_id' => 17,
-                //         'order'          => 3,
-                //         'created_at'     => Carbon::now(),
-                //         'updated_at'     => Carbon::now(),
-                //         'created_by'     => 1,
-                //         'updated_by'     => 1,
-                //     ]);
-                // }
-
                 // Credit Pending Approval?
                 if ($old_internship->affiliation === 'Credit Pending Approval') {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 15,
-                        'order'          => 4,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 15,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 15,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
                 // Available in Fall?
                 if ($old_internship->fall === 1) {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 16,
-                        'order'          => 5,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 16,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 16,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
                 // Available in Spring?
                 if ($old_internship->spring === 1) {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 17,
-                        'order'          => 6,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 17,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 17,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
                 // Available in Summer?
                 if ($old_internship->summer === 1) {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 18,
-                        'order'          => 7,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 18,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 18,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
                 // Paid?
                 if ($old_internship->paid === 1) {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 19,
-                        'order'          => 8,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 19,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 19,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
                 // Undergrad?
                 if ($old_internship->available_for_undergraduates === 1) {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 3,
-                        'order'          => 3,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 3,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 3,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 
                 // Grad?
                 if ($old_internship->available_for_graduates === 1) {
-                    DB::table('affiliation_opportunity')->insert([
-                        'opportunity_id' => $old_internship->id + 450,
-                        'affiliation_id' => 4,
-                        'order'          => 4,
-                        'created_at'     => Carbon::now(),
-                        'updated_at'     => Carbon::now(),
-                        'created_by'     => 1,
-                        'updated_by'     => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 4,
+                        'affiliationable_id'   => $new_internship->id,
+                        'affiliationable_type' => 'Internship',
+                        'order'                => 4,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
 

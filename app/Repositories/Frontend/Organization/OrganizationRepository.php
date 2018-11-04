@@ -27,14 +27,4 @@ class OrganizationRepository extends BaseRepository
         'status',
         'type',
     ];
-
-    /**
-     * Array of one or more ORDER BY column/value pairs.
-     *
-     * @var array
-     */
-    // protected $orderBys = [
-    //     ['name', 'asc'],
-    // ];
-
 }

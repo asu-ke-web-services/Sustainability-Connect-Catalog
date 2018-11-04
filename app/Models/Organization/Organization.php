@@ -24,12 +24,6 @@ class Organization extends Model
     |--------------------------------------------------------------------------
     */
 
-    public $fillable = [
-        'name',
-        'organization_type_id',
-        'organization_status_id',
-    ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -40,67 +34,43 @@ class Organization extends Model
     ];
 
     /**
+     * The attributes that should be mutated to dates (automatically cast to Carbon instances).
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public $fillable = [
+        'name',
+        'organization_status_id',
+        'organization_type_id',
+    ];
+
+    /**
      * Validation rules
      *
      * @var array
      */
     public static $rules = [
-
+        'name'                   => 'string|max:255',
+        'organization_status_id' => 'integer|exists:organization_statuses,id',
+        'organization_type_id'   => 'integer|exists:organization_types,id',
     ];
 
-    /*
-    |--------------------------------------------------------------------------
-    | FUNCTIONS
-    |--------------------------------------------------------------------------
-    */
+
 
     /*
     |--------------------------------------------------------------------------
-    | RELATIONS
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function status()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationStatus::class, 'organization_status_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function type()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationType::class, 'organization_type_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function addresses()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Address\Address::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function notes()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Note\Note::class);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
+    | ATTRIBUTES
     |--------------------------------------------------------------------------
     */
 
@@ -145,10 +115,9 @@ class Organization extends Model
             </div>';
     }
 
-
     /*
     |--------------------------------------------------------------------------
-    | MUTATORS
+    | METHODS
     |--------------------------------------------------------------------------
     */
 
@@ -187,4 +156,62 @@ class Organization extends Model
 
         return $organization;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function status()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationStatus::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function type()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationType::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     **/
+    public function addresses() : MorphMany
+    {
+        return $this->morphMany(\SCCatalog\Models\Address\Address::class, 'addressable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     **/
+    public function notes() : MorphMany
+    {
+        return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'notable');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | MUTATORS
+    |--------------------------------------------------------------------------
+    */
+
 }

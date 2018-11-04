@@ -4,57 +4,57 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.implementation_paths') }}</th>
-                <td>{!! $internship->opportunityable->implementation_paths ?? null !!}</td>
+                <td>{!! $internship->implementation_paths ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.sustainability_contribution') }}</th>
-                <td>{!! $internship->opportunityable->sustainability_contribution ?? null !!}</td>
+                <td>{!! $internship->sustainability_contribution ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.qualifications') }}</th>
-                <td>{!! $internship->opportunityable->qualifications ?? null !!}</td>
+                <td>{!! $internship->qualifications ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.responsibilities') }}</th>
-                <td>{!! $internship->opportunityable->responsibilities ?? null !!}</td>
+                <td>{!! $internship->responsibilities ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.learning_outcomes') }}</th>
-                <td>{!! $internship->opportunityable->learning_outcomes ?? null !!}</td>
+                <td>{!! $internship->learning_outcomes ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.compensation') }}</th>
-                <td>{!! $internship->opportunityable->compensation ?? null !!}</td>
+                <td>{!! $internship->compensation ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.budget_type') }}</th>
-                <td>{!! $internship->opportunityable->budgetType->name ?? null !!}</td>
+                <td>{!! $internship->budgetType->name ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.budget_amount') }}</th>
-                <td>{!! $internship->opportunityable->budget_amount ?? null !!}</td>
+                <td>{!! $internship->budget_amount ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.application_instructions') }}</th>
-                <td>{!! $internship->opportunityable->application_instructions ?? null !!}</td>
+                <td>{!! $internship->application_instructions ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.success_story') }}</th>
-                <td>{!! $internship->opportunityable->success_story ?? null !!}</td>
+                <td>{!! $internship->success_story ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.library_collection') }}</th>
-                <td>{!! $internship->opportunityable->library_collection ?? null !!}</td>
+                <td>{!! $internship->library_collection ?? null !!}</td>
             </tr>
 
             <tr>

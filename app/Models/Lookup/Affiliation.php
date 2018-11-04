@@ -23,20 +23,6 @@ class Affiliation extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $fillable = [
-        'opportunity_type_id',
-        'order',
-        'name',
-        'slug',
-        'access_control',
-    ];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -44,55 +30,41 @@ class Affiliation extends Model
      */
     protected $casts = [
         'access_control' => 'boolean',
+        'public'         => 'boolean',
     ];
 
     /**
-     * Validation rules
+     * The attributes that should be mutated to dates (automatically cast to Carbon instances).
      *
      * @var array
      */
-    public static $rules = [
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'opportunity_type_id',
+        'order',
+        'name',
+        'slug',
+        'help_text',
+        'frontend_fa_icon',
+        'backend_fa_icon',
+        'access_control',
+        'public',
     ];
 
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-     * @return bool
-     */
-    public function isAccessControl()
-    {
-        return $this->access_control;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | RELATIONS
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function opportunityType()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityType::class, 'opportunity_type_id');
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
     |--------------------------------------------------------------------------
     */
 
@@ -138,6 +110,56 @@ class Affiliation extends Model
         }
 
         return '<span class="badge badge-danger">'.__('labels.general.no').'</span>';
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function opportunityType()
+    {
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityType::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     **/
+    public function projects() : MorphedByMany
+    {
+        return $this->morphedByMany(\SCCatalog\Models\Opportunity\Project::class, 'affiliationable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     **/
+    public function internships() : MorphedByMany
+    {
+        return $this->morphedByMany(\SCCatalog\Models\Opportunity\Internship::class, 'affiliationable');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+     * @return bool
+     */
+    public function isAccessControl() : bool
+    {
+        return $this->access_control;
     }
 
     /*

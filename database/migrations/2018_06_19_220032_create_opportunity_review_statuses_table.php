@@ -14,7 +14,7 @@ class CreateOpportunityReviewStatusesTable extends Migration
     {
         Schema::create('opportunity_review_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('opportunity_type_id')->unsigned();
+            $table->integer('opportunity_type_id')->unsigned()->nullable();
             $table->integer('order')->default(1);
             $table->string('name');
             $table->string('slug')->unique();

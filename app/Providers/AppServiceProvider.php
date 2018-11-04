@@ -27,9 +27,10 @@ class AppServiceProvider extends ServiceProvider
             'Note'         => \SCCatalog\Models\Note\Note::class,
             'Organization' => \SCCatalog\Models\Organization\Organization::class,
             'Internship'   => \SCCatalog\Models\Opportunity\Internship::class,
-            'Opportunity'  => \SCCatalog\Models\Opportunity\Opportunity::class,
             'Project'      => \SCCatalog\Models\Opportunity\Project::class,
+            'User'         => \SCCatalog\Models\Auth\User::class,
         ]);
+
         /*
          * setLocale for php. Enables ->formatLocalized() with localized values for dates
          */
@@ -69,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Set the default string length for Laravel5.4
         // https://laravel-news.com/laravel-5-4-key-too-long-error
-        Schema::defaultStringLength(191);
+        // Schema::defaultStringLength(191);
 
         // Paginator::useBootstrapThree();
 

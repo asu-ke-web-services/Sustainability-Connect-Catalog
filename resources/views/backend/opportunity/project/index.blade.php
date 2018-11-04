@@ -51,7 +51,7 @@
                                 </td>
                                 <td>{{ $project->opportunity_start_at }}</td>
                                 <td>{{ $project->application_deadline_at }}</td>
-                                <td>{!! $project->opportunityable->action_buttons !!}</td>
+                                <td>{!! $project->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -33,7 +33,7 @@
     'label'       => 'Envisioned Solution:',
     'help_text'   => 'What sustainability solution do you envision, and how will that solution be derived from this project?',
     'placeholder' => 'Project participants will ...',
-    'object'      => $opportunity->opportunityable ?? null,
+    'object'      => $opportunity ?? null,
 ])@endcomponent
 
 <!-- Project Deliverables Field -->
@@ -42,7 +42,7 @@
     'label'       => 'Project Deliverables:',
     'help_text'   => 'What deliverables/end product do you expect?',
     'placeholder' => 'At project end, a new [activity] will be held...',
-    'object'      => $opportunity->opportunityable ?? null,
+    'object'      => $opportunity ?? null,
 ])@endcomponent
 
 <!-- Addresses Block -->
@@ -238,7 +238,7 @@ $('#organization_id').selectize({
         'label'       => 'Qualifications:',
         'help_text'   => 'What specific skills should the applying students possess?',
         'placeholder' => 'e.g. Participant must be an enrolled undergraduate student...',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -250,7 +250,7 @@ $('#organization_id').selectize({
         'label'       => 'Student Responsibilities:',
         'help_text'   => 'What will the student responsibilities be?',
         'placeholder' => 'Participants will organize...',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -352,7 +352,7 @@ $('#keywords').selectize({
         'label'       => 'Student Compensation and Project Funds:',
         'help_text'   => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)',
         'placeholder' => 'Participants will receive...',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -363,7 +363,7 @@ $('#keywords').selectize({
         'label'       => 'Learning Outcomes:',
         'help_text'   => 'Describe what the student might learn from this experience.',
         'placeholder' => 'Participants should learn ...',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -376,7 +376,7 @@ $('#keywords').selectize({
         'label'       => 'Application Instructions:',
         'help_text'   => 'Describe the steps the participant must follow to request admission into the project.',
         'placeholder' => 'Click the "Apply Now" button on this page...',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -388,7 +388,7 @@ $('#keywords').selectize({
         'help_text'   => 'Select budget type for the project...',
         'placeholder' => 'Monetary',
         'optionList'  => $budgetTypes,
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -399,7 +399,7 @@ $('#keywords').selectize({
         'label'       => 'Budget Amount:',
         'help_text'   => 'If this project has a budget, state how large that budget is.',
         'placeholder' => '$x',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -465,7 +465,7 @@ $('#supervisor_user_id').selectize({
         'label'       => 'ASU Program Lead:',
         'help_text'   => 'If this project is part of a larger program, which is run through the School of Sustainability, GIOS, or another ASU initiative, then provide the name of the leader of that bigger program here. The program leader is typically different from the Project Supervisor listed above.',
         'placeholder' => 'Professor John Smith, School of Sustainability',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -477,7 +477,7 @@ $('#supervisor_user_id').selectize({
         'help_text'   => 'If a Success Story is published for this project, enter the url here.',
         'placeholder' => 'http://example.info',
         'type'        => 'url',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 
@@ -489,7 +489,7 @@ $('#supervisor_user_id').selectize({
         'help_text'   => 'If this project has been published in the ASU Library Collection, enter the url to that page.',
         'placeholder' => 'http://example.info',
         'type'        => 'url',
-        'object'      => $opportunity->opportunityable ?? null,
+        'object'      => $opportunity ?? null,
     ])@endcomponent
 </div>
 

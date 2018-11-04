@@ -23,19 +23,6 @@ class OpportunityReviewStatus extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $fillable = [
-        'opportunity_type_id',
-        'order',
-        'name',
-        'slug',
-    ];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -46,12 +33,26 @@ class OpportunityReviewStatus extends Model
     ];
 
     /**
-     * Validation rules
+     * The attributes that should be mutated to dates (automatically cast to Carbon instances).
      *
      * @var array
      */
-    public static $rules = [
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'opportunity_type_id',
+        'order',
+        'name',
+        'slug',
     ];
 
 
@@ -72,7 +73,7 @@ class OpportunityReviewStatus extends Model
      **/
     public function opportunityType()
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityType::class, 'opportunity_type_id');
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityType::class);
     }
 
     /*

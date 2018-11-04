@@ -274,30 +274,30 @@ trait UserAttribute
     {
         if ($this->trashed()) {
             return '
-				<div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
-				  '.$this->restore_button.'
-				  '.$this->delete_permanently_button.'
-				</div>';
+                <div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
+                  '.$this->restore_button.'
+                  '.$this->delete_permanently_button.'
+                </div>';
         }
 
         return '
-    	<div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
-		  '.$this->show_button.'
-		  '.$this->edit_button.'
-
-		  <div class="btn-group btn-group-sm" role="group">
-			<button id="userActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  '.__('labels.general.more').'
-			</button>
-			<div class="dropdown-menu" aria-labelledby="userActions">
-			  '.$this->clear_session_button.'
-			  '.$this->login_as_button.'
-			  '.$this->change_password_button.'
-			  '.$this->status_button.'
-			  '.$this->confirmed_button.'
-			  '.$this->delete_button.'
-			</div>
-		  </div>
-		</div>';
+        <div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
+          '.$this->show_button.'
+          '.$this->edit_button.'
+    
+          <div class="btn-group btn-group-sm" role="group">
+            <button id="userActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              '.__('labels.general.more').'
+            </button>
+            <div class="dropdown-menu" aria-labelledby="userActions">
+              '.$this->clear_session_button.'
+              '.$this->login_as_button.'
+              '.$this->change_password_button.'
+              '.$this->status_button.'
+              '.$this->confirmed_button.'
+              '.$this->delete_button.'
+            </div>
+          </div>
+        </div>';
     }
 }

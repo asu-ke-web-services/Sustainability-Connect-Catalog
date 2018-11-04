@@ -92,7 +92,7 @@
                     <!-- Application Instructions -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Instructions</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->application_instructions !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->application_instructions !!}</td>
                     </tr>
                 </tbody>
             </table>
@@ -120,25 +120,25 @@
                     <!-- Student Responsibilities -->
                     <tr>
                         <td class="col col-sm-3 view-label">Student Responsibilities</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->responsibilities !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->responsibilities !!}</td>
                     </tr>
 
                     <!-- Qualifications -->
                     <tr>
                         <td class="col col-sm-3 view-label">Minimum and Desired Qualifications</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->qualifications !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->qualifications !!}</td>
                     </tr>
 
                     <!-- Degrees Offering Credit -->
                     <tr>
                         <td class="col col-sm-3 view-label">Degrees Offering Credit</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->learning_outcomes !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->learning_outcomes !!}</td>
                     </tr>
 
                     <!-- Other Compensation -->
                     <tr>
                         <td class="col col-sm-3 view-label">Other Compensation</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->opportunityable->compensation !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->compensation !!}</td>
                     </tr>
 
                     <!-- Notes -->

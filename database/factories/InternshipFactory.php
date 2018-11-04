@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Faker\Generator;
 use SCCatalog\Models\Opportunity\Internship;
 
@@ -16,6 +17,20 @@ use SCCatalog\Models\Opportunity\Internship;
 
 $factory->define(Internship::class, function (Generator $faker) {
     return [
-        'application_instructions' => 'Test instructions'
+		'name'                  => $faker->words(3, true),
+		'opportunity_status_id' => 9,
+		'description'           => $faker->words(4, true),
+    ];
+});
+
+$factory->state(Internship::class, 'inactive', function () {
+    return [
+        'opportunity_status_id' => 8,
+    ];
+});
+
+$factory->state(Internship::class, 'softDeleted', function () {
+    return [
+        'deleted_at' => Carbon::now(),
     ];
 });

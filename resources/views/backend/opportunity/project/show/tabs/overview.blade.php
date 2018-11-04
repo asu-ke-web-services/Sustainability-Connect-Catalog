@@ -18,7 +18,7 @@
 
             <tr>
                 <th>{{ __('Needs Review') }}</th>
-                <td>{{ $project->opportunityable->needs_review === 1 ? true : false }}</td>
+                <td>{{ $project->needs_review === 1 ? true : false }}</td>
             </tr>
 
             <tr>
@@ -28,7 +28,7 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.review_status') }}</th>
-                <td>{!! ucwords($project->opportunityable->reviewStatus->name ?? '') !!}</td>
+                <td>{!! ucwords($project->reviewStatus->name ?? '') !!}</td>
             </tr>
 
             <tr>

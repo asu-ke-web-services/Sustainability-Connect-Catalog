@@ -22,21 +22,34 @@ class Attachment extends BaseMedia
     |--------------------------------------------------------------------------
     */
 
-    protected $dates = [
-        'deleted_at',
-    ];
-
-    public $fillable = [
-        'status',
-        'comments',
-    ];
-
     /**
      * The attributes that should be casted to native types.
      *
      * @var array
      */
     protected $casts = [
+
+    ];
+
+    /**
+     * The attributes that should be mutated to dates (automatically cast to Carbon instances).
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public $fillable = [
+        'status',
+        'comments',
     ];
 
     /**
@@ -45,7 +58,8 @@ class Attachment extends BaseMedia
      * @var array
      */
     public static $rules = [
-
+        'status'   => 'nullable',
+        'comments' => 'nullable',
     ];
 
     /*

@@ -141,10 +141,10 @@
                         <tbody>
                         @foreach($projectsUnderReview as $project)
                             <tr>
-                                <td>{!! $project->opportunity->name !!}</td>
-                                <td>{!! $project->opportunity->supervisorUser->full_name ?? null !!}</td>
-                                <td>{!! $project->opportunity->created_at !!}</td>
-                                <td>{!! $project->opportunity->updated_at !!}</td>
+                                <td>{!! $project->name !!}</td>
+                                <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
+                                <td>{!! $project->created_at !!}</td>
+                                <td>{!! $project->updated_at !!}</td>
                                 <td>{!! $project->action_buttons !!}</td>
                             </tr>
                         @endforeach
@@ -187,13 +187,13 @@
                         </thead>
                         <tbody>
                         @foreach($activeProjectMembers as $member)
-                            @foreach($member->projects as $project)
+                            @foreach($member->participatingInProjects as $project)
                             <tr>
                                 <td>{{ $member->full_name }}</td>
                                 <td>&nbsp;</td>
                                 <td>{{ $project->name }}</td>
-                                <td>{{ $project->status->name }}</td>
-                                <td>{!! $project->opportunityable->action_buttons !!}</td>
+                                <td>{{-- $project->status->name --}}</td>
+                                <td>{!! $project->action_buttons !!}</td>
                             </tr>
                             @endforeach
                         @endforeach

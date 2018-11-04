@@ -140,7 +140,7 @@ class UserTableSeeder extends Seeder
                     'id'                      => $old_user->ID,
                     'first_name'              => $old_user_first_name ?? null,
                     'last_name'               => $old_user_last_name ?? null,
-                    'display_name'            => $old_user->display_name ?? null,
+                    // 'display_name'            => $old_user->display_name ?? null,
                     'login_name'              => $old_user->user_login ?? null,
                     'email'                   => empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email,
                     'password'                => Hash::make($old_user->user_pass),
@@ -163,14 +163,15 @@ class UserTableSeeder extends Seeder
                 ]);
 
                 if ($old_user_sos_eligible == '1' || $old_user_sos_verified == '1') {
-                    DB::table('affiliation_user')->insert([
-                        'user_id' => $old_user->ID,
-                        'affiliation_id' => 2,
-                        'order' => 1,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
-                        'created_by' => 1,
-                        'updated_by' => 1,
+                    DB::table('affiliationables')->insert([
+                        'affiliation_id'       => 2,
+                        'affiliationable_id'   => $new_user->id,
+                        'affiliationable_type' => 'User',
+                        'order'                => 1,
+                        'created_at'           => Carbon::now(),
+                        'updated_at'           => Carbon::now(),
+                        'created_by'           => 1,
+                        'updated_by'           => 1,
                     ]);
                 }
             }

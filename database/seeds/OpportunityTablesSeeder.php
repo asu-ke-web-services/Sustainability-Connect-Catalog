@@ -18,13 +18,14 @@ class OpportunityTablesSeeder extends Seeder
         // Pre-fill Opportunity Status options
 
         $opportunity_statuses = OpportunityStatus::firstOrNew([
-            'slug' => 'idea-submission',
+            'slug' => 'new-proposal',
         ]);
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'order'               => 1,
                 'opportunity_type_id' => 1,
-                'name'                => 'Idea Submission',
+                'name'                => 'New Proposal',
+                'indicates_published' => 0,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -33,13 +34,14 @@ class OpportunityTablesSeeder extends Seeder
         }
 
         $opportunity_statuses = OpportunityStatus::firstOrNew([
-            'slug' => 'closed',
+            'slug' => 'archived',
         ]);
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'order'               => 2,
                 'opportunity_type_id' => 1,
-                'name'                => 'Archived/Closed',
+                'name'                => 'Archived',
+                'indicates_published' => 0,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -55,6 +57,7 @@ class OpportunityTablesSeeder extends Seeder
                 'order'               => 3,
                 'opportunity_type_id' => 1,
                 'name'                => 'Seeking Champion',
+                'indicates_published' => 1,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -70,6 +73,7 @@ class OpportunityTablesSeeder extends Seeder
                 'order'               => 4,
                 'opportunity_type_id' => 1,
                 'name'                => 'Recruiting Participants',
+                'indicates_published' => 1,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -85,6 +89,7 @@ class OpportunityTablesSeeder extends Seeder
                 'order'               => 5,
                 'opportunity_type_id' => 1,
                 'name'                => 'Positions Filled',
+                'indicates_published' => 1,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -100,6 +105,7 @@ class OpportunityTablesSeeder extends Seeder
                 'order'               => 6,
                 'opportunity_type_id' => 1,
                 'name'                => 'In Progress',
+                'indicates_published' => 1,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -115,6 +121,7 @@ class OpportunityTablesSeeder extends Seeder
                 'order'               => 7,
                 'opportunity_type_id' => 1,
                 'name'                => 'Completed',
+                'indicates_published' => 1,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -130,6 +137,7 @@ class OpportunityTablesSeeder extends Seeder
                 'order'               => 1,
                 'opportunity_type_id' => 2,
                 'name'                => 'Inactive',
+                'indicates_published' => 0,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -145,6 +153,7 @@ class OpportunityTablesSeeder extends Seeder
                 'order'               => 2,
                 'opportunity_type_id' => 2,
                 'name'                => 'Active',
+                'indicates_published' => 1,
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
@@ -156,11 +165,41 @@ class OpportunityTablesSeeder extends Seeder
         // Pre-fill Opportunity Review Status options
 
         $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
-            'slug' => 'approved',
+            'slug' => 'needs-review',
         ]);
         if (!$opportunity_review_statuses->exists) {
             $opportunity_review_statuses->fill([
                 'order'               => 1,
+                'opportunity_type_id' => 1,
+                'name'                => 'Needs Review',
+                'created_at'          => Carbon::now(),
+                'updated_at'          => Carbon::now(),
+                'created_by'          => 1,
+                'updated_by'          => 1,
+            ])->save();
+        }
+
+        $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
+            'slug' => 'review-in-progress',
+        ]);
+        if (!$opportunity_review_statuses->exists) {
+            $opportunity_review_statuses->fill([
+                'order'               => 2,
+                'opportunity_type_id' => 1,
+                'name'                => 'Review in Progress',
+                'created_at'          => Carbon::now(),
+                'updated_at'          => Carbon::now(),
+                'created_by'          => 1,
+                'updated_by'          => 1,
+            ])->save();
+        }
+
+        $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
+            'slug' => 'approved',
+        ]);
+        if (!$opportunity_review_statuses->exists) {
+            $opportunity_review_statuses->fill([
+                'order'               => 3,
                 'opportunity_type_id' => 1,
                 'name'                => 'Approved',
                 'created_at'          => Carbon::now(),
@@ -171,80 +210,19 @@ class OpportunityTablesSeeder extends Seeder
         }
 
         $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
-            'slug' => 'archived',
-        ]);
-        if (!$opportunity_review_statuses->exists) {
-            $opportunity_review_statuses->fill([
-                'order'               => 2,
-                'opportunity_type_id' => 1,
-                'name'                => 'Archived',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
-            ])->save();
-        }
-
-        $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
-            'slug' => 'in-review',
-        ]);
-        if (!$opportunity_review_statuses->exists) {
-            $opportunity_review_statuses->fill([
-                'order'               => 3,
-                'opportunity_type_id' => 1,
-                'name'                => 'In Review',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
-            ])->save();
-        }
-
-        $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
-            'slug' => 'hidden',
+            'slug' => 'not-approved',
         ]);
         if (!$opportunity_review_statuses->exists) {
             $opportunity_review_statuses->fill([
                 'order'               => 4,
                 'opportunity_type_id' => 1,
-                'name'                => 'Hidden',
+                'name'                => 'Not Approved',
                 'created_at'          => Carbon::now(),
                 'updated_at'          => Carbon::now(),
                 'created_by'          => 1,
                 'updated_by'          => 1,
             ])->save();
         }
-
-        $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
-            'slug' => 'draft',
-        ]);
-        if (!$opportunity_review_statuses->exists) {
-            $opportunity_review_statuses->fill([
-                'order'               => 5,
-                'opportunity_type_id' => 1,
-                'name'                => 'Draft',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
-            ])->save();
-        }
-
-        $opportunity_review_statuses = OpportunityReviewStatus::firstOrNew([
-            'slug' => 'trash',
-        ]);
-        if (!$opportunity_review_statuses->exists) {
-            $opportunity_review_statuses->fill([
-                'order'               => 6,
-                'opportunity_type_id' => 1,
-                'name'                => 'Trash',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
-            ])->save();
-        }
-
 
         // Pre-fill Budget Type options
 

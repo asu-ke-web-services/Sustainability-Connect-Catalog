@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-11-04 18:59:32.
+    * Generated on 2018-11-04 21:20:48.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -60,6 +60,7 @@ namespace PHPSTORM_META {
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
+        'cas' => \Subfission\Cas\CasManager::class,
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
@@ -227,6 +228,7 @@ namespace PHPSTORM_META {
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
+        'cas' => \Subfission\Cas\CasManager::class,
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
@@ -394,6 +396,7 @@ namespace PHPSTORM_META {
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
+        'cas' => \Subfission\Cas\CasManager::class,
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
@@ -561,6 +564,7 @@ namespace PHPSTORM_META {
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
+        'cas' => \Subfission\Cas\CasManager::class,
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
@@ -728,6 +732,7 @@ namespace PHPSTORM_META {
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
+        'cas' => \Subfission\Cas\CasManager::class,
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
@@ -895,6 +900,7 @@ namespace PHPSTORM_META {
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
+        'cas' => \Subfission\Cas\CasManager::class,
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
@@ -1062,6 +1068,7 @@ namespace PHPSTORM_META {
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
         'cache.store' => \Illuminate\Cache\Repository::class,
+        'cas' => \Subfission\Cas\CasManager::class,
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,

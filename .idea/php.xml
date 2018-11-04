@@ -159,6 +159,8 @@
       <path value="$PROJECT_DIR$/vendor/subfission/cas" />
       <path value="$PROJECT_DIR$/vendor/laracasts/utilities" />
       <path value="$PROJECT_DIR$/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/vendor/facebook/webdriver" />
+      <path value="$PROJECT_DIR$/vendor/laravel/dusk" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

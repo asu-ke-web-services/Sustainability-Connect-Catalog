@@ -4,6 +4,7 @@ namespace SCCatalog\Models\Lookup;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Validation\Rule;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -23,18 +24,6 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $fillable = [
-        'order',
-        'name',
-        'slug',
-    ];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -45,12 +34,25 @@ class Category extends Model
     ];
 
     /**
-     * Validation rules
+     * The attributes that should be mutated to dates (automatically cast to Carbon instances).
      *
      * @var array
      */
-    public static $rules = [
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'order',
+        'name',
+        'slug',
     ];
 
 
@@ -65,6 +67,22 @@ class Category extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     **/
+    public function projects() : MorphedByMany
+    {
+        return $this->morphedByMany(\SCCatalog\Models\Opportunity\Project::class, 'categorisable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     **/
+    public function internships() : MorphedByMany
+    {
+        return $this->morphedByMany(\SCCatalog\Models\Opportunity\Internship::class, 'categorisable');
+    }
 
     /*
     |--------------------------------------------------------------------------

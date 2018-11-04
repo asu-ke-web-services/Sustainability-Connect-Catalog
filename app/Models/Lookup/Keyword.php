@@ -23,18 +23,6 @@ class Keyword extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $fillable = [
-        'order',
-        'name',
-        'slug',
-    ];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     /**
      * The attributes that should be casted to native types.
      *
@@ -45,12 +33,25 @@ class Keyword extends Model
     ];
 
     /**
-     * Validation rules
+     * The attributes that should be mutated to dates (automatically cast to Carbon instances).
      *
      * @var array
      */
-    public static $rules = [
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'order',
+        'name',
+        'slug',
     ];
 
 
@@ -65,6 +66,22 @@ class Keyword extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     **/
+    public function projects() : MorphedByMany
+    {
+        return $this->morphedByMany(\SCCatalog\Models\Opportunity\Project::class, 'keywordable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     **/
+    public function internships() : MorphedByMany
+    {
+        return $this->morphedByMany(\SCCatalog\Models\Opportunity\Internship::class, 'keywordable');
+    }
 
     /*
     |--------------------------------------------------------------------------

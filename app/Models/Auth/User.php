@@ -39,6 +39,34 @@ class User extends Authenticatable
     */
 
     /**
+     * The dynamic attributes from mutators that should be returned with the user object.
+     * @var array
+     */
+    protected $appends = ['full_name'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'active' => 'boolean',
+        'confirmed' => 'boolean',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates (automatically cast to Carbon instances).
+     *
+     * @var array
+     */
+    protected $dates = [
+        'last_login_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -76,189 +104,23 @@ class User extends Authenticatable
      */
     protected $hidden = ['password', 'remember_token'];
 
-    /**
-     * @var array
-     */
-    protected $dates = ['last_login_at', 'deleted_at'];
-
-    /**
-     * The dynamic attributes from mutators that should be returned with the user object.
-     * @var array
-     */
-    protected $appends = ['full_name'];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'active' => 'boolean',
-        'confirmed' => 'boolean',
-    ];
-
 
     /*
     |--------------------------------------------------------------------------
-    | FUNCTIONS
+    | METHODS
     |--------------------------------------------------------------------------
     */
+
+    public function shouldBeSearchable()
+    {
+        return false;
+    }
 
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function organization()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class)->withDefault();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function userType()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class, 'user_type_id')->withDefault();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function studentDegreeLevel()
-    {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class)->withDefault();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function affiliations()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_user')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function accessAffiliations()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliation_user')
-            ->where('access_control', 1)
-            ->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function followedOpportunities()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
-            ->whereIn('opportunities.opportunity_status_id', [
-                3, // Seeking Champion
-                4, // Recruiting Participants
-                5, // Positions Filled
-                6  // In Progress
-            ])
-            ->withTimestamps()
-            ->withPivot('relationship_type_id', 'comments')
-            ->wherePivotIn('relationship_type_id', [
-                1, // Follower
-            ])
-            ->orderBy('opportunities.opportunityable_type');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function opportunityApplications()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
-            ->whereIn('opportunities.opportunity_status_id', [
-                3, // Seeking Champion
-                4, // Recruiting Participants
-                5, // Positions Filled
-                6  // In Progress
-            ])
-            ->withTimestamps()
-            ->withPivot('relationship_type_id', 'comments')
-            ->wherePivotIn('relationship_type_id', [
-                2, // Applicant
-            ])
-            ->orderBy('opportunities.opportunityable_type');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function opportunities()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
-            ->whereIn('opportunities.opportunity_status_id', [
-                3, // Seeking Champion
-                4, // Recruiting Participants
-                5, // Positions Filled
-                6  // In Progress
-            ])
-            ->withTimestamps()
-            ->withPivot('relationship_type_id', 'comments')
-            ->wherePivotIn('relationship_type_id', [
-                3, // Particiapnt
-                4, // Manager
-                5, // Practitioner Mentor
-                6  // Academic Mentor
-            ]);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function projects()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
-            ->whereIn('opportunities.opportunity_status_id', [
-                3, // Seeking Champion
-                4, // Recruiting Participants
-                5, // Positions Filled
-                6  // In Progress
-            ])
-            ->filterByType('Project')
-            ->withPivot('relationship_type_id', 'comments')
-            ->withTimestamps()
-            ->wherePivotIn('relationship_type_id', [
-                3, // Particiapnt
-                4, // Manager
-                5, // Practitioner Mentor
-                6  // Academic Mentor
-            ]);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function internships()
-    {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Opportunity::class, 'opportunity_user')
-            ->whereIn('opportunities.opportunity_status_id', [
-                3, // Seeking Champion
-                4, // Recruiting Participants
-                5, // Positions Filled
-                6  // In Progress
-            ])
-            ->filterByType('Internship')
-            ->withPivot('relationship_type_id', 'comments')
-            ->withTimestamps()
-            ->wherePivotIn('relationship_type_id', [
-                3, // Particiapnt
-                4, // Manager
-                5, // Practitioner Mentor
-                6  // Academic Mentor
-            ]);
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -271,11 +133,6 @@ class User extends Authenticatable
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-
-    public function shouldBeSearchable()
-    {
-        return false;
-    }
 
     /*
     |--------------------------------------------------------------------------

@@ -29,10 +29,10 @@ class InternshipStatusController extends Controller
      *
      * @return mixed
      */
-    public function getDeactivated(ManageInternshipRequest $request)
+    public function getInactive(ManageInternshipRequest $request)
     {
-        return view('backend.opportunity.internship.deactivated')
-            ->withInternships($this->internshipRepository->getInactivePaginated(25, 'id', 'asc'));
+        return view('backend.opportunity.internship.inactive')
+            ->withInternships($this->internshipRepository->getInactivePaginated(25, 'updated_at', 'desc'));
     }
 
     /**
@@ -43,18 +43,18 @@ class InternshipStatusController extends Controller
     public function getDeleted(ManageInternshipRequest $request)
     {
         return view('backend.opportunity.internship.deleted')
-            ->withInternships($this->internshipRepository->getDeletedPaginated(25, 'id', 'asc'));
+            ->withInternships($this->internshipRepository->getDeletedPaginated(25, 'deleted_at', 'desc'));
     }
 
     /**
-     * @param ManageProjectRequest $request
+     * @param ManageInternshipRequest $request
      *
      * @return mixed
      */
-    public function getNeedsReview(ManageInternshipRequest $request)
+    public function getNeedReview(ManageInternshipRequest $request)
     {
-        return view('backend.opportunity.internship.review')
-            ->withProjects($this->internshipRepository->getReviewPaginated(25, 'id', 'asc'));
+        return view('backend.opportunity.internship.import_review')
+            ->withInternships($this->internshipRepository->getNeedImportReviewPaginated(25, 'created_at', 'desc'));
     }
 
     /**

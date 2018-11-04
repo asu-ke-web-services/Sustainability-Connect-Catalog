@@ -15,22 +15,20 @@ class DashboardController extends Controller
     public function index()
     {
     	if ( auth()->user() !== null ) {
-            $accessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
-
-            $followedOpportunities = auth()->user()->followedOpportunities;
-
-            $activeOpportunities = auth()->user()->opportunities;
-
-            $applications = auth()->user()->opportunityApplications;
-
+            $followedProjects = auth()->user()->followedProjects;
+            $followedInternships = auth()->user()->followedInternships;
+            $participatingInProjects = auth()->user()->participatingInProjects;
+            $participatingInInternships = auth()->user()->participatingInInternships;
+            $projectApplications = auth()->user()->projectApplications;
+            $internshipApplications = auth()->user()->internshipApplications;
         }
 
         return view('frontend.user.dashboard')
-        	->with('followedOpportunities', $followedOpportunities)
-        	->with('activeOpportunities', $activeOpportunities)
-        	->with('applications', $applications);
+            ->with('followedProjects', $followedProjects)
+            ->with('followedInternships', $followedInternships)
+            ->with('participatingInProjects', $participatingInProjects)
+            ->with('participatingInInternships', $participatingInInternships)
+            ->with('projectApplications', $projectApplications)
+            ->with('internshipApplications', $internshipApplications);
     }
 }

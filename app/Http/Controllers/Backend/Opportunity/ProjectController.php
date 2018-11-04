@@ -2,13 +2,14 @@
 
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
+use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Events\Backend\Opportunity\OpportunityDeleted;
+use SCCatalog\Events\Backend\Opportunity\ProjectDeleted;
 use SCCatalog\Http\Requests\Backend\Opportunity\CreateProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\DeleteProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
-use SCCatalog\Models\Opportunity\Opportunity;
+use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Backend\Auth\UserRepository;
 use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
@@ -16,7 +17,6 @@ use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
 use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
 use SCCatalog\Repositories\Backend\Lookup\OpportunityStatusRepository;
 use SCCatalog\Repositories\Backend\Lookup\OpportunityReviewStatusRepository;
-use SCCatalog\Repositories\Backend\Opportunity\OpportunityRepository;
 use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
 use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
 
@@ -54,7 +54,7 @@ class ProjectController extends Controller
                 return $affiliation['slug'];
             })->toJson();
 
-        $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+        $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
 
         JavaScript::put([
             'userAccessAffiliations' => $userAccessAffiliations ?? null,
@@ -62,7 +62,7 @@ class ProjectController extends Controller
         ]);
 
         return view('backend.opportunity.project.index')
-            ->with('projects', $this->projectRepository->getActivePaginated(25, 'application_deadline', 'asc'));
+            ->with('projects', $this->projectRepository->getActivePaginated(25, 'updated_at', 'desc'));
     }
 
     /**
@@ -73,7 +73,7 @@ class ProjectController extends Controller
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
-     * @param OpportunityRepository $opportunityRepository
+     * @param ProjectRepository $projectRepository
      * @param OpportunityStatusRepository $opportunityStatusRepository
      * @param OpportunityReviewStatusRepository $opportunityReviewStatusRepository
      * @param OrganizationRepository $organizationRepository
@@ -87,7 +87,6 @@ class ProjectController extends Controller
             BudgetTypeRepository $budgetTypeRepository,
             CategoryRepository $categoryRepository,
             KeywordRepository $keywordRepository,
-            OpportunityRepository $opportunityRepository,
             OpportunityStatusRepository $opportunityStatusRepository,
             OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
             OrganizationRepository $organizationRepository,
@@ -95,15 +94,14 @@ class ProjectController extends Controller
     )
     {
         return view('backend.opportunity.project.create')
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -118,19 +116,18 @@ class ProjectController extends Controller
     {
         $project = $this->projectRepository->create($request->only(
             'name',
-            'public_name',
             'description',
-            'listing_starts',
-            'listing_ends',
-            'application_deadline',
+            'listing_start_at',
+            'listing_end_at',
+            'application_deadline_at',
+            'application_deadline_text',
             'opportunity_status_id',
-            'start_date',
-            'end_date',
+            'opportunity_start_at',
+            'opportunity_end_at',
             'organization_id',
-            'parent_opportunity_id',
+            // 'parent_opportunity_id',
             'supervisor_user_id',
             'opportunity_status_id',
-            'opportunityable',
             'affiliations',
             'categories',
             'keywords',
@@ -145,18 +142,17 @@ class ProjectController extends Controller
      * Display the specified Project.
      *
      * @param ManageProjectRequest $request
-     * @param Opportunity          $project
+     * @param Project          $project
      *
      * @return \Illuminate\View\View
      */
-    public function show(ManageProjectRequest $request, Opportunity $project)
+    public function show(ManageProjectRequest $request, Project $project)
     {
         $project->loadMissing(
-            'opportunityable',
             'addresses',
             'notes',
             'status',
-            'parentOpportunity',
+            // 'parentOpportunity',
             'organization',
             'supervisorUser',
             'submittingUser',
@@ -178,12 +174,12 @@ class ProjectController extends Controller
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
-     * @param OpportunityRepository $opportunityRepository
+     * @param ProjectRepository $projectRepository
      * @param OpportunityStatusRepository $opportunityStatusRepository
      * @param OpportunityReviewStatusRepository $opportunityReviewStatusRepository
      * @param OrganizationRepository $organizationRepository
      * @param UserRepository $userRepository
-     * @param Opportunity $project
+     * @param Project $project
      *
      * @return \Illuminate\View\View
      */
@@ -193,20 +189,18 @@ class ProjectController extends Controller
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,
         KeywordRepository $keywordRepository,
-        OpportunityRepository $opportunityRepository,
         OpportunityStatusRepository $opportunityStatusRepository,
         OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
         OrganizationRepository $organizationRepository,
         UserRepository $userRepository,
-        Opportunity $project
+        Project $project
     )
     {
         $project->loadMissing(
-            'opportunityable',
             'addresses',
             'notes',
             'status',
-            'parentOpportunity',
+            // 'parentOpportunity',
             'organization',
             'supervisorUser',
             'submittingUser',
@@ -218,15 +212,14 @@ class ProjectController extends Controller
 
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -234,26 +227,25 @@ class ProjectController extends Controller
      *
      * @param UpdateProjectRequest $request
      *
-     * @param Opportunity $project
+     * @param Project $project
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function update(UpdateProjectRequest $request, Opportunity $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         $project = $this->projectRepository->update($project, $request->only(
             'name',
-            'public_name',
             'description',
-            'listing_starts',
-            'listing_ends',
-            'application_deadline',
-            'start_date',
-            'end_date',
+            'listing_start_at',
+            'listing_end_at',
+            'application_deadline_at',
+            'application_deadline_text',
+            'opportunity_start_at',
+            'opportunity_end_at',
             'opportunity_status_id',
             'organization_id',
-            'parent_opportunity_id',
+            // 'parent_opportunity_id',
             'supervisor_user_id',
-            'opportunityable',
             'affiliations',
             'categories',
             'keywords',
@@ -268,12 +260,12 @@ class ProjectController extends Controller
      * Remove the specified Project from storage.
      *
      * @param DeleteProjectRequest $request
-     * @param Opportunity $project
+     * @param Project $project
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function destroy(DeleteProjectRequest $request, Opportunity $project)
+    public function destroy(DeleteProjectRequest $request, Project $project)
     {
         $this->projectRepository->deleteById($project->id);
 
@@ -281,66 +273,24 @@ class ProjectController extends Controller
             ->withFlashSuccess('Project deleted successfully');
     }
 
-
     /**
-     * @param ManageProjectRequest $request
+     * Clone project.
      *
-     * @return mixed
-     */
-    public function getDeactivated(ManageProjectRequest $request)
-    {
-        return view('backend.opportunity.project.deactivated')
-            ->withProjects($this->projectRepository->getInactivePaginated(25, 'id', 'asc'));
-    }
-
-    /**
-     * @param ManageProjectRequest $request
-     *
-     * @return mixed
-     */
-    public function getDeleted(ManageProjectRequest $request)
-    {
-        return view('backend.opportunity.project.deleted')
-            ->withProjects($this->projectRepository->getDeletedPaginated(25, 'id', 'asc'));
-    }
-
-    /**
-     * @param ManageProjectRequest $request
-     *
-     * @return mixed
-     */
-    public function getNeedsReview(ManageProjectRequest $request)
-    {
-        return view('backend.opportunity.project.review')
-            ->withProjects($this->projectRepository->getReviewPaginated(25, 'id', 'asc'));
-    }
-
-    /**
-     * @param ManageProjectRequest $request
-     * @param int                  $deletedProjectId
-     *
-     * @return mixed
-     * @throws \SCCatalog\Exceptions\GeneralException
+     * @param CloneProjectRequest $request
+     * @param Project $project
+     * @return
      * @throws \Throwable
      */
-    public function delete(ManageProjectRequest $request, $deletedProjectId)
+    public function clone(CloneProjectRequest $request, Project $project)
     {
-        $this->projectRepository->forceDelete($deletedProjectId);
+        // $project = $this->projectRepository->getById($projectId);
 
-        return redirect()->route('admin.opportunity.project.deleted')->withFlashSuccess(__('alerts.backend.opportunity.projects.deleted_permanently'));
+        $project = $this->projectRepository->clone($project);
+
+        event(new ProjectCloned($project));
+
+        return redirect()->route('admin.backend.opportunity.project.show', $project)
+            ->withFlashSuccess('Project cloned successfully');
     }
 
-    /**
-     * @param ManageProjectRequest $request
-     * @param int                  $deletedProjectId
-     *
-     * @return mixed
-     * @throws \SCCatalog\Exceptions\GeneralException
-     */
-    public function restore(ManageProjectRequest $request, $deletedProjectId)
-    {
-        $this->projectRepository->restore($deletedProjectId);
-
-        return redirect()->route('admin.opportunity.project.index')->withFlashSuccess(__('alerts.backend.opportunity.projects.restored'));
-    }
 }

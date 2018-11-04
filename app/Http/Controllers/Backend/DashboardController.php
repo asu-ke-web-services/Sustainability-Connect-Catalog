@@ -55,12 +55,12 @@ class DashboardController extends Controller
     public function index()
     {
         return view('backend.dashboard')
-            ->with('projectsTotal', $this->projectRepository->where('opportunityable_type', 'Project')->count())
-            ->with('internshipsTotal', $this->internshipRepository->where('opportunityable_type', 'Internship')->count())
+            ->with('projectsTotal', $this->projectRepository->count())
+            ->with('internshipsTotal', $this->internshipRepository->count())
             ->with('activeUsersTotal', $this->userRepository->count())
-            ->with('projectsUnderReview', $this->project::with('opportunity')->inReview()->get())
-            ->with('newUsersToReview', $this->userRepository->where('access_validated', 0)->get())
-            // ->with('activeProjectMembers', $this->userRepository->getActiveOpportunityMembersPaginated(25, 'application_deadline', 'asc'));
-            ->with('activeProjectMembers', $this->userRepository->has('projects')->get()->load('opportunities'));
+            ->with('projectsUnderReview', $this->projectRepository->getProposalReviewsPaginated(5, 'created_at', 'asc'))
+            ->with('newUsersToReview', $this->userRepository->getNeedsAffiliationReviewPaginated(5, 'created_at', 'asc'))
+            // ->with('activeProjectMembers', $this->userRepository->getActiveOpportunityMembersPaginated(25, 'application_deadline_at', 'asc'));
+            ->with('activeProjectMembers', $this->userRepository->has('participatingInProjects')->get());
     }
 }

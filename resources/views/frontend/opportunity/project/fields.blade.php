@@ -33,7 +33,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Project Deliverables Field -->
@@ -44,7 +44,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                 </div><!--col-->
@@ -231,7 +231,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Responsibilities Field -->
@@ -242,7 +242,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
 <!-- Contact details -->
@@ -285,7 +285,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                     <!-- Application Instructions Field -->
@@ -296,7 +296,7 @@
                         'attributes' => [
                             'rows' => 5,
                         ],
-                        'object'      => $opportunity->opportunityable ?? null,
+                        'object'      => $opportunity ?? null,
                     ])@endcomponent
 
                 </div><!--col-->

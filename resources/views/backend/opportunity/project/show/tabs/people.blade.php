@@ -14,7 +14,7 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.people.program_lead') }}</th>
-                <td>{!! $project->opportunityable->program_lead !!}</td>
+                <td>{!! $project->program_lead !!}</td>
             </tr>
 
             <tr>

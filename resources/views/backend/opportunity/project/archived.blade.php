@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.deleted'))
+@section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.archived'))
 
 @section('breadcrumb-links')
     @include('backend.opportunity.project.includes.breadcrumb-links')
@@ -13,7 +13,7 @@
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.opportunity.projects.management') }}
-                    <small class="text-muted">{{ __('labels.backend.opportunity.projects.deleted') }}</small>
+                    <small class="text-muted">{{ __('labels.backend.opportunity.projects.archived') }}</small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -55,7 +55,7 @@
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="9"><p class="text-center">{{ __('strings.backend.opportunity.projects.no_deleted') }}</p></td></tr>
+                            <tr><td colspan="9"><p class="text-center">{{ __('strings.backend.opportunity.projects.no_archived') }}</p></td></tr>
                         @endif
                         </tbody>
                     </table>

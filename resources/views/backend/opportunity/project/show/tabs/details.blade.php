@@ -4,57 +4,57 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.implementation_paths') }}</th>
-                <td>{!! $project->opportunityable->implementation_paths ?? null !!}</td>
+                <td>{!! $project->implementation_paths ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.sustainability_contribution') }}</th>
-                <td>{!! $project->opportunityable->sustainability_contribution ?? null !!}</td>
+                <td>{!! $project->sustainability_contribution ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.qualifications') }}</th>
-                <td>{!! $project->opportunityable->qualifications ?? null !!}</td>
+                <td>{!! $project->qualifications ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.responsibilities') }}</th>
-                <td>{!! $project->opportunityable->responsibilities ?? null !!}</td>
+                <td>{!! $project->responsibilities ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.learning_outcomes') }}</th>
-                <td>{!! $project->opportunityable->learning_outcomes ?? null !!}</td>
+                <td>{!! $project->learning_outcomes ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.compensation') }}</th>
-                <td>{!! $project->opportunityable->compensation ?? null !!}</td>
+                <td>{!! $project->compensation ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.budget_type') }}</th>
-                <td>{!! $project->opportunityable->budgetType->name ?? null !!}</td>
+                <td>{!! $project->budgetType->name ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.budget_amount') }}</th>
-                <td>{!! $project->opportunityable->budget_amount ?? null !!}</td>
+                <td>{!! $project->budget_amount ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.application_instructions') }}</th>
-                <td>{!! $project->opportunityable->application_instructions ?? null !!}</td>
+                <td>{!! $project->application_instructions ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.success_story') }}</th>
-                <td>{!! $project->opportunityable->success_story ?? null !!}</td>
+                <td>{!! $project->success_story ?? null !!}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.library_collection') }}</th>
-                <td>{!! $project->opportunityable->library_collection ?? null !!}</td>
+                <td>{!! $project->library_collection ?? null !!}</td>
             </tr>
 
             <tr>

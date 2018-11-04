@@ -105,7 +105,7 @@
                             <!-- Application Instructions -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Instructions</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunityable->application_instructions !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->application_instructions !!}</td>
                     </tr>
                 </tbody>
             </table>
@@ -126,7 +126,7 @@
                     <!-- Project Deliverables -->
                     <tr>
                         <td class="col col-sm-3 view-label">Sustainability Contribution</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunityable->sustainability_contribution !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->sustainability_contribution !!}</td>
                     </tr>
                 </tbody>
             </table>
@@ -139,17 +139,17 @@
                     <!-- Qualifications -->
                     <tr>
                         <td class="col col-sm-3 view-label">Minimum and Desired Qualifications</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunityable->qualifications !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->qualifications !!}</td>
                     </tr>
                     <!-- Student Responsibilities -->
                     <tr>
                         <td class="col col-sm-3 view-label">Student Responsibilities</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunityable->responsibilities !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->responsibilities !!}</td>
                     </tr>
                     <!-- Student Learning Ourtcomes -->
                     <tr>
                         <td class="col col-sm-3 view-label">Student Learning Outcomes</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunityable->learning_outcomes !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->learning_outcomes !!}</td>
                     </tr>
                 </tbody>
             </table>

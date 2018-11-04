@@ -32,6 +32,32 @@ class CreateCategoriesTable extends Migration
             $table->foreign('deleted_by')
                 ->references('id')->on('users');
         });
+
+        Schema::create('categorisables', function (Blueprint $table) {
+            $table->integer('category_id')->unsigned();
+            $table->integer('categorisable_id')->unsigned()->index();
+            $table->string('categorisable_type')->nullable();
+            $table->integer('order')->default(1);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->foreign('category_id')
+                ->references('id')->on('categories')
+                ->onDelete('cascade');
+
+            $table->foreign('created_by')
+                ->references('id')->on('users');
+
+            $table->foreign('updated_by')
+                ->references('id')->on('users');
+
+            $table->foreign('deleted_by')
+                ->references('id')->on('users');
+        });
+
     }
 
     /**
@@ -41,6 +67,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('categorisables');
         Schema::dropIfExists('categories');
     }
 }

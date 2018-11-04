@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAffiliationsTable extends Migration
+class CreateOpportunitiesUsersTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,28 @@ class CreateAffiliationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('affiliations', function (Blueprint $table) {
+        Schema::create('project_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('opportunity_type_id')->unsigned()->nullable();
-            $table->integer('order')->default(1);
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('help_text')->nullable();
-            $table->string('frontend_fa_icon')->nullable();
-            $table->string('backend_fa_icon')->nullable();
-            $table->tinyInteger('access_control')->unsigned()->default(0); // if true = opportunity and user affiliations must match for access
-            $table->tinyInteger('public')->unsigned()->default(1); // if true = affiliation is publicly visible in all views (otherwise an admin-tag only)
+            $table->integer('project_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('relationship_type_id')->unsigned();
+            $table->tinyInteger('approved')->default(0)->unsigned();
+            $table->text('comments')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
-            $table->foreign('opportunity_type_id')
-                ->references('id')->on('opportunity_types')
+            $table->foreign('relationship_type_id')
+                ->references('id')->on('relationship_types');
+
+            $table->foreign('project_id')
+                ->references('id')->on('projects')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
 
             $table->foreign('created_by')
@@ -44,19 +47,28 @@ class CreateAffiliationsTable extends Migration
                 ->references('id')->on('users');
         });
 
-        Schema::create('affiliationables', function (Blueprint $table) {
-            $table->integer('affiliation_id')->unsigned();
-            $table->integer('affiliationable_id')->unsigned()->index();
-            $table->string('affiliationable_type')->nullable();
-            $table->integer('order')->default(1);
+        Schema::create('internship_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('internship_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('relationship_type_id')->unsigned();
+            $table->tinyInteger('approved')->default(0)->unsigned();
+            $table->text('comments')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
-            $table->foreign('affiliation_id')
-                ->references('id')->on('affiliations')
+            $table->foreign('relationship_type_id')
+                ->references('id')->on('relationship_types');
+
+            $table->foreign('internship_id')
+                ->references('id')->on('internships')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
 
             $table->foreign('created_by')
@@ -77,7 +89,7 @@ class CreateAffiliationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('affiliationables');
-        Schema::dropIfExists('affiliations');
+        Schema::dropIfExists('project_user');
+        Schema::dropIfExists('internship_user');
     }
 }

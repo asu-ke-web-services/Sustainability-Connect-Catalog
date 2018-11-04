@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressesTables extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,9 @@ class CreateAddressesTables extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('is_primary')->default(true);
+            $table->integer('addressable_id')->unsigned()->index();
+            $table->string('addressable_type')->nullable();
+            $table->tinyInteger('primary')->default(1)->unsigned();
             $table->string('street1')->nullable();
             $table->string('street2')->nullable();
             $table->string('city')->nullable();

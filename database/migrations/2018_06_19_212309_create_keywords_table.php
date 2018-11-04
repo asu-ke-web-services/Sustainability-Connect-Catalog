@@ -32,6 +32,32 @@ class CreateKeywordsTable extends Migration
             $table->foreign('deleted_by')
                 ->references('id')->on('users');
         });
+
+        Schema::create('keywordables', function (Blueprint $table) {
+            $table->integer('keyword_id')->unsigned();
+            $table->integer('keywordable_id')->unsigned()->index();
+            $table->string('keywordable_type')->nullable();
+            $table->integer('order')->default(1);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->foreign('keyword_id')
+                ->references('id')->on('keywords')
+                ->onDelete('cascade');
+
+            $table->foreign('created_by')
+                ->references('id')->on('users');
+
+            $table->foreign('updated_by')
+                ->references('id')->on('users');
+
+            $table->foreign('deleted_by')
+                ->references('id')->on('users');
+        });
+
     }
 
     /**
@@ -41,6 +67,7 @@ class CreateKeywordsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('keywordables');
         Schema::dropIfExists('keywords');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKeywordUserTable extends Migration
+class CreateOrganizationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,24 @@ class CreateKeywordUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('keyword_user', function (Blueprint $table) {
+        Schema::create('organizations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('keyword_id')->unsigned();
-            $table->string('order')->default(1);
+            $table->integer('organization_type_id')->unsigned()->nullable();
+            $table->integer('organization_status_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+            $table->foreign('organization_type_id')
+                ->references('id')
+                ->on('organization_types');
 
-            $table->foreign('keyword_id')
-                 ->references('id')->on('keywords')
-                ->onDelete('cascade');
+            $table->foreign('organization_status_id')
+                ->references('id')
+                ->on('organization_statuses');
 
             $table->foreign('created_by')
                 ->references('id')->on('users');
@@ -50,6 +50,6 @@ class CreateKeywordUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keyword_user');
+        Schema::dropIfExists('organizations');
     }
 }

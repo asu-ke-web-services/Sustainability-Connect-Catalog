@@ -27,9 +27,10 @@ class AppServiceProvider extends ServiceProvider
             'Note'         => \SCCatalog\Models\Note\Note::class,
             'Organization' => \SCCatalog\Models\Organization\Organization::class,
             'Internship'   => \SCCatalog\Models\Opportunity\Internship::class,
-            'Opportunity'  => \SCCatalog\Models\Opportunity\Opportunity::class,
             'Project'      => \SCCatalog\Models\Opportunity\Project::class,
+            'User'         => \SCCatalog\Models\Auth\User::class,
         ]);
+
         /*
          * setLocale for php. Enables ->formatLocalized() with localized values for dates
          */

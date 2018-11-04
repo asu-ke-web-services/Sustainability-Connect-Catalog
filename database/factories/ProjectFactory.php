@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Faker\Generator;
 use SCCatalog\Models\Opportunity\Project;
 
@@ -16,6 +17,27 @@ use SCCatalog\Models\Opportunity\Project;
 
 $factory->define(Project::class, function (Generator $faker) {
     return [
-        'review_status_id' => '1'
+		'name'                  => $faker->words(3, true),
+		'opportunity_status_id' => $faker->numberBetween(3, 6),
+		'review_status_id'      => '1',
+		'description'           => $faker->words(4, true),
+    ];
+});
+
+// $factory->state(Project::class, 'hidden', function () {
+//     return [
+//         'hidden' => true,
+//     ];
+// });
+
+$factory->state(Project::class, 'completed', function () {
+    return [
+        'opportunity_status_id' => 7,
+    ];
+});
+
+$factory->state(Project::class, 'softDeleted', function () {
+    return [
+        'deleted_at' => Carbon::now(),
     ];
 });

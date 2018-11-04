@@ -16,9 +16,8 @@ use SCCatalog\Models\Lookup\Affiliation;
 
 $factory->define(Affiliation::class, function (Generator $faker) {
     return [
-        'opportunity_type_id' => 1,
         'order'               => 1,
-        'name'                => 'undergraduate',
+        'name'                => 'Undergraduate',
         'access_control'      => 0,
     ];
 });
@@ -38,6 +37,12 @@ $factory->state(Affiliation::class, 'internship', function () {
 $factory->state(Affiliation::class, 'access_restricted', function () {
     return [
         'access_control' => 1,
+    ];
+});
+
+$factory->state(Affiliation::class, 'admin', function () {
+    return [
+        'public' => 0,
     ];
 });
 

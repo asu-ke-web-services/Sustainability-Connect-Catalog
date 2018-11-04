@@ -16,7 +16,6 @@ use SCCatalog\Models\Lookup\Category;
 
 $factory->define(Category::class, function (Generator $faker) {
     return [
-        'order'               => 1,
         'name'                => 'Culminating Experience',
     ];
 });

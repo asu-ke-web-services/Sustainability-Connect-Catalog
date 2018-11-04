@@ -91,6 +91,22 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getNeedsAffiliationReviewPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->with('roles', 'permissions', 'providers')
+            ->needsAffiliationReview()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
      * @param array $data
      *
      * @return User

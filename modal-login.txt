@@ -1,0 +1,13 @@
+<div id="fade_background" class="popup_background" style="opacity: 0.5; visibility: visible; background-color: black; position: fixed; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 100000; transition: all 0.3s ease 0s;"></div>
+
+<div id="fade_wrapper" class="popup_wrapper popup_wrapper_visible" style="opacity: 1; visibility: visible; position: fixed; overflow: auto; z-index: 100001; transition: all 0.3s ease 0s; width: 100%; height: 100%; top: 0px; left: 0px; text-align: center; display: block;"><div id="fade" class="well popup_content" data-popup-initialized="true" aria-hidden="false" role="dialog" tabindex="-1" style="opacity: 1; visibility: visible; display: inline-block; outline: none; transition: all 0.3s ease 0s; text-align: left; position: relative; vertical-align: middle;">
+<h2 style="text-align:center;">Welcome</h2>
+<div style="height:300px;">
+<div style="padding:10px 0; text-align:center;">
+To access the Enterprise Brand and Marketing Guide, please tell us who you are.<p></p>
+<div class="splash-user"><img src="/sites/default/files/login-employee.png" width="83" height="80"><br><a class="btn btn-primary btn-splash" href="/cas">ASU Affiliate</a></div>
+<div class="splash-user"><img src="/sites/default/files/login-vendor.png" width="82" height="80"><br><a class="btn btn-primary btn-splash" href="/user">Vendor</a></div>
+<div class="splash-user"><img src="/sites/default/files/login-guest.png" width="72" height="80"><br><a class="fade_close btn btn-primary btn-splash">Guest</a></div>
+</div>
+  </div>
+</div><div class="popup_align" style="display: inline-block; vertical-align: middle; height: 100%;"></div></div>

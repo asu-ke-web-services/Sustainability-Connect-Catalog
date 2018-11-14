@@ -11,7 +11,7 @@ export class SearchPage extends Component {
       <div id="outer-container">
         <Sidebar indexName={this.props.indexName} />
         <Grid id="page-wrap" >
-          <Header />
+          <Header viewActive={this.props.viewActive} />
           <hr />
           <Row>
             <Col sm={12}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchApp from './components/SearchApp';
+import SearchCompletedApp from './components/SearchCompletedApp';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -18,9 +18,9 @@ import SearchApp from './components/SearchApp';
 
 if (document.getElementById('search')) {
     ReactDOM.render(
-      <SearchApp
+      <SearchCompletedApp
         indexName="projects"
-        viewActive={true}
+        viewActive={false}
         userAccessAffiliations={JSON.parse(algolia.userAccessAffiliations)}
         canViewRestricted={algolia.canViewRestricted}
       />, document.querySelector('#search')

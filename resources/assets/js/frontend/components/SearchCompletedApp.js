@@ -6,9 +6,9 @@ import '../../../sass/frontend/SearchApp.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 const VirtualMenu = connectMenu(() => null);
-const Active = () => <VirtualMenu attribute="active" defaultRefinement="true" />;
+const Active = () => <VirtualMenu attribute="active" defaultRefinement="false" />;
 
-class SearchApp extends Component {
+class SearchCompletedApp extends Component {
   render() {
     return (
       <InstantSearch
@@ -30,4 +30,4 @@ class SearchApp extends Component {
   }
 }
 
-export default withUrlSync(SearchApp);
+export default withUrlSync(SearchCompletedApp);

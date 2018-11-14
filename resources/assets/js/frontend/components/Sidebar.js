@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BurgerMenu from 'react-burger-menu';
 import { SearchFacets } from './SearchFacets';
+import { InternshipSortBy } from './InternshipSortBy';
+import { ProjectSortBy } from './ProjectSortBy';
 
 class MenuWrap extends Component {
   constructor(props) {
@@ -42,7 +44,7 @@ export class Sidebar extends Component {
     const Menu = BurgerMenu[this.state.currentMenu];
     let jsx;
 
-    if (this.state.side === 'right') {
+    if (this.props.indexName === 'internships') {
       jsx = (
         <MenuWrap wait={20} side={this.state.side}>
           <Menu
@@ -51,18 +53,27 @@ export class Sidebar extends Component {
             outerContainerId={'outer-container'}
             right
           >
+            <div className="sort-by">
+              <h3>Sort by</h3>
+              <InternshipSortBy />
+            </div>
             <SearchFacets indexName={this.props.indexName} />
           </Menu>
         </MenuWrap>
       );
     } else {
       jsx = (
-        <MenuWrap wait={20}>
+        <MenuWrap wait={20} side={this.state.side}>
           <Menu
             id={this.state.currentMenu}
             pageWrapId={'page-wrap'}
             outerContainerId={'outer-container'}
+            right
           >
+            <div className="sort-by">
+              <h3>Sort by</h3>
+              <ProjectSortBy />
+            </div>
             <SearchFacets indexName={this.props.indexName} />
           </Menu>
         </MenuWrap>

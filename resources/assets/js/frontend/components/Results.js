@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import { Hits } from './Hits';
+import { InternshipHits } from './InternshipHits';
+import { ProjectHits } from './ProjectHits';
 
 export class Results extends Component {
 
@@ -18,7 +19,7 @@ export class Results extends Component {
               <th className="col col-md-1 text-center">Apply By</th>
             </tr>
           </thead>
-          <Hits indexName={this.props.indexName}
+          <InternshipHits indexName={this.props.indexName}
                 userAccessAffiliations={this.props.userAccessAffiliations}
                 canViewRestricted={this.props.canViewRestricted} />
         </Table>
@@ -36,7 +37,7 @@ export class Results extends Component {
               <th className="col col-md-1 text-center">Apply By</th>
             </tr>
           </thead>
-          <Hits indexName={this.props.indexName}
+          <ProjectHits indexName={this.props.indexName}
                 userAccessAffiliations={this.props.userAccessAffiliations}
                 canViewRestricted={this.props.canViewRestricted} />
         </Table>

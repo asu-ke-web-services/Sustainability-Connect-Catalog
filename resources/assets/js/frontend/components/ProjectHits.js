@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { AffiliationIcons } from './AffiliationIcons';
 
-export const Hits = connectHits(({ hits, indexName, userAccessAffiliations, canViewRestricted }) => {
+export const ProjectHits = connectHits(({ hits, userAccessAffiliations, canViewRestricted }) => {
   const hs = hits.map(
     hit => <HitComponent
       key={hit.objectID}
       hit={hit}
-      indexName={indexName}
       userAccessAffiliations={userAccessAffiliations}
       canViewRestricted={canViewRestricted}
     />);
@@ -18,12 +17,11 @@ export const Hits = connectHits(({ hits, indexName, userAccessAffiliations, canV
 
 HitComponent.propTypes = {
   hit: PropTypes.object,
-  indexName: PropTypes.string,
   userAccessAffiliations: PropTypes.array,
   canViewRestricted: PropTypes.bool
 };
 
-function HitComponent({ hit, indexName, userAccessAffiliations, canViewRestricted }) {
+function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
 
   // check for access restrictions; if present, check if user has access
   // access determined by user permissions or possessing same access affiliations
@@ -39,39 +37,27 @@ function HitComponent({ hit, indexName, userAccessAffiliations, canViewRestricte
 
   // format application_deadline, which might be a text string or a date
   let deadline = '';
-  if (moment(hit.applicationDeadline).isValid()) {
-    deadline = moment(hit.applicationDeadline).format('YYYY-MM-DD');
+  if (hit.applicationDeadlineAt != null) {
+    deadline = moment.unix(hit.applicationDeadlineAt).format('ll');
   } else {
-    deadline = hit.applicationDeadline;
+    deadline = '';
+  }
+  // deadline = moment(hit.applicationDeadlineAt).format('ll');
+
+  let startDate = '';
+  if (hit.opportunityStartAt != null) {
+    startDate = moment.unix(hit.opportunityStartAt).format('ll');
+  } else {
+    startDate = '';
   }
 
-  if (indexName === 'internships') {
-    if (canView) {
-      return (
-        <tr className="disabled">
-          <td>View Restricted: {canView}</td>
-          <td>View Restricted</td>
-          <td>{hit.affiliationIcons != null
-              ? <AffiliationIcons canView={canView} icons={hit.affiliationIcons.filter(Boolean)} />
-              : ''}</td>
-          <td>{deadline}</td>
-        </tr>
-      );
-    }
-
-    return (
-      <tr>
-        <td><a href={`/internship/${hit.id}`}><Highlight attribute="name" hit={hit} /></a></td>
-        <td>{hit.organizationName}</td>
-        <td>{hit.affiliationIcons != null
-            ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
-            : ''}</td>
-        <td>{deadline}</td>
-      </tr>
-    );
+  let endDate = '';
+  if (hit.opportunityEndAt != null) {
+    endDate = moment.unix(hit.opportunityEndAt).format('ll');
+  } else {
+    endDate = '';
   }
 
-  // Render Project view
 
   if (canView) {
     return (
@@ -81,13 +67,9 @@ function HitComponent({ hit, indexName, userAccessAffiliations, canViewRestricte
             ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
             : ''}</td>
         <td><Highlight attribute="locations" hit={hit} /></td>
+        <td>{startDate}</td>
+        <td>{endDate}</td>
         <td>{deadline}</td>
-        <td>{hit.startDate != null
-            ? moment(hit.startDate.date).format('YYYY-MM-DD')
-            : ''}</td>
-        <td>{hit.endDate != null
-            ? moment(hit.endDate.date).format('YYYY-MM-DD')
-            : ''}</td>
       </tr>
     );
   }
@@ -99,13 +81,9 @@ function HitComponent({ hit, indexName, userAccessAffiliations, canViewRestricte
           ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
           : ''}</td>
       <td><Highlight attribute="locations" hit={hit} /></td>
+      <td>{startDate}</td>
+      <td>{endDate}</td>
       <td>{deadline}</td>
-      <td>{hit.startDate != null
-          ? moment(hit.startDate.date).format('YYYY-MM-DD')
-          : ''}</td>
-      <td>{hit.endDate != null
-          ? moment(hit.endDate.date).format('YYYY-MM-DD')
-          : ''}</td>
     </tr>
   );
 }

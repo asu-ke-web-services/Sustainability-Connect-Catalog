@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Http\Requests\Backend\Lookup;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**

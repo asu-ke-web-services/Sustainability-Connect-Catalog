@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Class ViewProjectRequest.
  */
-class FollowerRequest extends FormRequest
+class ProjectFollowerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

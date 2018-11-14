@@ -1,14 +1,13 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\Lookup;
+namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RelationshipTypeRequest.
+ * Class ViewProjectRequest.
  */
-class RelationshipTypeRequest extends FormRequest
+class InternshipFollowerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,9 +27,7 @@ class RelationshipTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'order' => 'nullable|integer',
-            'name'  => ['required', 'string', 'max:250', Rule::unique('relationship_types')],
-            'slug'  => 'nullable|string|max:255',
+        	//
         ];
     }
 

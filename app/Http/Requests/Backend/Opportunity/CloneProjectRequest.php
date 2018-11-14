@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Requests\Backend\Opportunity;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CloneOpportunityRequest extends FormRequest
+class CloneProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

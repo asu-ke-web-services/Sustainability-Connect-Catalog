@@ -113,7 +113,35 @@ class User extends Authenticatable
 
     public function shouldBeSearchable()
     {
-        return false;
+        return true;
+    }
+
+    public function toSearchableArray() : array
+    {
+        $array = $this->toArray();
+
+        $array['userType'] = e($this->userType->name);
+
+        // Index Location Cities
+        $array['addresses'] = '';
+        foreach ($this->addresses as $address) {
+            $array['addresses'] .= e($address['city']) . ' ' . e($address['state']);
+        }
+
+        // Index Affiliations
+        $array['affiliations'] = $this->affiliations->map(function ($data) {
+            return e($data['name']);
+        })->toArray();
+
+        // Index AccessAffiliations
+        $array['accessAffiliations'] = $this->affiliations->where('access_control', true)->map(function ($data) {
+            return [
+                'name' => e($data['name']),
+                'slug' => e($data['slug']),
+            ];
+        })->toArray();
+
+        return $array;
     }
 
     /*

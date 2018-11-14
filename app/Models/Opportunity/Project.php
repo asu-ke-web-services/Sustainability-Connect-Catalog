@@ -192,9 +192,13 @@ class Project extends Model implements HasMedia
      */
     public function isPublished() : bool
     {
-        $this->loadMissing('opportunity');
-        dd($this);
-        return $this->status->indicates_published;
+        return \in_array($this->opportunity_status_id, [
+            3, // Seeking Champions
+            4, // Recruiting Participants
+            5, // Positions Filled
+            6, // In Progress
+            7, // Completed
+        ], true);
     }
 
     /**
@@ -204,10 +208,15 @@ class Project extends Model implements HasMedia
      */
     public function isActive() : bool
     {
-        return (
-            $this->isPublished() &&
-            'completed' === $this->status->slug
-        );
+        return
+            $this->application_deadline_at !== null &&
+            $this->application_deadline_at->greaterThan(Carbon::tomorrow()) &&
+            \in_array($this->opportunity_status_id, [
+                3, // Seeking Champions
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ], true);
     }
 
     /**
@@ -217,24 +226,15 @@ class Project extends Model implements HasMedia
      */
     public function isCompleted() : bool
     {
-        return (
-            $this->isPublished() &&
-            null !== $this->listing_start_at &&
-            null !== $this->listing_end_at &&
-            $this->listing_start_at->lessThan(Carbon::today()) &&
-            $this->listing_end_at->greaterThan(Carbon::today())
-        );
-    }
+        return 7 === $this->opportunity_status_id;
 
-    /**
-     * Get the value used to index the model.
-     *
-     * @return mixed
-     */
-    public function getScoutKey()
-    {
-        $this->loadMissing('opportunity');
-        return $this->id;
+        // return (
+            // $this->isPublished() &&
+            // null !== $this->listing_start_at &&
+            // null !== $this->listing_end_at &&
+            // $this->listing_start_at->lessThan(Carbon::today()) &&
+            // $this->listing_end_at->greaterThan(Carbon::today())
+        // );
     }
 
     public function shouldBeSearchable() : bool
@@ -247,22 +247,20 @@ class Project extends Model implements HasMedia
         $project = array();
 
         $project['id']                      = $this->id;
-        $project['type']                    = 'Project';
-        $project['isActive']                = $this->isActive();
-        $project['isCompleted']             = $this->isCompleted();
+        $project['active']                  = $this->isActive();
+        // $project['completed']               = $this->isCompleted();
         $project['name']                    = e($this->name);
-        $project['publicName']              = e($this->public_name);
         $project['description']             = e($this->description);
-        $project['opportunityStartAt']      = $this->opportunity_start_at->getTimestamp();
-        $project['opportunityEndAt']        = $this->opportunity_end_at->getTimestamp();
-        $project['applicationDeadlineAt']   = $this->application_deadline_at->getTimestamp();
+        $project['opportunityStartAt']      = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
+        $project['opportunityEndAt']        = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
+        $project['applicationDeadlineAt']   = $this->application_deadline_at ? $this->application_deadline_at->getTimestamp() : null;
         $project['applicationDeadlineText'] = e($this->application_deadline_text);
-        $project['listingStartAt']          = $this->listing_start_at->getTimestamp();
-        $project['listingEndAt']            = $this->listing_end_at->getTimestamp();
+        $project['listingStartAt']          = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
+        $project['listingEndAt']            = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
         $project['followerCount']           = $this->follower_count;
-        $project['status']                  = e($this->status->name);
-        $project['reviewStatus']            = e($this->reviewStatus->name);
-        $project['organizationName']        = e($this->organization->name) ?? '';
+        $project['status']                  = null !== $this->status ? e($this->status->name) : null;
+        $project['reviewStatus']            = null !== $this->reviewStatus ? e($this->reviewStatus->name) : null;
+        $project['organizationName']        = null !== $this->organization ? e($this->organization->name) : null;
 
         // Index Location Cities
         $project['locations'] = '';

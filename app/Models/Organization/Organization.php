@@ -123,38 +123,24 @@ class Organization extends Model
 
     public function shouldBeSearchable()
     {
-        return false;
-//         if (
-//             $this->review_status_id !== 1 ||
-//             $this->isPublished() === false
-//         ) {
-//             return false;
-//         }
-//
-//         return true;
+        return true;
     }
 
     public function toSearchableArray()
     {
-        $organization = array();
+        $array = $this->toArray();
 
-        $organization['name'] = $this->name;
-        $organization['type'] = $this->type->name;
-        $organization['status'] = $this->status->name;
+        $array['type'] = $this->type->name;
+        $array['status'] = $this->status->name;
 
         // Index Addresses
-        $organization['addresses'] = $this->addresses->map(function ($data) {
-                                        return $data['city'] .
-                                                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
-                                                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+        $array['addresses'] = $this->addresses->map(function ($data) {
+            return $data['city'] .
+                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
+                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
         })->toArray();
 
-        // // Index Notes body content
-        // $organization['notes'] = $this->notes->map(function ($data) {
-        //                                 return $data['body'];
-        // })->toArray();
-
-        return $organization;
+        return $array;
     }
 
     /*

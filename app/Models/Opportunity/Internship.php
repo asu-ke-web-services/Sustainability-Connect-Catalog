@@ -193,42 +193,36 @@ class Internship extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isActive()
-    {
-        return isPublished();
-    }
-
-    /**
-     * Get the value used to index the model.
-     *
-     * @return mixed
-     */
-    public function getScoutKey()
-    {
-        return $this->id;
-    }
-
-    public function shouldBeSearchable()
+    public function isActive() : bool
     {
         return $this->isPublished();
     }
 
-    public function toSearchableArray()
+    /**
+     * @return bool
+     */
+    public function shouldBeSearchable() : bool
+    {
+        return $this->isPublished();
+    }
+
+    /**
+     * @return array
+     */
+    public function toSearchableArray() : array
     {
         $internship = array();
 
         $internship['id']                    = $this->id;
-        $internship['type']                  = 'Internship';
-        $internship['isActive']              = $this->isActive();
+        $internship['active']                = $this->isActive();
         $internship['name']                  = e($this->name);
-        $internship['publicName']            = e($this->public_name);
         $internship['description']           = e($this->description);
-        $internship['opportunityStartAt']    = $this->opportunity_start_at->timestamp;
-        $internship['opportunityEndAt']      = $this->opportunity_end_at->timestamp;
-        $internship['applicationDeadlineAt'] = $this->application_deadline_at->timestamp;
+        $internship['opportunityStartAt']    = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
+        $internship['opportunityEndAt']      = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
+        $internship['applicationDeadlineAt'] = $this->application_deadline_at ? $this->application_deadline_at->getTimestamp() : null;
         $internship['applicationDeadlineText'] = e($this->application_deadline_text);
-        $internship['listingStartAt']        = $this->listing_start_at->timestamp;
-        $internship['listingEndAt']          = $this->listing_end_at->timestamp;
+        $internship['listingStartAt']        = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
+        $internship['listingEndAt']          = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
         $internship['followerCount']         = $this->follower_count;
         $internship['status']                = e($this->status->name);
         $internship['organizationName']      = e($this->organization->name) ?? '';

@@ -17,9 +17,9 @@ use SCCatalog\Models\Opportunity\Internship;
 
 $factory->define(Internship::class, function (Generator $faker) {
     return [
-		'name'                  => $faker->words(3, true),
-		'opportunity_status_id' => 9,
-		'description'           => $faker->words(4, true),
+		'name'                    => $faker->words(3, true),
+		'opportunity_status_id'   => 9,
+        'application_deadline_at' => Carbon::now()->addDays(7),
     ];
 });
 

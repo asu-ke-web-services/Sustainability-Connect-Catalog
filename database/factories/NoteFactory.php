@@ -16,7 +16,6 @@ use SCCatalog\Models\Note\Note;
 
 $factory->define(Note::class, function (Generator $faker) {
     return [
-		'order' => 1,
 		'body'  => 'Test note',
     ];
 });

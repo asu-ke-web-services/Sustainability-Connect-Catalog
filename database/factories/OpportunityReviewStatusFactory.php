@@ -16,8 +16,7 @@ use SCCatalog\Models\Lookup\OpportunityReviewStatus;
 
 $factory->define(OpportunityReviewStatus::class, function (Generator $faker) {
     return [
-        'opportunity_type_id' => 1,
-        'order'               => 1,
+        'opportunity_type_id' => 2,
         'name'                => 'Approved',
     ];
 });

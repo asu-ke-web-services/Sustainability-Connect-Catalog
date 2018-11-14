@@ -16,7 +16,6 @@ use SCCatalog\Models\Lookup\Keyword;
 
 $factory->define(Keyword::class, function (Generator $faker) {
     return [
-        'order'               => 1,
         'name'                => 'Air Quality',
     ];
 });

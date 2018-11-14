@@ -16,7 +16,6 @@ use SCCatalog\Models\Lookup\OrganizationStatus;
 
 $factory->define(OrganizationStatus::class, function (Generator $faker) {
     return [
-        'order' => 2,
         'name'  => 'Active',
     ];
 });

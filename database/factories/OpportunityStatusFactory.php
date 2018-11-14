@@ -16,22 +16,21 @@ use SCCatalog\Models\Lookup\OpportunityStatus;
 
 $factory->define(OpportunityStatus::class, function (Generator $faker) {
     return [
-        'opportunity_type_id' => 1,
-        'order'               => 1,
+        'opportunity_type_id' => 2,
         'name'                => 'Idea Submission',
     ];
 });
 
 $factory->state(OpportunityStatus::class, 'project', function () {
     return [
-        'opportunity_type_id' => 1,
+        'opportunity_type_id' => 2,
         'name'                => 'Idea Submission',
     ];
 });
 
 $factory->state(OpportunityStatus::class, 'internship', function () {
     return [
-        'opportunity_type_id' => 2,
+        'opportunity_type_id' => 3,
         'name'                => 'Active',
     ];
 });

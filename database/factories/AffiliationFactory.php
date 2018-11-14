@@ -16,7 +16,6 @@ use SCCatalog\Models\Lookup\Affiliation;
 
 $factory->define(Affiliation::class, function (Generator $faker) {
     return [
-        'order'               => 1,
         'name'                => 'Undergraduate',
         'access_control'      => 0,
     ];
@@ -24,13 +23,13 @@ $factory->define(Affiliation::class, function (Generator $faker) {
 
 $factory->state(Affiliation::class, 'project', function () {
     return [
-        'opportunity_type_id' => 1,
+        'opportunity_type_id' => 2,
     ];
 });
 
 $factory->state(Affiliation::class, 'internship', function () {
     return [
-        'opportunity_type_id' => 2,
+        'opportunity_type_id' => 3,
     ];
 });
 

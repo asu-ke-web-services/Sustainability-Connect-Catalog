@@ -19,74 +19,86 @@
                         <span class="hidden-md hidden-lg">Home</span>
                     </a>
                 </li>
-                <li id="menu-item-1" class="menu-item">
-                    <a title="Projects" href="/project" class="menu-item">Projects</a>
+                <li id="menu-item-1" class="menu-item menu-item-has-children dropdown">
+                    <a title="Projects" href="/project" data-toggle="dropdown" class="menu-item" aria-haspopup="true">Projects <span class="caret"></span></a>
+                    <ul role="menu" class=" dropdown-menu">
+                        <li id="menu-item-2" class="menu-item">
+                            <a
+                                title="Active Listings" href="/project"
+                                class="menu-item">Active Listings</a>
+                        </li>
+                        <li id="menu-item-3" class="menu-item">
+                            <a
+                                title="Past Listings" href="/project/completed"
+                                class="menu-item">Past Listings</a>
+                        </li>
+                    </ul>
                 </li>
-                <li id="menu-item-2" class="menu-item">
+                <li id="menu-item-4" class="menu-item">
                     <a title="Internships" href="/internship" class="menu-item">Internships</a>
                 </li>
-                <li id="menu-item-3" class="menu-item">
+                <li id="menu-item-5" class="menu-item">
                     <a title="Submit Opportunity" href="/project/submit" class="menu-item">Submit
                         Opportunity</a>
                 </li>
-                <li id="menu-item-4" class="menu-item">
+                <li id="menu-item-6" class="menu-item">
                     <a title="Success Stories"
-                       href="https://sustainabilityconnect.dev.gios.asu.edu/news/sustainability-connect-successes/"
+                       href="#"
                        class="menu-item">Success Stories</a>
                 </li>
-                <li id="menu-item-5" class="menu-item">
-                    <a title="News" href="https://sustainabilityconnect.dev.gios.asu.edu/news/sustainability-connect-news/"
+                <li id="menu-item-7" class="menu-item">
+                    <a title="News" href="#"
                        class="menu-item">News</a>
                 </li>
-                <li id="menu-item-6" class="menu-item menu-item-has-children dropdown">
-                    <a title="About" href="https://sustainabilityconnect.dev.gios.asu.edu/about/" data-toggle="dropdown" class="menu-item" aria-haspopup="true">About <span class="caret"></span></a>
+                <li id="menu-item-8" class="menu-item menu-item-has-children dropdown">
+                    <a title="About" href="#" data-toggle="dropdown" class="menu-item" aria-haspopup="true">About <span class="caret"></span></a>
                     <ul role="menu" class=" dropdown-menu">
-                        <li id="menu-item-7" class="menu-item">
+                        <li id="menu-item-9" class="menu-item">
                             <a
-                                title="About Us" href="https://sustainabilityconnect.dev.gios.asu.edu/about/"
+                                title="About Us" href="#"
                                 class="menu-item">About Us</a>
                         </li>
-                        <li id="menu-item-8" class="menu-item">
+                        <li id="menu-item-10" class="menu-item">
                             <a
-                                title="Contact Us" href="https://sustainabilityconnect.dev.gios.asu.edu/about/contact-us/"
+                                title="Contact Us" href="#"
                                 class="menu-item">Contact Us</a>
                         </li>
-                        <li id="menu-item-9" class="menu-item">
+                        <li id="menu-item-11" class="menu-item">
                             <a
                                 title="Programs &amp; Partners"
                                 href="https://sustainabilityconnect.dev.gios.asu.edu/about/programs-partners/"
                                 class="menu-item">Programs &amp;
                                 Partners</a>
                         </li>
-                        <li id="menu-item-10" class="menu-item">
+                        <li id="menu-item-12" class="menu-item">
                             <a
                                 title="Types of Opportunities"
-                                href="https://sustainabilityconnect.dev.gios.asu.edu/about/types-of-opportunities/"
+                                href="#"
                                 class="menu-item">Types of Opportunities</a>
                         </li>
-                        <li id="menu-item-11" class="menu-item">
+                        <li id="menu-item-13" class="menu-item">
                             <a
                                 title="Why Work With Us"
-                                href="https://sustainabilityconnect.dev.gios.asu.edu/about/why-work-with-us/"
+                                href="#"
                                 class="menu-item">Why Work With Us</a>
                         </li>
-                        <li id="menu-item-12" class="menu-item"><a
-                                title="Resources" href="https://sustainabilityconnect.dev.gios.asu.edu/about/resources/"
+                        <li id="menu-item-14" class="menu-item"><a
+                                title="Resources" href="#"
                                 class="menu-item">Resources</a>
                         </li>
-                        <li id="menu-item-13" class="menu-item">
+                        <li id="menu-item-15" class="menu-item">
                             <a title="FAQ"
-                               href="https://sustainabilityconnect.dev.gios.asu.edu/about/faq/"
+                               href="#"
                                class="menu-item">FAQ</a>
                         </li>
                     </ul>
                 </li>
                 @if (Auth::check())
-                <li id="menu-item-14" class="menu-item">
+                <li id="menu-item-16" class="menu-item">
                     <a title="Sign In" href="/dashboard" class="menu-item">Dashboard</a>
                 </li>
                 @else
-                <li id="menu-item-14" class="menu-item">
+                <li id="menu-item-17" class="menu-item">
                     <a title="Sign In" href="#" class="menu-item" data-toggle="modal" data-target="#loginModal">Sign In</a>
                 </li>
                 @endif

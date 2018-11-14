@@ -4,13 +4,14 @@
                 ->class('col-md-2 form-control-label')
                 ->for($name) }}
     @endif
+
     <div class="col-md-10">
         {{ html()->select(
             $name . (($multivalue ?? false) ? '[]' : ''),
             $optionList,
             old($name) ?: ($object->{$name} ?? null)
         )
-            ->class('form-control')
+            ->class('form-control ' . (($multivalue ?? false) ? 'selectize-multiple' : 'selectize-single'))
             ->placeholder($placeholder ?? null)
             ->attribute($attribute ?? null)
             ->attributes($attributes ?? [])

@@ -40,7 +40,7 @@
                     <!-- Description -->
                     <tr>
                         <td class="col col-sm-3 view-label">Internship Description</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->description !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($internship->description ?? null)</td>
                     </tr>
 
                 </tbody>
@@ -82,17 +82,17 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Apply By</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->application_deadline_at !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->application_deadline_at->toFormattedDateString() !!}</td>
                     </tr>
                     <!-- Semester Offered -->
                     <tr>
                         <td class="col col-sm-3 view-label">Semester Offered</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->opportunity_start_at !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $internship->opportunity_start_at->toFormattedDateString() !!}</td>
                     </tr>
                     <!-- Application Instructions -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Instructions</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->application_instructions !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($internship->application_instructions ?? null)</td>
                     </tr>
                 </tbody>
             </table>
@@ -120,25 +120,25 @@
                     <!-- Student Responsibilities -->
                     <tr>
                         <td class="col col-sm-3 view-label">Student Responsibilities</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->responsibilities !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($internship->responsibilities ?? null)</td>
                     </tr>
 
                     <!-- Qualifications -->
                     <tr>
                         <td class="col col-sm-3 view-label">Minimum and Desired Qualifications</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->qualifications !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($internship->qualifications ?? null)</td>
                     </tr>
 
                     <!-- Degrees Offering Credit -->
                     <tr>
                         <td class="col col-sm-3 view-label">Degrees Offering Credit</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->learning_outcomes !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($internship->learning_outcomes ?? null)</td>
                     </tr>
 
                     <!-- Other Compensation -->
                     <tr>
                         <td class="col col-sm-3 view-label">Other Compensation</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->compensation !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($internship->compensation ?? null)</td>
                     </tr>
 
                     <!-- Notes -->

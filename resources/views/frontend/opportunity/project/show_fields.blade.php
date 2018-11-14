@@ -40,7 +40,7 @@
                     <!-- Description -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Description</td>
-                        <td class="col col-sm-9 view-content">{!! $project->description !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->description ?? null)</td>
                     </tr>
 
                 </tbody>
@@ -82,12 +82,12 @@
                     <!-- Project Starts -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Starts</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunity_start_at !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity_start_at !== null ? $project->opportunity_start_at->toFormattedDateString() : '' !!}</td>
                     </tr>
                     <!-- Project Ends -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Ends</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunity_end_at !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->opportunity_end_at !== null ? $project->opportunity_end_at->toFormattedDateString() : '' !!}</td>
                     </tr>
                         </tbody>
             </table>
@@ -100,12 +100,12 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Deadline</td>
-                        <td class="col col-sm-9 view-content">{!! $project->application_deadline_at !!}</td>
+                        <td class="col col-sm-9 view-content">{!! $project->application_deadline_at !== null ? $project->application_deadline_at->toFormattedDateString() : '' !!}</td>
                     </tr>
                             <!-- Application Instructions -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Instructions</td>
-                        <td class="col col-sm-9 view-content">{!! $project->application_instructions !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->application_instructions ?? null)</td>
                     </tr>
                 </tbody>
             </table>
@@ -126,7 +126,7 @@
                     <!-- Project Deliverables -->
                     <tr>
                         <td class="col col-sm-3 view-label">Sustainability Contribution</td>
-                        <td class="col col-sm-9 view-content">{!! $project->sustainability_contribution !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->sustainability_contribution ?? null)</td>
                     </tr>
                 </tbody>
             </table>
@@ -139,17 +139,17 @@
                     <!-- Qualifications -->
                     <tr>
                         <td class="col col-sm-3 view-label">Minimum and Desired Qualifications</td>
-                        <td class="col col-sm-9 view-content">{!! $project->qualifications !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->qualifications ?? null)</td>
                     </tr>
                     <!-- Student Responsibilities -->
                     <tr>
                         <td class="col col-sm-3 view-label">Student Responsibilities</td>
-                        <td class="col col-sm-9 view-content">{!! $project->responsibilities !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->responsibilities ?? null)</td>
                     </tr>
                     <!-- Student Learning Ourtcomes -->
                     <tr>
                         <td class="col col-sm-3 view-label">Student Learning Outcomes</td>
-                        <td class="col col-sm-9 view-content">{!! $project->learning_outcomes !!}</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->learning_outcomes ?? null)</td>
                     </tr>
                 </tbody>
             </table>

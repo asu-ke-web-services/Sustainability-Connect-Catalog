@@ -118,7 +118,7 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getShowButtonAttribute()
+    public function getShowButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.project.show', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
@@ -126,7 +126,7 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getEditButtonAttribute()
+    public function getEditButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.project.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
     }
@@ -134,7 +134,7 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDeleteButtonAttribute()
+    public function getDeleteButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.project.destroy', $this).'"
              data-method="delete"
@@ -147,7 +147,7 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDeletePermanentlyButtonAttribute()
+    public function getDeletePermanentlyButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.project.delete-permanently', $this).'" name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.opportunity.project.delete_permanently').'"></i></a> ';
     }
@@ -155,7 +155,7 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getRestoreButtonAttribute()
+    public function getRestoreButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.project.restore', $this).'" name="confirm_item" class="btn btn-info"><i class="fas fa-refresh" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.opportunity.project.restore').'"></i></a> ';
     }
@@ -163,7 +163,7 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getActionButtonsAttribute()
+    public function getActionButtonsAttribute() : string
     {
         // if ($this->trashed()) {
         //     return '

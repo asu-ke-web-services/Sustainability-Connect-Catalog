@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -105,7 +104,7 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getShowButtonAttribute()
+    public function getShowButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.internship.show', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
@@ -113,7 +112,7 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getEditButtonAttribute()
+    public function getEditButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.internship.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
     }
@@ -121,7 +120,7 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDeleteButtonAttribute()
+    public function getDeleteButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.internship.destroy', $this).'"
              data-method="delete"
@@ -134,7 +133,7 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDeletePermanentlyButtonAttribute()
+    public function getDeletePermanentlyButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.internship.delete-permanently', $this).'" name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.opportunity.internship.delete_permanently').'"></i></a> ';
     }
@@ -142,7 +141,7 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getRestoreButtonAttribute()
+    public function getRestoreButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.internship.restore', $this).'" name="confirm_item" class="btn btn-info"><i class="fas fa-refresh" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.opportunity.internship.restore').'"></i></a> ';
     }
@@ -150,7 +149,7 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getActionButtonsAttribute()
+    public function getActionButtonsAttribute() : string
     {
         // if ($this->trashed()) {
         //     return '
@@ -177,7 +176,7 @@ class Internship extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isPublished()
+    public function isPublished() : bool
     {
         return (
             $this->status->indicates_published &&
@@ -339,7 +338,8 @@ class Internship extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function followers() : BelongsToMany {
+    public function followers() : BelongsToMany
+    {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()

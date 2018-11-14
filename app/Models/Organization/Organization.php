@@ -152,7 +152,7 @@ class Organization extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function status()
+    public function status() : BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationStatus::class);
     }
@@ -160,7 +160,7 @@ class Organization extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function type()
+    public function type() : BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationType::class);
     }

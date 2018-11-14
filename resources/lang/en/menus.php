@@ -45,9 +45,11 @@ return [
 
         'opportunity' => [
             'title' => 'Opportunity',
+            'filtered_views' => 'More Views',
 
             'internships' => [
                 'all'         => 'All Internships',
+                'active'      => 'Active Internships',
                 'create'      => 'Create Internship',
                 'inactive'    => 'Inactive Internships',
                 'deleted'     => 'Deleted Internships',
@@ -59,16 +61,19 @@ return [
             ],
 
             'projects' => [
-                'all'         => 'All Projects',
-                'create'      => 'Create Project',
-                'archived'    => 'Archived Projects',
-                'deleted'     => 'Deleted Projects',
-                'edit'        => 'Edit Project',
-                'management'  => 'Project Management',
-                'main'        => 'Projects',
-                'view'        => 'View Project',
+                'all'           => 'All Projects',
+                'active'        => 'Active Projects',
+                'archived'      => 'Archived Projects',
+                'completed'     => 'Completed Projects',
+                'create'        => 'Create Project',
+                'deleted'       => 'Deleted Projects',
+                'edit'          => 'Edit Project',
+                'management'    => 'Project Management',
+                'main'          => 'Projects',
+                'view'          => 'View Project',
                 'import_review' => 'Cleanup Imported Projects',
-                'reviews'     => 'Review Project Proposals',
+                'reviews'       => 'Review Project Proposals',
+                'search'        => 'Search Projects',
             ],
         ],
 

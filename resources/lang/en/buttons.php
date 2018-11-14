@@ -62,7 +62,8 @@ return [
             'view'   => 'View',
         ],
 
-        'save' => 'Save',
-        'view' => 'View',
+        'save'   => 'Save',
+        'submit' => 'Submit',
+        'view'   => 'View',
     ],
 ];

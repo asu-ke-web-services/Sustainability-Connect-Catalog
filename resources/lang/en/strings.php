@@ -25,6 +25,7 @@ return [
                 'delete_project_confirm'  => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
                 'no_archived'             => 'There are no archived projects.',
                 'no_deleted'              => 'There are no deleted projects.',
+                'no_reviews'              => 'There are no project proposals to review.',
                 'restore_project_confirm' => 'Restore this project to its original state?',
             ],
         ],

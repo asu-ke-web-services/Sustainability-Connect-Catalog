@@ -35,7 +35,7 @@ class CreateCategoriesTable extends Migration
 
         Schema::create('categorisables', function (Blueprint $table) {
             $table->integer('category_id')->unsigned();
-            $table->integer('categorisable_id')->unsigned()->index();
+            $table->integer('categorisable_id')->nullable()->unsigned()->index();
             $table->string('categorisable_type')->nullable();
             $table->integer('order')->default(1);
             $table->timestamps();

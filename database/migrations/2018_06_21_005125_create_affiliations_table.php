@@ -46,7 +46,7 @@ class CreateAffiliationsTable extends Migration
 
         Schema::create('affiliationables', function (Blueprint $table) {
             $table->integer('affiliation_id')->unsigned();
-            $table->integer('affiliationable_id')->unsigned()->index();
+            $table->integer('affiliationable_id')->nullable()->unsigned()->index();
             $table->string('affiliationable_type')->nullable();
             $table->integer('order')->default(1);
             $table->timestamps();

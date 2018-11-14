@@ -35,7 +35,7 @@ class CreateKeywordsTable extends Migration
 
         Schema::create('keywordables', function (Blueprint $table) {
             $table->integer('keyword_id')->unsigned();
-            $table->integer('keywordable_id')->unsigned()->index();
+            $table->integer('keywordable_id')->nullable()->unsigned()->index();
             $table->string('keywordable_type')->nullable();
             $table->integer('order')->default(1);
             $table->timestamps();

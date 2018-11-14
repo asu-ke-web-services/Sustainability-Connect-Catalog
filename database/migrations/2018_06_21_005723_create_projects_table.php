@@ -23,8 +23,8 @@ class CreateProjectsTable extends Migration
             $table->dateTime('listing_end_at')->nullable();
             $table->dateTime('application_deadline_at')->nullable();
             $table->string('application_deadline_text')->nullable();
-            $table->integer('opportunity_status_id')->unsigned();
-            $table->integer('review_status_id')->unsigned()->nullable();
+            $table->integer('opportunity_status_id')->unsigned()->nullable()->default(1);
+            $table->integer('review_status_id')->unsigned()->nullable()->default(1);
             $table->text('description')->nullable();
             $table->integer('follower_count')->unsigned()->nullable()->default(0);
             // $table->integer('parent_opportunity_id')->unsigned()->nullable();

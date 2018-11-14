@@ -313,17 +313,17 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function budgetType()
+    public function budgetType() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\BudgetType::class);
+        return $this->belongsTo(\SCCatalog\Models\Lookup\BudgetType::class, 'budget_type_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function reviewStatus()
+    public function reviewStatus() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityReviewStatus::class);
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityReviewStatus::class, 'review_status_id');
     }
 
     /**
@@ -331,7 +331,7 @@ class Project extends Model implements HasMedia
      **/
     public function status() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityStatus::class);
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityStatus::class, 'opportunity_status_id');
     }
 
     /**
@@ -347,7 +347,7 @@ class Project extends Model implements HasMedia
      **/
     public function organization() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class)->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id')->withDefault();
     }
 
     /**

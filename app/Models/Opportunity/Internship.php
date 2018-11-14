@@ -279,7 +279,7 @@ class Internship extends Model implements HasMedia
      **/
     public function status() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityStatus::class);
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityStatus::class, 'opportunity_status_id');
     }
 
     /**
@@ -295,7 +295,7 @@ class Internship extends Model implements HasMedia
      **/
     public function organization() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class)->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id')->withDefault();
     }
 
     /**

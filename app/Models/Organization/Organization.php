@@ -154,7 +154,7 @@ class Organization extends Model
      **/
     public function status() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationStatus::class);
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationStatus::class, 'organization_status_id')->withDefault();
     }
 
     /**
@@ -162,7 +162,7 @@ class Organization extends Model
      **/
     public function type() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationType::class);
+        return $this->belongsTo(\SCCatalog\Models\Lookup\OrganizationType::class, 'organization_type_id')->withDefault();
     }
 
     /**

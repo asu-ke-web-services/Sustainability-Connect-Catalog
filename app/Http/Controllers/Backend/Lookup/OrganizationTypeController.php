@@ -37,7 +37,7 @@ class OrganizationTypeController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.organization_type.index')
-            ->with('organization_types', $this->repository->paginate(15));
+            ->with('organizationTypes', $this->repository->paginate(15));
     }
 
     /**
@@ -68,7 +68,7 @@ class OrganizationTypeController extends Controller
         ));
 
         return redirect()->route('admin.lookup.organization_type.index')
-            ->withFlashSuccess(__('OrganizationType created successfully'));
+            ->withFlashSuccess(__('Organization Type created successfully'));
     }
 
     /**
@@ -84,7 +84,7 @@ class OrganizationTypeController extends Controller
         $organization_type = $this->repository->getById($id);
 
         return view('backend.lookup.organization_type.edit')
-            ->with('organization_type', $organization_type);
+            ->with('organizationType', $organization_type);
     }
 
     /**
@@ -105,7 +105,7 @@ class OrganizationTypeController extends Controller
         ));
 
         return redirect()->route('admin.lookup.organization_type.index')
-            ->withFlashSuccess(__('OrganizationType updated successfully'));
+            ->withFlashSuccess(__('Organization Type updated successfully'));
     }
 
     /**
@@ -122,6 +122,6 @@ class OrganizationTypeController extends Controller
         $this->repository->deleteById($id);
 
         return redirect()->route('admin.lookup.organization_type.index')
-            ->withFlashSuccess('OrganizationType deleted successfully');
+            ->withFlashSuccess('Organization Type deleted successfully');
     }
 }

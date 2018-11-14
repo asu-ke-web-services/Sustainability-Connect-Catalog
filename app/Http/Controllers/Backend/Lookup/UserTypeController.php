@@ -72,20 +72,6 @@ class UserTypeController extends Controller
     }
 
     /**
-     * Display the specified UserType.
-     *
-     * @param ManageLookupRequest $request
-     * @param UserType            $user
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show(ManageLookupRequest $request, UserType $usertype)
-    {
-        return view('usertype.show')
-            ->with('userTypes', $usertype);
-    }
-
-    /**
      * Show the form for editing the specified UserType.
      *
      * @param  int $id
@@ -94,8 +80,10 @@ class UserTypeController extends Controller
      */
     public function edit(ManageLookupRequest $request, $id)
     {
+        $userType = $this->repository->getById($id);
+
         return view('backend.lookup.user_type.edit')
-            ->with('userType', $usertype);
+            ->with('userType', $userType);
     }
 
     /**
@@ -108,7 +96,7 @@ class UserTypeController extends Controller
      */
     public function update(UserTypeRequest $request, $id)
     {
-        $usertype = $this->repository->updateById($usertype->id, $request->only(
+       $this->repository->updateById($usertype->id, $request->only(
             'order',
             'name'
         ));
@@ -128,7 +116,8 @@ class UserTypeController extends Controller
      */
     public function destroy(ManageLookupRequest $request, $id)
     {
-        $this->repository->deleteById($usertype->id);
+        $this->repository->deleteById($id);
+
         return redirect()->route('admin.lookup.user_type.index')
             ->withFlashSuccess('User Type deleted successfully');
     }

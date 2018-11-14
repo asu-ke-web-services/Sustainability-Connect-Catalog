@@ -37,7 +37,7 @@ class BudgetTypeController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.budget_type.index')
-            ->with('budget_types', $this->repository->paginate(15));
+            ->with('budgetTypes', $this->repository->paginate(15));
     }
 
     /**
@@ -84,7 +84,7 @@ class BudgetTypeController extends Controller
         $budget_type = $this->repository->getById($id);
 
         return view('backend.lookup.budget_type.edit')
-            ->with('budget_type', $budget_type);
+            ->with('budgetType', $budget_type);
     }
 
     /**

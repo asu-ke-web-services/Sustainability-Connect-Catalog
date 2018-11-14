@@ -37,7 +37,7 @@ class RelationshipTypeController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.relationship_type.index')
-            ->with('relationship_types', $this->repository->paginate(15));
+            ->with('relationshipTypes', $this->repository->paginate(15));
     }
 
     /**
@@ -68,7 +68,7 @@ class RelationshipTypeController extends Controller
         ));
 
         return redirect()->route('admin.lookup.relationship_type.index')
-            ->withFlashSuccess(__('RelationshipType created successfully'));
+            ->withFlashSuccess(__('Relationship Type created successfully'));
     }
 
     /**
@@ -84,7 +84,7 @@ class RelationshipTypeController extends Controller
         $relationship_type = $this->repository->getById($id);
 
         return view('backend.lookup.relationship_type.edit')
-            ->with('relationship_type', $relationship_type);
+            ->with('relationshipType', $relationship_type);
     }
 
     /**
@@ -105,7 +105,7 @@ class RelationshipTypeController extends Controller
         ));
 
         return redirect()->route('admin.lookup.relationship_type.index')
-            ->withFlashSuccess(__('RelationshipType updated successfully'));
+            ->withFlashSuccess(__('Relationship Type updated successfully'));
     }
 
     /**
@@ -122,6 +122,6 @@ class RelationshipTypeController extends Controller
         $this->repository->deleteById($id);
 
         return redirect()->route('admin.lookup.relationship_type.index')
-            ->withFlashSuccess('RelationshipType deleted successfully');
+            ->withFlashSuccess('Relationship Type deleted successfully');
     }
 }

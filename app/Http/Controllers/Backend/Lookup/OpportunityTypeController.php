@@ -37,7 +37,7 @@ class OpportunityTypeController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.opportunity_type.index')
-            ->with('opportunity_types', $this->repository->paginate(15));
+            ->with('opportunityTypes', $this->repository->paginate(15));
     }
 
     /**
@@ -84,7 +84,7 @@ class OpportunityTypeController extends Controller
         $opportunity_type = $this->repository->getById($id);
 
         return view('backend.lookup.opportunity_type.edit')
-            ->with('opportunity_type', $opportunity_type);
+            ->with('opportunityType', $opportunity_type);
     }
 
     /**

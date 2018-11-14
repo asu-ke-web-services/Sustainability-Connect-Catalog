@@ -37,7 +37,7 @@ class StudentDegreeLevelController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.student_degree_level.index')
-            ->with('student_degree_levels', $this->repository->paginate(15));
+            ->with('studentDegreeLevels', $this->repository->paginate(15));
     }
 
     /**
@@ -68,7 +68,7 @@ class StudentDegreeLevelController extends Controller
         ));
 
         return redirect()->route('admin.lookup.student_degree_level.index')
-            ->withFlashSuccess(__('StudentDegreeLevel created successfully'));
+            ->withFlashSuccess(__('Student Degree Level created successfully'));
     }
 
     /**
@@ -84,7 +84,7 @@ class StudentDegreeLevelController extends Controller
         $student_degree_level = $this->repository->getById($id);
 
         return view('backend.lookup.student_degree_level.edit')
-            ->with('student_degree_level', $student_degree_level);
+            ->with('studentDegreeLevel', $student_degree_level);
     }
 
     /**
@@ -105,7 +105,7 @@ class StudentDegreeLevelController extends Controller
         ));
 
         return redirect()->route('admin.lookup.student_degree_level.index')
-            ->withFlashSuccess(__('StudentDegreeLevel updated successfully'));
+            ->withFlashSuccess(__('Student Degree Level updated successfully'));
     }
 
     /**
@@ -122,6 +122,6 @@ class StudentDegreeLevelController extends Controller
         $this->repository->deleteById($id);
 
         return redirect()->route('admin.lookup.student_degree_level.index')
-            ->withFlashSuccess('StudentDegreeLevel deleted successfully');
+            ->withFlashSuccess('Student Degree Level deleted successfully');
     }
 }

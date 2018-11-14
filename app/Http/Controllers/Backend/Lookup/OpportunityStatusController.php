@@ -38,7 +38,7 @@ class OpportunityStatusController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.opportunity_status.index')
-            ->with('opportunity_statuses', $this->repository->paginate(15));
+            ->with('opportunityStatuses', $this->repository->paginate(15));
     }
 
     /**
@@ -51,7 +51,7 @@ class OpportunityStatusController extends Controller
     public function create(ManageLookupRequest $request, OpportunityTypeRepository $opportunityTypeRepository)
     {
         return view('backend.lookup.opportunity_status.create')
-            ->withTypes($opportunityTypeRepository->get(['id', 'name']));
+            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -87,8 +87,8 @@ class OpportunityStatusController extends Controller
         $opportunity_status = $this->repository->getById($id);
 
         return view('backend.lookup.opportunity_status.edit')
-            ->with('opportunity_status', $opportunity_status)
-            ->withTypes($opportunityTypeRepository->get(['id', 'name']));
+            ->with('opportunityStatus', $opportunity_status)
+            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name', 'id')->toArray());
     }
 
     /**

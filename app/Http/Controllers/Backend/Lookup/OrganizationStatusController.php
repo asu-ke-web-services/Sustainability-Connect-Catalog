@@ -37,7 +37,7 @@ class OrganizationStatusController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.organization_status.index')
-            ->with('organization_statuses', $this->repository->paginate(15));
+            ->with('organizationStatuses', $this->repository->paginate(15));
     }
 
     /**
@@ -84,7 +84,7 @@ class OrganizationStatusController extends Controller
         $organization_status = $this->repository->getById($id);
 
         return view('backend.lookup.organization_status.edit')
-            ->with('organization_status', $organization_status);
+            ->with('organizationStatus', $organization_status);
     }
 
     /**

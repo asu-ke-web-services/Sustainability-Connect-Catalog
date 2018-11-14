@@ -37,7 +37,7 @@ class AttachmentTypeController extends Controller
     public function index(ManageLookupRequest $request)
     {
         return view('backend.lookup.attachment_type.index')
-            ->with('attachment_types', $this->repository->paginate(15));
+            ->with('attachmentTypes', $this->repository->paginate(15));
     }
 
     /**
@@ -83,7 +83,7 @@ class AttachmentTypeController extends Controller
         $attachment_type = $this->repository->getById($id);
 
         return view('backend.lookup.attachment_type.edit')
-            ->with('attachment_type', $attachment_type);
+            ->with('attachmentType', $attachment_type);
     }
 
     /**

@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
 /**
  * Class StudentDegreeLevel
  */
-class StudentDegreeLevel extends Model
+class StudentDegreeLevel extends Model implements Sortable
 {
     use BlameableTrait;
     use HasSlug;
     use SoftDeletes;
+    use SortableTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -52,6 +55,11 @@ class StudentDegreeLevel extends Model
         'order',
         'name',
         'slug',
+    ];
+
+    public $sortable = [
+        'order_column_name'  => 'order',
+        'sort_when_creating' => true,
     ];
 
 

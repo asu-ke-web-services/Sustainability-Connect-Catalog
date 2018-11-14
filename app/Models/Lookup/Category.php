@@ -8,15 +8,18 @@ use Illuminate\Validation\Rule;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
 /**
  * Class Category
  */
-class Category extends Model
+class Category extends Model implements Sortable
 {
     use BlameableTrait;
     use HasSlug;
     use SoftDeletes;
+    use SortableTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +56,11 @@ class Category extends Model
         'order',
         'name',
         'slug',
+    ];
+
+    public $sortable = [
+        'order_column_name'  => 'order',
+        'sort_when_creating' => true,
     ];
 
 

@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
 /**
  * Class OpportunityReviewStatus
  */
-class OpportunityReviewStatus extends Model
+class OpportunityReviewStatus extends Model implements Sortable
 {
     use BlameableTrait;
     use HasSlug;
     use SoftDeletes;
+    use SortableTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +56,11 @@ class OpportunityReviewStatus extends Model
         'order',
         'name',
         'slug',
+    ];
+
+    public $sortable = [
+        'order_column_name'  => 'order',
+        'sort_when_creating' => true,
     ];
 
 

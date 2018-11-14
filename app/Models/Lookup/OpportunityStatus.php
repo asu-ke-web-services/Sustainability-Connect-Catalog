@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
 /**
  * Class OpportunityStatus
  */
-class OpportunityStatus extends Model
+class OpportunityStatus extends Model implements Sortable
 {
     use BlameableTrait;
     use HasSlug;
     use SoftDeletes;
+    use SortableTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +32,7 @@ class OpportunityStatus extends Model
      * @var array
      */
     protected $casts = [
-
+        'indicates_published' => 'boolean',
     ];
 
     /**
@@ -53,6 +56,12 @@ class OpportunityStatus extends Model
         'order',
         'name',
         'slug',
+        'indicates_published',
+    ];
+
+    public $sortable = [
+        'order_column_name'  => 'order',
+        'sort_when_creating' => true,
     ];
 
 

@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
 /**
  * Class Affiliation
  */
-class Affiliation extends Model
+class Affiliation extends Model implements Sortable
 {
     use BlameableTrait;
     use HasSlug;
     use SoftDeletes;
+    use SortableTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -59,6 +62,11 @@ class Affiliation extends Model
         'backend_fa_icon',
         'access_control',
         'public',
+    ];
+
+    public $sortable = [
+        'order_column_name'  => 'order',
+        'sort_when_creating' => true,
     ];
 
 
@@ -106,6 +114,18 @@ class Affiliation extends Model
     public function getAccessControlLabelAttribute()
     {
         if ($this->isAccessControl()) {
+            return '<span class="badge badge-success">'.__('labels.general.yes').'</span>';
+        }
+
+        return '<span class="badge badge-danger">'.__('labels.general.no').'</span>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getPublicLabelAttribute()
+    {
+        if ($this->isPublic()) {
             return '<span class="badge badge-success">'.__('labels.general.yes').'</span>';
         }
 
@@ -160,6 +180,14 @@ class Affiliation extends Model
     public function isAccessControl() : bool
     {
         return $this->access_control;
+    }
+
+    /*
+     * @return bool
+     */
+    public function isPublic() : bool
+    {
+        return $this->public;
     }
 
     /*

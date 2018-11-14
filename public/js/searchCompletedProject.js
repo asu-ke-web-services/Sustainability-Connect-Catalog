@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -100218,7 +100218,44 @@ var Results = exports.Results = function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/SearchApp.js":
+/***/ "./resources/assets/js/frontend/components/SearchBox.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SearchBox = undefined;
+
+var _react = __webpack_require__("./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactInstantsearchDom = __webpack_require__("./node_modules/react-instantsearch-dom/dist/es/index.js");
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var SearchBox = exports.SearchBox = (0, _reactInstantsearchDom.connectSearchBox)(function (_ref) {
+  var currentRefinement = _ref.currentRefinement,
+      refine = _ref.refine;
+  return _react2.default.createElement('div', { className: 'input-group' }, _react2.default.createElement('input', {
+    type: 'text',
+    value: currentRefinement,
+    onChange: function onChange(e) {
+      return refine(e.target.value);
+    },
+    autoComplete: 'off',
+    className: 'form-control'
+  }), _react2.default.createElement('span', { className: 'input-group-btn' }, _react2.default.createElement('button', { className: 'btn btn-default' }, _react2.default.createElement('i', { className: 'fa fa-search' }))));
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/frontend/components/SearchCompletedApp.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -100280,19 +100317,19 @@ var VirtualMenu = (0, _reactInstantsearchDom.connectMenu)(function () {
   return null;
 });
 var Active = function Active() {
-  return _react2.default.createElement(VirtualMenu, { attribute: 'active', defaultRefinement: 'true' });
+  return _react2.default.createElement(VirtualMenu, { attribute: 'active', defaultRefinement: 'false' });
 };
 
-var SearchApp = function (_Component) {
-  _inherits(SearchApp, _Component);
+var SearchCompletedApp = function (_Component) {
+  _inherits(SearchCompletedApp, _Component);
 
-  function SearchApp() {
-    _classCallCheck(this, SearchApp);
+  function SearchCompletedApp() {
+    _classCallCheck(this, SearchCompletedApp);
 
-    return _possibleConstructorReturn(this, (SearchApp.__proto__ || Object.getPrototypeOf(SearchApp)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (SearchCompletedApp.__proto__ || Object.getPrototypeOf(SearchCompletedApp)).apply(this, arguments));
   }
 
-  _createClass(SearchApp, [{
+  _createClass(SearchCompletedApp, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(_reactInstantsearchDom.InstantSearch, {
@@ -100309,47 +100346,10 @@ var SearchApp = function (_Component) {
     }
   }]);
 
-  return SearchApp;
+  return SearchCompletedApp;
 }(_react.Component);
 
-exports.default = (0, _urlSync.withUrlSync)(SearchApp);
-
-/***/ }),
-
-/***/ "./resources/assets/js/frontend/components/SearchBox.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.SearchBox = undefined;
-
-var _react = __webpack_require__("./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactInstantsearchDom = __webpack_require__("./node_modules/react-instantsearch-dom/dist/es/index.js");
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var SearchBox = exports.SearchBox = (0, _reactInstantsearchDom.connectSearchBox)(function (_ref) {
-  var currentRefinement = _ref.currentRefinement,
-      refine = _ref.refine;
-  return _react2.default.createElement('div', { className: 'input-group' }, _react2.default.createElement('input', {
-    type: 'text',
-    value: currentRefinement,
-    onChange: function onChange(e) {
-      return refine(e.target.value);
-    },
-    autoComplete: 'off',
-    className: 'form-control'
-  }), _react2.default.createElement('span', { className: 'input-group-btn' }, _react2.default.createElement('button', { className: 'btn btn-default' }, _react2.default.createElement('i', { className: 'fa fa-search' }))));
-});
+exports.default = (0, _urlSync.withUrlSync)(SearchCompletedApp);
 
 /***/ }),
 
@@ -100740,7 +100740,7 @@ var withUrlSync = exports.withUrlSync = function withUrlSync(App) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/searchInternship.js":
+/***/ "./resources/assets/js/frontend/searchCompletedProject.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -100754,9 +100754,9 @@ var _reactDom = __webpack_require__("./node_modules/react-dom/index.js");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _SearchApp = __webpack_require__("./resources/assets/js/frontend/components/SearchApp.js");
+var _SearchCompletedApp = __webpack_require__("./resources/assets/js/frontend/components/SearchCompletedApp.js");
 
-var _SearchApp2 = _interopRequireDefault(_SearchApp);
+var _SearchCompletedApp2 = _interopRequireDefault(_SearchCompletedApp);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -100777,9 +100777,9 @@ function _interopRequireDefault(obj) {
  */
 
 if (document.getElementById('search')) {
-  _reactDom2.default.render(_react2.default.createElement(_SearchApp2.default, {
-    indexName: 'internships',
-    viewActive: true,
+  _reactDom2.default.render(_react2.default.createElement(_SearchCompletedApp2.default, {
+    indexName: 'projects',
+    viewActive: false,
     userAccessAffiliations: JSON.parse(algolia.userAccessAffiliations),
     canViewRestricted: algolia.canViewRestricted
   }), document.querySelector('#search'));
@@ -100819,10 +100819,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/frontend/searchInternship.js");
+module.exports = __webpack_require__("./resources/assets/js/frontend/searchCompletedProject.js");
 
 
 /***/ })

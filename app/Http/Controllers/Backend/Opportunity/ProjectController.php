@@ -4,8 +4,7 @@ namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Events\Backend\Opportunity\ProjectDeleted;
-use SCCatalog\Http\Requests\Backend\Opportunity\CreateProjectRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\StoreProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\DeleteProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
@@ -93,12 +92,11 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new Project.
      *
-     * @param CreateProjectRequest $request
+     * @param StoreProjectRequest $request
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
-     * @param ProjectRepository $projectRepository
      * @param OpportunityStatusRepository $opportunityStatusRepository
      * @param OpportunityReviewStatusRepository $opportunityReviewStatusRepository
      * @param OrganizationRepository $organizationRepository
@@ -107,7 +105,7 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-            CreateProjectRequest $request,
+            StoreProjectRequest $request,
             AffiliationRepository $affiliationRepository,
             BudgetTypeRepository $budgetTypeRepository,
             CategoryRepository $categoryRepository,
@@ -119,45 +117,27 @@ class ProjectController extends Controller
     )
     {
         return view('backend.opportunity.project.create')
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1,2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
      * Store a newly created Project in storage.
      *
-     * @param CreateProjectRequest $request
+     * @param StoreProjectRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(CreateProjectRequest $request)
+    public function store(StoreProjectRequest $request)
     {
-        $project = $this->projectRepository->create($request->only(
-            'name',
-            'description',
-            'listing_start_at',
-            'listing_end_at',
-            'application_deadline_at',
-            'application_deadline_text',
-            'opportunity_status_id',
-            'opportunity_start_at',
-            'opportunity_end_at',
-            'organization_id',
-            // 'parent_opportunity_id',
-            'supervisor_user_id',
-            'opportunity_status_id',
-            'affiliations',
-            'categories',
-            'keywords',
-            'addresses'
-        ));
+        $project = $this->projectRepository->create($request->all());
 
         return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project created successfully'));
@@ -235,16 +215,18 @@ class ProjectController extends Controller
             'users'
         );
 
+        // dd($opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1,2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', '!=', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -258,24 +240,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $project = $this->projectRepository->update($project, $request->only(
-            'name',
-            'description',
-            'listing_start_at',
-            'listing_end_at',
-            'application_deadline_at',
-            'application_deadline_text',
-            'opportunity_start_at',
-            'opportunity_end_at',
-            'opportunity_status_id',
-            'organization_id',
-            // 'parent_opportunity_id',
-            'supervisor_user_id',
-            'affiliations',
-            'categories',
-            'keywords',
-            'addresses'
-        ));
+        $project = $this->projectRepository->update($project, $request->all());
 
         return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project updated successfully'));

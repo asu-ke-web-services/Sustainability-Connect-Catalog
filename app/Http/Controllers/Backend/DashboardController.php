@@ -55,11 +55,12 @@ class DashboardController extends Controller
     public function index()
     {
         return view('backend.dashboard')
-            ->with('projectsTotal', $this->projectRepository->count())
-            ->with('internshipsTotal', $this->internshipRepository->count())
-            ->with('activeUsersTotal', $this->userRepository->count())
-            ->with('projectsUnderReview', $this->projectRepository->getProposalReviewsPaginated(5, 'created_at', 'asc'))
-            ->with('newUsersToReview', $this->userRepository->getNeedsAffiliationReviewPaginated(5, 'created_at', 'asc'))
+            ->with('activeProjectsCount', $this->projectRepository->getActiveCount())
+            ->with('completedProjectsCount', $this->projectRepository->getCompletedCount())
+            ->with('activeInternshipsCount', $this->internshipRepository->getActiveCount())
+            ->with('activeUsersCount', $this->userRepository->getActiveCount())
+            ->with('projectsUnderReview', $this->projectRepository->getProposalReviewsPaginated(5, '', 'created_at', 'asc'))
+            ->with('newUsersToReview', $this->userRepository->getNeedsAffiliationReviewPaginated(5, '', 'created_at', 'asc'))
             // ->with('activeProjectMembers', $this->userRepository->getActiveOpportunityMembersPaginated(25, 'application_deadline_at', 'asc'));
             ->with('activeProjectMembers', $this->userRepository->has('participatingInProjects')->get());
     }

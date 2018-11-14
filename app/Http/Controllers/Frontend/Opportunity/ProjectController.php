@@ -14,7 +14,6 @@ use SCCatalog\Repositories\Frontend\Lookup\CategoryRepository;
 use SCCatalog\Repositories\Frontend\Lookup\KeywordRepository;
 use SCCatalog\Repositories\Frontend\Lookup\OpportunityStatusRepository;
 use SCCatalog\Repositories\Frontend\Lookup\OpportunityReviewStatusRepository;
-use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\ProjectRepository;
 use SCCatalog\Repositories\Frontend\Organization\OrganizationRepository;
 
@@ -39,7 +38,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Display a listing of the Project.
+     * Display a listing of the Projects.
      *
      * @param ViewProjectRequest $request
      *
@@ -53,7 +52,7 @@ class ProjectController extends Controller
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
         }
 
         JavaScript::put([
@@ -111,12 +110,12 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-            ViewProjectRequest $request,
+            StoreProjectRequest $request,
             AffiliationRepository $affiliationRepository,
             BudgetTypeRepository $budgetTypeRepository,
             CategoryRepository $categoryRepository,
             KeywordRepository $keywordRepository,
-            OpportunityRepository $opportunityRepository,
+            // OpportunityRepository $opportunityRepository,
             OpportunityStatusRepository $opportunityStatusRepository,
             OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
             OrganizationRepository $organizationRepository,
@@ -124,15 +123,15 @@ class ProjectController extends Controller
     )
     {
         return view('frontend.opportunity.project.create')
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1,2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            // ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -147,20 +146,18 @@ class ProjectController extends Controller
     {
         $project = $this->projectRepository->create($request->only(
             'name',
-            'public_name',
             'description',
             'listing_start_at',
             'listing_end_at',
             'application_deadline_at',
-            'application_deadline_text',
+            // 'application_deadline_text',
             'opportunity_status_id',
             'opportunity_start_at',
             'opportunity_end_at',
             'organization_id',
-            'parent_opportunity_id',
+            // 'parent_opportunity_id',
             'supervisor_user_id',
             'opportunity_status_id',
-            'opportunityable',
             'affiliations',
             'categories',
             'keywords',
@@ -171,8 +168,8 @@ class ProjectController extends Controller
 
         // event(new ProjectCreated($project));
 
-        return redirect()->route('admin.opportunity.project.show', $project)
-            ->withFlashSuccess(__('Project created successfully'));
+        return redirect()->route('frontend.user.dashboard', $project)
+            ->withFlashSuccess(__('Proposal successfully submitted'));
     }
 
     /**
@@ -187,11 +184,10 @@ class ProjectController extends Controller
     {
         $project = $this->projectRepository
             ->with([
-                'opportunityable',
                 'addresses',
                 'notes',
                 'status',
-                'parentOpportunity',
+                // 'parentOpportunity',
                 'organization',
                 'supervisorUser',
                 'submittingUser',
@@ -203,20 +199,22 @@ class ProjectController extends Controller
             ])
             ->getById($id);
 
+        $isFollowed = false;
+
         if ( auth()->user() !== null ) {
             $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
 
-            $followedOpportunities = auth()->user()->followedOpportunities
-                ->map(function ($opportunity) {
-                    return $opportunity['id'];
+            $followedProjects = auth()->user()->followedProjects
+                ->map(function ($project) {
+                    return $project['id'];
                 })->toArray();
 
-            $isFollowed = in_array($id, $followedOpportunities);
+            $isFollowed = in_array($id, $followedProjects);
 
         }
 

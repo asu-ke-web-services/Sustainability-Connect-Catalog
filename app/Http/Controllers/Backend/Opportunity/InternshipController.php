@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Backend\Opportunity\InternshipDeleted;
-use SCCatalog\Http\Requests\Backend\Opportunity\CreateInternshipRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\StoreInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\DeleteInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipRequest;
@@ -72,7 +72,7 @@ class InternshipController extends Controller
     /**
      * Show the form for creating a new Internship.
      *
-     * @param CreateInternshipRequest $request
+     * @param StoreInternshipRequest $request
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
@@ -84,7 +84,7 @@ class InternshipController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-        CreateInternshipRequest $request,
+        StoreInternshipRequest $request,
         AffiliationRepository $affiliationRepository,
         CategoryRepository $categoryRepository,
         KeywordRepository $keywordRepository,
@@ -95,42 +95,25 @@ class InternshipController extends Controller
     )
     {
         return view('backend.opportunity.internship.create')
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', '!=', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1,3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', '!=', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 3)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
      * Store a newly created Internship in storage.
      *
-     * @param CreateInternshipRequest $request
+     * @param StoreInternshipRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(CreateInternshipRequest $request)
+    public function store(StoreInternshipRequest $request)
     {
-        $internship = $this->internshipRepository->create($request->only(
-            'name',
-            'description',
-            'listing_start_at',
-            'listing_end_at',
-            'application_deadline_at',
-            'application_deadline_text',
-            'opportunity_status_id',
-            'opportunity_start_at',
-            'opportunity_end_at',
-            'organization_id',
-            // 'parent_opportunity_id',
-            'supervisor_user_id',
-            'affiliations',
-            'categories',
-            'keywords',
-            'addresses'
-        ));
+        $internship = $this->internshipRepository->create($request->all());
 
         return redirect()->route('admin.opportunity.internship.show', $internship)
             ->withFlashSuccess(__('Internship created successfully'));
@@ -191,26 +174,29 @@ class InternshipController extends Controller
     {
         $internship->loadMissing(
             'addresses',
+            'affiliations',
             'notes',
             'status',
             // 'parentOpportunity',
             'organization',
             'supervisorUser',
             'submittingUser',
-            'affiliations',
             'categories',
             'keywords',
             'users'
         );
 
+        // dd($internship->affiliations);
+
+
         return view('backend.opportunity.internship.edit')
             ->with('internship', $internship)
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', '!=', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1,3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', '!=', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 3)->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -224,24 +210,7 @@ class InternshipController extends Controller
      */
     public function update(UpdateInternshipRequest $request, Internship $internship)
     {
-        $internship = $this->internshipRepository->update($internship, $request->only(
-            'name',
-            'description',
-            'listing_start_at',
-            'listing_end_at',
-            'application_deadline_at',
-            'application_deadline_text',
-            'opportunity_start_at',
-            'opportunity_end_at',
-            'opportunity_status_id',
-            'organization_id',
-            // 'parent_opportunity_id',
-            'supervisor_user_id',
-            'affiliations',
-            'categories',
-            'keywords',
-            'addresses'
-        ));
+        $internship = $this->internshipRepository->update($internship, $request->all());
 
         return redirect()->route('admin.opportunity.internship.show', $internship)
             ->withFlashSuccess(__('Internship updated successfully'));

@@ -53,6 +53,8 @@ class OrganizationController extends Controller
      *
      * @param ManageOrganizationRequest $request
      *
+     * @param OrganizationStatusRepository $organizationStatusRepository
+     * @param OrganizationTypeRepository $organizationTypeRepository
      * @return mixed
      */
     public function create(ManageOrganizationRequest $request, OrganizationStatusRepository $organizationStatusRepository, OrganizationTypeRepository $organizationTypeRepository)
@@ -85,7 +87,9 @@ class OrganizationController extends Controller
      * Show the form for editing the specified Organization.
      *
      * @param ManageOrganizationRequest $request
-     * @param int                 $organizationId
+     * @param OrganizationStatusRepository $organizationStatusRepository
+     * @param OrganizationTypeRepository $organizationTypeRepository
+     * @param int $organizationId
      *
      * @return mixed
      */

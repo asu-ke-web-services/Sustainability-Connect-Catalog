@@ -6,7 +6,6 @@ use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
 use SCCatalog\Repositories\Frontend\Auth\UserRepository;
-use SCCatalog\Repositories\Frontend\Opportunity\OpportunityRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\InternshipRepository;
 
 /**
@@ -44,7 +43,7 @@ class InternshipController extends Controller
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted internship');
         }
 
         JavaScript::put([
@@ -69,11 +68,10 @@ class InternshipController extends Controller
     {
         $internship = $this->internshipRepository
             ->with([
-                'opportunityable',
                 'addresses',
                 'notes',
                 'status',
-                'parentOpportunity',
+                // 'parentOpportunity',
                 'organization',
                 'supervisorUser',
                 'submittingUser',
@@ -85,20 +83,22 @@ class InternshipController extends Controller
             ])
             ->getById($id);
 
+        $isFollowed = false;
+
         if ( auth()->user() !== null ) {
             $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted opportunity');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted internship');
 
-            $followedOpportunities = auth()->user()->followedOpportunities
-                ->map(function ($opportunity) {
-                    return $opportunity['id'];
+            $followedInternships = auth()->user()->followedInternships
+                ->map(function ($internship) {
+                    return $internship['id'];
                 })->toArray();
 
-            $isFollowed = in_array($id, $followedOpportunities);
+            $isFollowed = in_array($id, $followedInternships);
 
         }
 

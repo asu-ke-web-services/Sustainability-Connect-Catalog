@@ -71,7 +71,7 @@ class UserController extends Controller
     )
     {
         return view('backend.auth.user.create')
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->where('access_control', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('studentDegreeLevels', $studentDegreeLevelRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('userTypes', $userTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -87,26 +87,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $this->userRepository->create($request->only(
-            'first_name',
-            'last_name',
-            'email',
-            'password',
-            'active',
-            'confirmed',
-            'confirmation_email',
-            'roles',
-            'permissions',
-            'user_type_id',
-            'student_degree_level_id',
-            'degree_program',
-            'graduation_date',
-            'phone',
-            'research_interests',
-            'department',
-            'organization_id',
-            'affiliations'
-        ));
+        $this->userRepository->create($request->all());
 
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.created'));
     }
@@ -155,7 +136,7 @@ class UserController extends Controller
             ->withUserRoles($user->roles->pluck('name')->all())
             ->withPermissions($permissionRepository->get(['id', 'name']))
             ->withUserPermissions($user->permissions->pluck('name')->all())
-            ->with('affiliations', $affiliationRepository->where('opportunity_type_id', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->where('access_control', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('studentDegreeLevels', $studentDegreeLevelRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('userTypes', $userTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray());
@@ -171,22 +152,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->userRepository->update($user, $request->only(
-            'first_name',
-            'last_name',
-            'email',
-            'roles',
-            'permissions',
-            'user_type_id',
-            'student_degree_level_id',
-            'degree_program',
-            'graduation_date',
-            'phone',
-            'research_interests',
-            'department',
-            'organization_id',
-            'affiliations'
-        ));
+        $this->userRepository->update($user, $request->all());
 
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.updated'));
     }

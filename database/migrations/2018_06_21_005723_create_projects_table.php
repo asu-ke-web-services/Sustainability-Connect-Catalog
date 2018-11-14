@@ -30,6 +30,7 @@ class CreateProjectsTable extends Migration
             // $table->integer('parent_opportunity_id')->unsigned()->nullable();
             $table->integer('supervisor_user_id')->unsigned()->nullable();
             $table->integer('submitting_user_id')->unsigned()->nullable();
+            $table->integer('organization_id')->unsigned()->nullable();
             $table->text('degree_program')->nullable();
             $table->text('compensation')->nullable();
             $table->text('responsibilities')->nullable();
@@ -66,6 +67,9 @@ class CreateProjectsTable extends Migration
 
             $table->foreign('submitting_user_id')
                 ->references('id')->on('users');
+
+            $table->foreign('organization_id')
+                ->references('id')->on('organizations');
 
             $table->foreign('created_by')
                 ->references('id')->on('users');

@@ -8,6 +8,7 @@ use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
 use SCCatalog\Events\Backend\Opportunity\ProjectUpdated;
 use SCCatalog\Events\Backend\Opportunity\ProjectCloned;
 use SCCatalog\Models\Address\Address;
+use SCCatalog\Models\Lookup\Affiliation;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -237,41 +238,40 @@ class ProjectRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data) {
 
-            $internship = $this->model->create($data);
+            $project = $this->model->create($data);
 
-            if ($internship) {
+            if ($project) {
                 // sync Addresses
                 if ( isset($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
-                        $newAddress = Address::create($address);
-                        $internship->addresses()->attach($newAddress);
+                        $project->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
 
                 // sync Affiliations
                 if ( isset($data['affiliations'] ) ) {
                     foreach ($data['affiliations'] as $affiliation) {
-                        $internship->affiliations()->attach($affiliation);
+                        $project->affiliations->attach($affiliation);
                     }
                 }
 
                 // sync Categories
                 if ( isset($data['categories'] ) ) {
                     foreach ($data['categories'] as $category) {
-                        $internship->categories()->attach($category);
+                        $project->categories->attach($category);
                     }
                 }
 
                 // sync Keywords
                 if ( isset($data['keywords'] ) ) {
                     foreach ($data['keywords'] as $keyword) {
-                        $internship->keywords()->attach($keyword);
+                        $project->keywords->attach($keyword);
                     }
                 }
 
-                event(new ProjectCreated($internship));
+                event(new ProjectCreated($project));
 
-                return $internship;
+                return $project;
             }
 
             throw new GeneralException(__('exceptions.backend.opportunity.create_error'));
@@ -281,52 +281,51 @@ class ProjectRepository extends BaseRepository
     /**
      * Create a new Project record in the database.
      *
-     * @param Project $internship
+     * @param Project $project
      * @param array $data
      *
      * @return \Illuminate\Database\Eloquent\Model
      * @throws \Throwable
      */
-    public function update(Project $internship, array $data)
+    public function update(Project $project, array $data)
     {
-        $internship->loadMissing(
+        $project->loadMissing(
             'addresses',
             'affiliations',
             'categories',
             'keywords'
         );
 
-        return DB::transaction(function () use ($internship, $data) {
+        return DB::transaction(function () use ($project, $data) {
 
-            if ($internship->update($data)) {
+            if ($project->update($data)) {
                 // sync Addresses
                 if ( isset($data['addresses'] ) ) {
-                    $addresses = [];
                     foreach ($data['addresses'] as $address) {
-                        $addresses[] = Address::firstOrCreate($address);
+                        $project->addresses()->save(Address::firstOrCreate($address));
                     }
-                    $addressIds = array_map(function($address) { return $address->id; }, $addresses);
-                    $internship->addresses()->sync($addressIds);
                 }
 
                 // sync Affiliations
                 if ( isset($data['affiliations'] ) ) {
-                    $internship->affiliations()->sync($data['affiliations']);
+                    foreach ($data['affiliations'] as $affiliation) {
+                        $project->affiliations()->attach(Affiliation::firstOrFail($affiliation));
+                    }
                 }
 
                 // sync Categories
                 if ( isset($data['categories'] ) ) {
-                    $internship->categories()->sync($data['categories']);
+                    $project->categories->sync($data['categories']);
                 }
 
                 // sync Keywords
                 if ( isset($data['keywords'] ) ) {
-                    $internship->keywords()->sync($data['keywords']);
+                    $project->keywords->sync($data['keywords']);
                 }
 
-                event(new ProjectUpdated($internship));
+                event(new ProjectUpdated($project));
 
-                return $internship;
+                return $project;
             }
 
             throw new GeneralException(__('exceptions.backend.opportunity.update_error'));
@@ -389,7 +388,7 @@ class ProjectRepository extends BaseRepository
             // attach associated models
             foreach($project->getRelations() as $relation => $items){
                 foreach($items as $item){
-                    $clone->{$relation}()->attach($item->id);
+                    $clone->{$relation}->attach($item->id);
                 }
             }
 

@@ -155,8 +155,7 @@ class InternshipRepository extends BaseRepository
                 // sync Addresses
                 if ( isset($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
-                        $newAddress = Address::create($address);
-                        $internship->addresses()->attach($newAddress);
+                        $internship->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
 
@@ -213,12 +212,9 @@ class InternshipRepository extends BaseRepository
             if ($internship->update($data)) {
                 // sync Addresses
                 if ( isset($data['addresses'] ) ) {
-                    $addresses = [];
                     foreach ($data['addresses'] as $address) {
-                        $addresses[] = Address::firstOrCreate($address);
+                        $internship->addresses()->save(Address::firstOrCreate($address));
                     }
-                    $addressIds = array_map(function($address) { return $address->id; }, $addresses);
-                    $internship->addresses()->sync($addressIds);
                 }
 
                 // sync Affiliations

@@ -3,7 +3,7 @@
 namespace SCCatalog\Repositories\Frontend\Opportunity;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use SCCatalog\Models\Opportunity\Project;
+use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\BaseRepository;
 
 /**

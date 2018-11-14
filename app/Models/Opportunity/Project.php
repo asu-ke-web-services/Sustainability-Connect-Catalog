@@ -491,18 +491,21 @@ class Project extends Model implements HasMedia
 
     /**
      * @param $query
-     * @param bool $active
      *
      * @return mixed
      */
-    public function scopeActive($query, $active = true)
+    public function scopeActive($query)
     {
-        return $query->whereIn('opportunity_status_id', [
-            3, // Seeking Champion
-            4, // Recruiting Participants
-            5, // Positions Filled
-            6, // In Progress
-        ]);
+        return $query->where([
+                ['application_deadline_at', '<>', null],
+                ['application_deadline_at', '>', Carbon::tomorrow()],
+            ])
+            ->whereIn('opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ]);
     }
 
     /**
@@ -512,9 +515,7 @@ class Project extends Model implements HasMedia
      */
     public function scopeCompleted($query)
     {
-        return $query->whereIn('opportunity_status_id', [
-            7, // Completed
-        ]);
+        return $query->where('opportunity_status_id', 7);
     }
 
     /**
@@ -526,6 +527,22 @@ class Project extends Model implements HasMedia
     {
         return $query->whereIn('opportunity_status_id', [
             2, // Archived
+        ]);
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopePublished($query)
+    {
+        return $query->whereIn('opportunity_status_id', [
+            3, // Seeking Champion
+            4, // Recruiting Participants
+            5, // Positions Filled
+            6, // In Progress
+            7, // Completed
         ]);
     }
 

@@ -35,6 +35,16 @@ class UserRepository extends BaseRepository
     /**
      * @return mixed
      */
+    public function getActiveCount()
+    {
+        return $this->model
+            ->active()
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
     public function getUnconfirmedCount() : int
     {
         return $this->model

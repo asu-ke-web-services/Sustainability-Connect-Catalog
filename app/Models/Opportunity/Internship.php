@@ -179,11 +179,14 @@ class Internship extends Model implements HasMedia
     public function isPublished() : bool
     {
         return (
-            $this->status->indicates_published &&
-            $this->listing_start_at !== null &&
-            $this->listing_start_at->lessThan(Carbon::today()) &&
-            $this->listing_end_at !== null &&
-            $this->listing_end_at->greaterThan(Carbon::today())
+            9 === $this->opportunity_status_id &&
+            null !== $this->application_deadline_at &&
+            $this->application_deadline_at->greaterThan(Carbon::today())
+
+            // $this->listing_start_at !== null &&
+            // $this->listing_start_at->lessThan(Carbon::today()) &&
+            // $this->listing_end_at !== null &&
+            // $this->listing_end_at->greaterThan(Carbon::today())
         );
     }
 
@@ -440,22 +443,28 @@ class Internship extends Model implements HasMedia
 
     /**
      * @param $query
-     * @param bool $active
-     *
      * @return mixed
      */
-    public function scopeActive($query, $active = true)
+    public function scopeActive($query)
     {
-        if ($active) {
-            return $query->whereIn('opportunity_status_id', [
-                9, // Active
-            ]);
-        } else {
-            // Inacctive internships
-            return $query->whereIn('opportunity_status_id', [
-                8, // Inactive
-            ]);
-        }
+        return $query
+            ->where([
+                ['application_deadline_at', '<>', null],
+                ['application_deadline_at', '>', Carbon::tomorrow()],
+            ])
+            ->where('opportunity_status_id', 9);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeInactive($query)
+    {
+        return $query
+            ->where('opportunity_status_id', 8);
+            // ->where('application_deadline_at', null, '!==')
+            // ->where('application_deadline_at', Carbon::today(), '>');
     }
 
     /**

@@ -47,6 +47,13 @@ class InternshipRepository extends BaseRepository
     /**
      * @return mixed
      */
+    public function getActiveCount()
+    {
+        return $this->model
+            ->active()
+            ->count();
+    }
+
     /**
      * @param int $paged
      * @param string $search

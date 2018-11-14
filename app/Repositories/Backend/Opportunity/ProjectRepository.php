@@ -45,7 +45,38 @@ class ProjectRepository extends BaseRepository
     ];
 
     /**
-     * @param int    $paged
+     * @return mixed
+     */
+    public function getActiveCount()
+    {
+        return $this->model
+            ->active()
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompletedCount()
+    {
+        return $this->model
+            ->completed()
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublishedCount()
+    {
+        return $this->model
+            ->published()
+            ->count();
+    }
+
+    /**
+     * @param int $paged
+     * @param string $search
      * @param string $orderBy
      * @param string $sort
      *

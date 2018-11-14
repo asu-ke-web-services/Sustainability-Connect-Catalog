@@ -6,6 +6,8 @@ use SCCatalog\Models\Address\Address;
 use SCCatalog\Models\Note\Note;
 use SCCatalog\Models\Lookup\OrganizationType;
 use SCCatalog\Models\Lookup\OrganizationStatus;
+use SCCatalog\Models\Opportunity\Internship;
+use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Models\Organization\Organization;
 
 class OrganizationsTableSeeder extends Seeder
@@ -18,6 +20,8 @@ class OrganizationsTableSeeder extends Seeder
     public function run()
     {
         Organization::withoutSyncingToSearch(function () {
+        Project::withoutSyncingToSearch(function () {
+        Internship::withoutSyncingToSearch(function () {
             // Pre-fill Organization Status options
 
             $organization_statuses = OrganizationStatus::firstOrNew([
@@ -25,7 +29,6 @@ class OrganizationsTableSeeder extends Seeder
             ]);
             if (!$organization_statuses->exists) {
                 $organization_statuses->fill([
-                    'order' => 1,
                     'name' => 'Inactive',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -39,7 +42,6 @@ class OrganizationsTableSeeder extends Seeder
             ]);
             if (!$organization_statuses->exists) {
                 $organization_statuses->fill([
-                    'order' => 2,
                     'name' => 'Active',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -56,7 +58,6 @@ class OrganizationsTableSeeder extends Seeder
             ]);
             if (!$organization_types->exists) {
                 $organization_types->fill([
-                    'order' => 1,
                     'name' => 'Government',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -70,7 +71,6 @@ class OrganizationsTableSeeder extends Seeder
             ]);
             if (!$organization_types->exists) {
                 $organization_types->fill([
-                    'order' => 2,
                     'name' => 'Non-Governmental (NGO)',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -84,7 +84,6 @@ class OrganizationsTableSeeder extends Seeder
             ]);
             if (!$organization_types->exists) {
                 $organization_types->fill([
-                    'order' => 3,
                     'name' => 'Non-Profit',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -98,7 +97,6 @@ class OrganizationsTableSeeder extends Seeder
             ]);
             if (!$organization_types->exists) {
                 $organization_types->fill([
-                    'order' => 4,
                     'name' => 'Corporation',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -1743,7 +1741,7 @@ Our vision is to empower communities to break the cycle of poverty through innov
                 if (isset($organization['note'])) {
                     $newNote = Note::create([
                         'notable_id'   => $newOrganization->id,
-                        'notable_type' => 'Project',
+                        'notable_type' => 'Organization',
                         'user_id'      => 1,
                         'body'         => $organization['note'],
                         'created_at'   => Carbon::now(),
@@ -1755,35 +1753,26 @@ Our vision is to empower communities to break the cycle of poverty through innov
 
                 if (isset($organization['project_ids'])) {
                     foreach ($organization['project_ids'] as $order => $project_id) {
-                        DB::table('project_organization')->insert([
-                            'project_id'         => $project_id,
-                            'organization_id'    => $newOrganization->id,
-                            'project_order'      => 1,
-                            'organization_order' => $order + 1,
-                            'created_at'         => Carbon::now(),
-                            'updated_at'         => Carbon::now(),
-                            'created_by'         => 1,
-                            'updated_by'         => 1,
-                        ]);
+                        $project = Project::find($project_id);
+                        if ($project) {
+                            $project->organization_id = $newOrganization->id;
+                            $project->save();
+                        }
                     }
                 }
 
                 if (isset($organization['internship_ids'])) {
                     foreach ($organization['internship_ids'] as $order => $internship_id) {
-                        DB::table('internship_organization')->insert([
-                            'internship_id'      => $internship_id,
-                            'organization_id'    => $newOrganization->id,
-                            'internship_order'   => 1,
-                            'organization_order' => $order + 1,
-                            'created_at'         => Carbon::now(),
-                            'updated_at'         => Carbon::now(),
-                            'created_by'         => 1,
-                            'updated_by'         => 1,
-                        ]);
+                        $internship = Internship::find($internship_id);
+                        if ($internship) {
+                            $internship->organization_id = $newOrganization->id;
+                            $internship->save();
+                        }
                     }
                 }
             }
-
+        });
+        });
         });
     }
 }

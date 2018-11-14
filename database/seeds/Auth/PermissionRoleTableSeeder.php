@@ -80,7 +80,7 @@ class PermissionRoleTableSeeder extends Seeder
 
         $mentor->givePermissionTo(
             'view personal dashboard',
-            'submit project idea',
+            'submit project proposal',
             'read restricted project',
             'follow project',
             'read restricted internship',

@@ -18,7 +18,6 @@ class CategoriesTableSeeder extends Seeder
         ]);
         if (!$category->exists) {
             $category->fill([
-            	'order' => 1,
                 'name' => 'Culminating Experience',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -32,7 +31,6 @@ class CategoriesTableSeeder extends Seeder
         ]);
         if (!$category->exists) {
             $category->fill([
-            	'order' => 2,
                 'name' => 'Global Development Research (GDR)',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -46,7 +44,6 @@ class CategoriesTableSeeder extends Seeder
         ]);
         if (!$category->exists) {
             $category->fill([
-            	'order' => 3,
                 'name' => 'Internship',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -60,7 +57,6 @@ class CategoriesTableSeeder extends Seeder
         ]);
         if (!$category->exists) {
             $category->fill([
-            	'order' => 4,
                 'name' => 'Practicum',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -74,7 +70,6 @@ class CategoriesTableSeeder extends Seeder
         ]);
         if (!$category->exists) {
             $category->fill([
-            	'order' => 5,
                 'name' => 'Research',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -88,7 +83,6 @@ class CategoriesTableSeeder extends Seeder
         ]);
         if (!$category->exists) {
             $category->fill([
-            	'order' => 6,
                 'name' => 'Workshop',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

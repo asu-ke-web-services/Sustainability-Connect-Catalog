@@ -18,7 +18,6 @@ class AttachmentTypesTableSeeder extends Seeder
         ]);
         if (!$type->exists) {
             $type->fill([
-            	'order' => 1,
                 'name' => 'Final Report',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -32,7 +31,6 @@ class AttachmentTypesTableSeeder extends Seeder
         ]);
         if (!$type->exists) {
             $type->fill([
-            	'order' => 2,
                 'name' => 'other',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

@@ -132,8 +132,10 @@ class UserTableSeeder extends Seeder
                     $old_user_graduation_date = null;
                 }
 
+                $user_email = empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email;
                 if ($old_user_asurite == '1') {
                     $asurite = $old_user->user_login;
+                    $user_email = $asurite . '@asu.edu';
                 }
 
                 $new_user = User::create([
@@ -142,7 +144,7 @@ class UserTableSeeder extends Seeder
                     'last_name'               => $old_user_last_name ?? null,
                     // 'display_name'            => $old_user->display_name ?? null,
                     'login_name'              => $old_user->user_login ?? null,
-                    'email'                   => empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email,
+                    'email'                   => $user_email,
                     'password'                => Hash::make($old_user->user_pass),
                     'confirmation_code'       => md5(uniqid(mt_rand(), true)),
                     'confirmed'               => true,
@@ -167,7 +169,6 @@ class UserTableSeeder extends Seeder
                         'affiliation_id'       => 2,
                         'affiliationable_id'   => $new_user->id,
                         'affiliationable_type' => 'User',
-                        'order'                => 1,
                         'created_at'           => Carbon::now(),
                         'updated_at'           => Carbon::now(),
                         'created_by'           => 1,

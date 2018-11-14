@@ -18,7 +18,6 @@ class UserTypesTableSeeder extends Seeder
         ]);
         if (!$type->exists) {
             $type->fill([
-            	'order' => 1,
                 'name' => 'Student',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -32,7 +31,6 @@ class UserTypesTableSeeder extends Seeder
         ]);
         if (!$type->exists) {
             $type->fill([
-            	'order' => 2,
                 'name' => 'Alumni',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -46,7 +44,6 @@ class UserTypesTableSeeder extends Seeder
         ]);
         if (!$type->exists) {
             $type->fill([
-            	'order' => 3,
                 'name' => 'Faculty',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -60,7 +57,6 @@ class UserTypesTableSeeder extends Seeder
         ]);
         if (!$type->exists) {
             $type->fill([
-            	'order' => 4,
                 'name' => 'Staff',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -74,7 +70,6 @@ class UserTypesTableSeeder extends Seeder
         ]);
         if (!$type->exists) {
             $type->fill([
-            	'order' => 5,
                 'name' => 'Professional/Non-ASU',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

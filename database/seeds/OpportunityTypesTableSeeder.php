@@ -16,11 +16,23 @@ class OpportunityTypesTableSeeder extends Seeder
 		// Pre-fill Opportunity Type options
 
         $opportunity_types = OpportunityType::firstOrNew([
+            'slug' => 'all',
+        ]);
+        if (!$opportunity_types->exists) {
+            $opportunity_types->fill([
+                'name' => 'All',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
+            ])->save();
+        }
+
+        $opportunity_types = OpportunityType::firstOrNew([
             'slug' => 'project',
         ]);
         if (!$opportunity_types->exists) {
             $opportunity_types->fill([
-            	'order' => 1,
                 'name' => 'Project',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -34,7 +46,6 @@ class OpportunityTypesTableSeeder extends Seeder
         ]);
         if (!$opportunity_types->exists) {
             $opportunity_types->fill([
-            	'order' => 2,
                 'name' => 'Internship',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

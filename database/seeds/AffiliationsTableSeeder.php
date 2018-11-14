@@ -20,12 +20,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                // 'opportunity_type_id' => 1,
-                'order'          => 1,
-                'access_control' => 0,
-                'name'           => 'Urgent',
-                'help_text'      => 'This opportunity urgently needs participants!',
-                'frontend_fa_icon'  => json_encode(array(
+                'opportunity_type_id' => 1,
+                'access_control'      => 0,
+                'name'                => 'Urgent',
+                'help_text'           => 'This opportunity urgently needs participants!',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag'       => 'span',
                             'className' => 'fa fa-square fa-maroon fa-stack-2x',
@@ -56,12 +55,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	// 'opportunity_type_id' => 1,
-                'order'          => 2,
-                'access_control' => 1,
-                'name'           => 'School of Sustainability',
-                'help_text'      => 'Restricted to students majoring in degrees from The School of Sustainability',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 1,
+                'access_control'      => 1,
+                'name'                => 'School of Sustainability',
+                'help_text'           => 'Restricted to students majoring in degrees from The School of Sustainability',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-green fa-stack-2x',
@@ -92,12 +90,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	// 'opportunity_type_id' => 1,
-                'order'          => 3,
-                'access_control' => 0,
-                'name'           => 'Undergrad',
-                'help_text'      => 'Available for Undergraduates',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 1,
+                'access_control'      => 0,
+                'name'                => 'Undergrad',
+                'help_text'           => 'Available for Undergraduates',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue fa-stack-2x',
@@ -128,12 +125,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	// 'opportunity_type_id' => 1,
-                'order'          => 4,
-                'access_control' => 0,
-                'name'           => 'Grad',
-                'help_text'      => 'Available for Graduate Students',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 1,
+                'access_control'      => 0,
+                'name'                => 'Grad',
+                'help_text'           => 'Available for Graduate Students',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue-darkened fa-stack-2x',
@@ -164,8 +160,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'opportunity_type_id' => 1,
-                'order'               => 5,
+                'opportunity_type_id' => 2,
                 'access_control'      => 0,
                 'name'                => 'General Project',
                 'help_text'           => 'General Project',
@@ -183,12 +178,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'opportunity_type_id' => 1,
-                'order'          => 6,
-                'access_control' => 0,
-                'name'           => 'Culminating Experience',
-                'help_text'      => 'Can fulfill School of Sustainability Culminating Experience',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 2,
+                'access_control'      => 0,
+                'name'                => 'Culminating Experience',
+                'help_text'           => 'Can fulfill School of Sustainability Culminating Experience',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-gold fa-stack-2x',
@@ -219,8 +213,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'opportunity_type_id' => 1,
-                'order'               => 7,
+                'opportunity_type_id' => 2,
                 'access_control'      => 0,
                 'name'                => 'Class Project',
                 'help_text'           => 'Class Project',
@@ -238,8 +231,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                // 'opportunity_type_id' => 1,
-                'order'               => 8,
+                'opportunity_type_id' => 1,
                 'access_control'      => 0,
                 'name'                => 'Other Opportunity',
                 'help_text'           => 'Other Opportunity',
@@ -257,8 +249,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                // 'opportunity_type_id' => 1,
-                'order'               => 9,
+                'opportunity_type_id' => 1,
                 'access_control'      => 0,
                 'name'                => 'Other (G)',
                 'help_text'           => 'Other Opportunity for Grad Students',
@@ -276,8 +267,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                // 'opportunity_type_id' => 1,
-                'order'               => 10,
+                'opportunity_type_id' => 1,
                 'access_control'      => 0,
                 'name'                => 'Other (U)',
                 'help_text'           => 'Other Opportunity for Undergrad Students',
@@ -295,8 +285,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                // 'opportunity_type_id' => 1,
-                'order'               => 11,
+                'opportunity_type_id' => 1,
                 'access_control'      => 0,
                 'name'                => 'Research Opportunity',
                 'help_text'           => 'Research Opportunity',
@@ -314,8 +303,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'opportunity_type_id' => 1,
-                'order'               => 12,
+                'opportunity_type_id' => 2,
                 'access_control'      => 0,
                 'name'                => 'REU',
                 'help_text'           => 'REU',
@@ -333,12 +321,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'opportunity_type_id' => 1,
-                'order'          => 13,
-                'access_control' => 0,
-                'name'           => 'Service Learning',
-                'help_text'      => 'A Service Learning opportunity',
-                'frontend_fa_icon' => json_encode(array(
+                'opportunity_type_id' => 2,
+                'access_control'      => 0,
+                'name'                => 'Service Learning',
+                'help_text'           => 'A Service Learning opportunity',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-abbey fa-stack-2x',
@@ -369,8 +356,7 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'opportunity_type_id' => 1,
-                'order'               => 14,
+                'opportunity_type_id' => 2,
                 'access_control'      => 0,
                 'name'                => 'Workshop',
                 'help_text'           => 'Workshop',
@@ -391,12 +377,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-                'opportunity_type_id' => 2,
-                'order'               => 4,
+                'opportunity_type_id' => 3,
                 'access_control'      => 0,
                 'name'                => 'Credit',
                 'help_text'           => 'Earning college credit for this internship is subject to prior approval',
-                'frontend_fa_icon'        => json_encode(array(
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-gold fa-stack-2x',
@@ -427,28 +412,27 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'opportunity_type_id' => 2,
-                'order'          => 5,
-                'access_control' => 0,
-                'name'           => 'Fall',
-                'help_text'      => 'Available in the Fall semester',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 3,
+                'access_control'      => 0,
+                'name'                => 'Fall',
+                'help_text'           => 'Available in the Fall semester',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className'   => 'fa fa-square fa-blue fa-stack-2x',
                             'content'    => null,
                         ),
                         array(
-                            'tag' => 'strong',
-                            'className'   => '',
-                            'content'    => 'F',
+                            'tag'       => 'strong',
+                            'className' => 'fa-stack-1x fa-inverse',
+                            'content'   => 'F',
                         ),
                 )),
                 'backend_fa_icon' => json_encode(array(
                         array(
-                            'tag' => 'strong',
-                            'className'   => '',
-                            'content'    => 'F',
+                            'tag'       => 'strong',
+                            'className' => '',
+                            'content'   => 'F',
                         ),
                 )),
                 'created_at'     => Carbon::now(),
@@ -463,21 +447,20 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'opportunity_type_id' => 2,
-                'order'          => 6,
-                'access_control' => 0,
-                'name'           => 'Spring',
-                'help_text'      => 'Available in the Spring semester',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 3,
+                'access_control'      => 0,
+                'name'                => 'Spring',
+                'help_text'           => 'Available in the Spring semester',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
                         ),
                         array(
-                            'tag' => 'strong',
-                            'className' => '',
-                            'content' => 'S',
+                            'tag'       => 'strong',
+                            'className' => 'fa-stack-1x fa-inverse',
+                            'content'   => 'S',
                         ),
                 )),
                 'backend_fa_icon'  => json_encode(array(
@@ -499,21 +482,20 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'opportunity_type_id' => 2,
-                'order'          => 7,
-                'access_control' => 0,
-                'name'           => 'Summer',
-                'help_text'      => 'Available during Summer Break',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 3,
+                'access_control'      => 0,
+                'name'                => 'Summer',
+                'help_text'           => 'Available during Summer Break',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
                         ),
                         array(
-                            'tag' => 'strong',
-                            'className' => '',
-                            'content' => 'B',
+                            'tag'       => 'strong',
+                            'className' => 'fa-stack-1x fa-inverse',
+                            'content'   => 'B',
                         ),
                 )),
                 'backend_fa_icon'  => json_encode(array(
@@ -535,12 +517,11 @@ class AffiliationsTableSeeder extends Seeder
         ]);
         if (!$affiliation->exists) {
             $affiliation->fill([
-            	'opportunity_type_id' => 2,
-                'order'          => 8,
-                'access_control' => 0,
-                'name'           => 'Paid',
-                'help_text'      => 'Paid internship',
-                'frontend_fa_icon'        => json_encode(array(
+                'opportunity_type_id' => 3,
+                'access_control'      => 0,
+                'name'                => 'Paid',
+                'help_text'           => 'Paid internship',
+                'frontend_fa_icon'    => json_encode(array(
                         array(
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-green fa-stack-2x',

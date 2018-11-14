@@ -49,7 +49,7 @@ class UserRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getActivePaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
             ->with('roles', 'permissions', 'providers')
@@ -63,9 +63,25 @@ class UserRepository extends BaseRepository
      * @param string $orderBy
      * @param string $sort
      *
+     * @return mixed
+     */
+    public function getAllPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->search($search)
+            // ->with('roles', 'permissions', 'providers')
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
      * @return LengthAwarePaginator
      */
-    public function getInactivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getInactivePaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
             ->with('roles', 'permissions', 'providers')
@@ -81,7 +97,7 @@ class UserRepository extends BaseRepository
      *
      * @return LengthAwarePaginator
      */
-    public function getDeletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getDeletedPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
             ->with('roles', 'permissions', 'providers')
@@ -97,7 +113,7 @@ class UserRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getNeedsAffiliationReviewPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getNeedsAffiliationReviewPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
             ->with('roles', 'permissions', 'providers')

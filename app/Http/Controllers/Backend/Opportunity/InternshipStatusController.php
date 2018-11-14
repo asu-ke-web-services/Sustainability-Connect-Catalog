@@ -29,10 +29,33 @@ class InternshipStatusController extends Controller
      *
      * @return mixed
      */
+    public function getActive(ManageInternshipRequest $request)
+    {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.opportunity.internship.active')
+            ->withInternships($this->internshipRepository->getActivePaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
+    }
+
+    /**
+     * @param ManageInternshipRequest $request
+     *
+     * @return mixed
+     */
     public function getInactive(ManageInternshipRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.opportunity.internship.inactive')
-            ->withInternships($this->internshipRepository->getInactivePaginated(25, 'updated_at', 'desc'));
+            ->withInternships($this->internshipRepository->getInactivePaginated(25, $search, 'updated_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**
@@ -42,8 +65,14 @@ class InternshipStatusController extends Controller
      */
     public function getDeleted(ManageInternshipRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.opportunity.internship.deleted')
-            ->withInternships($this->internshipRepository->getDeletedPaginated(25, 'deleted_at', 'desc'));
+            ->withInternships($this->internshipRepository->getDeletedPaginated(25, $search, 'deleted_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**
@@ -51,10 +80,16 @@ class InternshipStatusController extends Controller
      *
      * @return mixed
      */
-    public function getNeedReview(ManageInternshipRequest $request)
+    public function getImportReview(ManageInternshipRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.opportunity.internship.import_review')
-            ->withInternships($this->internshipRepository->getNeedImportReviewPaginated(25, 'created_at', 'desc'));
+            ->withInternships($this->internshipRepository->getImportReviewPaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**

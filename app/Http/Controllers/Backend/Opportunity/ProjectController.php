@@ -47,8 +47,32 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function search(ManageProjectRequest $request)
+    {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.opportunity.project.search')
+            ->with('projects', $this->projectRepository->getSearchPaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
+    }
+
+    /**
+     * Display a listing of the Project.
+     *
+     * @param ManageProjectRequest $request
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(ManageProjectRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         $userAccessAffiliations = auth()->user()->accessAffiliations
             ->map(function ($affiliation) {
                 return $affiliation['slug'];
@@ -61,8 +85,9 @@ class ProjectController extends Controller
             'canViewRestricted' => $canViewRestricted ?? false
         ]);
 
-        return view('backend.opportunity.project.index')
-            ->with('projects', $this->projectRepository->getActivePaginated(25, 'updated_at', 'desc'));
+        return view('backend.opportunity.project.all')
+            ->with('projects', $this->projectRepository->getAllPaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**

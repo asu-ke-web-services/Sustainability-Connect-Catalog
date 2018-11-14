@@ -43,8 +43,14 @@ class UserController extends Controller
      */
     public function index(ManageUserRequest $request)
     {
-        return view('backend.auth.user.index')
-            ->withUsers($this->userRepository->getActivePaginated(25, 'id', 'asc'));
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.auth.user.all')
+            ->withUsers($this->userRepository->getAllPaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**

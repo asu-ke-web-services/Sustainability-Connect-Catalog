@@ -51,83 +51,144 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getSearchPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
+            ->search($search)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int $paged
+     * @param string $search
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getActivePaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            // ->search($search)
             ->active()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
 
     /**
-     * @param int    $paged
+     * @param int $paged
+     * @param string $search
      * @param string $orderBy
      * @param string $sort
      *
      * @return mixed
      */
-    public function getArchivedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getAllPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
+            // ->search($search)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int $paged
+     * @param string $search
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getPublishedPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            // ->search($search)
+            ->isPublished()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int $paged
+     * @param string $search
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getArchivedPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            // ->search($search)
             ->archived()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
 
     /**
-     * @param int    $paged
+     * @param int $paged
+     * @param string $search
      * @param string $orderBy
      * @param string $sort
      *
      * @return mixed
      */
-    public function getCompletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getCompletedPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
+            // ->search($search)
             ->completed()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
 
     /**
-     * @param int    $paged
+     * @param int $paged
+     * @param string $search
      * @param string $orderBy
      * @param string $sort
      *
      * @return LengthAwarePaginator
      */
-    public function getDeletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getDeletedPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
+            // ->search($search)
             ->onlyTrashed()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
 
     /**
-     * @param int    $paged
+     * @param int $paged
+     * @param string $search
      * @param string $orderBy
      * @param string $sort
      *
      * @return LengthAwarePaginator
      */
-    public function getImportReviewsPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getImportReviewsPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
+            // ->search($search)
             ->needsImportReview()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
+
     /**
-     * @param int    $paged
+     * @param int $paged
+     * @param string $search
      * @param string $orderBy
      * @param string $sort
      *
      * @return LengthAwarePaginator
      */
-    public function getProposalReviewsPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getProposalReviewsPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
+            // ->search($search)
             ->proposalNeedsReview()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);

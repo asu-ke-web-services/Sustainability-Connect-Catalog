@@ -67,6 +67,34 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display a listing of Completed Projects.
+     *
+     * @param ViewProjectRequest $request
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function completed(ViewProjectRequest $request)
+    {
+        if ( auth()->user() !== null ) {
+            $userAccessAffiliations = auth()->user()->accessAffiliations
+                ->map(function ($affiliation) {
+                    return $affiliation['slug'];
+                })->toJson();
+
+            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
+        }
+
+        JavaScript::put([
+            'userAccessAffiliations' => $userAccessAffiliations ?? null,
+            'canViewRestricted' => $canViewRestricted ?? false
+        ]);
+
+        return view('frontend.opportunity.project.completed')
+            ->with('type', 'Project')
+            ->with('pageTitle', 'Past Projects');
+    }
+
+    /**
      * Show the form for creating a new Project.
      *
      * @param ViewProjectRequest $request

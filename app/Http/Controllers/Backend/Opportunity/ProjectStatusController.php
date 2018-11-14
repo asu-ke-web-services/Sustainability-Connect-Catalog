@@ -29,10 +29,16 @@ class ProjectStatusController extends Controller
      *
      * @return mixed
      */
-    public function getArchived(ManageProjectRequest $request)
+    public function getActive(ManageProjectRequest $request)
     {
-        return view('backend.opportunity.project.archived')
-            ->withProjects($this->projectRepository->getArchivedPaginated(25, 'updated_at', 'desc'));
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.opportunity.project.active')
+            ->withProjects($this->projectRepository->getActivePaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**
@@ -40,10 +46,33 @@ class ProjectStatusController extends Controller
      *
      * @return mixed
      */
-    public function getClosed(ManageProjectRequest $request)
+    public function getArchived(ManageProjectRequest $request)
     {
-        return view('backend.opportunity.project.closed')
-            ->withProjects($this->projectRepository->getClosedPaginated(25, 'updated_at', 'desc'));
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.opportunity.project.archived')
+            ->withProjects($this->projectRepository->getArchivedPaginated(25, $search, 'updated_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
+    }
+
+    /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getCompleted(ManageProjectRequest $request)
+    {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.opportunity.project.completed')
+            ->withProjects($this->projectRepository->getCompletedPaginated(25, $search, 'updated_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**
@@ -53,8 +82,14 @@ class ProjectStatusController extends Controller
      */
     public function getDeleted(ManageProjectRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.opportunity.project.deleted')
-            ->withProjects($this->projectRepository->getDeletedPaginated(25, 'deleted_at', 'desc'));
+            ->withProjects($this->projectRepository->getDeletedPaginated(25, $search,'deleted_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**
@@ -64,8 +99,14 @@ class ProjectStatusController extends Controller
      */
     public function getImportReview(ManageProjectRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.opportunity.project.import_review')
-            ->withProjects($this->projectRepository->getImportReviewsPaginated(25, 'created_at', 'desc'));
+            ->withProjects($this->projectRepository->getImportReviewsPaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**
@@ -75,8 +116,14 @@ class ProjectStatusController extends Controller
      */
     public function getProposalReviews(ManageProjectRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.opportunity.project.reviews')
-            ->withProjects($this->projectRepository->getProposalReviewsPaginated(25, 'created_at', 'desc'));
+            ->withProjects($this->projectRepository->getProposalReviewsPaginated(25, 'created_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**

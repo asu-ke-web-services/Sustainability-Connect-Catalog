@@ -38,8 +38,14 @@ class OrganizationController extends Controller
      */
     public function index(ManageOrganizationRequest $request)
     {
-        return view('backend.organization.index')
-            ->with('organizations', $this->organizationRepository->paginate(15));
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.organization.all')
+            ->with('organizations', $this->organizationRepository->getAllPaginated(25, $search, 'updated_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**

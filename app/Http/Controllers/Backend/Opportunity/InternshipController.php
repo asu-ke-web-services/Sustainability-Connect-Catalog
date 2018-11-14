@@ -47,6 +47,11 @@ class InternshipController extends Controller
      */
     public function index(ManageInternshipRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         $userAccessAffiliations = auth()->user()->accessAffiliations
             ->map(function ($affiliation) {
                 return $affiliation['slug'];
@@ -59,8 +64,9 @@ class InternshipController extends Controller
             'canViewRestricted' => $canViewRestricted ?? false
         ]);
 
-        return view('backend.opportunity.internship.index')
-            ->with('internships', $this->internshipRepository->getActivePaginated(25, 'updated_at', 'desc'));
+        return view('backend.opportunity.internship.all')
+            ->with('internships', $this->internshipRepository->getAllPaginated(25, $search, 'updated_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**

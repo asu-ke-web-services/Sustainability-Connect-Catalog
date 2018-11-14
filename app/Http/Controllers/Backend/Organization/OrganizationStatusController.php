@@ -25,6 +25,23 @@ class OrganizationStatusController extends Controller
     }
 
     /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getActive(ManageProjectRequest $request)
+    {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.organization.active')
+            ->withProjects($this->organizationRepository->getActivePaginated(25, $search, 'updated_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
+    }
+
+    /**
      * @param ManageOrganizationRequest $request
      *
      * @return mixed
@@ -33,6 +50,23 @@ class OrganizationStatusController extends Controller
     {
         return view('backend.organization.deleted')
             ->withOrganizations($this->organizationRepository->getDeletedPaginated(25, 'id', 'asc'));
+    }
+
+    /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getInactive(ManageProjectRequest $request)
+    {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.organization.inactive')
+            ->withProjects($this->organizationRepository->getInactivePaginated(25, $search, 'updated_at', 'desc'))
+            ->with('searchRequest', (object) array('search' => $search));
     }
 
     /**

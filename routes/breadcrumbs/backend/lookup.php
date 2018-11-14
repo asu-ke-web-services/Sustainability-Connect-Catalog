@@ -12,3 +12,4 @@ require __DIR__.'/lookup/organization_status.php';
 require __DIR__.'/lookup/organization_type.php';
 require __DIR__.'/lookup/relationship_type.php';
 require __DIR__.'/lookup/student_degree_level.php';
+require __DIR__.'/lookup/user_type.php';

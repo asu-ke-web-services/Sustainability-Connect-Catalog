@@ -5,9 +5,19 @@ Breadcrumbs::for('admin.opportunity.internship.index', function ($trail) {
     $trail->push(__('labels.backend.opportunity.internships.management'), route('admin.opportunity.internship.index'));
 });
 
-Breadcrumbs::for('admin.opportunity.internship.deactivated', function ($trail) {
+Breadcrumbs::for('admin.opportunity.internship.active', function ($trail) {
     $trail->parent('admin.opportunity.internship.index');
-    $trail->push(__('menus.backend.opportunity.internships.deactivated'), route('admin.opportunity.internship.deactivated'));
+    $trail->push(__('menus.backend.opportunity.internships.active'), route('admin.opportunity.internship.active'));
+});
+
+Breadcrumbs::for('admin.opportunity.internship.all', function ($trail) {
+    $trail->parent('admin.opportunity.internship.index');
+    $trail->push(__('menus.backend.opportunity.internships.all'), route('admin.opportunity.internship.all'));
+});
+
+Breadcrumbs::for('admin.opportunity.internship.inactive', function ($trail) {
+    $trail->parent('admin.opportunity.internship.index');
+    $trail->push(__('menus.backend.opportunity.internships.inactive'), route('admin.opportunity.internship.inactive'));
 });
 
 Breadcrumbs::for('admin.opportunity.internship.deleted', function ($trail) {
@@ -18,6 +28,11 @@ Breadcrumbs::for('admin.opportunity.internship.deleted', function ($trail) {
 Breadcrumbs::for('admin.opportunity.internship.create', function ($trail) {
     $trail->parent('admin.opportunity.internship.index');
     $trail->push(__('labels.backend.opportunity.internships.create'), route('admin.opportunity.internship.create'));
+});
+
+Breadcrumbs::for('admin.opportunity.internship.import_review', function ($trail) {
+    $trail->parent('admin.opportunity.internship.index');
+    $trail->push(__('menus.backend.opportunity.internships.import_review'), route('admin.opportunity.internship.import_review'));
 });
 
 Breadcrumbs::for('admin.opportunity.internship.show', function ($trail, $id) {

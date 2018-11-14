@@ -17,6 +17,7 @@ Route::group([
         /*
          * User Status'
          */
+        // Route::get('user/active', 'UserStatusController@getActive')->name('user.active');
         Route::get('user/deactivated', 'UserStatusController@getDeactivated')->name('user.deactivated');
         Route::get('user/deleted', 'UserStatusController@getDeleted')->name('user.deleted');
 

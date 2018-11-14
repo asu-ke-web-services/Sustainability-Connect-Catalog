@@ -23,19 +23,17 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Budget Type') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($budget_types as $budget_type)
+                        @foreach ($budgetTypes as $budgetType)
                             <tr>
-                                <td>{{ $budget_type->order }}</td>
-                                <td>{{ ucwords($budget_type->name) }}</td>
-                                <td>{{ $budget_type->slug }}</td>
-                                <td>{!! $budget_type->action_buttons !!}</td>
+                                <td>{{ ucwords($budgetType->name) }}</td>
+                                <td>{{ $budgetType->slug }}</td>
+                                <td>{!! $budgetType->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -46,13 +44,13 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $budget_types->total() !!} {{ str_plural('budget type', $budget_types->total()) . ' total' }}
+                    {!! $budgetTypes->total() !!} {{ str_plural('budget type', $budgetTypes->total()) . ' total' }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $budget_types->render() !!}
+                    {!! $budgetTypes->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

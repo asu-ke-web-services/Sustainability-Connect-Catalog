@@ -23,7 +23,6 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Category') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
@@ -32,7 +31,6 @@
                         <tbody>
                         @foreach ($categories as $category)
                             <tr>
-                                <td>{{ $category->order }}</td>
                                 <td>{{ ucwords($category->name) }}</td>
                                 <td>{{ $category->slug }}</td>
                                 <td>{!! $category->action_buttons !!}</td>

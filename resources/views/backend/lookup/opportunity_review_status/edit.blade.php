@@ -3,7 +3,7 @@
 @section ('title', __('Opportunity Review Status') . ' Management | Edit ' . __('Opportunity Review Status'))
 
 @section('content')
-{{ html()->modelForm($opportunity_review_status, 'PATCH', route('admin.lookup.opportunity_review_status.update', $opportunity_review_status))->class('form-horizontal')->open() }}
+{{ html()->modelForm($opportunityReviewStatus, 'PATCH', route('admin.lookup.opportunity_review_status.update', $opportunityReviewStatus))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -20,34 +20,7 @@
             <div class="row mt-4">
                 <div class="col">
 
-                    @component('includes.components.form.input', [
-                        'type'        => 'number',
-                        'name'        => 'order',
-                        'label'       => 'Order',
-                        'attributes'  => [
-                            'required' => 'required',
-                        ],
-                        'object'      => $affiliation ?? null,
-                    ])@endcomponent
-
-                    @component('includes.components.form.input', [
-                        'name'        => 'name',
-                        'label'       => 'Name',
-                        'help_text'   => 'Names can be up to 250 characters long',
-                        'attributes'  => [
-                            'required' => 'required',
-                            'maxlength' => '250',
-                        ],
-                        'object'      => $affiliation ?? null,
-                    ])@endcomponent
-
-                    @component('includes.components.form.select', [
-                        'name'        => 'opportunity_type_id',
-                        'label'       => 'Opportunity Type',
-                        'placeholder' => 'Select opportunity type...',
-                        'optionList'  => $types,
-                        'object'      => $affiliation ?? null,
-                    ])@endcomponent
+                    @include('backend.lookup.opportunity_review_status.fields')
 
                 </div><!--col-->
             </div><!--row-->

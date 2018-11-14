@@ -16,6 +16,15 @@
                     <small class="text-muted">{{ __('labels.backend.opportunity.projects.archived') }}</small>
                 </h4>
             </div><!--col-->
+            {{-- <div class="col-sm-7">
+                {{ html()->form('GET', route('admin.opportunity.project.archived'))->open() }}
+                @component('includes.components.form.search', [
+                    'name'        => 'search',
+                    'placeholder' => 'Search',
+                    'object'      => $searchRequest ?? null,
+                ])@endcomponent
+                {{ html()->form()->close() }}
+            </div> --}}
         </div><!--row-->
 
         <div class="row mt-4">
@@ -48,9 +57,9 @@
                                             {{ __('labels.general.none') }}
                                         @endif
                                     </td>
-                                    <td>{{ $project->opportunity_start_at }}</td>
-                                    <td>{{ $project->application_deadline_at }}</td>
-                                    <td>{{ $project->updated_at->diffForHumans() }}</td>
+                                    <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : '' }}</td>
+                                    <td>{{ null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : '' }}</td>
+                                    <td>{{ null !== $project->updated_at ? $project->updated_at->toFormattedDateString() : '' }}</td>
                                     <td>{!! $project->action_buttons !!}</td>
                                 </tr>
                             @endforeach

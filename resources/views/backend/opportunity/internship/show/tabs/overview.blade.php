@@ -7,28 +7,13 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.public_name') }}</th>
-                <td>{!! $internship->public_name !!}</td>
-            </tr>
-
-            <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.description') }}</th>
-                <td>{!! $internship->description !!}</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('Needs Review') }}</th>
-                <td>{{ $internship->needs_review === 1 ? true : false }}</td>
+                <td>{{@markdown($internship->description ?? null)}}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.status') }}</th>
                 <td>{!! ucwords($internship->status->name ?? '') !!}</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.review_status') }}</th>
-                <td>{!! ucwords($internship->reviewStatus->name ?? '') !!}</td>
             </tr>
 
             <tr>

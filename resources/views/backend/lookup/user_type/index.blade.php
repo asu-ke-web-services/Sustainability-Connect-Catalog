@@ -23,9 +23,8 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('UserType') }}</th>
-                            <th>{{ __('Email') }}</th>
-                            <th>{{ __('Associated Models') }}</th>
+                            <th>{{ __('User Type') }}</th>
+                            <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
@@ -33,16 +32,7 @@
                         @foreach ($userTypes as $userType)
                             <tr>
                                 <td>{{ ucwords($userType->name) }}</td>
-                                <td>{{ ucwords($userType->email) }}</td>
-                                <td>
-                                    @if ($userType->associated_models->count())
-                                        @foreach ($userType->associated_models as $associated_model)
-                                            {{ ucwords($associated_model->name) }}
-                                        @endforeach
-                                    @else
-                                        {{ __('None') }}
-                                    @endif
-                                </td>
+                                <td>{{ $userType->slug }}</td>
                                 <td>{!! $userType->action_buttons !!}</td>
                             </tr>
                         @endforeach

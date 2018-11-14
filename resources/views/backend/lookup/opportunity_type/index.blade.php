@@ -23,19 +23,17 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Opportunity Type') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($opportunity_types as $opportunity_type)
+                        @foreach ($opportunityTypes as $opportunityType)
                             <tr>
-                                <td>{{ $opportunity_type->order }}</td>
-                                <td>{{ ucwords($opportunity_type->name) }}</td>
-                                <td>{{ $opportunity_type->slug }}</td>
-                                <td>{!! $opportunity_type->action_buttons !!}</td>
+                                <td>{{ ucwords($opportunityType->name) }}</td>
+                                <td>{{ $opportunityType->slug }}</td>
+                                <td>{!! $opportunityType->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -46,13 +44,13 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $opportunity_types->total() !!} {{ str_plural('opportunity type', $opportunity_types->total()) . ' total' }}
+                    {!! $opportunityTypes->total() !!} {{ str_plural('opportunity type', $opportunityTypes->total()) . ' total' }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $opportunity_types->render() !!}
+                    {!! $opportunityTypes->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', app_name() . ' | '. __('labels.backend.opportunity.internships.management'))
+@section ('title', __('labels.backend.opportunity.internships.management') . ' | ' . __('labels.backend.opportunity.internships.active'))
 
 @section('breadcrumb-links')
     @include('backend.opportunity.internship.includes.breadcrumb-links')
@@ -13,12 +13,18 @@
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.opportunity.internships.management') }}
+                    <small class="text-muted">{{ __('labels.backend.opportunity.internships.active') }}</small>
                 </h4>
             </div><!--col-->
-
-            <div class="col-sm-7 pull-right">
-                @include('backend.opportunity.internship.includes.header-buttons-add')
-            </div><!--col-->
+            {{-- <div class="col-sm-5">
+                {{ html()->form('GET', route('admin.opportunity.project.index'))->open() }}
+                @component('includes.components.form.search', [
+                    'name'        => 'search',
+                    'placeholder' => 'Search',
+                    'object'      => $searchRequest ?? null,
+                ])@endcomponent
+                {{ html()->form()->close() }}
+            </div> --}}
         </div><!--row-->
 
         <div class="row mt-4">
@@ -49,8 +55,8 @@
                                         {{ __('labels.general.none') }}
                                     @endif
                                 </td>
-                                <td>{{ $internship->opportunity_start_at }}</td>
-                                <td>{{ $internship->application_deadline_at }}</td>
+                                <td>{{ null !== $internship->opportunity_start_at ? $internship->opportunity_start_at->toFormattedDateString() : null }}</td>
+                                <td>{{ null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : null }}</td>
                                 <td>{!! $internship->action_buttons !!}</td>
                             </tr>
                         @endforeach

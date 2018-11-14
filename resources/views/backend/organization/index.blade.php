@@ -1,6 +1,10 @@
 @extends ('backend.layouts.app')
 
-@section ('title', app_name() . ' | '. __('Organization Management'))
+@section ('title', app_name() . ' | '. __('labels.backend.organization.management') . ' | ' . __('labels.backend.organization.all'))
+
+@section('breadcrumb-links')
+    @include('backend.organization.includes.breadcrumb-links')
+@endsection
 
 @section('content')
 <div class="card">
@@ -8,12 +12,21 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('Organization Management') }}
+                    {{ __('labels.backend.organization.management') }}
+                    <small class="text-muted">{{ __('labels.backend.organization.all') }}</small>
                 </h4>
             </div><!--col-->
-
-            <div class="col-sm-7 pull-right">
-                @include('backend.organization.includes.header-buttons')
+            <div class="col-sm-5">
+                {{ html()->form('GET', route('admin.organization.index'))->open() }}
+                @component('includes.components.form.search', [
+                    'name'        => 'search',
+                    'placeholder' => 'Search',
+                    'object'      => $searchRequest ?? null,
+                ])@endcomponent
+                {{ html()->form()->close() }}
+            </div>
+            <div class="col-sm-2 pull-right">
+                @include('backend.organization.includes.header-buttons-add')
             </div><!--col-->
         </div><!--row-->
 
@@ -23,31 +36,28 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Organization') }}</th>
-                            <th>{{ __('Type') }}</th>
-                            <th>{{ __('Status') }}</th>
-                            <th>{{ __('Location') }}</th>
-                            <th>{{ __('Actions') }}</th>
+                            <th>{{ __('labels.backend.organizations.table.name') }}</th>
+                            <th>{{ __('labels.backend.organizations.table.status') }}</th>
+                            <th>{{ __('labels.backend.organizations.table.type') }}</th>
+                            <th>{{ __('labels.backend.organizations.table.last_updated') }}</th>
+                            <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($organizations as $organization)
-                            <tr>
-                                <td>{{ ucwords($organization->name) }}</td>
-                                <td>{{ ucwords($organization->type->name) }}</td>
-                                <td>{{ ucwords($organization->status->name) }}</td>
-                                <td>
-                                    @if ($organization->addresses->count())
-                                        @foreach ($organization->addresses as $address)
-                                            {{ ucwords($address->city) }}
-                                        @endforeach
-                                    @else
-                                        {{ __('labels.general.none') }}
-                                    @endif
-                                </td>
-                                <td>{!! $organization->action_buttons !!}</td>
-                            </tr>
-                        @endforeach
+
+                        @if ($organizations->count())
+                            @foreach ($organizations as $organization)
+                                <tr>
+                                    <td>{{ $organization->name }}</td>
+                                    <td>{{ $organization->status->name }}</td>
+                                    <td>{{ $organization->type->name }}</td>
+                                    <td>{{ $organization->updated_at->diffForHumans() }}</td>
+                                    <td>{!! $organization->action_buttons !!}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr><td colspan="9"><p class="text-center">{{ __('strings.backend.organizations.no_deleted') }}</p></td></tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>

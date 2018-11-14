@@ -23,19 +23,17 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Organization Status') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($organization_statuses as $organization_status)
+                        @foreach ($organizationStatuses as $organizationStatus)
                             <tr>
-                                <td>{{ $organization_status->order }}</td>
-                                <td>{{ ucwords($organization_status->name) }}</td>
-                                <td>{{ $organization_status->slug }}</td>
-                                <td>{!! $organization_status->action_buttons !!}</td>
+                                <td>{{ ucwords($organizationStatus->name) }}</td>
+                                <td>{{ $organizationStatus->slug }}</td>
+                                <td>{!! $organizationStatus->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -46,13 +44,13 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $organization_statuses->total() !!} {{ str_plural('organization status', $organization_statuses->total()) . ' total' }}
+                    {!! $organizationStatuses->total() !!} {{ str_plural('organization status', $organizationStatuses->total()) . ' total' }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $organization_statuses->render() !!}
+                    {!! $organizationStatuses->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

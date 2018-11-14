@@ -23,13 +23,36 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.people.members') }}</th>
-                <td></td>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.people.participants') }}</th>
+                <td>
+                    <ul>
+                        @foreach($internship->participants as $participant)
+                            <li><span style="width: 150px; margin-right: 10px;">{!! $participant->full_name !!}</span>{!! $internship->user_action_buttons !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
             </tr>
 
             <tr>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.people.mentors') }}</th>
+                <td>
+                    <ul>
+                        @foreach($internship->mentors as $mentor)
+                            <li><span style="width: 150px; margin-right: 10px;">{!! $mentor->full_name !!}</span>{!! $internship->user_action_buttons !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>{!! $internship->organization->name !!}
+
+            <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.people.followers') }}</th>
-                <td></td>
+                <td>
+                    <ul>
+                        @foreach($internship->followers as $follower)
+                            <li><span style="width: 150px; margin-right: 10px;">{!! $follower->full_name !!}</span>{!! $internship->user_action_buttons !!}</li>
+                        @endforeach
+                    </ul>
+                </td>
             </tr>
 
         </table>

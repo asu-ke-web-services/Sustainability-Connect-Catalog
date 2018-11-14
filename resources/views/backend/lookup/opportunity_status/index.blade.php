@@ -24,20 +24,18 @@
                         <thead>
                         <tr>
                             <th>{{ __('Opportunity Type') }}</th>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Status') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($opportunity_statuses as $opportunity_status)
+                        @foreach ($opportunityStatuses as $opportunityStatus)
                             <tr>
-                                <td>{{ ucwords($opportunity_status->opportunityType->name) }}</td>
-                                <td>{{ $opportunity_status->order }}</td>
-                                <td>{{ ucwords($opportunity_status->name) }}</td>
-                                <td>{{ $opportunity_status->slug }}</td>
-                                <td>{!! $opportunity_status->action_buttons !!}</td>
+                                <td>{{ ucwords($opportunityStatus->opportunityType->name) }}</td>
+                                <td>{{ ucwords($opportunityStatus->name) }}</td>
+                                <td>{{ $opportunityStatus->slug }}</td>
+                                <td>{!! $opportunityStatus->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -48,13 +46,13 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $opportunity_statuses->total() !!} {{ str_plural('opportunity status', $opportunity_statuses->total()) . ' total' }}
+                    {!! $opportunityStatuses->total() !!} {{ str_plural('opportunity status', $opportunityStatuses->total()) . ' total' }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $opportunity_statuses->render() !!}
+                    {!! $opportunityStatuses->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

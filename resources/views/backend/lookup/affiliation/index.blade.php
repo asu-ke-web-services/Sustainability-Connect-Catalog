@@ -24,10 +24,10 @@
                         <thead>
                         <tr>
                             <th>{{ __('Opportunity Type') }}</th>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Affiliation') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Access Control?') }}</th>
+                            <th>{{ __('Public Visible?') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
@@ -35,10 +35,10 @@
                         @foreach ($affiliations as $affiliation)
                             <tr>
                                 <td>{{ ucwords($affiliation->opportunityType->name ?? null) }}</td>
-                                <td>{{ $affiliation->order }}</td>
                                 <td>{{ ucwords($affiliation->name) }}</td>
                                 <td>{{ $affiliation->slug }}</td>
                                 <td>{!! $affiliation->accesscontrol_label !!}</td>
+                                <td>{!! $affiliation->public_label !!}</td>
                                 <td>{!! $affiliation->action_buttons !!}</td>
                             </tr>
                         @endforeach

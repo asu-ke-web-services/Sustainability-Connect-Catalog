@@ -16,6 +16,15 @@
                     <small class="text-muted">{{ __('labels.backend.opportunity.projects.import_review') }}</small>
                 </h4>
             </div><!--col-->
+            {{-- <div class="col-sm-7">
+                {{ html()->form('GET', route('admin.opportunity.project.import_review'))->open() }}
+                @component('includes.components.form.search', [
+                    'name'        => 'search',
+                    'placeholder' => 'Search',
+                    'object'      => $searchRequest ?? null,
+                ])@endcomponent
+                {{ html()->form()->close() }}
+            </div> --}}
         </div><!--row-->
 
         <div class="row mt-4">
@@ -29,7 +38,7 @@
                             <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
                             <th>{{ __('labels.backend.opportunity.projects.table.opportunity_start_at') }}</th>
                             <th>{{ __('labels.backend.opportunity.projects.table.application_deadline_at') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.last_updated') }}</th>
+                            <th>{{ __('labels.backend.opportunity.projects.table.created_at') }}</th>
                             <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
@@ -48,9 +57,9 @@
                                             {{ __('labels.general.none') }}
                                         @endif
                                     </td>
-                                    <td>{{ $project->opportunity_start_at }}</td>
-                                    <td>{{ $project->application_deadline_at }}</td>
-                                    <td>{{ $project->updated_at->diffForHumans() }}</td>
+                                    <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : '' }}</td>
+                                    <td>{{ null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : '' }}</td>
+                                    <td>{{ null !== $project->created_at ? $project->created_at->toFormattedDateString() : '' }}</td>
                                     <td>{!! $project->action_buttons !!}</td>
                                 </tr>
                             @endforeach

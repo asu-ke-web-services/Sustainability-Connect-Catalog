@@ -7,13 +7,8 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.public_name') }}</th>
-                <td>{!! $project->public_name !!}</td>
-            </tr>
-
-            <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.description') }}</th>
-                <td>{!! $project->description !!}</td>
+                <td>@markdown($project->description ?? null)</td>
             </tr>
 
             <tr>

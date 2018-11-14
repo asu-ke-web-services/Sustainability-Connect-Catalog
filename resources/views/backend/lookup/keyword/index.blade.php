@@ -23,7 +23,6 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Keyword') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
@@ -32,7 +31,6 @@
                         <tbody>
                         @foreach ($keywords as $keyword)
                             <tr>
-                                <td>{{ $keyword->order }}</td>
                                 <td>{{ ucwords($keyword->name) }}</td>
                                 <td>{{ $keyword->slug }}</td>
                                 <td>{!! $keyword->action_buttons !!}</td>

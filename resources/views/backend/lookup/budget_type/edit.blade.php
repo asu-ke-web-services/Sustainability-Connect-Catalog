@@ -3,7 +3,7 @@
 @section ('title', __('Budget Type') . ' Management | Edit ' . __('Budget Type'))
 
 @section('content')
-{{ html()->modelForm($budget_type, 'PATCH', route('admin.lookup.budget_type.update', $budget_type))->class('form-horizontal')->open() }}
+{{ html()->modelForm($budgetType, 'PATCH', route('admin.lookup.budget_type.update', $budgetType))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -20,31 +20,7 @@
             <div class="row mt-4">
                 <div class="col">
 
-                    <div class="form-group row">
-                        {{ html()->label(__('Order'))
-                            ->class('col-md-2 form-control-label')
-                            ->for('order') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('order')
-                                ->class('form-control')
-                                ->placeholder(__('Order')) }}
-                        </div><!--col-->
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('Name'))
-                            ->class('col-md-2 form-control-label')
-                            ->for('name') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('name')
-                                ->class('form-control')
-                                ->placeholder(__('Name'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
-                        </div><!--col-->
-                    </div><!--form-group-->
+                    @include('backend.lookup.budget_type.fields')
 
                 </div><!--col-->
             </div><!--row-->

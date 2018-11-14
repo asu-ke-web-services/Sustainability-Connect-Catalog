@@ -23,19 +23,17 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Student Degree Level') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($student_degree_levels as $student_degree_level)
+                        @foreach ($studentDegreeLevels as $studentDegreeLevel)
                             <tr>
-                                <td>{{ $student_degree_level->order }}</td>
-                                <td>{{ ucwords($student_degree_level->name) }}</td>
-                                <td>{{ $student_degree_level->slug }}</td>
-                                <td>{!! $student_degree_level->action_buttons !!}</td>
+                                <td>{{ ucwords($studentDegreeLevel->name) }}</td>
+                                <td>{{ $studentDegreeLevel->slug }}</td>
+                                <td>{!! $studentDegreeLevel->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -46,13 +44,13 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $student_degree_levels->total() !!} {{ str_plural('student degree level', $student_degree_levels->total()) . ' total' }}
+                    {!! $studentDegreeLevels->total() !!} {{ str_plural('student degree level', $studentDegreeLevels->total()) . ' total' }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $student_degree_levels->render() !!}
+                    {!! $studentDegreeLevels->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

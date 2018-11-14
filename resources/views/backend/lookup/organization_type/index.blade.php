@@ -23,19 +23,17 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Organization Type') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($organization_types as $organization_type)
+                        @foreach ($organizationTypes as $organizationType)
                             <tr>
-                                <td>{{ $organization_type->order }}</td>
-                                <td>{{ ucwords($organization_type->name) }}</td>
-                                <td>{{ $organization_type->slug }}</td>
-                                <td>{!! $organization_type->action_buttons !!}</td>
+                                <td>{{ ucwords($organizationType->name) }}</td>
+                                <td>{{ $organizationType->slug }}</td>
+                                <td>{!! $organizationType->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -46,13 +44,13 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $organization_types->total() !!} {{ str_plural('organization type', $organization_types->total()) . ' total' }}
+                    {!! $organizationTypes->total() !!} {{ str_plural('organization type', $organizationTypes->total()) . ' total' }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $organization_types->render() !!}
+                    {!! $organizationTypes->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

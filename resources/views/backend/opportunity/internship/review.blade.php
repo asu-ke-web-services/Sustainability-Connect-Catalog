@@ -15,10 +15,6 @@
                     {{ __('labels.backend.opportunity.internships.review') }}
                 </h4>
             </div><!--col-->
-
-            <div class="col-sm-7 pull-right">
-                @include('backend.opportunity.internship.includes.header-buttons-add')
-            </div><!--col-->
         </div><!--row-->
 
         <div class="row mt-4">
@@ -49,8 +45,8 @@
                                         {{ __('labels.general.none') }}
                                     @endif
                                 </td>
-                                <td>{{ $internship->opportunity_start_at }}</td>
-                                <td>{{ $internship->application_deadline_at }}</td>
+                                <td>{{ null !== $internship->opportunity_start_at ? $internship->opportunity_start_at->toFormattedDateString() : null }}</td>
+                                <td>{{ null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : null }}</td>
                                 <td>{!! $internship->action_buttons !!}</td>
                             </tr>
                         @endforeach

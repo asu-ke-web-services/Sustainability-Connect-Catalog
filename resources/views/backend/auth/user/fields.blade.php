@@ -41,7 +41,7 @@
                     ])@endcomponent
 
                     <!-- E-mail -->
-                    @component('includes.components.form.input', [
+                    {{-- @component('includes.components.form.input', [
                         'type'       => 'password',
                         'name'       => 'password',
                         'label'      => 'Password',
@@ -49,10 +49,10 @@
                             'required'  => 'required',
                         ],
                         'object'      => $user ?? null,
-                    ])@endcomponent
+                    ])@endcomponent --}}
 
                     <!-- E-mail Confirmation -->
-                    @component('includes.components.form.input', [
+                    {{-- @component('includes.components.form.input', [
                         'type'       => 'password',
                         'name'       => 'password_confirmation',
                         'label'      => 'Password Confirmation',
@@ -60,7 +60,7 @@
                             'required'  => 'required',
                         ],
                         'object'      => $user ?? null,
-                    ])@endcomponent
+                    ])@endcomponent --}}
 
                     <!-- Active -->
                     @component('includes.components.form.checkbox', [
@@ -111,7 +111,7 @@
                         'object'      => $user ?? null,
                     ])@endcomponent
 
-                    <!-- User Type -->
+                    <!-- Student Degree Level Type -->
                     @component('includes.components.form.select', [
                         'name'        => 'student_degree_level_id',
                         'label'       => 'Student Degree Level',

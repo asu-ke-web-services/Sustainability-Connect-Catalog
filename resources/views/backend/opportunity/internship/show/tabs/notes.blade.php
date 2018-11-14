@@ -3,7 +3,7 @@
         <table class="table table-hover">
         @foreach($internship->notes as $note)
             <tr>
-                <th>{!! ucwords($note->user->name) . ': ' . $note->toFormattedDateString() !!}</th>
+                <th>{!! ucwords($note->user->full_name) . ': ' . $note->created_at->toFormattedDateString() !!}</th>
                 <td>{!! $note->body !!}</td>
             </tr>
         @endforeach

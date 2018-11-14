@@ -23,19 +23,17 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('Order') }}</th>
                             <th>{{ __('Relationship Type') }}</th>
                             <th>{{ __('Slug') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($relationship_types as $relationship_type)
+                        @foreach ($relationshipTypes as $relationshipType)
                             <tr>
-                                <td>{{ $relationship_type->order }}</td>
-                                <td>{{ ucwords($relationship_type->name) }}</td>
-                                <td>{{ $relationship_type->slug }}</td>
-                                <td>{!! $relationship_type->action_buttons !!}</td>
+                                <td>{{ ucwords($relationshipType->name) }}</td>
+                                <td>{{ $relationshipType->slug }}</td>
+                                <td>{!! $relationshipType->action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -46,13 +44,13 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $relationship_types->total() !!} {{ str_plural('relationship type', $relationship_types->total()) . ' total' }}
+                    {!! $relationshipTypes->total() !!} {{ str_plural('relationship type', $relationshipTypes->total()) . ' total' }}
                 </div>
             </div><!--col-->
 
             <div class="col-5">
                 <div class="float-right">
-                    {!! $relationship_types->render() !!}
+                    {!! $relationshipTypes->render() !!}
                 </div>
             </div><!--col-->
         </div><!--row-->

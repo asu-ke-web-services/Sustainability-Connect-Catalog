@@ -3,7 +3,7 @@
 @section ('title', __('labels.backend.opportunity.internships.management') . ' | ' . __('labels.backend.opportunity.internships.deleted'))
 
 @section('breadcrumb-links')
-    @include('backend.auth.user.includes.breadcrumb-links')
+    @include('backend.opportunity.internship.includes.breadcrumb-links')
 @endsection
 
 @section('content')
@@ -24,14 +24,11 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('labels.backend.opportunity.internships.table.last_name') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.first_name') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.email') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.confirmed') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.roles') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.other_permissions') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.social') }}</th>
-                            <th>{{ __('labels.backend.opportunity.internships.table.last_updated') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.name') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.status') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.location') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.opportunity_start_at') }}</th>
+                            <th>{{ __('labels.backend.opportunity.internships.table.application_deadline_at') }}</th>
                             <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
@@ -40,15 +37,20 @@
                         @if ($internships->count())
                             @foreach ($internships as $internship)
                                 <tr>
-                                    <td>{{ $internship->last_name }}</td>
-                                    <td>{{ $internship->first_name }}</td>
-                                    <td>{{ $internship->email }}</td>
-                                    <td>{!! $internship->confirmed_label !!}</td>
-                                    <td>{!! $internship->roles_label !!}</td>
-                                    <td>{!! $internship->permissions_label !!}</td>
-                                    <td>{!! $internship->social_buttons !!}</td>
-                                    <td>{{ $internship->updated_at->diffForHumans() }}</td>
-                                    <td>{!! $internship->action_buttons !!}</td>
+                                    <td>{{ ucwords($internship->name) }}</td>
+                                    <td>{{ ucwords($internship->status->name) }}</td>
+                                    <td>
+                                        @if ($internship->addresses->count())
+                                            @foreach ($internship->addresses as $address)
+                                                {{ ucwords($address->city) }}
+                                            @endforeach
+                                        @else
+                                            {{ __('labels.general.none') }}
+                                        @endif
+                                    </td>
+                                <td>{{ null !== $internship->opportunity_start_at ? $internship->opportunity_start_at->toFormattedDateString() : null }}</td>
+                                <td>{{ null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : null }}</td>
+                                <td>{!! $internship->action_buttons !!}</td>
                                 </tr>
                             @endforeach
                         @else

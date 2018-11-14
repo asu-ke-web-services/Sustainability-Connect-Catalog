@@ -23,7 +23,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>{{ __('Order') }}</th>
                                 <th>{{ __('Attachment Type') }}</th>
                                 <th>{{ __('Slug') }}</th>
                                 <th>{{ __('Actions') }}</th>
@@ -32,7 +31,6 @@
                             <tbody>
                             @foreach ($attachment_types as $attachment_type)
                                 <tr>
-                                    <td>{{ $attachment_type->order }}</td>
                                     <td>{{ ucwords($attachment_type->name) }}</td>
                                     <td>{{ $attachment_type->slug }}</td>
                                     <td>{!! $attachment_type->action_buttons !!}</td>

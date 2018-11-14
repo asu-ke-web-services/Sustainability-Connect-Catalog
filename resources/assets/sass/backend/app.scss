@@ -21,5 +21,9 @@
 // Import core styles
 @import "core/core";
 
+@import "~selectize-bootstrap4-theme/scss/selectize.bootstrap4";
+
+@import "~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4-build";
+
 // Custom styles
 @import "custom";

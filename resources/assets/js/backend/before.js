@@ -7,4 +7,10 @@
 // Loaded before CoreUI app.js
 require('../bootstrap');
 require('pace');
+require('moment');
+require('moment-timezone');
+
+require('selectize');
+// require('tempusdominus-bootstrap-4');
+
 require('../plugins');

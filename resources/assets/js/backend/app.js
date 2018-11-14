@@ -26,6 +26,24 @@ $.grayLightest =  '#f8f9fa';
  * MAIN NAVIGATION
  */
 $(document).ready(function($){
+    // Selectize select fields
+    $('.selectize-single').selectize({
+        create: false,
+        persist: false,
+        highlight: true,
+        openOnFocus: true,
+        // maxOptions: 10,
+        maxItems: 1,
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        // sortField: 'order'
+    });
+
+    // $('.datepicker').datepicker({
+    //     uiLibrary: 'bootstrap4'
+    // });
+
     // Dropdown Menu
     $.navigation.on('click', 'a', function(e){
 

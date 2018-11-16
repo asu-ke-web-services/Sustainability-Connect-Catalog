@@ -5,7 +5,6 @@ use Illuminate\Database\Seeder;
 use SCCatalog\Models\Address\Address;
 use SCCatalog\Models\Note\Note;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Models\Opportunity\Opportunity;
 
 class ProjectsSeeder extends Seeder
 {

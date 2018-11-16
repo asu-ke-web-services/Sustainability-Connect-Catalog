@@ -25,11 +25,14 @@ class UserRoleTableSeeder extends Seeder
                 case 'ndrollin':
                 case 'susadmin':
                 case 'brbarker':
+                case 'pprosser':
+                case 'cdonnel':
+                case 'cjharri1':
                     $user->assignRole(config('access.users.admin_role'));
                     break;
 
-                case 'pprosser':
-                    $user->assignRole('sc_manager');
+                case 'ebrunda':
+                    $user->assignRole('student_worker');
                     break;
 
                 default:

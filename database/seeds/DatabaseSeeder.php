@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             'addresses',
             'affiliationables',
             'affiliations',
+            'attachment_statuses',
             'attachment_types',
+            'attachments',
             'budget_types',
             'cache',
             'categories',
@@ -67,6 +69,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call(OrganizationsTableSeeder::class);
         $this->call(OpportunityUsersTablesSeeder::class);
+
+        $this->call(AttachmentStatusesTableSeeder::class);
+        $this->call(AttachmentTypesTableSeeder::class);
+
+        $this->call(ProjectFilesSeeder::class);
+        $this->call(InternshipFilesSeeder::class);
 
         Model::reguard();
     }

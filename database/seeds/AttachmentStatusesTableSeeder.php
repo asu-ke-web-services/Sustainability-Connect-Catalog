@@ -2,9 +2,9 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Lookup\AttachmentType;
+use SCCatalog\Models\Lookup\AttachmentStatus;
 
-class AttachmentTypesTableSeeder extends Seeder
+class AttachmentStatusesTableSeeder extends Seeder
 {
     /**
      * Auto generated seed file.
@@ -13,12 +13,12 @@ class AttachmentTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        $type = AttachmentType::firstOrNew([
-            'slug' => 'final-report',
+        $type = AttachmentStatus::firstOrNew([
+            'slug' => 'public',
         ]);
         if (!$type->exists) {
             $type->fill([
-                'name' => 'Final Report',
+                'name' => 'Public',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'created_by' => 1,
@@ -26,12 +26,12 @@ class AttachmentTypesTableSeeder extends Seeder
             ])->save();
         }
 
-        $type = AttachmentType::firstOrNew([
-            'slug' => 'other',
+        $type = AttachmentStatus::firstOrNew([
+            'slug' => 'private',
         ]);
         if (!$type->exists) {
             $type->fill([
-                'name' => 'Other',
+                'name' => 'Private',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'created_by' => 1,

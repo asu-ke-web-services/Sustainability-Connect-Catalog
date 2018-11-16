@@ -30,55 +30,55 @@
                 {{-- <span class="badge badge-pill badge-danger">5</span> --}}
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                <div class="dropdown-header text-center">
-                    <strong>You have 2 notifications</strong>
-                </div>
-                <a class="dropdown-item" href="#">
-                    <i class="icon-user-follow text-success"></i> New user registered</a>
-                <a class="dropdown-item" href="#">
-                    <i class="icon-user-unfollow text-danger"></i> User deleted</a>
-{{--                 <a class="dropdown-item" href="#">
-                    <i class="icon-chart text-info"></i> Sales report is ready</a>
-                <a class="dropdown-item" href="#">
-                    <i class="icon-basket-loaded text-primary"></i> New client</a>
-                <a class="dropdown-item" href="#">
-                    <i class="icon-speedometer text-warning"></i> Server overloaded</a>
-                <div class="dropdown-header text-center">
-                    <strong>Server</strong>
-                </div>
-                <a class="dropdown-item" href="#">
-                    <div class="text-uppercase mb-1">
-                        <small>
-                            <b>CPU Usage</b>
-                        </small>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                    <small class="text-muted">348 Processes. 1/4 Cores.</small>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <div class="text-uppercase mb-1">
-                        <small>
-                            <b>Memory Usage</b>
-                        </small>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                    <small class="text-muted">11444GB/16384MB</small>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <div class="text-uppercase mb-1">
-                        <small>
-                            <b>SSD 1 Usage</b>
-                        </small>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                    <small class="text-muted">243GB/256GB</small>
-                </a> --}}
+                {{--                <div class="dropdown-header text-center">
+                                    <strong>You have 2 notifications</strong>
+                                </div>
+                                <a class="dropdown-item" href="#">
+                                    <i class="icon-user-follow text-success"></i> New user registered</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="icon-user-unfollow text-danger"></i> User deleted</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="icon-chart text-info"></i> Sales report is ready</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="icon-basket-loaded text-primary"></i> New client</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="icon-speedometer text-warning"></i> Server overloaded</a>
+                                <div class="dropdown-header text-center">
+                                    <strong>Server</strong>
+                                </div>
+                                <a class="dropdown-item" href="#">
+                                    <div class="text-uppercase mb-1">
+                                        <small>
+                                            <b>CPU Usage</b>
+                                        </small>
+                                    </div>
+                                    <span class="progress progress-xs">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </span>
+                                    <small class="text-muted">348 Processes. 1/4 Cores.</small>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <div class="text-uppercase mb-1">
+                                        <small>
+                                            <b>Memory Usage</b>
+                                        </small>
+                                    </div>
+                                    <span class="progress progress-xs">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </span>
+                                    <small class="text-muted">11444GB/16384MB</small>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <div class="text-uppercase mb-1">
+                                        <small>
+                                            <b>SSD 1 Usage</b>
+                                        </small>
+                                    </div>
+                                    <span class="progress progress-xs">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </span>
+                                    <small class="text-muted">243GB/256GB</small>
+                                </a> --}}
             </div>
         </li>
         <li class="nav-item dropdown d-md-down-none">
@@ -86,64 +86,64 @@
                 <i class="icon-list"></i>
                 {{-- <span class="badge badge-pill badge-danger">5</span> --}}
             </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                <div class="dropdown-header text-center">
-                    <strong>You have 0 pending tasks</strong>
-                </div>
-{{--                 <a class="dropdown-item" href="#">
-                    <div class="small mb-1">Upgrade NPM & Bower
-                        <span class="float-right">
-                            <strong>0%</strong>
-                        </span>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <div class="small mb-1">ReactJS Version
-                        <span class="float-right">
-                            <strong>25%</strong>
-                        </span>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <div class="small mb-1">VueJS Version
-                        <span class="float-right">
-                            <strong>50%</strong>
-                        </span>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <div class="small mb-1">Add new layouts
-                        <span class="float-right">
-                            <strong>75%</strong>
-                        </span>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                </a>
-                <a class="dropdown-item" href="#">
-                    <div class="small mb-1">Angular 2 Cli Version
-                        <span class="float-right">
-                            <strong>100%</strong>
-                        </span>
-                    </div>
-                    <span class="progress progress-xs">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                    </span>
-                </a>
-                <a class="dropdown-item text-center" href="#">
-                    <strong>View all tasks</strong>
-                </a> --}}
-            </div>
+            {{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
+                            <div class="dropdown-header text-center">
+                                <strong>You have 0 pending tasks</strong>
+                            </div>
+                            <a class="dropdown-item" href="#">
+                                <div class="small mb-1">Upgrade NPM & Bower
+                                    <span class="float-right">
+                                        <strong>0%</strong>
+                                    </span>
+                                </div>
+                                <span class="progress progress-xs">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </span>
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <div class="small mb-1">ReactJS Version
+                                    <span class="float-right">
+                                        <strong>25%</strong>
+                                    </span>
+                                </div>
+                                <span class="progress progress-xs">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </span>
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <div class="small mb-1">VueJS Version
+                                    <span class="float-right">
+                                        <strong>50%</strong>
+                                    </span>
+                                </div>
+                                <span class="progress progress-xs">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </span>
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <div class="small mb-1">Add new layouts
+                                    <span class="float-right">
+                                        <strong>75%</strong>
+                                    </span>
+                                </div>
+                                <span class="progress progress-xs">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </span>
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <div class="small mb-1">Angular 2 Cli Version
+                                    <span class="float-right">
+                                        <strong>100%</strong>
+                                    </span>
+                                </div>
+                                <span class="progress progress-xs">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </span>
+                            </a>
+                            <a class="dropdown-item text-center" href="#">
+                                <strong>View all tasks</strong>
+                            </a>
+            </div> --}}
         </li>
         <li class="nav-item dropdown d-md-down-none">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -151,7 +151,7 @@
                 <span class="d-md-down-none">{{ $logged_in_user->full_name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header text-center">
+{{--                <div class="dropdown-header text-center">
                     <strong>Account</strong>
                 </div>
                 <a class="dropdown-item" href="#">
@@ -169,7 +169,7 @@
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-comments"></i> Comments
                     <span class="badge badge-warning">42</span>
-                </a>
+                </a> --}}
                 <div class="dropdown-header text-center">
                     <strong>Settings</strong>
                 </div>
@@ -184,5 +184,5 @@
         </li>
     </ul>
 
-    <button class="navbar-toggler aside-menu-toggler" type="button">☰</button>
+    {{--<button class="navbar-toggler aside-menu-toggler" type="button">☰</button>--}}
 </header>

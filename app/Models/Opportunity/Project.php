@@ -43,11 +43,11 @@ class Project extends Model implements HasMedia
      */
     protected $casts = [
         'needs_review'            => 'boolean',
-        'opportunity_start_at'    => 'date:Y-m-d',
-        'opportunity_end_at'      => 'date:Y-m-d',
-        'listing_end_at'          => 'date:Y-m-d',
-        'listing_start_at'        => 'date:Y-m-d',
-        'application_deadline_at' => 'date:Y-m-d',
+        // 'opportunity_start_at'    => 'date',
+        // 'opportunity_end_at'      => 'date',
+        // 'listing_end_at'          => 'date',
+        // 'listing_start_at'        => 'date',
+        // 'application_deadline_at' => 'date',
     ];
 
     /**
@@ -106,8 +106,10 @@ class Project extends Model implements HasMedia
      *
      * @var array
      */
-    public static $rules = [
-    ];
+    // public $with = [
+    //     'status',
+    //     'reviewStatus',
+    // ];
 
     /*
     |--------------------------------------------------------------------------
@@ -126,6 +128,14 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
+    public function getCloneButtonAttribute() : string
+    {
+        return '<a href="'.route('admin.opportunity.project.clone', $this).'" class="dropdown-item">'.__('buttons.general.crud.clone').'</a>';
+    }
+
+    /**
+     * @return string
+     */
     public function getEditButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.project.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
@@ -134,14 +144,18 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDeleteButtonAttribute() : string
+    public function getDeleteButtonAttribute()
     {
-        return '<a href="'.route('admin.opportunity.project.destroy', $this).'"
-             data-method="delete"
-             data-trans-button-cancel="'.__('buttons.general.cancel').'"
-             data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
-             data-trans-title="'.__('strings.backend.general.are_you_sure').'"
-             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.delete').'"></i></a> ';
+        if ($this->id != auth()->id() && $this->id != 1) {
+            return '<a href="'.route('admin.opportunity.project.destroy', $this).'"
+                 data-method="delete"
+                 data-trans-button-cancel="'.__('buttons.general.cancel').'"
+                 data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
+                 data-trans-title="'.__('strings.backend.general.are_you_sure').'"
+                 class="dropdown-item">'.__('buttons.general.crud.delete').'</a> ';
+        }
+
+        return '';
     }
 
     /**
@@ -165,17 +179,25 @@ class Project extends Model implements HasMedia
      */
     public function getActionButtonsAttribute() : string
     {
-        // if ($this->trashed()) {
-        //     return '
-        //         <div class="btn-group" role="group" aria-label="Actions">
-        //           '.$this->restore_button.'
-        //           '.$this->delete_permanently_button.'
-        //         </div>';
-        // }
+        if ($this->trashed()) {
+            return '
+                <div class="btn-group" role="group" aria-label="Actions">
+                  '.$this->restore_button.'
+                  '.$this->delete_permanently_button.'
+                </div>';
+        }
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-              '.$this->show_button.'
-              '.$this->edit_button.'
-              '.$this->delete_button.'
+            '.$this->show_button.'
+            '.$this->edit_button.'
+              
+            <div class="btn-group btn-group-sm" role="group">
+                <button id="projectActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    '.__('labels.general.more').'
+                </button>
+                <div class="dropdown-menu" aria-labelledby="projectActions">
+                    '.$this->delete_button.'
+                </div>
+            </div>
             </div>';
     }
 
@@ -371,7 +393,7 @@ class Project extends Model implements HasMedia
      **/
     public function organization() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id')->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id');
     }
 
     /**
@@ -379,7 +401,7 @@ class Project extends Model implements HasMedia
      **/
     public function supervisorUser() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'supervisor_user_id')->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'supervisor_user_id');
     }
 
     /**
@@ -387,7 +409,7 @@ class Project extends Model implements HasMedia
      **/
     public function submittingUser() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'submitting_user_id')->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'submitting_user_id');
     }
 
     /**
@@ -395,7 +417,7 @@ class Project extends Model implements HasMedia
      **/
     public function users() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps();
     }
@@ -405,7 +427,7 @@ class Project extends Model implements HasMedia
      **/
     public function activeMembers() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [2,3,4,5]);
@@ -415,7 +437,7 @@ class Project extends Model implements HasMedia
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function followers() : BelongsToMany {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 1);
@@ -426,7 +448,7 @@ class Project extends Model implements HasMedia
      **/
     public function applicants() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 2);
@@ -437,7 +459,7 @@ class Project extends Model implements HasMedia
      **/
     public function participants() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 3);
@@ -448,7 +470,7 @@ class Project extends Model implements HasMedia
      **/
     public function mentors() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [4,5]);

@@ -48,7 +48,8 @@ class Attachment extends BaseMedia
      * @var array
      */
     public $fillable = [
-        'status',
+        'attachment_type_id',
+        'attachment_status_id',
         'comments',
     ];
 
@@ -58,7 +59,8 @@ class Attachment extends BaseMedia
      * @var array
      */
     public static $rules = [
-        'status'   => 'nullable',
+        'attachment_type_id'   => 'nullable|integer',
+        'attachment_status_id' => 'nullable|integer',
         'comments' => 'nullable',
     ];
 

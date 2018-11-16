@@ -112,6 +112,14 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
+    public function getCloneButtonAttribute() : string
+    {
+        return '<a href="'.route('admin.opportunity.internship.clone', $this).'" class="dropdown-item">'.__('buttons.general.crud.clone').'</a>';
+    }
+
+    /**
+     * @return string
+     */
     public function getEditButtonAttribute() : string
     {
         return '<a href="'.route('admin.opportunity.internship.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
@@ -120,14 +128,18 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDeleteButtonAttribute() : string
+    public function getDeleteButtonAttribute()
     {
-        return '<a href="'.route('admin.opportunity.internship.destroy', $this).'"
-             data-method="delete"
-             data-trans-button-cancel="'.__('buttons.general.cancel').'"
-             data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
-             data-trans-title="'.__('strings.backend.general.are_you_sure').'"
-             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.delete').'"></i></a> ';
+        if ($this->id != auth()->id() && $this->id != 1) {
+            return '<a href="'.route('admin.opportunity.internship.destroy', $this).'"
+                 data-method="delete"
+                 data-trans-button-cancel="'.__('buttons.general.cancel').'"
+                 data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
+                 data-trans-title="'.__('strings.backend.general.are_you_sure').'"
+                 class="dropdown-item">'.__('buttons.general.crud.delete').'</a> ';
+        }
+
+        return '';
     }
 
     /**
@@ -151,17 +163,25 @@ class Internship extends Model implements HasMedia
      */
     public function getActionButtonsAttribute() : string
     {
-        // if ($this->trashed()) {
-        //     return '
-        //         <div class="btn-group" role="group" aria-label="Actions">
-        //           '.$this->restore_button.'
-        //           '.$this->delete_permanently_button.'
-        //         </div>';
-        // }
+        if ($this->trashed()) {
+            return '
+                <div class="btn-group" role="group" aria-label="Actions">
+                  '.$this->restore_button.'
+                  '.$this->delete_permanently_button.'
+                </div>';
+        }
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-              '.$this->show_button.'
-              '.$this->edit_button.'
-              '.$this->delete_button.'
+            '.$this->show_button.'
+            '.$this->edit_button.'
+              
+            <div class="btn-group btn-group-sm" role="group">
+                <button id="internshipActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    '.__('labels.general.more').'
+                </button>
+                <div class="dropdown-menu" aria-labelledby="internshipActions">
+                    '.$this->delete_button.'
+                </div>
+            </div>
             </div>';
     }
 
@@ -322,7 +342,7 @@ class Internship extends Model implements HasMedia
      **/
     public function users() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps();
     }
@@ -332,7 +352,7 @@ class Internship extends Model implements HasMedia
      **/
     public function activeMembers() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [2,3,4,5]);
@@ -343,7 +363,7 @@ class Internship extends Model implements HasMedia
      **/
     public function followers() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 1);
@@ -354,7 +374,7 @@ class Internship extends Model implements HasMedia
      **/
     public function applicants() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 2);
@@ -365,7 +385,7 @@ class Internship extends Model implements HasMedia
      **/
     public function participants() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 3);
@@ -376,7 +396,7 @@ class Internship extends Model implements HasMedia
      **/
     public function mentors() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class)
+        return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [4,5]);

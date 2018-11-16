@@ -2,6 +2,8 @@
 
 namespace SCCatalog\Models\Auth\Traits\Relationship;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use SCCatalog\Models\System\Session;
@@ -40,15 +42,15 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function organization()
+    public function organization() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class)->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id')->withDefault();
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function userType()
+    public function userType() : BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class, 'user_type_id')->withDefault();
     }
@@ -56,17 +58,17 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function studentDegreeLevel()
+    public function studentDegreeLevel() : BelongsTo
     {
-        return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class)->withDefault();
+        return $this->belongsTo(\SCCatalog\Models\Lookup\StudentDegreeLevel::class, 'student_degree_level_id')->withDefault();
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function followedProjects()
+    public function followedProjects() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class)
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class, 'project_user')
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
                 4, // Recruiting Participants
@@ -84,9 +86,9 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function followedInternships()
+    public function followedInternships() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class)
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class, 'internship_user')
             ->withTimestamps()
             ->withPivot('relationship_type_id', 'comments')
             ->wherePivotIn('relationship_type_id', [
@@ -97,16 +99,16 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function projectApplications()
+    public function projectApplications() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class)
-            ->whereIn('opportunity_status_id', [
-                3, // Seeking Champion
-                4, // Recruiting Participants
-                5, // Positions Filled
-                6, // In Progress
-                7, // Closed
-            ])
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class, 'project_user')
+            // ->whereIn('opportunity_status_id', [
+            //     3, // Seeking Champion
+            //     4, // Recruiting Participants
+            //     5, // Positions Filled
+            //     6, // In Progress
+            //     7, // Closed
+            // ])
             ->withTimestamps()
             ->withPivot('relationship_type_id', 'comments')
             ->wherePivotIn('relationship_type_id', [
@@ -117,9 +119,9 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function internshipApplications()
+    public function internshipApplications() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class)
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class, 'internship_user')
             ->whereIn('opportunity_status_id', [
                 9, // Active
             ])
@@ -133,9 +135,9 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function participatingInProjects()
+    public function participatingInProjects() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class)
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class, 'project_user')
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
                 4, // Recruiting Participants
@@ -156,9 +158,9 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function participatingInInternships()
+    public function participatingInInternships() : BelongsToMany
     {
-        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class)
+        return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [

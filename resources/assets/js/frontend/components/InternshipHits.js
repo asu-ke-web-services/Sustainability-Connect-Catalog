@@ -2,6 +2,7 @@ import React from 'react';
 import { connectHits, Highlight } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import unescape from 'unescape';
 import { AffiliationIcons } from './AffiliationIcons';
 
 export const InternshipHits = connectHits(({ hits, userAccessAffiliations, canViewRestricted }) => {
@@ -62,7 +63,7 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
   if (canView) {
     return (
       <tr className="disabled">
-        <td>View Restricted: {canView}</td>
+        <td>View Restricted for Sustainability majors only</td>
         <td>View Restricted</td>
         <td>{hit.affiliationIcons != null
             ? <AffiliationIcons canView={canView} icons={hit.affiliationIcons.filter(Boolean)} />
@@ -74,7 +75,7 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
 
   return (
     <tr>
-      <td><a href={`/internship/${hit.id}`}><Highlight attribute="name" hit={hit} /></a></td>
+      <td><a href={`/internship/${hit.id}`}>{unescape(hit.name)}</a></td>
       <td>{hit.organizationName}</td>
       <td>{hit.affiliationIcons != null
           ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />

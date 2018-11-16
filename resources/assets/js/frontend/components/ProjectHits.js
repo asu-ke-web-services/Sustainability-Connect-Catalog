@@ -2,6 +2,7 @@ import React from 'react';
 import { connectHits, Highlight } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import unescape from 'unescape';
 import { AffiliationIcons } from './AffiliationIcons';
 
 export const ProjectHits = connectHits(({ hits, userAccessAffiliations, canViewRestricted }) => {
@@ -62,11 +63,11 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
   if (canView) {
     return (
       <tr className="disabled">
-        <td>View Restricted</td>
+        <td>View Restricted for Sustainability majors only</td>
         <td>{hit.affiliationIcons != null
             ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
             : ''}</td>
-        <td><Highlight attribute="locations" hit={hit} /></td>
+        <td>{hit.locations}</td>
         <td>{startDate}</td>
         <td>{endDate}</td>
         <td>{deadline}</td>
@@ -76,11 +77,11 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
 
   return (
     <tr>
-      <td><a href={`/project/${hit.id}`}><Highlight attribute="name" hit={hit} /></a></td>
+      <td><a href={`/project/${hit.id}`}>{unescape(hit.name)}</a></td>
       <td>{hit.affiliationIcons != null
           ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
           : ''}</td>
-      <td><Highlight attribute="locations" hit={hit} /></td>
+      <td>{hit.locations}</td>
       <td>{startDate}</td>
       <td>{endDate}</td>
       <td>{deadline}</td>

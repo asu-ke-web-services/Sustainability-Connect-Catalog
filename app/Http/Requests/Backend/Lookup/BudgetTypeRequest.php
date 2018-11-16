@@ -17,7 +17,7 @@ class BudgetTypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('manage lookup');
     }
 
     /**

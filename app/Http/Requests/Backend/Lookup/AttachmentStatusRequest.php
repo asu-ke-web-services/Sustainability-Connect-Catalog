@@ -1,12 +1,14 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\Organization;
+namespace SCCatalog\Http\Requests\Backend\Lookup;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use SCCatalog\Models\Organization\Organization;
 
-class OrganizationRequest extends FormRequest
+/**
+ * Class AttachmentStatusRequest.
+ */
+class AttachmentStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +17,7 @@ class OrganizationRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('manage lookup');
     }
 
     /**
@@ -25,7 +27,11 @@ class OrganizationRequest extends FormRequest
      */
     public function rules()
     {
-        return Organization::$rules;
+        return [
+            'order' => 'nullable|integer',
+            'name'  => ['required', 'string', 'max:250', Rule::unique('attachment_statuses')],
+            'slug'  => 'nullable|string|max:255',
+        ];
     }
 
     /**

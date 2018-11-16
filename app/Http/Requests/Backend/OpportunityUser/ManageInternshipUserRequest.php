@@ -1,11 +1,11 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\OpportunityAttachment;
+namespace SCCatalog\Http\Requests\Backend\OpportunityUser;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class OpportunityAttachmentRequest extends FormRequest
+class ManageInternshipUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class OpportunityAttachmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('manage project user');
     }
 
     /**

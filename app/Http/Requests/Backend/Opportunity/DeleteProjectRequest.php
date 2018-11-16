@@ -16,7 +16,7 @@ class DeleteProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('delete project');
     }
 
     /**

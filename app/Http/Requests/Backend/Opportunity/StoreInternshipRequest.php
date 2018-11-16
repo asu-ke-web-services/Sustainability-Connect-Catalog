@@ -17,7 +17,7 @@ class StoreInternshipRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('store internship');
     }
 
     /**

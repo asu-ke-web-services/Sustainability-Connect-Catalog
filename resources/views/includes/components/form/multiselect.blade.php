@@ -6,12 +6,12 @@
     @endif
 
     <div class="col-md-10">
-        {{ html()->select(
+        {{ html()->multiselect(
             $name,
             $optionList,
-            old($name) ?: ($object->{$name} ?? null)
+            old($name) ?: ($object->{$name}->pluck('id')->toArray() ?? null)
         )
-            ->class('form-control selectize-single')
+            ->class('form-control selectize-multiple')
             ->placeholder($placeholder ?? null)
             ->attribute($attribute ?? null)
             ->attributes($attributes ?? [])

@@ -32,17 +32,13 @@ class ProjectRepository extends BaseRepository
      * @var array
      */
     protected $with = [
-        // 'addresses',
-        // 'notes',
-        // 'status',
-        // 'parentOpportunity',
-        // 'organization',
-        // 'supervisorUser',
-        // 'affiliations',
-        // 'categories',
-        // 'keywords',
-        // 'followers',
-        // 'applicants',
+        'addresses',
+        'notes',
+        'status',
+        'organization',
+        'affiliations',
+        'categories',
+        'keywords',
     ];
 
     /**
@@ -236,36 +232,39 @@ class ProjectRepository extends BaseRepository
      */
     public function create(array $data)
     {
+        // dd($data);
+
+
         return DB::transaction(function () use ($data) {
 
             $project = $this->model->create($data);
 
             if ($project) {
-                // sync Addresses
+                // save Addresses
                 if ( isset($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
                         $project->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
 
-                // sync Affiliations
+                // attach Affiliations
                 if ( isset($data['affiliations'] ) ) {
                     foreach ($data['affiliations'] as $affiliation) {
-                        $project->affiliations->attach($affiliation);
+                        $project->affiliations()->attach($affiliation);
                     }
                 }
 
-                // sync Categories
+                // attach Categories
                 if ( isset($data['categories'] ) ) {
                     foreach ($data['categories'] as $category) {
-                        $project->categories->attach($category);
+                        $project->categories()->attach($category);
                     }
                 }
 
-                // sync Keywords
+                // attach Keywords
                 if ( isset($data['keywords'] ) ) {
                     foreach ($data['keywords'] as $keyword) {
-                        $project->keywords->attach($keyword);
+                        $project->keywords()->attach($keyword);
                     }
                 }
 
@@ -299,7 +298,7 @@ class ProjectRepository extends BaseRepository
         return DB::transaction(function () use ($project, $data) {
 
             if ($project->update($data)) {
-                // sync Addresses
+                // save Addresses
                 if ( isset($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
                         $project->addresses()->save(Address::firstOrCreate($address));
@@ -307,21 +306,13 @@ class ProjectRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                if ( isset($data['affiliations'] ) ) {
-                    foreach ($data['affiliations'] as $affiliation) {
-                        $project->affiliations()->attach(Affiliation::firstOrFail($affiliation));
-                    }
-                }
+                $project->affiliations()->sync($data['affiliations']);
 
                 // sync Categories
-                if ( isset($data['categories'] ) ) {
-                    $project->categories->sync($data['categories']);
-                }
+                $project->categories()->sync($data['categories']);
 
                 // sync Keywords
-                if ( isset($data['keywords'] ) ) {
-                    $project->keywords->sync($data['keywords']);
-                }
+                $project->keywords()->sync($data['keywords']);
 
                 event(new ProjectUpdated($project));
 
@@ -347,6 +338,7 @@ class ProjectRepository extends BaseRepository
                 'affiliations',
                 'categories',
                 'keywords',
+                'organization',
                 'users',
                 'addresses',
                 'notes'
@@ -354,43 +346,53 @@ class ProjectRepository extends BaseRepository
 
             // Copy attributes of original base model
             $clone = $project->replicate();
+
+            // dd($clone);
+
+
             // save model before recreating the relations
             $clone->push();
 
+            // dd($clone);
+
             // reset relations on the original model to control how we replicate them
-            $project->relations = [];
+            // $project->relations = [];
 
             // load the relations to replicate (clone the associated models)
-            $project->load(
-                'addresses',
-                'notes'
-            );
+            // $project->load(
+            //     'addresses',
+            //     'notes'
+            // );
+
+            // dd($project->getRelations());
 
             // replicate associated models
-            foreach($project->getRelations() as $relation => $items){
-                foreach($items as $item){
-                    unset($item->id);
-                    $clone->{$relation}()->create($item->toArray());
-                }
-            }
+            // foreach($project->getRelations() as $relation => $items){
+            //     if (null !== $items) {
+            //         foreach($items as $item){
+            //             unset($item->id);
+            //             $clone->{$relation}()->create($item->toArray());
+            //         }
+            //     }
+            // }
 
-            $project->relations = [];
+            // $project->relations = [];
 
             // load the relations we want re-attach (to associated models)
-            $project->load(
-                'affiliations',
-                'categories',
-                'keywords',
-                'organizations',
-                'users'
-            );
+            // $project->load(
+            //     'affiliations',
+            //     'categories',
+            //     'keywords',
+            //     'organizations',
+            //     'users'
+            // );
 
             // attach associated models
-            foreach($project->getRelations() as $relation => $items){
-                foreach($items as $item){
-                    $clone->{$relation}->attach($item->id);
-                }
-            }
+            // foreach($project->getRelations() as $relation => $items){
+            //     foreach($items as $item){
+            //         $clone->{$relation}->attach($item->id);
+            //     }
+            // }
 
             if ( $clone ) {
 

@@ -31,17 +31,13 @@ class InternshipRepository extends BaseRepository
      * @var array
      */
     protected $with = [
-        // 'addresses',
-        // 'notes',
-        // 'status',
-        // 'parentOpportunity',
-        // 'organization',
-        // 'supervisorUser',
-        // 'affiliations',
-        // 'categories',
-        // 'keywords',
-        // 'followers',
-        // 'applicants',
+        'addresses',
+        'notes',
+        'status',
+        'organization',
+        'affiliations',
+        'categories',
+        'keywords',
     ];
 
     /**
@@ -149,31 +145,33 @@ class InternshipRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data) {
 
+            // dd($data);
+
             $internship = $this->model->create($data);
 
             if ($internship) {
-                // sync Addresses
+                // save Addresses
                 if ( isset($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
                         $internship->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
 
-                // sync Affiliations
+                // attach Affiliations
                 if ( isset($data['affiliations'] ) ) {
                     foreach ($data['affiliations'] as $affiliation) {
                         $internship->affiliations()->attach($affiliation);
                     }
                 }
 
-                // sync Categories
+                // attach Categories
                 if ( isset($data['categories'] ) ) {
                     foreach ($data['categories'] as $category) {
                         $internship->categories()->attach($category);
                     }
                 }
 
-                // sync Keywords
+                // attach Keywords
                 if ( isset($data['keywords'] ) ) {
                     foreach ($data['keywords'] as $keyword) {
                         $internship->keywords()->attach($keyword);
@@ -207,10 +205,12 @@ class InternshipRepository extends BaseRepository
             'keywords'
         );
 
+            // dd($data);
+
         return DB::transaction(function () use ($internship, $data) {
 
             if ($internship->update($data)) {
-                // sync Addresses
+                // save Addresses
                 if ( isset($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
                         $internship->addresses()->save(Address::firstOrCreate($address));
@@ -218,19 +218,13 @@ class InternshipRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                if ( isset($data['affiliations'] ) ) {
-                    $internship->affiliations()->sync($data['affiliations']);
-                }
+                $internship->affiliations()->sync($data['affiliations']);
 
                 // sync Categories
-                if ( isset($data['categories'] ) ) {
-                    $internship->categories()->sync($data['categories']);
-                }
+                $internship->categories()->sync($data['categories']);
 
                 // sync Keywords
-                if ( isset($data['keywords'] ) ) {
-                    $internship->keywords()->sync($data['keywords']);
-                }
+                $internship->keywords()->sync($data['keywords']);
 
                 event(new InternshipUpdated($internship));
 

@@ -194,35 +194,32 @@
                     ])@endcomponent
 
                     <!-- Affiliations Field -->
-                    @component('includes.components.form.select', [
+                    @component('includes.components.form.multiselect', [
                         'name'        => 'affiliations',
                         'label'       => 'Affiliations',
-                        'placeholder' => 'Select one or more affiliations...',
+                        'help_text' => 'Select one or more affiliations...',
                         'optionList'  => $affiliations,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- Categories Field -->
-                    @component('includes.components.form.select', [
+                    @component('includes.components.form.multiselect', [
                         'name'        => 'categories',
                         'label'       => 'Categories',
-                        'placeholder' => 'Select one or more categories...',
+                        'help_text' => 'Select one or more categories...',
                         'optionList'  => $categories,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- Keywords Field -->
-                    @component('includes.components.form.select', [
+                    @component('includes.components.form.multiselect', [
                         'name'        => 'keywords',
                         'label'       => 'Keywords',
-                        'placeholder' => 'Select one or more keywords...',
+                        'help_text'   => 'Select one or more keywords...',
                         'optionList'  => $keywords,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
                         'object'      => $project ?? null,
                     ])@endcomponent
 

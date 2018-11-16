@@ -4,22 +4,22 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.qualifications') }}</th>
-                <td>@markdown($internship->qualifications ?? null)</td>
+                <td>@markdown($internship->qualifications ?? '')</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.responsibilities') }}</th>
-                <td>@markdown($internship->responsibilities ?? null)</td>
+                <td>@markdown($internship->responsibilities ?? '')</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.compensation') }}</th>
-                <td>@markdown($internship->compensation ?? null)</td>
+                <td>@markdown($internship->compensation ?? '')</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.application_instructions') }}</th>
-                <td>@markdown($internship->application_instructions ?? null)</td>
+                <td>@markdown($internship->application_instructions ?? '')</td>
             </tr>
 
             <tr>

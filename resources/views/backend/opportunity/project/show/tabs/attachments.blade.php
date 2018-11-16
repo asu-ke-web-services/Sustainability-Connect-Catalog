@@ -1,10 +1,10 @@
 <div class="col">
     <div class="table-responsive">
         <table class="table table-hover">
-        @foreach($project->attachments as $attachment)
+        @foreach($attachments as $attachment)
             <tr>
-                <th>{!! ucwords($attachment->status) !!}</th>
-                <td>{!! ucwords($attachment->comments) !!}</td>
+                <th>{{ ucwords($attachment->name)  }}</th>
+                <td><a href="{{ $attachment->getUrl() }}">{{ $attachment->file_name }}</a></td>
             </tr>
         @endforeach
         </table>

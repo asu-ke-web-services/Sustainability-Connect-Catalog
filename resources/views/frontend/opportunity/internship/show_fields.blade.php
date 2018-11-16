@@ -1,6 +1,6 @@
 
         <!-- Internship Name -->
-        <h1>{!! $internship->name !!}</h1>
+        <h1>{{ $internship->name }}</h1>
 
         <div class="table-responsive">
             <table class="table table-striped">
@@ -34,7 +34,7 @@
                     <!-- Opportunity Status -->
                     <tr>
                         <td class="col col-sm-3 view-label">Status</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->status->name !!}</td>
+                        <td class="col col-sm-9 view-content">{{ $internship->status->name }}</td>
                     </tr>
 
                     <!-- Description -->
@@ -54,7 +54,7 @@
                     <!-- Categories -->
                     @foreach($internship->categories as $category)
                         <tr>
-                            <td class="col col-sm-9 view-content">{!! $category->name !!}</td>
+                            <td class="col col-sm-9 view-content">{{ $category->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -68,7 +68,7 @@
                     <!-- Categories -->
                     @foreach($internship->keywords as $keyword)
                         <tr>
-                            <td class="col col-sm-9 view-content">{!! $keyword->name !!}</td>
+                            <td class="col col-sm-9 view-content">{{ $keyword->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -82,12 +82,12 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Apply By</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->application_deadline_at->toFormattedDateString() !!}</td>
+                        <td class="col col-sm-9 view-content">{{ null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : '' }}</td>
                     </tr>
                     <!-- Semester Offered -->
                     <tr>
                         <td class="col col-sm-3 view-label">Semester Offered</td>
-                        <td class="col col-sm-9 view-content">{!! $internship->opportunity_start_at->toFormattedDateString() !!}</td>
+                        <td class="col col-sm-9 view-content">{{ null !== $internship->opportunity_start_at ? $internship->opportunity_start_at->toFormattedDateString() : '' }}</td>
                     </tr>
                     <!-- Application Instructions -->
                     <tr>
@@ -106,7 +106,7 @@
                     @foreach($internship->addresses as $address)
                         <tr>
                             <td class="col col-sm-3 view-label">City, State</td>
-                            <td class="col col-sm-9 view-content">{!! $address->city . ', ' . $address->state !!}</td>
+                            <td class="col col-sm-9 view-content">{{ $address->city . ', ' . $address->state }}</td>
                         </tr>
                     @endforeach
                 </tbody>

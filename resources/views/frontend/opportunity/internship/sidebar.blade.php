@@ -1,5 +1,6 @@
 <div id="secondary" class="widget-area row" role="complementary">
     <div style="width: 285px;" id="sidebarNav" class="sidebar-nav affix-top">
+    @if ($logged_in_user)
         <aside id="internship-favorites" class="widget widget_internship_favorites">
         @if ($isFollowed)
             {{ html()->form('POST', route('frontend.internship.unfollow', $internship))->class('form-horizontal')->open() }}
@@ -19,5 +20,6 @@
             {{ html()->button('Request to Join', 'submit')->class(['btn', 'btn-primary', 'btn-sm']) }}
             {{ html()->form()->close() }}
         </aside>
+    @endif
     </div>
 </div>

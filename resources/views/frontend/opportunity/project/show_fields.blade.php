@@ -1,6 +1,6 @@
 
         <!-- Project Name -->
-        <h1>{!! $project->name !!}</h1>
+        <h1>{{ $project->name }}</h1>
 
         <div class="table-responsive">
             <table class="table table-striped">
@@ -8,33 +8,33 @@
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <!-- Affiliations -->
-                            @foreach($project->affiliations as $affiliation)
-                                <span
-                                    @unless(empty($affiliation->fa_icon))
-                                        class="fa-stack"
-                                    @endunless
-                                    @unless(empty($affiliation->help_text))
-                                        data-toggle="tooltip"
-                                        data-container="body"
-                                        title=""
-                                        data-original-title="{{ $affiliation->help_text }}"
-                                    @endunless
-                                >
-                                    @unless(empty($affiliation->fa_icon))
-                                        {!! $affiliation->fa_icon !!}
-                                    @else
-                                        <span class="badge badge-success">{{ ucwords($affiliation->name) }}</span>
-                                    @endunless
-                                </span>
-                            @endforeach
+                        <!-- Affiliations -->
+                        @foreach($project->affiliations as $affiliation)
+                            <span
+                                @unless(empty($affiliation->fa_icon))
+                                    class="fa-stack"
+                                @endunless
+                                @unless(empty($affiliation->help_text))
+                                    data-toggle="tooltip"
+                                    data-container="body"
+                                    title=""
+                                    data-original-title="{{ $affiliation->help_text }}"
+                                @endunless
+                            >
+                                @unless(empty($affiliation->fa_icon))
+                                    {!! $affiliation->fa_icon !!}
+                                @else
+                                    <span class="badge badge-success">{{ ucwords($affiliation->name) }}</span>
+                                @endunless
+                            </span>
+                        @endforeach
                         </td>
                     </tr>
 
                     <!-- Project Status -->
                     <tr>
                         <td class="col col-sm-3 view-label">Status</td>
-                        <td class="col col-sm-9 view-content">{!! $project->status->name !!}</td>
+                        <td class="col col-sm-9 view-content">{{ $project->status->name }}</td>
                     </tr>
 
                     <!-- Description -->
@@ -54,7 +54,7 @@
                     <!-- Categories -->
                     @foreach($project->categories as $category)
                         <tr>
-                            <td class="col col-sm-9 view-content"><span class="badge badge-success">{!! $category->name !!}</span></td>
+                            <td class="col col-sm-9 view-content"><span class="badge badge-success">{{ $category->name }}</span></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -68,7 +68,7 @@
                     <!-- Categories -->
                     @foreach($project->keywords as $keyword)
                         <tr>
-                            <td class="col col-sm-9 view-content"><span class="badge badge-success">{!! $keyword->name !!}</span></td>
+                            <td class="col col-sm-9 view-content"><span class="badge badge-success">{{ $keyword->name }}</span></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -82,12 +82,12 @@
                     <!-- Project Starts -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Starts</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunity_start_at !== null ? $project->opportunity_start_at->toFormattedDateString() : '' !!}</td>
+                        <td class="col col-sm-9 view-content">{{ $project->opportunity_start_at !== null ? $project->opportunity_start_at->toFormattedDateString() : '' }}</td>
                     </tr>
                     <!-- Project Ends -->
                     <tr>
                         <td class="col col-sm-3 view-label">Project Ends</td>
-                        <td class="col col-sm-9 view-content">{!! $project->opportunity_end_at !== null ? $project->opportunity_end_at->toFormattedDateString() : '' !!}</td>
+                        <td class="col col-sm-9 view-content">{{ $project->opportunity_end_at !== null ? $project->opportunity_end_at->toFormattedDateString() : '' }}</td>
                     </tr>
                         </tbody>
             </table>
@@ -100,7 +100,7 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Deadline</td>
-                        <td class="col col-sm-9 view-content">{!! $project->application_deadline_at !== null ? $project->application_deadline_at->toFormattedDateString() : '' !!}</td>
+                        <td class="col col-sm-9 view-content">{{ $project->application_deadline_at !== null ? $project->application_deadline_at->toFormattedDateString() : '' }}</td>
                     </tr>
                             <!-- Application Instructions -->
                     <tr>
@@ -119,7 +119,7 @@
                     @foreach($project->addresses as $address)
                         <tr>
                             <td class="col col-sm-3 view-label">City, State</td>
-                            <td class="col col-sm-9 view-content">{!! $address->city . ', ' . $address->state !!}</td>
+                            <td class="col col-sm-9 view-content">{{ $address->city . ', ' . $address->state }}</td>
                         </tr>
                     @endforeach
 

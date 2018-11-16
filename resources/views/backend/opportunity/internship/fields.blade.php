@@ -2,10 +2,15 @@
             <div class="row mt-4">
                 <div class="col">
 
+                    <div class="form-group row">
+                        <label class="col-md-2 form-control-label">[Required Fields *]</label>
+
+                    </div>
+
                     <!-- Internship Name Field -->
                     @component('includes.components.form.input', [
                         'name'        => 'name',
-                        'label'       => 'Name',
+                        'label'       => 'Name *',
                         'help_text'   => 'Names can be up to 1024 characters long',
                         'attributes'  => [
                             'required' => 'required',
@@ -17,7 +22,10 @@
                     <!-- Partner Organization Field -->
                     @component('includes.components.form.select', [
                         'name'        => 'organization_id',
-                        'label'       => 'Managing Organization',
+                        'label'       => 'Managing Organization *',
+                        'attributes'  => [
+                            'required' => 'required',
+                        ],
                         'optionList'  => $organizations,
                         'object'      => $internship->organization ?? null,
                     ])@endcomponent
@@ -100,26 +108,33 @@
                 <div class="col">
 
                     <!-- Listing Starts Field -->
-                    @component('includes.components.form.input', [
-                        'type'        => 'date',
+                    @component('includes.components.form.date', [
                         'name'        => 'listing_start_at',
                         'label'       => 'Listing Starts',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
                     <!-- Listing Ends Field -->
-                    @component('includes.components.form.input', [
-                        'type'        => 'date',
+                    @component('includes.components.form.date', [
                         'name'        => 'listing_end_at',
                         'label'       => 'Listing Ends',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
                     <!-- Application Deadline Field -->
+                    @component('includes.components.form.date', [
+                        'name'      => 'application_deadline_at',
+                        'label'     => 'Application Deadline',
+                        'help_text' => 'Enter date-format deadline (Leave blank if Text Deadline used)',
+                        'object'    => $internship ?? null,
+                    ])@endcomponent
+
+                    <!-- Application Deadline Text Field -->
                     @component('includes.components.form.input', [
-                        'name'   => 'application_deadline_at',
-                        'label'  => 'Application Deadline (Date or Short Text)',
-                        'object' => $internship ?? null,
+                        'name'      => 'application_deadline_text',
+                        'label'     => 'Application Deadline Text',
+                        'help_text' => 'Enter text-format deadline; e.g. "When Filled" (Leave blank if Date field used)',
+                        'object'    => $internship ?? null,
                     ])@endcomponent
 
                 </div><!--col-->
@@ -145,55 +160,55 @@
                     <!-- Opportunity Status Field -->
                     @component('includes.components.form.select', [
                         'name'        => 'opportunity_status_id',
-                        'label'       => 'Internship Status',
+                        'label'       => 'Internship Status *',
+                        'placeholder' => 'Select project status...',
+                        'attribute'   => 'required',
                         'optionList'  => $opportunityStatuses,
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
                     <!-- Opportunity Begins Field -->
-                    @component('includes.components.form.input', [
-                        'type'        => 'date',
+                    @component('includes.components.form.date', [
                         'name'        => 'opportunity_start_at',
                         'label'       => 'Internship Start Date',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
                     <!-- Opportunity Ends Field -->
-                    @component('includes.components.form.input', [
-                        'type'        => 'date',
+                    @component('includes.components.form.date', [
                         'name'        => 'opportunity_end_at',
                         'label'       => 'Internship End Date',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
                     <!-- Affiliations Field -->
-                    @component('includes.components.form.select', [
+                    @component('includes.components.form.multiselect', [
                         'name'        => 'affiliations',
                         'label'       => 'Affiliations',
+                        'help_text' => 'Select one or more affiliations...',
                         'optionList'  => $affiliations,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
-                        'object'      => $internship->affiliations ?? null,
+                        'object'      => $internship ?? null,
                     ])@endcomponent
 
                     <!-- Categories Field -->
-                    @component('includes.components.form.select', [
+                    @component('includes.components.form.multiselect', [
                         'name'        => 'categories',
                         'label'       => 'Categories',
+                        'help_text' => 'Select one or more categories...',
                         'optionList'  => $categories,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
-                        'object'      => $internship->categories ?? null,
+                        'object'      => $internship ?? null,
                     ])@endcomponent
 
                     <!-- Keywords Field -->
-                    @component('includes.components.form.select', [
+                    @component('includes.components.form.multiselect', [
                         'name'        => 'keywords',
                         'label'       => 'Keywords',
+                        'help_text'   => 'Select one or more keywords...',
                         'optionList'  => $keywords,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
-                        'object'      => $internship->keywords ?? null,
+                        'object'      => $internship ?? null,
                     ])@endcomponent
 
                 </div><!--col-->
@@ -216,34 +231,24 @@
             <div class="row mt-4">
                 <div class="col">
 
-                @if( isset($internship) )
-                    @foreach( $internship->addresses as $key => $address)
-                        @include('opportunities._address', [
-                            'key'     => $key,
-                            'count'   => $key + 1,
-                            'address' => $address
-                        ])
-                    @endforeach
-                @else
                     <label for="addresses">Location:</label>
                     @component('includes.components.form.input', [
                         'name'        => 'addresses[0][city]',
-                        'label'       => 'City:',
-                        'attribute'  => 'required',
+                        'label'       => 'City: *',
+                        'attribute'   => 'required',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
                     @component('includes.components.form.input', [
                         'name'        => 'addresses[0][state]',
-                        'label'       => 'State/Prov:',
-                        'attribute'  => 'required',
+                        'label'       => 'State/Prov: *',
+                        'attribute'   => 'required',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
                     @component('includes.components.form.input', [
                         'name'        => 'addresses[0][country]',
                         'label'       => 'Country:',
-                        'attribute'  => 'required',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
@@ -252,8 +257,46 @@
                         'label'       => 'Location Comment:',
                         'object'      => $internship ?? null,
                     ])@endcomponent
-                @endif
 
+                    {{--
+                                    @if( isset($internship) )
+                                        @foreach( $internship->addresses as $key => $address)
+                                            @include('opportunities._address', [
+                                                'key'     => $key,
+                                                'count'   => $key + 1,
+                                                'address' => $address
+                                            ])
+                                        @endforeach
+                                    @else
+                                        <label for="addresses">Location:</label>
+                                        @component('includes.components.form.input', [
+                                            'name'        => 'addresses[0][city]',
+                                            'label'       => 'City:',
+                                            'attribute'  => 'required',
+                                            'object'      => $internship ?? null,
+                                        ])@endcomponent
+
+                                        @component('includes.components.form.input', [
+                                            'name'        => 'addresses[0][state]',
+                                            'label'       => 'State/Prov:',
+                                            'attribute'  => 'required',
+                                            'object'      => $internship ?? null,
+                                        ])@endcomponent
+
+                                        @component('includes.components.form.input', [
+                                            'name'        => 'addresses[0][country]',
+                                            'label'       => 'Country:',
+                                            'attribute'  => 'required',
+                                            'object'      => $internship ?? null,
+                                        ])@endcomponent
+
+                                        @component('includes.components.form.textarea', [
+                                            'name'        => 'addresses[0][comment]',
+                                            'label'       => 'Location Comment:',
+                                            'object'      => $internship ?? null,
+                                        ])@endcomponent
+                                    @endif
+                    --}}
                 </div><!--col-->
             </div><!--row-->
         </div><!--card-body-->

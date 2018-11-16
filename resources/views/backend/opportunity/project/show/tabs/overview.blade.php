@@ -3,27 +3,22 @@
         <table class="table table-hover">
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.name') }}</th>
-                <td>{!! ucwords($project->name) !!}</td>
+                <td>{{ ucwords($project->name) }}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.description') }}</th>
-                <td>@markdown($project->description ?? null)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('Needs Review') }}</th>
-                <td>{{ $project->needs_review === 1 ? true : false }}</td>
+                <td>@markdown($project->description)</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.status') }}</th>
-                <td>{!! ucwords($project->status->name ?? '') !!}</td>
+                <td>{{ ucwords($project->status->name ?? '') }}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.review_status') }}</th>
-                <td>{!! ucwords($project->reviewStatus->name ?? '') !!}</td>
+                <td>{{ ucwords($project->reviewStatus->name ?? '') }}</td>
             </tr>
 
             <tr>
@@ -57,7 +52,7 @@
                 <td>
                     <ul>
                         @foreach($project->affiliations as $affiliation)
-                            <li>{!! $affiliation->name !!}</li>
+                            <li>{{ $affiliation->name }}</li>
                         @endforeach
                     </ul>
                 </td>
@@ -68,7 +63,7 @@
                 <td>
                     <ul>
                         @foreach($project->categories as $category)
-                            <li>{!! $category->name !!}</li>
+                            <li>{{ $category->name }}</li>
                         @endforeach
                     </ul>
                 </td>
@@ -79,7 +74,7 @@
                 <td>
                     <ul>
                         @foreach($project->keywords as $keyword)
-                            <li>{!! $keyword->name !!}</li>
+                            <li>{{ $keyword->name }}</li>
                         @endforeach
                     </ul>
                 </td>
@@ -90,7 +85,7 @@
                 <td>
                     <ul>
                         @foreach($project->addresses as $address)
-                            <li>{!! $address->city . ', ' . $address->state !!}</li>
+                            <li>{{ $address->city . ', ' . $address->state }}</li>
                         @endforeach
                     </ul>
                 </td>

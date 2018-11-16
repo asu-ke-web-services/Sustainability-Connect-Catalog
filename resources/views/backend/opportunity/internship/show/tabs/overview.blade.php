@@ -3,17 +3,17 @@
         <table class="table table-hover">
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.name') }}</th>
-                <td>{!! ucwords($internship->name) !!}</td>
+                <td>{{ ucwords($internship->name) }}</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.description') }}</th>
-                <td>{{@markdown($internship->description ?? null)}}</td>
+                <td>@markdown($internship->description ?? null)</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.status') }}</th>
-                <td>{!! ucwords($internship->status->name ?? '') !!}</td>
+                <td>{{ ucwords($internship->status->name ?? '') }}</td>
             </tr>
 
             <tr>
@@ -47,7 +47,7 @@
                 <td>
                     <ul>
                         @foreach($internship->affiliations as $affiliation)
-                            <li>{!! $affiliation->name !!}</li>
+                            <li>{{ $affiliation->name }}</li>
                         @endforeach
                     </ul>
                 </td>
@@ -58,7 +58,7 @@
                 <td>
                     <ul>
                         @foreach($internship->categories as $category)
-                            <li>{!! $category->name !!}</li>
+                            <li>{{ $category->name }}</li>
                         @endforeach
                     </ul>
                 </td>
@@ -69,7 +69,7 @@
                 <td>
                     <ul>
                         @foreach($internship->keywords as $keyword)
-                            <li>{!! $keyword->name !!}</li>
+                            <li>{{ $keyword->name }}</li>
                         @endforeach
                     </ul>
                 </td>
@@ -80,7 +80,7 @@
                 <td>
                     <ul>
                         @foreach($internship->addresses as $address)
-                            <li>{!! $address->city . ', ' . $address->state !!}</li>
+                            <li>{{ $address->city . ', ' . $address->state }}</li>
                         @endforeach
                     </ul>
                 </td>

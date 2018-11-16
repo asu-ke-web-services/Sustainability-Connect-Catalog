@@ -36,11 +36,11 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#people" role="tab" aria-controls="people" aria-expanded="true"> {{ __('labels.backend.opportunity.projects.tabs.titles.people') }}</a>
                     </li>
-{{--
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#attachments" role="tab" aria-controls="attachments" aria-expanded="true"> {{ __('labels.backend.opportunity.projects.tabs.titles.attachments') }}</a>
                     </li>
- --}}
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#notes" role="tab" aria-controls="notes" aria-expanded="true"> {{ __('labels.backend.opportunity.projects.tabs.titles.notes') }}</a>
                     </li>
@@ -62,11 +62,11 @@
                     <div class="tab-pane" id="people" role="tabpanel" aria-expanded="true">
                         @include('backend.opportunity.project.show.tabs.people')
                     </div><!--tab-->
-{{--
+
                     <div class="tab-pane" id="attachments" role="tabpanel" aria-expanded="true">
                         @include('backend.opportunity.project.show.tabs.attachments')
                     </div><!--tab-->
- --}}
+
                     <div class="tab-pane" id="notes" role="tabpanel" aria-expanded="true">
                         @include('backend.opportunity.project.show.tabs.notes')
                     </div><!--tab-->

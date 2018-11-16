@@ -36,10 +36,10 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>{{ __('labels.backend.organizations.table.name') }}</th>
-                            <th>{{ __('labels.backend.organizations.table.status') }}</th>
-                            <th>{{ __('labels.backend.organizations.table.type') }}</th>
-                            <th>{{ __('labels.backend.organizations.table.last_updated') }}</th>
+                            <th>{{ __('labels.backend.organization.table.name') }}</th>
+                            <th>{{ __('labels.backend.organization.table.status') }}</th>
+                            <th>{{ __('labels.backend.organization.table.type') }}</th>
+                            <th>{{ __('labels.backend.organization.table.last_updated') }}</th>
                             <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>

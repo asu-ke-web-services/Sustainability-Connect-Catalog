@@ -39,10 +39,10 @@
             <div class="row">
                 <div class="col">
                     <small class="float-right text-muted">
-                        <strong>{{ __('labels.backend.organizations.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($organization->created_at) }} ({{ $organization->created_at->diffForHumans() }}),
-                        <strong>{{ __('labels.backend.organizations.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($organization->updated_at) }} ({{ $organization->updated_at->diffForHumans() }})
+                        <strong>{{ __('labels.backend.organization.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($organization->created_at) }} ({{ $organization->created_at->diffForHumans() }}),
+                        <strong>{{ __('labels.backend.organization.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($organization->updated_at) }} ({{ $organization->updated_at->diffForHumans() }})
                         @if ($organization->trashed())
-                            <strong>{{ __('labels.backend.organizations.tabs.content.overview.deleted_at') }}:</strong> {{ timezone()->convertToLocal($organization->deleted_at) }} ({{ $organization->deleted_at->diffForHumans() }})
+                            <strong>{{ __('labels.backend.organization.tabs.content.overview.deleted_at') }}:</strong> {{ timezone()->convertToLocal($organization->deleted_at) }} ({{ $organization->deleted_at->diffForHumans() }})
                         @endif
                     </small>
                 </div><!--col-->

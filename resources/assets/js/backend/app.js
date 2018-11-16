@@ -40,6 +40,19 @@ $(document).ready(function($){
         // sortField: 'order'
     });
 
+    $('.selectize-multiple').selectize({
+        create: false,
+        persist: false,
+        highlight: true,
+        openOnFocus: true,
+        // maxOptions: 30,
+        maxItems: 30,
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        // sortField: 'order'
+    });
+
     // $('.datepicker').datepicker({
     //     uiLibrary: 'bootstrap4'
     // });

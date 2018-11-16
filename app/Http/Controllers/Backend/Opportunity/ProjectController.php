@@ -3,7 +3,9 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use JavaScript;
+use SCCatalog\Events\Backend\Opportunity\ProjectCloned;
 use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Http\Requests\Backend\Opportunity\CloneProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\StoreProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\DeleteProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
@@ -77,7 +79,7 @@ class ProjectController extends Controller
                 return $affiliation['slug'];
             })->toJson();
 
-        $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
+        $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
 
         JavaScript::put([
             'userAccessAffiliations' => $userAccessAffiliations ?? null,
@@ -157,7 +159,6 @@ class ProjectController extends Controller
             'addresses',
             'notes',
             'status',
-            // 'parentOpportunity',
             'organization',
             'supervisorUser',
             'submittingUser',
@@ -167,8 +168,11 @@ class ProjectController extends Controller
             'users'
         );
 
+        $attachments = $project->getMedia();
+
         return view('backend.opportunity.project.show')
-            ->withProject($project);
+            ->withProject($project)
+            ->withAttachments($attachments);
     }
 
     /**
@@ -179,7 +183,6 @@ class ProjectController extends Controller
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
-     * @param ProjectRepository $projectRepository
      * @param OpportunityStatusRepository $opportunityStatusRepository
      * @param OpportunityReviewStatusRepository $opportunityReviewStatusRepository
      * @param OrganizationRepository $organizationRepository
@@ -205,7 +208,6 @@ class ProjectController extends Controller
             'addresses',
             'notes',
             'status',
-            // 'parentOpportunity',
             'organization',
             'supervisorUser',
             'submittingUser',
@@ -216,6 +218,8 @@ class ProjectController extends Controller
         );
 
         // dd($opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+
+        // dd($project->affiliations->pluck('id')->toArray());
 
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
@@ -275,11 +279,9 @@ class ProjectController extends Controller
     {
         // $project = $this->projectRepository->getById($projectId);
 
-        $project = $this->projectRepository->clone($project);
+        $clone = $this->projectRepository->clone($project);
 
-        event(new ProjectCloned($project));
-
-        return redirect()->route('admin.backend.opportunity.project.show', $project)
+        return redirect()->route('admin.backend.opportunity.project.show', $clone)
             ->withFlashSuccess('Project cloned successfully');
     }
 

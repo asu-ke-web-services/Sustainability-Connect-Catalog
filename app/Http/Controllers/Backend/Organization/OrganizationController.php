@@ -3,8 +3,8 @@
 namespace SCCatalog\Http\Controllers\Backend\Organization;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Backend\Organization\OrganizationRequest;
 use SCCatalog\Http\Requests\Backend\Organization\ManageOrganizationRequest;
+use SCCatalog\Models\Organization\Organization;
 use SCCatalog\Repositories\Backend\Lookup\OrganizationStatusRepository;
 use SCCatalog\Repositories\Backend\Lookup\OrganizationTypeRepository;
 use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
@@ -57,7 +57,11 @@ class OrganizationController extends Controller
      * @param OrganizationTypeRepository $organizationTypeRepository
      * @return mixed
      */
-    public function create(ManageOrganizationRequest $request, OrganizationStatusRepository $organizationStatusRepository, OrganizationTypeRepository $organizationTypeRepository)
+    public function create(
+            ManageOrganizationRequest $request,
+            OrganizationStatusRepository $organizationStatusRepository,
+            OrganizationTypeRepository $organizationTypeRepository
+    )
     {
         return view('backend.organization.create')
             ->with('organizationTypes', $organizationTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -67,17 +71,14 @@ class OrganizationController extends Controller
     /**
      * Store a newly created Organization in storage.
      *
-     * @param OrganizationRequest $request
+     * @param ManageOrganizationRequest $request
      *
      * @return mixed
      * @throws \Throwable
      */
-    public function store(OrganizationRequest $request)
+    public function store(ManageOrganizationRequest $request)
     {
-        $this->organizationRepository->create($request->only(
-            'order',
-            'name'
-        ));
+        $this->organizationRepository->create($request->all());
 
         return redirect()->route('admin.organization.index')
             ->withFlashSuccess(__('Organization created successfully'));
@@ -86,17 +87,19 @@ class OrganizationController extends Controller
     /**
      * Show the form for editing the specified Organization.
      *
-     * @param ManageOrganizationRequest $request
+     * @param ManageOrganizationRequest    $request
      * @param OrganizationStatusRepository $organizationStatusRepository
-     * @param OrganizationTypeRepository $organizationTypeRepository
-     * @param int $organizationId
-     *
+     * @param OrganizationTypeRepository   $organizationTypeRepository
+     * @param Organization                 $organization
      * @return mixed
      */
-    public function edit(ManageOrganizationRequest $request, OrganizationStatusRepository $organizationStatusRepository, OrganizationTypeRepository $organizationTypeRepository, $organizationId)
+    public function edit(
+            ManageOrganizationRequest $request,
+            OrganizationStatusRepository $organizationStatusRepository,
+            OrganizationTypeRepository $organizationTypeRepository,
+            Organization $organization
+    )
     {
-        $organization = $this->organizationRepository->getById($organizationId);
-
         return view('backend.organization.edit')
             ->withOrganization($organization)
             ->with('organizationTypes', $organizationTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -107,20 +110,11 @@ class OrganizationController extends Controller
      * Display the specified Organization.
      *
      * @param ManageOrganizationRequest $request
-     * @param $organizationId
+     * @param Organization              $organization
      * @return \Illuminate\View\View
      */
-    public function show(ManageOrganizationRequest $request, $organizationId)
+    public function show(ManageOrganizationRequest $request, Organization $organization)
     {
-        $organization = $this->organizationRepository
-            ->with([
-                'addresses',
-                'notes',
-                'status',
-                'type',
-            ])
-            ->getById($organizationId);
-
         return view('backend.organization.show')
             ->withOrganization($organization);
     }
@@ -128,19 +122,13 @@ class OrganizationController extends Controller
     /**
      * Update the specified Organization in storage.
      *
-     * @param OrganizationRequest $request
-     * @param int             $organizationId
-     *
+     * @param ManageOrganizationRequest $request
+     * @param Organization              $organization
      * @return mixed
-     * @throws \SCCatalog\Exceptions\GeneralException
-     * @throws \Throwable
      */
-    public function update(OrganizationRequest $request, $organizationId)
+    public function update(ManageOrganizationRequest $request, Organization $organization)
     {
-        $this->organizationRepository->updateById($organizationId, $request->only(
-            'order',
-            'name'
-        ));
+        $this->organizationRepository->updateById($organization->id, $request->all());
 
         return redirect()->route('admin.organization.index')
             ->withFlashSuccess(__('Organization updated successfully'));
@@ -150,14 +138,13 @@ class OrganizationController extends Controller
      * Remove the specified Organization from storage.
      *
      * @param ManageOrganizationRequest $request
-     * @param int                 $organizationId
-     *
+     * @param Organization              $organization
      * @return mixed
      * @throws \Exception
      */
-    public function destroy(ManageOrganizationRequest $request, $organizationId)
+    public function destroy(ManageOrganizationRequest $request, Organization $organization)
     {
-        $this->organizationRepository->deleteById($organizationId);
+        $this->organizationRepository->deleteById($organization->id);
 
         return redirect()->route('admin.organization.index')
             ->withFlashSuccess('Organization deleted successfully');

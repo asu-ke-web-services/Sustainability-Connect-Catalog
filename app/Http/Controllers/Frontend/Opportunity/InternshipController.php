@@ -43,7 +43,7 @@ class InternshipController extends Controller
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted internship');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
         }
 
         JavaScript::put([
@@ -91,7 +91,7 @@ class InternshipController extends Controller
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted internship');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
 
             $followedInternships = auth()->user()->followedInternships
                 ->map(function ($internship) {

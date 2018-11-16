@@ -57,7 +57,7 @@ class InternshipController extends Controller
                 return $affiliation['slug'];
             })->toJson();
 
-        $canViewRestricted = auth()->user()->hasPermissionTo('read restricted internship');
+        $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
 
         JavaScript::put([
             'userAccessAffiliations' => $userAccessAffiliations ?? null,
@@ -143,8 +143,11 @@ class InternshipController extends Controller
             'users'
         );
 
+        $attachments = $internship->getMedia();
+
         return view('backend.opportunity.internship.show')
-            ->withInternship($internship);
+            ->withInternship($internship)
+            ->withAttachments($attachments);
     }
 
     /**

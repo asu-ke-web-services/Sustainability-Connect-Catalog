@@ -52,7 +52,7 @@ class ProjectController extends Controller
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
         }
 
         JavaScript::put([
@@ -80,7 +80,7 @@ class ProjectController extends Controller
                     return $affiliation['slug'];
                 })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
+            $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
         }
 
         JavaScript::put([
@@ -202,13 +202,6 @@ class ProjectController extends Controller
         $isFollowed = false;
 
         if ( auth()->user() !== null ) {
-            $userAccessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
-
-            $canViewRestricted = auth()->user()->hasPermissionTo('read restricted project');
-
             $followedProjects = auth()->user()->followedProjects
                 ->map(function ($project) {
                     return $project['id'];

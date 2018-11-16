@@ -12540,6 +12540,47 @@ function isUndefined(arg) {
 
 /***/ }),
 
+/***/ "./node_modules/extend-shallow/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isObject = __webpack_require__("./node_modules/is-extendable/index.js");
+
+module.exports = function extend(o/*, objects*/) {
+  if (!isObject(o)) { o = {}; }
+
+  var len = arguments.length;
+  for (var i = 1; i < len; i++) {
+    var obj = arguments[i];
+
+    if (isObject(obj)) {
+      assign(o, obj);
+    }
+  }
+  return o;
+};
+
+function assign(a, b) {
+  for (var key in b) {
+    if (hasOwn(b, key)) {
+      a[key] = b[key];
+    }
+  }
+}
+
+/**
+ * Returns true if the given `key` is an own property of `obj`.
+ */
+
+function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/font-awesome/css/font-awesome.min.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12747,6 +12788,27 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 };
 
 module.exports = invariant;
+
+
+/***/ }),
+
+/***/ "./node_modules/is-extendable/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * is-extendable <https://github.com/jonschlinkert/is-extendable>
+ *
+ * Copyright (c) 2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+
+
+module.exports = function isExtendable(val) {
+  return typeof val !== 'undefined' && val !== null
+    && (typeof val === 'object' || typeof val === 'function');
+};
 
 
 /***/ }),
@@ -98852,6 +98914,117 @@ function isReactComponent(component) {
 
 /***/ }),
 
+/***/ "./node_modules/unescape/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var extend = __webpack_require__("./node_modules/extend-shallow/index.js");
+var regexCache = {};
+var all;
+
+var charSets = {
+  default: {
+    '&quot;': '"',
+    '&#34;': '"',
+
+    '&apos;': '\'',
+    '&#39;': '\'',
+
+    '&amp;': '&',
+    '&#38;': '&',
+
+    '&gt;': '>',
+    '&#62;': '>',
+
+    '&lt;': '<',
+    '&#60;': '<'
+  },
+  extras: {
+    '&cent;': '¢',
+    '&#162;': '¢',
+
+    '&copy;': '©',
+    '&#169;': '©',
+
+    '&euro;': '€',
+    '&#8364;': '€',
+
+    '&pound;': '£',
+    '&#163;': '£',
+
+    '&reg;': '®',
+    '&#174;': '®',
+
+    '&yen;': '¥',
+    '&#165;': '¥'
+  }
+};
+
+// don't merge char sets unless "all" is explicitly called
+Object.defineProperty(charSets, 'all', {
+  get: function() {
+    return all || (all = extend({}, charSets.default, charSets.extras));
+  }
+});
+
+/**
+ * Convert HTML entities to HTML characters.
+ *
+ * @param  {String} `str` String with HTML entities to un-escape.
+ * @return {String}
+ */
+
+function unescape(str, type) {
+  if (!isString(str)) return '';
+  var chars = charSets[type || 'default'];
+  var regex = toRegex(type, chars);
+  return str.replace(regex, function(m) {
+    return chars[m];
+  });
+}
+
+function toRegex(type, chars) {
+  if (regexCache[type]) {
+    return regexCache[type];
+  }
+  var keys = Object.keys(chars).join('|');
+  var regex = new RegExp('(?=(' + keys + '))\\1', 'g');
+  regexCache[type] = regex;
+  return regex;
+}
+
+/**
+ * Returns true if str is a non-empty string
+ */
+
+function isString(str) {
+  return str && typeof str === 'string';
+}
+
+/**
+ * Expose charSets
+ */
+
+unescape.chars = charSets.default;
+unescape.extras = charSets.extras;
+// don't trip the "charSets" getter unless it's explicitly called
+Object.defineProperty(unescape, 'all', {
+  get: function() {
+    return charSets.all;
+  }
+});
+
+/**
+ * Expose `unescape`
+ */
+
+module.exports = unescape;
+
+
+/***/ }),
+
 /***/ "./node_modules/util/support/isBufferBrowser.js":
 /***/ (function(module, exports) {
 
@@ -99807,6 +99980,10 @@ var _moment = __webpack_require__("./node_modules/moment/moment.js");
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _unescape = __webpack_require__("./node_modules/unescape/index.js");
+
+var _unescape2 = _interopRequireDefault(_unescape);
+
 var _AffiliationIcons = __webpack_require__("./resources/assets/js/frontend/components/AffiliationIcons.js");
 
 function _interopRequireDefault(obj) {
@@ -99874,7 +100051,7 @@ function HitComponent(_ref2) {
     return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted: ', canView), _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { canView: canView, icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
   }
 
-  return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/internship/' + hit.id }, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'name', hit: hit }))), _react2.default.createElement('td', null, hit.organizationName), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
+  return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/internship/' + hit.id }, (0, _unescape2.default)(hit.name))), _react2.default.createElement('td', null, hit.organizationName), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
 }
 
 /***/ }),
@@ -99979,6 +100156,10 @@ var _moment = __webpack_require__("./node_modules/moment/moment.js");
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _unescape = __webpack_require__("./node_modules/unescape/index.js");
+
+var _unescape2 = _interopRequireDefault(_unescape);
+
 var _AffiliationIcons = __webpack_require__("./resources/assets/js/frontend/components/AffiliationIcons.js");
 
 function _interopRequireDefault(obj) {
@@ -100042,10 +100223,10 @@ function HitComponent(_ref2) {
   }
 
   if (canView) {
-    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'locations', hit: hit })), _react2.default.createElement('td', null, startDate), _react2.default.createElement('td', null, endDate), _react2.default.createElement('td', null, deadline));
+    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted for Sustainability majors only'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, hit.locations), _react2.default.createElement('td', null, startDate), _react2.default.createElement('td', null, endDate), _react2.default.createElement('td', null, deadline));
   }
 
-  return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/project/' + hit.id }, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'name', hit: hit }))), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, _react2.default.createElement(_reactInstantsearchDom.Highlight, { attribute: 'locations', hit: hit })), _react2.default.createElement('td', null, startDate), _react2.default.createElement('td', null, endDate), _react2.default.createElement('td', null, deadline));
+  return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/project/' + hit.id }, (0, _unescape2.default)(hit.name))), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, hit.locations), _react2.default.createElement('td', null, startDate), _react2.default.createElement('td', null, endDate), _react2.default.createElement('td', null, deadline));
 }
 
 /***/ }),

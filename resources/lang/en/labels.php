@@ -346,6 +346,109 @@ return [
             ],
         ],
 
+        'organization' => [
+            'all'                 => 'All Organizations',
+            'active'              => 'Active Organizations',
+            'search'              => 'Search Organizations',
+            'create'              => 'Create Organization',
+            'archived'            => 'Archived Organizations',
+            'deleted'             => 'Deleted Organizations',
+            'edit'                => 'Edit Organization',
+            'management'          => 'Organization Management',
+            'project_details'     => 'Organization Details',
+            'locations'           => 'Locations',
+
+            'table' => [
+                'created'              => 'Created',
+                'id'                   => 'ID',
+                'last_updated'         => 'Last Updated',
+                'deleted_at'           => 'Deleted',
+                'created_at'           => 'Created',
+                'name'                 => 'Name',
+                'status'               => 'Status',
+                'location'             => 'Location',
+                'type'                 => 'Type',
+                'opportunity_start_at' => 'Organization Starts',
+                'application_deadline_at' => 'Apply By',
+                'no_archived'          => 'No Archived Organizations',
+                'no_deleted'           => 'No Deleted Organizations',
+                'no_import_review'     => 'No Organizations Need Cleanup Review',
+                'no_reviews'           => 'No Submission Reviews Needed',
+                'total'                => 'project total|projects total',
+            ],
+
+            'tabs' => [
+                'titles' => [
+                    'overview' => 'Overview',
+                    'details' => 'Organization Details',
+                    'people' => 'Related Users',
+                    'attachments' => 'Uploaded Attachments',
+                    'notes' => 'Notes',
+                    'history'  => 'History',
+                ],
+
+                'content' => [
+                    'overview' => [
+                        'name'                        => 'Name',
+                        'public_name'                 => 'Public Name',
+                        'description'                 => 'Description',
+                        'status'                      => 'Status',
+                        'review_status'               => 'Review Status',
+                        'opportunity_start_at'        => 'Project Starts',
+                        'opportunity_end_at'          => 'Project Ends',
+                        'listing_start_at'              => 'Listing Starts',
+                        'listing_end_at'                => 'Listing Ends',
+                        'application_deadline_at'     => 'Application Deadline Date',
+                        'affiliations'                => 'Affiliations',
+                        'categories'                  => 'Categories',
+                        'keywords'                    => 'Keywords',
+                        'location'                    => 'Location',
+                        'location_city'               => 'City',
+                        'location_state'              => 'State',
+                        'location_country'            => 'Country',
+                        'location_note'               => 'Note',
+                        'created_at'                  => 'Created At',
+                        'deleted_at'                  => 'Deleted At',
+                        'last_updated'                => 'Last Updated',
+                    ],
+                    'details' => [
+                        'implementation_paths'        => 'Envisioned Solution',
+                        'sustainability_contribution' => 'Sustainability Contribution',
+                        'qualifications'              => 'Qualifications',
+                        'responsibilities'            => 'Responsibilities',
+                        'learning_outcomes'           => 'Learning Outcomes',
+                        'compensation'                => 'Compensation',
+                        'budget_type'                 => 'Budget Type',
+                        'budget_amount'               => 'Budget Amount',
+                        'application_instructions'    => 'Application Instructions',
+                        'success_story'               => 'Success Story',
+                        'library_collection'          => 'Library Collection',
+                        'parent_opportunity'          => 'Parent Opportunity',
+
+                    ],
+                    'people' => [
+                        'organization'    => 'Partner Organization',
+                        'supervisor_user' => 'Project Supervisor',
+                        'submitting_user' => 'Submitting User',
+                        'program_lead'    => 'ASU Program Lead',
+                        'participants'    => 'Participants',
+                        'mentors'         => 'Mentors',
+                        'followers'       => 'Followers',
+                    ],
+                    'attachments' => [
+
+                    ],
+                    'notes' => [
+
+                    ],
+                    'history' => [
+
+                    ],
+                ],
+            ],
+
+            'view' => 'View Project',
+        ],
     ],
 
     'frontend' => [

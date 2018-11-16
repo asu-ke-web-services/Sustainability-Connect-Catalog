@@ -29,6 +29,12 @@ return [
                 'restore_project_confirm' => 'Restore this project to its original state?',
             ],
         ],
+        'organization' => [
+            'delete_organization_confirm'  => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_archived'                  => 'There are no archived organizations.',
+            'no_deleted'                   => 'There are no deleted organizations.',
+            'restore_organization_confirm' => 'Restore this organization to its original state?',
+        ],
         'access' => [
             'users' => [
                 'delete_user_confirm'  => 'Are you sure you want to delete this user permanently? Anywhere in the application that references this user\'s id will most likely error. Proceed at your own risk. This can not be un-done.',

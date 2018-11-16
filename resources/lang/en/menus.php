@@ -77,14 +77,15 @@ return [
             ],
         ],
 
-        'organizations' => [
-            'all'         => 'All Organization',
+        'organization' => [
+            'all'         => 'All Organizations',
             'create'      => 'Create Organization',
             'deactivated' => 'Deactivated Organizations',
             'deleted'     => 'Deleted Organizations',
             'edit'        => 'Edit Organization',
             'management'  => 'Organization Management',
             'main'        => 'Organizations',
+            'filtered_views' => 'More Views',
         ],
 
         'sidebar' => [

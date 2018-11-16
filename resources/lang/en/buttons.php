@@ -55,6 +55,7 @@ return [
         'continue' => 'Continue',
 
         'crud' => [
+            'clone'  => 'Clone',
             'create' => 'Create',
             'delete' => 'Delete',
             'edit'   => 'Edit',

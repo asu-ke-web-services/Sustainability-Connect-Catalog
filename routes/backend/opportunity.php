@@ -28,6 +28,7 @@ Route::group([
      * Specific Project
      */
     Route::group(['prefix' => 'project/{project}'], function () {
+        Route::get('clone', 'ProjectController@clone')->name('project.clone');
 
         // Deleted
         Route::get('delete', 'ProjectStatusController@delete')->name('project.delete-permanently');
@@ -50,6 +51,7 @@ Route::group([
      * Specific Project
      */
     Route::group(['prefix' => 'internship/{internship}'], function () {
+        Route::get('clone', 'InternshipController@clone')->name('internship.clone');
 
         // Deleted
         Route::get('delete', 'InternshipStatusController@delete')->name('internship.delete-permanently');

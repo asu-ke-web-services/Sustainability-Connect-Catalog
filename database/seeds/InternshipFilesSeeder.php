@@ -25,12 +25,9 @@ class InternshipFilesSeeder extends Seeder
                 if ($internship) {
 
                     $pathToFile = $old_file->server_filename;
-                    if (1 == $old_file->deleted) {
-                        $pathToFile = 'deleted-'.$pathToFile;
-                    }
                     $pathToFile = '/var/www/database/uploads/' . $pathToFile;
 
-                    if (file_exists($pathToFile)) {
+                    if (1 != $old_file->deleted && file_exists($pathToFile)) {
 
                         $internship->addMedia($pathToFile)
                             ->preservingOriginal()

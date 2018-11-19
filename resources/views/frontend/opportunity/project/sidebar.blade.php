@@ -12,7 +12,7 @@
             {{ html()->form()->close() }}
         @endif
         </aside>
-
+{{--
         <div>&nbsp;</div>
 
         <aside id="project-apply-now" class="widget widget_project_apply">
@@ -20,6 +20,7 @@
             {{ html()->button('Request to Join', 'submit')->class(['btn', 'btn-primary', 'btn-sm']) }}
             {{ html()->form()->close() }}
         </aside>
+--}}
     @endif
     </div>
 </div>

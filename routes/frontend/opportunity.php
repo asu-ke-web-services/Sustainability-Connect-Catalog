@@ -2,9 +2,11 @@
 
 /**
  * Opportunity Controllers
- * All route names are prefixed with 'frontend.'.
+ * All route names are prefixed with 'frontend.opportunity'.
  */
 Route::group([
+//    'prefix'     => 'opportunity',
+    'as'         => 'opportunity.',
     'namespace'  => 'Opportunity',
 ], function () {
 

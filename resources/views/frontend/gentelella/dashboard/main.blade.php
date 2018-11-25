@@ -1,4 +1,4 @@
-@extends('frontend.gentelella.core.common',
+@extends('frontend.layouts.gentelella',
     [
         'page_title' => __('frontend.gentelella.dashboard.messages.page_title'),
         'body_class' => 'nav-md'
@@ -34,8 +34,8 @@
 @section('body_content')
     <div class="container body">
         <div class="main_container">
-            @include('frontend.gentelella.core.nav_left')
-            @include('frontend.gentelella.core.nav_top')
+            @include('frontend.includes.gentelella.nav_left')
+            @include('frontend.includes.gentelella.nav_top')
             @include('frontend.gentelella.dashboard.main_content')
         </div>
     </div>

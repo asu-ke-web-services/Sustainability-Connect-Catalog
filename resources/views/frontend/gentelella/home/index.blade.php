@@ -1,4 +1,4 @@
-@extends('frontend.gentelella.core.common', ['page_title' => __('app.name')])
+@extends('frontend.layouts.gentelella', ['page_title' => __('app.name')])
 
 @section('extra_styles')
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">

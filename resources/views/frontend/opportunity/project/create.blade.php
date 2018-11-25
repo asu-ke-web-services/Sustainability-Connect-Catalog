@@ -5,7 +5,7 @@
 @section('content')
 <div class="container pad-bot-md pad-top-sm">
     <div class="col-sm-9">
-        {{ html()->form('POST', route('frontend.project.store'))->class('form-horizontal')->open() }}
+        {{ html()->form('POST', route('frontend.opportunity.project.store'))->class('form-horizontal')->open() }}
 
             <div class="card">
                 <div class="card-body">

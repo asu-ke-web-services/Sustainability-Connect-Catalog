@@ -22,13 +22,12 @@ class ProjectFilesSeeder extends Seeder
 
                 $project = Project::find($old_file->project_id);
 
-                if ($project) {
+                if (1 != $old_file->deleted && $project) {
 
                     $pathToFile = $old_file->server_filename;
                     $pathToFile = '/var/www/database/uploads/' . $pathToFile;
 
-                    if (1 != $old_file->deleted && file_exists($pathToFile)) {
-
+                    if (file_exists($pathToFile)) {
                         $project->addMedia($pathToFile)
                             ->preservingOriginal()
                             ->usingName($old_file->title)

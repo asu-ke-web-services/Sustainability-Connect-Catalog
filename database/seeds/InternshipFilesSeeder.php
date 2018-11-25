@@ -22,13 +22,12 @@ class InternshipFilesSeeder extends Seeder
 
                 $internship = Internship::find($old_file->internship_id);
 
-                if ($internship) {
+                if (1 != $old_file->deleted &&  $internship) {
 
                     $pathToFile = $old_file->server_filename;
                     $pathToFile = '/var/www/database/uploads/' . $pathToFile;
 
-                    if (1 != $old_file->deleted && file_exists($pathToFile)) {
-
+                    if (file_exists($pathToFile)) {
                         $internship->addMedia($pathToFile)
                             ->preservingOriginal()
                             ->usingName($old_file->title)

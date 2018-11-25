@@ -5,7 +5,6 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\InternshipRepository;
 
 /**
@@ -83,7 +82,10 @@ class InternshipController extends Controller
             ])
             ->getById($id);
 
+        $userAccessAffiliations = false;
+        $canViewRestricted = false;
         $isFollowed = false;
+        $isApplicationSubmitted = false;
 
         if ( auth()->user() !== null ) {
             $userAccessAffiliations = auth()->user()->accessAffiliations
@@ -100,12 +102,21 @@ class InternshipController extends Controller
 
             $isFollowed = in_array($id, $followedInternships);
 
+            $appliedProjects = auth()->user()->projectApplications
+                ->map(function ($project) {
+                    return $project['id'];
+                })->toArray();
+
+            $isApplicationSubmitted = in_array($id, $appliedProjects);
         }
 
         return view('frontend.opportunity.internship.show')
             ->withInternship($internship)
             ->with('type', 'Internship')
             ->with('pageTitle', $internship->name)
-            ->with('isFollowed', $isFollowed);
+            ->with('userAccessAffiliations', $userAccessAffiliations)
+            ->with('canViewRestricted', $canViewRestricted)
+            ->with('isFollowed', $isFollowed)
+            ->with('isApplicationSubmitted', $isApplicationSubmitted);
     }
 }

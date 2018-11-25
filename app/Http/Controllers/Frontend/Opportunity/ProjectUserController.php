@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Http\Requests\Frontend\Opportunity\ProjectApplicantRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ProjectFollowerRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Project;
@@ -10,9 +11,9 @@ use SCCatalog\Repositories\Frontend\Lookup\RelationshipTypeRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\ProjectUserRepository;
 
 /**
- * Class ProjectFollowerController.
+ * Class ProjectUserController.
  */
-class ProjectFollowerController extends Controller
+class ProjectUserController extends Controller
 {
     /**
      * @var  ProjectUserRepository
@@ -34,6 +35,40 @@ class ProjectFollowerController extends Controller
     {
         $this->projectUserRepository = $projectUserRepository;
         $this->relationshipTypeRepository = $relationshipTypeRepository;
+    }
+
+    /**
+     * Apply to join Project.
+     *
+     * @param ProjectApplicantRequest $request
+     * @param Project                $project
+     * @return
+     * @throws \Throwable
+     */
+    public function apply(ProjectApplicantRequest $request, Project $project)
+    {
+        $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
+        $this->projectUserRepository->apply($project, $request->user(), ['relationship_type_id' => $relationship->id]);
+
+        return redirect()->route('frontend.opportunity.project.show', $project)
+            ->withFlashSuccess('Successfully submitted project application');
+    }
+
+    /**
+     * Cancel application to join Project.
+     *
+     * @param ProjectApplicantRequest $request
+     * @param Project                $project
+     * @return
+     * @throws \Throwable
+     */
+    public function cancelApplication(ProjectApplicantRequest $request, Project $project)
+    {
+        $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
+        $this->projectUserRepository->cancelApplication($project, $request->user(), ['relationship_type_id' => $relationship->id]);
+
+        return redirect()->route('frontend.opportunity.project.show', $project)
+            ->withFlashSuccess('Successfully cancelled project application');
     }
 
     /**

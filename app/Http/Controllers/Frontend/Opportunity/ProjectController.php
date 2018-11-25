@@ -199,9 +199,19 @@ class ProjectController extends Controller
             ])
             ->getById($id);
 
+        $userAccessAffiliations = false;
+        $canViewRestricted = false;
         $isFollowed = false;
+        $isApplicationSubmitted = false;
 
         if ( auth()->user() !== null ) {
+            $userAccessAffiliations = auth()->user()->accessAffiliations
+                ->map(function ($affiliation) {
+                    return $affiliation['slug'];
+                })->toJson();
+
+            $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
+
             $followedProjects = auth()->user()->followedProjects
                 ->map(function ($project) {
                     return $project['id'];
@@ -209,12 +219,22 @@ class ProjectController extends Controller
 
             $isFollowed = in_array($id, $followedProjects);
 
+            $appliedProjects = auth()->user()->projectApplications
+                ->map(function ($project) {
+                    return $project['id'];
+                })->toArray();
+
+            $isApplicationSubmitted = in_array($id, $appliedProjects);
+
         }
 
         return view('frontend.opportunity.project.show')
             ->withProject($project)
             ->with('type', 'Project')
             ->with('pageTitle', $project->name)
-            ->with('isFollowed', $isFollowed);
+            ->with('userAccessAffiliations', $userAccessAffiliations)
+            ->with('canViewRestricted', $canViewRestricted)
+            ->with('isFollowed', $isFollowed)
+            ->with('isApplicationSubmitted', $isApplicationSubmitted);
     }
 }

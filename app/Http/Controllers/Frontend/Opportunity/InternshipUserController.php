@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Http\Requests\Frontend\Opportunity\InternshipApplicantRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\InternshipFollowerRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Internship;
@@ -10,9 +11,9 @@ use SCCatalog\Repositories\Frontend\Lookup\RelationshipTypeRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\InternshipUserRepository;
 
 /**
- * Class InternshipFollowerController.
+ * Class InternshipUserController.
  */
-class InternshipFollowerController extends Controller
+class InternshipUserController extends Controller
 {
     /**
      * @var  InternshipUserRepository
@@ -34,6 +35,40 @@ class InternshipFollowerController extends Controller
     {
         $this->internshipUserRepository = $internshipUserRepository;
         $this->relationshipTypeRepository = $relationshipTypeRepository;
+    }
+
+    /**
+     * Apply to join Internship.
+     *
+     * @param InternshipApplicantRequest $request
+     * @param Internship                $internship
+     * @return
+     * @throws \Throwable
+     */
+    public function apply(InternshipApplicantRequest $request, Internship $internship)
+    {
+        $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
+        $this->internshipUserRepository->apply($internship, $request->user(), ['relationship_type_id' => $relationship->id]);
+
+        return redirect()->route('frontend.opportunity.internship.show', $internship)
+            ->withFlashSuccess('Successfully submitted internship application');
+    }
+
+    /**
+     * Cancel application to join Internship.
+     *
+     * @param InternshipApplicantRequest $request
+     * @param Internship                $internship
+     * @return
+     * @throws \Throwable
+     */
+    public function cancelApplication(InternshipApplicantRequest $request, Internship $internship)
+    {
+        $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
+        $this->internshipUserRepository->cancelApplication($internship, $request->user(), ['relationship_type_id' => $relationship->id]);
+
+        return redirect()->route('frontend.opportunity.internship.show', $internship)
+            ->withFlashSuccess('Successfully cancelled internship application');
     }
 
     /**

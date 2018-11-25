@@ -32,15 +32,14 @@ class ProjectRepositoryTest extends TestCase
     {
         return array_merge([
             'name'                     => 'Test Project',
-            'start_date'               => Carbon::yesterday(),
-            'end_date'                 => Carbon::tomorrow(),
-            'listing_start_date'       => Carbon::yesterday(),
-            'listing_end_date'         => Carbon::tomorrow(),
-            'application_deadline'     => Carbon::tomorrow(),
+            'opportunity_start_at'     => Carbon::yesterday(),
+            'opportunity_end_at'       => Carbon::tomorrow(),
+            'listing_start_at'         => Carbon::yesterday(),
+            'listing_end_at'           => Carbon::tomorrow(),
+            'application_deadline_at'  => Carbon::tomorrow(),
             'opportunity_status_id'    => 5,
-            'review_status_id'         => 1,
+            'review_status_id'         => 3,
             'description'              => 'Lorem ipsum',
-            // 'parent_opportunity_id' => null,
             'supervisor_user_id'       => 1,
             'submitting_user_id'       => 1,
             'degree_program'           => 'School of Sustainability',
@@ -51,11 +50,15 @@ class ProjectRepositoryTest extends TestCase
             'qualifications'           => 'Lorem qualifications',
             'application_instructions' => 'Lorem application instructions',
             'implementation_paths'     => 'Lorem implementation',
-            'budget_type_id'           => '3',
+            'budget_type_id'           => 3,
             'budget_amount'            => 'Lorem budget notes',
             'program_lead'             => 'Lorem program lead',
             'success_story'            => 'https://example.test',
             'library_collection'       => 'https://example.test',
+            //            'addresses'                => [],
+            'affiliations'             => [2,3,6],
+            'categories'               => [1,2],
+            'keywords'                 => [1,2],
         ], $projectData);
     }
 

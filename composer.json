@@ -16,6 +16,7 @@
     "davejamesmiller/laravel-breadcrumbs": "^5.0",
     "divineomega/laravel-password-exposed-validation-rule": "^1.2",
     "fideloper/proxy": "^4.0",
+    "fntneves/laravel-transactional-events": "^1.4",
     "graham-campbell/markdown": "^10.2",
     "guzzlehttp/guzzle": "^6.3",
     "hieu-le/active": "^3.5",

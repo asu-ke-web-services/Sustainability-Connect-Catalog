@@ -18,16 +18,18 @@ Route::group([
     Route::get('project/submit', 'ProjectController@create')->name('project.create');
     Route::post('project', 'ProjectController@store')->name('project.store');
     Route::get('project/{project}', 'ProjectController@show')->name('project.show');
-    Route::post('project/follow/{project}', 'ProjectFollowerController@follow')->name('project.follow');
-    Route::post('project/unfollow/{project}', 'ProjectFollowerController@unfollow')->name('project.unfollow');
-    Route::post('project/apply/{project}', 'ProjectController@apply')->name('project.apply');
+    Route::post('project/follow/{project}', 'ProjectUserController@follow')->name('project.follow');
+    Route::post('project/unfollow/{project}', 'ProjectUserController@unfollow')->name('project.unfollow');
+    Route::post('project/apply/{project}', 'ProjectUserController@apply')->name('project.apply');
+    Route::post('project/cancel-application/{project}', 'ProjectUserController@cancelApplication')->name('project.cancelApplication');
 
     /*
      * Internship CRUD
      */
     Route::get('internship', 'InternshipController@index')->name('internship.index');
     Route::get('internship/{internship}', 'InternshipController@show')->name('internship.show');
-    Route::post('internship/follow/{internship}', 'InternshipFollowerController@follow')->name('internship.follow');
-    Route::post('internship/unfollow/{internship}', 'InternshipFollowerController@unfollow')->name('internship.unfollow');
-    Route::post('internship/apply/{internship}', 'InternshipController@apply')->name('internship.apply');
+    Route::post('internship/follow/{internship}', 'InternshipUserController@follow')->name('internship.follow');
+    Route::post('internship/unfollow/{internship}', 'InternshipUserController@unfollow')->name('internship.unfollow');
+    Route::post('internship/apply/{internship}', 'InternshipUserController@apply')->name('internship.apply');
+    Route::post('internship/cancel-application/{internship}', 'InternshipUserController@cancelApplication')->name('internship.cancelApplication');
 });

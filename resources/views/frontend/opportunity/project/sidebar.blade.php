@@ -23,7 +23,6 @@
                 {{ html()->button('Request to Join', 'submit')->class(['btn', 'btn-primary', 'btn-sm']) }}
                 {{ html()->form()->close() }}
             @endif
-
         </aside>
     @endif
     </div>

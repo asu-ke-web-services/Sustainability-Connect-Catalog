@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.13 on 2018-11-17 19:48:14.
+ * Generated for Laravel 5.7.14 on 2018-11-25 22:40:51.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3523,6 +3523,44 @@ namespace Illuminate\Support\Facades {
         {
             return \Illuminate\Cookie\CookieJar::getQueuedCookies();
         }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \Illuminate\Cookie\CookieJar::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \Illuminate\Cookie\CookieJar::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Illuminate\Cookie\CookieJar::hasMacro($name);
+        }
          
     }
 
@@ -4586,6 +4624,68 @@ namespace Illuminate\Support\Facades {
     class Event {
         
         /**
+         * Dispatch an event and call the listeners.
+         *
+         * @param string|object $event
+         * @param mixed $payload
+         * @param bool $halt
+         * @return array|null 
+         * @static 
+         */ 
+        public static function dispatch($event, $payload = array(), $halt = false)
+        {
+            return \Neves\Events\TransactionalDispatcher::dispatch($event, $payload, $halt);
+        }
+        
+        /**
+         * Flush all pending events.
+         *
+         * @param \Illuminate\Database\ConnectionInterface $connection
+         * @return void 
+         * @static 
+         */ 
+        public static function commit($connection)
+        {
+            \Neves\Events\TransactionalDispatcher::commit($connection);
+        }
+        
+        /**
+         * Clear enqueued events.
+         *
+         * @param \Illuminate\Database\ConnectionInterface $connection
+         * @return void 
+         * @static 
+         */ 
+        public static function rollback($connection)
+        {
+            \Neves\Events\TransactionalDispatcher::rollback($connection);
+        }
+        
+        /**
+         * Set list of events that should be handled by transactional layer.
+         *
+         * @param array|null $transactional
+         * @return void 
+         * @static 
+         */ 
+        public static function setTransactionalEvents($transactional)
+        {
+            \Neves\Events\TransactionalDispatcher::setTransactionalEvents($transactional);
+        }
+        
+        /**
+         * Set exceptions list.
+         *
+         * @param array $excluded
+         * @return void 
+         * @static 
+         */ 
+        public static function setExcludedEvents($excluded = array())
+        {
+            \Neves\Events\TransactionalDispatcher::setExcludedEvents($excluded);
+        }
+        
+        /**
          * Register an event listener with the dispatcher.
          *
          * @param string|array $events
@@ -4595,7 +4695,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function listen($events, $listener)
         {
-            \Illuminate\Events\Dispatcher::listen($events, $listener);
+            \Neves\Events\TransactionalDispatcher::listen($events, $listener);
         }
         
         /**
@@ -4607,32 +4707,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function hasListeners($eventName)
         {
-            return \Illuminate\Events\Dispatcher::hasListeners($eventName);
-        }
-        
-        /**
-         * Register an event and payload to be fired later.
-         *
-         * @param string $event
-         * @param array $payload
-         * @return void 
-         * @static 
-         */ 
-        public static function push($event, $payload = array())
-        {
-            \Illuminate\Events\Dispatcher::push($event, $payload);
-        }
-        
-        /**
-         * Flush a set of pushed events.
-         *
-         * @param string $event
-         * @return void 
-         * @static 
-         */ 
-        public static function flush($event)
-        {
-            \Illuminate\Events\Dispatcher::flush($event);
+            return \Neves\Events\TransactionalDispatcher::hasListeners($eventName);
         }
         
         /**
@@ -4644,11 +4719,11 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function subscribe($subscriber)
         {
-            \Illuminate\Events\Dispatcher::subscribe($subscriber);
+            \Neves\Events\TransactionalDispatcher::subscribe($subscriber);
         }
         
         /**
-         * Fire an event until the first non-null response is returned.
+         * Dispatch an event until the first non-null response is returned.
          *
          * @param string|object $event
          * @param mixed $payload
@@ -4657,7 +4732,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function until($event, $payload = array())
         {
-            return \Illuminate\Events\Dispatcher::until($event, $payload);
+            return \Neves\Events\TransactionalDispatcher::until($event, $payload);
         }
         
         /**
@@ -4671,59 +4746,32 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function fire($event, $payload = array(), $halt = false)
         {
-            return \Illuminate\Events\Dispatcher::fire($event, $payload, $halt);
+            return \Neves\Events\TransactionalDispatcher::fire($event, $payload, $halt);
         }
         
         /**
-         * Fire an event and call the listeners.
+         * Register an event and payload to be fired later.
          *
-         * @param string|object $event
-         * @param mixed $payload
-         * @param bool $halt
-         * @return array|null 
+         * @param string $event
+         * @param array $payload
+         * @return void 
          * @static 
          */ 
-        public static function dispatch($event, $payload = array(), $halt = false)
+        public static function push($event, $payload = array())
         {
-            return \Illuminate\Events\Dispatcher::dispatch($event, $payload, $halt);
+            \Neves\Events\TransactionalDispatcher::push($event, $payload);
         }
         
         /**
-         * Get all of the listeners for a given event name.
+         * Flush a set of pushed events.
          *
-         * @param string $eventName
-         * @return array 
+         * @param string $event
+         * @return void 
          * @static 
          */ 
-        public static function getListeners($eventName)
+        public static function flush($event)
         {
-            return \Illuminate\Events\Dispatcher::getListeners($eventName);
-        }
-        
-        /**
-         * Register an event listener with the dispatcher.
-         *
-         * @param \Closure|string $listener
-         * @param bool $wildcard
-         * @return \Closure 
-         * @static 
-         */ 
-        public static function makeListener($listener, $wildcard = false)
-        {
-            return \Illuminate\Events\Dispatcher::makeListener($listener, $wildcard);
-        }
-        
-        /**
-         * Create a class based listener using the IoC container.
-         *
-         * @param string $listener
-         * @param bool $wildcard
-         * @return \Closure 
-         * @static 
-         */ 
-        public static function createClassListener($listener, $wildcard = false)
-        {
-            return \Illuminate\Events\Dispatcher::createClassListener($listener, $wildcard);
+            \Neves\Events\TransactionalDispatcher::flush($event);
         }
         
         /**
@@ -4735,30 +4783,18 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function forget($event)
         {
-            \Illuminate\Events\Dispatcher::forget($event);
+            \Neves\Events\TransactionalDispatcher::forget($event);
         }
         
         /**
-         * Forget all of the pushed listeners.
+         * Forget all of the queued listeners.
          *
          * @return void 
          * @static 
          */ 
         public static function forgetPushed()
         {
-            \Illuminate\Events\Dispatcher::forgetPushed();
-        }
-        
-        /**
-         * Set the queue resolver implementation.
-         *
-         * @param callable $resolver
-         * @return $this 
-         * @static 
-         */ 
-        public static function setQueueResolver($resolver)
-        {
-            return \Illuminate\Events\Dispatcher::setQueueResolver($resolver);
+            \Neves\Events\TransactionalDispatcher::forgetPushed();
         }
         
         /**
@@ -10067,14 +10103,14 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static \Illuminate\Routing\Route get(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route post(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route put(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route delete(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route patch(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route options(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route any(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route match(array|string $methods, string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route get(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route post(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route put(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route delete(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route patch(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route options(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route any(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route match(array|string $methods, string $uri, \Closure|array|string|callable|null $action = null)
      * @method static \Illuminate\Routing\RouteRegistrar prefix(string  $prefix)
      * @method static \Illuminate\Routing\RouteRegistrar where(array  $where)
      * @method static \Illuminate\Routing\PendingResourceRegistration resource(string $name, string $controller, array $options = [])
@@ -10104,7 +10140,7 @@ namespace Illuminate\Support\Facades {
          * Register a new GET route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10117,7 +10153,7 @@ namespace Illuminate\Support\Facades {
          * Register a new POST route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10130,7 +10166,7 @@ namespace Illuminate\Support\Facades {
          * Register a new PUT route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10143,7 +10179,7 @@ namespace Illuminate\Support\Facades {
          * Register a new PATCH route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10156,7 +10192,7 @@ namespace Illuminate\Support\Facades {
          * Register a new DELETE route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10169,7 +10205,7 @@ namespace Illuminate\Support\Facades {
          * Register a new OPTIONS route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10182,7 +10218,7 @@ namespace Illuminate\Support\Facades {
          * Register a new route responding to all verbs.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10194,7 +10230,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Register a new Fallback route with the router.
          *
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10249,7 +10285,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array|string $methods
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10353,7 +10389,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array|string $methods
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -12215,7 +12251,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $path
          * @param resource $resource
-         * @param mixed $options
+         * @param array $options
          * @return bool 
          * @throws \InvalidArgumentException If $resource is not a file handle.
          * @throws FileExistsException
@@ -12383,7 +12419,7 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Contracts\Routing\UrlGenerator setRootControllerNamespace(string $rootNamespace)
      * @method static string signedRoute(string $name, array $parameters = [], \DateTimeInterface|int $expiration = null)
      * @method static string temporarySignedRoute(string $name, \DateTimeInterface|int $expiration, array $parameters = [])
-     * @method static string hasValidSignature(\Illuminate\Http\Request $request)
+     * @method static string hasValidSignature(\Illuminate\Http\Request $request, bool $absolute)
      * @method static void defaults(array $defaults)
      * @see \Illuminate\Routing\UrlGenerator
      */ 
@@ -17376,6 +17412,35 @@ namespace  {
             public static function orWhereNotIn($column, $values)
             {    
                 return \Illuminate\Database\Query\Builder::orWhereNotIn($column, $values);
+            }
+         
+            /**
+             * Add a "where in raw" clause for integer values to the query.
+             *
+             * @param string $column
+             * @param \Illuminate\Contracts\Support\Arrayable|array $values
+             * @param string $boolean
+             * @param bool $not
+             * @return $this 
+             * @static 
+             */ 
+            public static function whereIntegerInRaw($column, $values, $boolean = 'and', $not = false)
+            {    
+                return \Illuminate\Database\Query\Builder::whereIntegerInRaw($column, $values, $boolean, $not);
+            }
+         
+            /**
+             * Add a "where not in raw" clause for integer values to the query.
+             *
+             * @param string $column
+             * @param \Illuminate\Contracts\Support\Arrayable|array $values
+             * @param string $boolean
+             * @return $this 
+             * @static 
+             */ 
+            public static function whereIntegerNotInRaw($column, $values, $boolean = 'and')
+            {    
+                return \Illuminate\Database\Query\Builder::whereIntegerNotInRaw($column, $values, $boolean);
             }
          
             /**

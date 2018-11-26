@@ -26,7 +26,53 @@ abstract class TestCase extends BaseTestCase
         }
 
         $adminRole = factory(Role::class)->create(['name' => config('access.users.admin_role')]);
-        $adminRole->givePermissionTo(factory(Permission::class)->create(['name' => 'view admin dashboard']));
+
+        $permissions = [
+            'view personal dashboard',
+            'view admin dashboard',
+            'manage address',
+            'manage attachment',
+            'manage authentication',
+            'manage lookup',
+            'manage internship',
+            'manage project',
+            'manage organization',
+            'manage note',
+            'manage role',
+            'manage user',
+            'create registered user',
+            'create unregistered user',
+            'read user',
+            'update user',
+            'delete user',
+            'submit project proposal',
+            'store project',
+            'read public projects',
+            'read all projects',
+            'update project',
+            'delete project',
+            'follow project',
+            'clone project',
+            'add project user',
+            'remove project user',
+            'store internship',
+            'read public internships',
+            'read all internships',
+            'update internship',
+            'delete internship',
+            'follow internship',
+            'clone internship',
+            'add internship user',
+            'remove internship user',
+            'masquerade as user',
+            'upload attachment',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+
+        $adminRole->givePermissionTo(Permission::all());
 
         return $adminRole;
     }

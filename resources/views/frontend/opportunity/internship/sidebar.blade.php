@@ -24,7 +24,7 @@
                 {{ html()->form()->close() }}
             @endif
         </aside>
-    @endif
 --}}
+    @endif
     </div>
 </div>

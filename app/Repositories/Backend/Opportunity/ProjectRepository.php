@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Repositories\Backend\Opportunity;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
@@ -232,8 +233,25 @@ class ProjectRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        // dd($data);
+        if (null != $data['opportunity_start_at']) {
+            $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
+        }
 
+        if (null != $data['opportunity_end_at']) {
+            $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
+        }
+
+        if (null != $data['listing_start_at']) {
+            $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
+        }
+
+        if (null != $data['listing_end_at']) {
+            $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
+        }
+
+        if (null != $data['application_deadline_at']) {
+            $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
+        }
 
         return DB::transaction(function () use ($data) {
 
@@ -294,6 +312,26 @@ class ProjectRepository extends BaseRepository
             'categories',
             'keywords'
         );
+
+        if (null != $data['opportunity_start_at']) {
+            $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
+        }
+
+        if (null != $data['opportunity_end_at']) {
+            $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
+        }
+
+        if (null != $data['listing_start_at']) {
+            $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
+        }
+
+        if (null != $data['listing_end_at']) {
+            $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
+        }
+
+        if (null != $data['application_deadline_at']) {
+            $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
+        }
 
         return DB::transaction(function () use ($project, $data) {
 

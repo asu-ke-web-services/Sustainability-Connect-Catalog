@@ -145,7 +145,25 @@ class InternshipRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data) {
 
-            // dd($data);
+            if (null != $data['opportunity_start_at']) {
+                $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
+            }
+
+            if (null != $data['opportunity_end_at']) {
+                $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
+            }
+
+            if (null != $data['listing_start_at']) {
+                $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
+            }
+
+            if (null != $data['listing_end_at']) {
+                $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
+            }
+
+            if (null != $data['application_deadline_at']) {
+                $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
+            }
 
             $internship = $this->model->create($data);
 
@@ -205,7 +223,25 @@ class InternshipRepository extends BaseRepository
             'keywords'
         );
 
-            // dd($data);
+        if (null != $data['opportunity_start_at']) {
+            $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
+        }
+
+        if (null != $data['opportunity_end_at']) {
+            $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
+        }
+
+        if (null != $data['listing_start_at']) {
+            $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
+        }
+
+        if (null != $data['listing_end_at']) {
+            $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
+        }
+
+        if (null != $data['application_deadline_at']) {
+            $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
+        }
 
         return DB::transaction(function () use ($internship, $data) {
 

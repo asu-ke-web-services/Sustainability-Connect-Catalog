@@ -254,13 +254,13 @@ class InternshipRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                $internship->affiliations()->sync($data['affiliations']);
+                $internship->affiliations()->sync($data['affiliations'] ?? null);
 
                 // sync Categories
-                $internship->categories()->sync($data['categories']);
+                $internship->categories()->sync($data['categories'] ?? null);
 
                 // sync Keywords
-                $internship->keywords()->sync($data['keywords']);
+                $internship->keywords()->sync($data['keywords'] ?? null);
 
                 event(new InternshipUpdated($internship));
 

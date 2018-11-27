@@ -344,13 +344,13 @@ class ProjectRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                $project->affiliations()->sync($data['affiliations']);
+                $project->affiliations()->sync($data['affiliations'] ?? null);
 
                 // sync Categories
-                $project->categories()->sync($data['categories']);
+                $project->categories()->sync($data['categories'] ?? null);
 
                 // sync Keywords
-                $project->keywords()->sync($data['keywords']);
+                $project->keywords()->sync($data['keywords'] ?? null);
 
                 event(new ProjectUpdated($project));
 

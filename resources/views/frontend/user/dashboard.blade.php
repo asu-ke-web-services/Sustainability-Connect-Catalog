@@ -40,6 +40,8 @@
             <!-- /.col -->
             <div class="col-md-9">
 
+            @if (count($followedProjects) || count($projectApplications) || count($participatingInProjects) || count($followedInternships))
+
                 @if (count($followedProjects))
                 <div class="box">
                     <div class="box-header">
@@ -155,7 +157,23 @@
                     </div>
                     <!-- /.box -->
                 @endif
-
+            @else
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">No Activity to Report</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <p>You have no outstanding applications or idea submissions. Have you considered following a project or internship that interests you?</p>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <a href="/project" class="btn btn-sm btn-primary btn-flat pull-left">Browse Projects</a>
+                        <a href="/internship" class="btn btn-sm btn-primary btn-flat pull-right">Browse Internships</a>
+                    </div>
+                </div>
+                <!-- /.box -->
+            @endif
             </div>
             <!-- /.col -->
         </div>

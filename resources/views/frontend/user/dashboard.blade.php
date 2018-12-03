@@ -168,8 +168,8 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        <a href="/project" class="btn btn-sm btn-primary btn-flat pull-left">Browse Projects</a>
-                        <a href="/internship" class="btn btn-sm btn-primary btn-flat pull-right">Browse Internships</a>
+                        <a href="/project" class="btn btn-sm btn-primary btn-flat">Browse Projects</a>
+                        <a href="/internship" class="btn btn-sm btn-primary btn-flat">Browse Internships</a>
                     </div>
                 </div>
                 <!-- /.box -->

@@ -56,6 +56,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Base Application URL
+    |--------------------------------------------------------------------------
+    |
+    | This URL is points to the base Sustainability Connect WordPress site that
+    | encompasses this application. THis primarily used in views for links back
+    | to the base website.
+    |
+    */
+
+    'sc_base_url' => env('SC_BASE_URL', 'https://sustainabilityconnect.asu.edu'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |

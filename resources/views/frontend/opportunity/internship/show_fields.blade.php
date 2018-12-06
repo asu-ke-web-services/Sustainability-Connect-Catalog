@@ -82,7 +82,11 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Apply By</td>
-                        <td class="col col-sm-9 view-content">{{ null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : '' }}</td>
+                        <td class="col col-sm-9 view-content">{{
+                             $internship->application_deadline_text > ''
+                                ? $internship->application_deadline_text
+                                : (null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : '')
+                        }}</td>
                     </tr>
                     <!-- Semester Offered -->
                     <tr>

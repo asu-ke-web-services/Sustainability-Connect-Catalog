@@ -38,7 +38,7 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
 
   // format application_deadline, which might be a text string or a date
   let deadline = '';
-  if (hit.applicationDeadlineText != null) {
+  if (hit.applicationDeadlineText > '') {
     deadline = hit.applicationDeadlineText;
   } else if (hit.applicationDeadlineAt != null) {
     deadline = moment.unix(hit.applicationDeadlineAt).format('ll');

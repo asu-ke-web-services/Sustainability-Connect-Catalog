@@ -101849,7 +101849,7 @@ function HitComponent(_ref2) {
 
   // format application_deadline, which might be a text string or a date
   var deadline = '';
-  if (hit.applicationDeadlineText != null) {
+  if (hit.applicationDeadlineText > '') {
     deadline = hit.applicationDeadlineText;
   } else if (hit.applicationDeadlineAt != null) {
     deadline = _moment2.default.unix(hit.applicationDeadlineAt).format('ll');
@@ -102024,7 +102024,7 @@ function HitComponent(_ref2) {
 
   // format application_deadline, which might be a text string or a date
   var deadline = '';
-  if (hit.applicationDeadlineText != null) {
+  if (hit.applicationDeadlineText > '') {
     deadline = hit.applicationDeadlineText;
   } else if (hit.applicationDeadlineAt != null) {
     deadline = _moment2.default.unix(hit.applicationDeadlineAt).format('ll');

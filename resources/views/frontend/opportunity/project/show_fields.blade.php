@@ -100,7 +100,11 @@
                     <!-- Application Deadline -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Deadline</td>
-                        <td class="col col-sm-9 view-content">{{ $project->application_deadline_at !== null ? $project->application_deadline_at->toFormattedDateString() : '' }}</td>
+                        <td class="col col-sm-9 view-content">{{
+                             $project->application_deadline_text > ''
+                                ? $project->application_deadline_text
+                                : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : '')
+                        }}</td>
                     </tr>
                             <!-- Application Instructions -->
                     <tr>

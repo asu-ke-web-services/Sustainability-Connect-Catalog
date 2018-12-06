@@ -169,7 +169,7 @@ class InternshipRepository extends BaseRepository
             // If text deadline value is set, that overrides any value in the date field, which is to be set
             // to far-future date for Algolia search purposes.
             if (null != $data['application_deadline_text']) {
-                $data['application_deadline_at'] = Carbon::create(2030, 12, 31);
+                $data['application_deadline_at'] = Carbon::create(2030, 12, 31, 23, 59);
             }
 
             $internship = $this->model->create($data);
@@ -253,7 +253,7 @@ class InternshipRepository extends BaseRepository
         // If text deadline value is set, that overrides any value in the date field, which is to be set
         // to far-future date for Algolia search purposes.
         if (null != $data['application_deadline_text']) {
-            $data['application_deadline_at'] = Carbon::create(2030, 12, 31);
+            $data['application_deadline_at'] = Carbon::create(2030, 12, 31, 23, 59);
         }
 
         return DB::transaction(function () use ($internship, $data) {

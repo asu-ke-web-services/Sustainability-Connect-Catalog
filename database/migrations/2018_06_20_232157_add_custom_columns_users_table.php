@@ -15,9 +15,9 @@ class AddCustomColumnsUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->tinyInteger('access_validated')->default(0)->unsigned();
+            $table->tinyInteger('asurite')->unsigned()->default(0);
             $table->string('login_name')->nullable();
             $table->integer('user_type_id')->unsigned()->nullable();
-            $table->string('asurite')->nullable();
             $table->integer('student_degree_level_id')->unsigned()->nullable();
             $table->text('degree_program')->nullable();
             $table->date('graduation_date')->nullable();

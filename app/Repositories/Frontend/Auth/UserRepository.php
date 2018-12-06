@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use SCCatalog\Events\Frontend\Auth\UserConfirmed;
 use SCCatalog\Events\Frontend\Auth\UserProviderRegistered;
 use SCCatalog\Exceptions\GeneralException;
-use SCCatalog\Helpers\Frontend\Auth\AsuDirectoryHelper;
+use SCCatalog\Helpers\Auth\AsuDirectoryHelper;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Auth\SocialAccount;
 use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
@@ -294,7 +294,8 @@ class UserRepository extends BaseRepository
                 'first_name'  => $firstName,
                 'last_name'   => $lastName,
                 'email'       => $user_email,
-                'asurite'     => $asurite,
+                'asurite'     => 1,
+                'login_name'  => $asurite,
                 'user_type_id' => $user_types[$userType],
                 'active'      => 1,
                 'confirmed'   => 1,

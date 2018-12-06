@@ -93,7 +93,7 @@
                                 <th>Username</th>
                                 <th>Date registered</th>
                                 <th>Type</th>
-                                <th>Status</th>
+                                <th>Asurite</th>
                                 <th>{{ __('labels.general.actions') }}</th>
                             </tr>
                         </thead>

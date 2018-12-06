@@ -48,7 +48,7 @@ return [
         'dashboard' => [
             'title'                      => 'Dashboard',
             'welcome'                    => 'Welcome',
-            'new_user_accounts'          => 'New Users Accounts To Approve',
+            'new_user_accounts'          => 'New Users Accounts To Approve Access to Restricted Opportunities',
             'projects_under_review'      => 'Projects Under Review',
             'all_active_project_members' => 'All Active Project Members',
         ],

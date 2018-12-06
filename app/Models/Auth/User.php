@@ -50,7 +50,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'active' => 'boolean',
+        'active'    => 'boolean',
+        'asurite'   => 'boolean',
         'confirmed' => 'boolean',
     ];
 

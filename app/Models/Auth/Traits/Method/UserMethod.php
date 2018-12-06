@@ -98,4 +98,23 @@ trait UserMethod
     {
         return config('access.users.requires_approval') && ! $this->confirmed;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAsurite()
+    {
+        return $this->asurite;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAsuEID()
+    {
+        if ($this->asurite) {
+            return AsuDirectoryHelper::getEid($this->login_name);
+        }
+        return false;
+    }
 }

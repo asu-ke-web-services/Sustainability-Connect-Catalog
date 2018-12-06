@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Helpers\Frontend\Auth;
+namespace SCCatalog\Helpers\Auth;
 
 use GuzzleHttp\Client;
 use SCCatalog\Exceptions\GeneralException;

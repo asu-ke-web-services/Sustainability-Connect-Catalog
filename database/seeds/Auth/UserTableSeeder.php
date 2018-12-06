@@ -133,9 +133,9 @@ class UserTableSeeder extends Seeder
                 }
 
                 $user_email = empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email;
+
                 if ($old_user_asurite == '1') {
-                    $asurite = $old_user->user_login;
-                    $user_email = $asurite . '@asu.edu';
+                    $user_email = $old_user->user_login . '@asu.edu';
                 }
 
                 $new_user = User::create([
@@ -143,6 +143,7 @@ class UserTableSeeder extends Seeder
                     'first_name'              => $old_user_first_name ?? null,
                     'last_name'               => $old_user_last_name ?? null,
                     // 'display_name'            => $old_user->display_name ?? null,
+                    'asurite'                 => $old_user_asurite ?? null,
                     'login_name'              => $old_user->user_login ?? null,
                     'email'                   => $user_email,
                     'password'                => Hash::make($old_user->user_pass),
@@ -150,7 +151,6 @@ class UserTableSeeder extends Seeder
                     'confirmed'               => true,
                     'access_validated'        => true,
                     'user_type_id'            => $user_type_id ?? null,
-                    'asurite'                 => $asurite ?? null,
                     'student_degree_level_id' => $degree_level_id ?? null,
                     'degree_program'          => $old_user_degree_program ?? null,
                     'graduation_date'         => Carbon::parse($old_user_graduation_date)->toDateString() ?? null,
@@ -158,7 +158,7 @@ class UserTableSeeder extends Seeder
                     'research_interests'      => $old_user_research_interests ?? null,
                     'department'              => $old_user_department ?? null,
                     // 'organization_id'         => $old_user->,
-                    // 'created_at'              => $old_user->user_registered,
+                    'created_at'              => $old_user->user_registered,
                     // 'updated_at'              => $old_user->updated,
                     'created_by'              => 1,
                     'updated_by'              => 1,

@@ -182,6 +182,18 @@ trait UserAttribute
     /**
      * @return string
      */
+    public function getShowIsearchButtonAttribute()
+    {
+        if (false !== $this->getAsuEID()) {
+            return '<a href="https://isearch.asu.edu/profile/'. $this->getAsuEID() .'" data-toggle="tooltip" data-placement="top" title="iSearch Profile" class="btn btn-info">i</a>';
+        }
+
+        return '';
+    }
+
+    /**
+     * @return string
+     */
     public function getEditButtonAttribute()
     {
         return '<a href="'.route('admin.auth.user.edit', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'" class="btn btn-primary"><i class="fas fa-edit"></i></a>';
@@ -293,6 +305,33 @@ trait UserAttribute
               '.$this->clear_session_button.'
               '.$this->login_as_button.'
               '.$this->change_password_button.'
+              '.$this->status_button.'
+              '.$this->confirmed_button.'
+              '.$this->delete_button.'
+            </div>
+          </div>
+        </div>';
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getReviewActionButtonsAttribute()
+    {
+        return '
+        <div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
+          '.$this->show_button.'
+          '.$this->show_isearch_button.'
+          '.$this->edit_button.'
+    
+          <div class="btn-group btn-group-sm" role="group">
+            <button id="userActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              '.__('labels.general.more').'
+            </button>
+            <div class="dropdown-menu" aria-labelledby="userActions">
+              '.$this->clear_session_button.'
+              '.$this->login_as_button.'
               '.$this->status_button.'
               '.$this->confirmed_button.'
               '.$this->delete_button.'

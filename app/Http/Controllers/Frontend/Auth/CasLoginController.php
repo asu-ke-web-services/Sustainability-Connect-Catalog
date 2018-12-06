@@ -7,7 +7,7 @@ use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Frontend\Auth\UserLoggedIn;
 use SCCatalog\Repositories\Frontend\Auth\UserRepository;
-use SCCatalog\Helpers\Frontend\Auth\AsuDirectoryHelper;
+use SCCatalog\Helpers\Auth\AsuDirectoryHelper;
 
 /**
  * Class CasLoginController.

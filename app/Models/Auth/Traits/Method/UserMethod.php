@@ -2,6 +2,8 @@
 
 namespace SCCatalog\Models\Auth\Traits\Method;
 
+use SCCatalog\Helpers\Auth\AsuDirectoryHelper;
+
 /**
  * Trait UserMethod.
  */

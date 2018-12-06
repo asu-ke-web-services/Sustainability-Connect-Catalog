@@ -110,7 +110,7 @@
                                         <span class="badge badge-pill badge-secondary">No</span>
                                     @endif
                                 </td>
-                                <td>{!! $user->action_buttons !!}</td>
+                                <td>{!! $user->review_action_buttons !!}</td>
                             </tr>
                             @endforeach
                         </tbody>

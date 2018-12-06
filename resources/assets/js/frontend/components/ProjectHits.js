@@ -38,27 +38,21 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
 
   // format application_deadline, which might be a text string or a date
   let deadline = '';
-  if (hit.applicationDeadlineAt != null) {
+  if (hit.applicationDeadlineText != null) {
+    deadline = hit.applicationDeadlineText;
+  } else if (hit.applicationDeadlineAt != null) {
     deadline = moment.unix(hit.applicationDeadlineAt).format('ll');
-  } else {
-    deadline = '';
   }
-  // deadline = moment(hit.applicationDeadlineAt).format('ll');
 
   let startDate = '';
   if (hit.opportunityStartAt != null) {
     startDate = moment.unix(hit.opportunityStartAt).format('ll');
-  } else {
-    startDate = '';
   }
 
   let endDate = '';
   if (hit.opportunityEndAt != null) {
     endDate = moment.unix(hit.opportunityEndAt).format('ll');
-  } else {
-    endDate = '';
   }
-
 
   if (canView) {
     return (

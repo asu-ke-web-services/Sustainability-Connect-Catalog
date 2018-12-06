@@ -38,12 +38,11 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
 
   // format application_deadline, which might be a text string or a date
   let deadline = '';
-  if (hit.applicationDeadlineAt != null) {
+  if (hit.applicationDeadlineText != null) {
+    deadline = hit.applicationDeadlineText;
+  } else if (hit.applicationDeadlineAt != null) {
     deadline = moment.unix(hit.applicationDeadlineAt).format('ll');
-  } else {
-    deadline = '';
   }
-  // deadline = moment(hit.applicationDeadlineAt).format('ll');
 
   // let startDate = '';
   // if (hit.opportunityStartAt != null) {

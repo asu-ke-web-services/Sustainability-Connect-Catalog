@@ -118,6 +118,7 @@
                     @component('includes.components.form.date', [
                         'name'        => 'listing_end_at',
                         'label'       => 'Listing Ends',
+                        'placeholder' => 'mm/dd/yyyy',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
@@ -125,6 +126,7 @@
                     @component('includes.components.form.date', [
                         'name'      => 'application_deadline_at',
                         'label'     => 'Application Deadline',
+                        'placeholder' => 'mm/dd/yyyy',
                         'help_text' => 'Enter date-format deadline (Leave blank if Text Deadline used)',
                         'object'    => $internship ?? null,
                     ])@endcomponent
@@ -171,6 +173,7 @@
                     @component('includes.components.form.date', [
                         'name'        => 'opportunity_start_at',
                         'label'       => 'Internship Start Date',
+                        'placeholder' => 'mm/dd/yyyy',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
@@ -178,6 +181,7 @@
                     @component('includes.components.form.date', [
                         'name'        => 'opportunity_end_at',
                         'label'       => 'Internship End Date',
+                        'placeholder' => 'mm/dd/yyyy',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 

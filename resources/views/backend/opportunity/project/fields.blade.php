@@ -92,6 +92,7 @@
                     @component('includes.components.form.date', [
                         'name'        => 'listing_start_at',
                         'label'       => 'Listing Starts',
+                        'placeholder' => 'mm/dd/yyyy',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
@@ -99,15 +100,17 @@
                     @component('includes.components.form.date', [
                         'name'        => 'listing_end_at',
                         'label'       => 'Listing Ends',
+                        'placeholder' => 'mm/dd/yyyy',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- Application Deadline Field -->
                     @component('includes.components.form.date', [
-                        'name'      => 'application_deadline_at',
-                        'label'     => 'Application Deadline',
-                        'help_text' => 'Enter date-format deadline (Leave blank if Text Deadline used)',
-                        'object'    => $project ?? null,
+                        'name'        => 'application_deadline_at',
+                        'label'       => 'Application Deadline',
+                        'placeholder' => 'mm/dd/yyyy',
+                        'help_text'   => 'Enter date-format deadline (Leave blank if Text Deadline used)',
+                        'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- Application Deadline Text Field -->
@@ -161,6 +164,7 @@
                     @component('includes.components.form.date', [
                         'name'        => 'opportunity_start_at',
                         'label'       => 'Project Start Date',
+                        'placeholder' => 'mm/dd/yyyy',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
@@ -168,6 +172,7 @@
                     @component('includes.components.form.date', [
                         'name'        => 'opportunity_end_at',
                         'label'       => 'Project End Date',
+                        'placeholder' => 'mm/dd/yyyy',
                         'object'      => $project ?? null,
                     ])@endcomponent
 

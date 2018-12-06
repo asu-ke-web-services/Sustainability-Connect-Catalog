@@ -13,7 +13,7 @@
                         <div class="col-sm-5">
                             <h4 class="card-title mb-0">
                                 {{ __('labels.frontend.opportunity.projects.proposal') }}
-                                <small class="text-muted">{{ __('labels.frontend.opportunity.projects.submit_opportunity') }}</small>
+                                <small class="text-muted">Submit your idea</small>
                             </h4>
                         </div><!--col-->
                     </div><!--row-->

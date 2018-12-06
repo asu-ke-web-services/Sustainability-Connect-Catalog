@@ -253,6 +253,13 @@ class ProjectRepository extends BaseRepository
             $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
         }
 
+        // If text deadline value is set, that overrides any value in the date field, which is to be set
+        // to far-future date for Algolia search purposes.
+        if (null != $data['application_deadline_text']) {
+            $data['application_deadline_at'] = Carbon::create(2030, 12, 31);
+        }
+
+
         return DB::transaction(function () use ($data) {
 
             $project = $this->model->create($data);
@@ -331,6 +338,12 @@ class ProjectRepository extends BaseRepository
 
         if (null != $data['application_deadline_at']) {
             $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
+        }
+
+        // If text deadline value is set, that overrides any value in the date field, which is to be set
+        // to far-future date for Algolia search purposes.
+        if (null != $data['application_deadline_text']) {
+            $data['application_deadline_at'] = Carbon::create(2030, 12, 31);
         }
 
         return DB::transaction(function () use ($project, $data) {

@@ -18,7 +18,7 @@
                 old($name) ?: ($object->{$name} ?? '')
             )
                 ->class('form-control datepicker')
-                ->placeholder($placeholder ?? '')
+                ->placeholder($placeholder ?? 'mm/dd/yyyy')
                 ->attribute($attribute ?? null)
                 ->attributes($attributes ?? [])
             }}

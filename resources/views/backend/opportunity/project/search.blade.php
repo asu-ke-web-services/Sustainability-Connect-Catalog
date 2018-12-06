@@ -60,7 +60,11 @@
                                     @endif
                                 </td>
                                 <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : null }}</td>
-                                <td>{{ null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : null }}</td>
+                                <td>{{
+                                     null != $project->application_deadline_text
+                                        ? $project->application_deadline_text
+                                        : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : null)
+                                }}</td>
                                 <td>{{ null !== $project->created_at ? $project->created_at->toFormattedDateString() : null }}</td>
                                 <td>{!! $project->action_buttons !!}</td>
                             </tr>

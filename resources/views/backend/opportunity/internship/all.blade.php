@@ -59,7 +59,11 @@
                                     @endif
                                 </td>
                                 <td>{{ null !== $internship->opportunity_start_at ? $internship->opportunity_start_at->toFormattedDateString() : null }}</td>
-                                <td>{{ null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : null }}</td>
+                                <td>{{
+                                     null != $internship->application_deadline_text
+                                        ? $internship->application_deadline_text
+                                        : (null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : null)
+                                }}</td>
                                 <td>{!! $internship->action_buttons !!}</td>
                             </tr>
                         @endforeach

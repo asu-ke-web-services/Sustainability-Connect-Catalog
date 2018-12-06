@@ -38,7 +38,11 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.application_deadline_at') }}</th>
-                <td>{{ isset($internship->application_deadline_at) ? $internship->application_deadline_at->toFormattedDateString() : '' }} {{ isset($internship->application_deadline_at) ? '(' . $internship->application_deadline_at->diffForHumans() . ')' : '' }}</td>
+                <td>{{
+                     null != $internship->application_deadline_text
+                        ? $internship->application_deadline_text
+                        : (null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : '')
+                }}</td>
             </tr>
 
 

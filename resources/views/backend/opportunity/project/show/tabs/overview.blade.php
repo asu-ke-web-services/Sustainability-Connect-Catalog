@@ -43,7 +43,11 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.application_deadline_at') }}</th>
-                <td>{{ isset($project->application_deadline_at) ? $project->application_deadline_at->toFormattedDateString() : '' }} {{ isset($project->application_deadline_at) ? '(' . $project->application_deadline_at->diffForHumans() . ')' : '' }}</td>
+                <td>{{
+                     null != $project->application_deadline_text
+                        ? $project->application_deadline_text
+                        : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : '')
+                }}</td>
             </tr>
 
 

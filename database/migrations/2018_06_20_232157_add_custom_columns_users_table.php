@@ -16,7 +16,7 @@ class AddCustomColumnsUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->tinyInteger('access_validated')->default(0)->unsigned();
             $table->tinyInteger('asurite')->unsigned()->default(0);
-            $table->string('login_name')->nullable();
+            $table->string('asurite_login')->nullable();
             $table->integer('user_type_id')->unsigned()->nullable();
             $table->integer('student_degree_level_id')->unsigned()->nullable();
             $table->text('degree_program')->nullable();
@@ -51,7 +51,7 @@ class AddCustomColumnsUsersTable extends Migration
             $table->dropForeign('users_organization_id_foreign');
             $table->dropForeign('users_student_degree_level_id_foreign');
             $table->dropForeign('users_user_type_id_foreign');
-            $table->dropColumn(['access_validated', 'login_name', 'user_type_id', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id']);
+            $table->dropColumn(['access_validated', 'asurite_login', 'user_type_id', 'asurite', 'student_degree_level_id', 'degree_program', 'graduation_date', 'phone', 'research_interests', 'department', 'organization_id']);
         });
     }
 }

@@ -291,19 +291,46 @@ class UserRepository extends BaseRepository
             ];
 
             $user = parent::create([
-                'first_name'  => $firstName,
-                'last_name'   => $lastName,
-                'email'       => $user_email,
-                'asurite'     => 1,
-                'login_name'  => $asurite,
-                'user_type_id' => $user_types[$userType],
-                'active'      => 1,
-                'confirmed'   => 1,
-                'password'    => null,
+                'first_name'    => $firstName,
+                'last_name'     => $lastName,
+                'email'         => $user_email,
+                'asurite'       => 1,
+                'asurite_login' => $asurite,
+                'user_type_id'  => $user_types[$userType],
+                'active'        => 1,
+                'confirmed'     => 1,
+                'password'      => Hash::make(str_random(20)),
                 // 'avatar_type' => $provider,
             ]);
 
             event(new UserProviderRegistered($user));
+        }
+
+        // if user account was found, let's ensure we have stored updated ASURITE status
+        else {
+            // Lookup ASURITE in iSearch
+            $directoryInfo = AsuDirectoryHelper::getDirectoryInfoByAsurite($asurite);
+            $userType = AsuDirectoryHelper::getUserType($directoryInfo);
+
+            $user_types = [
+                'student' => 1,
+                'alumni' => 2,
+                'faculty' => 3,
+                'staff' => 4,
+                'professional' => 5,
+            ];
+
+            $user = parent::updateById(
+                $user->id,
+                [
+                    'asurite'       => 1,
+                    'asurite_login' => $asurite,
+                    'user_type_id'  => $user_types[$userType],
+                    'active'        => 1,
+                    'confirmed'     => 1,
+                    'password'      => Hash::make(str_random(20)),
+                ]
+            );
         }
 
         // Return the user object

@@ -133,9 +133,11 @@ class UserTableSeeder extends Seeder
                 }
 
                 $user_email = empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email;
+                $asurite_login = '';
 
                 if ($old_user_asurite == '1') {
-                    $user_email = $old_user->user_login . '@asu.edu';
+                    $asurite_login = $old_user->user_login;
+                    $user_email = $asurite_login . '@asu.edu';
                 }
 
                 $new_user = User::create([
@@ -144,7 +146,7 @@ class UserTableSeeder extends Seeder
                     'last_name'               => $old_user_last_name ?? null,
                     // 'display_name'            => $old_user->display_name ?? null,
                     'asurite'                 => $old_user_asurite ?? null,
-                    'login_name'              => $old_user->user_login ?? null,
+                    'asurite_login'           => $asurite_login ?? null,
                     'email'                   => $user_email,
                     'password'                => Hash::make($old_user->user_pass),
                     'confirmation_code'       => md5(uniqid(mt_rand(), true)),

@@ -115,7 +115,7 @@ trait UserMethod
     public function getAsuEID()
     {
         if ($this->asurite) {
-            return AsuDirectoryHelper::getEid(AsuDirectoryHelper::getDirectoryInfoByAsurite($this->login_name));
+            return AsuDirectoryHelper::getEid(AsuDirectoryHelper::getDirectoryInfoByAsurite($this->asurite_login));
         }
         return false;
     }

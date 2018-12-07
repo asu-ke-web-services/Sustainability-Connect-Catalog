@@ -21,7 +21,7 @@ class UserRoleTableSeeder extends Seeder
 
         $users = User::all();
         foreach($users as $user) {
-            switch ($user->login_name) {
+            switch ($user->asurite_login) {
                 case 'ndrollin':
                 case 'susadmin':
                 case 'brbarker':

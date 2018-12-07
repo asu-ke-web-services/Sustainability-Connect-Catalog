@@ -95,7 +95,7 @@
                 </li>
                 @if (Auth::check())
                 <li id="menu-item-16" class="menu-item">
-                    <a title="Dashboard" href="/dashboard" class="menu-item">Dashboard</a>
+                    <a title="Dashboard" href="/" class="menu-item">Dashboard</a>
                 </li>
                 <li id="menu-item-17" class="menu-item">
                     <a title="Sign Out" href="/logout" class="menu-item">Sign Out</a>

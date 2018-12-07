@@ -132,13 +132,9 @@ class UserTableSeeder extends Seeder
                     $old_user_graduation_date = null;
                 }
 
-                $user_email = empty($old_user->user_email) ? $old_user->user_login : $old_user->user_email;
-                $asurite_login = '';
+                $user_email = empty($old_user->user_email) ? $old_user->user_login . '@asu.edu' : $old_user->user_email;
 
-                if ($old_user_asurite == '1') {
-                    $asurite_login = $old_user->user_login;
-                    $user_email = $asurite_login . '@asu.edu';
-                } else {
+                if ($old_user_asurite != '1') {
                     $old_user_asurite =  0;
                 }
 
@@ -148,7 +144,7 @@ class UserTableSeeder extends Seeder
                     'last_name'               => $old_user_last_name ?? null,
                     // 'display_name'            => $old_user->display_name ?? null,
                     'asurite'                 => $old_user_asurite,
-                    'asurite_login'           => $asurite_login ?? null,
+                    'asurite_login'           => $old_user->user_login ?? null,
                     'email'                   => $user_email,
                     'password'                => Hash::make($old_user->user_pass),
                     'confirmation_code'       => md5(uniqid(mt_rand(), true)),

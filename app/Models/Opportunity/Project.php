@@ -562,8 +562,27 @@ class Project extends Model implements HasMedia
     {
         return $query->where([
                 ['application_deadline_at', '<>', null],
-                ['application_deadline_at', '>', Carbon::tomorrow()],
+                ['application_deadline_at', '>=', Carbon::tomorrow()],
             ])
+            ->whereIn('opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ]);
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeExpired($query)
+    {
+        return $query->where([
+            ['application_deadline_at', '<>', null],
+            ['application_deadline_at', '<', Carbon::tomorrow()],
+        ])
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
                 4, // Recruiting Participants

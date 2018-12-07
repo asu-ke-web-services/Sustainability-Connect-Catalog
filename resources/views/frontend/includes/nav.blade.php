@@ -14,7 +14,7 @@
         <div id="ws-navbar-collapse-1" class="collapse navbar-collapse">
             <ul id="menu-header-menu-gios-simple" class="nav navbar-nav">
                 <li class="menu_item active">
-                    <a href="/" title="Home" id="home-icon-main-nav">
+                    <a href="{{ config('app.sc_base_url') }}" title="Home" id="home-icon-main-nav">
                         <span class="fa fa-home hidden-xs hidden-sm" aria-hidden="true"></span>
                         <span class="hidden-md hidden-lg">Home</span>
                     </a>

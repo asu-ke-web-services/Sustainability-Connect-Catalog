@@ -266,6 +266,24 @@ class Project extends Model implements HasMedia
     }
 
     /**
+     * Should project be listed as expired listing?.
+     *
+     * @return bool
+     */
+    public function isExpired() : bool
+    {
+        return
+            $this->application_deadline_at !== null &&
+            $this->application_deadline_at->lessThan(Carbon::tomorrow()) &&
+            \in_array($this->opportunity_status_id, [
+                3, // Seeking Champions
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ], true);
+    }
+
+    /**
      * Should project be listed as a completed past project? Not exact inverse of isActive().
      *
      * @return bool

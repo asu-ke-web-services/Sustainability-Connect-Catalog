@@ -37,7 +37,24 @@ class ProjectStatusController extends Controller
         }
 
         return view('backend.opportunity.project.active')
-            ->withProjects($this->projectRepository->getActivePaginated(25, $search, 'created_at', 'desc'))
+            ->withProjects($this->projectRepository->getActivePaginated(25, $search, 'application_deadline_at', 'asc'))
+            ->with('searchRequest', (object) array('search' => $search));
+    }
+
+    /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
+    public function getExpired(ManageProjectRequest $request)
+    {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
+        return view('backend.opportunity.project.expired')
+            ->withProjects($this->projectRepository->getExpiredPaginated(25, $search, 'application_deadline_at', 'asc'))
             ->with('searchRequest', (object) array('search' => $search));
     }
 

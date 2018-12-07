@@ -17,6 +17,7 @@ Route::group([
     Route::get('project/archived', 'ProjectStatusController@getArchived')->name('project.archived');
     Route::get('project/completed', 'ProjectStatusController@getCompleted')->name('project.completed');
     Route::get('project/deleted', 'ProjectStatusController@getDeleted')->name('project.deleted');
+    Route::get('project/expired', 'ProjectStatusController@getExpired')->name('project.expired');
     Route::get('project/import_review', 'ProjectStatusController@getImportReview')->name('project.import_review');
     Route::get('project/reviews', 'ProjectStatusController@getProposalReviews')->name('project.reviews');
     Route::get('project/search', 'ProjectController@search')->name('project.search');

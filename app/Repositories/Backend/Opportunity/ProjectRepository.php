@@ -55,6 +55,16 @@ class ProjectRepository extends BaseRepository
     /**
      * @return mixed
      */
+    public function getExpiredCount()
+    {
+        return $this->model
+            ->expired()
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCompletedCount()
     {
         return $this->model
@@ -101,6 +111,23 @@ class ProjectRepository extends BaseRepository
         return $this->model
             // ->search($search)
             ->active()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int $paged
+     * @param string $search
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getExpiredPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            // ->search($search)
+            ->expired()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }

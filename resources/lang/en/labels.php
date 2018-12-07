@@ -138,7 +138,8 @@ return [
         'opportunity' => [
             'projects' => [
                 'all'                 => 'All Projects',
-                'active'              => 'Active Projects',
+                'active'              => 'Active Project Listings',
+                'expired'             => 'Expired Project Listings',
                 'search'              => 'Search Projects',
                 'create'              => 'Create Project',
                 'completed'           => 'Completed Projects',

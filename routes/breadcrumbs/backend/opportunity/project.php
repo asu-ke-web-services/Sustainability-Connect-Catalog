@@ -20,6 +20,11 @@ Breadcrumbs::for('admin.opportunity.project.active', function ($trail) {
     $trail->push(__('menus.backend.opportunity.projects.active'), route('admin.opportunity.project.active'));
 });
 
+Breadcrumbs::for('admin.opportunity.project.expired', function ($trail) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push(__('menus.backend.opportunity.projects.expired'), route('admin.opportunity.project.expired'));
+});
+
 Breadcrumbs::for('admin.opportunity.project.archived', function ($trail) {
     $trail->parent('admin.opportunity.project.index');
     $trail->push(__('menus.backend.opportunity.projects.archived'), route('admin.opportunity.project.archived'));

@@ -249,11 +249,8 @@ class UserRepository extends BaseRepository
      */
     public function findOrCreateASU($asurite)
     {
-        // User email based on ASURITE
-        $user_email = "{$asurite}@asu.edu";
-
-        // Check to see if there is a user with this email first.
-        $user = $this->getByColumn($user_email, 'email');
+        // Check to see if there is a user with this ASURITE.
+        $user = $this->getByColumn($asurite, 'asurite_login');
 
         /*
          * If the user does not exist create them
@@ -293,7 +290,7 @@ class UserRepository extends BaseRepository
             $user = parent::create([
                 'first_name'    => $firstName,
                 'last_name'     => $lastName,
-                'email'         => $user_email,
+                'email'         => $email,
                 'asurite'       => 1,
                 'asurite_login' => $asurite,
                 'user_type_id'  => $user_types[$userType],

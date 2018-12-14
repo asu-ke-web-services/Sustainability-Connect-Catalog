@@ -5,7 +5,6 @@
  * All route names are prefixed with 'frontend.opportunity'.
  */
 Route::group([
-//    'prefix'     => 'opportunity',
     'as'         => 'opportunity.',
     'namespace'  => 'Opportunity',
 ], function () {
@@ -25,7 +24,11 @@ Route::group([
     Route::get('internship/{internship}', 'InternshipController@show')->name('internship.show');
 });
 
-Route::group(['middleware' => ['auth', 'password_expires']], function () {
+Route::group([
+    'as'         => 'opportunity.',
+    'namespace'  => 'Opportunity',
+    'middleware' => ['auth', 'password_expires']
+], function () {
     /*
      * Project CRUD - must be signed-in
      */

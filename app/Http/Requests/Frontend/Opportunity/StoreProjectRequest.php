@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class CreateProjectRequest.
@@ -16,7 +17,7 @@ class StoreProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('submit project proposal');
+        return Auth::check() && $this->user()->can('submit project proposal');
     }
 
     /**

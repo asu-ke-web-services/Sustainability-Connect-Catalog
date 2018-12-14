@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ViewProjectRequest.
@@ -16,7 +17,7 @@ class InternshipFollowerRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('follow internship');
+        return Auth::check() && $this->user()->can('follow internship');
     }
 
     /**

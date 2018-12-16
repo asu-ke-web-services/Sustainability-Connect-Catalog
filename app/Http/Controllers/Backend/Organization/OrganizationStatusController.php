@@ -32,9 +32,7 @@ class OrganizationStatusController extends Controller
     public function getActive(ManageProjectRequest $request)
     {
         return view('backend.organization.active')
-            ->withProjects($this->organizationRepository->getActivePaginated(10000, 'updated_at', 'desc'))
-            ->with('defaultOrderBy', 'created_at')
-            ->with('defaultSort', 'desc');
+            ->withProjects($this->organizationRepository->getActivePaginated(10000, 'name', 'asc'));
     }
 
     /**
@@ -45,9 +43,7 @@ class OrganizationStatusController extends Controller
     public function getDeleted(ManageOrganizationRequest $request)
     {
         return view('backend.organization.deleted')
-            ->withOrganizations($this->organizationRepository->getDeletedPaginated(10000, 'id', 'asc'))
-            ->with('defaultOrderBy', 'created_at')
-            ->with('defaultSort', 'desc');
+            ->withOrganizations($this->organizationRepository->getDeletedPaginated(10000, 'name', 'asc'));
     }
 
     /**
@@ -58,9 +54,7 @@ class OrganizationStatusController extends Controller
     public function getInactive(ManageProjectRequest $request)
     {
         return view('backend.organization.inactive')
-            ->withProjects($this->organizationRepository->getInactivePaginated(10000, 'updated_at', 'desc'))
-            ->with('defaultOrderBy', 'created_at')
-            ->with('defaultSort', 'desc');
+            ->withProjects($this->organizationRepository->getInactivePaginated(10000, 'name', 'asc'));
     }
 
     /**

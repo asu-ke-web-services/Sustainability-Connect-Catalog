@@ -39,9 +39,7 @@ class OrganizationController extends Controller
     public function index(ManageOrganizationRequest $request)
     {
         return view('backend.organization.all')
-            ->with('organizations', $this->organizationRepository->getAllPaginated(10000, 'updated_at', 'desc'))
-            ->with('defaultOrderBy', 'created_at')
-            ->with('defaultSort', 'desc');
+            ->with('organizations', $this->organizationRepository->getAllPaginated(10000, 'updated_at', 'desc'));
     }
 
     /**

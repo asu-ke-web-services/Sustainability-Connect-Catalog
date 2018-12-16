@@ -13,12 +13,22 @@
     <meta name="author" content="@yield('meta_author', 'Julie Ann Wrigley Global Institute of Sustainability')">
     @yield('meta')
 
+    <!-- Icons-->
+    <link href="/vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="/vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
     @stack('before-styles')
 
     <!-- Check if the language is set to RTL, so apply the RTL layouts -->
     <!-- Otherwise apply the normal LTR layouts -->
-    {{ style(mix('css/backend.css')) }}
+    {{-- {{ style(mix('css/backend.css')) }} --}}
+
+    <!-- Main styles for this application-->
+    <link href="/css/coreui/style.css" rel="stylesheet">
+    <link href="/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
 
     @stack('after-styles')
 </head>
@@ -51,8 +61,15 @@
     @include('backend.includes.footer')
 
     <!-- Scripts -->
-    @stack('before-scripts')
+    {{-- @stack('before-scripts')
     {!! script(mix('js/backend.js')) !!}
-    @stack('after-scripts')
+    @stack('after-scripts') --}}
+
+    <script src="/vendors/jquery/js/jquery.min.js"></script>
+    <script src="/vendors/popper.js/js/popper.min.js"></script>
+    <script src="/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/vendors/pace-progress/js/pace.min.js"></script>
+    <script src="/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+    <script src="/vendors/@coreui/coreui-pro/js/coreui.min.js"></script>
 </body>
 </html>

@@ -31,14 +31,10 @@ class OrganizationStatusController extends Controller
      */
     public function getActive(ManageProjectRequest $request)
     {
-        $search = '';
-        if($request->has('search')){
-            $search = $request->get('search');
-        }
-
         return view('backend.organization.active')
-            ->withProjects($this->organizationRepository->getActivePaginated(25, $search, 'updated_at', 'desc'))
-            ->with('searchRequest', (object) array('search' => $search));
+            ->withProjects($this->organizationRepository->getActivePaginated(10000, 'updated_at', 'desc'))
+            ->with('defaultOrderBy', 'created_at')
+            ->with('defaultSort', 'desc');
     }
 
     /**
@@ -49,7 +45,9 @@ class OrganizationStatusController extends Controller
     public function getDeleted(ManageOrganizationRequest $request)
     {
         return view('backend.organization.deleted')
-            ->withOrganizations($this->organizationRepository->getDeletedPaginated(25, 'id', 'asc'));
+            ->withOrganizations($this->organizationRepository->getDeletedPaginated(10000, 'id', 'asc'))
+            ->with('defaultOrderBy', 'created_at')
+            ->with('defaultSort', 'desc');
     }
 
     /**
@@ -59,14 +57,10 @@ class OrganizationStatusController extends Controller
      */
     public function getInactive(ManageProjectRequest $request)
     {
-        $search = '';
-        if($request->has('search')){
-            $search = $request->get('search');
-        }
-
         return view('backend.organization.inactive')
-            ->withProjects($this->organizationRepository->getInactivePaginated(25, $search, 'updated_at', 'desc'))
-            ->with('searchRequest', (object) array('search' => $search));
+            ->withProjects($this->organizationRepository->getInactivePaginated(10000, 'updated_at', 'desc'))
+            ->with('defaultOrderBy', 'created_at')
+            ->with('defaultSort', 'desc');
     }
 
     /**

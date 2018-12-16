@@ -87,7 +87,9 @@ class ProjectController extends Controller
         ]);
 
         return view('backend.opportunity.project.all')
-            ->with('projects', $this->projectRepository->getAllPaginated(25, $search, 'created_at', 'desc'))
+            ->with('projects', $this->projectRepository->getAllPaginated(10000, $search, 'created_at', 'desc'))
+            ->with('defaultOrderBy', 'created_at')
+            ->with('defaultSort', 'desc')
             ->with('searchRequest', (object) array('search' => $search));
     }
 

@@ -6,6 +6,21 @@
     @include('backend.opportunity.project.includes.breadcrumb-links')
 @endsection
 
+@push('after-styles')
+    <link href="/vendors/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+@endpush
+
+@push('after-scripts')
+    <script src="/vendors/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="/vendors/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $('.datatable').DataTable({
+            "order": [[ 5, "{{ $defaultSort }}" ]]
+        });
+        $('.datatable').attr('style', 'border-collapse: collapse !important');
+    </script>
+@endpush
+
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -32,46 +47,44 @@
 
         <div class="row mt-4">
             <div class="col">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+                <table class="table table-striped table-bordered datatable">
+                    <thead>
+                    <tr>
+                        <th>{{ __('labels.backend.opportunity.projects.table.name') }}</th>
+                        <th>{{ __('labels.backend.opportunity.projects.table.status') }}</th>
+                        <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
+                        <th>{{ __('labels.backend.opportunity.projects.table.opportunity_start_at') }}</th>
+                        <th>{{ __('labels.backend.opportunity.projects.table.application_deadline_at') }}</th>
+                        <th>{{ __('Created') }}</th>
+                        <th>{{ __('labels.general.actions') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($projects as $project)
                         <tr>
-                            <th>{{ __('labels.backend.opportunity.projects.table.name') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.status') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.opportunity_start_at') }}</th>
-                            <th>{{ __('labels.backend.opportunity.projects.table.application_deadline_at') }}</th>
-                            <th>{{ __('Created') }}</th>
-                            <th>{{ __('labels.general.actions') }}</th>
+                            <td>{{ ucwords($project->name) }}</td>
+                            <td>{{ ucwords($project->status->name) }}</td>
+                            <td>
+                                @if ($project->addresses->count())
+                                    @foreach ($project->addresses as $address)
+                                        {{ ucwords($address->city) }}
+                                    @endforeach
+                                @else
+                                    {{ __('labels.general.none') }}
+                                @endif
+                            </td>
+                            <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : null }}</td>
+                            <td>{{
+                                 null != $project->application_deadline_text
+                                    ? $project->application_deadline_text
+                                    : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : null)
+                            }}</td>
+                            <td>{{ null !== $project->created_at ? $project->created_at->toFormattedDateString() : null }}</td>
+                            <td>{!! $project->action_buttons !!}</td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($projects as $project)
-                            <tr>
-                                <td>{{ ucwords($project->name) }}</td>
-                                <td>{{ ucwords($project->status->name) }}</td>
-                                <td>
-                                    @if ($project->addresses->count())
-                                        @foreach ($project->addresses as $address)
-                                            {{ ucwords($address->city) }}
-                                        @endforeach
-                                    @else
-                                        {{ __('labels.general.none') }}
-                                    @endif
-                                </td>
-                                <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : null }}</td>
-                                <td>{{
-                                     null != $project->application_deadline_text
-                                        ? $project->application_deadline_text
-                                        : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : null)
-                                }}</td>
-                                <td>{{ null !== $project->created_at ? $project->created_at->toFormattedDateString() : null }}</td>
-                                <td>{!! $project->action_buttons !!}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                    @endforeach
+                    </tbody>
+                </table>
             </div><!--col-->
         </div><!--row-->
         <div class="row">

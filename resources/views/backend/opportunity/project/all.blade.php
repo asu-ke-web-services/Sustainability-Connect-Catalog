@@ -15,7 +15,8 @@
     <script src="/vendors/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
     <script>
         $('.datatable').DataTable({
-            "order": [[ 5, "{{ $defaultSort }}" ]]
+            "order": [[ 5, "{{ $defaultSort }}" ]],
+            "lengthMenu": [[25, 50, -1], [25, 50, "All"]]
         });
         $('.datatable').attr('style', 'border-collapse: collapse !important');
     </script>

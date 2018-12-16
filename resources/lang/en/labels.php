@@ -350,6 +350,7 @@ return [
         'organization' => [
             'all'                 => 'All Organizations',
             'active'              => 'Active Organizations',
+            'inactive'            => 'Inactive Organizations',
             'search'              => 'Search Organizations',
             'create'              => 'Create Organization',
             'archived'            => 'Archived Organizations',

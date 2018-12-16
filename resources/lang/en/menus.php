@@ -80,8 +80,9 @@ return [
 
         'organization' => [
             'all'         => 'All Organizations',
+            'active'      => 'Active Organizations',
+            'inactive'    => 'Inactive Organizations',
             'create'      => 'Create Organization',
-            'deactivated' => 'Deactivated Organizations',
             'deleted'     => 'Deleted Organizations',
             'edit'        => 'Edit Organization',
             'management'  => 'Organization Management',

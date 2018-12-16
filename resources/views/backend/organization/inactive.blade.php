@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', app_name() . ' | '. __('labels.backend.organization.management') . ' | ' . __('labels.backend.organization.active'))
+@section ('title', app_name() . ' | '. __('labels.backend.organization.management') . ' | ' . __('labels.backend.organization.inactive'))
 
 @section('breadcrumb-links')
     @include('backend.organization.includes.breadcrumb-links')
@@ -29,7 +29,7 @@
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.organization.management') }}
-                    <small class="text-muted">{{ __('labels.backend.organization.active') }}</small>
+                    <small class="text-muted">{{ __('labels.backend.organization.inactive') }}</small>
                 </h4>
             </div><!--col-->
             <div class="col-sm-7 pull-right">
@@ -62,7 +62,7 @@
                             </tr>
                         @endforeach
                     @else
-                        <tr><td colspan="9"><p class="text-center">{{ __('strings.backend.organization.no_active') }}</p></td></tr>
+                        <tr><td colspan="9"><p class="text-center">{{ __('strings.backend.organization.no_inactive') }}</p></td></tr>
                     @endif
                     </tbody>
                 </table>

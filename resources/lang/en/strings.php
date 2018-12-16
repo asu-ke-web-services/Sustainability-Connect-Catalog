@@ -32,6 +32,8 @@ return [
         'organization' => [
             'delete_organization_confirm'  => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
             'no_archived'                  => 'There are no archived organizations.',
+            'no_active'                    => 'There are no active organizations.',
+            'no_inactive'                  => 'There are no inactive organizations.',
             'no_deleted'                   => 'There are no deleted organizations.',
             'restore_organization_confirm' => 'Restore this organization to its original state?',
         ],

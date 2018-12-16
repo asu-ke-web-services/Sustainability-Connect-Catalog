@@ -25,14 +25,14 @@ class OrganizationStatusController extends Controller
     }
 
     /**
-     * @param ManageProjectRequest $request
+     * @param ManageOrganizationRequest $request
      *
      * @return mixed
      */
-    public function getActive(ManageProjectRequest $request)
+    public function getActive(ManageOrganizationRequest $request)
     {
         return view('backend.organization.active')
-            ->withProjects($this->organizationRepository->getActivePaginated(10000, 'name', 'asc'));
+            ->withOrganizations($this->organizationRepository->getActivePaginated(10000, 'name', 'asc'));
     }
 
     /**
@@ -47,14 +47,14 @@ class OrganizationStatusController extends Controller
     }
 
     /**
-     * @param ManageProjectRequest $request
+     * @param ManageOrganizationRequest $request
      *
      * @return mixed
      */
-    public function getInactive(ManageProjectRequest $request)
+    public function getInactive(ManageOrganizationRequest $request)
     {
         return view('backend.organization.inactive')
-            ->withProjects($this->organizationRepository->getInactivePaginated(10000, 'name', 'asc'));
+            ->withOrganizations($this->organizationRepository->getInactivePaginated(10000, 'name', 'asc'));
     }
 
     /**

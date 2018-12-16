@@ -31,6 +31,8 @@
         "classnames": "^2.2.6",
         "cross-env": "^5.1",
         "datatables.net-bs4": "^1.10.19",
+        "datatables.net-fixedheader-bs4": "^3.1.5",
+        "datatables.net-responsive-bs4": "^2.2.3",
         "font-awesome": "^4.7.0",
         "fullcalendar": "^3.4.0",
         "inputmask": "^3.3.7",

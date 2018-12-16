@@ -13,6 +13,8 @@ Route::group([
     /*
      * Organization Status'
      */
+    Route::get('organization/active', 'OrganizationStatusController@getActive')->name('organization.active');
+    Route::get('organization/inactive', 'OrganizationStatusController@getInactive')->name('organization.inactive');
     Route::get('organization/deleted', 'OrganizationStatusController@getDeleted')->name('organization.deleted');
 
     /* Organization CRUD */

@@ -189,6 +189,27 @@ class Organization extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @param $query
+     * @param bool $active
+     * @return mixed
+     */
+    public function scopeActive($query, $active = true)
+    {
+        if ($active) {
+            return $query
+                ->whereIn('organization_status_id', [
+                    2, // Active
+                ]);
+        } else {
+            // Closed or archived or otherwise not approved
+            return $query
+                ->whereIn('organization_status_id', [
+                    1, // Inactive
+                ]);
+        }
+    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS

@@ -5,7 +5,6 @@
 
             <div class="dropdown-menu" aria-labelledby="breadcrumb-dropdown-1">
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.index') }}">{{ __('menus.backend.opportunity.projects.all') }}</a>
-                <a class="dropdown-item" href="{{ route('admin.opportunity.project.search') }}">{{ __('menus.backend.opportunity.projects.search') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.create') }}">{{ __('menus.backend.opportunity.projects.create') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.active') }}">{{ __('menus.backend.opportunity.projects.active') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.expired') }}">{{ __('menus.backend.opportunity.projects.expired') }}</a>

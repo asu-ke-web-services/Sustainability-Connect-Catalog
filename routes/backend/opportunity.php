@@ -20,7 +20,6 @@ Route::group([
     Route::get('project/expired', 'ProjectStatusController@getExpired')->name('project.expired');
     Route::get('project/import_review', 'ProjectStatusController@getImportReview')->name('project.import_review');
     Route::get('project/reviews', 'ProjectStatusController@getProposalReviews')->name('project.reviews');
-    Route::get('project/search', 'ProjectController@search')->name('project.search');
 
     /* Project CRUD */
     Route::resource('project', 'ProjectController');

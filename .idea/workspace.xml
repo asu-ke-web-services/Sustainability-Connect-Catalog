@@ -10,16 +10,63 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/Lookup/AffiliationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/Lookup/AffiliationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/User/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/User/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectStatusController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectStatusController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/backend.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/backend.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/show/tabs/people.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/show/tabs/people.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/includes/gentelella/nav_top.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/includes/gentelella/nav_top.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/gentelella.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/gentelella.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/user/account.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/user/account.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/frontend/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/frontend/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/backend.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/backend.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/searchCompletedProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/searchCompletedProject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/searchInternship.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/searchInternship.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/searchProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/searchProject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_aside.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_aside.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_avatars.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_avatars.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_breadcrumb-menu.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_breadcrumb-menu.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_breadcrumb.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_breadcrumb.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_buttons.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_callout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_callout.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_card.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_card.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_charts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_charts.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_dropdown.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_dropdown.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_grid.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_input-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_input-group.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_layout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_layout.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_loading.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_mobile.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_nav.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_others.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_others.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_progress.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_progress.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_rtl.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_rtl.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_sidebar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_switches.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_switches.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_temp.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_typography.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_utilities.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/_widgets.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/_widgets.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/core.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_background.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_background.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_borders.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_borders.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_display.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_display.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/active.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/active.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/all.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/all.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/archived.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/archived.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/completed.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/completed.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/deleted.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/deleted.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/expired.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/expired.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/import_review.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/import_review.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/includes/breadcrumb-links.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/includes/breadcrumb-links.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/reviews.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/opportunity/project/reviews.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/opportunity/project/search.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/backend/opportunity.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/backend/opportunity.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,10 +90,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Lookup/AffiliationController.php">
+        <entry file="file://$PROJECT_DIR$/routes/backend/opportunity.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
+            <state relative-caret-position="396">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -63,10 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>// 'opportunity_type_id' =&gt; 2,</find>
-      <find>date</find>
-      <find>sync</find>
-      <find>$organization</find>
       <find>users</find>
       <find>CreateProjectRequest</find>
       <find>CreateInternshipRequest</find>
@@ -93,9 +136,12 @@
       <find>ProjectFollowerRequest</find>
       <find>Project</find>
       <find>project</find>
+      <find>Paginated</find>
+      <find>25, $search,</find>
+      <find>: LengthAwarePaginator</find>
+      <find>total</find>
     </findStrings>
     <replaceStrings>
-      <replace>'opportunity_type_id' =&gt; 2,</replace>
       <replace>'opportunity_type_id' =&gt; 1,</replace>
       <replace>$user</replace>
       <replace>$array</replace>
@@ -125,6 +171,7 @@
       <replace>ProjectApplicantRequest</replace>
       <replace>Internship</replace>
       <replace>internship</replace>
+      <replace>;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app/Models</dir>
@@ -141,23 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/internship/fields.blade.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Backend/Opportunity/InternshipRepository.php" />
-        <option value="$PROJECT_DIR$/resources/views/frontend/opportunity/internship/show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/frontend/opportunity/internship/show_fields.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/frontend/opportunity/project/show_fields.blade.php" />
-        <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/ProjectHits.js" />
-        <option value="$PROJECT_DIR$/resources/assets/js/frontend/components/InternshipHits.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/.env.travis" />
-        <option value="$PROJECT_DIR$/config/database.php" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/config/transactional-events.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/all.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/show/tabs/people.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/frontend/gentelella/home/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/frontend/includes/gentelella/nav_top.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/frontend/layouts/gentelella.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/user/account/account_content.blade.php" />
@@ -192,6 +222,23 @@
         <option value="$PROJECT_DIR$/database/seeds/InternshipFilesSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/ProjectFilesSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Lookup/AffiliationController.php" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/backend/app.scss" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/backend/core/coreui.scss" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/backend/core/coreui-standalone.scss" />
+        <option value="$PROJECT_DIR$/app/Repositories/Backend/Opportunity/ProjectRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectStatusController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/search.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/completed.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/deleted.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/import_review.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/reviews.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/all.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/active.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/expired.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/archived.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/opportunity/project/includes/breadcrumb-links.blade.php" />
+        <option value="$PROJECT_DIR$/routes/backend/opportunity.php" />
       </list>
     </option>
   </component>
@@ -368,10 +415,20 @@
       <path value="$PROJECT_DIR$/vendor/graham-campbell/markdown" />
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/fntneves/laravel-transactional-events" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/nexmo/client" />
+      <path value="$PROJECT_DIR$/vendor/laravel/slack-notification-channel" />
+      <path value="$PROJECT_DIR$/vendor/laravel/nexmo-notification-channel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="3206" />
+    <option name="width" value="3210" />
     <option name="height" value="1806" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -382,6 +439,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -397,45 +455,55 @@
             <path>
               <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Backend" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Backend" type="462c0819:PsiDirectoryNode" />
-              <item name="Lookup" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Requests" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="opportunity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sustainability-Connect-Catalog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sustainability-Connect-Catalog" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -443,6 +511,7 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;HTML&#10;Blade" />
+    <property name="editor.config.ad.shown" value="true" />
     <property name="editorconfig.notification" value="spaces" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -572,13 +641,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="564015000" />
+    <option name="totallyTimeSpent" value="580369000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1842" height="1002" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49926144" visible="true" weight="0.21973094" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49926144" visible="true" weight="0.22421524" />
       <window_info id="Structure" order="1" sideWeight="0.50073856" side_tool="true" weight="0.16679905" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.50073856" side_tool="true" weight="0.16679905" />
@@ -614,253 +683,6 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Organization/OrganizationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="135" lean-forward="true" selection-start-line="120" selection-end-line="135" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/User/AccountController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/layouts/gentelella.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/user/account_edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/user/account_fields.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18702">
-          <caret line="1039" selection-start-line="1039" selection-end-line="1039" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/user/account/tabs/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/User/ProfileController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/frontend/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Opportunity/Project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3433">
-          <caret line="202" selection-start-line="202" selection-end-line="202" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/backend/opportunity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="7" column="35" selection-start-line="5" selection-start-column="14" selection-end-line="7" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Opportunity/Internship.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7452" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/ProjectRepositoryTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/InternshipRepositoryTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="38" column="61" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="38" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/Frontend/Auth/ChangePasswordTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/user/account.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/frontend/auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithAuthentication.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-327">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/Backend/Role/CreateRoleTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
-          <folding>
-            <element signature="e#25#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Models/Permission.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-          <folding>
-            <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/Auth/PermissionRoleTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="75" column="52" lean-forward="true" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="52" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/backend/admin.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/lookup/affiliation/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="61" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/Backend/Opportunity/CreateProjectTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="39" lean-forward="true" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-          <folding>
-            <element signature="e#53#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/Backend/Lookup/CreateAffiliationTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="46" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="46" />
-          <folding>
-            <element signature="e#48#98#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/Frontend/OpportunityUser/UserCancelledRequestToJoinProject.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/Frontend/OpportunityUser/UserCancelledRequestToJoinInternship.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/Frontend/OpportunityUser/UserRequestedToJoinProject.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/ProjectUserRepositoryTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-230" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/backend/lookup.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helpers/Auth/Auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/frontend/opportunity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="147" selection-start-line="33" selection-start-column="147" selection-end-line="33" selection-end-column="147" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/frontend/opportunity/project/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="18" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Auth/Traits/Relationship/UserRelationship.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -969,6 +791,219 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/_variables.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/_custom.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/_core-variables.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/coreui/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9526" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/backend.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1458" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/core/coreui-standalone.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1206">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/core/coreui.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/core/variables/bootstrap/_variables.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_borders.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_background.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/core/utilities/_typography.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="40" column="19" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/backend/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/backend/before.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/backend/app.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/coreui/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectUserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Backend/Opportunity/ProjectRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1332">
+          <caret line="84" column="7" lean-forward="true" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/search.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="40" column="74" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="89" column="78" selection-start-line="89" selection-start-column="73" selection-end-line="89" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Opportunity/ProjectStatusController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="153" column="86" selection-start-line="153" selection-start-column="86" selection-end-line="153" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/layouts/app2.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/coreui/datatables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="70" selection-start-line="6" selection-end-line="7" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/reviews.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/import_review.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/deleted.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/completed.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/archived.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/expired.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/active.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/all.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/project/includes/breadcrumb-links.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/opportunity/internship/includes/breadcrumb-links.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/backend/opportunity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>

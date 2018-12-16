@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.14 on 2018-11-25 22:40:51.
+ * Generated for Laravel 5.7.17 on 2018-12-15 15:43:22.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -9189,7 +9189,7 @@ namespace Illuminate\Support\Facades {
          * Checks whether the method is cacheable or not.
          *
          * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
-         * @return bool 
+         * @return bool True for GET and HEAD, false otherwise
          * @static 
          */ 
         public static function isMethodCacheable()
@@ -10734,7 +10734,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently dispatched route instance.
          *
-         * @return \Illuminate\Routing\Route 
+         * @return \Illuminate\Routing\Route|null 
          * @static 
          */ 
         public static function current()
@@ -10834,6 +10834,17 @@ namespace Illuminate\Support\Facades {
         public static function auth($options = array())
         {
             \Illuminate\Routing\Router::auth($options);
+        }
+        
+        /**
+         * Register the typical reset password routes for an application.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function resetPassword()
+        {
+            \Illuminate\Routing\Router::resetPassword();
         }
         
         /**
@@ -11217,6 +11228,7 @@ namespace Illuminate\Support\Facades {
      * @method static bool exists(string|array $key)
      * @method static bool has(string|array $key)
      * @method static mixed get(string $key, $default = null)
+     * @method static mixed pull(string $key, $default = null)
      * @method static void put(string|array $key, $value = null)
      * @method static string token()
      * @method static mixed remove(string $key)
@@ -12687,13 +12699,13 @@ namespace Illuminate\Support\Facades {
         /**
          * Force the scheme for URLs.
          *
-         * @param string $schema
+         * @param string $scheme
          * @return void 
          * @static 
          */ 
-        public static function forceScheme($schema)
+        public static function forceScheme($scheme)
         {
-            \Illuminate\Routing\UrlGenerator::forceScheme($schema);
+            \Illuminate\Routing\UrlGenerator::forceScheme($scheme);
         }
         
         /**
@@ -16108,6 +16120,17 @@ namespace Arcanedev\LogViewer\Facades {
         }
         
         /**
+         * Clear the log files.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function clear()
+        {
+            return \Arcanedev\LogViewer\LogViewer::clear();
+        }
+        
+        /**
          * Get all valid log files.
          *
          * @return array 
@@ -17965,6 +17988,21 @@ namespace  {
             }
          
             /**
+             * Add a "having between " clause to the query.
+             *
+             * @param string $column
+             * @param array $values
+             * @param string $boolean
+             * @param bool $not
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function havingBetween($column, $values, $boolean = 'and', $not = false)
+            {    
+                return \Illuminate\Database\Query\Builder::havingBetween($column, $values, $boolean, $not);
+            }
+         
+            /**
              * Add a raw having clause to the query.
              *
              * @param string $sql
@@ -18354,6 +18392,19 @@ namespace  {
             public static function insertGetId($values, $sequence = null)
             {    
                 return \Illuminate\Database\Query\Builder::insertGetId($values, $sequence);
+            }
+         
+            /**
+             * Insert new records into the table using a subquery.
+             *
+             * @param array $columns
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @return bool 
+             * @static 
+             */ 
+            public static function insertUsing($columns, $query)
+            {    
+                return \Illuminate\Database\Query\Builder::insertUsing($columns, $query);
             }
          
             /**

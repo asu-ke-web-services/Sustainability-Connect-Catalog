@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-11-25 22:40:54.
+    * Generated on 2018-12-15 15:43:24.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,7 @@ namespace PHPSTORM_META {
         'Laravel\Socialite\Contracts\Factory' => \Laravel\Socialite\SocialiteManager::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'RichanFongdasen\EloquentBlameable\BlameableObserver' => \RichanFongdasen\EloquentBlameable\BlameableObserver::class,
         'RichanFongdasen\EloquentBlameable\BlameableService' => \RichanFongdasen\EloquentBlameable\BlameableService::class,
         'Spatie\Html\Html' => \Spatie\Html\Html::class,
@@ -219,6 +220,7 @@ namespace PHPSTORM_META {
         'Laravel\Socialite\Contracts\Factory' => \Laravel\Socialite\SocialiteManager::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'RichanFongdasen\EloquentBlameable\BlameableObserver' => \RichanFongdasen\EloquentBlameable\BlameableObserver::class,
         'RichanFongdasen\EloquentBlameable\BlameableService' => \RichanFongdasen\EloquentBlameable\BlameableService::class,
         'Spatie\Html\Html' => \Spatie\Html\Html::class,
@@ -393,6 +395,7 @@ namespace PHPSTORM_META {
         'Laravel\Socialite\Contracts\Factory' => \Laravel\Socialite\SocialiteManager::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'RichanFongdasen\EloquentBlameable\BlameableObserver' => \RichanFongdasen\EloquentBlameable\BlameableObserver::class,
         'RichanFongdasen\EloquentBlameable\BlameableService' => \RichanFongdasen\EloquentBlameable\BlameableService::class,
         'Spatie\Html\Html' => \Spatie\Html\Html::class,
@@ -567,6 +570,7 @@ namespace PHPSTORM_META {
         'Laravel\Socialite\Contracts\Factory' => \Laravel\Socialite\SocialiteManager::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'RichanFongdasen\EloquentBlameable\BlameableObserver' => \RichanFongdasen\EloquentBlameable\BlameableObserver::class,
         'RichanFongdasen\EloquentBlameable\BlameableService' => \RichanFongdasen\EloquentBlameable\BlameableService::class,
         'Spatie\Html\Html' => \Spatie\Html\Html::class,
@@ -741,6 +745,7 @@ namespace PHPSTORM_META {
         'Laravel\Socialite\Contracts\Factory' => \Laravel\Socialite\SocialiteManager::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'RichanFongdasen\EloquentBlameable\BlameableObserver' => \RichanFongdasen\EloquentBlameable\BlameableObserver::class,
         'RichanFongdasen\EloquentBlameable\BlameableService' => \RichanFongdasen\EloquentBlameable\BlameableService::class,
         'Spatie\Html\Html' => \Spatie\Html\Html::class,
@@ -915,6 +920,7 @@ namespace PHPSTORM_META {
         'Laravel\Socialite\Contracts\Factory' => \Laravel\Socialite\SocialiteManager::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'RichanFongdasen\EloquentBlameable\BlameableObserver' => \RichanFongdasen\EloquentBlameable\BlameableObserver::class,
         'RichanFongdasen\EloquentBlameable\BlameableService' => \RichanFongdasen\EloquentBlameable\BlameableService::class,
         'Spatie\Html\Html' => \Spatie\Html\Html::class,
@@ -1089,6 +1095,7 @@ namespace PHPSTORM_META {
         'Laravel\Socialite\Contracts\Factory' => \Laravel\Socialite\SocialiteManager::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'RichanFongdasen\EloquentBlameable\BlameableObserver' => \RichanFongdasen\EloquentBlameable\BlameableObserver::class,
         'RichanFongdasen\EloquentBlameable\BlameableService' => \RichanFongdasen\EloquentBlameable\BlameableService::class,
         'Spatie\Html\Html' => \Spatie\Html\Html::class,

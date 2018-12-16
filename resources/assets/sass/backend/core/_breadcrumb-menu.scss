@@ -11,11 +11,12 @@
 
   .btn {
     padding: 0 $input-btn-padding-x;
-    color: $text-muted;
+    color: $breadcrumb-menu-color;
     vertical-align: top;
     border: 0;
 
-    &:hover, &.active {
+    &:hover,
+    &.active {
       color: $body-color;
       background: transparent;
     }
@@ -31,5 +32,13 @@
   .dropdown-menu {
     min-width: 180px;
     line-height: $line-height-base;
+  }
+}
+
+// Right-to-Left Support
+*[dir="rtl"] {
+  .breadcrumb-menu {
+    margin-right: auto;
+    margin-left: initial;
   }
 }

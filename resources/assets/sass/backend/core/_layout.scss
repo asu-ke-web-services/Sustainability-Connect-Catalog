@@ -1,11 +1,12 @@
 // IE10&11 Flexbox fix
-@media all and (-ms-high-contrast:none) {
+@media all and (-ms-high-contrast: none) {
   html {
     display: flex;
     flex-direction: column;
   }
 }
 
+// stylelint-disable selector-type-no-unknown, no-duplicate-selectors, selector-no-qualifying-type
 // app-dashboard and app-root are Angular2+ selectors. You can add here your own selectors if you need.
 .app,
 app-dashboard,
@@ -47,87 +48,66 @@ app-root {
   }
 }
 
-//
-// header
-//
-.header-fixed {
-  .app-header {
-    position: fixed;
-    z-index: $zindex-sticky;
-    width: 100%;
-  }
-  .app-body {
-    margin-top: $navbar-height;
-  }
-}
-
-//
-// Sidebar
-//
-.sidebar-hidden {
+html:not([dir="rtl"]) {
   .sidebar {
     margin-left: - $sidebar-width;
   }
-}
-
-.sidebar-fixed {
-  .sidebar {
-    position: fixed;
-    z-index: $zindex-sticky - 1;
-    width: $sidebar-width;
-    height: calc(100vh - #{$navbar-height});
-    // margin-top: - $navbar-height;
-
-    // .sidebar-nav {
-    //   height: calc(100vh - #{$navbar-height});
-    // }
-  }
-
-  .main, .app-footer {
-    margin-left: $sidebar-width;
-  }
-
-  &.sidebar-hidden {
-    .main, .app-footer {
-      margin-left: 0;
-    }
+  .aside-menu {
+    margin-right: - $aside-menu-width;
   }
 }
-
-.sidebar-off-canvas {
+html[dir="rtl"] {
   .sidebar {
-    position: fixed;
-    z-index: $zindex-sticky - 1;
-    height: calc(100vh - #{$navbar-height});
+    margin-right: - $sidebar-width;
+  }
+  .aside-menu {
+    margin-left: - $aside-menu-width;
   }
 }
 
 @include media-breakpoint-up(lg) {
+  //
+  // Header
+  //
+  .header-fixed {
+    .app-header {
+      position: fixed;
+      z-index: $zindex-sticky;
+      width: 100%;
+    }
+    .app-body {
+      margin-top: $navbar-height;
+    }
+  }
+  //
+  // Sidebar
+  //
+  .sidebar-fixed {
+    .sidebar {
+      position: fixed;
+      z-index: $zindex-sticky - 1;
+      width: $sidebar-width;
+      height: 100vh;
+    }
+  }
+  .sidebar-fixed {
+    .app-header + .app-body .sidebar {
+      height: calc(100vh - #{$navbar-height});
+    }
+  }
+
   .sidebar-compact {
     .sidebar {
       flex: 0 0 $sidebar-compact-width;
     }
 
-    &.sidebar-hidden {
-      .sidebar {
-        margin-left: - $sidebar-compact-width;
-      }
-    }
-
     &.sidebar-fixed {
-      .main, .app-footer {
-        margin-left: $sidebar-compact-width;
-      }
-
       .sidebar {
         width: $sidebar-compact-width;
       }
-
-      &.sidebar-hidden {
-        .main, .app-footer {
-          margin-left: 0;
-        }
-      }
+    }
+    .sidebar-minimizer {
+      display: none;
     }
   }
 
@@ -136,70 +116,101 @@ app-root {
       flex: 0 0 $sidebar-minimized-width;
     }
 
-    &.sidebar-hidden {
+    &.sidebar-fixed {
+      .sidebar {
+        width: $sidebar-minimized-width;
+      }
+    }
+  }
+
+  .sidebar-off-canvas {
+    .sidebar {
+      position: fixed;
+      z-index: $zindex-sticky - 1;
+      height: 100%;
+    }
+  }
+
+  .sidebar-off-canvas {
+    .app-header + .app-body .sidebar {
+      height: calc(100vh - #{$navbar-height});
+    }
+  }
+
+  html:not([dir="rtl"]) {
+    .sidebar-compact {
+      .sidebar {
+        margin-left: - $sidebar-compact-width;
+      }
+    }
+    .sidebar-minimized {
       .sidebar {
         margin-left: - $sidebar-minimized-width;
       }
     }
-
-    &.sidebar-fixed {
-      .main, .app-footer {
-        margin-left: $sidebar-minimized-width;
-      }
-
+  }
+  html[dir="rtl"] {
+    .sidebar-compact {
       .sidebar {
-        width: $sidebar-minimized-width;
-      }
-
-      &.sidebar-hidden {
-        .main, .app-footer {
-          margin-left: 0;
-        }
+        margin-right: - $sidebar-compact-width;
       }
     }
-  }
-}
-
-//
-// Aside Menu
-//
-.aside-menu-hidden {
-  .aside-menu {
-    margin-right: - $aside-menu-width;
-  }
-}
-
-.aside-menu-fixed {
-  .aside-menu {
-    position: fixed;
-    right: 0;
-    height: 100%;
-
-    .tab-content {
-      height: calc(100vh - #{$aside-menu-nav-padding-y * 2 + $font-size-base} - #{$navbar-height});
+    .sidebar-minimized {
+      .sidebar {
+        margin-right: - $sidebar-minimized-width;
+      }
     }
   }
 
-  .main, .app-footer {
-    margin-right: $aside-menu-width;
-  }
+  //
+  // Aside Menu
+  //
 
-  &.aside-menu-hidden {
-    .main, .app-footer {
-      margin-right: 0;
+  .aside-menu-fixed {
+    .aside-menu {
+      position: fixed;
+      height: 100%;
+
+      .tab-content {
+        height: calc(100vh - #{$aside-menu-nav-padding-y * 2 + $font-size-base} - #{$navbar-height});
+      }
     }
   }
-}
 
-.aside-menu-off-canvas {
-  .aside-menu {
-    position: fixed;
-    right: 0;
-    z-index: $zindex-sticky - 1;
-    height: 100%;
+  .aside-menu-fixed {
+    .app-header + .app-body .aside-menu {
+      height: calc(100vh - #{$navbar-height});
+    }
+  }
 
-    .tab-content {
-      height: calc(100vh - #{$aside-menu-nav-padding-y * 2 + $font-size-base} - #{$navbar-height});
+  .aside-menu-off-canvas {
+    .aside-menu {
+      position: fixed;
+      z-index: $zindex-sticky - 1;
+      height: 100%;
+    }
+  }
+
+  .aside-menu-off-canvas {
+    .app-header + .app-body .aside-menu {
+      height: calc(100vh - #{$navbar-height});
+    }
+  }
+
+  html:not([dir="rtl"]) {
+    .aside-menu-fixed,
+    .aside-menu-off-canvas {
+      .aside-menu {
+        right: 0;
+      }
+    }
+  }
+  html[dir="rtl"] {
+    .aside-menu-fixed,
+    .aside-menu-off-canvas {
+      .aside-menu {
+        left: 0;
+      }
     }
   }
 }
@@ -218,47 +229,159 @@ app-root {
     top: $navbar-height;
     right: 0;
     left: 0;
-    z-index: $zindex-sticky - 2;
+    z-index: $zindex-sticky - 3;
   }
+}
 
-  // if sidebar + main + aside
-  .main:nth-child(2) {
-    .breadcrumb {
-      right: $aside-menu-width;
-      left: $sidebar-width;
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    html:not([dir="rtl"]) {
+      .sidebar#{$infix}-show {
+        .sidebar {
+          margin-left: 0;
+        }
+        @include media-breakpoint-up(sm) {
+          &.sidebar-fixed {
+            .main,
+            .app-footer {
+              margin-left: $sidebar-width;
+            }
+            &.sidebar-compact {
+              .main,
+              .app-footer {
+                margin-left: $sidebar-compact-width;
+              }
+            }
+            &.sidebar-minimized {
+              .main,
+              .app-footer {
+                margin-left: $sidebar-minimized-width;
+              }
+            }
+          }
+          &.breadcrumb-fixed {
+            .breadcrumb {
+              left: $sidebar-width;
+            }
+            &.sidebar-compact {
+              .breadcrumb {
+                left: $sidebar-compact-width;
+              }
+            }
+            &.sidebar-minimized {
+              .breadcrumb {
+                left: $sidebar-minimized-width;
+              }
+            }
+          }
+        }
+      }
+
+      .aside-menu#{$infix}-show {
+        .aside-menu {
+          margin-right: 0;
+        }
+        @include media-breakpoint-up(sm) {
+          &.aside-menu-fixed {
+            .main,
+            .app-footer {
+              margin-right: $aside-menu-width;
+            }
+          }
+          &.breadcrumb-fixed {
+            .breadcrumb {
+              right: $aside-menu-width;
+            }
+          }
+        }
+      }
     }
-  }
 
-  // if sidebar + main
-  .main:first-child {
-    .breadcrumb {
-      right: $aside-menu-width;
-      left: 0;
+    html[dir="rtl"] {
+      .sidebar#{$infix}-show {
+        .sidebar {
+          margin-right: 0;
+        }
+        @include media-breakpoint-up(sm) {
+          &.sidebar-fixed {
+            .main,
+            .app-footer {
+              margin-right: $sidebar-width;
+            }
+            &.sidebar-compact {
+              .main,
+              .app-footer {
+                margin-right: $sidebar-compact-width;
+              }
+            }
+            &.sidebar-minimized {
+              .main,
+              .app-footer {
+                margin-right: $sidebar-minimized-width;
+              }
+            }
+          }
+          &.breadcrumb-fixed {
+            .breadcrumb {
+              right: $sidebar-width;
+            }
+            &.sidebar-compact {
+              .breadcrumb {
+                right: $sidebar-compact-width;
+              }
+            }
+            &.sidebar-minimized {
+              .breadcrumb {
+                right: $sidebar-minimized-width;
+              }
+            }
+          }
+        }
+      }
+
+      .aside-menu#{$infix}-show {
+        .aside-menu {
+          margin-left: 0;
+        }
+        @include media-breakpoint-up(sm) {
+          &.aside-menu-fixed {
+            .main,
+            .app-footer {
+              margin-left: $aside-menu-width;
+            }
+          }
+          &.breadcrumb-fixed {
+            .breadcrumb {
+              left: $aside-menu-width;
+            }
+          }
+        }
+      }
     }
-  }
+    .sidebar#{$infix}-show,
+    .aside-menu#{$infix}-show {
+      @keyframes opacity {
+        0%   { opacity: 0; }
+        100% { opacity: 1; }
+      }
 
-  // if  main + aside
-  .main:last-child {
-    .breadcrumb {
-      right: 0;
-    }
-  }
-
-  &.sidebar-minimized {
-    .main .breadcrumb {
-      left: $sidebar-minimized-width;
-    }
-  }
-
-  &.sidebar-hidden, &.sidebar-off-canvas {
-    .main .breadcrumb {
-      left: 0;
-    }
-  }
-
-  &.aside-menu-hidden, &.aside-menu-off-canvas {
-    .main .breadcrumb {
-      right: 0;
+      @include media-breakpoint-down(xs) {
+        .main {
+          position: relative;
+          &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: $zindex-sticky - 2;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background: rgba(0, 0, 0, .7);
+            animation: opacity $layout-transition-speed;
+          }
+        }
+      }
     }
   }
 }
@@ -303,12 +426,16 @@ app-root {
 //
 
 @include media-breakpoint-down(md) {
-  .app-header.navbar {
-    position: fixed !important;
+  .app-header {
+    position: fixed;
     z-index: $zindex-sticky;
     width: 100%;
     text-align: center;
-    background-color: $navbar-brand-bg;
+    @if $navbar-brand-bg == transparent {
+      background-color: $navbar-bg;
+    } @else {
+      background-color: $navbar-brand-bg;
+    }
     @include borders($navbar-brand-border);
 
     .navbar-toggler {
@@ -330,55 +457,20 @@ app-root {
     margin-top: $navbar-height;
   }
 
-  .breadcrumb-fixed {
-    .main:nth-child(2) .breadcrumb {
-      right: auto;
-      left: auto;
-      width: 100%;
-    }
-  }
-
   .sidebar {
     position: fixed;
     z-index: $zindex-sticky - 1;
-    width: $mobile-sidebar-width;
+    width: $sidebar-width;
     height: calc(100vh - #{$navbar-height});
-    margin-left: - $mobile-sidebar-width;
-
-    .sidebar-nav,
-    .nav {
-      width: $mobile-sidebar-width;
-      min-height: calc(100vh - #{$navbar-height});
-    }
-
-    .sidebar-minimizer {
-      display: none;
-    }
   }
 
-  .main, .app-footer {
-    margin-left: 0 !important;
+  .sidebar-minimizer {
+    display: none;
   }
 
-  // .aside-menu {
-  //   margin-right: - $aside-menu-width;
-  // }
-
-  .sidebar-hidden {
-    .sidebar {
-      margin-left: - $mobile-sidebar-width;
-    }
-  }
-
-  .sidebar-mobile-show {
-    .sidebar {
-      width: $mobile-sidebar-width;
-      margin-left: 0;
-    }
-
-    .main {
-      margin-right: - $mobile-sidebar-width !important;
-      margin-left: $mobile-sidebar-width !important;
-    }
+  .aside-menu {
+    position: fixed;
+    right: 0;
+    height: 100%;
   }
 }

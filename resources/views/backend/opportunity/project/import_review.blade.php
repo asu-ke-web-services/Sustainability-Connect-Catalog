@@ -32,15 +32,6 @@
                     <small class="text-muted">{{ __('labels.backend.opportunity.projects.import_review') }}</small>
                 </h4>
             </div><!--col-->
-            {{-- <div class="col-sm-7">
-                {{ html()->form('GET', route('admin.opportunity.project.import_review'))->open() }}
-                @component('includes.components.form.search', [
-                    'name'        => 'search',
-                    'placeholder' => 'Search',
-                    'object'      => $searchRequest ?? null,
-                ])@endcomponent
-                {{ html()->form()->close() }}
-            </div> --}}
         </div><!--row-->
 
         <div class="row mt-4">

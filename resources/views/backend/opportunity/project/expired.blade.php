@@ -32,15 +32,6 @@
                     <small class="text-muted">{{ __('labels.backend.opportunity.projects.expired') }}</small>
                 </h4>
             </div><!--col-->
-            {{-- <div class="col-sm-5">
-                {{ html()->form('GET', route('admin.opportunity.project.index'))->open() }}
-                @component('includes.components.form.search', [
-                    'name'        => 'search',
-                    'placeholder' => 'Search',
-                    'object'      => $searchRequest ?? null,
-                ])@endcomponent
-                {{ html()->form()->close() }}
-            </div> --}}
             <div class="col-sm-7 pull-right">
                 @include('backend.opportunity.project.includes.header-buttons-add')
             </div><!--col-->

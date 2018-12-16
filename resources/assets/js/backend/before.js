@@ -6,7 +6,7 @@
 
 // Loaded before CoreUI app.js
 require('../bootstrap');
-require('pace');
+// require('pace');
 require('moment');
 require('moment-timezone');
 

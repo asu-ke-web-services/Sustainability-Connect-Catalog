@@ -51,6 +51,7 @@ return [
 
             'users' => [
                 'active'              => 'Active Users',
+                'all'                 => 'All Users',
                 'all_permissions'     => 'All Permissions',
                 'change_password'     => 'Change Password',
                 'change_password_for' => 'Change Password for :user',

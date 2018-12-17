@@ -4,25 +4,6 @@
  * Opportunity Controllers
  * All route names are prefixed with 'frontend.opportunity'.
  */
-Route::group([
-    'as'         => 'opportunity.',
-    'namespace'  => 'Opportunity',
-], function () {
-
-    /*
-     * Project CRUD
-     */
-    Route::get('project', 'ProjectController@index')->name('project.index');
-    Route::get('project/completed', 'ProjectController@completed')->name('project.completed');
-    Route::post('project', 'ProjectController@store')->name('project.store');
-    Route::get('project/{project}', 'ProjectController@show')->name('project.show');
-
-    /*
-     * Internship CRUD
-     */
-    Route::get('internship', 'InternshipController@index')->name('internship.index');
-    Route::get('internship/{internship}', 'InternshipController@show')->name('internship.show');
-});
 
 Route::group([
     'as'         => 'opportunity.',
@@ -45,4 +26,24 @@ Route::group([
     Route::post('internship/unfollow/{internship}', 'InternshipUserController@unfollow')->name('internship.unfollow');
     Route::post('internship/apply/{internship}', 'InternshipUserController@apply')->name('internship.apply');
     Route::post('internship/cancel-application/{internship}', 'InternshipUserController@cancelApplication')->name('internship.cancelApplication');
+});
+
+Route::group([
+    'as'         => 'opportunity.',
+    'namespace'  => 'Opportunity',
+], function () {
+
+    /*
+     * Project CRUD
+     */
+    Route::get('project', 'ProjectController@index')->name('project.index');
+    Route::get('project/completed', 'ProjectController@completed')->name('project.completed');
+    Route::post('project', 'ProjectController@store')->name('project.store');
+    Route::get('project/{project}', 'ProjectController@show')->name('project.show');
+
+    /*
+     * Internship CRUD
+     */
+    Route::get('internship', 'InternshipController@index')->name('internship.index');
+    Route::get('internship/{internship}', 'InternshipController@show')->name('internship.show');
 });

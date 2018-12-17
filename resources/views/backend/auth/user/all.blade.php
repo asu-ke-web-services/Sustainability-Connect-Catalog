@@ -6,6 +6,22 @@
     @include('backend.auth.user.includes.breadcrumb-links')
 @endsection
 
+@push('after-styles')
+    <link href="/vendors/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+@endpush
+
+@push('after-scripts')
+    <script src="/vendors/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="/vendors/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $('.datatable').DataTable({
+            "order": [[ 0, "{{ $defaultSort }}" ]],
+            "lengthMenu": [[25, 50, -1], [25, 50, "All"]]
+        });
+        $('.datatable').attr('style', 'border-collapse: collapse !important');
+    </script>
+@endpush
+
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -15,57 +31,46 @@
                     {{ __('labels.backend.access.users.management') }} <small class="text-muted">{{ __('labels.backend.access.users.all') }}</small>
                 </h4>
             </div><!--col-->
-            <div class="col-sm-5">
-                {{ html()->form('GET', route('admin.auth.user.index'))->open() }}
-                @component('includes.components.form.search', [
-                    'name'        => 'search',
-                    'placeholder' => 'Search',
-                    'object'      => $searchRequest ?? null,
-                ])@endcomponent
-                {{ html()->form()->close() }}
-            </div>
 
-            <div class="col-sm-2">
+            <div class="col-sm-7">
                 @include('backend.auth.user.includes.header-buttons')
             </div><!--col-->
         </div><!--row-->
 
         <div class="row mt-4">
             <div class="col">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+                <table class="table table-striped table-bordered datatable">
+                    <thead>
+                    <tr>
+                        <th>{{ __('labels.backend.access.users.table.last_name') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.first_name') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.type') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.email') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.confirmed') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.roles') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.other_permissions') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.social') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.last_updated') }}</th>
+                        <th>{{ __('labels.general.actions') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($users as $user)
                         <tr>
-                            <th>{{ __('labels.backend.access.users.table.last_name') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.first_name') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.type') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.email') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.confirmed') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.roles') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.other_permissions') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.social') }}</th>
-                            <th>{{ __('labels.backend.access.users.table.last_updated') }}</th>
-                            <th>{{ __('labels.general.actions') }}</th>
+                            <td>{{ $user->last_name }}</td>
+                            <td>{{ $user->first_name }}</td>
+                            <td>{{ ucwords($user->userType->name ?? null) }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{!! $user->confirmed_label !!}</td>
+                            <td>{!! $user->roles_label !!}</td>
+                            <td>{!! $user->permissions_label !!}</td>
+                            <td>{!! $user->social_buttons !!}</td>
+                            <td>{{ $user->updated_at->diffForHumans() }}</td>
+                            <td>{!! $user->action_buttons !!}</td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $user->last_name }}</td>
-                                <td>{{ $user->first_name }}</td>
-                                <td>{{ ucwords($user->userType->name ?? null) }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{!! $user->confirmed_label !!}</td>
-                                <td>{!! $user->roles_label !!}</td>
-                                <td>{!! $user->permissions_label !!}</td>
-                                <td>{!! $user->social_buttons !!}</td>
-                                <td>{{ $user->updated_at->diffForHumans() }}</td>
-                                <td>{!! $user->action_buttons !!}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                    @endforeach
+                    </tbody>
+                </table>
             </div><!--col-->
         </div><!--row-->
         <div class="row">

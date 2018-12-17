@@ -5,7 +5,7 @@
 
         <div class="col-sm-10">
             <input type="radio" name="avatar_type" value="gravatar" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} /> Gravatar
-            <input type="radio" name="avatar_type" value="storage" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} /> Upload
+            {{--<input type="radio" name="avatar_type" value="storage" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} /> Upload--}}
 
             @foreach ($logged_in_user->providers as $provider)
                 @if (strlen($provider->avatar))
@@ -19,26 +19,30 @@
         </div>
     </div>
 
-    <div class="form-group">
-        {{ html()->label(__('validation.attributes.frontend.first_name'))->for('first_name') }}
+    <!-- First Name Field -->
+    @component('includes.components.form.input', [
+        'name'        => 'first_name',
+        'label'       => 'First Name *',
+        'help_text' => __('validation.attributes.frontend.first_name'),
+        'attributes'  => [
+            'required'  => 'required',
+            'autofocus' => 'autofocus',
+            'maxlength' => '191',
+        ],
+        'object'      => $logged_in_user ?? null,
+    ])@endcomponent
 
-        {{ html()->text('first_name')
-            ->class('form-control')
-            ->placeholder(__('validation.attributes.frontend.first_name'))
-            ->attribute('maxlength', 191)
-            ->required()
-            ->autofocus() }}
-    </div><!--form-group-->
-
-    <div class="form-group">
-        {{ html()->label(__('validation.attributes.frontend.last_name'))->for('last_name') }}
-
-        {{ html()->text('last_name')
-            ->class('form-control')
-            ->placeholder(__('validation.attributes.frontend.last_name'))
-            ->attribute('maxlength', 191)
-            ->required() }}
-    </div><!--form-group-->
+    <!-- Last Name Field -->
+    @component('includes.components.form.input', [
+        'name'        => 'last_name',
+        'label'       => 'Last Name *',
+        'help_text' => __('validation.attributes.frontend.last_name'),
+        'attributes'  => [
+            'required'  => 'required',
+            'maxlength' => '191',
+        ],
+        'object'      => $logged_in_user ?? null,
+    ])@endcomponent
 
     @if ($logged_in_user->canChangeEmail())
         <div class="alert alert-info">
@@ -56,48 +60,70 @@
         </div><!--form-group-->
     @endif
 
-    <div class="form-group">
-        {{ html()->label()->for('degree_program') }}
+    <!-- User Type Field -->
+    @component('includes.components.form.select', [
+        'name'        => 'user_type_id',
+        'label'       => 'User Type',
+        'help_text'   => 'Select your user type',
+        'optionList'  => $userTypes,
+        'object'      => $logged_in_user->userType ?? null,
+    ])@endcomponent
 
-        {{ html()->text('degree_program')
-            ->class('form-control')
-            ->placeholder('Enter your Major degree program')
-            ->attribute('maxlength', 191) }}
-    </div><!--form-group-->
+    <!-- Degree Program Field -->
+    @component('includes.components.form.input', [
+        'name'        => 'degree_program',
+        'label'       => 'Degree Program',
+        'help_text' => 'Enter your Major degree program',
+        'attributes'  => [
+            'maxlength' => '191',
+        ],
+        'object'      => $logged_in_user ?? null,
+    ])@endcomponent
 
-    <div class="form-group">
-        {{ html()->label()->for('graduation_date') }}
+    <!-- Graduation Date Field -->
+    @component('includes.components.form.input', [
+        'type'   => 'date',
+        'name'   => 'graduation_date',
+        'label'  => 'Graduation Date',
+        'help_text' => 'Enter when you expect to graduate (if applicable)',
+        'attributes'  => [
+            'nullable' => 'nullable',
+        ],
+        'object' => $logged_in_user ?? null,
+    ])@endcomponent
 
-        {{ html()->date('graduation_date')
-            ->class('form-control')
-            ->placeholder('Enter your graduation date') }}
-    </div><!--form-group-->
+    <!-- Phone Number Field -->
+    @component('includes.components.form.input', [
+        'name'        => 'phone',
+        'label'       => 'Phone Number',
+        'help_text' => 'Enter your contact phone number',
+        'attributes'  => [
+            'maxlength' => '191',
+        ],
+        'object'      => $logged_in_user ?? null,
+    ])@endcomponent
 
-    <div class="form-group">
-        {{ html()->label()->for('phone') }}
+    <!-- Research Interests Field -->
+    @component('includes.components.form.textarea', [
+        'name'        => 'research_interests',
+        'label'       => 'Research Interests *',
+        'help_text'   => 'Enter your research topics',
+        'attributes'  => [
+            'rows'     => 5,
+        ],
+        'object'      => $logged_in_user ?? null,
+    ])@endcomponent
 
-        {{ html()->text('phone')
-            ->class('form-control')
-            ->placeholder('Enter your contact phone number') }}
-    </div><!--form-group-->
-
-    <div class="form-group">
-        {{ html()->label()->for('research_interests') }}
-
-        {{ html()->text('research_interests')
-            ->class('form-control')
-            ->placeholder('Enter your research topics') }}
-    </div><!--form-group-->
-
-    <div class="form-group">
-        {{ html()->label()->for('department') }}
-
-        {{ html()->text('department')
-            ->class('form-control')
-            ->placeholder('Enter your research topics') }}
-    </div><!--form-group-->
-
-
+    <!-- Research Interests Field -->
+    @component('includes.components.form.textarea', [
+        'name'        => 'department',
+        'label'       => 'University Department *',
+        'help_text'   => 'Enter your university department, if relevant',
+        'attributes'  => [
+            'rows'     => 5,
+        ],
+        'object'      => $logged_in_user ?? null,
+    ])@endcomponent
 
     <div class="form-group">
         {{ form_submit(__('labels.general.buttons.update')) }}

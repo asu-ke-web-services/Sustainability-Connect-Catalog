@@ -28,9 +28,13 @@ const RefinementListLinks = connectRefinementList(
 
 export const SearchFacets = () => (
   <div>
+
+    <h3>
+      <span />
+    </h3>
     <ClearRefinements
       translations={{
-        reset: 'Clear all filters',
+        reset: 'Clear filters',
       }}
     />
 

@@ -9,7 +9,7 @@
         {{ html()->multiselect(
             $name,
             $optionList,
-            old($name) ?: ($object->{$name}->pluck('id')->toArray() ?? null)
+            old($name) ?: (isset($object->{$name}) ? $object->{$name}->pluck('id')->toArray() : null)
         )
             ->class('form-control selectize-multiple')
             ->placeholder($placeholder ?? null)

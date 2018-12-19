@@ -1,4 +1,4 @@
-<nav class="navbar navbar-ws affix-top">
+<nav class="navbar navbar-ws">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"

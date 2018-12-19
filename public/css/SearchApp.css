@@ -14693,7 +14693,7 @@ div.table-responsive {
 }
 
 .bm-burger-button:before {
-    content: 'SEARCH:';
+    content: 'options:';
     position: absolute;
     right: 53px;
     top: 7px;

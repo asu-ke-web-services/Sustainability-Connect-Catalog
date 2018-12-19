@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ClearRefinements,
-  connectRefinementList,
+  connectRefinementList
 } from 'react-instantsearch-dom';
 
 const RefinementListLinks = connectRefinementList(
@@ -28,28 +28,29 @@ const RefinementListLinks = connectRefinementList(
 
 export const SearchFacets = () => (
   <div>
-    <h3>
-      <i className="fa fa-fw fa-inbox fa-2x" />
-      <span>Affiliations</span>
-    </h3>
-    <RefinementListLinks attribute="affiliations" />
-
-    <h3>
-      <i className="fa fa-fw fa-inbox fa-2x" />
-      <span>Categories</span>
-    </h3>
-    <RefinementListLinks attribute="categories" />
-
-    <h3 key="4">
-      <i className="fa fa-fw fa-inbox fa-2x" />
-      <span>Keywords</span>
-    </h3>
-    <RefinementListLinks attribute="keywords" />
-
     <ClearRefinements
       translations={{
         reset: 'Clear all filters',
       }}
     />
+
+    <h3>
+      <i className="fa fa-fw fa-inbox fa-2x" />
+      <span>Affiliations</span>
+    </h3>
+    <RefinementListLinks attribute="affiliations" operator="or" limit={10} />
+
+    <h3>
+      <i className="fa fa-fw fa-inbox fa-2x" />
+      <span>Categories</span>
+    </h3>
+    <RefinementListLinks attribute="categories" operator="or" limit={10} />
+
+    <h3 key="4">
+      <i className="fa fa-fw fa-inbox fa-2x" />
+      <span>Keywords</span>
+    </h3>
+    <RefinementListLinks attribute="keywords" operator="or" limit={10} />
+
   </div>
 );

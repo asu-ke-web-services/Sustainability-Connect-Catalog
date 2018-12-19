@@ -5360,7 +5360,7 @@ var store = __webpack_require__("./node_modules/algoliasearch/src/store.js");
 // proxies limit)
 var MAX_API_KEY_LENGTH = 500;
 var RESET_APP_DATA_TIMER =
-  Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).RESET_APP_DATA_TIMER && parseInt(Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).RESET_APP_DATA_TIMER, 10) ||
+  Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).RESET_APP_DATA_TIMER && parseInt(Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).RESET_APP_DATA_TIMER, 10) ||
   60 * 2 * 1000; // after 2 minutes reset to first host
 
 /*
@@ -9224,7 +9224,7 @@ function load() {
 
   // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
   if (!r && typeof process !== 'undefined' && 'env' in process) {
-    r = Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).DEBUG;
+    r = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).DEBUG;
   }
 
   return r;
@@ -100963,7 +100963,7 @@ var debugs = {};
 var debugEnviron;
 exports.debuglog = function(set) {
   if (isUndefined(debugEnviron))
-    debugEnviron = Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).NODE_DEBUG || '';
+    debugEnviron = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).NODE_DEBUG || '';
   set = set.toUpperCase();
   if (!debugs[set]) {
     if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
@@ -102393,11 +102393,11 @@ var RefinementListLinks = (0, _reactInstantsearchDom.connectRefinementList)(func
 });
 
 var SearchFacets = exports.SearchFacets = function SearchFacets() {
-  return _react2.default.createElement('div', null, _react2.default.createElement('h3', null, _react2.default.createElement('i', { className: 'fa fa-fw fa-inbox fa-2x' }), _react2.default.createElement('span', null, 'Affiliations')), _react2.default.createElement(RefinementListLinks, { attribute: 'affiliations' }), _react2.default.createElement('h3', null, _react2.default.createElement('i', { className: 'fa fa-fw fa-inbox fa-2x' }), _react2.default.createElement('span', null, 'Categories')), _react2.default.createElement(RefinementListLinks, { attribute: 'categories' }), _react2.default.createElement('h3', { key: '4' }, _react2.default.createElement('i', { className: 'fa fa-fw fa-inbox fa-2x' }), _react2.default.createElement('span', null, 'Keywords')), _react2.default.createElement(RefinementListLinks, { attribute: 'keywords' }), _react2.default.createElement(_reactInstantsearchDom.ClearRefinements, {
+  return _react2.default.createElement('div', null, _react2.default.createElement('h3', null, _react2.default.createElement('span', null)), _react2.default.createElement(_reactInstantsearchDom.ClearRefinements, {
     translations: {
-      reset: 'Clear all filters'
+      reset: 'Clear filters'
     }
-  }));
+  }), _react2.default.createElement('h3', null, _react2.default.createElement('i', { className: 'fa fa-fw fa-inbox fa-2x' }), _react2.default.createElement('span', null, 'Affiliations')), _react2.default.createElement(RefinementListLinks, { attribute: 'affiliations', operator: 'or', limit: 10 }), _react2.default.createElement('h3', null, _react2.default.createElement('i', { className: 'fa fa-fw fa-inbox fa-2x' }), _react2.default.createElement('span', null, 'Categories')), _react2.default.createElement(RefinementListLinks, { attribute: 'categories', operator: 'or', limit: 10 }), _react2.default.createElement('h3', { key: '4' }, _react2.default.createElement('i', { className: 'fa fa-fw fa-inbox fa-2x' }), _react2.default.createElement('span', null, 'Keywords')), _react2.default.createElement(RefinementListLinks, { attribute: 'keywords', operator: 'or', limit: 10 }));
 };
 
 /***/ }),

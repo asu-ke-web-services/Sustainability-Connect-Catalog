@@ -35,7 +35,7 @@ div.table-responsive {
 }
 
 .bm-burger-button:before {
-    content: 'SEARCH:';
+    content: 'options:';
     position: absolute;
     right: 53px;
     top: 7px;
@@ -59,11 +59,16 @@ div.table-responsive {
   fill: #373a47;
 }
 
+/* Sidebar wrapper styles */
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
 .bm-menu {
   background: #353535;
   padding: 2.5em 1.5em 0;
   font-size: .8em;
-  overflow-y: hidden !important;
 
   h3 {
     color: #FFC627;
@@ -91,8 +96,6 @@ font-weight: 600;
 }
 
 .bm-item-list {
-  overflow-y: hidden !important;
-
   a {
     padding: 0.8em;
 
@@ -111,10 +114,10 @@ font-weight: 600;
 
 .bm-cross-button {
   position: absolute;
-  width: 24px;
-  height: 24px;
-  right: 24px;
-  top: 8px;
+  width: 48px;
+  height: 48px;
+  right: 48px;
+  top: 12px;
 }
 
 thead {

@@ -52,6 +52,8 @@ export class Sidebar extends Component {
             pageWrapId={'page-wrap'}
             outerContainerId={'outer-container'}
             right
+            noOverlay
+            customBurgerIcon={ <img src="/img/frontend/search.svg" /> }
           >
             <div className="sort-by">
               <h3>Sort by</h3>
@@ -69,6 +71,8 @@ export class Sidebar extends Component {
             pageWrapId={'page-wrap'}
             outerContainerId={'outer-container'}
             right
+            noOverlay
+            customBurgerIcon={ <img src="/img/frontend/search.svg" /> }
           >
             <div className="sort-by">
               <h3>Sort by</h3>

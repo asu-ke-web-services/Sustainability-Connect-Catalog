@@ -37,6 +37,7 @@ class InternshipRepositoryTest extends TestCase
             'listing_start_at'         => Carbon::yesterday(),
             'listing_end_at'           => Carbon::tomorrow(),
             'application_deadline_at'  => Carbon::tomorrow(),
+            'application_deadline_text' => 'When Filled',
             'opportunity_status_id'    => 9,
             'description'              => 'Lorem ipsum',
             'supervisor_user_id'       => 1,

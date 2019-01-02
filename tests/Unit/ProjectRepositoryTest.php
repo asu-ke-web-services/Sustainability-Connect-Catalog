@@ -37,6 +37,7 @@ class ProjectRepositoryTest extends TestCase
             'listing_start_at'         => Carbon::yesterday(),
             'listing_end_at'           => Carbon::tomorrow(),
             'application_deadline_at'  => Carbon::tomorrow(),
+            'application_deadline_text' => 'When Filled',
             'opportunity_status_id'    => 5,
             'review_status_id'         => 3,
             'description'              => 'Lorem ipsum',

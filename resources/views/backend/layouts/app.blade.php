@@ -18,6 +18,7 @@
     <link href="/vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
     <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="/vendors/selectize-bootstrap4-theme/css/selectize.bootstrap4.css" rel="stylesheet">
 
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
     @stack('before-styles')
@@ -70,6 +71,7 @@
     <script src="/vendors/pace-progress/js/pace.min.js"></script>
     <script src="/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
     <script src="/vendors/@coreui/coreui-pro/js/coreui.min.js"></script>
+    <script src="/vendors/selectize/js/standalone/selectize.min.js"></script>
 
     @stack('after-scripts')
 </body>

@@ -1,26 +1,43 @@
 /node_modules
 /public/hot
 /public/storage
+public/images
 /storage/*.key
 /storage/password-exposed-cache
 /vendor
+/.idea
 /.vagrant
+/nbproject
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
 .env.*
+.env.dusk.*
 !.env.example
 !.env.testing
 .DS_Store
+Thumbs.db
 *.sql
 output.txt
 
+# IDE helper metadata
+*.sublime-project
+*.sublime-workspace
+.project
+_ide_helper.php
+.phpstorm.meta.php
+composer.phar
+error.log
+output.txt
+/.vscode
+.php_cs.cache
+coverage.xml
+/coverage
+.phpunit.result.cache
+
+# User-specific stuff
 database/files
 database/uploads
 *.tar.gz
-
-.idea/
-
-# User-specific stuff

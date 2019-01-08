@@ -90,6 +90,10 @@ return [
             'filtered_views' => 'More Views',
         ],
 
+        'report' => [
+            'active_users' => 'Active Organizations',
+        ],
+
         'sidebar' => [
             'dashboard' => 'Dashboard',
             'general'   => 'General',

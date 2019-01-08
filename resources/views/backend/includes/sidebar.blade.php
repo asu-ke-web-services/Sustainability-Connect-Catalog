@@ -181,19 +181,13 @@
                     </a>
 
                     <ul class="nav-dropdown-items">
-{{--
+
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project_review*')) }}" href="{{ route('admin.reports.project_review') }}">
-                                {{ __('Project Review') }}
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/active-users*')) }}" href="{{ route('admin.report.project.active_users') }}">
+                                {{ __('Active Project Users') }}
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/internship_review*')) }}" href="{{ route('admin.reports.internship_review') }}">
-                                {{ __('Internship Review') }}
-                            </a>
-                        </li>
- --}}
                     </ul>
                 </li>
             {{--@endif--}}

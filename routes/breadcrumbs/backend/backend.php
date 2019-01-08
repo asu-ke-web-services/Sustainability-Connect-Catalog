@@ -9,3 +9,4 @@ require __DIR__.'/log-viewer.php';
 require __DIR__.'/lookup.php';
 require __DIR__.'/opportunity.php';
 require __DIR__.'/organization.php';
+require __DIR__.'/report.php';

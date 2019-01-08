@@ -420,6 +420,13 @@ return [
 
             'view' => 'View Project',
         ],
+
+        'report' => [
+            'projects' => [
+                'report'  => 'Projects Report',
+                'active_users'  => 'Active Project Users',
+            ],
+        ],
     ],
 
     'frontend' => [

@@ -418,7 +418,7 @@ return [
                 ],
             ],
 
-            'view' => 'View Project',
+            'view' => 'View Organization',
         ],
 
         'report' => [

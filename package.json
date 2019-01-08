@@ -34,6 +34,7 @@
         "datatables.net-bs4": "^1.10.19",
         "datatables.net-fixedheader-bs4": "^3.1.5",
         "datatables.net-responsive-bs4": "^2.2.3",
+        "eslint": "^5.11.1",
         "font-awesome": "^4.7.0",
         "fullcalendar": "^3.4.0",
         "imagemin": "^5.0.0",

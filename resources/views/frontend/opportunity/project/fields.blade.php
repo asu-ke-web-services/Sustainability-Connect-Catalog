@@ -8,7 +8,7 @@
                     </div>
 
                     <!-- Project Name Field -->
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'name'        => 'name',
                         'label'       => 'Name *',
                         'help_text'   => 'Names can be up to 1024 characters long',
@@ -20,7 +20,7 @@
                     ])@endcomponent
 
                     <!-- Description Field -->
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'description',
                         'label'       => 'Describe the Project *',
                         'help_text'   => 'What specific sustainability problem do you need solved?',
@@ -32,7 +32,7 @@
                     ])@endcomponent
 
                     <!-- Envisioned Solution Field -->
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'implementation_paths',
                         'label'       => 'Envisioned Solution',
                         'help_text'   => 'What sustainability solution do you envision, and how will that solution be derived from this project?',
@@ -43,7 +43,7 @@
                     ])@endcomponent
 
                     <!-- Project Deliverables Field -->
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'sustainability_contribution',
                         'label'       => 'Project Deliverables',
                         'help_text'   => 'What deliverables/end product do you expect?',
@@ -73,27 +73,27 @@
                     @endforeach
                 @else
                     <label for="addresses">Location:</label>
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'name'        => 'addresses[0][city]',
                         'label'       => 'City: *',
                         'attribute'  => 'required',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
 
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'name'        => 'addresses[0][state]',
                         'label'       => 'State/Prov: *',
                         'attribute'  => 'required',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
 
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'name'        => 'addresses[0][country]',
                         'label'       => 'Country:',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
 
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'addresses[0][comment]',
                         'label'       => 'Location Comment:',
                         'object'      => $opportunity ?? null,
@@ -112,14 +112,14 @@
 
                     <!-- Accept Applications Toggle -->
 {{--
-                    @component('includes.components.form.checkbox', [
+                    @component('frontend.includes.components.form.checkbox', [
                         'name'    => 'chk_accept_applications',
                         'label'   => 'Accept Applications?',
                         'onclick' => '$("#card_application_listing").show();',
                         'object'  => $opportunity ?? null,
                     ])@endcomponent
  --}}
-                    {{-- @component('includes.components.form.button', [
+                    {{-- @component('frontend.includes.components.form.button', [
                         'name'    => 'btn_accept_applications',
                         'label'   => ' ',
                         'text'    => 'Accept Applications',
@@ -150,7 +150,7 @@
                 <div class="col">
 
                     <!-- Listing Starts Field -->
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'type'   => 'date',
                         'name'   => 'listing_start_at',
                         'label'  => 'Listing Starts',
@@ -158,7 +158,7 @@
                     ])@endcomponent
 
                     <!-- Listing Ends Field -->
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'type'   => 'date',
                         'name'   => 'listing_end_at',
                         'label'  => 'Listing Ends',
@@ -166,7 +166,7 @@
                     ])@endcomponent
 
                     <!-- Application Deadline Field -->
-                    @component('includes.components.form.date', [
+                    @component('frontend.includes.components.form.date', [
                         'name'      => 'application_deadline_at',
                         'label'     => 'Application Deadline',
                         'help_text' => 'Enter date-format deadline (Leave blank if Text Deadline used)',
@@ -174,7 +174,7 @@
                     ])@endcomponent
 
                     <!-- Application Deadline Text Field -->
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'name'      => 'application_deadline_text',
                         'label'     => 'Application Deadline Text',
                         'help_text' => 'Enter text-format deadline (Leave blank if Date field used)',
@@ -192,7 +192,7 @@
                 <div class="col">
 
                     <!-- Opportunity Begins Field -->
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'type'        => 'date',
                         'name'        => 'opportunity_start_at',
                         'label'       => 'Project Start Date',
@@ -200,7 +200,7 @@
                     ])@endcomponent
 
                     <!-- Opportunity Ends Field -->
-                    @component('includes.components.form.input', [
+                    @component('frontend.includes.components.form.input', [
                         'type'        => 'date',
                         'name'        => 'opportunity_end_at',
                         'label'       => 'Project End Date',
@@ -208,7 +208,7 @@
                     ])@endcomponent
 
                     <!-- Partner Organization Field -->
-                    @component('includes.components.form.select', [
+                    @component('frontend.includes.components.form.select', [
                         'name'        => 'organization_id',
                         'label'       => 'Project Partner Organization',
                         'optionList'  => $organizations,
@@ -216,7 +216,7 @@
                     ])@endcomponent
 
                     <!-- Modal Add New Organization -->
-                    {{-- @component('includes.components.form.button', [
+                    {{-- @component('frontend.includes.components.form.button', [
                         'name'       => 'btn_add_organization',
                         'label'      => ' ',
                         'class'      => 'btn btn-primary disabled',
@@ -238,7 +238,7 @@
                     <!-- How Many Students are you looking for? Undergraduate or Graduate? -->
 
                     <!-- Qualifications Field -->
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'qualifications',
                         'label'       => 'Qualifications',
                         'help_text'   => 'What specific skills should the applying students possess?',
@@ -249,7 +249,7 @@
                     ])@endcomponent
 
                     <!-- Responsibilities Field -->
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'responsibilities',
                         'label'       => 'Student Responsibilities',
                         'help_text'   => 'What will the student responsibilities be?',
@@ -262,7 +262,7 @@
 <!-- Contact details -->
 
                     <!-- Affiliations Field -->
-                    {{-- @component('includes.components.form.select', [
+                    {{-- @component('frontend.includes.components.form.select', [
                         'name'        => 'affiliations',
                         'label'       => 'Affiliations',
                         'optionList'  => $affiliations,
@@ -272,7 +272,7 @@
                     ])@endcomponent --}}
 
                     <!-- Categories Field -->
-                    @component('includes.components.form.select', [
+                    @component('frontend.includes.components.form.select', [
                         'name'        => 'categories',
                         'label'       => 'Categories',
                         'optionList'  => $categories,
@@ -282,7 +282,7 @@
                     ])@endcomponent
 
                     <!-- Keywords Field -->
-                    @component('includes.components.form.select', [
+                    @component('frontend.includes.components.form.select', [
                         'name'        => 'keywords',
                         'label'       => 'Keywords',
                         'optionList'  => $keywords,
@@ -292,7 +292,7 @@
                     ])@endcomponent
 
                     <!-- Compensation Field -->
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'compensation',
                         'label'       => 'Student Compensation and Project Funds',
                         'help_text'   => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)',
@@ -303,7 +303,7 @@
                     ])@endcomponent
 
                     <!-- Application Instructions Field -->
-                    @component('includes.components.form.textarea', [
+                    @component('frontend.includes.components.form.textarea', [
                         'name'        => 'application_instructions',
                         'label'       => 'Application Instructions:',
                         'help_text'   => 'Describe the steps the participant must follow to request admission into the project.',

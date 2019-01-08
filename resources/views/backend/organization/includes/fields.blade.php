@@ -1,5 +1,5 @@
 
-@component('includes.components.form.input', [
+@component('backend.includes.components.form.input', [
 'name'        => 'name',
 'label'       => 'Name',
 'help_text'   => 'Names can be up to 250 characters long',
@@ -10,7 +10,7 @@
 'object'      => $organization ?? null,
 ])@endcomponent
 
-@component('includes.components.form.select', [
+@component('backend.includes.components.form.select', [
     'name'        => 'organization_type_id',
     'label'       => 'Organization Type',
     'placeholder' => 'Select type...',
@@ -18,7 +18,7 @@
     'object'      => $organization ?? null,
 ])@endcomponent
 
-@component('includes.components.form.select', [
+@component('backend.includes.components.form.select', [
     'name'        => 'organization_status_id',
     'label'       => 'Organization Status',
     'placeholder' => 'Select status...',

@@ -20,7 +20,7 @@
     </div>
 
     <!-- First Name Field -->
-    @component('includes.components.form.input', [
+    @component('frontend.includes.components.form.input', [
         'name'        => 'first_name',
         'label'       => 'First Name *',
         'help_text' => __('validation.attributes.frontend.first_name'),
@@ -33,7 +33,7 @@
     ])@endcomponent
 
     <!-- Last Name Field -->
-    @component('includes.components.form.input', [
+    @component('frontend.includes.components.form.input', [
         'name'        => 'last_name',
         'label'       => 'Last Name *',
         'help_text' => __('validation.attributes.frontend.last_name'),
@@ -61,7 +61,7 @@
     @endif
 
     <!-- User Type Field -->
-    @component('includes.components.form.select', [
+    @component('frontend.includes.components.form.select', [
         'name'        => 'user_type_id',
         'label'       => 'User Type',
         'help_text'   => 'Select your user type',
@@ -70,7 +70,7 @@
     ])@endcomponent
 
     <!-- Degree Program Field -->
-    @component('includes.components.form.input', [
+    @component('frontend.includes.components.form.input', [
         'name'        => 'degree_program',
         'label'       => 'Degree Program',
         'help_text' => 'Enter your Major degree program',
@@ -81,7 +81,7 @@
     ])@endcomponent
 
     <!-- Graduation Date Field -->
-    @component('includes.components.form.input', [
+    @component('frontend.includes.components.form.input', [
         'type'   => 'date',
         'name'   => 'graduation_date',
         'label'  => 'Graduation Date',
@@ -93,7 +93,7 @@
     ])@endcomponent
 
     <!-- Phone Number Field -->
-    @component('includes.components.form.input', [
+    @component('frontend.includes.components.form.input', [
         'name'        => 'phone',
         'label'       => 'Phone Number',
         'help_text' => 'Enter your contact phone number',
@@ -104,7 +104,7 @@
     ])@endcomponent
 
     <!-- Research Interests Field -->
-    @component('includes.components.form.textarea', [
+    @component('frontend.includes.components.form.textarea', [
         'name'        => 'research_interests',
         'label'       => 'Research Interests *',
         'help_text'   => 'Enter your research topics',
@@ -115,7 +115,7 @@
     ])@endcomponent
 
     <!-- Research Interests Field -->
-    @component('includes.components.form.textarea', [
+    @component('frontend.includes.components.form.textarea', [
         'name'        => 'department',
         'label'       => 'University Department *',
         'help_text'   => 'Enter your university department, if relevant',

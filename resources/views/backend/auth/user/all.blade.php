@@ -17,7 +17,7 @@
             </div><!--col-->
             <div class="col-sm-5">
                 {{ html()->form('GET', route('admin.auth.user.index'))->open() }}
-                @component('includes.components.form.search', [
+                @component('backend.includes.components.form.search', [
                     'name'        => 'search',
                     'placeholder' => 'Search',
                     'object'      => $searchRequest ?? null,

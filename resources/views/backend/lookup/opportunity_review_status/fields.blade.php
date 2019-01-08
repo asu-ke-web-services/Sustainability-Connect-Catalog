@@ -1,5 +1,5 @@
 
-                    @component('includes.components.form.input', [
+                    @component('backend.includes.components.form.input', [
                         'name'        => 'name',
                         'label'       => 'Name',
                         'help_text'   => 'Names can be up to 250 characters long',
@@ -10,7 +10,7 @@
                         'object'      => $opportunityReviewStatus ?? null,
                     ])@endcomponent
 
-                    @component('includes.components.form.select', [
+                    @component('backend.includes.components.form.select', [
                         'name'        => 'opportunity_type_id',
                         'label'       => 'Opportunity Type',
                         'placeholder' => 'Select opportunity type...',

@@ -3,7 +3,7 @@
                 <div class="col">
 
                     <!-- First Name -->
-                    @component('includes.components.form.input', [
+                    @component('backend.includes.components.form.input', [
                         'name'        => 'first_name',
                         'label'       => 'First Name',
                         'help_text'   => 'Name can be up to 191 characters long',
@@ -16,7 +16,7 @@
                     ])@endcomponent
 
                     <!-- Last Name -->
-                    @component('includes.components.form.input', [
+                    @component('backend.includes.components.form.input', [
                         'name'        => 'last_name',
                         'label'       => 'Last Name',
                         'help_text'   => 'Name can be up to 191 characters long',
@@ -28,7 +28,7 @@
                     ])@endcomponent
 
                     <!-- E-mail -->
-                    @component('includes.components.form.input', [
+                    @component('backend.includes.components.form.input', [
                         'type'       => 'email',
                         'name'       => 'email',
                         'label'      => 'E-mail Address',
@@ -41,7 +41,7 @@
                     ])@endcomponent
 
                     <!-- E-mail -->
-                    {{-- @component('includes.components.form.input', [
+                    {{-- @component('backend.includes.components.form.input', [
                         'type'       => 'password',
                         'name'       => 'password',
                         'label'      => 'Password',
@@ -52,7 +52,7 @@
                     ])@endcomponent --}}
 
                     <!-- E-mail Confirmation -->
-                    {{-- @component('includes.components.form.input', [
+                    {{-- @component('backend.includes.components.form.input', [
                         'type'       => 'password',
                         'name'       => 'password_confirmation',
                         'label'      => 'Password Confirmation',
@@ -63,7 +63,7 @@
                     ])@endcomponent --}}
 
                     <!-- Active -->
-                    @component('includes.components.form.checkbox', [
+                    @component('backend.includes.components.form.checkbox', [
                         'name'    => 'active',
                         'label'   => 'Active',
                         'default' => true,
@@ -71,7 +71,7 @@
                     ])@endcomponent
 
                     <!-- Confirmed -->
-                    @component('includes.components.form.checkbox', [
+                    @component('backend.includes.components.form.checkbox', [
                         'name'    => 'confirmed',
                         'label'   => 'Confirmed',
                         'default' => true,
@@ -93,7 +93,7 @@
                     @endif
 
                     <!-- User Type -->
-                    @component('includes.components.form.select', [
+                    @component('backend.includes.components.form.select', [
                         'name'        => 'user_type_id',
                         'label'       => 'User Type',
                         'optionList'  => $userTypes,
@@ -101,7 +101,7 @@
                     ])@endcomponent
 
                     <!-- ASURITE -->
-                    @component('includes.components.form.input', [
+                    @component('backend.includes.components.form.input', [
                         'name'        => 'asurite',
                         'label'       => 'ASURITE',
                         'help_text'   => 'Be careful when changing this value',
@@ -112,7 +112,7 @@
                     ])@endcomponent
 
                     <!-- Student Degree Level Type -->
-                    @component('includes.components.form.select', [
+                    @component('backend.includes.components.form.select', [
                         'name'        => 'student_degree_level_id',
                         'label'       => 'Student Degree Level',
                         'optionList'  => $studentDegreeLevels,
@@ -120,7 +120,7 @@
                     ])@endcomponent
 
                     <!-- Degree Program -->
-                    @component('includes.components.form.textarea', [
+                    @component('backend.includes.components.form.textarea', [
                         'name'       => 'degree_program',
                         'label'      => 'Degree Program',
                         'help_text'  => '',
@@ -131,7 +131,7 @@
                     ])@endcomponent
 
                     <!-- Graduation Date -->
-                    @component('includes.components.form.input', [
+                    @component('backend.includes.components.form.input', [
                         'type'        => 'date',
                         'name'        => 'graduation_date',
                         'label'       => 'Graduation Date',
@@ -139,7 +139,7 @@
                     ])@endcomponent
 
                     <!-- Phone -->
-                    @component('includes.components.form.input', [
+                    @component('backend.includes.components.form.input', [
                         'name'        => 'phone',
                         'label'       => 'Phone',
                         'help_text'   => '',
@@ -150,7 +150,7 @@
                     ])@endcomponent
 
                     <!-- Research Interests -->
-                    @component('includes.components.form.textarea', [
+                    @component('backend.includes.components.form.textarea', [
                         'name'       => 'research_interests',
                         'label'      => 'Research Interests',
                         'help_text'  => '',
@@ -161,7 +161,7 @@
                     ])@endcomponent
 
                     <!-- Department -->
-                    @component('includes.components.form.textarea', [
+                    @component('backend.includes.components.form.textarea', [
                         'name'       => 'department',
                         'label'      => 'Department',
                         'help_text'  => '',
@@ -172,7 +172,7 @@
                     ])@endcomponent
 
                     <!-- Organization -->
-                    @component('includes.components.form.select', [
+                    @component('backend.includes.components.form.select', [
                         'name'        => 'organization_id',
                         'label'       => 'Organization',
                         'optionList'  => $organizations,

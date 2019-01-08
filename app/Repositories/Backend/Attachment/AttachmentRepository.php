@@ -41,9 +41,6 @@ class AttachmentRepository extends BaseRepository
             	])
             );
 
-
-
-
             if (
                 $opportunity->users()->attach(
                     $user->id,
@@ -51,7 +48,7 @@ class AttachmentRepository extends BaseRepository
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
                         'comment'              => $data['comment'] ?? null,
                     ]
-                );
+                )
             ) {
 
                 event(new OpportunityUserAdded($opportunity, $user, $data));

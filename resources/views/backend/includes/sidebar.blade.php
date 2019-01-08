@@ -67,7 +67,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/budget_type*')) }}" href="{{ route('admin.lookup.budget_type.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/budget-type*')) }}" href="{{ route('admin.lookup.budget_type.index') }}">
                                 {{ __('Budget Types') }}
                             </a>
                         </li>
@@ -85,49 +85,49 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/opportunity_review_status*')) }}" href="{{ route('admin.lookup.opportunity_review_status.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/opportunity-review-status*')) }}" href="{{ route('admin.lookup.opportunity_review_status.index') }}">
                                 {{ __('Opportunity Review Status') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/opportunity_status*')) }}" href="{{ route('admin.lookup.opportunity_status.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/opportunity-status*')) }}" href="{{ route('admin.lookup.opportunity_status.index') }}">
                                 {{ __('Opportunity Statuses') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/opportunity_type*')) }}" href="{{ route('admin.lookup.opportunity_type.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/opportunity-type*')) }}" href="{{ route('admin.lookup.opportunity_type.index') }}">
                                 {{ __('Opportunity Types') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/organization_status*')) }}" href="{{ route('admin.lookup.organization_status.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/organization-status*')) }}" href="{{ route('admin.lookup.organization_status.index') }}">
                                 {{ __('Organization Statuses') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/organization_type*')) }}" href="{{ route('admin.lookup.organization_type.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/organization-type*')) }}" href="{{ route('admin.lookup.organization_type.index') }}">
                                 {{ __('Organization Types') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/relationship_type*')) }}" href="{{ route('admin.lookup.relationship_type.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/relationship-type*')) }}" href="{{ route('admin.lookup.relationship_type.index') }}">
                                 {{ __('Relationship Types') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/student_degree_level*')) }}" href="{{ route('admin.lookup.student_degree_level.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/student-degree-level*')) }}" href="{{ route('admin.lookup.student_degree_level.index') }}">
                                 {{ __('Student Degree Levels') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/user_type*')) }}" href="{{ route('admin.lookup.user_type.index') }}">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/user-type*')) }}" href="{{ route('admin.lookup.user_type.index') }}">
                                 {{ __('User Types') }}
                             </a>
                         </li>

@@ -18,7 +18,7 @@ Route::group([
     Route::get('project/completed', 'ProjectStatusController@getCompleted')->name('project.completed');
     Route::get('project/deleted', 'ProjectStatusController@getDeleted')->name('project.deleted');
     Route::get('project/expired', 'ProjectStatusController@getExpired')->name('project.expired');
-    Route::get('project/import_review', 'ProjectStatusController@getImportReview')->name('project.import_review');
+    Route::get('project/import-review', 'ProjectStatusController@getImportReview')->name('project.import_review');
     Route::get('project/reviews', 'ProjectStatusController@getProposalReviews')->name('project.reviews');
 
     /* Project CRUD */
@@ -42,7 +42,7 @@ Route::group([
     Route::get('internship/active', 'InternshipStatusController@getActive')->name('internship.active');
     Route::get('internship/inactive', 'InternshipStatusController@getInactive')->name('internship.inactive');
     Route::get('internship/deleted', 'InternshipStatusController@getDeleted')->name('internship.deleted');
-    Route::get('internship/import_review', 'InternshipStatusController@getImportReview')->name('internship.import_review');
+    Route::get('internship/import-review', 'InternshipStatusController@getImportReview')->name('internship.import_review');
 
     /* Internship CRUD */
     Route::resource('internship', 'InternshipController');

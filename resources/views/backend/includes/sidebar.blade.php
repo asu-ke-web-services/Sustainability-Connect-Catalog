@@ -67,6 +67,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/attachment-type*')) }}" href="{{ route('admin.lookup.attachment_type.index') }}">
+                                {{ __('Attachment Types') }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link {{ active_class(Active::checkUriPattern('admin/lookup/budget-type*')) }}" href="{{ route('admin.lookup.budget_type.index') }}">
                                 {{ __('Budget Types') }}
                             </a>

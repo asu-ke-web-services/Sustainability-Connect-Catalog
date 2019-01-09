@@ -2,4 +2,4 @@
 
 @section('title', 'Service Unavailable')
 
-@section('message', env('MAINTENANCE_MESSAGE', 'System updates in process.'))
+@section('message', env('MAINTENANCE_MESSAGE', 'Please standby. Sustainability Connect is receiving updated software.'))

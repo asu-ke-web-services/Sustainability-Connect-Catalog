@@ -88,7 +88,7 @@
       "@php artisan package:discover"
     ],
     "post-update-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate"
     ],
     "clear-all": [
       "@php artisan clear-compiled",

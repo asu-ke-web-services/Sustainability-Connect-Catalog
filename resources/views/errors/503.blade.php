@@ -2,4 +2,4 @@
 
 @section('title', 'Service Unavailable')
 
-@section('message', 'System updates in process.')
+@section('message', 'Please standby. Sustainability Connect is receiving updated software.')

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 use SCCatalog\Models\Opportunity\Project;
 
 class ProjectFilesSeeder extends Seeder

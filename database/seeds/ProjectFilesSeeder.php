@@ -12,6 +12,15 @@ class ProjectFilesSeeder extends Seeder
      */
     public function run()
     {
+        Model::unguard();
+        $this->disableForeignKeys();
+
+        $this->truncateMultiple([
+            'attachments',
+            'media',
+        ]);
+        $this->enableForeignKeys();
+
         // Import old ProjectFiles data
 
         Project::withoutSyncingToSearch(function () {
@@ -49,5 +58,6 @@ class ProjectFilesSeeder extends Seeder
             }
         });
 
+        Model::reguard();
     }
 }

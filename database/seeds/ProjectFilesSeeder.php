@@ -6,6 +6,8 @@ use SCCatalog\Models\Opportunity\Project;
 
 class ProjectFilesSeeder extends Seeder
 {
+    use DisableForeignKeys, TruncateTable;
+
     /**
      * Run the database seeds.
      *

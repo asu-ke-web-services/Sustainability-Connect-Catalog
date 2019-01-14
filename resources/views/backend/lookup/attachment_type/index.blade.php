@@ -29,11 +29,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($attachment_types as $attachment_type)
+                            @foreach ($attachmentTypes as $attachmentType)
                                 <tr>
-                                    <td>{{ ucwords($attachment_type->name) }}</td>
-                                    <td>{{ $attachment_type->slug }}</td>
-                                    <td>{!! $attachment_type->action_buttons !!}</td>
+                                    <td>{{ ucwords($attachmentType->name) }}</td>
+                                    <td>{{ $attachmentType->slug }}</td>
+                                    <td>{!! $attachmentType->action_buttons !!}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -44,13 +44,13 @@
             <div class="row">
                 <div class="col-7">
                     <div class="float-left">
-                        {!! $attachment_types->total() !!} {{ str_plural('budget type', $attachment_types->total()) . ' total' }}
+                        {!! $attachmentTypes->total() !!} {{ str_plural('budget type', $attachmentTypes->total()) . ' total' }}
                     </div>
                 </div><!--col-->
 
                 <div class="col-5">
                     <div class="float-right">
-                        {!! $attachment_types->render() !!}
+                        {!! $attachmentTypes->render() !!}
                     </div>
                 </div><!--col-->
             </div><!--row-->

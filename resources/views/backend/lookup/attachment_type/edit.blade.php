@@ -3,7 +3,7 @@
 @section ('title', __('Attachment Type') . ' Management | Edit ' . __('Attachment Type'))
 
 @section('content')
-    {{ html()->modelForm($attachment_type, 'PATCH', route('admin.lookup.attachment_type.update', $attachment_type))->class('form-horizontal')->open() }}
+    {{ html()->modelForm($attachmentType, 'PATCH', route('admin.lookup.attachment_type.update', $attachmentType))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">

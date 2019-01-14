@@ -32,10 +32,13 @@ class UserStatusController extends Controller
      */
     public function getActivePaginated(ManageUserRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.auth.user.active')
-            ->withUsers($this->userRepository->getActivePaginated(100000, 'last_name', 'asc'))
-            ->with('defaultOrderBy', 'last_name')
-            ->with('defaultSort', 'asc');
+            ->withUsers($this->userRepository->getActivePaginated(25, $search, 'created_at', 'desc'));
     }
 
     /**
@@ -51,9 +54,7 @@ class UserStatusController extends Controller
         }
 
         return view('backend.auth.user.deactivated')
-            ->withUsers($this->userRepository->getInactivePaginated(100000, 'last_name', 'asc'))
-            ->with('defaultOrderBy', 'last_name')
-            ->with('defaultSort', 'asc');
+            ->withUsers($this->userRepository->getInactivePaginated(25, $search, 'id', 'asc'));
     }
 
     /**
@@ -69,9 +70,7 @@ class UserStatusController extends Controller
         }
 
         return view('backend.auth.user.deleted')
-            ->withUsers($this->userRepository->getDeletedPaginated(100000, 'deleted_at', 'desc'))
-            ->with('defaultOrderBy', 'deleted_at')
-            ->with('defaultSort', 'desc');
+            ->withUsers($this->userRepository->getDeletedPaginated(25, $search, 'id', 'asc'));
     }
 
     /**

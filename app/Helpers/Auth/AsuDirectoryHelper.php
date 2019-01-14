@@ -177,9 +177,11 @@ class AsuDirectoryHelper {
         if ( isset( $info['response']['docs'][0]['affiliations'] ) ) {
             foreach ( $info['response']['docs'][0]['affiliations'] as $affiliation ) {
                 if ( 'Employee' === $affiliation ) {
-                    foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
-                        if ( 'Faculty' === $employee_class ) {
-                            return TRUE;
+                    if (isset($info['response']['docs'][0]['emplClasses'])) {
+                        foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
+                            if ( 'Faculty' === $employee_class ) {
+                                return TRUE;
+                            }
                         }
                     }
                 }
@@ -203,9 +205,11 @@ class AsuDirectoryHelper {
         if ( isset( $info['response']['docs'][0]['affiliations'] ) ) {
             foreach ( $info['response']['docs'][0]['affiliations'] as $affiliation ) {
                 if ( 'Employee' === $affiliation ) {
-                    foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
-                        if ( 'University Staff' === $employee_class ) {
-                            return TRUE;
+                    if (isset($info['response']['docs'][0]['emplClasses'])) {
+                        foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
+                            if ( 'University Staff' === $employee_class ) {
+                                return TRUE;
+                            }
                         }
                     }
                 }
@@ -235,11 +239,13 @@ class AsuDirectoryHelper {
                     $student = TRUE;
                 }
                 if ( 'Employee' === $affiliation ) {
-                    foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
-                        if ( 'Faculty' === $employee_class ) {
-                            $faculty = TRUE;
-                        } elseif ( 'University Staff' === $employee_class ) {
-                            $staff = TRUE;
+                    if (isset($info['response']['docs'][0]['emplClasses'])) {
+                        foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
+                            if ( 'Faculty' === $employee_class ) {
+                                $faculty = TRUE;
+                            } elseif ( 'University Staff' === $employee_class ) {
+                                $staff = TRUE;
+                            }
                         }
                     }
                 }

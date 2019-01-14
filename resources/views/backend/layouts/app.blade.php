@@ -63,6 +63,7 @@
 
     <!-- Scripts -->
     @stack('before-scripts')
+    {!! script(mix('js/backend.js')) !!}
 
     <script src="/vendors/jquery/js/jquery.min.js"></script>
     <script src="/vendors/popper.js/js/popper.min.js"></script>
@@ -71,8 +72,6 @@
     <script src="/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
     <script src="/vendors/@coreui/coreui-pro/js/coreui.min.js"></script>
     <script src="/vendors/selectize/js/standalone/selectize.min.js"></script>
-
-    {!! script(mix('js/backend.js')) !!}
 
     @stack('after-scripts')
 </body>

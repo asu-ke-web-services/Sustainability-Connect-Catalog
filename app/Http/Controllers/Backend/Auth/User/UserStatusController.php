@@ -48,6 +48,11 @@ class UserStatusController extends Controller
      */
     public function getDeactivated(ManageUserRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.auth.user.deactivated')
             ->withUsers($this->userRepository->getInactivePaginated(25, $search, 'id', 'asc'));
     }
@@ -59,6 +64,11 @@ class UserStatusController extends Controller
      */
     public function getDeleted(ManageUserRequest $request)
     {
+        $search = '';
+        if($request->has('search')){
+            $search = $request->get('search');
+        }
+
         return view('backend.auth.user.deleted')
             ->withUsers($this->userRepository->getDeletedPaginated(25, $search, 'id', 'asc'));
     }

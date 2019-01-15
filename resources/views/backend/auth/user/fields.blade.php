@@ -65,7 +65,7 @@
                     <!-- Active -->
                     @component('backend.includes.components.form.checkbox', [
                         'name'    => 'active',
-                        'label'   => 'Active',
+                        'label'   => 'Account Active',
                         'default' => true,
                         'object'  => $user ?? null,
                     ])@endcomponent
@@ -73,7 +73,7 @@
                     <!-- Confirmed -->
                     @component('backend.includes.components.form.checkbox', [
                         'name'    => 'confirmed',
-                        'label'   => 'Confirmed',
+                        'label'   => 'Email Confirmed',
                         'default' => true,
                         'object'  => $user ?? null,
                     ])@endcomponent
@@ -91,6 +91,27 @@
                             </div><!--col-->
                         </div><!--form-group-->
                     @endif
+
+
+                    <!-- Access Restrictions -->
+                    @component('backend.includes.components.form.checkbox', [
+                        'name'    => 'access_validated',
+                        'label'   => 'Are Access Affiliations Verified?',
+                        'help_text'  => 'SOS Affiliation needs to be confirmed in iSearch, then added to Affiliations field below',
+                        'default' => false,
+                        'object'  => $user ?? null,
+                    ])@endcomponent
+
+                    <!-- Affiliations Field -->
+                    @component('backend.includes.components.form.multiselect', [
+                        'name'        => 'affiliations',
+                        'label'       => 'Access Affiliations',
+                        'help_text' => 'Select any valid user affiliations that grant them full access to restricted listings',
+                        'optionList'  => $affiliations,
+                        'multivalue'  => true,
+                        'object'      => $user ?? null,
+                    ])@endcomponent
+
 
                     <!-- User Type -->
                     @component('backend.includes.components.form.select', [

@@ -185,7 +185,7 @@ trait UserAttribute
     public function getShowIsearchButtonAttribute()
     {
         if (false !== $this->getAsuEID()) {
-            return '<a href="https://isearch.asu.edu/profile/'. $this->getAsuEID() .'" data-toggle="tooltip" data-placement="top" title="iSearch Profile" class="btn btn-info">i</a>';
+            return '<a href="https://isearch.asu.edu/profile/'. $this->getAsuEID() .'" data-toggle="tooltip" data-placement="top" title="iSearch Profile" class="btn btn-info" target = "_blank">i</a>';
         }
 
         return '';
@@ -296,7 +296,7 @@ trait UserAttribute
         <div class="btn-group" role="group" aria-label="'.__('labels.backend.access.users.user_actions').'">
           '.$this->show_button.'
           '.$this->edit_button.'
-    
+
           <div class="btn-group btn-group-sm" role="group">
             <button id="userActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               '.__('labels.general.more').'
@@ -324,19 +324,6 @@ trait UserAttribute
           '.$this->show_button.'
           '.$this->show_isearch_button.'
           '.$this->edit_button.'
-    
-          <div class="btn-group btn-group-sm" role="group">
-            <button id="userActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              '.__('labels.general.more').'
-            </button>
-            <div class="dropdown-menu" aria-labelledby="userActions">
-              '.$this->clear_session_button.'
-              '.$this->login_as_button.'
-              '.$this->status_button.'
-              '.$this->confirmed_button.'
-              '.$this->delete_button.'
-            </div>
-          </div>
         </div>';
     }
 }

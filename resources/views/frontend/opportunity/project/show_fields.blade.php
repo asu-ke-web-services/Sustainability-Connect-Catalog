@@ -93,6 +93,29 @@
             </table>
         </div>
 
+        @if(isset($project->organization))
+        <h3>Sponsor Organization</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Organization Name -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Organization</td>
+                        <td class="col col-sm-9 view-content">{{ $project->organization->name ?? null }}</td>
+                    </tr>
+
+                    @if(!empty($project->organization->url))
+                    <!-- Organization URL -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Web Address</td>
+                        <td class="col col-sm-9 view-content"><a href="{{ $project->organization->url ?? null }}">{{ $project->organization->url ?? null }}</a></td>
+                    </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+        @endif
+
         <h3>Application Process</h3>
         <div class="table-responsive">
             <table class="table table-striped">

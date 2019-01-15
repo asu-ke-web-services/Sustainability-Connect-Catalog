@@ -34,6 +34,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#organization" role="tab" aria-controls="organization" aria-expanded="true"> {{ __('labels.backend.opportunity.projects.tabs.titles.organization') }}</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#people" role="tab" aria-controls="people" aria-expanded="true"> {{ __('labels.backend.opportunity.projects.tabs.titles.people') }}</a>
                     </li>
 
@@ -57,6 +61,10 @@
 
                     <div class="tab-pane" id="details" role="tabpanel" aria-expanded="true">
                         @include('backend.opportunity.project.show.tabs.details')
+                    </div><!--tab-->
+
+                    <div class="tab-pane" id="organization" role="tabpanel" aria-expanded="true">
+                        @include('backend.opportunity.project.show.tabs.organization')
                     </div><!--tab-->
 
                     <div class="tab-pane" id="people" role="tabpanel" aria-expanded="true">

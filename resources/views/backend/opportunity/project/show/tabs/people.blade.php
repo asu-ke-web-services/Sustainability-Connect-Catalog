@@ -18,11 +18,6 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.people.organization') }}</th>
-                <td>{{ $project->organization->name ?? '' }}</td>
-            </tr>
-
-            <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.people.participants') }}</th>
                 <td>
                     <ul>

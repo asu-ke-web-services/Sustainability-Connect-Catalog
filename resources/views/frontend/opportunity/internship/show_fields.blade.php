@@ -65,7 +65,7 @@
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>
-                    <!-- Categories -->
+                    <!-- Keywords -->
                     @foreach($internship->keywords as $keyword)
                         <tr>
                             <td class="col col-sm-9 view-content">{{ $keyword->name }}</td>
@@ -88,11 +88,7 @@
                                 : (null !== $internship->application_deadline_at ? $internship->application_deadline_at->toFormattedDateString() : '')
                         }}</td>
                     </tr>
-                    <!-- Semester Offered -->
-                    <tr>
-                        <td class="col col-sm-3 view-label">Semester Offered</td>
-                        <td class="col col-sm-9 view-content">{{ null !== $internship->opportunity_start_at ? $internship->opportunity_start_at->toFormattedDateString() : '' }}</td>
-                    </tr>
+
                     <!-- Application Instructions -->
                     <tr>
                         <td class="col col-sm-3 view-label">Application Instructions</td>
@@ -101,6 +97,29 @@
                 </tbody>
             </table>
         </div>
+
+        @if(isset($internship->organization))
+        <h3>Sponsor Organization</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <!-- Organization Name -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Organization</td>
+                        <td class="col col-sm-9 view-content">{{ $internship->organization->name ?? null }}</td>
+                    </tr>
+
+                    @if(!empty($internship->organization->url))
+                    <!-- Organization URL -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Web Address</td>
+                        <td class="col col-sm-9 view-content"><a href="{{ $internship->organization->url ?? null }}">{{ $internship->organization->url ?? null }}</a></td>
+                    </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+        @endif
 
         <h3>Implementation</h3>
         <div class="table-responsive">

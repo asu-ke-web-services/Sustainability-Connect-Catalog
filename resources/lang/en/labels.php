@@ -178,6 +178,7 @@ return [
                     'titles' => [
                         'overview' => 'Overview',
                         'details' => 'Project Details',
+                        'organization' => 'Sponsor Organization',
                         'people' => 'Related Users',
                         'attachments' => 'Uploaded Attachments',
                         'notes' => 'Notes',
@@ -223,8 +224,11 @@ return [
                             'parent_opportunity'          => 'Parent Opportunity',
 
                         ],
+                        'organization' => [
+                            'name'            => 'Organization Name',
+                            'url'             => 'Web Address',
+                        ],
                         'people' => [
-                            'organization'    => 'Partner Organization',
                             'supervisor_user' => 'Project Supervisor',
                             'submitting_user' => 'Submitting User',
                             'program_lead'    => 'ASU Program Lead',
@@ -280,6 +284,7 @@ return [
                     'titles' => [
                         'overview' => 'Overview',
                         'details' => 'Internship Details',
+                        'organization' => 'Sponsor Organization',
                         'people' => 'Related Users',
                         'attachments' => 'Uploaded Attachments',
                         'notes' => 'Notes',
@@ -323,8 +328,11 @@ return [
                             'parent_opportunity'          => 'Parent Opportunity',
 
                         ],
+                        'organization' => [
+                            'name'            => 'Organization Name',
+                            'url'             => 'Web Address',
+                        ],
                         'people' => [
-                            'organization'    => 'Partner Organization',
                             'supervisor_user' => 'Internship Supervisor',
                             'submitting_user' => 'Submitting User',
                             'program_lead'    => 'ASU Program Lead',

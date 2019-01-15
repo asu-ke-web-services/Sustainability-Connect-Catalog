@@ -30,7 +30,7 @@
                 </div><!--col-->
 
                 <div class="col text-right">
-                    {{ form_submit(__('buttons.general.crud.create')) }}
+                    {{ form_submit(__('buttons.general.submit')) }}
                 </div><!--col-->
             </div><!--row-->
         </div><!--card-footer-->

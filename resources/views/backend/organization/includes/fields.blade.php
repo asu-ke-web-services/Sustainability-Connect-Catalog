@@ -1,13 +1,23 @@
 
 @component('backend.includes.components.form.input', [
-'name'        => 'name',
-'label'       => 'Name',
-'help_text'   => 'Names can be up to 250 characters long',
-'attributes'  => [
-'required' => 'required',
-'maxlength' => '250',
-],
-'object'      => $organization ?? null,
+    'name'        => 'name',
+    'label'       => 'Name',
+    'help_text'   => 'Names can be up to 250 characters long',
+    'attributes'  => [
+        'required' => 'required',
+        'maxlength' => '250',
+    ],
+    'object'      => $organization ?? null,
+])@endcomponent
+
+@component('backend.includes.components.form.input', [
+    'name'        => 'url',
+    'label'       => 'Web Address',
+    'help_text'   => 'Urls can be up to 1024 characters long',
+    'attributes'  => [
+        'maxlength' => '1024',
+    ],
+    'object'      => $organization ?? null,
 ])@endcomponent
 
 @component('backend.includes.components.form.select', [

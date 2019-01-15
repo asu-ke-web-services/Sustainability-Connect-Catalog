@@ -7,6 +7,11 @@
             </tr>
 
             <tr>
+                <th>Web Address</th>
+                <td>{{ ucwords($organization->url) }}</td>
+            </tr>
+
+            <tr>
                 <th>Type</th>
                 <td>{!! ucwords($organization->type->name) !!}</td>
             </tr>

@@ -53,6 +53,7 @@ class Organization extends Model
      */
     public $fillable = [
         'name',
+        'url',
         'organization_status_id',
         'organization_type_id',
     ];
@@ -64,6 +65,7 @@ class Organization extends Model
      */
     public static $rules = [
         'name'                   => 'string|max:255',
+        'url'                    => 'string|max:1024',
         'organization_status_id' => 'integer|exists:organization_statuses,id',
         'organization_type_id'   => 'integer|exists:organization_types,id',
     ];

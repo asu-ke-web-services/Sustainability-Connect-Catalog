@@ -86,6 +86,7 @@ class User extends Authenticatable
         'timezone',
         'last_login_at',
         'last_login_ip',
+        'access_validated',
         'asurite',
         'asurite_login',
         'user_type_id',

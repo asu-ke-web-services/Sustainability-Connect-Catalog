@@ -1,4 +1,4 @@
-webpackJsonp([0],{
+webpackJsonp([3],{
 
 /***/ "./node_modules/@coreui/coreui/dist/js/coreui.js":
 /***/ (function(module, exports, __webpack_require__) {
@@ -26091,7 +26091,9 @@ var _freeRegularSvgIcons = __webpack_require__("./node_modules/@fortawesome/free
 
 var _freeSolidSvgIcons = __webpack_require__("./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 /**
  * Font Awesome >=5.1
@@ -26179,6 +26181,7 @@ if (token) {
  * Injects a form with that's fired on click of the link with a DELETE request.
  * Good because you don't have to dirty your HTML with delete forms everywhere.
  */
+
 function addDeleteForms() {
     $('[data-method]').append(function () {
         if (!$(this).find('form').length > 0) {
@@ -26289,15 +26292,31 @@ $(function () {
 
 /***/ }),
 
-/***/ 0:
+/***/ "./resources/assets/sass/frontend/SearchApp.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/frontend/app.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/assets/js/backend/before.js");
 __webpack_require__("./resources/assets/js/backend/app.js");
 __webpack_require__("./resources/assets/js/backend/after.js");
-module.exports = __webpack_require__("./resources/assets/sass/backend/app.scss");
+__webpack_require__("./resources/assets/sass/backend/app.scss");
+__webpack_require__("./resources/assets/sass/frontend/SearchApp.scss");
+module.exports = __webpack_require__("./resources/assets/sass/frontend/app.scss");
 
 
 /***/ })
 
-},[0]);
+},[1]);

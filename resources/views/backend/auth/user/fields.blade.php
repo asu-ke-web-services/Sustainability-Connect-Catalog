@@ -6,10 +6,10 @@
                     @component('backend.includes.components.form.input', [
                         'name'        => 'first_name',
                         'label'       => 'First Name',
-                        'help_text'   => 'Name can be up to 191 characters long',
+                        'help_text'   => 'Name can be up to 255 characters long',
                         'attributes'  => [
                             'required'  => 'required',
-                            'maxlength' => '191',
+                            'maxlength' => '255',
                             'autofocus' => 'autofocus',
                         ],
                         'object'      => $user ?? null,
@@ -19,10 +19,10 @@
                     @component('backend.includes.components.form.input', [
                         'name'        => 'last_name',
                         'label'       => 'Last Name',
-                        'help_text'   => 'Name can be up to 191 characters long',
+                        'help_text'   => 'Name can be up to 255 characters long',
                         'attributes'  => [
                             'required' => 'required',
-                            'maxlength' => '191',
+                            'maxlength' => '255',
                         ],
                         'object'      => $user ?? null,
                     ])@endcomponent
@@ -32,35 +32,13 @@
                         'type'       => 'email',
                         'name'       => 'email',
                         'label'      => 'E-mail Address',
-                        'help_text'  => 'Email can be up to 191 characters long',
+                        'help_text'  => 'Email can be up to 255 characters long',
                         'attributes' => [
                             'required'  => 'required',
-                            'maxlength' => '191',
+                            'maxlength' => '255',
                         ],
                         'object'      => $user ?? null,
                     ])@endcomponent
-
-                    <!-- E-mail -->
-                    {{-- @component('backend.includes.components.form.input', [
-                        'type'       => 'password',
-                        'name'       => 'password',
-                        'label'      => 'Password',
-                        'attributes' => [
-                            'required'  => 'required',
-                        ],
-                        'object'      => $user ?? null,
-                    ])@endcomponent --}}
-
-                    <!-- E-mail Confirmation -->
-                    {{-- @component('backend.includes.components.form.input', [
-                        'type'       => 'password',
-                        'name'       => 'password_confirmation',
-                        'label'      => 'Password Confirmation',
-                        'attributes' => [
-                            'required'  => 'required',
-                        ],
-                        'object'      => $user ?? null,
-                    ])@endcomponent --}}
 
                     <!-- Active -->
                     @component('backend.includes.components.form.checkbox', [
@@ -112,23 +90,11 @@
                         'object'      => $user ?? null,
                     ])@endcomponent
 
-
                     <!-- User Type -->
                     @component('backend.includes.components.form.select', [
                         'name'        => 'user_type_id',
                         'label'       => 'User Type',
                         'optionList'  => $userTypes,
-                        'object'      => $user ?? null,
-                    ])@endcomponent
-
-                    <!-- ASURITE -->
-                    @component('backend.includes.components.form.input', [
-                        'name'        => 'asurite',
-                        'label'       => 'ASURITE',
-                        'help_text'   => 'Be careful when changing this value',
-                        'attributes'  => [
-                            'maxlength' => '191',
-                        ],
                         'object'      => $user ?? null,
                     ])@endcomponent
 
@@ -199,12 +165,6 @@
                         'optionList'  => $organizations,
                         'object'      => $user->organization ?? null,
                     ])@endcomponent
-
-
-
-
-
-
 
 
                     <div class="form-group row">

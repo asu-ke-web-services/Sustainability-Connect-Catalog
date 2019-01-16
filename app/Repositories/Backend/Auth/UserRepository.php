@@ -224,7 +224,7 @@ class UserRepository extends BaseRepository
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
-                'access_validated' => $data['access_validated'],
+                'access_validated' => $data['access_validated'] ?? false,
                 'user_type_id' => $data['user_type_id'],
                 'student_degree_level_id' => $data['student_degree_level_id'],
                 'degree_program' => $data['degree_program'],
@@ -239,7 +239,7 @@ class UserRepository extends BaseRepository
                 $user->syncPermissions($data['permissions']);
 
                 // sync Affiliations
-                $user->affiliations()->sync(array_filter($data['affiliations']) ?? null);
+                $user->affiliations()->sync(array_filter($data['affiliations'] ?? []) ?? null);
 
                 event(new UserUpdated($user));
 

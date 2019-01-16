@@ -18,6 +18,11 @@
             </tr>
 
             <tr>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.degree_program') }}</th>
+                <td>@markdown($internship->degree_program ?? '')</td>
+            </tr>
+
+            <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.application_instructions') }}</th>
                 <td>@markdown($internship->application_instructions ?? '')</td>
             </tr>

@@ -22,22 +22,19 @@
                     <!-- Partner Organization Field -->
                     @component('backend.includes.components.form.select', [
                         'name'        => 'organization_id',
-                        'label'       => 'Managing Organization *',
-                        'attributes'  => [
-                            'required' => 'required',
-                        ],
+                        'label'       => 'Managing Organization',
                         'optionList'  => $organizations,
                         'object'      => $internship->organization ?? null,
                     ])@endcomponent
 
                     <!-- Modal Add New Organization -->
-                    {{-- @component('backend.includes.components.form.button', [
+                    @component('backend.includes.components.form.button', [
                         'name'       => 'btn_add_organization',
                         'label'      => ' ',
                         'class'      => 'btn btn-primary disabled',
                         'text'       => 'Add New Organization (TODO)',
                         'attribute'  => 'disabled',
-                    ])@endcomponent --}}
+                    ])@endcomponent
 
                     <!-- Description Field -->
                     @component('backend.includes.components.form.textarea', [
@@ -355,6 +352,17 @@
                             'rows' => 5,
                         ],
                         'object'      => $internship ?? null,
+                    ])@endcomponent
+
+                    <!-- Degree Program Field -->
+                    @component('backend.includes.components.form.textarea', [
+                        'name'        => 'degree_program',
+                        'label'       => 'SOS Degree Credit',
+                        'help_text'   => 'Describe the credit-earning guidelines, if any, for this opportunity.',
+                        'attributes' => [
+                            'rows' => 10,
+                        ],
+                        'object'      => $internship ?? $degreeProgram,
                     ])@endcomponent
 
                 </div><!--col-->

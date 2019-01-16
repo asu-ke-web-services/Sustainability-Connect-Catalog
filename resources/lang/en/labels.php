@@ -318,6 +318,7 @@ return [
                             'sustainability_contribution' => 'Sustainability Contribution',
                             'qualifications'              => 'Qualifications',
                             'responsibilities'            => 'Responsibilities',
+                            'degree_program'              => 'SOS Degree Credit',
                             'learning_outcomes'           => 'Learning Outcomes',
                             'compensation'                => 'Compensation',
                             'budget_type'                 => 'Budget Type',

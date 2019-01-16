@@ -154,8 +154,8 @@
 
                     <!-- Degrees Offering Credit -->
                     <tr>
-                        <td class="col col-sm-3 view-label">Degrees Offering Credit</td>
-                        <td class="col col-sm-9 view-content">@markdown($internship->learning_outcomes ?? null)</td>
+                        <td class="col col-sm-3 view-label">SOS Degree Credit</td>
+                        <td class="col col-sm-9 view-content">@markdown($internship->degree_program ?? null)</td>
                     </tr>
 
                     <!-- Other Compensation -->

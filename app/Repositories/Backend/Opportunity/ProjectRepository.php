@@ -365,13 +365,13 @@ class ProjectRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                $project->affiliations()->sync(array_filter($data['affiliations']) ?? null);
+                $project->affiliations()->sync(array_filter($data['affiliations'] ?? []) ?? null);
 
                 // sync Categories
-                $project->categories()->sync(array_filter($data['categories']) ?? null);
+                $project->categories()->sync(array_filter($data['categories'] ?? []) ?? null);
 
                 // sync Keywords
-                $project->keywords()->sync(array_filter($data['keywords']) ?? null);
+                $project->keywords()->sync(array_filter($data['keywords'] ?? []) ?? null);
 
                 event(new ProjectUpdated($project));
 

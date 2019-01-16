@@ -263,13 +263,13 @@ class InternshipRepository extends BaseRepository
                 }
 
                 // sync Affiliations
-                $internship->affiliations()->sync(array_filter($data['affiliations']) ?? null);
+                $internship->affiliations()->sync(array_filter($data['affiliations'] ?? []) ?? null);
 
                 // sync Categories
-                $internship->categories()->sync(array_filter($data['categories']) ?? null);
+                $internship->categories()->sync(array_filter($data['categories'] ?? []) ?? null);
 
                 // sync Keywords
-                $internship->keywords()->sync(array_filter($data['keywords']) ?? null);
+                $internship->keywords()->sync(array_filter($data['keywords'] ?? []) ?? null);
 
                 event(new InternshipUpdated($internship));
 

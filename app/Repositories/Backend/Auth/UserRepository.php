@@ -161,6 +161,13 @@ class UserRepository extends BaseRepository
                 'organization_id' => $data['organization_id'],
             ]);
 
+            // attach Affiliations
+            if ( isset($data['affiliations'] ) ) {
+                foreach ($data['affiliations'] as $affiliation) {
+                    $user->affiliations()->attach($affiliation);
+                }
+            }
+
             // See if adding any additional permissions
             if (! isset($data['permissions']) || ! count($data['permissions'])) {
                 $data['permissions'] = [];
@@ -208,6 +215,10 @@ class UserRepository extends BaseRepository
             $data['permissions'] = [];
         }
 
+        $user->loadMissing(
+            'affiliations'
+        );
+
         return DB::transaction(function () use ($user, $data) {
             if ($user->update([
                 'first_name' => $data['first_name'],
@@ -226,6 +237,9 @@ class UserRepository extends BaseRepository
                 // Add selected roles/permissions
                 $user->syncRoles($data['roles']);
                 $user->syncPermissions($data['permissions']);
+
+                // sync Affiliations
+                $user->affiliations()->sync(array_filter($data['affiliations']) ?? null);
 
                 event(new UserUpdated($user));
 

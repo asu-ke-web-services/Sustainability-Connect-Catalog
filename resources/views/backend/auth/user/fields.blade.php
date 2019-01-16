@@ -210,46 +210,45 @@
                     <div class="form-group row">
                         {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
 
-                        <div class="col-md-10">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
+                        <div class="table-responsive col-md-10">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <th>{{ __('labels.backend.access.users.table.roles') }}</th>
-                                        <th>{{ __('labels.backend.access.users.table.permissions') }}</th>
+                                        <th>@lang('labels.backend.access.users.table.roles')</th>
+                                        <th>@lang('labels.backend.access.users.table.permissions')</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <td>
-                                            @if ($roles->count())
+                                            @if($roles->count())
                                                 @foreach($roles as $role)
                                                     <div class="card">
                                                         <div class="card-header">
-                                                            <div class="checkbox">
+                                                            <div class="checkbox d-flex align-items-center">
                                                                 {{ html()->label(
-                                                                        html()->checkbox('roles[]', old('roles') && in_array($role->name, old('roles')) ? true : false, $role->name)
-                                                                              ->class('switch-input')
-                                                                              ->id('role-'.$role->id)
-                                                                        . '<span class="switch-label"></span><span class="switch-handle"></span>')
-                                                                    ->class('switch switch-sm switch-3d switch-primary')
+                                                                        html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)
+                                                                                ->class('switch-input')
+                                                                                ->id('role-'.$role->id)
+                                                                        . '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')
+                                                                    ->class('switch switch-label switch-pill switch-primary mr-2')
                                                                     ->for('role-'.$role->id) }}
                                                                 {{ html()->label(ucwords($role->name))->for('role-'.$role->id) }}
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
-                                                            @if ($role->id != 1)
-                                                                @if ($role->permissions->count())
-                                                                    @foreach ($role->permissions as $permission)
+                                                            @if($role->id != 1)
+                                                                @if($role->permissions->count())
+                                                                    @foreach($role->permissions as $permission)
                                                                     <div>
                                                                         <i class="fas fa-dot-circle"></i> {{ ucwords($permission->name) }}
                                                                     </div>
                                                                     @endforeach
                                                                 @else
-                                                                    {{ __('labels.general.none') }}
+                                                                    @lang('labels.general.none')
                                                                 @endif
                                                             @else
-                                                                {{ __('labels.backend.access.users.all_permissions') }}
+                                                                @lang('labels.backend.access.users.all_permissions')
                                                             @endif
                                                         </div>
                                                     </div><!--card-->
@@ -257,15 +256,15 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($permissions->count())
+                                            @if($permissions->count())
                                                 @foreach($permissions as $permission)
-                                                    <div class="checkbox">
+                                                    <div class="checkbox d-flex align-items-center">
                                                         {{ html()->label(
-                                                                html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)
-                                                                      ->class('switch-input')
-                                                                      ->id('permission-'.$permission->id)
-                                                                . '<span class="switch-label"></span><span class="switch-handle"></span>')
-                                                            ->class('switch switch-sm switch-3d switch-primary')
+                                                                html()->checkbox('permissions[]', in_array($permission->name, $userPermissions), $permission->name)
+                                                                        ->class('switch-input')
+                                                                        ->id('permission-'.$permission->id)
+                                                                    . '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')
+                                                                ->class('switch switch-label switch-pill switch-primary mr-2')
                                                             ->for('permission-'.$permission->id) }}
                                                         {{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}
                                                     </div>
@@ -273,9 +272,8 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div><!--col-->
                     </div><!--form-group-->
                 </div><!--col-->

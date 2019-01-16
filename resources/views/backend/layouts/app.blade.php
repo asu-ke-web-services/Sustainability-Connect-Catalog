@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 @langrtl
-    <html lang="{{ app()->getLocale() }}" dir="rtl">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 @else
-    <html lang="{{ app()->getLocale() }}">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @endlangrtl
 <head>
     <meta charset="utf-8">
@@ -13,23 +13,12 @@
     <meta name="author" content="@yield('meta_author', 'Julie Ann Wrigley Global Institute of Sustainability')">
     @yield('meta')
 
-    <!-- Icons-->
-    <link href="/vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
-    <link href="/vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-    <link href="/vendors/selectize-bootstrap4-theme/css/selectize.bootstrap4.css" rel="stylesheet">
-
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
     @stack('before-styles')
 
     <!-- Check if the language is set to RTL, so apply the RTL layouts -->
     <!-- Otherwise apply the normal LTR layouts -->
-    {{-- {{ style(mix('css/backend.css')) }} --}}
-
-    <!-- Main styles for this application-->
-    <link href="/css/coreui/style.css" rel="stylesheet">
-    <link href="/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    {{ style(mix('css/backend.css')) }}
 
     @stack('after-styles')
 </head>
@@ -63,16 +52,9 @@
 
     <!-- Scripts -->
     @stack('before-scripts')
+    {!! script(mix('js/manifest.js')) !!}
+    {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/backend.js')) !!}
-
-    <script src="/vendors/jquery/js/jquery.min.js"></script>
-    <script src="/vendors/popper.js/js/popper.min.js"></script>
-    <script src="/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/vendors/pace-progress/js/pace.min.js"></script>
-    <script src="/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-    <script src="/vendors/@coreui/coreui-pro/js/coreui.min.js"></script>
-    <script src="/vendors/selectize/js/standalone/selectize.min.js"></script>
-
     @stack('after-scripts')
 </body>
 </html>

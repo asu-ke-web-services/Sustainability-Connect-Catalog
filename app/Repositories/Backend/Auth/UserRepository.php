@@ -150,6 +150,15 @@ class UserRepository extends BaseRepository
                 'active' => isset($data['active']) && $data['active'] == '1' ? 1 : 0,
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed' => isset($data['confirmed']) && $data['confirmed'] == '1' ? 1 : 0,
+                'access_validated' => $data['access_validated'],
+                'user_type_id' => $data['user_type_id'],
+                'student_degree_level_id' => $data['student_degree_level_id'],
+                'degree_program' => $data['degree_program'],
+                'graduation_date' => $data['graduation_date'],
+                'phone' => $data['phone'],
+                'research_interests' => $data['research_interests'],
+                'department' => $data['department'],
+                'organization_id' => $data['organization_id'],
             ]);
 
             // See if adding any additional permissions
@@ -204,6 +213,15 @@ class UserRepository extends BaseRepository
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
+                'access_validated' => $data['access_validated'],
+                'user_type_id' => $data['user_type_id'],
+                'student_degree_level_id' => $data['student_degree_level_id'],
+                'degree_program' => $data['degree_program'],
+                'graduation_date' => $data['graduation_date'],
+                'phone' => $data['phone'],
+                'research_interests' => $data['research_interests'],
+                'department' => $data['department'],
+                'organization_id' => $data['organization_id'],
             ])) {
                 // Add selected roles/permissions
                 $user->syncRoles($data['roles']);

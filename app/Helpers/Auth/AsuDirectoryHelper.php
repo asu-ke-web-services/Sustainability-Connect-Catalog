@@ -26,9 +26,9 @@ class AsuDirectoryHelper {
      * Get user's iSearch record using their ASURITE id
      *
      * @param String $asurite
-     * @return array
+     * @return mixed
      */
-    public static function getDirectoryInfoByAsurite($asurite) : array
+    public static function getDirectoryInfoByAsurite($asurite)
     {
         if ( $asurite === NULL || \strlen( $asurite ) < 3 || \strlen( $asurite ) > 12 ) {
             return NULL;

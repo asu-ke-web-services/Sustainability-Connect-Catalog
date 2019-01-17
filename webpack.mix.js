@@ -29,7 +29,10 @@ mix.sass('resources/assets/sass/backend/app.scss', 'css/backend.css')
         '@fortawesome/fontawesome-svg-core',
         '@fortawesome/free-brands-svg-icons',
         '@fortawesome/free-regular-svg-icons',
-        '@fortawesome/free-solid-svg-icons'
+        '@fortawesome/free-solid-svg-icons',
+        'datatables.net-bs4',
+        'datatables.net-fixedheader-bs4',
+        'datatables.net-responsive-bs4'
     ]);
 
 if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {

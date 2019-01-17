@@ -101,8 +101,11 @@ class UserRepository extends BaseRepository
                 'active'            => 1,
                 'password'          => $data['password'],
                                     // If users require approval or needs to confirm email
-                'confirmed'         => config('access.users.requires_approval') || config('access.users.confirm_email') ? 0 : 1,
-            ]);
+                'confirmed'         => !($data['confirmed'] ?? false) || config('access.users.requires_approval') || config('access.users.confirm_email') ? 0 : 1,
+                'asurite'           => $data['asurite'] ?? null,
+                'asurite_login'     => $data['asurite_login'] ?? null,
+                'user_type_id'      => $data['user_type_id'] ?? null,
+                ]);
 
             if ($user) {
                 /*
@@ -293,7 +296,7 @@ class UserRepository extends BaseRepository
                 'professional' => 5,
             ];
 
-            $user = parent::create([
+            $user = $this->create([
                 'first_name'    => $firstName,
                 'last_name'     => $lastName,
                 'email'         => $email,

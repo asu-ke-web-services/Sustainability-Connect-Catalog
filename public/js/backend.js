@@ -26047,6 +26047,12 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 __webpack_require__("./node_modules/pace/pace.js");
 
+__webpack_require__("./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
+
+__webpack_require__("./node_modules/datatables.net-fixedheader-bs4/js/fixedHeader.bootstrap4.js");
+
+__webpack_require__("./node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.js");
+
 __webpack_require__("./node_modules/moment/moment.js");
 
 __webpack_require__("./node_modules/moment-timezone/index.js");

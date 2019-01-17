@@ -99,6 +99,7 @@ class Project extends Model implements HasMedia
         'program_lead',
         'success_story',
         'library_collection',
+        'organization_id',
     ];
 
     /**
@@ -189,7 +190,7 @@ class Project extends Model implements HasMedia
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
             '.$this->show_button.'
             '.$this->edit_button.'
-              
+
             <div class="btn-group btn-group-sm" role="group">
                 <button id="projectActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     '.__('labels.general.more').'

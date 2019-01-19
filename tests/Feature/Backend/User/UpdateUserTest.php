@@ -26,16 +26,16 @@ class UpdateUserTest extends TestCase
     }
 
     /** @test  */
-    // public function an_admin_can_resend_users_confirmation_email()
-    // {
-    //     $this->loginAsAdmin();
-    //     $user = factory(User::class)->states('unconfirmed')->create();
-    //     Notification::fake();
+    public function an_admin_can_resend_users_confirmation_email()
+    {
+        $this->loginAsAdmin();
+        $user = factory(User::class)->states('unconfirmed')->create();
+        Notification::fake();
 
-    //     $this->get("/admin/auth/user/{$user->id}/account/confirm/resend");
+        $this->get("/admin/auth/user/{$user->id}/account/confirm/resend");
 
-    //     Notification::assertSentTo($user, UserNeedsConfirmation::class);
-    // }
+        Notification::assertSentTo($user, UserNeedsConfirmation::class);
+    }
 
     /** @test */
     public function a_user_can_be_updated()
@@ -43,6 +43,10 @@ class UpdateUserTest extends TestCase
         $this->loginAsAdmin();
         $user = factory(User::class)->create();
         Event::fake();
+
+        $this->assertNotEquals('John', $user->first_name);
+        $this->assertNotEquals('Doe', $user->last_name);
+        $this->assertNotEquals('john@example.com', $user->email);
 
         $this->patch("/admin/auth/user/{$user->id}", [
             'first_name' => 'John',

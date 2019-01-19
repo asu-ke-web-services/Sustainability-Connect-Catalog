@@ -32,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         /*
+         * Application locale defaults for various components
+         *
+         * These will be overridden by LocaleMiddleware if the session local is set
+         */
+
+        /*
          * setLocale for php. Enables ->formatLocalized() with localized values for dates
          */
         setlocale(LC_TIME, config('app.locale_php'));
@@ -53,26 +59,14 @@ class AppServiceProvider extends ServiceProvider
             }
         }
 
-        if(env('ENFORCE_SSL', false)) {
-            $url->forceScheme('https');
-        }
-
         // Force SSL in production
-        // if ($this->app->environment() == 'production') {
-            //URL::forceScheme('https');
-        // }
-
-        /*
-         * Application locale defaults for various components
-         *
-         * These will be overridden by LocaleMiddleware if the session local is set
-         */
+        if ($this->app->environment() == 'production') {
+            URL::forceScheme('https');
+        }
 
         // Set the default string length for Laravel5.4
         // https://laravel-news.com/laravel-5-4-key-too-long-error
         // Schema::defaultStringLength(191);
-
-        // Paginator::useBootstrapThree();
 
         // Set the default template for Pagination to use the included Bootstrap 4 template
         \Illuminate\Pagination\AbstractPaginator::defaultView('pagination::bootstrap-4');

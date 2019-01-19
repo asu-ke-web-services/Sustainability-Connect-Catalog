@@ -96,6 +96,8 @@ class ResetPasswordController extends Controller
     {
         $user->password = $password;
 
+        $user->password_changed_at = now();
+
         $user->setRememberToken(Str::random(60));
 
         $user->save();
@@ -108,11 +110,10 @@ class ResetPasswordController extends Controller
     /**
      * Get the response for a successful password reset.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $response
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function sendResetResponse(Request $request, $response)
+    protected function sendResetResponse($response)
     {
         return redirect()->route(home_route())->withFlashSuccess(trans($response));
     }

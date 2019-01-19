@@ -41,6 +41,7 @@
     "webpatser/laravel-uuid": "^3.0"
   },
   "require-dev": {
+    "beyondcode/laravel-dump-server": "^1.0",
     "barryvdh/laravel-debugbar": "^3.0",
     "barryvdh/laravel-ide-helper": "^2.4",
     "codedungeon/phpunit-result-printer": "^0.19.10",
@@ -53,6 +54,11 @@
     "phpunit/phpunit": "^7.0",
     "roave/security-advisories": "dev-master"
   },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
   "autoload": {
     "classmap": [
       "database/seeds",
@@ -62,7 +68,7 @@
       "SCCatalog\\": "app/"
     },
     "files": [
-        "app/helpers.php"
+      "app/helpers.php"
     ]
   },
   "autoload-dev": {
@@ -72,20 +78,21 @@
   },
   "extra": {
     "laravel": {
-      "dont-discover": [
-      ]
+      "dont-discover": []
     }
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ],
     "post-create-project-cmd": [
-      "@php artisan key:generate"
-    ],
-    "post-autoload-dump": [
-      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover"
+      "@php artisan key:generate --ansi"
     ],
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate"
@@ -101,6 +108,10 @@
     "cache-all": [
       "@php artisan config:cache",
       "@php artisan route:cache"
+    ],
+    "cc": [
+      "composer clear-all",
+      "composer cache-all"
     ],
     "phpunit": [
       "phpunit > output.txt -d memory_limit=2048M"
@@ -122,12 +133,5 @@
       "./vendor/bin/php-cs-fixer fix routes/  --show-progress=estimating",
       "./vendor/bin/php-cs-fixer fix tests/  --show-progress=estimating"
     ]
-  },
-  "config": {
-    "preferred-install": "dist",
-    "sort-packages": true,
-    "optimize-autoloader": true
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }

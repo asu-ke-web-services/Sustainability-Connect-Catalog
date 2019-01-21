@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LanguageController;
+use SCCatalog\Http\Controllers\LanguageController;
 
 /*
  * Global Routes

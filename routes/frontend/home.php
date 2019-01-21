@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\ContactController;
-use App\Http\Controllers\Frontend\User\AccountController;
-use App\Http\Controllers\Frontend\User\ProfileController;
-use App\Http\Controllers\Frontend\User\DashboardController;
+use SCCatalog\Http\Controllers\Frontend\HomeController;
+use SCCatalog\Http\Controllers\Frontend\ContactController;
+use SCCatalog\Http\Controllers\Frontend\User\AccountController;
+use SCCatalog\Http\Controllers\Frontend\User\ProfileController;
+use SCCatalog\Http\Controllers\Frontend\User\DashboardController;
 
 /*
  * Frontend Controllers

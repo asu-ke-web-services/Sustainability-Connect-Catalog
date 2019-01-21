@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Frontend\Auth\LoginController;
-use App\Http\Controllers\Frontend\Auth\RegisterController;
-use App\Http\Controllers\Frontend\Auth\SocialLoginController;
-use App\Http\Controllers\Frontend\Auth\ResetPasswordController;
-use App\Http\Controllers\Frontend\Auth\ConfirmAccountController;
-use App\Http\Controllers\Frontend\Auth\ForgotPasswordController;
-use App\Http\Controllers\Frontend\Auth\UpdatePasswordController;
-use App\Http\Controllers\Frontend\Auth\PasswordExpiredController;
+use SCCatalog\Http\Controllers\Frontend\Auth\LoginController;
+use SCCatalog\Http\Controllers\Frontend\Auth\RegisterController;
+use SCCatalog\Http\Controllers\Frontend\Auth\SocialLoginController;
+use SCCatalog\Http\Controllers\Frontend\Auth\ResetPasswordController;
+use SCCatalog\Http\Controllers\Frontend\Auth\ConfirmAccountController;
+use SCCatalog\Http\Controllers\Frontend\Auth\ForgotPasswordController;
+use SCCatalog\Http\Controllers\Frontend\Auth\UpdatePasswordController;
+use SCCatalog\Http\Controllers\Frontend\Auth\PasswordExpiredController;
 
 /*
  * Frontend Access Controllers

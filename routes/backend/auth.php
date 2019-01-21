@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Backend\Auth\Role\RoleController;
-use App\Http\Controllers\Backend\Auth\User\UserController;
-use App\Http\Controllers\Backend\Auth\User\UserAccessController;
-use App\Http\Controllers\Backend\Auth\User\UserSocialController;
-use App\Http\Controllers\Backend\Auth\User\UserStatusController;
-use App\Http\Controllers\Backend\Auth\User\UserSessionController;
-use App\Http\Controllers\Backend\Auth\User\UserPasswordController;
-use App\Http\Controllers\Backend\Auth\User\UserConfirmationController;
+use SCCatalog\Http\Controllers\Backend\Auth\Role\RoleController;
+use SCCatalog\Http\Controllers\Backend\Auth\User\UserController;
+use SCCatalog\Http\Controllers\Backend\Auth\User\UserAccessController;
+use SCCatalog\Http\Controllers\Backend\Auth\User\UserSocialController;
+use SCCatalog\Http\Controllers\Backend\Auth\User\UserStatusController;
+use SCCatalog\Http\Controllers\Backend\Auth\User\UserSessionController;
+use SCCatalog\Http\Controllers\Backend\Auth\User\UserPasswordController;
+use SCCatalog\Http\Controllers\Backend\Auth\User\UserConfirmationController;
 
 /*
  * All route names are prefixed with 'admin.auth'.

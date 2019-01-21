@@ -59,10 +59,8 @@ class AppServiceProvider extends ServiceProvider
             }
         }
 
-        // Force SSL in production
-        if ($this->app->environment() == 'production') {
-            URL::forceScheme('https');
-        }
+        // Force SSL at all times (to enable ASU CAS)
+        $url->forceScheme('https');
 
         // Set the default string length for Laravel5.4
         // https://laravel-news.com/laravel-5-4-key-too-long-error

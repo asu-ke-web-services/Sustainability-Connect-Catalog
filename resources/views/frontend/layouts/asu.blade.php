@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title', app_name())</title>
-        <meta name="description" content="@yield('meta_description', 'Sustainability Connect Catalog')">
+        <meta name="description" content="@yield('meta_description', 'Sustainability Connect')">
         <meta name="author" content="@yield('meta_author', 'Julie Ann Wrigley Global Institute of Sustainability')">
         @yield('meta')
 
@@ -29,10 +29,10 @@
         <!-- Ionicons -->
         <link rel="stylesheet" href="/ionicons/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="/css/adminlte/AdminLTE.css">
+        {{-- <link rel="stylesheet" href="/css/adminlte/AdminLTE.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="/css/adminlte/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="/css/adminlte/skins/_all-skins.min.css"> --}}
 
         @stack('after-styles')
 
@@ -83,7 +83,7 @@
                                         @yield('parent_organization', 'Global Sustainability')
                                     </a>
                                 </span>&nbsp;|&nbsp;
-                                <a href="{{ url('/') }}" id="blog-name-site-title">{{ app_name() }}</a>
+                                <a href="https://sustainabilityconnect.asu.edu/" id="blog-name-site-title">Sustainability Connect</a>
                             </div>
                         </div>
                     </div><!-- #site-name-desktop -->

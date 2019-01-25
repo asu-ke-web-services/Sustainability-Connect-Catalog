@@ -6,7 +6,7 @@
  */
 
 Route::group([
-    'as'         => 'opportunity.',
+    // 'as'         => 'opportunity.',
     'namespace'  => 'Opportunity',
     'middleware' => ['auth', 'password_expires']
 ], function () {
@@ -29,7 +29,7 @@ Route::group([
 });
 
 Route::group([
-    'as'         => 'opportunity.',
+    // 'as'         => 'opportunity.',
     'namespace'  => 'Opportunity',
 ], function () {
 

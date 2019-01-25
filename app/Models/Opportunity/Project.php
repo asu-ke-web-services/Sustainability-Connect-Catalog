@@ -257,7 +257,7 @@ class Project extends Model implements HasMedia
     {
         return
             $this->application_deadline_at !== null &&
-            $this->application_deadline_at->greaterThan(Carbon::tomorrow()) &&
+            $this->application_deadline_at->greaterThan(Carbon::today()) &&
             \in_array($this->opportunity_status_id, [
                 3, // Seeking Champions
                 4, // Recruiting Participants

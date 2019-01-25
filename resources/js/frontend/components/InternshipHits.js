@@ -62,7 +62,7 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
   if (canView) {
     return (
       <tr className="disabled">
-        <td>View Restricted for Sustainability majors only</td>
+        <td>View Restricted for SOS majors only</td>
         <td>View Restricted</td>
         <td>{hit.affiliationIcons != null
             ? <AffiliationIcons canView={canView} icons={hit.affiliationIcons.filter(Boolean)} />

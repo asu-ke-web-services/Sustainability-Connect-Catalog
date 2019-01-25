@@ -142,7 +142,7 @@ return [
                 'active'              => 'Active Project Listings',
                 'expired'             => 'Expired Project Listings',
                 'search'              => 'Search Projects',
-                'create'              => 'Create Project',
+                'create'              => 'Post Project',
                 'completed'           => 'Completed Projects',
                 'archived'            => 'Archived Projects',
                 'deleted'             => 'Deleted Projects',

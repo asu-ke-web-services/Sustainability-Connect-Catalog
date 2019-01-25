@@ -14693,13 +14693,13 @@ div.table-responsive {
 }
 
 .bm-burger-button:before {
-    content: 'options:';
-    position: absolute;
-    right: 53px;
-    top: 7px;
-    color: #373a47;
-    font-size: 0.9em;
-    font-weight: bold;
+  content: 'options:';
+  position: absolute;
+  right: 53px;
+  top: 7px;
+  color: #373a47;
+  font-size: 0.9em;
+  font-weight: bold;
 }
 
 .right .bm-burger-button {
@@ -14716,11 +14716,17 @@ div.table-responsive {
   fill: #373a47;
 }
 
+/* Sidebar wrapper styles */
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
 .bm-menu {
   background: #353535;
   padding: 2.5em 1.5em 0;
   font-size: .8em;
-  overflow-y: hidden !important;
 }
 
 .bm-menu h3 {
@@ -14753,6 +14759,14 @@ td a {
 
 .bm-cross {
   background: #bdc3c7;
+}
+
+.bm-cross-button {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  right: 48px;
+  top: 12px;
 }
 
 thead {

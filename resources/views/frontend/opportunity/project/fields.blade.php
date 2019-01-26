@@ -34,9 +34,10 @@
                     <!-- Envisioned Solution Field -->
                     @component('frontend.includes.components.form.textarea', [
                         'name'        => 'implementation_paths',
-                        'label'       => 'Envisioned Solution',
+                        'label'       => 'Envisioned Solution *',
                         'help_text'   => 'What sustainability solution do you envision, and how will that solution be derived from this project?',
                         'attributes' => [
+                            'required' => 'required',
                             'rows' => 5,
                         ],
                         'object'      => $opportunity ?? null,
@@ -45,9 +46,10 @@
                     <!-- Project Deliverables Field -->
                     @component('frontend.includes.components.form.textarea', [
                         'name'        => 'sustainability_contribution',
-                        'label'       => 'Project Deliverables',
+                        'label'       => 'Project Deliverables *',
                         'help_text'   => 'What deliverables/end product do you expect?',
                         'attributes' => [
+                            'required' => 'required',
                             'rows' => 5,
                         ],
                         'object'      => $opportunity ?? null,

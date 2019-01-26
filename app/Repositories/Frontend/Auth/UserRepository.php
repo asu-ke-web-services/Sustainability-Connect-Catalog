@@ -102,9 +102,10 @@ class UserRepository extends BaseRepository
                 'password'          => $data['password'],
                                     // If users require approval or needs to confirm email
                 'confirmed'         => !($data['confirmed'] ?? false) || config('access.users.requires_approval') || config('access.users.confirm_email') ? 0 : 1,
-                'asurite'           => $data['asurite'] ?? null,
+                'asurite'           => $data['asurite'] ?? 0,
                 'asurite_login'     => $data['asurite_login'] ?? null,
-                'user_type_id'      => $data['user_type_id'] ?? null,
+                'user_type_id'      => $data['user_type_id'] ?? 5,
+                'access_validated'  => 0,
                 ]);
 
             if ($user) {
@@ -147,12 +148,25 @@ class UserRepository extends BaseRepository
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
         $user->avatar_type = $input['avatar_type'];
-        $user->user_type_id = $input['user_type_id'];
-        $user->degree_program = $input['degree_program'];
-        $user->graduation_date = $input['graduation_date'];
-        $user->phone = $input['phone'];
-        $user->research_interests = $input['research_interests'];
-        $user->department = $input['department'];
+
+        if (isset($input['user_type_id'])) {
+            $user->user_type_id = $input['user_type_id'];
+        }
+        if (isset($input['degree_program'])) {
+            $user->degree_program = $input['degree_program'];
+        }
+        if (isset($input['graduation_date'])) {
+            $user->graduation_date = $input['graduation_date'];
+        }
+        if (isset($input['phone'])) {
+            $user->phone = $input['phone'];
+        }
+        if (isset($input['research_interests'])) {
+            $user->research_interests = $input['research_interests'];
+        }
+        if (isset($input['department'])) {
+            $user->department = $input['department'];
+        }
 
         // Upload profile image if necessary
         if ($image) {

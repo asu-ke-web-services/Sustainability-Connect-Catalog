@@ -28,8 +28,9 @@ class KeywordRequest extends FormRequest
     public function rules()
     {
         return [
-        	'order' => 'required',
+        	'order' => 'nullable|integer',
             'name'  => 'required|max:250',
+            'slug'  => 'nullable|string|max:255',
         ];
     }
 
@@ -41,9 +42,7 @@ class KeywordRequest extends FormRequest
     public function attributes()
     {
         return [
-            'order' => 'nullable|integer',
-            'name'  => ['required', 'string', 'max:250', Rule::unique('keywords')],
-            'slug'  => 'nullable|string|max:255',
+            //
         ];
     }
 

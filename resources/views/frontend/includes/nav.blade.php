@@ -38,7 +38,7 @@
                     <a title="Internships" href="/internship" class="menu-item">Internships</a>
                 </li>
                 <li id="menu-item-5" class="menu-item">
-                    <a title="Submit Opportunity" href="/project/submit" class="menu-item">Submit
+                    <a title="Submit an Opportunity" href="/project/submit" class="menu-item">Submit an
                         Opportunity</a>
                 </li>
                 <li id="menu-item-6" class="menu-item">

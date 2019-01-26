@@ -27,7 +27,7 @@
                     <h2 data-toggle="collapse" data-target="#menu-item-2-nav">Get Involved</h2>
                     <ul class='big-foot-nav collapse' id='menu-item-2-nav'>
                         <ul class="sub-menu">
-                            <li class="menu-item"><a href="/project/submit">Submit Your Idea</a></li>
+                            <li class="menu-item"><a href="/project/submit">Submit an Opportunity</a></li>
                             <li class="menu-item"><a href="{{ config('app.sc_base_url') }}/about/types-of-opportunities/">Types of Opportunities</a></li>
                             <li class="menu-item"><a href="{{ config('app.sc_base_url') }}/about/faq/">FAQ</a></li>
                         </ul>

@@ -8896,7 +8896,7 @@ exports.push([module.i, "/*!\n *  Font Awesome 4.7.0 by @davegandy - http://font
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./resources/assets/sass/frontend/SearchApp.css":
+/***/ "./node_modules/css-loader/index.js!./resources/sass/frontend/SearchApp.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -101989,7 +101989,7 @@ module.exports = warning;
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/AffiliationIcon.js":
+/***/ "./resources/js/frontend/components/AffiliationIcon.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102037,7 +102037,7 @@ AffiliationIcon.propTypes = {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/AffiliationIcons.js":
+/***/ "./resources/js/frontend/components/AffiliationIcons.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102054,7 +102054,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__("./node_modules/react-bootstrap/es/index.js");
 
-var _AffiliationIcon = __webpack_require__("./resources/assets/js/frontend/components/AffiliationIcon.js");
+var _AffiliationIcon = __webpack_require__("./resources/js/frontend/components/AffiliationIcon.js");
 
 var _propTypes = __webpack_require__("./node_modules/prop-types/index.js");
 
@@ -102085,7 +102085,7 @@ AffiliationIcons.propTypes = {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/Footer.js":
+/***/ "./resources/js/frontend/components/Footer.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102157,7 +102157,7 @@ var Footer = exports.Footer = function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/Header.js":
+/***/ "./resources/js/frontend/components/Header.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102174,7 +102174,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactInstantsearchDom = __webpack_require__("./node_modules/react-instantsearch-dom/dist/es/index.js");
 
-var _SearchBox = __webpack_require__("./resources/assets/js/frontend/components/SearchBox.js");
+var _SearchBox = __webpack_require__("./resources/js/frontend/components/SearchBox.js");
 
 var _reactBootstrap = __webpack_require__("./node_modules/react-bootstrap/es/index.js");
 
@@ -102188,7 +102188,7 @@ var Header = exports.Header = function Header() {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/InternshipHits.js":
+/***/ "./resources/js/frontend/components/InternshipHits.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102217,7 +102217,7 @@ var _unescape = __webpack_require__("./node_modules/unescape/index.js");
 
 var _unescape2 = _interopRequireDefault(_unescape);
 
-var _AffiliationIcons = __webpack_require__("./resources/assets/js/frontend/components/AffiliationIcons.js");
+var _AffiliationIcons = __webpack_require__("./resources/js/frontend/components/AffiliationIcons.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -102280,7 +102280,7 @@ function HitComponent(_ref2) {
 
 
   if (canView) {
-    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted for Sustainability majors only'), _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { canView: canView, icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
+    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted for SOS majors only'), _react2.default.createElement('td', null, 'View Restricted'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { canView: canView, icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
   }
 
   return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/internship/' + hit.id }, (0, _unescape2.default)(hit.name))), _react2.default.createElement('td', null, hit.organizationName), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, deadline));
@@ -102288,7 +102288,7 @@ function HitComponent(_ref2) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/InternshipSortBy.js":
+/***/ "./resources/js/frontend/components/InternshipSortBy.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102363,7 +102363,7 @@ var InternshipSortBy = exports.InternshipSortBy = function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/ProjectHits.js":
+/***/ "./resources/js/frontend/components/ProjectHits.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102392,7 +102392,7 @@ var _unescape = __webpack_require__("./node_modules/unescape/index.js");
 
 var _unescape2 = _interopRequireDefault(_unescape);
 
-var _AffiliationIcons = __webpack_require__("./resources/assets/js/frontend/components/AffiliationIcons.js");
+var _AffiliationIcons = __webpack_require__("./resources/js/frontend/components/AffiliationIcons.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -102450,7 +102450,7 @@ function HitComponent(_ref2) {
   }
 
   if (canView) {
-    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted for Sustainability majors only'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, hit.locations), _react2.default.createElement('td', null, startDate), _react2.default.createElement('td', null, endDate), _react2.default.createElement('td', null, deadline));
+    return _react2.default.createElement('tr', { className: 'disabled' }, _react2.default.createElement('td', null, 'View Restricted for SOS majors only'), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, hit.locations), _react2.default.createElement('td', null, startDate), _react2.default.createElement('td', null, endDate), _react2.default.createElement('td', null, deadline));
   }
 
   return _react2.default.createElement('tr', null, _react2.default.createElement('td', null, _react2.default.createElement('a', { href: '/project/' + hit.id }, (0, _unescape2.default)(hit.name))), _react2.default.createElement('td', null, hit.affiliationIcons != null ? _react2.default.createElement(_AffiliationIcons.AffiliationIcons, { icons: hit.affiliationIcons.filter(Boolean) }) : ''), _react2.default.createElement('td', null, hit.locations), _react2.default.createElement('td', null, startDate), _react2.default.createElement('td', null, endDate), _react2.default.createElement('td', null, deadline));
@@ -102458,7 +102458,7 @@ function HitComponent(_ref2) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/ProjectSortBy.js":
+/***/ "./resources/js/frontend/components/ProjectSortBy.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102533,7 +102533,7 @@ var ProjectSortBy = exports.ProjectSortBy = function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/Results.js":
+/***/ "./resources/js/frontend/components/Results.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102562,9 +102562,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__("./node_modules/react-bootstrap/es/index.js");
 
-var _InternshipHits = __webpack_require__("./resources/assets/js/frontend/components/InternshipHits.js");
+var _InternshipHits = __webpack_require__("./resources/js/frontend/components/InternshipHits.js");
 
-var _ProjectHits = __webpack_require__("./resources/assets/js/frontend/components/ProjectHits.js");
+var _ProjectHits = __webpack_require__("./resources/js/frontend/components/ProjectHits.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -102626,7 +102626,7 @@ var Results = exports.Results = function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/SearchApp.js":
+/***/ "./resources/js/frontend/components/SearchApp.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102654,11 +102654,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactInstantsearchDom = __webpack_require__("./node_modules/react-instantsearch-dom/dist/es/index.js");
 
-var _SearchPage = __webpack_require__("./resources/assets/js/frontend/components/SearchPage.js");
+var _SearchPage = __webpack_require__("./resources/js/frontend/components/SearchPage.js");
 
-var _urlSync = __webpack_require__("./resources/assets/js/frontend/components/urlSync.js");
+var _urlSync = __webpack_require__("./resources/js/frontend/components/urlSync.js");
 
-__webpack_require__("./resources/assets/sass/frontend/SearchApp.css");
+__webpack_require__("./resources/sass/frontend/SearchApp.css");
 
 __webpack_require__("./node_modules/font-awesome/css/font-awesome.min.css");
 
@@ -102724,7 +102724,7 @@ exports.default = (0, _urlSync.withUrlSync)(SearchApp);
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/SearchBox.js":
+/***/ "./resources/js/frontend/components/SearchBox.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102761,7 +102761,7 @@ var SearchBox = exports.SearchBox = (0, _reactInstantsearchDom.connectSearchBox)
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/SearchFacets.js":
+/***/ "./resources/js/frontend/components/SearchFacets.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102811,7 +102811,7 @@ var SearchFacets = exports.SearchFacets = function SearchFacets() {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/SearchPage.js":
+/***/ "./resources/js/frontend/components/SearchPage.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102840,13 +102840,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__("./node_modules/react-bootstrap/es/index.js");
 
-var _Footer = __webpack_require__("./resources/assets/js/frontend/components/Footer.js");
+var _Footer = __webpack_require__("./resources/js/frontend/components/Footer.js");
 
-var _Header = __webpack_require__("./resources/assets/js/frontend/components/Header.js");
+var _Header = __webpack_require__("./resources/js/frontend/components/Header.js");
 
-var _Results = __webpack_require__("./resources/assets/js/frontend/components/Results.js");
+var _Results = __webpack_require__("./resources/js/frontend/components/Results.js");
 
-var _Sidebar = __webpack_require__("./resources/assets/js/frontend/components/Sidebar.js");
+var _Sidebar = __webpack_require__("./resources/js/frontend/components/Sidebar.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -102893,7 +102893,7 @@ var SearchPage = exports.SearchPage = function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/Sidebar.js":
+/***/ "./resources/js/frontend/components/Sidebar.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -102924,11 +102924,11 @@ var _reactBurgerMenu = __webpack_require__("./node_modules/react-burger-menu/lib
 
 var _reactBurgerMenu2 = _interopRequireDefault(_reactBurgerMenu);
 
-var _SearchFacets = __webpack_require__("./resources/assets/js/frontend/components/SearchFacets.js");
+var _SearchFacets = __webpack_require__("./resources/js/frontend/components/SearchFacets.js");
 
-var _InternshipSortBy = __webpack_require__("./resources/assets/js/frontend/components/InternshipSortBy.js");
+var _InternshipSortBy = __webpack_require__("./resources/js/frontend/components/InternshipSortBy.js");
 
-var _ProjectSortBy = __webpack_require__("./resources/assets/js/frontend/components/ProjectSortBy.js");
+var _ProjectSortBy = __webpack_require__("./resources/js/frontend/components/ProjectSortBy.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
@@ -103042,7 +103042,7 @@ var Sidebar = exports.Sidebar = function (_Component2) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/components/urlSync.js":
+/***/ "./resources/js/frontend/components/urlSync.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103152,7 +103152,7 @@ var withUrlSync = exports.withUrlSync = function withUrlSync(App) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/frontend/searchProject.js":
+/***/ "./resources/js/frontend/searchProject.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103166,7 +103166,7 @@ var _reactDom = __webpack_require__("./node_modules/react-dom/index.js");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _SearchApp = __webpack_require__("./resources/assets/js/frontend/components/SearchApp.js");
+var _SearchApp = __webpack_require__("./resources/js/frontend/components/SearchApp.js");
 
 var _SearchApp2 = _interopRequireDefault(_SearchApp);
 
@@ -103199,13 +103199,13 @@ if (document.getElementById('search')) {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/frontend/SearchApp.css":
+/***/ "./resources/sass/frontend/SearchApp.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./resources/assets/sass/frontend/SearchApp.css");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./resources/sass/frontend/SearchApp.css");
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -103219,8 +103219,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./SearchApp.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./SearchApp.css");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./SearchApp.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./SearchApp.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -103234,7 +103234,7 @@ if(false) {
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/frontend/searchProject.js");
+module.exports = __webpack_require__("./resources/js/frontend/searchProject.js");
 
 
 /***/ })

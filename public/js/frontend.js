@@ -1,6 +1,6 @@
-webpackJsonp([5,6],{
+webpackJsonp([5],{
 
-/***/ "./resources/assets/js/frontend/app.js":
+/***/ "./resources/js/frontend/app.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25,12 +25,12 @@ webpackJsonp([5,6],{
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/frontend/app.js");
+module.exports = __webpack_require__("./resources/js/frontend/app.js");
 
 
 /***/ })
 
-},[0]);
+},[1]);

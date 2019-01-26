@@ -26018,7 +26018,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/assets/js/backend/after.js":
+/***/ "./resources/js/backend/after.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26027,7 +26027,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/assets/js/backend/app.js":
+/***/ "./resources/js/backend/app.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26037,13 +26037,13 @@ __webpack_require__("./node_modules/@coreui/coreui/dist/js/coreui.js");
 
 /***/ }),
 
-/***/ "./resources/assets/js/backend/before.js":
+/***/ "./resources/js/backend/before.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__("./resources/assets/js/bootstrap.js");
+__webpack_require__("./resources/js/bootstrap.js");
 
 __webpack_require__("./node_modules/pace/pace.js");
 
@@ -26059,11 +26059,11 @@ __webpack_require__("./node_modules/moment-timezone/index.js");
 
 __webpack_require__("./node_modules/selectize/dist/js/selectize.js");
 
-__webpack_require__("./resources/assets/js/plugins.js");
+__webpack_require__("./resources/js/plugins.js");
 
 /***/ }),
 
-/***/ "./resources/assets/js/bootstrap.js":
+/***/ "./resources/js/bootstrap.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26171,7 +26171,7 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/plugins.js":
+/***/ "./resources/js/plugins.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26291,38 +26291,38 @@ $(function () {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/backend/app.scss":
+/***/ "./resources/sass/backend/app.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ "./resources/assets/sass/frontend/SearchApp.scss":
+/***/ "./resources/sass/frontend/SearchApp.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ "./resources/assets/sass/frontend/app.scss":
+/***/ "./resources/sass/frontend/app.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/backend/before.js");
-__webpack_require__("./resources/assets/js/backend/app.js");
-__webpack_require__("./resources/assets/js/backend/after.js");
-__webpack_require__("./resources/assets/sass/backend/app.scss");
-__webpack_require__("./resources/assets/sass/frontend/SearchApp.scss");
-module.exports = __webpack_require__("./resources/assets/sass/frontend/app.scss");
+__webpack_require__("./resources/js/backend/before.js");
+__webpack_require__("./resources/js/backend/app.js");
+__webpack_require__("./resources/js/backend/after.js");
+__webpack_require__("./resources/sass/backend/app.scss");
+__webpack_require__("./resources/sass/frontend/SearchApp.scss");
+module.exports = __webpack_require__("./resources/sass/frontend/app.scss");
 
 
 /***/ })
 
-},[1]);
+},[0]);

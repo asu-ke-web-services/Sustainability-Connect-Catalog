@@ -5,7 +5,7 @@ import moment from 'moment';
 import unescape from 'unescape';
 import { AffiliationIcons } from './AffiliationIcons';
 
-export const InternshipHits = connectHits(({ hits, userAccessAffiliations, canViewRestricted }) => {
+export const ProjectHits = connectHits(({ hits, userAccessAffiliations, canViewRestricted }) => {
   const hs = hits.map(
     hit => <HitComponent
       key={hit.objectID}
@@ -44,29 +44,26 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
     deadline = moment.unix(hit.applicationDeadlineAt).format('ll');
   }
 
-  // let startDate = '';
-  // if (hit.opportunityStartAt != null) {
-  //   startDate = moment.unix(hit.opportunityStartAt).format('ll');
-  // } else {
-  //   startDate = '';
-  // }
+  let startDate = '';
+  if (hit.opportunityStartAt != null) {
+    startDate = moment.unix(hit.opportunityStartAt).format('ll');
+  }
 
-  // let endDate = '';
-  // if (hit.opportunityEndAt != null) {
-  //   endDate = moment.unix(hit.opportunityEndAt).format('ll');
-  // } else {
-  //   endDate = '';
-  // }
-
+  let endDate = '';
+  if (hit.opportunityEndAt != null) {
+    endDate = moment.unix(hit.opportunityEndAt).format('ll');
+  }
 
   if (canView) {
     return (
       <tr className="disabled">
-        <td>View Restricted for Sustainability majors only</td>
-        <td>View Restricted</td>
+        <td>View Restricted for SOS majors only</td>
         <td>{hit.affiliationIcons != null
-            ? <AffiliationIcons canView={canView} icons={hit.affiliationIcons.filter(Boolean)} />
+            ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
             : ''}</td>
+        <td>{hit.locations}</td>
+        <td>{startDate}</td>
+        <td>{endDate}</td>
         <td>{deadline}</td>
       </tr>
     );
@@ -74,11 +71,13 @@ function HitComponent({ hit, userAccessAffiliations, canViewRestricted }) {
 
   return (
     <tr>
-      <td><a href={`/internship/${hit.id}`}>{unescape(hit.name)}</a></td>
-      <td>{hit.organizationName}</td>
+      <td><a href={`/project/${hit.id}`}>{unescape(hit.name)}</a></td>
       <td>{hit.affiliationIcons != null
           ? <AffiliationIcons icons={hit.affiliationIcons.filter(Boolean)} />
           : ''}</td>
+      <td>{hit.locations}</td>
+      <td>{startDate}</td>
+      <td>{endDate}</td>
       <td>{deadline}</td>
     </tr>
   );

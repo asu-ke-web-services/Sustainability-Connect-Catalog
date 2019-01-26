@@ -61,33 +61,6 @@
         <a href="#skippy" class="sr-only sr-only-focusable" tabindex="0">Skip to Content</a>
         <div id="page-wrapper">
 
-            <!-- Login Modal -->
-            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                <div class="vertical-alignment-helper">
-                    <div class="modal-dialog vertical-align-center" style="height:300px;">
-                        <div class="modal-content" style="padding:10px 0; text-align:center;">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-
-                                </button>
-                                 <h4 class="modal-title" id="modalLabel">Sign-In</h4>
-
-                            </div>
-                            <div class="modal-body">
-                                To access all features of the Sustainability Connect Catalog, please tell us who you are.<p></p>
-                                <div class="splash-user">
-                                    <img src="/img/frontend/login-asu.png" width="83" height="80"><br><a class="btn btn-primary btn-splash" href="/login/asu">ASU Affiliate</a>
-                                </div>
-                                <div class="splash-user">
-                                    <img src="/img/frontend/login-partner.png" width="82" height="80"><br><a class="btn btn-primary btn-splash" href="/login/basic">Partner</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Modal -->
-
             <div id="page">
                 <div id="asu_header">
                     <header class="" id="masthead">

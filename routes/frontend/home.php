@@ -4,9 +4,7 @@
  * Frontend Controllers
  * All route names are prefixed with 'frontend.'.
  */
-Route::get('/', function () {
-    return redirect()->route('frontend.user.dashboard');
-})->name('index');
+Route::redirect('/', '/dashboard', 301)->name('index');
 // Route::get('contact', 'ContactController@index')->name('contact');
 // Route::post('contact/send', 'ContactController@send')->name('contact.send');
 

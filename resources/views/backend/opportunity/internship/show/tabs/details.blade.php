@@ -29,12 +29,12 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.success_story') }}</th>
-                <td>{!! $internship->success_story ?? null !!}</td>
+                <td>@unless (empty($internship->success_story))<a href="{!! $internship->success_story !!}">{!! $internship->success_story !!}</a>@endunless</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.library_collection') }}</th>
-                <td>{!! $internship->library_collection ?? null !!}</td>
+                <td>@unless (empty($internship->library_collection))<a href="{!! $internship->library_collection !!}">{!! $internship->library_collection !!}</a>@endunless</td>
             </tr>
 {{--
             <tr>

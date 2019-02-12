@@ -43,6 +43,22 @@
                         <td class="col col-sm-9 view-content">@markdown($project->description ?? null)</td>
                     </tr>
 
+                    <!-- Success Story -->
+                    @unless (empty($project->success_story))
+                    <tr>
+                        <td class="col col-sm-3 view-label">Success Story</td>
+                        <td class="col col-sm-9 view-content"><a href="{!! $project->success_story !!}">{!! $project->success_story !!}</a></td>
+                    </tr>
+                    @endunless
+
+                    <!-- Library Collection -->
+                    @unless (empty($project->library_collection))
+                    <tr>
+                        <td class="col col-sm-3 view-label">Library Collection Archive</td>
+                        <td class="col col-sm-9 view-content"><a href="{!! $project->library_collection !!}">{!! $project->library_collection !!}</a></td>
+                    </tr>
+                    @endunless
+
                 </tbody>
             </table>
         </div>

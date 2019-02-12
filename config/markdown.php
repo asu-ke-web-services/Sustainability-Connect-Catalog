@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 /*
  * This file is part of Laravel Markdown.
@@ -25,7 +25,7 @@ return [
     |
     | Default: true
     |
-    */
+ */
 
     'views' => true,
 
@@ -39,7 +39,7 @@ return [
     |
     | Default: []
     |
-    */
+     */
 
     'extensions' => [],
 
@@ -56,12 +56,12 @@ return [
     |              'soft_break'      => "\n",
     |          ]
     |
-    */
+     */
 
     'renderer' => [
         'block_separator' => "\n",
         'inner_separator' => "\n",
-        'soft_break'      => "\n",
+        'soft_break' => "\n",
     ],
 
     /*
@@ -73,7 +73,7 @@ return [
     |
     | Default: true
     |
-    */
+     */
 
     'enable_em' => true,
 
@@ -86,7 +86,7 @@ return [
     |
     | Default: true
     |
-    */
+     */
 
     'enable_strong' => true,
 
@@ -99,7 +99,7 @@ return [
     |
     | Default: true
     |
-    */
+     */
 
     'use_asterisk' => true,
 
@@ -112,7 +112,7 @@ return [
     |
     | Default: true
     |
-    */
+     */
 
     'use_underscore' => true,
 
@@ -125,9 +125,9 @@ return [
     |
     | Default: 'strip'
     |
-    */
+     */
 
-    'html_input' => 'strip',
+    'html_input' => 'allow',
 
     /*
     |--------------------------------------------------------------------------
@@ -138,7 +138,7 @@ return [
     |
     | Default: true
     |
-    */
+     */
 
     'allow_unsafe_links' => true,
 
@@ -151,7 +151,7 @@ return [
     |
     | Default: INF
     |
-    */
+     */
 
     'max_nesting_level' => INF,
 

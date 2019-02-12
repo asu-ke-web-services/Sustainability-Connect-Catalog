@@ -49,12 +49,12 @@
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.success_story') }}</th>
-                <td>{{ $project->success_story }}</td>
+                <td>@unless (empty($project->success_story))<a href="{!! $project->success_story !!}">{!! $project->success_story !!}</a>@endunless</td>
             </tr>
 
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.library_collection') }}</th>
-                <td>{{ $project->library_collection }}</td>
+                <td>@unless (empty($project->library_collection))<a href="{!! $project->library_collection !!}">{!! $project->library_collection !!}</a>@endunless</td>
             </tr>
 {{--
             <tr>

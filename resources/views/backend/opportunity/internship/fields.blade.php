@@ -37,7 +37,7 @@
                     ])@endcomponent
 
                     <!-- Description Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'description',
                         'label'       => 'Describe the Internship',
                         'help_text'   => 'What specific sustainability problem do you need solved?',
@@ -322,7 +322,7 @@
                     <!-- How Many Students are you looking for? Undergraduate or Graduate? -->
 
                     <!-- Qualifications Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'qualifications',
                         'label'       => 'Qualifications',
                         'help_text'   => 'What specific skills should the applying students possess?',
@@ -333,7 +333,7 @@
                     ])@endcomponent
 
                     <!-- Responsibilities Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'responsibilities',
                         'label'       => 'Student Responsibilities',
                         'help_text'   => 'What will the student responsibilities be?',
@@ -344,7 +344,7 @@
                     ])@endcomponent
 
                     <!-- Compensation Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'compensation',
                         'label'       => 'Student Compensation and Internship Funds',
                         'help_text'   => 'Describe how students will be compensated in this internship. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)',
@@ -355,7 +355,7 @@
                     ])@endcomponent
 
                     <!-- Degree Program Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'degree_program',
                         'label'       => 'SOS Degree Credit',
                         'help_text'   => 'Describe the credit-earning guidelines, if any, for this opportunity.',
@@ -386,7 +386,7 @@
                 <div class="col">
 
                     <!-- Application Instructions Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'application_instructions',
                         'label'       => 'Application Instructions:',
                         'help_text'   => 'Describe the steps the participant must follow to request admission into the internship.',

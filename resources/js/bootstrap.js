@@ -9,6 +9,8 @@ import $ from 'jquery';
 import 'popper.js/dist/umd/popper'; // Required for BS4
 import 'bootstrap';
 
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 /**
  * Font Awesome >=5.1
  *
@@ -59,6 +61,11 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+const allEditors = document.querySelectorAll("textarea.richtext");
+allEditors.forEach(editor => {
+  ClassicEditor.create(editor);
+});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

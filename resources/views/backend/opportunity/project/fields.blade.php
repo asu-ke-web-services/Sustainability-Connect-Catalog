@@ -20,7 +20,7 @@
                     ])@endcomponent
 
                     <!-- Description Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'description',
                         'label'       => 'Describe the Project *',
                         'help_text'   => 'What specific sustainability problem do you need solved?',
@@ -177,7 +177,7 @@
                     ])@endcomponent
 
                     <!-- Envisioned Solution Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'implementation_paths',
                         'label'       => 'Envisioned Solution *',
                         'help_text'   => 'What sustainability solution do you envision, and how will that solution be derived from this project?',
@@ -189,7 +189,7 @@
                     ])@endcomponent
 
                     <!-- Project Deliverables Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'sustainability_contribution',
                         'label'       => 'Project Deliverables *',
                         'help_text'   => 'What deliverables/end product do you expect?',
@@ -301,7 +301,7 @@
                     <!-- How Many Students are you looking for? Undergraduate or Graduate? -->
 
                     <!-- Qualifications Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'qualifications',
                         'label'       => 'Qualifications',
                         'help_text'   => 'What specific skills should the applying students possess?',
@@ -312,7 +312,7 @@
                     ])@endcomponent
 
                     <!-- Responsibilities Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'responsibilities',
                         'label'       => 'Student Responsibilities',
                         'help_text'   => 'What will the student responsibilities be?',
@@ -323,7 +323,7 @@
                     ])@endcomponent
 
                     <!-- Learning Outcomes Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'learning_outcomes',
                         'label'       => 'Learning Outcomes',
                         'help_text'   => 'Describe what the student might learn from this experience.',
@@ -334,7 +334,7 @@
                     ])@endcomponent
 
                     <!-- Compensation Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'compensation',
                         'label'       => 'Student Compensation and Project Funds',
                         'help_text'   => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)',
@@ -382,7 +382,7 @@
                 <div class="col">
 
                     <!-- Application Instructions Field -->
-                    @component('backend.includes.components.form.textarea', [
+                    @component('backend.includes.components.form.richtext', [
                         'name'        => 'application_instructions',
                         'label'       => 'Application Instructions:',
                         'help_text'   => 'Describe the steps the participant must follow to request admission into the project.',

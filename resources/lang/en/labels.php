@@ -271,6 +271,7 @@ return [
                     'id'                   => 'ID',
                     'last_updated'         => 'Last Updated',
                     'name'                 => 'Name',
+                    'organization'         => 'Organization',
                     'status'               => 'Status',
                     'location'             => 'Location',
                     'opportunity_start_at' => 'Internship Starts',

@@ -9,7 +9,7 @@
 @push('after-scripts')
     <script>
         $('.datatable').DataTable({
-            "order": [[ 5, "{{ $defaultSort }}" ]],
+            "order": [[ 4, "{{ $defaultSort }}" ]],
             "lengthMenu": [[25, 50, -1], [25, 50, "All"]]
         });
         $('.datatable').attr('style', 'border-collapse: collapse !important');

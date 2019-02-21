@@ -145,6 +145,14 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
+    public function getPrintButtonAttribute() : string
+    {
+        return '<a href="'.route('admin.opportunity.project.print', $this).'" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
     public function getDeleteButtonAttribute()
     {
         if ($this->id != auth()->id() && $this->id != 1) {

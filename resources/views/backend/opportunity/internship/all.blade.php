@@ -37,6 +37,7 @@
                     <thead>
                     <tr>
                         <th>{{ __('labels.backend.opportunity.internships.table.name') }}</th>
+                        <th>{{ __('labels.backend.opportunity.internships.table.organization') }}</th>
                         <th>{{ __('labels.backend.opportunity.internships.table.status') }}</th>
                         <th>{{ __('labels.backend.opportunity.internships.table.location') }}</th>
                         <th>{{ __('labels.backend.opportunity.internships.table.opportunity_start_at') }}</th>
@@ -49,6 +50,7 @@
                     @foreach ($internships as $internship)
                         <tr>
                             <td>{{ ucwords($internship->name) }}</td>
+                            <td>{{ ucwords($internship->organization->name) }}</td>
                             <td>{{ ucwords($internship->status->name) }}</td>
                             <td>
                                 @if ($internship->addresses->count())

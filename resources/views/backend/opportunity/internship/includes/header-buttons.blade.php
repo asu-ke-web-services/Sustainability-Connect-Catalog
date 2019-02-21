@@ -1,4 +1,11 @@
 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+    <a href="{{ route('admin.opportunity.internship.print', $internship) }}"
+            class="btn btn-secondary ml-1"
+            data-toggle="tooltip"
+            title="Print">
+        <i class="fas fa-print"></i>
+    </a>
+
     <a href="{{ route('admin.opportunity.internship.edit', $internship) }}"
             class="btn btn-primary ml-1"
             data-toggle="tooltip"

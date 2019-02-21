@@ -160,6 +160,36 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
     }
 
     /**
+     * Display the print-version of the specified Internship.
+     *
+     * @param ManageInternshipRequest $request
+     * @param Internship $internship
+     *
+     * @return \Illuminate\View\View
+     */
+    public function print(ManageInternshipRequest $request, Internship $internship)
+    {
+        $internship->loadMissing(
+            'addresses',
+            'notes',
+            'status',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'affiliations',
+            'categories',
+            'keywords',
+            'users'
+        );
+
+        $attachments = $internship->getMedia();
+
+        return view('backend.opportunity.internship.print')
+            ->withInternship($internship)
+            ->withAttachments($attachments);
+    }
+
+    /**
      * Show the form for editing the specified Internship.
      *
      * @param UpdateInternshipRequest $request

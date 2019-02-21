@@ -153,6 +153,36 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display the print-version of the specified Project.
+     *
+     * @param ManageProjectRequest $request
+     * @param Project          $project
+     *
+     * @return \Illuminate\View\View
+     */
+    public function print(ManageProjectRequest $request, Project $project)
+    {
+        $project->loadMissing(
+            'addresses',
+            'notes',
+            'status',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'affiliations',
+            'categories',
+            'keywords',
+            'users'
+        );
+
+        $attachments = $project->getMedia();
+
+        return view('backend.opportunity.project.print')
+            ->withProject($project)
+            ->withAttachments($attachments);
+    }
+
+    /**
      * Show the form for editing the specified Project.
      *
      * @param UpdateProjectRequest $request

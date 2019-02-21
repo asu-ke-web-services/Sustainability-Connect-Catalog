@@ -28,6 +28,7 @@ Route::group([
      * Specific Project
      */
     Route::group(['prefix' => 'project/{project}'], function () {
+        Route::get('print', 'ProjectController@print')->name('project.print');
         Route::get('clone', 'ProjectController@clone')->name('project.clone');
 
         // Deleted
@@ -51,6 +52,7 @@ Route::group([
      * Specific Project
      */
     Route::group(['prefix' => 'internship/{internship}'], function () {
+        Route::get('print', 'InternshipController@print')->name('internship.print');
         Route::get('clone', 'InternshipController@clone')->name('internship.clone');
 
         // Deleted

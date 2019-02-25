@@ -345,7 +345,7 @@ class UserRepository extends BaseRepository
                 [
                     'asurite'       => 1,
                     'asurite_login' => $asurite,
-                    'user_type_id'  => $user_types[$userType],
+                    // 'user_type_id'  => $user_types[$userType],
                     'active'        => 1,
                     'confirmed'     => 1,
                     'password'      => Hash::make(str_random(20)),

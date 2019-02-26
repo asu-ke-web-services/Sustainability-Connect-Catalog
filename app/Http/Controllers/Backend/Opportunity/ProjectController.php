@@ -142,7 +142,9 @@ class ProjectController extends Controller
             'affiliations',
             'categories',
             'keywords',
-            'users'
+            'users',
+            'createdByUser',
+            'updatedByUser'
         );
 
         $attachments = $project->getMedia();
@@ -172,7 +174,9 @@ class ProjectController extends Controller
             'affiliations',
             'categories',
             'keywords',
-            'users'
+            'users',
+            'createdByUser',
+            'updatedByUser'
         );
 
         $attachments = $project->getMedia();

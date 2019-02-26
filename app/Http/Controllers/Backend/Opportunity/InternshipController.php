@@ -149,7 +149,9 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
             'affiliations',
             'categories',
             'keywords',
-            'users'
+            'users',
+            'createdByUser',
+            'updatedByUser'
         );
 
         $attachments = $internship->getMedia();
@@ -179,7 +181,9 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
             'affiliations',
             'categories',
             'keywords',
-            'users'
+            'users',
+            'createdByUser',
+            'updatedByUser'
         );
 
         $attachments = $internship->getMedia();

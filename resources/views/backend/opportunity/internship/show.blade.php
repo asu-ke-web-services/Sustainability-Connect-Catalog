@@ -92,8 +92,8 @@
         <div class="row">
             <div class="col">
                 <small class="float-right text-muted">
-                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($internship->created_at) }} ({{ $internship->created_at->diffForHumans() }}),
-                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($internship->updated_at) }} ({{ $internship->updated_at->diffForHumans() }})
+                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($internship->created_at) }} ({{ $internship->created_at->diffForHumans() }}) by {{ $internship->createdByUser->full_name }} ({{ $internship->createdByUser->id }}),
+                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($internship->updated_at) }} ({{ $internship->updated_at->diffForHumans() }}) by {{ $internship->updatedByUser->full_name }} ({{ $internship->updatedByUser->id }})
                     @if ($internship->trashed())
                         <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.deleted_at') }}:</strong> {{ timezone()->convertToLocal($internship->deleted_at) }} ({{ $internship->deleted_at->diffForHumans() }})
                     @endif

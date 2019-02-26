@@ -464,6 +464,22 @@ class Internship extends Model implements HasMedia
         return $this->morphToMany(\SCCatalog\Models\Lookup\Keyword::class, 'keywordable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function createdByUser() : BelongsTo
+    {
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'created_by');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function updatedByUser() : BelongsTo
+    {
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'updated_by');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

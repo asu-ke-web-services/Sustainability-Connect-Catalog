@@ -92,8 +92,8 @@
         <div class="row">
             <div class="col">
                 <small class="float-right text-muted">
-                    <strong>{{ __('labels.backend.opportunity.projects.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($project->created_at) }} ({{ $project->created_at->diffForHumans() }}) by {{ $project->createdByUser->full_name }} ({{ $project->createdByUser->id }}),
-                    <strong>{{ __('labels.backend.opportunity.projects.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($project->updated_at) }} ({{ $project->updated_at->diffForHumans() }}) by {{ $project->updatedByUser->full_name }} ({{ $project->updatedByUser->id }})
+                    <strong>{{ __('labels.backend.opportunity.projects.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($project->created_at) }} ({{ $project->created_at->diffForHumans() }})@if (isset($project->createdByUser)) by {{ $project->createdByUser->full_name }} ({{ $project->createdByUser->id }})@endif,
+                    <strong>{{ __('labels.backend.opportunity.projects.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($project->updated_at) }} ({{ $project->updated_at->diffForHumans() }})@if (isset($project->createdByUser)) by {{ $project->updatedByUser->full_name }} ({{ $project->updatedByUser->id }})@endif
                     @if ($project->trashed())
                         <strong>{{ __('labels.backend.opportunity.projects.tabs.content.overview.deleted_at') }}:</strong> {{ timezone()->convertToLocal($project->deleted_at) }} ({{ $project->deleted_at->diffForHumans() }})
                     @endif

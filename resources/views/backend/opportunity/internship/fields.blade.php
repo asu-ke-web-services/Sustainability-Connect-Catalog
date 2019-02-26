@@ -60,36 +60,7 @@
         </div><!--card-body-->
     </div><!--card-->
 
-    <div id="card_application_listing_toggle" class="card">
-        <div class="card-body">
-            <div class="row mt-4">
-                <div class="col">
-
-                    <!-- Accept Applications Toggle -->
-{{--
-                    @component('backend.includes.components.form.checkbox', [
-                        'name'    => 'chk_accept_applications',
-                        'label'   => 'Accept Applications?',
-                        'onclick' => '$("#card_application_listing").show();',
-                        'object'  => $internship ?? null,
-                    ])@endcomponent
- --}}
-                    @component('backend.includes.components.form.button', [
-                        'name'    => 'btn_accept_applications',
-                        'label'   => ' ',
-                        'text'    => 'Accept Applications',
-                        'help_text'   => 'Click, if you want to recruit participants.',
-                        'attributes'  => [
-                            'onclick' => '$("#card_application_listing").toggle();'
-                        ],
-                    ])@endcomponent
-
-                </div><!--col-->
-            </div><!--row-->
-        </div><!--card-body-->
-    </div><!--card-->
-
-    <div id="card_application_listing" class="card" style="display: none;">
+    <div id="card_application_listing" class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
@@ -116,6 +87,7 @@
                         'name'        => 'listing_end_at',
                         'label'       => 'Listing Ends',
                         'placeholder' => 'mm/dd/yyyy',
+                        'help_text'   => 'Required if you wish to publish in the catalog Active listings',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
@@ -124,7 +96,7 @@
                         'name'      => 'application_deadline_at',
                         'label'     => 'Application Deadline',
                         'placeholder' => 'mm/dd/yyyy',
-                        'help_text' => 'Enter date-format deadline (Leave blank if Text Deadline used)',
+                        'help_text'   => 'Required if you wish to publish in the catalog Active listings',
                         'object'    => $internship ?? null,
                     ])@endcomponent
 

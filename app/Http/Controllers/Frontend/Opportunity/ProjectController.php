@@ -144,29 +144,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $project = $this->projectRepository->create($request->only(
-            'name',
-            'description',
-            'listing_start_at',
-            'listing_end_at',
-            'application_deadline_at',
-            // 'application_deadline_text',
-            'opportunity_status_id',
-            'opportunity_start_at',
-            'opportunity_end_at',
-            'organization_id',
-            // 'parent_opportunity_id',
-            'supervisor_user_id',
-            'opportunity_status_id',
-            'affiliations',
-            'categories',
-            'keywords',
-            'addresses'
-        ));
-
-//         dd($project);
-
-        // event(new ProjectCreated($project));
+        $project = $this->projectRepository->create($request->all());
 
         return redirect()->route('frontend.user.dashboard', $project)
             ->withFlashSuccess(__('Proposal successfully submitted'));

@@ -156,7 +156,7 @@
                         'type'   => 'date',
                         'name'   => 'listing_start_at',
                         'label'  => 'Listing Starts',
-                        'help_text'   => 'Please format this date: mm/dd/yyyy',
+                        'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
                         'object' => $opportunity ?? null,
                     ])@endcomponent
 
@@ -165,7 +165,7 @@
                         'type'   => 'date',
                         'name'   => 'listing_end_at',
                         'label'  => 'Listing Ends',
-                        'help_text'   => 'Please format this date: mm/dd/yyyy',
+                        'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
                         'object' => $opportunity ?? null,
                     ])@endcomponent
 
@@ -173,7 +173,7 @@
                     @component('frontend.includes.components.form.date', [
                         'name'      => 'application_deadline_at',
                         'label'     => 'Application Deadline',
-                        'help_text' => 'Enter date-format deadline, mm/dd/yyyy (Leave blank if Text Deadline used)',
+                        'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
                         'object'    => $opportunity ?? null,
                     ])@endcomponent
 
@@ -181,7 +181,7 @@
                     @component('frontend.includes.components.form.input', [
                         'name'      => 'application_deadline_text',
                         'label'     => 'Application Deadline Text',
-                        'help_text' => 'Enter text-format deadline (Leave blank if Date field used)',
+                        'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
                         'object'    => $opportunity ?? null,
                     ])@endcomponent
 
@@ -200,7 +200,7 @@
                         'type'        => 'date',
                         'name'        => 'opportunity_start_at',
                         'label'       => 'Project Start Date',
-                        'help_text'   => 'Please format this date: mm/dd/yyyy',
+                        'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
 
@@ -209,7 +209,7 @@
                         'type'        => 'date',
                         'name'        => 'opportunity_end_at',
                         'label'       => 'Project End Date',
-                        'help_text'   => 'Please format this date: mm/dd/yyyy',
+                        'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
 

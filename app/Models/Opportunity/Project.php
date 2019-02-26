@@ -267,7 +267,7 @@ class Project extends Model implements HasMedia
             $this->listing_start_at !== null &&
             $this->listing_start_at->lessThan(Carbon::tomorrow()) &&
             $this->listing_end_at !== null &&
-            $this->listing_end_at->greaterThan(Carbon::today())
+            $this->listing_end_at->greaterThan(Carbon::today()) &&
             \in_array($this->opportunity_status_id, [
                 3, // Seeking Champions
                 4, // Recruiting Participants

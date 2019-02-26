@@ -64,10 +64,10 @@ if (token) {
   );
 }
 
-const allEditors = document.querySelectorAll("textarea.richtext");
-allEditors.forEach(editor => {
-  ClassicEditor.create(editor);
-});
+// const allEditors = document.querySelectorAll("textarea.richtext");
+// allEditors.forEach(editor => {
+//   ClassicEditor.create(editor);
+// });
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

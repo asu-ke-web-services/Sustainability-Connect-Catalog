@@ -26168,10 +26168,10 @@ if (token) {
   console.error("CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token");
 }
 
-var allEditors = document.querySelectorAll("textarea.richtext");
-allEditors.forEach(function (editor) {
-  _ckeditor5BuildClassic2.default.create(editor);
-});
+// const allEditors = document.querySelectorAll("textarea.richtext");
+// allEditors.forEach(editor => {
+//   ClassicEditor.create(editor);
+// });
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

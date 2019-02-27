@@ -61,7 +61,7 @@
                                 <td>{{
                                      null != $project->application_deadline_text
                                         ? $project->application_deadline_text
-                                        : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : null)
+                                        : (null !== $project->application_deadline_at ? $project->application_deadline_at->toDateString() : null)
                                 }}</td>
                                 <td>{{ $project->updated_at->diffForHumans() }}</td>
                                 <td>{!! $project->action_buttons !!}</td>

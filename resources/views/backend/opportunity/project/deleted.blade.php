@@ -57,13 +57,13 @@
                                         {{ __('labels.general.none') }}
                                     @endif
                                 </td>
-                                <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : '' }}</td>
+                                <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toDateString() : '' }}</td>
                                 <td>{{
                                      null != $project->application_deadline_text
                                         ? $project->application_deadline_text
-                                        : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : null)
+                                        : (null !== $project->application_deadline_at ? $project->application_deadline_at->toDateString() : null)
                                 }}</td>
-                                <td>{{ null !== $project->deleted_at ? $project->deleted_at->toFormattedDateString() : '' }}</td>
+                                <td>{{ null !== $project->deleted_at ? $project->deleted_at->toDateString() : '' }}</td>
                                 <td>{!! $project->action_buttons !!}</td>
                             </tr>
                         @endforeach

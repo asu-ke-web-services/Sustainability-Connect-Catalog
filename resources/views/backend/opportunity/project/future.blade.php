@@ -59,9 +59,9 @@
                                     {{ __('labels.general.none') }}
                                 @endif
                             </td>
-                            <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : null }}</td>
-                            <td>{{ null !== $project->listing_end_at ? $project->listing_end_at->toFormattedDateString() : null }}</td>
-                            <td>{{ null !== $project->created_at ? $project->created_at->toFormattedDateString() : null }}</td>
+                            <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toDateString() : null }}</td>
+                            <td>{{ null !== $project->listing_end_at ? $project->listing_end_at->toDateString() : null }}</td>
+                            <td>{{ null !== $project->created_at ? $project->created_at->toDateString() : null }}</td>
                             <td>{!! $project->action_buttons !!}</td>
                         </tr>
                     @endforeach

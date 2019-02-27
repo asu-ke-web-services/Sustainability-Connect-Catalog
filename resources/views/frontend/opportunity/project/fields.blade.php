@@ -106,48 +106,9 @@
             </div><!--row-->
         </div><!--card-body-->
     </div><!--card-->
-
-    <div id="card_application_listing_toggle" class="card">
-        <div class="card-body">
-            <div class="row mt-4">
-                <div class="col">
-
-                    <!-- Accept Applications Toggle -->
 {{--
-                    @component('frontend.includes.components.form.checkbox', [
-                        'name'    => 'chk_accept_applications',
-                        'label'   => 'Accept Applications?',
-                        'onclick' => '$("#card_application_listing").show();',
-                        'object'  => $opportunity ?? null,
-                    ])@endcomponent
- --}}
-                    {{-- @component('frontend.includes.components.form.button', [
-                        'name'    => 'btn_accept_applications',
-                        'label'   => ' ',
-                        'text'    => 'Accept Applications',
-                        'help_text'   => 'Click, if you want to recruit participants.',
-                        'attributes'  => [
-                            'onclick' => '$("#card_application_listing").toggle();'
-                        ],
-                    ])@endcomponent --}}
-
-                </div><!--col-->
-            </div><!--row-->
-        </div><!--card-body-->
-    </div><!--card-->
-
-    <div id="card_application_listing" class="card" style="display: none;">
+    <div id="card_application_listing" class="card">
         <div class="card-body">
-            <div class="row">
-                <div class="col-sm-5">
-                    <h4 class="card-title mb-0">
-                        {{ __('labels.frontend.opportunity.projects.accept_application') }}
-                    </h4>
-                </div><!--col-->
-            </div><!--row-->
-
-            <hr />
-
             <div class="row mt-4">
                 <div class="col">
 
@@ -189,7 +150,7 @@
             </div><!--row-->
         </div><!--card-body-->
     </div><!--card-->
-
+ --}}
     <div class="card">
         <div class="card-body">
             <div class="row mt-4">
@@ -212,7 +173,7 @@
                         'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
                         'object'      => $opportunity ?? null,
                     ])@endcomponent
-
+{{--
                     <!-- Partner Organization Field -->
                     @component('frontend.includes.components.form.select', [
                         'name'        => 'organization_id',
@@ -220,7 +181,7 @@
                         'optionList'  => $organizations,
                         'object'      => $opportunity->organization ?? null,
                     ])@endcomponent
-
+ --}}
                     <!-- Modal Add New Organization -->
                     {{-- @component('frontend.includes.components.form.button', [
                         'name'       => 'btn_add_organization',

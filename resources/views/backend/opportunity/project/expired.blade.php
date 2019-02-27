@@ -9,7 +9,7 @@
 @push('after-scripts')
     <script>
         $('.datatable').DataTable({
-            "order": [[ 4, "{{ $defaultSort }}" ]],
+            "order": [[ 5, "{{ $defaultSort }}" ]],
             "lengthMenu": [[25, 50, -1], [25, 50, "All"]]
         });
         $('.datatable').attr('style', 'border-collapse: collapse !important');
@@ -39,7 +39,7 @@
                         <th>{{ __('labels.backend.opportunity.projects.table.name') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.status') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
-                        <th>{{ __('labels.backend.opportunity.projects.table.opportunity_start_at') }}</th>
+                        <th>{{ __('labels.backend.opportunity.projects.table.listing_start_at') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.listing_end_at') }}</th>
                         <th>{{ __('Created') }}</th>
                         <th>{{ __('labels.general.actions') }}</th>
@@ -59,7 +59,7 @@
                                     {{ __('labels.general.none') }}
                                 @endif
                             </td>
-                            <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toDateString() : null }}</td>
+                            <td>{{ null !== $project->listing_start_at ? $project->listing_start_at->toDateString() : null }}</td>
                             <td>{{ null !== $project->listing_end_at ? $project->listing_end_at->toDateString() : null }}</td>
                             <td>{{ null !== $project->created_at ? $project->created_at->toDateString() : null }}</td>
                             <td>{!! $project->action_buttons !!}</td>

@@ -182,12 +182,38 @@
 
                     <ul class="nav-dropdown-items">
 
-                        <li class="nav-item">
-                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/active-users*')) }}" href="{{ route('admin.report.project.active_users') }}">
-                                {{ __('Active Project Users') }}
+                        <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/reports/project*'), 'open') }}">
+                            <a class="nav-link nav-dropdown-toggle {{ active_class(Active::checkUriPattern('admin/reports/project*')) }}" href="#">
+                                <i class="fas fa-angle-double-right"></i> {{ __('Projects') }}
                             </a>
-                        </li>
+                            <ul class="nav-dropdown-items">
 
+                                <li class="nav-item">
+                                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/active-users*')) }}" href="{{ route('admin.report.project.active_users') }}">
+                                        {{ __('Active Project Users') }}
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/active*')) }}" href="{{ route('admin.report.project.active') }}">
+                                        {{ __('Active Projects') }}
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/expired*')) }}" href="{{ route('admin.report.project.expired') }}">
+                                        {{ __('Expired Projects') }}
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/future*')) }}" href="{{ route('admin.report.project.future') }}">
+                                        {{ __('Future Projects') }}
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             {{--@endif--}}

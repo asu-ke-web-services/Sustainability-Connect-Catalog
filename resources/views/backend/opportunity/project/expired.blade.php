@@ -40,7 +40,7 @@
                         <th>{{ __('labels.backend.opportunity.projects.table.status') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.opportunity_start_at') }}</th>
-                        <th>{{ __('labels.backend.opportunity.projects.table.application_deadline_at') }}</th>
+                        <th>{{ __('labels.backend.opportunity.projects.table.listing_end_at') }}</th>
                         <th>{{ __('Created') }}</th>
                         <th>{{ __('labels.general.actions') }}</th>
                     </tr>
@@ -60,11 +60,7 @@
                                 @endif
                             </td>
                             <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toFormattedDateString() : null }}</td>
-                            <td>{{
-                                 null != $project->application_deadline_text
-                                    ? $project->application_deadline_text
-                                    : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : null)
-                            }}</td>
+                            <td>{{ null !== $project->listing_end_at ? $project->listing_end_at->toFormattedDateString() : null }}</td>
                             <td>{{ null !== $project->created_at ? $project->created_at->toFormattedDateString() : null }}</td>
                             <td>{!! $project->action_buttons !!}</td>
                         </tr>

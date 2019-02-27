@@ -55,6 +55,19 @@ class ProjectStatusController extends Controller
      *
      * @return mixed
      */
+    public function getFuture(ManageProjectRequest $request)
+    {
+        return view('backend.opportunity.project.future')
+            ->withProjects($this->projectRepository->getFuturePaginated(10000, 'listing_end_at', 'asc'))
+            ->with('defaultOrderBy', 'listing_end_at')
+            ->with('defaultSort', 'asc');
+    }
+
+    /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
     public function getArchived(ManageProjectRequest $request)
     {
         return view('backend.opportunity.project.archived')

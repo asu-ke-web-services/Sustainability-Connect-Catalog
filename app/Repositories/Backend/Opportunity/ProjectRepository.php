@@ -129,6 +129,22 @@ class ProjectRepository extends BaseRepository
 
     /**
      * @param int $paged
+     * @param string $search
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getFuturePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->future()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int $paged
      * @param string $orderBy
      * @param string $sort
      *

@@ -295,6 +295,24 @@ class Project extends Model implements HasMedia
     }
 
     /**
+     * Should project be listed as expired listing?.
+     *
+     * @return bool
+     */
+    public function isFuture() : bool
+    {
+        return
+            $this->listing_start_at !== null &&
+            $this->listing_start_at->greaterThan(Carbon::tomorrow()) &&
+            \in_array($this->opportunity_status_id, [
+                3, // Seeking Champions
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ], true);
+    }
+
+    /**
      * Should project be listed as a completed past project? Not exact inverse of isActive().
      *
      * @return bool
@@ -611,6 +629,25 @@ class Project extends Model implements HasMedia
         return $query->where([
             ['listing_end_at', '<>', null],
             ['listing_end_at', '>', Carbon::today()],
+        ])
+            ->whereIn('opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ]);
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeFuture($query)
+    {
+        return $query->where([
+            ['listing_start_at', '<>', null],
+            ['listing_start_at', '>', Carbon::tomorrow()],
         ])
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion

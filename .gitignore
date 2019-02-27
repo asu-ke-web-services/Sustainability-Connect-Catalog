@@ -17,6 +17,7 @@ yarn-error.log
 .env.dusk.*
 !.env.example
 !.env.testing
+!.env.travis
 .DS_Store
 Thumbs.db
 *.sql

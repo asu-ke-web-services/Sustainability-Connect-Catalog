@@ -45,8 +45,8 @@ class CreateProjectTest extends TestCase
         $data = [
             'name' => 'Test Project',
             'description' => 'Test description',
-            'listing_start_at' => Carbon::yesterday(),
-            'listing_end_at' => Carbon::tomorrow(),
+            'listing_start_at' => Carbon::now()->subDay(2),
+            'listing_end_at' => Carbon::now()->addDay(2),
             'application_deadline_at' => Carbon::tomorrow(),
             'application_deadline_text' => null,
             'opportunity_status_id' => 3,

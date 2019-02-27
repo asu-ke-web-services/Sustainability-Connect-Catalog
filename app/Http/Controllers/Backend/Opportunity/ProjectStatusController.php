@@ -45,8 +45,8 @@ class ProjectStatusController extends Controller
     public function getExpired(ManageProjectRequest $request)
     {
         return view('backend.opportunity.project.expired')
-            ->withProjects($this->projectRepository->getExpiredPaginated(10000, 'application_deadline_at', 'asc'))
-            ->with('defaultOrderBy', 'application_deadline_at')
+            ->withProjects($this->projectRepository->getExpiredPaginated(10000, 'listing_end_at', 'asc'))
+            ->with('defaultOrderBy', 'listing_end_at')
             ->with('defaultSort', 'asc');
     }
 

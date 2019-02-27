@@ -285,7 +285,7 @@ class Project extends Model implements HasMedia
     {
         return
             $this->listing_end_at !== null &&
-            $this->listing_end_at->lessThan(Carbon::tomorrow()) &&
+            $this->listing_end_at->greaterThan(Carbon::tomorrow()) &&
             \in_array($this->opportunity_status_id, [
                 3, // Seeking Champions
                 4, // Recruiting Participants
@@ -588,8 +588,10 @@ class Project extends Model implements HasMedia
     public function scopeActive($query)
     {
         return $query->where([
-                ['application_deadline_at', '<>', null],
-                ['application_deadline_at', '>=', Carbon::tomorrow()],
+                ['listing_start_at', '<>', null],
+                ['listing_start_at', '<', Carbon::tomorrow()],
+                ['listing_end_at', '<>', null],
+                ['listing_end_at', '>', Carbon::today()],
             ])
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
@@ -607,8 +609,8 @@ class Project extends Model implements HasMedia
     public function scopeExpired($query)
     {
         return $query->where([
-            ['application_deadline_at', '<>', null],
-            ['application_deadline_at', '<', Carbon::tomorrow()],
+            ['listing_end_at', '<>', null],
+            ['listing_end_at', '>', Carbon::today()],
         ])
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion

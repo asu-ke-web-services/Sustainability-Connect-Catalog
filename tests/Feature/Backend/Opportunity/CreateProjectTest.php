@@ -26,7 +26,7 @@ class CreateProjectTest extends TestCase
             ->get(route('admin.opportunity.project.create'))
             ->assertStatus(200)
             ->assertSee('Project Management')
-            ->assertSee('Create Project')
+            ->assertSee('Post Project')
             ->assertSee('Name')
             ->assertSee('Description');
     }

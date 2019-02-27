@@ -69,6 +69,9 @@ class ProjectRepositoryTest extends TestCase
         Project::withoutSyncingToSearch(function () {
             factory(Project::class, 30)->create();
 
+            $countProjects = $this->repository->getActiveCount();
+            $this->assertEquals(30, $countProjects);
+
             $paginatedProjects = $this->repository->getActivePaginated(25);
 
             $this->assertEquals(2, $paginatedProjects->lastPage());

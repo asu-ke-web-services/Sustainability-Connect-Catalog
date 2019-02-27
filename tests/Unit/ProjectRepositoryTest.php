@@ -32,10 +32,10 @@ class ProjectRepositoryTest extends TestCase
     {
         return array_merge([
             'name'                     => 'Test Project',
-            'opportunity_start_at'     => Carbon::yesterday(),
-            'opportunity_end_at'       => Carbon::tomorrow(),
-            'listing_start_at'         => Carbon::yesterday(),
-            'listing_end_at'           => Carbon::tomorrow(),
+            'opportunity_start_at'     => Carbon::now()->addDay(30),
+            'opportunity_end_at'       => Carbon::now()->addDay(45),
+            'listing_start_at'         => Carbon::now()->subDay(2),
+            'listing_end_at'           => Carbon::now()->addDay(2),
             'application_deadline_at'  => Carbon::tomorrow(),
             'application_deadline_text' => 'When Filled',
             'opportunity_status_id'    => 5,
@@ -68,6 +68,9 @@ class ProjectRepositoryTest extends TestCase
     {
         Project::withoutSyncingToSearch(function () {
             factory(Project::class, 30)->create();
+
+            $countProjects = $this->repository->getActiveCount();
+            $this->assertEquals(30, $countProjects);
 
             $paginatedProjects = $this->repository->getActivePaginated(25);
 

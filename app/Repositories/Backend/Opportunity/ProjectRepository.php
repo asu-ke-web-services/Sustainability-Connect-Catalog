@@ -267,29 +267,29 @@ class ProjectRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        if (null != $data['opportunity_start_at']) {
+        if (!empty($data['opportunity_start_at'])) {
             $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
         }
 
-        if (null != $data['opportunity_end_at']) {
+        if (!empty($data['opportunity_end_at'])) {
             $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
         }
 
-        if (null != $data['listing_start_at']) {
+        if (!empty($data['listing_start_at'])) {
             $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
         }
 
-        if (null != $data['listing_end_at']) {
+        if (!empty($data['listing_end_at'])) {
             $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
         }
 
-        if (null != $data['application_deadline_at']) {
+        if (!empty($data['application_deadline_at'])) {
             $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
         }
 
         // If text deadline value is set, that overrides any value in the date field, which is to be set
         // to far-future date for Algolia search purposes.
-        if (null != $data['application_deadline_text']) {
+        if (!empty($data['application_deadline_text'])) {
             $data['application_deadline_at'] = Carbon::create(2030, 12, 31, 23, 59);
         }
 
@@ -354,29 +354,29 @@ class ProjectRepository extends BaseRepository
             'keywords'
         );
 
-        if (null != $data['opportunity_start_at']) {
+        if (!empty($data['opportunity_start_at'])) {
             $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
         }
 
-        if (null != $data['opportunity_end_at']) {
+        if (!empty($data['opportunity_end_at'])) {
             $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
         }
 
-        if (null != $data['listing_start_at']) {
+        if (!empty($data['listing_start_at'])) {
             $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
         }
 
-        if (null != $data['listing_end_at']) {
+        if (!empty($data['listing_end_at'])) {
             $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
         }
 
-        if (null != $data['application_deadline_at']) {
+        if (!empty($data['application_deadline_at'])) {
             $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
         }
 
         // If text deadline value is set, that overrides any value in the date field, which is to be set
         // to far-future date for Algolia search purposes.
-        if ($data['application_deadline_text'] > '') {
+        if (!empty($data['application_deadline_text'])) {
             $data['application_deadline_at'] = Carbon::create(2030, 12, 31, 23, 59);
         }
 

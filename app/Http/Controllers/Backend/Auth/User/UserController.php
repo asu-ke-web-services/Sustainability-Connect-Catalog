@@ -100,12 +100,12 @@ class UserController extends Controller
      */
     public function show(ManageUserRequest $request, User $user)
     {
-        // $user->load(
-        //     // 'affiliations',
-        //     'organization',
-        //     'studentDegreeLevel',
-        //     'userType'
-        // );
+        $user->loadMissing(
+            'affiliations',
+            'organization',
+            'studentDegreeLevel',
+            'userType'
+        );
 
         return view('backend.auth.user.show')
             ->withUser($user);

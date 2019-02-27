@@ -37,56 +37,67 @@
                 <li id="menu-item-4" class="menu-item">
                     <a title="Internships" href="/internship" class="menu-item">Internships</a>
                 </li>
-                <li id="menu-item-5" class="menu-item">
-                    <a title="Submit an Opportunity" href="/project/submit" class="menu-item">Submit an
-                        Opportunity</a>
+                <li id="menu-item-5" class="menu-item menu-item-has-children dropdown">
+                    <a title="Submit an Opportunity" href="#" data-toggle="dropdown" class="menu-item" aria-haspopup="true">Submit an Opportunity <span class="caret"></span></a>
+                    <ul role="menu" class=" dropdown-menu">
+                        <li id="menu-item-6" class="menu-item">
+                            <a
+                                title="Submit Project" href="/project/submit"
+                                class="menu-item">Submit Project</a>
+                        </li>
+                        {{-- <li id="menu-item-7" class="menu-item">
+                            <a
+                                title="Submit Internship (Coming Soon)" href="#"
+                                class="menu-item">Submit Internship (Coming Soon)</a>
+                        </li> --}}
+                    </ul>
                 </li>
-                <li id="menu-item-6" class="menu-item">
+                <li id="menu-item-8" class="menu-item">
                     <a title="Success Stories"
                        href="{{ config('app.sc_base_url') }}/news/sustainability-connect-successes/"
                        class="menu-item">Success Stories</a>
                 </li>
-                <li id="menu-item-7" class="menu-item">
+                <li id="menu-item-9" class="menu-item">
                     <a title="News" href="{{ config('app.sc_base_url') }}/news/sustainability-connect-news/"
                        class="menu-item">News</a>
                 </li>
-                <li id="menu-item-8" class="menu-item menu-item-has-children dropdown">
+                <li id="menu-item-10" class="menu-item menu-item-has-children dropdown">
                     <a title="About" href="#" data-toggle="dropdown" class="menu-item" aria-haspopup="true">About <span class="caret"></span></a>
                     <ul role="menu" class=" dropdown-menu">
-                        <li id="menu-item-9" class="menu-item">
+                        <li id="menu-item-11" class="menu-item">
                             <a
                                 title="About Us" href="{{ config('app.sc_base_url') }}/about/"
                                 class="menu-item">About Us</a>
                         </li>
-                        <li id="menu-item-10" class="menu-item">
+                        <li id="menu-item-12" class="menu-item">
                             <a
                                 title="Contact Us" href="{{ config('app.sc_base_url') }}/about/contact-us/"
                                 class="menu-item">Contact Us</a>
                         </li>
-                        <li id="menu-item-11" class="menu-item">
+                        <li id="menu-item-13" class="menu-item">
                             <a
                                 title="Programs &amp; Partners"
                                 href="{{ config('app.sc_base_url') }}/about/programs-partners/"
                                 class="menu-item">Programs &amp;
                                 Partners</a>
                         </li>
-                        <li id="menu-item-12" class="menu-item">
+                        <li id="menu-item-14" class="menu-item">
                             <a
                                 title="Types of Opportunities"
                                 href="{{ config('app.sc_base_url') }}/about/types-of-opportunities/"
                                 class="menu-item">Types of Opportunities</a>
                         </li>
-                        <li id="menu-item-13" class="menu-item">
+                        <li id="menu-item-15" class="menu-item">
                             <a
                                 title="Why Work With Us"
                                 href="{{ config('app.sc_base_url') }}/about/why-work-with-us/"
                                 class="menu-item">Why Work With Us</a>
                         </li>
-                        <li id="menu-item-14" class="menu-item"><a
+                        <li id="menu-item-16" class="menu-item"><a
                                 title="Resources" href="{{ config('app.sc_base_url') }}/about/resources/"
                                 class="menu-item">Resources</a>
                         </li>
-                        <li id="menu-item-15" class="menu-item">
+                        <li id="menu-item-17" class="menu-item">
                             <a title="FAQ"
                                href="{{ config('app.sc_base_url') }}/about/faq/"
                                class="menu-item">FAQ</a>
@@ -94,14 +105,14 @@
                     </ul>
                 </li>
                 @if (Auth::check())
-                <li id="menu-item-16" class="menu-item">
+                <li id="menu-item-18" class="menu-item">
                     <a title="Dashboard" href="/" class="menu-item">Dashboard</a>
                 </li>
-                <li id="menu-item-17" class="menu-item">
+                <li id="menu-item-19" class="menu-item">
                     <a title="Sign Out" href="/logout" class="menu-item">Sign Out</a>
                 </li>
                 @else
-                <li id="menu-item-18" class="menu-item">
+                <li id="menu-item-20" class="menu-item">
                     <a title="Sign In" href="/login" class="menu-item">Sign In</a>
                 </li>
                 @endif

@@ -65,6 +65,16 @@ class ProjectRepository extends BaseRepository
     /**
      * @return mixed
      */
+    public function getFutureCount()
+    {
+        return $this->model
+            ->future()
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCompletedCount()
     {
         return $this->model

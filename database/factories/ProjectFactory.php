@@ -17,10 +17,13 @@ use SCCatalog\Models\Opportunity\Project;
 
 $factory->define(Project::class, function (Generator $faker) {
     return [
-		'name'                    => $faker->words(3, true),
-		'opportunity_status_id'   => $faker->numberBetween(3, 6),
-		'review_status_id'        => 3,
+        'name'                    => $faker->words(3, true),
+        'opportunity_status_id'   => 5,
+        'review_status_id'        => 3,
+        'listing_start_at'        => Carbon::now()->subDay(2),
+        'listing_end_at'          => Carbon::now()->addDay(2),
         'application_deadline_at' => Carbon::now()->addDays(7),
+        'description'             => 'Lorem ipsum',
     ];
 });
 

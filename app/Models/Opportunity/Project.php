@@ -295,7 +295,24 @@ class Project extends Model implements HasMedia
     }
 
     /**
-     * Should project be listed as expired listing?.
+     * Is project in Open status but without Listing Dates?
+     *
+     * @return bool
+     */
+    public function isInvalidOpen() : bool
+    {
+        return
+            empty($this->listing_end_at) &&
+            \in_array($this->opportunity_status_id, [
+                3, // Seeking Champions
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ], true);
+    }
+
+    /**
+     * Should project be listed as a Future listing?.
      *
      * @return bool
      */
@@ -633,6 +650,24 @@ class Project extends Model implements HasMedia
                 ['listing_end_at', '<>', null],
                 ['listing_end_at', '<', Carbon::tomorrow()],
             ])
+            ->whereIn('opportunity_status_id', [
+                3, // Seeking Champion
+                4, // Recruiting Participants
+                5, // Positions Filled
+                6, // In Progress
+            ]);
+    }
+
+    /**
+     * Open projects that were never updated with listing dates
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeInvalidOpen($query)
+    {
+        return $query
+            ->whereNull('listing_end_at')
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
                 4, // Recruiting Participants

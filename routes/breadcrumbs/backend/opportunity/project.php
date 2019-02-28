@@ -25,6 +25,11 @@ Breadcrumbs::for('admin.opportunity.project.expired', function ($trail) {
     $trail->push(__('menus.backend.opportunity.projects.expired'), route('admin.opportunity.project.expired'));
 });
 
+Breadcrumbs::for('admin.opportunity.project.invalid_open', function ($trail) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push(__('menus.backend.opportunity.projects.invalid_open'), route('admin.opportunity.project.invalid_open'));
+});
+
 Breadcrumbs::for('admin.opportunity.project.future', function ($trail) {
     $trail->parent('admin.opportunity.project.index');
     $trail->push(__('menus.backend.opportunity.projects.future'), route('admin.opportunity.project.future'));

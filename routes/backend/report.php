@@ -28,5 +28,6 @@ Route::group([
      */
     Route::get('project/active', 'ProjectStatusController@getActive')->name('project.active');
     Route::get('project/expired', 'ProjectStatusController@getExpired')->name('project.expired');
+    Route::get('project/invalid_open', 'ProjectStatusController@getInvalidOpen')->name('project.invalid_open');
     Route::get('project/future', 'ProjectStatusController@getFuture')->name('project.future');
 });

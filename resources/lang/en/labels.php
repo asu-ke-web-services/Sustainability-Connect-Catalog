@@ -141,6 +141,7 @@ return [
                 'all'                 => 'All Projects',
                 'active'              => 'Active Project Listings',
                 'expired'             => 'Expired Project Listings',
+                'invalid_open'        => 'Open Projects Missing Listing Dates',
                 'future'              => 'Future Project Listings',
                 'search'              => 'Search Projects',
                 'create'              => 'Post Project',

@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', app_name() . ' | '. __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.future'))
+@section ('title', app_name() . ' | '. __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.invalid_open'))
 
 @section('breadcrumb-links')
     @include('backend.opportunity.project.includes.breadcrumb-links')
@@ -9,7 +9,7 @@
 @push('after-scripts')
     <script>
         $('.datatable').DataTable({
-            "order": [[ 4, "{{ $defaultSort }}" ]],
+            "order": [[ 5, "{{ $defaultSort }}" ]],
             "lengthMenu": [[25, 50, -1], [25, 50, "All"]]
         });
         $('.datatable').attr('style', 'border-collapse: collapse !important');
@@ -23,7 +23,7 @@
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.opportunity.projects.management') }}
-                    <small class="text-muted">{{ __('labels.backend.opportunity.projects.future') }}</small>
+                    <small class="text-muted">{{ __('labels.backend.opportunity.projects.invalid_open') }}</small>
                 </h4>
             </div><!--col-->
             <div class="col-sm-7 pull-right">
@@ -39,8 +39,8 @@
                         <th>{{ __('labels.backend.opportunity.projects.table.name') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.status') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.location') }}</th>
-                        <th>{{ __('labels.backend.opportunity.projects.table.opportunity_start_at') }}</th>
                         <th>{{ __('labels.backend.opportunity.projects.table.listing_start_at') }}</th>
+                        <th>{{ __('labels.backend.opportunity.projects.table.listing_end_at') }}</th>
                         <th>{{ __('Created') }}</th>
                         <th>{{ __('labels.general.actions') }}</th>
                     </tr>
@@ -59,7 +59,7 @@
                                     {{ __('labels.general.none') }}
                                 @endif
                             </td>
-                            <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toDateString() : null }}</td>
+                            <td>{{ null !== $project->listing_start_at ? $project->listing_start_at->toDateString() : null }}</td>
                             <td>{{ null !== $project->listing_end_at ? $project->listing_end_at->toDateString() : null }}</td>
                             <td>{{ null !== $project->created_at ? $project->created_at->toDateString() : null }}</td>
                             <td>{!! $project->action_buttons !!}</td>

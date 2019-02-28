@@ -55,6 +55,19 @@ class ProjectStatusController extends Controller
      *
      * @return mixed
      */
+    public function getInvalidOpen(ManageProjectRequest $request)
+    {
+        return view('backend.opportunity.project.invalid_open')
+            ->withProjects($this->projectRepository->getInvalidOpenPaginated(10000, 'created_at', 'desc'))
+            ->with('defaultOrderBy', 'created_at')
+            ->with('defaultSort', 'desc');
+    }
+
+    /**
+     * @param ManageProjectRequest $request
+     *
+     * @return mixed
+     */
     public function getFuture(ManageProjectRequest $request)
     {
         return view('backend.opportunity.project.future')

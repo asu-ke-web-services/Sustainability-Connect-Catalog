@@ -145,6 +145,22 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
+    public function getInvalidOpenPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->invalidOpen()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int $paged
+     * @param string $search
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
     public function getFuturePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model

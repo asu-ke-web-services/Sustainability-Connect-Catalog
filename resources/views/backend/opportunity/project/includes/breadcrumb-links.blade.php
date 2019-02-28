@@ -8,6 +8,8 @@
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.create') }}">{{ __('menus.backend.opportunity.projects.create') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.active') }}">{{ __('menus.backend.opportunity.projects.active') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.expired') }}">{{ __('menus.backend.opportunity.projects.expired') }}</a>
+                <a class="dropdown-item" href="{{ route('admin.opportunity.project.invalid_open') }}">{{ __('menus.backend.opportunity.projects.invalid_open') }}</a>
+                <a class="dropdown-item" href="{{ route('admin.opportunity.project.future') }}">{{ __('menus.backend.opportunity.projects.future') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.completed') }}">{{ __('menus.backend.opportunity.projects.completed') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.archived') }}">{{ __('menus.backend.opportunity.projects.archived') }}</a>
                 <a class="dropdown-item" href="{{ route('admin.opportunity.project.deleted') }}">{{ __('menus.backend.opportunity.projects.deleted') }}</a>

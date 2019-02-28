@@ -207,6 +207,12 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/invalid_open*')) }}" href="{{ route('admin.report.project.invalid_open') }}">
+                                        {{ __('Invalid Open Projects') }}
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link {{ active_class(Active::checkUriPattern('admin/reports/project/future*')) }}" href="{{ route('admin.report.project.future') }}">
                                         {{ __('Future Projects') }}
                                     </a>

@@ -65,6 +65,7 @@ return [
                 'active'        => 'Active Listings',
                 'archived'      => 'Archived Projects',
                 'expired'       => 'Expired Listings',
+                'invalid_open'  => 'Invalid Open Projects',
                 'future'        => 'Future Listings',
                 'completed'     => 'Completed Projects',
                 'create'        => 'Create Project',

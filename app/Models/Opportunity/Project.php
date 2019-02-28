@@ -620,16 +620,19 @@ class Project extends Model implements HasMedia
     }
 
     /**
+     * Correctly published projects that have expired off the active listings
+     *
      * @param $query
      *
      * @return mixed
      */
     public function scopeExpired($query)
     {
-        return $query->where([
-            ['listing_end_at', '<>', null],
-            ['listing_end_at', '>', Carbon::today()],
-        ])
+        return $query
+            ->where([
+                ['listing_end_at', '<>', null],
+                ['listing_end_at', '<', Carbon::tomorrow()],
+            ])
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
                 4, // Recruiting Participants

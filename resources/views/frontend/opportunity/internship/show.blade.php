@@ -4,7 +4,7 @@
     <div class="container pad-bot-md pad-top-sm">
         <div class="col-sm-9">
             @include('frontend.opportunity.internship.show_fields')
-            <a href="{!! route('frontend.opportunity.internship.index') !!}" class="btn btn-default">Back</a>
+            <a href="{!! url()->previous() !!}" class="btn btn-default">Back</a>
         </div>
 
         <div class="col-sm-3 hidden-xs">

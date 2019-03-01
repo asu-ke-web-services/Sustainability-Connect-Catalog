@@ -149,22 +149,22 @@ class UserRepository extends BaseRepository
         $user->last_name = $input['last_name'];
         $user->avatar_type = $input['avatar_type'];
 
-        if (isset($input['user_type_id'])) {
+        if (!empty($input['user_type_id'])) {
             $user->user_type_id = $input['user_type_id'];
         }
-        if (isset($input['degree_program'])) {
+        if (!empty($input['degree_program'])) {
             $user->degree_program = $input['degree_program'];
         }
-        if (isset($input['graduation_date'])) {
+        if (!empty($input['graduation_date'])) {
             $user->graduation_date = $input['graduation_date'];
         }
-        if (isset($input['phone'])) {
+        if (!empty($input['phone'])) {
             $user->phone = $input['phone'];
         }
-        if (isset($input['research_interests'])) {
+        if (!empty($input['research_interests'])) {
             $user->research_interests = $input['research_interests'];
         }
-        if (isset($input['department'])) {
+        if (!empty($input['department'])) {
             $user->department = $input['department'];
         }
 

@@ -172,28 +172,28 @@ class InternshipRepository extends BaseRepository
 
             if ($internship) {
                 // save Addresses
-                if ( isset($data['addresses'] ) ) {
+                if ( !empty($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
                         $internship->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
 
                 // attach Affiliations
-                if ( isset($data['affiliations'] ) ) {
+                if ( !empty($data['affiliations'] ) ) {
                     foreach ($data['affiliations'] as $affiliation) {
                         $internship->affiliations()->attach($affiliation);
                     }
                 }
 
                 // attach Categories
-                if ( isset($data['categories'] ) ) {
+                if ( !empty($data['categories'] ) ) {
                     foreach ($data['categories'] as $category) {
                         $internship->categories()->attach($category);
                     }
                 }
 
                 // attach Keywords
-                if ( isset($data['keywords'] ) ) {
+                if ( !empty($data['keywords'] ) ) {
                     foreach ($data['keywords'] as $keyword) {
                         $internship->keywords()->attach($keyword);
                     }
@@ -256,7 +256,7 @@ class InternshipRepository extends BaseRepository
 
             if ($internship->update($data)) {
                 // save Addresses
-                if ( isset($data['addresses'] ) ) {
+                if ( !empty($data['addresses'] ) ) {
                     foreach ($data['addresses'] as $address) {
                         $internship->addresses()->save(Address::firstOrCreate($address));
                     }

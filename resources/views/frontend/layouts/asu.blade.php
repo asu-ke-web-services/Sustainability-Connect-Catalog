@@ -26,13 +26,8 @@
         <link rel="stylesheet" href="https://static.sustainability.asu.edu/asu-theme/asu-header/css/asu-nav.css">
         {{--{{ style(mix('css/frontend.css')) }}--}}
 
-        <!-- Ionicons -->
-        <link rel="stylesheet" href="/ionicons/css/ionicons.min.css">
-        <!-- Theme style -->
-        {{-- <link rel="stylesheet" href="/css/adminlte/AdminLTE.css">
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="/css/adminlte/skins/_all-skins.min.css"> --}}
+        @section('styles')
+        @show
 
         @stack('after-styles')
 

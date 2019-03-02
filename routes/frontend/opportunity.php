@@ -44,6 +44,6 @@ Route::group([
     /*
      * Internship CRUD
      */
-    Route::get('internship', 'InternshipController@index')->name('internship.index');
+    Route::get('internship', 'InternshipSearchController@searchActive')->name('internship.search_active');
     Route::get('internship/{internship}', 'InternshipController@show')->name('internship.show');
 });

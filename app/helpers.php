@@ -82,8 +82,8 @@ if (! function_exists('home_route')) {
             }
         }
 
-        return 'frontend.opportunity.project.index';
-        // return config('app.url');
+        return 'frontend.opportunity.project.search_active';
+        // return config('app.sc_base_url');
     }
 }
 

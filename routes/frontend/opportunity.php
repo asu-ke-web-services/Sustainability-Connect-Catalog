@@ -36,14 +36,14 @@ Route::group([
     /*
      * Project CRUD
      */
-    Route::get('project', 'ProjectController@index')->name('project.index');
-    Route::get('project/completed', 'ProjectController@completed')->name('project.completed');
+    Route::get('project', 'ProjectSearchController@searchActive')->name('project.search_active');
+    Route::get('project/completed', 'ProjectSearchController@searchCompleted')->name('project.search_completed');
     Route::post('project', 'ProjectController@store')->name('project.store');
     Route::get('project/{project}', 'ProjectController@show')->name('project.show');
 
     /*
      * Internship CRUD
      */
-    Route::get('internship', 'InternshipController@index')->name('internship.index');
+    Route::get('internship', 'InternshipSearchController@searchActive')->name('internship.search_active');
     Route::get('internship/{internship}', 'InternshipController@show')->name('internship.show');
 });

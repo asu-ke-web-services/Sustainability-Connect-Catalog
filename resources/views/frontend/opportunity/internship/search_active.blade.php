@@ -41,7 +41,7 @@
                                 @if (!$canViewRestricted && $restrictAccess)
                                     View Restricted for SOS majors only
                                 @else
-                                    <b><a href="{!! url()->previous() !!}">{{ ucwords($internship->name) }}</a></b>
+                                    <b><a href="{!! route('frontend.opportunity.internship.show', $internship) !!}">{{ ucwords($internship->name) }}</a></b>
                                 @endif
                             </td>
                             <td>

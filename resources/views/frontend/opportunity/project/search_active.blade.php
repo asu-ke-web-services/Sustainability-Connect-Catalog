@@ -42,7 +42,7 @@
                         @if (!$canViewRestricted && $restrictAccess)
                             View Restricted for SOS majors only
                         @else
-                            <b><a href="{!! url()->previous() !!}">{{ ucwords($project->name) }}</a></b>
+                            <b><a href="{!! route('frontend.opportunity.project.show', $project) !!}">{{ ucwords($project->name) }}</a></b>
                         @endif
                         </td>
                         <td class="icon-column">

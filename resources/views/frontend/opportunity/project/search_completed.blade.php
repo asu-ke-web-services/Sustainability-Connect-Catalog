@@ -22,7 +22,7 @@
             <tbody>
                 @foreach ($projects as $project)
                     <tr>
-                        <td><a href="{{ route('frontend.opportunity.project.show', $project) }}">{{ ucwords($project->name) }}</a></td>
+                        <td><a href="{!! route('frontend.opportunity.project.show', $project) !!}">{{ ucwords($project->name) }}</a></td>
                         <td class="icon-column">
                             @foreach ($project->affiliations as $icon)
                                 @unless(empty($icon->frontend_fa_icon))

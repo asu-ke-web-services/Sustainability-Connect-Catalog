@@ -442,3 +442,55 @@
             </div><!--row-->
         </div><!--card-body-->
     </div><!--card-->
+
+@section('javascript')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" ></script>
+    <script>
+        //# sourceMappingURL=text-editor.js.map
+        $('#project-form').validate({
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 1024
+                },
+                "description": 'required',
+                "opportunity_status_id": 'required',
+                "implementation_paths": 'required',
+                "sustainability_contribution": 'required',
+                "addresses[0][city]": 'required',
+                "addresses[0][state]": 'required'
+            },
+            messages: {
+                "name": {
+                    required: 'Please enter the project name',
+                    maxlength: 'The project name may not be longer than 1024 characters'
+                },
+                "description": 'Please enter the project description',
+                "opportunity_status_id": 'Please select the project status',
+                "implementation_paths": 'Please enter the project solution',
+                "sustainability_contribution": 'Please enter the project deliverables',
+                "addresses[0][city]": 'Please enter the project city',
+                "addresses[0][state]": 'Please enter the project state'
+            },
+            errorElement: 'em',
+            errorPlacement: function errorPlacement(error, element) {
+                error.addClass('invalid-feedback');
+
+                if (element.prop('type') === 'checkbox') {
+                    error.insertAfter(element.parent('label'));
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            // eslint-disable-next-line object-shorthand
+            highlight: function highlight(element) {
+                $(element).addClass('is-invalid').removeClass('is-valid');
+            },
+            // eslint-disable-next-line object-shorthand
+            unhighlight: function unhighlight(element) {
+                $(element).addClass('is-valid').removeClass('is-invalid');
+            }
+        });
+        //# sourceMappingURL=validation.js.map
+    </script>
+@endsection

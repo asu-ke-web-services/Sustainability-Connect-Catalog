@@ -56,5 +56,8 @@
     {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/backend.js')) !!}
     @stack('after-scripts')
+
+    @section('javascript')
+    @show
 </body>
 </html>

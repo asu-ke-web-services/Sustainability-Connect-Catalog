@@ -3,7 +3,7 @@
 @section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('labels.backend.opportunity.projects.edit'))
 
 @section('content')
-{{ html()->modelForm($project, 'PATCH', route('admin.opportunity.project.update', $project))->class('form-horizontal')->open() }}
+{{ html()->modelForm($project, 'PATCH', route('admin.opportunity.project.update', $project))->id('project-form')->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">

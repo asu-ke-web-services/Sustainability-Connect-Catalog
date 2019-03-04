@@ -161,7 +161,7 @@
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({
-                "order": [ 5, 'asc' ],
+                "order": [ 4, 'asc' ],
                 "lengthMenu": [ [25, 50, 100], [25, 50, 100] ]
             });
             $('[data-toggle="tooltip"]').tooltip();

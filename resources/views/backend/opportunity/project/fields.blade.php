@@ -31,14 +31,6 @@
                         'object'      => $project ?? null,
                     ])@endcomponent
 
-                    <!-- Needs Review Field -->
-                    @component('backend.includes.components.form.checkbox', [
-                        'name'        => 'needs_review',
-                        'label'       => 'Needs Review?',
-                        'default'     => 0,
-                        'object'  => $project ?? null,
-                    ])@endcomponent
-
                 </div><!--col-->
             </div><!--row-->
         </div><!--card-body-->

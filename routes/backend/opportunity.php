@@ -67,5 +67,12 @@ Route::group([
         // Deleted
         Route::get('delete', 'InternshipStatusController@delete')->name('internship.delete-permanently');
         Route::get('restore', 'InternshipStatusController@restore')->name('internship.restore');
+
+        // Internship Attachments
+        Route::get('attachment', 'InternshipAttachmentController@add')->name('internship.add_attachment');
+        Route::post('attachment', 'InternshipAttachmentController@store')->name('internship.store_attachment');
+        // Route::get('attachment/{media}', 'InternshipAttachmentController@edit')->name('internship.edit_attachment');
+        // Route::post('attachment/{media}', 'InternshipAttachmentController@update')->name('internship.update_attachment');
+        Route::get('attachment/{media}/delete', 'InternshipAttachmentController@delete')->name('internship.delete_attachment');
     });
 });

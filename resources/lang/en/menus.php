@@ -54,6 +54,7 @@ return [
                 'inactive'    => 'Inactive Internships',
                 'deleted'     => 'Deleted Internships',
                 'edit'        => 'Edit Internship',
+                'add_attachment' => 'Upload Internship Attachment',
                 'management'  => 'Internship Management',
                 'main'        => 'Internships',
                 'view'        => 'View Internship',

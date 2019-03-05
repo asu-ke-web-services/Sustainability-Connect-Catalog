@@ -44,3 +44,13 @@ Breadcrumbs::for('admin.opportunity.internship.edit', function ($trail, $id) {
     $trail->parent('admin.opportunity.internship.index');
     $trail->push(__('menus.backend.opportunity.internships.edit'), route('admin.opportunity.internship.edit', $id));
 });
+
+Breadcrumbs::for('admin.opportunity.internship.add_attachment', function ($trail, $internship) {
+    $trail->parent('admin.opportunity.internship.index');
+    $trail->push(__('menus.backend.opportunity.internships.add_attachment'), route('admin.opportunity.internship.add_attachment', $internship));
+});
+
+Breadcrumbs::for('admin.opportunity.internship.edit_attachment', function ($trail, $internship, $media) {
+    $trail->parent('admin.opportunity.internship.index');
+    $trail->push(__('menus.backend.opportunity.internships.edit_attachment'), route('admin.opportunity.internship.edit_attachment', $internship, $media));
+});

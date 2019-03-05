@@ -17,7 +17,7 @@
             data-method="delete"
             data-trans-button-cancel="{{ __('buttons.general.cancel') }}"
             data-trans-button-confirm="{{ __('buttons.general.crud.delete') }}"
-            data-trans-title="{{ __('strings.backend.general.are_you_sure') }}"
+            data-trans-title="{{ __('strings.backend.opportunity.internships.delete_internship') }}"
             class="btn btn-danger ml-1">
         <i class="fas fa-trash"
                 data-toggle="tooltip"

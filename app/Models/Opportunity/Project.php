@@ -161,7 +161,7 @@ class Project extends Model implements HasMedia
                  data-method="delete"
                  data-trans-button-cancel="' . __('buttons.general.cancel') . '"
                  data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
-                 data-trans-title="' . __('strings.backend.general.are_you_sure') . '"
+                 data-trans-title="' . __('strings.backend.opportunity.projects.delete_project') . '"
                  class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
         }
 

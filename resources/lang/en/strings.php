@@ -16,12 +16,14 @@ return [
     'backend' => [
         'opportunity' => [
             'internships' => [
+                'delete_internship'  => 'Are you sure you want to delete this internship?',
                 'delete_internship_confirm'  => 'Are you sure you want to delete this internship permanently? Anywhere in the application that references this internship\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
                 'no_archived'                => 'There are no archived internships.',
                 'no_deleted'                 => 'There are no deleted internships.',
                 'restore_internship_confirm' => 'Restore this internship to its original state?',
             ],
             'projects' => [
+                'delete_project'  => 'Are you sure you want to delete this project?',
                 'delete_project_confirm'  => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
                 'no_archived'             => 'There are no archived projects.',
                 'no_deleted'              => 'There are no deleted projects.',

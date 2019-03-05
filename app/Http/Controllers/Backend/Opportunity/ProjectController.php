@@ -84,19 +84,18 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-            StoreProjectRequest $request,
-            AffiliationRepository $affiliationRepository,
-            BudgetTypeRepository $budgetTypeRepository,
-            CategoryRepository $categoryRepository,
-            KeywordRepository $keywordRepository,
-            OpportunityStatusRepository $opportunityStatusRepository,
-            OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
-            OrganizationRepository $organizationRepository,
-            UserRepository $userRepository
-    )
-    {
+        StoreProjectRequest $request,
+        AffiliationRepository $affiliationRepository,
+        BudgetTypeRepository $budgetTypeRepository,
+        CategoryRepository $categoryRepository,
+        KeywordRepository $keywordRepository,
+        OpportunityStatusRepository $opportunityStatusRepository,
+        OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
+        OrganizationRepository $organizationRepository,
+        UserRepository $userRepository
+    ) {
         return view('backend.opportunity.project.create')
-            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1,2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -213,8 +212,7 @@ class ProjectController extends Controller
         OrganizationRepository $organizationRepository,
         UserRepository $userRepository,
         Project $project
-    )
-    {
+    ) {
         $project->loadMissing(
             'addresses',
             'notes',
@@ -234,7 +232,7 @@ class ProjectController extends Controller
 
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
-            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1,2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -288,12 +286,9 @@ class ProjectController extends Controller
      */
     public function clone(CloneProjectRequest $request, Project $project)
     {
-        // $project = $this->projectRepository->getById($projectId);
-
         $clone = $this->projectRepository->clone($project);
 
         return redirect()->route('admin.backend.opportunity.project.show', $clone)
             ->withFlashSuccess('Project cloned successfully');
     }
-
 }

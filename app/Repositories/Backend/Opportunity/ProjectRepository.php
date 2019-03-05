@@ -99,7 +99,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getSearchPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getSearchPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->orderBy($orderBy, $sort)
@@ -113,7 +113,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->active()
@@ -129,7 +129,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getExpiredPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getExpiredPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->expired()
@@ -145,7 +145,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getInvalidOpenPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getInvalidOpenPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->invalidOpen()
@@ -161,7 +161,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getFuturePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getFuturePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->future()
@@ -176,7 +176,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getAllPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getAllPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->orderBy($orderBy, $sort)
@@ -190,7 +190,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getPublishedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getPublishedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->isPublished()
@@ -205,7 +205,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getArchivedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getArchivedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->archived()
@@ -220,7 +220,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getCompletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getCompletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->completed()
@@ -235,7 +235,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return LengthAwarePaginator
      */
-    public function getDeletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getDeletedPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->onlyTrashed()
@@ -250,7 +250,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return LengthAwarePaginator
      */
-    public function getImportReviewsPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getImportReviewsPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->needsImportReview()
@@ -265,7 +265,7 @@ class ProjectRepository extends BaseRepository
      *
      * @return LengthAwarePaginator
      */
-    public function getProposalReviewsPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getProposalReviewsPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
             ->proposalNeedsReview()
@@ -316,28 +316,28 @@ class ProjectRepository extends BaseRepository
 
             if ($project) {
                 // save Addresses
-                if ( !empty($data['addresses'] ) ) {
+                if (!empty($data['addresses'])) {
                     foreach ($data['addresses'] as $address) {
                         $project->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
 
                 // attach Affiliations
-                if ( !empty($data['affiliations'] ) ) {
+                if (!empty($data['affiliations'])) {
                     foreach ($data['affiliations'] as $affiliation) {
                         $project->affiliations()->attach($affiliation);
                     }
                 }
 
                 // attach Categories
-                if ( !empty($data['categories'] ) ) {
+                if (!empty($data['categories'])) {
                     foreach ($data['categories'] as $category) {
                         $project->categories()->attach($category);
                     }
                 }
 
                 // attach Keywords
-                if ( !empty($data['keywords'] ) ) {
+                if (!empty($data['keywords'])) {
                     foreach ($data['keywords'] as $keyword) {
                         $project->keywords()->attach($keyword);
                     }
@@ -400,11 +400,26 @@ class ProjectRepository extends BaseRepository
 
             if ($project->update($data)) {
                 // save Addresses
-                if ( !empty($data['addresses'] ) ) {
+                if (!empty($data['addresses'])) {
                     foreach ($data['addresses'] as $address) {
                         $project->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
+
+                if (isset($data['file_attachment'])) {
+                    $project->addMedia($data['file_attachment'])
+                        // ->sanitizingFileName(function($fileName) {
+                        //     return strtolower(str_replace(['#', '/', '\\', ' ', ',', ';', '!'], '-', $fileName));
+                        // })
+                        ->withCustomProperties([
+                            // 'type'       => $old_file->type,
+                            // 'visibility' => $old_file->visibility,
+                            'pending'    => 1,
+                            'deleted'    => 0,
+                        ])
+                        ->toMediaCollection();
+                }
+
 
                 // sync Affiliations
                 $project->affiliations()->sync(array_filter($data['affiliations'] ?? []) ?? null);
@@ -495,7 +510,7 @@ class ProjectRepository extends BaseRepository
             //     }
             // }
 
-            if ( $clone ) {
+            if ($clone) {
 
                 event(new ProjectCloned($clone));
 
@@ -513,14 +528,14 @@ class ProjectRepository extends BaseRepository
      * @return bool
      * @throws \Throwable
      */
-    public function deleteById($project_id) : bool
+    public function deleteById($project_id): bool
     {
         return DB::transaction(function () use ($project_id) {
             $project = parent::getById($project_id);
 
             if (parent::deleteById($project_id)) {
 
-                event(new ProjectUpdated($project));
+                // event(new ProjectUpdated($project));
 
                 return true;
             }

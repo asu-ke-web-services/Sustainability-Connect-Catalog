@@ -7,7 +7,7 @@ Route::group([
     'prefix'     => 'opportunity',
     'as'         => 'opportunity.',
     'namespace'  => 'Opportunity',
-//    'middleware' => 'role:'.config('access.users.admin_role'),
+    //    'middleware' => 'role:'.config('access.users.admin_role'),
 ], function () {
 
     /*

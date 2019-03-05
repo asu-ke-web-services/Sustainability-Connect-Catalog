@@ -20,15 +20,16 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  */
 class Project extends Model implements HasMedia
 {
-    use BlameableTrait,
+    use
+        BlameableTrait,
         HasMediaTrait,
         // RevisionableTrait,
         Searchable,
         SoftDeletes;
-        // OpportunityAttribute,
-        // OpportunityMethod,
-        // OpportunityRelationship,
-        // OpportunityScope;
+    // OpportunityAttribute,
+    // OpportunityMethod,
+    // OpportunityRelationship,
+    // OpportunityScope;
 
     /*
     |--------------------------------------------------------------------------
@@ -121,33 +122,33 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getShowButtonAttribute() : string
+    public function getShowButtonAttribute(): string
     {
-        return '<a href="'.route('admin.opportunity.project.show', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+        return '<a href="' . route('admin.opportunity.project.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
 
     /**
      * @return string
      */
-    public function getCloneButtonAttribute() : string
+    public function getCloneButtonAttribute(): string
     {
-        return '<a href="'.route('admin.opportunity.project.clone', $this).'" class="dropdown-item">'.__('buttons.general.crud.clone').'</a>';
+        return '<a href="' . route('admin.opportunity.project.clone', $this) . '" class="dropdown-item">' . __('buttons.general.crud.clone') . '</a>';
     }
 
     /**
      * @return string
      */
-    public function getEditButtonAttribute() : string
+    public function getEditButtonAttribute(): string
     {
-        return '<a href="'.route('admin.opportunity.project.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
+        return '<a href="' . route('admin.opportunity.project.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
     }
 
     /**
      * @return string
      */
-    public function getPrintButtonAttribute() : string
+    public function getPrintButtonAttribute(): string
     {
-        return '<a href="'.route('admin.opportunity.project.print', $this).'" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
+        return '<a href="' . route('admin.opportunity.project.print', $this) . '" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
     }
 
     /**
@@ -156,12 +157,12 @@ class Project extends Model implements HasMedia
     public function getDeleteButtonAttribute()
     {
         if ($this->id != auth()->id() && $this->id != 1) {
-            return '<a href="'.route('admin.opportunity.project.destroy', $this).'"
+            return '<a href="' . route('admin.opportunity.project.destroy', $this) . '"
                  data-method="delete"
-                 data-trans-button-cancel="'.__('buttons.general.cancel').'"
-                 data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
-                 data-trans-title="'.__('strings.backend.general.are_you_sure').'"
-                 class="dropdown-item">'.__('buttons.general.crud.delete').'</a> ';
+                 data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+                 data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+                 data-trans-title="' . __('strings.backend.general.are_you_sure') . '"
+                 class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
         }
 
         return '';
@@ -170,41 +171,41 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDeletePermanentlyButtonAttribute() : string
+    public function getDeletePermanentlyButtonAttribute(): string
     {
-        return '<a href="'.route('admin.opportunity.project.delete-permanently', $this).'" name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.opportunity.project.delete_permanently').'"></i></a> ';
+        return '<a href="' . route('admin.opportunity.project.delete-permanently', $this) . '" name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="' . __('buttons.backend.opportunity.project.delete_permanently') . '"></i></a> ';
     }
 
     /**
      * @return string
      */
-    public function getRestoreButtonAttribute() : string
+    public function getRestoreButtonAttribute(): string
     {
-        return '<a href="'.route('admin.opportunity.project.restore', $this).'" name="confirm_item" class="btn btn-info"><i class="fas fa-refresh" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.opportunity.project.restore').'"></i></a> ';
+        return '<a href="' . route('admin.opportunity.project.restore', $this) . '" name="confirm_item" class="btn btn-info"><i class="fas fa-refresh" data-toggle="tooltip" data-placement="top" title="' . __('buttons.backend.opportunity.project.restore') . '"></i></a> ';
     }
 
     /**
      * @return string
      */
-    public function getActionButtonsAttribute() : string
+    public function getActionButtonsAttribute(): string
     {
         if ($this->trashed()) {
             return '
                 <div class="btn-group" role="group" aria-label="Actions">
-                  '.$this->restore_button.'
-                  '.$this->delete_permanently_button.'
+                  ' . $this->restore_button . '
+                  ' . $this->delete_permanently_button . '
                 </div>';
         }
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-            '.$this->show_button.'
-            '.$this->edit_button.'
+            ' . $this->show_button . '
+            ' . $this->edit_button . '
 
             <div class="btn-group btn-group-sm" role="group">
                 <button id="projectActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    '.__('labels.general.more').'
+                    ' . __('labels.general.more') . '
                 </button>
                 <div class="dropdown-menu" aria-labelledby="projectActions">
-                    '.$this->delete_button.'
+                    ' . $this->delete_button . '
                 </div>
             </div>
             </div>';
@@ -213,24 +214,24 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getRemoveUserButtonAttribute() : string
+    public function getRemoveUserButtonAttribute(): string
     {
-        return '<a href="'.route('admin.opportunity.project.destroy', $this).'"
+        return '<a href="' . route('admin.opportunity.project.destroy', $this) . '"
              data-method="delete"
-             data-trans-button-cancel="'.__('buttons.general.cancel').'"
-             data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
-             data-trans-title="'.__('strings.backend.general.are_you_sure').'"
-             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.delete').'"></i></a> ';
+             data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+             data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+             data-trans-title="' . __('strings.backend.general.are_you_sure') . '"
+             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.delete') . '"></i></a> ';
     }
 
     /**
      * @return string
      */
-    public function getUserActionButtonsAttribute() : string
+    public function getUserActionButtonsAttribute(): string
     {
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-              '.$this->show_button.'
-              '.$this->remove_user_button.'
+              ' . $this->show_button . '
+              ' . $this->remove_user_button . '
             </div>';
     }
 
@@ -245,7 +246,7 @@ class Project extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isPublished() : bool
+    public function isPublished(): bool
     {
         return \in_array($this->opportunity_status_id, [
             3, // Seeking Champions
@@ -261,7 +262,7 @@ class Project extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isActive() : bool
+    public function isActive(): bool
     {
         return
             $this->listing_start_at !== null &&
@@ -281,7 +282,7 @@ class Project extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isExpired() : bool
+    public function isExpired(): bool
     {
         return
             $this->listing_end_at !== null &&
@@ -299,7 +300,7 @@ class Project extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isInvalidOpen() : bool
+    public function isInvalidOpen(): bool
     {
         return
             empty($this->listing_end_at) &&
@@ -316,7 +317,7 @@ class Project extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isFuture() : bool
+    public function isFuture(): bool
     {
         return
             $this->listing_start_at !== null &&
@@ -334,25 +335,25 @@ class Project extends Model implements HasMedia
      *
      * @return bool
      */
-    public function isCompleted() : bool
+    public function isCompleted(): bool
     {
         return 7 === $this->opportunity_status_id;
 
         // return (
-            // $this->isPublished() &&
-            // null !== $this->listing_start_at &&
-            // null !== $this->listing_end_at &&
-            // $this->listing_start_at->lessThan(Carbon::today()) &&
-            // $this->listing_end_at->greaterThan(Carbon::today())
+        // $this->isPublished() &&
+        // null !== $this->listing_start_at &&
+        // null !== $this->listing_end_at &&
+        // $this->listing_start_at->lessThan(Carbon::today()) &&
+        // $this->listing_end_at->greaterThan(Carbon::today())
         // );
     }
 
-    public function shouldBeSearchable() : bool
+    public function shouldBeSearchable(): bool
     {
         return $this->isPublished();
     }
 
-    public function toSearchableArray() : array
+    public function toSearchableArray(): array
     {
         $project = array();
 
@@ -423,7 +424,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function budgetType() : BelongsTo
+    public function budgetType(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\BudgetType::class, 'budget_type_id');
     }
@@ -431,7 +432,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function reviewStatus() : BelongsTo
+    public function reviewStatus(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityReviewStatus::class, 'review_status_id');
     }
@@ -439,7 +440,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function status() : BelongsTo
+    public function status(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\OpportunityStatus::class, 'opportunity_status_id');
     }
@@ -455,7 +456,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function organization() : BelongsTo
+    public function organization(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id');
     }
@@ -463,7 +464,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function supervisorUser() : BelongsTo
+    public function supervisorUser(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'supervisor_user_id');
     }
@@ -471,7 +472,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function submittingUser() : BelongsTo
+    public function submittingUser(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'submitting_user_id');
     }
@@ -479,7 +480,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function users() : BelongsToMany
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
@@ -489,18 +490,19 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function activeMembers() : BelongsToMany
+    public function activeMembers(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
-            ->wherePivotIn('relationship_type_id', [2,3,4,5]);
+            ->wherePivotIn('relationship_type_id', [2, 3, 4, 5]);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function followers() : BelongsToMany {
+    public function followers(): BelongsToMany
+    {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
@@ -510,7 +512,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function applicants() : BelongsToMany
+    public function applicants(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
@@ -521,7 +523,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function participants() : BelongsToMany
+    public function participants(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
@@ -532,19 +534,19 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function mentors() : BelongsToMany
+    public function mentors(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
             ->withPivot('relationship_type_id', 'comments')
             ->withTimestamps()
-            ->wherePivotIn('relationship_type_id', [4,5]);
+            ->wherePivotIn('relationship_type_id', [4, 5]);
     }
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      **/
-    public function addresses() : MorphMany
+    public function addresses(): MorphMany
     {
         return $this->morphMany(\SCCatalog\Models\Address\Address::class, 'addressable');
     }
@@ -552,7 +554,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      **/
-    public function notes() : MorphMany
+    public function notes(): MorphMany
     {
         return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'notable');
     }
@@ -561,7 +563,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      **/
-    public function affiliations() : MorphToMany
+    public function affiliations(): MorphToMany
     {
         return $this->morphToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliationable');
     }
@@ -569,7 +571,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      **/
-    public function accessAffiliations() : MorphToMany
+    public function accessAffiliations(): MorphToMany
     {
         return $this->morphToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliationable')
             ->where([
@@ -580,7 +582,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      **/
-    public function categories() : MorphToMany
+    public function categories(): MorphToMany
     {
         return $this->morphToMany(\SCCatalog\Models\Lookup\Category::class, 'categorisable');
     }
@@ -588,7 +590,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      **/
-    public function keywords() : MorphToMany
+    public function keywords(): MorphToMany
     {
         return $this->morphToMany(\SCCatalog\Models\Lookup\Keyword::class, 'keywordable');
     }
@@ -596,7 +598,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function createdByUser() : BelongsTo
+    public function createdByUser(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'created_by');
     }
@@ -604,7 +606,7 @@ class Project extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function updatedByUser() : BelongsTo
+    public function updatedByUser(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'updated_by');
     }
@@ -623,11 +625,11 @@ class Project extends Model implements HasMedia
     public function scopeActive($query)
     {
         return $query->where([
-                ['listing_start_at', '<>', null],
-                ['listing_start_at', '<', Carbon::tomorrow()],
-                ['listing_end_at', '<>', null],
-                ['listing_end_at', '>', Carbon::today()],
-            ])
+            ['listing_start_at', '<>', null],
+            ['listing_start_at', '<', Carbon::tomorrow()],
+            ['listing_end_at', '<>', null],
+            ['listing_end_at', '>', Carbon::today()],
+        ])
             ->whereIn('opportunity_status_id', [
                 3, // Seeking Champion
                 4, // Recruiting Participants
@@ -800,5 +802,4 @@ class Project extends Model implements HasMedia
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
 }

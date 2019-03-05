@@ -49,9 +49,9 @@
                         <a class="nav-link" data-toggle="tab" href="#notes" role="tab" aria-controls="notes" aria-expanded="true"> {{ __('labels.backend.opportunity.projects.tabs.titles.notes') }}</a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-expanded="true"> {{ __('labels.backend.opportunity.projects.tabs.titles.history') }}</a>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 <div class="tab-content">
@@ -79,9 +79,9 @@
                         @include('backend.opportunity.project.show.tabs.notes')
                     </div><!--tab-->
 
-                    <div class="tab-pane" id="history" role="tabpanel" aria-expanded="true">
+                    {{-- <div class="tab-pane" id="history" role="tabpanel" aria-expanded="true">
                         @include('backend.opportunity.project.show.tabs.history')
-                    </div><!--tab-->
+                    </div><!--tab--> --}}
 
                 </div><!--tab-content-->
             </div><!--col-->

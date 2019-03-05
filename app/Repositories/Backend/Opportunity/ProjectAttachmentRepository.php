@@ -4,6 +4,7 @@ namespace SCCatalog\Repositories\Backend\Opportunity;
 
 use Illuminate\Support\Facades\DB;
 use SCCatalog\Models\Opportunity\Project;
+use Spatie\MediaLibrary\Media;
 
 /**
  * Class ProjectAttachmentRepository
@@ -19,24 +20,22 @@ class ProjectAttachmentRepository
      * @return \Illuminate\Database\Eloquent\Model
      * @throws \Throwable
      */
-    public function create(Project $project, array $data)
+    public function store(Project $project, array $data)
     {
         return DB::transaction(function () use ($project, $data) {
 
-            $media = $project->addMedia($data['file'])
-                ->preservingOriginal()
-                ->usingName($data['name'])
-                ->sanitizingFileName(function($fileName) {
-                    return strtolower(str_replace(['#', '/', '\\', ' ', ',', ';', '!'], '-', $fileName));
-                })
-                ->withCustomProperties([
-                    'type'       => $data['type'],
-                    'visibility' => $data['visibility'],
-                    'pending'    => $data['pending'],
-                ])
-                ->toMediaCollection();
+            if (isset($data['file_attachment'])) {
+                $project->addMedia($data['file_attachment'])
+                    ->withCustomProperties([
+                        'type'       => $data['attachment_type'] ?? 'other',
+                        'visibility' => $data['attachment_status'] ?? 'private',
+                        'pending'    => 0,
+                        'deleted'    => 0,
+                    ])
+                    ->toMediaCollection();
 
-            event(new AttachmentAddedToProject($project, $media));
+                // event(new ProjectAttachmentUploaded($project));
+            }
 
             return $project;
         });
@@ -51,43 +50,43 @@ class ProjectAttachmentRepository
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-//    public function update(Project $project, int $mediaId, array $data)
-//    {
-//        return DB::transaction(function () use ($project, $mediaId, $data) {
-//
-//            $media = $project->updateMedia($data['file'])
-//                ->preservingOriginal()
-//                ->usingName($data['name'])
-//                ->sanitizingFileName(function($fileName) {
-//                    return strtolower(str_replace(['#', '/', '\\', ' ', ',', ';', '!'], '-', $fileName));
-//                })
-//                ->withCustomProperties([
-//                    'type'       => $data['type'],
-//                    'visibility' => $data['visibility'],
-//                    'pending'    => $data['pending'],
-//                ])
-//                ->toMediaCollection();
-//
-//            event(new AttachmentAddedToProject($project, $media));
-//
-//            return $project;
-//        });
-//    }
+    public function update(Project $project, Media $media, array $data)
+    {
+        return DB::transaction(function () use ($project, $media, $data) {
+
+            $media = $project->updateMedia($media->id)
+                // ->preservingOriginal()
+                // ->usingName($data['name'])
+                // ->sanitizingFileName(function ($fileName) {
+                //     return strtolower(str_replace(['#', '/', '\\', ' ', ',', ';', '!'], '-', $fileName));
+                // })
+                ->withCustomProperties([
+                    'type'       => $data['type'],
+                    'visibility' => $data['visibility'],
+                    'pending'    => $data['pending'],
+                ])
+                ->toMediaCollection();
+
+            // event(new AttachmentAddedToProject($project, $media));
+
+            return $project;
+        });
+    }
 
     /**
      * Delete an attachment from a project in the database.
      *
      * @param Project $project
-     * @param int $mediaId
+     * @param Media $media
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function deleteById(Project $project, int $mediaId)
+    public function delete(Project $project, Media $media)
     {
-        return DB::transaction(function () use ($project, $mediaId) {
+        return DB::transaction(function () use ($project, $media) {
 
-            $project->deleteMedia($mediaId);
+            $project->deleteMedia($media->id);
 
-            event(new AttachmentRemovedFromProject($project, $mediaId));
+            event(new AttachmentRemovedFromProject($project, $media));
 
             return $project;
         });

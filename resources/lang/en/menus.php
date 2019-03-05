@@ -71,6 +71,7 @@ return [
                 'create'        => 'Create Project',
                 'deleted'       => 'Deleted Projects',
                 'edit'          => 'Edit Project',
+                'add_attachment'  => 'Upload Project Attachment',
                 'management'    => 'Project Management',
                 'main'          => 'Projects',
                 'view'          => 'View Project',

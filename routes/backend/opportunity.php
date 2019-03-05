@@ -36,6 +36,13 @@ Route::group([
         // Deleted
         Route::get('delete', 'ProjectStatusController@delete')->name('project.delete-permanently');
         Route::get('restore', 'ProjectStatusController@restore')->name('project.restore');
+
+        // Project Attachments
+        Route::get('attachment', 'ProjectAttachmentController@add')->name('project.add_attachment');
+        Route::post('attachment', 'ProjectAttachmentController@store')->name('project.store_attachment');
+        // Route::get('attachment/{media}', 'ProjectAttachmentController@edit')->name('project.edit_attachment');
+        // Route::post('attachment/{media}', 'ProjectAttachmentController@update')->name('project.update_attachment');
+        Route::get('attachment/{media}/delete', 'ProjectAttachmentController@delete')->name('project.delete_attachment');
     });
 
 

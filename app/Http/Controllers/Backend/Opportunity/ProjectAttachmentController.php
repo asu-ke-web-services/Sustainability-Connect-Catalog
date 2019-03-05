@@ -3,9 +3,12 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Backend\Attachment\ManageAttachmentRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectAttachmentRequest;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Backend\Opportunity\ProjectAttachmentRepository;
+use Spatie\MediaLibrary\Media;
+use SCCatalog\Models\Lookup\AttachmentStatus;
+use SCCatalog\Models\Lookup\AttachmentType;
 
 /**
  * Class ProjectAttachmentController.
@@ -28,78 +31,90 @@ class ProjectAttachmentController extends Controller
     }
 
     /**
-     * Create a new Project Attachment in storage.
+     * Show the form for uploading a file attachment into Project.
      *
+     * @param StoreProjectRequest $request
      *
-     * @param ManageAttachmentRequest $request
-     * @param Project $project
-     * @return
+     * @return \Illuminate\View\View
      */
-    public function create(ManageAttachmentRequest $request, Project $project)
-    {
-        return view('backend.attachment.create');
+    public function add(
+        ManageProjectAttachmentRequest $request,
+        AttachmentStatus $attachmentStatusRepository,
+        AttachmentType $attachmentTypeRepository,
+        Project $project
+    ) {
+        return view('backend.opportunity.project.add_attachment')
+            ->with('attachmentStatuses', $attachmentStatusRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
+            ->with('attachmentTypes', $attachmentTypeRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
+            ->with('project', $project);
     }
 
     /**
-     * Store a new Project Attachment in storage.
+     * Show the form for uploading a file attachment into Project.
      *
+     * @param StoreProjectRequest $request
      *
-     * @param ManageProjectAttachmentRequest $request
-     * @param Project $project
-     * @return
+     * @return \Illuminate\View\View
      */
     public function store(ManageProjectAttachmentRequest $request, Project $project)
     {
-        $this->projectAttachmentRepository->create($request->all());
+        $project = $this->projectAttachmentRepository->store($project, $request->all());
 
         return redirect()->route('admin.opportunity.project.show', $project)
-            ->withFlashSuccess(__('Project created successfully'));
+            ->withFlashSuccess(__('Attachment uploaded successfully'));
     }
 
     /**
      * Edit the specified Project in storage.
      *
      * @param ManageProjectAttachmentRequest $request
-     * @param Project                 $project
-     * @param                         $attachmentId
+     * @param Project                        $project
+     * @param Media                          $media
      * @return
      */
-//    public function edit(ManageProjectAttachmentRequest $request, Project $project, $attachmentId)
-//    {
-//        return view('backend.attachment.edit')
-//            ->with('project', $project)
-//            ->with('attachmentId', $attachmentId);
-//    }
+    public function edit(
+        ManageProjectAttachmentRequest $request,
+        AttachmentStatus $attachmentStatusRepository,
+        AttachmentType $attachmentTypeRepository,
+        Project $project,
+        Media $media
+    ) {
+        return view('backend.opportunity.project.edit_attachment')
+            ->with('attachmentStatuses', $attachmentStatusRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
+            ->with('attachmentTypes', $attachmentTypeRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
+            ->with('project', $project)
+            ->with('media', $media);
+    }
 
     /**
      * Update the specified Project in storage.
      *
      * @param ManageProjectAttachmentRequest $request
-     * @param Project                 $project
-     * @param                         $attachmentId
+     * @param Project                        $project
+     * @param Media                          $media
      * @return
      */
-//    public function update(ManageProjectAttachmentRequest $request, Project $project, $attachmentId)
-//    {
-//        $this->projectAttachmentRepository->update($project, $attachmentId);
-//
-//        return redirect()->route('admin.opportunity.project.show', $project)
-//            ->withFlashSuccess(__('Project Attachment updated successfully'));
-//    }
+    public function update(ManageProjectAttachmentRequest $request, Project $project, Media $media)
+    {
+        $this->projectAttachmentRepository->update($project, $media, $request->all());
+
+        return redirect()->route('admin.opportunity.project.show', $project)
+            ->withFlashSuccess(__('Attachment updated successfully'));
+    }
 
     /**
      * Remove the specified Project from storage.
      *
      * @param ManageProjectAttachmentRequest $request
-     * @param Project                 $project
-     * @param                         $attachmentId
+     * @param Project                        $project
+     * @param Media                          $media
      * @return
      */
-    public function destroy(ManageProjectAttachmentRequest $request, Project $project, $attachmentId)
+    public function destroy(ManageProjectAttachmentRequest $request, Project $project, Media $media)
     {
-        $this->projectAttachmentRepository->deleteById($project, $attachmentId);
+        $this->projectAttachmentRepository->delete($project, $media);
 
-        return redirect()->route('admin.opportunity.project.index')
-            ->withFlashSuccess('Project deleted successfully');
+        return redirect()->route('admin.opportunity.project.show', $project)
+            ->withFlashSuccess('Attachment deleted successfully');
     }
 }

@@ -1,12 +1,4 @@
 <div class="col">
-    <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-        <a href="{{ route('admin.opportunity.internship.add_attachment', $internship) }}"
-           class="btn btn-success ml-1"
-           data-toggle="tooltip"
-           title="Upload New Attachment">
-            <i class="fas fa-plus-circle"></i>
-        </a>
-    </div>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -51,5 +43,13 @@
             </tbody>
             @endforeach
         </table>
+        <div class="btn-toolbar float-left" role="toolbar" aria-label="Toolbar with button groups">
+            <a href="{{ route('admin.opportunity.internship.add_attachment', $internship) }}"
+            class="btn btn-success ml-1"
+            data-toggle="tooltip"
+            title="Upload New Attachment">
+                <span><span class="fas fa-plus-circle"></span>&nbsp;Upload New Attachment</span>
+            </a>
+        </div>
     </div>
 </div><!--table-responsive-->

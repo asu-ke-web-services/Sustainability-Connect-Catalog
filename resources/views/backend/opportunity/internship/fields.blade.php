@@ -39,9 +39,10 @@
                     <!-- Description Field -->
                     @component('backend.includes.components.form.richtext', [
                         'name'        => 'description',
-                        'label'       => 'Describe the Internship',
+                        'label'       => 'Describe the Internship *',
                         'help_text'   => 'What specific sustainability problem do you need solved?',
                         'attributes' => [
+                            'required' => 'required',
                             'rows' => 5,
                         ],
                         'object'      => $internship ?? null,
@@ -430,6 +431,7 @@
                     required: true,
                     maxlength: 1024
                 },
+                "description": 'required',
                 "opportunity_status_id": 'required',
                 "addresses[0][city]": 'required',
                 "addresses[0][state]": 'required'
@@ -439,6 +441,7 @@
                     required: 'Please enter the internship name',
                     maxlength: 'The internship name may not be longer than 1024 characters'
                 },
+                "description": 'Please enter the internship description',
                 "opportunity_status_id": 'Please select internship status',
                 "addresses[0][city]": 'Please enter the internship city',
                 "addresses[0][state]": 'Please enter the internship state'

@@ -1,6 +1,6 @@
 <header class="app-header navbar">
     <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="img/logo-symbol.png" height="30" alt="Logo">
+        <img class="navbar-brand-full" src="/img/logo-symbol.png" height="30" alt="Logo">
         <img class="navbar-brand-minimized" src="img/logo-symbol.png" height="30" alt="CoreUI Logo">
     </a>
 

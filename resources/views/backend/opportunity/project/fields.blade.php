@@ -436,6 +436,17 @@
     </div><!--card-->
 
 @section('javascript')
+    <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'description' );
+        CKEDITOR.replace( 'implementation_paths' );
+        CKEDITOR.replace( 'sustainability_contribution' );
+        CKEDITOR.replace( 'qualifications' );
+        CKEDITOR.replace( 'responsibilities' );
+        CKEDITOR.replace( 'learning_outcomes' );
+        CKEDITOR.replace( 'compensation' );
+        CKEDITOR.replace( 'application_instructions' );
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" ></script>
     <script>
         //# sourceMappingURL=text-editor.js.map

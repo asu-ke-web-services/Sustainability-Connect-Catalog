@@ -27,33 +27,11 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'needs_review'                => 'nullable|boolean',
-            'name'                        => 'string|max:1024',
-            'opportunity_start_at'        => 'nullable|date',
-            'opportunity_end_at'          => 'nullable|date',
-            'listing_start_at'            => 'nullable|date',
-            'listing_end_at'              => 'nullable|date',
-            'application_deadline_at'     => 'nullable|date',
-            'application_deadline_text'   => 'nullable|string',
-            'opportunity_status_id'       => 'nullable|integer|exists:opportunity_statuses,id',
-            'review_status_id'            => 'nullable|integer|exists:opportunity_review_statuses,id',
-            'description'                 => 'nullable',
-            // 'parent_opportunity_id'    => 'integer',
-            'supervisor_user_id'          => 'nullable|integer|exists:users,id',
-            'submitting_user_id'          => 'nullable|integer|exists:users,id',
-            'degree_program'              => 'nullable|string',
-            'compensation'                => 'nullable',
-            'responsibilities'            => 'nullable',
-            'learning_outcomes'           => 'nullable',
-            'sustainability_contribution' => 'nullable',
-            'qualifications'              => 'nullable',
-            'application_instructions'    => 'nullable',
-            'implementation_paths'        => 'nullable',
-            'budget_type_id'              => 'nullable|integer|exists:budget_types,id',
-            'budget_amount'               => 'nullable|string',
-            'program_lead'                => 'nullable|string',
-            'success_story'               => 'nullable|url',
-            'library_collection'          => 'nullable|url',
+            'name'                        => 'required|max:1024',
+            'opportunity_status_id'       => 'required',
+            'description'                 => 'required',
+            'sustainability_contribution' => 'required',
+            'implementation_paths'        => 'required',
         ];
     }
 
@@ -77,7 +55,11 @@ class UpdateProjectRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.required'                        => 'Please enter the Project Name',
+            'opportunity_status_id.required'       => 'Please select the Project Status',
+            'description.required'                 => 'Please enter the Project Description',
+            'sustainability_contribution.required' => 'Please enter the Project Deliverables',
+            'implementation_paths.required'        => 'Please enter the Envisioned Solution',
         ];
     }
 }

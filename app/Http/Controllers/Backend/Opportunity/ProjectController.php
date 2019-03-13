@@ -71,7 +71,7 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new Project.
      *
-     * @param StoreProjectRequest $request
+     * @param ManageProjectRequest $request
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
@@ -84,7 +84,7 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-        StoreProjectRequest $request,
+        ManageProjectRequest $request,
         AffiliationRepository $affiliationRepository,
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,
@@ -188,7 +188,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified Project.
      *
-     * @param UpdateProjectRequest $request
+     * @param ManageProjectRequest $request
      * @param AffiliationRepository $affiliationRepository
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param CategoryRepository $categoryRepository
@@ -202,7 +202,7 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit(
-        UpdateProjectRequest $request,
+        ManageProjectRequest $request,
         AffiliationRepository $affiliationRepository,
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,

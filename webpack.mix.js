@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,39 +11,45 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('public');
+mix.setPublicPath("public");
 
-mix.sass('resources/sass/backend/app.scss', 'css/backend.css')
-    .js([
-        'resources/js/backend/before.js',
-        'resources/js/backend/app.js',
-        'resources/js/backend/after.js'
-    ], 'js/backend.js')
-    .extract([
-        'jquery',
-        'bootstrap',
-        'popper.js/dist/umd/popper',
-        'axios',
-        'sweetalert2',
-        'lodash',
-        '@fortawesome/fontawesome-svg-core',
-        '@fortawesome/free-brands-svg-icons',
-        '@fortawesome/free-regular-svg-icons',
-        '@fortawesome/free-solid-svg-icons',
-        'datatables.net-bs4',
-        'datatables.net-fixedheader-bs4',
-        'datatables.net-responsive-bs4'
-    ]);
+mix
+  .sass("resources/sass/backend/app.scss", "css/backend.css")
+  .js(
+    [
+      "resources/js/backend/before.js",
+      "resources/js/backend/app.js",
+      "resources/js/backend/after.js"
+    ],
+    "js/backend.js"
+  )
+  .extract([
+    "jquery",
+    "bootstrap",
+    "popper.js/dist/umd/popper",
+    "axios",
+    "sweetalert2",
+    "lodash",
+    "@fortawesome/fontawesome-svg-core",
+    "@fortawesome/free-brands-svg-icons",
+    "@fortawesome/free-regular-svg-icons",
+    "@fortawesome/free-solid-svg-icons",
+    "datatables.net-bs4",
+    "datatables.net-fixedheader-bs4",
+    "datatables.net-responsive-bs4"
+  ]);
 
-mix.sass('resources/sass/frontend/SearchApp.scss', 'css/')
-    .react('resources/js/frontend/searchProject.js', 'js/')
-    .react('resources/js/frontend/searchCompletedProject.js', 'js/')
-    .react('resources/js/frontend/searchInternship.js', 'js/');
+mix
+  .sass("resources/sass/frontend/SearchApp.scss", "css/")
+  .react("resources/js/frontend/searchProject.js", "js/")
+  .react("resources/js/frontend/searchCompletedProject.js", "js/")
+  .react("resources/js/frontend/searchInternship.js", "js/");
 
-mix.sass('resources/sass/frontend/app.scss', 'css/frontend.css')
-    .js('resources/js/frontend/app.js', 'js/frontend.js');
+mix
+  .sass("resources/sass/frontend/app.scss", "css/frontend.css")
+  .js("resources/js/frontend/app.js", "js/frontend.js");
 
 
-if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
+if (mix.inProduction() || process.env.npm_lifecycle_event !== "hot") {
   mix.version();
 }

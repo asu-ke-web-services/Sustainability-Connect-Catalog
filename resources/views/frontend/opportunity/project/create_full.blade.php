@@ -20,7 +20,7 @@
 
                     <hr />
 
-                    @include('frontend.opportunity.project.fields')
+                    @include('frontend.opportunity.project.fields_full')
                 </div><!--card-body-->
             </div><!--card-->
 

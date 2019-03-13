@@ -27,27 +27,9 @@ class UpdateInternshipRequest extends FormRequest
     public function rules()
     {
         return [
-            'needs_review'              => 'nullable|boolean',
-            'name'                      => 'string|max:1024',
-            'opportunity_start_at'      => 'nullable|date',
-            'opportunity_end_at'        => 'nullable|date',
-            'listing_start_at'          => 'nullable|date',
-            'listing_end_at'            => 'nullable|date',
-            'application_deadline_at'   => 'nullable|date',
-            'application_deadline_text' => 'nullable|string',
-            'opportunity_status_id'     => 'integer|exists:opportunity_statuses,id',
-            'description'               => 'nullable',
-            // 'parent_opportunity_id'  => 'integer',
-            'supervisor_user_id'        => 'nullable|integer|exists:users,id',
-            'submitting_user_id'        => 'nullable|integer|exists:users,id',
-            'degree_program'            => 'nullable|string',
-            'compensation'              => 'nullable',
-            'responsibilities'          => 'nullable',
-            'qualifications'            => 'nullable',
-            'application_instructions'  => 'nullable',
-            'program_lead'              => 'nullable|string',
-            'success_story'             => 'nullable|url',
-            'library_collection'        => 'nullable|url',
+            'name'                        => 'required|max:1024',
+            'opportunity_status_id'       => 'required',
+            'description'                 => 'required',
         ];
     }
 
@@ -71,7 +53,9 @@ class UpdateInternshipRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.required'                        => 'Please enter the Internship Name',
+            'opportunity_status_id.required'       => 'Please select the Internship Status',
+            'description.required'                 => 'Please enter the Internship Description',
         ];
     }
 }

@@ -68,7 +68,7 @@ class InternshipController extends Controller
     /**
      * Show the form for creating a new Internship.
      *
-     * @param StoreInternshipRequest $request
+     * @param ManageInternshipRequest $request
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
@@ -80,7 +80,7 @@ class InternshipController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-        StoreInternshipRequest $request,
+        ManageInternshipRequest $request,
         AffiliationRepository $affiliationRepository,
         CategoryRepository $categoryRepository,
         KeywordRepository $keywordRepository,
@@ -196,7 +196,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
     /**
      * Show the form for editing the specified Internship.
      *
-     * @param UpdateInternshipRequest $request
+     * @param ManageInternshipRequest $request
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
      * @param KeywordRepository $keywordRepository
@@ -208,7 +208,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
      * @return \Illuminate\View\View
      */
     public function edit(
-        UpdateInternshipRequest $request,
+        ManageInternshipRequest $request,
         AffiliationRepository $affiliationRepository,
         CategoryRepository $categoryRepository,
         KeywordRepository $keywordRepository,

@@ -1,182 +1,116 @@
-@extends('frontend.layouts.asu')
+@extends('frontend.layouts.coreui')
 
-@section('title', app_name() . ' | '. __('navs.frontend.dashboard') )
+@section('title', app_name() . ' | ' . __('strings.backend.dashboard.title'))
 
 @section('content')
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-md-3">
-                <!-- Profile -->
-                <div class="box box-primary">
-                    <div class="box-body box-profile">
-                        <h3 class="profile-username text-center">{{ $logged_in_user->name }}</h3>
-
-                        {{-- <p class="text-muted text-center">{{ $logged_in_user->type->name }}</p> --}}
-{{--
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b>Followers</b> <a class="pull-right">1,322</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Following</b> <a class="pull-right">543</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Friends</b> <a class="pull-right">13,287</a>
-                            </li>
-                        </ul>
---}}
-                        <a href="{{ route('frontend.user.account')}}" class="btn btn-primary btn-block"><i class="fa fa-user-circle"></i> {{ __('navs.frontend.user.account') }}</a>
-                        @can('view admin dashboard')
-                            &nbsp;<a href="{{ route ('admin.dashboard')}}" class="btn btn-primary btn-block">
-                                <i class="fa fa-user-secret"></i> {{ __('navs.frontend.user.administration') }}
-                            </a>
-                        @endcan
-                    </div>
-                    <!-- /.box-body -->
+    <div class="card-group mb-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                    <i class="icon-notebook"></i>
                 </div>
-                <!-- /.box -->
+                <div class="text-value">10</div>
+                <small class="text-muted text-uppercase font-weight-bold">Active Projects</small>
+                <div class="progress progress-xs mt-3 mb-0">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
-            <!-- /.col -->
-            <div class="col-md-9">
-
-            @if (count($followedProjects) || count($projectApplications) || count($participatingInProjects) || count($followedInternships))
-
-                @if (count($followedProjects))
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Projects I'm Following</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Project</th>
-                                <th>Coordinator</th>
-                                <th>Updated Last</th>
-                                <th style="width: 40px">Actions</th>
-                            </tr>
-                            @foreach($followedProjects as $project)
-                                <tr>
-                                    <td>{!! $project->name !!}</td>
-                                    <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
-                                    <td>{!! $project->updated_at !!}</td>
-                                    <td><a href="{{ route('frontend.opportunity.project.show', $project)  }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-                @endif
-
-                @if (count($projectApplications))
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">My Project Applications Awaiting Approval</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Project</th>
-                                    <th>Coordinator</th>
-                                    <th>Updated Last</th>
-                                    <th style="width: 40px">Actions</th>
-                                </tr>
-                                @foreach($projectApplications as $project)
-                                    <tr>
-                                        <td>{!! $project->name !!}</td>
-                                        <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
-                                        <td>{!! $project->updated_at !!}</td>
-                                        <td><a href="{{ route('frontend.opportunity.project.show', $project)  }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                @endif
-
-                @if (count($participatingInProjects ))
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">My Active Projects</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Project</th>
-                                <th>Coordinator</th>
-                                <th>Updated Last</th>
-                                <th style="width: 40px">Actions</th>
-                            </tr>
-                            @foreach($participatingInProjects as $project)
-                                <tr>
-                                    <td>{!! $project->name !!}</td>
-                                    <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
-                                    <td>{!! $project->updated_at !!}</td>
-                                    <td><a href="{{ route('frontend.opportunity.project.show', $project)  }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
-                                </tr>
-                            @endforeach
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-                @endif
-
-                @if (count($followedInternships))
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Internships I'm Following</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Internship</th>
-                                    <th>Coordinator</th>
-                                    <th>Updated Last</th>
-                                    <th style="width: 40px">Actions</th>
-                                </tr>
-                                @foreach($followedInternships as $internship)
-                                    <tr>
-                                        <td>{!! $internship->name !!}</td>
-                                        <td>{!! $internship->supervisorUser->full_name ?? null !!}</td>
-                                        <td>{!! $internship->updated_at !!}</td>
-                                        <td><a href="{{ route('frontend.opportunity.internship.show', $internship)  }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                @endif
-            @else
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">No Activity to Report</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <p>You have no outstanding applications or idea submissions. Have you considered following a project or internship that interests you?</p>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer clearfix">
-                        <a href="/project" class="btn btn-sm btn-primary btn-flat">Browse Projects</a>
-                        <a href="/internship" class="btn btn-sm btn-primary btn-flat">Browse Internships</a>
-                    </div>
-                </div>
-                <!-- /.box -->
-            @endif
-            </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-    </section>
+        <div class="card">
+            <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                    <i class="icon-notebook"></i>
+                </div>
+                <div class="text-value">20</div>
+                <small class="text-muted text-uppercase font-weight-bold">Completed Projects</small>
+                <div class="progress progress-xs mt-3 mb-0">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                    <i class="icon-notebook"></i>
+                </div>
+                <div class="text-value">30</div>
+                <small class="text-muted text-uppercase font-weight-bold">Active Internships</small>
+                <div class="progress progress-xs mt-3 mb-0">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="h1 text-muted text-right mb-4">
+                    <i class="icon-user"></i>
+                </div>
+                <div class="text-value">200</div>
+                <small class="text-muted text-uppercase font-weight-bold">Active Users</small>
+                <div class="progress progress-xs mt-3 mb-0">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+        {{--<div class="card">--}}
+            {{--<div class="card-body">--}}
+                {{--<div class="h1 text-muted text-right mb-4">--}}
+                    {{--<i class="icon-pie-chart"></i>--}}
+                {{--</div>--}}
+                {{--<div class="text-value">28%</div>--}}
+                {{--<small class="text-muted text-uppercase font-weight-bold">Returning Visitors</small>--}}
+                {{--<div class="progress progress-xs mt-3 mb-0">--}}
+                    {{--<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>{{ __('strings.backend.dashboard.projects_under_review') }}</strong>
+                </div><!--card-header-->
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Coordinator</th>
+                            <th>Submitted</th>
+                            <th>Updated Last</th>
+                            <th>{{ __('labels.general.actions') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($followedProjects as $project)
+                            <tr>
+                                <td>{!! $project->name !!}</td>
+                                <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
+                                <td>{!! $project->created_at !!}</td>
+                                <td>{!! $project->updated_at !!}</td>
+                                <td>{!! $project->action_buttons !!}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Prev</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- /.row-->
+
 @endsection

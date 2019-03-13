@@ -423,6 +423,15 @@
     </div><!--card-->
 
 @section('javascript')
+    <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'description' );
+        CKEDITOR.replace( 'qualifications' );
+        CKEDITOR.replace( 'responsibilities' );
+        CKEDITOR.replace( 'compensation' );
+        CKEDITOR.replace( 'degree_program' );
+        CKEDITOR.replace( 'application_instructions' );
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" ></script>
     <script>
         $('#internship-form').validate({

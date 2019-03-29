@@ -9,7 +9,7 @@ import $ from "jquery";
 import "popper.js/dist/umd/popper"; // Required for BS4
 import "bootstrap";
 
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 /**
  * Font Awesome >=5.1

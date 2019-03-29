@@ -45,7 +45,7 @@
             </div><!--container-fluid-->
         </main><!--main-->
 
-        @include('backend.includes.aside')
+        {{-- @include('backend.includes.aside') --}}
     </div><!--app-body-->
 
     @include('backend.includes.footer')
@@ -55,9 +55,8 @@
     {!! script(mix('js/manifest.js')) !!}
     {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/backend.js')) !!}
+    @stack('scripts')
     @stack('after-scripts')
 
-    @section('javascript')
-    @show
 </body>
 </html>

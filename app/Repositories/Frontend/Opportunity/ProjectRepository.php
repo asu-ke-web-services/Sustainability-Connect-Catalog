@@ -134,4 +134,90 @@ class ProjectRepository extends BaseRepository
         });
     }
 
+    /**
+     * Update a Project record in the database.
+     *
+     * @param Project $project
+     * @param array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Throwable
+     */
+    public function update(Project $project, array $data)
+    {
+        $project->loadMissing(
+            'addresses',
+            'affiliations',
+            'categories',
+            'keywords'
+        );
+
+        if (!empty($data['opportunity_start_at'])) {
+            $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
+        }
+
+        if (!empty($data['opportunity_end_at'])) {
+            $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
+        }
+
+        if (!empty($data['listing_start_at'])) {
+            $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
+        }
+
+        if (!empty($data['listing_end_at'])) {
+            $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
+        }
+
+        if (!empty($data['application_deadline_at'])) {
+            $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
+        }
+
+        // If text deadline value is set, that overrides any value in the date field, which is to be set
+        // to far-future date for Algolia search purposes.
+        if (!empty($data['application_deadline_text'])) {
+            $data['application_deadline_at'] = Carbon::create(2030, 12, 31, 23, 59);
+        }
+
+        return DB::transaction(function () use ($project, $data) {
+
+            if ($project->update($data)) {
+                // save Addresses
+                if (!empty($data['addresses'])) {
+                    foreach ($data['addresses'] as $address) {
+                        $project->addresses()->save(Address::firstOrCreate($address));
+                    }
+                }
+
+                if (isset($data['file_attachment'])) {
+                    $project->addMedia($data['file_attachment'])
+                        // ->sanitizingFileName(function($fileName) {
+                        //     return strtolower(str_replace(['#', '/', '\\', ' ', ',', ';', '!'], '-', $fileName));
+                        // })
+                        ->withCustomProperties([
+                            // 'type'       => $old_file->type,
+                            // 'visibility' => $old_file->visibility,
+                            'pending'    => 1,
+                            'deleted'    => 0,
+                        ])
+                        ->toMediaCollection();
+                }
+
+
+                // sync Affiliations
+                $project->affiliations()->sync(array_filter($data['affiliations'] ?? []) ?? null);
+
+                // sync Categories
+                $project->categories()->sync(array_filter($data['categories'] ?? []) ?? null);
+
+                // sync Keywords
+                $project->keywords()->sync(array_filter($data['keywords'] ?? []) ?? null);
+
+                event(new ProjectUpdated($project));
+
+                return $project;
+            }
+
+            throw new GeneralException(__('exceptions.backend.opportunity.update_error'));
+        });
+    }
 }

@@ -2,12 +2,9 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Events\Frontend\Opportunity\ProjectCreated;
-use SCCatalog\Http\Requests\Frontend\Opportunity\EditFullProjectRequest;
-use SCCatalog\Http\Requests\Frontend\Opportunity\StoreFullProjectRequest;
-use SCCatalog\Http\Requests\Frontend\Opportunity\ViewProjectRequest;
+use SCCatalog\Http\Requests\Frontend\Opportunity\EditProjectSubmissionRequest;
+use SCCatalog\Http\Requests\Frontend\Opportunity\StoreProjectSubmissionRequest;
 use SCCatalog\Repositories\Frontend\Auth\UserRepository;
 use SCCatalog\Repositories\Frontend\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Frontend\Lookup\BudgetTypeRepository;
@@ -17,12 +14,11 @@ use SCCatalog\Repositories\Frontend\Lookup\OpportunityStatusRepository;
 use SCCatalog\Repositories\Frontend\Lookup\OpportunityReviewStatusRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\ProjectRepository;
 use SCCatalog\Repositories\Frontend\Organization\OrganizationRepository;
-use SCCatalog\Models\Opportunity\Project;
 
 /**
- * Class ProjectController.
+ * Class ProjectSubmissionController.
  */
-class ProjectController extends Controller
+class ProjectSubmissionController extends Controller
 {
     /**
      * @var ProjectRepository
@@ -30,7 +26,7 @@ class ProjectController extends Controller
     private $projectRepository;
 
     /**
-     * ProjectController constructor.
+     * ProjectSubmissionController constructor.
      *
      * @param ProjectRepository $projectRepository
      */
@@ -40,129 +36,9 @@ class ProjectController extends Controller
     }
 
     /**
-     * Display a listing of the Projects.
+     * Show the form for creating a new Project.
      *
-     * @param ViewProjectRequest $request
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function index(ViewProjectRequest $request)
-    {
-        if (auth()->user() !== null) {
-            $userAccessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
-
-            $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
-        }
-
-        JavaScript::put([
-            'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
-        ]);
-
-        return view('frontend.opportunity.project.index')
-            ->with('type', 'Project')
-            ->with('pageTitle', 'Projects');
-    }
-
-    /**
-     * Display a listing of Completed Projects.
-     *
-     * @param ViewProjectRequest $request
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function completed(ViewProjectRequest $request)
-    {
-        if (auth()->user() !== null) {
-            $userAccessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
-
-            $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
-        }
-
-        JavaScript::put([
-            'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
-        ]);
-
-        return view('frontend.opportunity.project.completed')
-            ->with('type', 'Project')
-            ->with('pageTitle', 'Past Projects');
-    }
-
-    /**
-     * Display the specified Project.
-     *
-     * @param ViewProjectRequest $request
-     * @param Project            $user
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show(ViewProjectRequest $request, $id)
-    {
-        $project = $this->projectRepository
-            ->with([
-                'addresses',
-                'notes',
-                'status',
-                'organization',
-                'supervisorUser',
-                'submittingUser',
-                'affiliations',
-                'categories',
-                'keywords',
-                'followers',
-                'applicants',
-            ])
-            ->getById($id);
-
-        $userAccessAffiliations = false;
-        $canViewRestricted = false;
-        $isFollowed = false;
-        $isApplicationSubmitted = false;
-
-        if (auth()->user() !== null) {
-            $userAccessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
-
-            $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
-
-            $followedProjects = auth()->user()->followedProjects
-                ->map(function ($project) {
-                    return $project['id'];
-                })->toArray();
-
-            $isFollowed = in_array($id, $followedProjects);
-
-            $appliedProjects = auth()->user()->projectApplications
-                ->map(function ($project) {
-                    return $project['id'];
-                })->toArray();
-
-            $isApplicationSubmitted = in_array($id, $appliedProjects);
-        }
-
-        return view('frontend.opportunity.project.show')
-            ->withProject($project)
-            ->with('type', 'Project')
-            ->with('pageTitle', $project->name)
-            ->with('userAccessAffiliations', $userAccessAffiliations)
-            ->with('canViewRestricted', $canViewRestricted)
-            ->with('isFollowed', $isFollowed)
-            ->with('isApplicationSubmitted', $isApplicationSubmitted);
-    }
-
-    /**
-     * Show the form for creating a new, full Project.
-     *
-     * @param EditFullProjectRequest $request
+     * @param EditProjectSubmissionRequest $request
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
@@ -176,7 +52,7 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function create(
-        EditFullProjectRequest $request,
+        EditProjectSubmissionRequest $request,
         AffiliationRepository $affiliationRepository,
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,
@@ -186,7 +62,7 @@ class ProjectController extends Controller
         OrganizationRepository $organizationRepository,
         UserRepository $userRepository
     ) {
-        return view('frontend.opportunity.project.create_full')
+        return view('frontend.opportunity.project.create_basic')
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -200,23 +76,23 @@ class ProjectController extends Controller
     /**
      * Store a newly created Project in storage.
      *
-     * @param StoreFullProjectRequest $request
+     * @param StoreProjectSubmissionRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(StoreFullProjectRequest $request)
+    public function store(StoreProjectSubmissionRequest $request)
     {
         $project = $this->projectRepository->create($request->all());
 
         return redirect()->route('frontend.user.dashboard')
-            ->withFlashSuccess(__('Proposal successfully submitted'));
+            ->withFlashSuccess(__('Project Proposal successfully submitted'));
     }
 
     /**
-     * Show the form for updating a full, new Project.
+     * Show the form for creating a new Project.
      *
-     * @param EditFullProjectRequest $request
+     * @param EditProjectSubmissionRequest $request
      * @param BudgetTypeRepository $budgetTypeRepository
      * @param AffiliationRepository $affiliationRepository
      * @param CategoryRepository $categoryRepository
@@ -230,7 +106,7 @@ class ProjectController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit(
-        EditFullProjectRequest $request,
+        EditProjectSubmissionRequest $request,
         AffiliationRepository $affiliationRepository,
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,
@@ -238,15 +114,14 @@ class ProjectController extends Controller
         OpportunityStatusRepository $opportunityStatusRepository,
         OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
         OrganizationRepository $organizationRepository,
-        UserRepository $userRepository,
-        Project $project
+        UserRepository $userRepository
     ) {
-        return view('frontend.opportunity.project.edit_full')
-            ->with('project', $project)
+        return view('frontend.opportunity.project.edit_basic')
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            // ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
             ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -254,18 +129,18 @@ class ProjectController extends Controller
     }
 
     /**
-     * Update a Project in storage.
+     * Store a newly created Project in storage.
      *
-     * @param StoreFullProjectRequest $request
+     * @param StoreProjectSubmissionRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function update(StoreFullProjectRequest $request, Project $project)
+    public function update(StoreProjectSubmissionRequest $request)
     {
-        $project = $this->projectRepository->update($project, $request->all());
+        $project = $this->projectRepository->create($request->all());
 
-        return redirect()->route('frontend.user.dashboard')
+        return redirect()->route('frontend.user.dashboard', $project)
             ->withFlashSuccess(__('Proposal successfully submitted'));
     }
 }

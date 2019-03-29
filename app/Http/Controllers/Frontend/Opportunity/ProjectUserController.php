@@ -5,7 +5,6 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ProjectApplicantRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ProjectFollowerRequest;
-use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Frontend\Lookup\RelationshipTypeRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\ProjectUserRepository;

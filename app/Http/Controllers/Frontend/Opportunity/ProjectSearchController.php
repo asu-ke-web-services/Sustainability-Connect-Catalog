@@ -2,20 +2,9 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Events\Frontend\Opportunity\ProjectCreated;
-use SCCatalog\Http\Requests\Frontend\Opportunity\StoreProjectRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewProjectRequest;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
-use SCCatalog\Repositories\Frontend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Frontend\Lookup\BudgetTypeRepository;
-use SCCatalog\Repositories\Frontend\Lookup\CategoryRepository;
-use SCCatalog\Repositories\Frontend\Lookup\KeywordRepository;
-use SCCatalog\Repositories\Frontend\Lookup\OpportunityStatusRepository;
-use SCCatalog\Repositories\Frontend\Lookup\OpportunityReviewStatusRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\ProjectRepository;
-use SCCatalog\Repositories\Frontend\Organization\OrganizationRepository;
 
 /**
  * Class ProjectSearchController.

@@ -5,7 +5,6 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\InternshipApplicantRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\InternshipFollowerRequest;
-use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\Frontend\Lookup\RelationshipTypeRepository;
 use SCCatalog\Repositories\Frontend\Opportunity\InternshipUserRepository;

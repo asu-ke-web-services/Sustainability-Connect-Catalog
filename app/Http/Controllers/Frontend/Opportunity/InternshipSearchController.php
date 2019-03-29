@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
 use SCCatalog\Repositories\Frontend\Opportunity\InternshipRepository;
@@ -39,7 +38,7 @@ class InternshipSearchController extends Controller
         $userAccessAffiliations = [];
         $canViewRestricted = false;
 
-        if ( null !== auth()->user() ) {
+        if (null !== auth()->user()) {
             $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];

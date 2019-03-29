@@ -42,7 +42,7 @@
                     <ul role="menu" class=" dropdown-menu">
                         <li id="menu-item-6" class="menu-item">
                             <a
-                                title="Submit Project" href="/project/submit"
+                                title="Submit Project" href="{{ route('frontend.opportunity.project.submission.create') }}"
                                 class="menu-item">Submit Project</a>
                         </li>
                         {{-- <li id="menu-item-7" class="menu-item">

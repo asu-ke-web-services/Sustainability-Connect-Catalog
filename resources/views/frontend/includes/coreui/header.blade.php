@@ -30,7 +30,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Submit an Opportunity</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.create') }}">Submit Project</a>
+                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.submission.create') }}">Submit Project</a>
             </div>
         </li>
 

@@ -8,9 +8,9 @@
 
             <ul class="nav nav-tabs" style="margin-left: 1em;">
                 <li class="active"><a href="#">View</a></li>
-                {{-- <li><a href="{{ route('frontend.opportunity.internship.edit', $internship) }}">Manage</a></li> --}}
+                <li class="disabled"><a href="#">Manage</a></li>
                 @can('view admin dashboard')
-                <li><a href="{{ route('frontend.opportunity.internship.submission.edit', $internship) }}">Edit</a></li>
+                <li class="disabled"><a href="#">Edit</a></li>
                 @endcan
             </ul>
 

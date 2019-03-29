@@ -235,6 +235,46 @@ class Project extends Model implements HasMedia
             </div>';
     }
 
+
+    /**
+     * @return string
+     */
+    public function getFrontendShowButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.project.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendEditButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.project.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendPrintButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.project.print', $this) . '" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendActionButtonsAttribute(): string
+    {
+        return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+            ' . $this->frontend_show_button . '
+            ' . $this->frontend_edit_button . '
+            </div>';
+    }
+
+
+
+
+
     /*
     |--------------------------------------------------------------------------
     | METHODS

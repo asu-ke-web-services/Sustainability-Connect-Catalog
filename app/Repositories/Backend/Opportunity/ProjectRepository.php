@@ -316,28 +316,28 @@ class ProjectRepository extends BaseRepository
 
             if ($project) {
                 // save Addresses
-                if (!empty($data['addresses'])) {
+                if (isset($data['addresses'])) {
                     foreach ($data['addresses'] as $address) {
                         $project->addresses()->save(Address::firstOrCreate($address));
                     }
                 }
 
                 // attach Affiliations
-                if (!empty($data['affiliations'])) {
+                if (isset($data['affiliations'])) {
                     foreach ($data['affiliations'] as $affiliation) {
                         $project->affiliations()->attach($affiliation);
                     }
                 }
 
                 // attach Categories
-                if (!empty($data['categories'])) {
+                if (isset($data['categories'])) {
                     foreach ($data['categories'] as $category) {
                         $project->categories()->attach($category);
                     }
                 }
 
                 // attach Keywords
-                if (!empty($data['keywords'])) {
+                if (isset($data['keywords'])) {
                     foreach ($data['keywords'] as $keyword) {
                         $project->keywords()->attach($keyword);
                     }

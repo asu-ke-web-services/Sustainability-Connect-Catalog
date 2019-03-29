@@ -4,6 +4,7 @@ namespace SCCatalog\Models\Auth\Traits\Relationship;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use SCCatalog\Models\System\Session;
@@ -168,6 +169,29 @@ trait UserRelationship
                 4, // Manager
                 5, // Practitioner Mentor
                 6  // Academic Mentor
+            ]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function submittedProjects(): HasMany
+    {
+        return $this->hasMany(\SCCatalog\Models\Opportunity\Project::class, 'created_by')
+            ->whereIn('review_status_id', [
+                1, // Needs Review
+                2, // Review in Progress
+            ]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function submittedInternships(): HasMany
+    {
+        return $this->hasMany(\SCCatalog\Models\Opportunity\Internship::class, 'created_by')
+            ->whereIn('opportunity_status_id', [
+                9, // Active
             ]);
     }
 

@@ -6,7 +6,7 @@
     @endif
     <div class="col-md-10">
         <div id="datetime-{!! $name !!}" class="input-group date" data-target-input="nearest">
-            <div class="input-group-append" data-target="#datetime-{!! $name !!}" data-toggle="datetimepicker">
+            <div class="input-group-append">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
             {{ html()->input(
@@ -16,6 +16,7 @@
             )
                 ->class('form-control datetimepicker-input')
                 ->attribute('data-target', "#datetime-$name")
+                ->attribute('data-toggle', "datetimepicker")
             }}
         </div>
 
@@ -32,9 +33,9 @@
 @push('after-scripts')
     <script type="text/javascript">
         $(function () {
-            $("datetime-{!! $name !!}").datetimepicker();
+            $("datetime-{!! $name !!}").datetimepicker({
+                format: 'L'
+            });
         });
     </script>
 @endpush
-
-

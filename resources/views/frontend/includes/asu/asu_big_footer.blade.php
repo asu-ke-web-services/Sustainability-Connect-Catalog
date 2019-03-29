@@ -15,8 +15,8 @@
             </div>
             <ul id="menu-footer-menu" class="menu">
                 <div class="col-md-2 col-sm-3 space-bot-md">
-                    <h2 data-toggle="collapse" data-target="#menu-item-1-nav">Browse</h2>
-                    <ul class='big-foot-nav collapse' id='menu-item-1-nav'>
+                    <h2>Browse</h2>
+                    <ul class='big-foot-nav' id='menu-item-1-nav'>
                         <ul class="sub-menu">
                             <li class="menu-item"><a href="/project">Projects</a></li>
                             <li class="menu-item"><a href="/internship">Internships</a></li>
@@ -24,8 +24,8 @@
                     </ul>
                 </div>
                 <div class="col-md-2 col-sm-3 space-bot-md">
-                    <h2 data-toggle="collapse" data-target="#menu-item-2-nav">Get Involved</h2>
-                    <ul class='big-foot-nav collapse' id='menu-item-2-nav'>
+                    <h2>Get Involved</h2>
+                    <ul class='big-foot-nav' id='menu-item-2-nav'>
                         <ul class="sub-menu">
                             <li class="menu-item"><a href="/project/submit">Submit an Opportunity</a></li>
                             <li class="menu-item"><a href="{{ config('app.sc_base_url') }}/about/types-of-opportunities/">Types of Opportunities</a></li>
@@ -34,8 +34,8 @@
                     </ul>
                 </div>
                 <div class="col-md-2 col-sm-3 space-bot-md">
-                    <h2 data-toggle="collapse" data-target="#menu-item-3-nav" >About</h2>
-                    <ul class='big-foot-nav collapse' id='menu-item-3-nav'>
+                    <h2>About</h2>
+                    <ul class='big-foot-nav' id='menu-item-3-nav'>
                         <ul class="sub-menu">
                             <li class="menu-item"><a href="{{ config('app.sc_base_url') }}/about/">About Us</a></li>
                             <li class="menu-item"><a href="{{ config('app.sc_base_url') }}/about/contact-us/">Contact Us</a></li>

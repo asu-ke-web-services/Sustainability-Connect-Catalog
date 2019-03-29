@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connectMenu, InstantSearch, Configure } from 'react-instantsearch-dom';
 import { SearchPage } from './SearchPage';
 import { withUrlSync } from './urlSync';
-import '../../../sass/frontend/SearchApp.css';
+import '../../../sass/frontend/asu/SearchApp.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 const VirtualMenu = connectMenu(() => null);
@@ -23,8 +23,8 @@ class SearchCompletedApp extends Component {
         <Configure hitsPerPage={20} />
         <Active />
         <SearchPage indexName={this.props.indexName}
-                    userAccessAffiliations={this.props.userAccessAffiliations}
-                    canViewRestricted={this.props.canViewRestricted} />
+          userAccessAffiliations={this.props.userAccessAffiliations}
+          canViewRestricted={this.props.canViewRestricted} />
       </InstantSearch>
     );
   }

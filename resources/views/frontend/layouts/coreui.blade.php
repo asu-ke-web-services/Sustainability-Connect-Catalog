@@ -18,7 +18,7 @@
 
     <!-- Check if the language is set to RTL, so apply the RTL layouts -->
     <!-- Otherwise apply the normal LTR layouts -->
-    {{ style(mix('css/backend.css')) }}
+    {{ style(mix('css/frontend.css')) }}
 
     @stack('after-styles')
 </head>
@@ -45,7 +45,7 @@
             </div><!--container-fluid-->
         </main><!--main-->
 
-        @include('frontend.includes.coreui.aside')
+        {{-- @include('frontend.includes.coreui.aside') --}}
     </div><!--app-body-->
 
     @include('frontend.includes.coreui.footer')
@@ -54,9 +54,8 @@
     @stack('before-scripts')
     {!! script(mix('js/manifest.js')) !!}
     {!! script(mix('js/vendor.js')) !!}
-    {!! script(mix('js/backend.js')) !!}
-    @section('javascript')
-    @show
+    {!! script(mix('js/frontend.js')) !!}
+    @stack('scripts')
     @stack('after-scripts')
 
 </body>

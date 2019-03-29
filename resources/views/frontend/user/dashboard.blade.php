@@ -3,6 +3,19 @@
 @section('title', app_name() . ' | ' . __('strings.backend.dashboard.title'))
 
 @section('content')
+@unless (count($submittedProjects) || count($followedProjects) || count($participatingInProjects) || count($submittedInternships) || count($followedInternships) || count($participatingInInternships))
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="clearfix">
+                    <h4 class="pt-3">No opportunities to report.</h4>
+                    <p class="text-muted">You are not following or participating in any opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endunless
+
 @if (count($submittedProjects) || count($followedProjects) || count($participatingInProjects))
     <h3>Projects</h3>
     @if (count($submittedProjects))
@@ -230,5 +243,4 @@
     </div><!-- /.row-->
     @endif
 @endif
-
 @endsection

@@ -1,7 +1,4 @@
 
-        <!-- Project Name -->
-        <h1>{{ $project->name }}</h1>
-
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>
@@ -81,7 +78,7 @@
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>
-                    <!-- Categories -->
+                    <!-- Keywords -->
                     @foreach($project->keywords as $keyword)
                         <tr>
                             <td class="col col-sm-9 view-content"><span class="badge badge-success">{{ $keyword->name }}</span></td>
@@ -140,7 +137,7 @@
                     <tr>
                         <td class="col col-sm-3 view-label">Application Deadline</td>
                         <td class="col col-sm-9 view-content">{{
-                             $project->application_deadline_text > ''
+                                $project->application_deadline_text > ''
                                 ? $project->application_deadline_text
                                 : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : '')
                         }}</td>
@@ -166,11 +163,24 @@
                         </tr>
                     @endforeach
 
+                    <!-- Envisioned Solution -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Envisioned Solution</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->implementation_paths ?? null)</td>
+                    </tr>
+
                     <!-- Project Deliverables -->
                     <tr>
                         <td class="col col-sm-3 view-label">Sustainability Contribution</td>
                         <td class="col col-sm-9 view-content">@markdown($project->sustainability_contribution ?? null)</td>
                     </tr>
+
+                    <!-- Student Compensation and Project Funds -->
+                    <tr>
+                        <td class="col col-sm-3 view-label">Student Compensation and Project Funds</td>
+                        <td class="col col-sm-9 view-content">@markdown($project->compensation ?? null)</td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>

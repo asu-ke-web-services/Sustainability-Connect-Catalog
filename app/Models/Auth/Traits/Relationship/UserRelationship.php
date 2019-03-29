@@ -43,7 +43,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function organization() : BelongsTo
+    public function organization(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Organization\Organization::class, 'organization_id')->withDefault();
     }
@@ -51,7 +51,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function userType() : BelongsTo
+    public function userType(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\UserType::class, 'user_type_id')->withDefault();
     }
@@ -59,7 +59,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function studentDegreeLevel() : BelongsTo
+    public function studentDegreeLevel(): BelongsTo
     {
         return $this->belongsTo(\SCCatalog\Models\Lookup\StudentDegreeLevel::class, 'student_degree_level_id')->withDefault();
     }
@@ -67,7 +67,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function followedProjects() : BelongsToMany
+    public function followedProjects(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class, 'project_user')
             ->whereIn('opportunity_status_id', [
@@ -87,7 +87,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function followedInternships() : BelongsToMany
+    public function followedInternships(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class, 'internship_user')
             ->withTimestamps()
@@ -100,7 +100,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function projectApplications() : BelongsToMany
+    public function projectApplications(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class, 'project_user')
             // ->whereIn('opportunity_status_id', [
@@ -120,7 +120,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function internshipApplications() : BelongsToMany
+    public function internshipApplications(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class, 'internship_user')
             ->whereIn('opportunity_status_id', [
@@ -136,7 +136,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function participatingInProjects() : BelongsToMany
+    public function participatingInProjects(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Opportunity\Project::class, 'project_user')
             ->whereIn('opportunity_status_id', [
@@ -159,7 +159,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function participatingInInternships() : BelongsToMany
+    public function participatingInInternships(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Opportunity\Internship::class, 'internship_user')
             ->withPivot('relationship_type_id', 'comments')
@@ -198,7 +198,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      **/
-    public function addresses() : MorphMany
+    public function addresses(): MorphMany
     {
         return $this->morphMany(\SCCatalog\Models\Address\Address::class, 'addressable');
     }
@@ -206,7 +206,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      **/
-    public function notes() : MorphMany
+    public function notes(): MorphMany
     {
         return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'notable');
     }
@@ -214,7 +214,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      **/
-    public function affiliations() : MorphToMany
+    public function affiliations(): MorphToMany
     {
         return $this->morphToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliationable');
     }
@@ -222,7 +222,7 @@ trait UserRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      **/
-    public function accessAffiliations() : MorphToMany
+    public function accessAffiliations(): MorphToMany
     {
         return $this->morphToMany(\SCCatalog\Models\Lookup\Affiliation::class, 'affiliationable')
             ->where([

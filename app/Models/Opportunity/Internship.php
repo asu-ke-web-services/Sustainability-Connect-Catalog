@@ -142,11 +142,11 @@ class Internship extends Model implements HasMedia
     {
         if ($this->id != auth()->id() && $this->id != 1) {
             return '<a href="' . route('admin.opportunity.internship.destroy', $this) . '"
-                 data-method="delete"
-                 data-trans-button-cancel="' . __('buttons.general.cancel') . '"
-                 data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
-                 data-trans-title="' . __('strings.backend.opportunity.internships.delete_internship') . '"
-                 class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
+                data-method="delete"
+                data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+                data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+                data-trans-title="' . __('strings.backend.opportunity.internships.delete_internship') . '"
+                class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
         }
 
         return '';
@@ -176,8 +176,8 @@ class Internship extends Model implements HasMedia
         if ($this->trashed()) {
             return '
                 <div class="btn-group" role="group" aria-label="Actions">
-                  ' . $this->restore_button . '
-                  ' . $this->delete_permanently_button . '
+                    ' . $this->restore_button . '
+                    ' . $this->delete_permanently_button . '
                 </div>';
         }
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">

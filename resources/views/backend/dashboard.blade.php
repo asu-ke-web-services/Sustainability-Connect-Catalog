@@ -2,21 +2,23 @@
 
 @section('title', app_name() . ' | ' . __('strings.backend.dashboard.title'))
 
+@push('after-scripts')
+    <script>
+        $('.datatable').attr('style', 'border-collapse: collapse !important');
+
+        $('.datatable-newproject').DataTable({
+            "order": [[ 2, "asc" ]],
+            "lengthMenu": [[10, 25, -1], [10, 25, "All"]]
+        });
+
+        $('.datatable-user').DataTable({
+            "order": [[ 2, "asc" ]],
+            "lengthMenu": [[10, 25, -1], [10, 25, "All"]]
+        });
+    </script>
+@endpush
+
 @section('content')
-    {{--<div class="row">--}}
-        {{--<div class="col">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-header">--}}
-                    {{--<strong>{{ __('strings.backend.dashboard.welcome') }} {{ $logged_in_user->name }}!</strong>--}}
-                {{--</div><!--card-header-->--}}
-                {{--<div class="card-block">--}}
-                    {{--{!! __('strings.backend.welcome') !!}--}}
-                {{--</div><!--card-block-->--}}
-            {{--</div><!--card-->--}}
-
-        {{--</div><!--col-->--}}
-    {{--</div><!--row-->--}}
-
     <div class="card-group mb-4">
         <div class="card">
             <div class="card-body">
@@ -66,20 +68,9 @@
                 </div>
             </div>
         </div>
-        {{--<div class="card">--}}
-            {{--<div class="card-body">--}}
-                {{--<div class="h1 text-muted text-right mb-4">--}}
-                    {{--<i class="icon-pie-chart"></i>--}}
-                {{--</div>--}}
-                {{--<div class="text-value">28%</div>--}}
-                {{--<small class="text-muted text-uppercase font-weight-bold">Returning Visitors</small>--}}
-                {{--<div class="progress progress-xs mt-3 mb-0">--}}
-                    {{--<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
     </div>
 
+    @if (count($newUsersToReview))
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -87,7 +78,7 @@
                     <strong>{{ __('strings.backend.dashboard.new_user_accounts') }}</strong>
                 </div><!--card-header-->
                 <div class="card-body">
-                    <table class="table table-responsive-sm table-striped">
+                    <table class="table table-responsive-sm table-striped datatable datatable-newuser">
                         <thead>
                             <tr>
                                 <th>Username</th>
@@ -115,24 +106,15 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Prev</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
         <!-- /.col-->
     </div>
     <!-- /.row-->
+    @endif
 
+    @if (count($projectsUnderReview))
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -140,7 +122,7 @@
                     <strong>{{ __('strings.backend.dashboard.projects_under_review') }}</strong>
                 </div><!--card-header-->
                 <div class="card-body">
-                    <table class="table table-responsive-sm table-striped">
+                    <table class="table table-responsive-sm table-striped datatable datatable-newproject">
                         <thead>
                         <tr>
                             <th>Project</th>
@@ -162,22 +144,12 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Prev</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
         <!-- /.col-->
     </div>
     <!-- /.row-->
+    @endif
 
 @endsection

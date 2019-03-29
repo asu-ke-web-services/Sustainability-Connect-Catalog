@@ -59,7 +59,7 @@ class DashboardController extends Controller
             ->with('completedProjectsCount', $this->projectRepository->getCompletedCount())
             ->with('activeInternshipsCount', $this->internshipRepository->getActiveCount())
             ->with('activeUsersCount', $this->userRepository->getActiveCount())
-            ->with('projectsUnderReview', $this->projectRepository->getProposalReviewsPaginated(10, 'created_at', 'asc'))
-            ->with('newUsersToReview', $this->userRepository->getNeedsAffiliationReviewPaginated(10, '', 'created_at', 'asc'));
+            ->with('projectsUnderReview', $this->projectRepository->getProposalReviewsPaginated(100, 'created_at', 'asc'))
+            ->with('newUsersToReview', $this->userRepository->getNeedsAffiliationReviewPaginated(100, 'created_at', 'asc'));
     }
 }

@@ -1,7 +1,4 @@
 
-        <!-- Internship Name -->
-        <h1>{{ $internship->name }}</h1>
-
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>

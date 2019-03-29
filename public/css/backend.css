@@ -18921,3 +18921,11 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
   padding-bottom: 1rem;
 }
 
+.app-header {
+  background-color: #8c1d40;
+}
+
+.navbar-nav .nav-link {
+  color: #fff;
+}
+

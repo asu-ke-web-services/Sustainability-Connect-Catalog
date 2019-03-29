@@ -1,12 +1,8 @@
 {
-    "/js/searchCompletedProject.js": "/js/searchCompletedProject.js?id=c7c29fca6f68ac417e48",
-    "/js/searchProject.js": "/js/searchProject.js?id=06218e7d7a206d0030cc",
-    "/js/searchInternship.js": "/js/searchInternship.js?id=c3a19b44304a03141c57",
-    "/js/backend.js": "/js/backend.js?id=db38e63e228b0e28dd84",
-    "/css/backend.css": "/css/backend.css?id=4c966c3258f50be861a6",
-    "/css/SearchApp.css": "/css/SearchApp.css?id=9f1640110d67c283d328",
-    "/css/frontend.css": "/css/frontend.css?id=d41d8cd98f00b204e980",
-    "/js/vendor.js": "/js/vendor.js?id=94baf760fdc783d627f9",
-    "/js/frontend.js": "/js/frontend.js?id=3c95e49abcebde5c9226",
-    "/js/manifest.js": "/js/manifest.js?id=5ffc53e2567ad48b14d4"
+    "/js/frontend.js": "/js/frontend.js?id=5ef27d45949f13b61231",
+    "/css/frontend.css": "/css/frontend.css?id=0d3c55ef9dde95480bf5",
+    "/css/backend.css": "/css/backend.css?id=e294e8261f91eca5cbe7",
+    "/js/backend.js": "/js/backend.js?id=e33a70f4180c9d7d2444",
+    "/js/vendor.js": "/js/vendor.js?id=aedf2c3db89a5b9a5cef",
+    "/js/manifest.js": "/js/manifest.js?id=7c0a19fb1a3afbe0a6cb"
 }

@@ -226,6 +226,16 @@
 
                 </div><!--col-->
             </div><!--row-->
+
+            <div class="row">
+                <div class="col">
+                    {{ form_cancel(route('admin.opportunity.project.index'), __('buttons.general.cancel')) }}
+                </div><!--col-->
+
+                <div class="col text-right">
+                    {{ form_submit(__('buttons.general.submit')) }}
+                </div><!--col-->
+            </div><!--row-->
         </div><!--card-body-->
     </div><!--card-->
 
@@ -233,9 +243,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
 @endpush
 
-@section('javascript')
+@push('scripts')
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace( 'description' );
@@ -292,4 +302,4 @@
             }
         });
     </script>
-@endsection
+@endpush

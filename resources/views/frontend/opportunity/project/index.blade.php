@@ -9,8 +9,8 @@
     </div>
 @endsection
 
-@section('javascript')
+@push('scripts')
     <script src="{{mix('/js/manifest.js')}}" ></script>
     <script src="{{mix('js/vendor.js')}}" ></script>
     <script src="{{mix('js/searchProject.js')}}" ></script>
-@endsection
+@endpush

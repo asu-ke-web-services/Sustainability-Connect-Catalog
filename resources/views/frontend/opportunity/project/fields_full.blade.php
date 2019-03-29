@@ -8,7 +8,7 @@
                     </div>
 
                     <!-- Project Name Field -->
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'name'        => 'name',
                         'label'       => 'Name *',
                         'help_text'   => 'Names can be up to 1024 characters long',
@@ -20,7 +20,7 @@
                     ])@endcomponent
 
                     <!-- Description Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'description',
                         'label'       => 'Describe the Project *',
                         'help_text'   => 'What specific sustainability problem do you need solved?',
@@ -32,7 +32,7 @@
                     ])@endcomponent
 
                     <!-- Envisioned Solution Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'implementation_paths',
                         'label'       => 'Envisioned Solution *',
                         'help_text'   => 'What sustainability solution do you envision, and how will that solution be derived from this project?',
@@ -44,7 +44,7 @@
                     ])@endcomponent
 
                     <!-- Project Deliverables Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'sustainability_contribution',
                         'label'       => 'Project Deliverables *',
                         'help_text'   => 'What deliverables/end product do you expect?',
@@ -56,7 +56,7 @@
                     ])@endcomponent
 
                     <!-- Success Story Field -->
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'type'        => 'url',
                         'name'        => 'success_story',
                         'label'       => 'Success Story',
@@ -65,7 +65,7 @@
                     ])@endcomponent
 
                     <!-- Library Collection Field -->
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'type'        => 'url',
                         'name'        => 'library_collection',
                         'label'       => 'Library Collection',
@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('labels.backend.opportunity.projects.locations') }}
+                        {{ __('labels.frontend.opportunity.projects.locations') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -94,27 +94,27 @@
                 <div class="col">
 
                     <label for="addresses">Location:</label>
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'name'        => 'addresses[0][city]',
                         'label'       => 'City: *',
                         'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'name'        => 'addresses[0][state]',
                         'label'       => 'State/Prov: *',
                         'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'name'        => 'addresses[0][country]',
                         'label'       => 'Country:',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
-                    @component('backend.includes.components.form.textarea', [
+                    @component('frontend.includes.coreui.components.form.textarea', [
                         'name'        => 'addresses[0][comment]',
                         'label'       => 'Location Comment:',
                         'object'      => $project ?? null,
@@ -130,7 +130,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('labels.backend.opportunity.projects.accept_application') }}
+                        {{ __('labels.frontend.opportunity.projects.accept_application') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -141,7 +141,7 @@
                 <div class="col">
 
                     <!-- Listing Starts Field -->
-                    @component('backend.includes.components.form.date', [
+                    @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'listing_start_at',
                         'label'       => 'Listing Starts',
                         'placeholder' => 'mm/dd/yyyy',
@@ -150,7 +150,7 @@
                     ])@endcomponent
 
                     <!-- Listing Ends Field -->
-                    @component('backend.includes.components.form.date', [
+                    @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'listing_end_at',
                         'label'       => 'Listing Ends',
                         'placeholder' => 'mm/dd/yyyy',
@@ -159,7 +159,7 @@
                     ])@endcomponent
 
                     <!-- Application Deadline Field -->
-                    @component('backend.includes.components.form.date', [
+                    @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'application_deadline_at',
                         'label'       => 'Application Deadline',
                         'placeholder' => 'mm/dd/yyyy',
@@ -168,7 +168,7 @@
                     ])@endcomponent
 
                     <!-- Application Deadline Text Field -->
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'name'      => 'application_deadline_text',
                         'label'     => 'Application Deadline Text',
                         'help_text' => 'Enter text-format deadline; e.g. "When Filled" (Leave blank if Date field used)',
@@ -185,7 +185,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                            {{ __('labels.backend.opportunity.projects.project_details') }}
+                            {{ __('labels.frontend.opportunity.projects.project_details') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -196,7 +196,7 @@
                 <div class="col">
 
                     <!-- Opportunity Status Field -->
-                    @component('backend.includes.components.form.select', [
+                    @component('frontend.includes.coreui.components.form.select', [
                         'name'        => 'opportunity_status_id',
                         'label'       => 'Project Status *',
                         'placeholder' => 'Select project status...',
@@ -206,7 +206,7 @@
                     ])@endcomponent
 
                     <!-- Opportunity Review Status Field -->
-                    @component('backend.includes.components.form.select', [
+                    @component('frontend.includes.coreui.components.form.select', [
                         'name'        => 'review_status_id',
                         'label'       => 'Project Review Status',
                         'placeholder' => 'Select review status...',
@@ -215,7 +215,7 @@
                     ])@endcomponent
 
                     <!-- Opportunity Begins Field -->
-                    @component('backend.includes.components.form.date', [
+                    @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'opportunity_start_at',
                         'label'       => 'Project Start Date',
                         'placeholder' => 'mm/dd/yyyy',
@@ -223,7 +223,7 @@
                     ])@endcomponent
 
                     <!-- Opportunity Ends Field -->
-                    @component('backend.includes.components.form.date', [
+                    @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'opportunity_end_at',
                         'label'       => 'Project End Date',
                         'placeholder' => 'mm/dd/yyyy',
@@ -231,7 +231,7 @@
                     ])@endcomponent
 
                     <!-- Affiliations Field -->
-                    @component('backend.includes.components.form.multiselect', [
+                    @component('frontend.includes.coreui.components.form.multiselect', [
                         'name'        => 'affiliations',
                         'label'       => 'Affiliations',
                         'help_text' => 'Select one or more affiliations...',
@@ -241,7 +241,7 @@
                     ])@endcomponent
 
                     <!-- Categories Field -->
-                    @component('backend.includes.components.form.multiselect', [
+                    @component('frontend.includes.coreui.components.form.multiselect', [
                         'name'        => 'categories',
                         'label'       => 'Categories',
                         'help_text' => 'Select one or more categories...',
@@ -251,7 +251,7 @@
                     ])@endcomponent
 
                     <!-- Keywords Field -->
-                    @component('backend.includes.components.form.multiselect', [
+                    @component('frontend.includes.coreui.components.form.multiselect', [
                         'name'        => 'keywords',
                         'label'       => 'Keywords',
                         'help_text'   => 'Select one or more keywords...',
@@ -270,7 +270,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                            {{ __('labels.backend.opportunity.projects.applicant_details') }}
+                            {{ __('labels.frontend.opportunity.projects.applicant_details') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -283,7 +283,7 @@
                     <!-- How Many Students are you looking for? Undergraduate or Graduate? -->
 
                     <!-- Qualifications Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'qualifications',
                         'label'       => 'Qualifications',
                         'help_text'   => 'What specific skills should the applying students possess?',
@@ -294,7 +294,7 @@
                     ])@endcomponent
 
                     <!-- Responsibilities Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'responsibilities',
                         'label'       => 'Student Responsibilities',
                         'help_text'   => 'What will the student responsibilities be?',
@@ -305,7 +305,7 @@
                     ])@endcomponent
 
                     <!-- Learning Outcomes Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'learning_outcomes',
                         'label'       => 'Learning Outcomes',
                         'help_text'   => 'Describe what the student might learn from this experience.',
@@ -316,7 +316,7 @@
                     ])@endcomponent
 
                     <!-- Compensation Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'compensation',
                         'label'       => 'Student Compensation and Project Funds',
                         'help_text'   => 'Describe how students will be compensated in this project. If the student will not be paid, list other forms of compensation (metro pass, re-usable water bottles, etc.)',
@@ -327,7 +327,7 @@
                     ])@endcomponent
 
                     <!-- Budget Type Field -->
-                    @component('backend.includes.components.form.select', [
+                    @component('frontend.includes.coreui.components.form.select', [
                         'name'        => 'budget_type_id',
                         'label'       => 'Budget Available',
                         'help_text'   => 'Select budget type for the project...',
@@ -336,7 +336,7 @@
                     ])@endcomponent
 
                     <!-- Budget Amount Field -->
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'name'        => 'budget_amount',
                         'label'       => 'Budget Amount',
                         'help_text'   => 'If this project has a budget, state how large that budget is.',
@@ -353,7 +353,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('labels.backend.opportunity.projects.application_process') }}
+                        {{ __('labels.frontend.opportunity.projects.application_process') }}
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -364,7 +364,7 @@
                 <div class="col">
 
                     <!-- Application Instructions Field -->
-                    @component('backend.includes.components.form.richtext', [
+                    @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'application_instructions',
                         'label'       => 'Application Instructions:',
                         'help_text'   => 'Describe the steps the participant must follow to request admission into the project.',
@@ -377,15 +377,15 @@
                     <!-- Contact details -->
 
                     <!-- Partner Organization Field -->
-                    @component('backend.includes.components.form.select', [
+                    @component('frontend.includes.coreui.components.form.select', [
                         'name'        => 'organization_id',
                         'label'       => 'Project Partner Organization',
                         'optionList'  => $organizations,
                         'object'      => $project->organization ?? null,
                     ])@endcomponent
-{{-- 
+{{--
                     <!-- Modal Add New Organization -->
-                    @component('backend.includes.components.form.button', [
+                    @component('frontend.includes.coreui.components.form.button', [
                         'name'       => 'btn_add_organization',
                         'label'      => ' ',
                         'class'      => 'btn btn-primary disabled',
@@ -394,7 +394,7 @@
                     ])@endcomponent --}}
 
                     <!-- Opportunity Supervisor Field -->
-                    @component('backend.includes.components.form.select', [
+                    @component('frontend.includes.coreui.components.form.select', [
                         'name'        => 'supervisor_user_id',
                         'label'       => 'Project Supervisor',
                         'help_text'   => 'Begin typing to find user',
@@ -403,7 +403,7 @@
                     ])@endcomponent
 
                     <!-- Program Lead Field -->
-                    @component('backend.includes.components.form.input', [
+                    @component('frontend.includes.coreui.components.form.input', [
                         'name'        => 'program_lead',
                         'label'       => 'ASU Program Lead',
                         'help_text'   => 'If this project is part of a larger program, which is run through the School of Sustainability, GIOS, or another ASU initiative, then provide the name of the leader of that bigger program here. The program leader is typically different from the Project Supervisor listed above.',
@@ -412,10 +412,20 @@
 
                 </div><!--col-->
             </div><!--row-->
+
+            <div class="row">
+                <div class="col">
+                    {{ form_cancel(route('admin.opportunity.project.index'), __('buttons.general.cancel')) }}
+                </div><!--col-->
+
+                <div class="col text-right">
+                    {{ form_submit(__('buttons.general.submit')) }}
+                </div><!--col-->
+            </div><!--row-->
         </div><!--card-body-->
     </div><!--card-->
 
-@section('javascript')
+@push('scripts')
     <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace( 'description' );
@@ -476,4 +486,4 @@
         });
         //# sourceMappingURL=validation.js.map
     </script>
-@endsection
+@endpush

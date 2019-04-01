@@ -18,8 +18,8 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.search_active') }}">Active Listings</a>
-                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.search_completed') }}">Past Listings</a>
+                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.active') }}">Active Listings</a>
+                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.completed') }}">Past Listings</a>
             </div>
         </li>
 

@@ -18,6 +18,9 @@ Route::group([
     Route::post('project/apply/{project}', 'ProjectUserController@apply')->name('project.apply');
     Route::post('project/cancel-application/{project}', 'ProjectUserController@cancelApplication')->name('project.cancelApplication');
 
+    Route::get('project/{project}/manage', 'ProjectPrivateController@show')->name('project.show_private');
+    Route::get('project/{project}/print', 'ProjectPrivateController@print')->name('project.print');
+
     /*
      * Project Proposal CRUD - must be signed-in
      */
@@ -29,10 +32,10 @@ Route::group([
     /*
      * Project Listing CRUD - must be signed-in
      */
-    Route::get('project/create', 'ProjectController@create')->name('project.create');
-    Route::post('project', 'ProjectController@store')->name('project.store');
-    Route::get('project/{project}/edit', 'ProjectController@edit')->name('project.edit');
-    Route::post('project/{project}', 'ProjectController@update')->name('project.update');
+    Route::get('project/create', 'ProjectPrivateController@create')->name('project.create');
+    Route::post('project', 'ProjectPrivateController@store')->name('project.store');
+    Route::get('project/{project}/edit', 'ProjectPrivateController@edit')->name('project.edit');
+    Route::post('project/{project}', 'ProjectPrivateController@update')->name('project.update');
 
     /*
      * Internship membership action - must be signed-in
@@ -59,9 +62,9 @@ Route::group([
     /*
      * Project frontend access
      */
-    Route::get('project', 'ProjectSearchController@searchActive')->name('project.search_active');
-    Route::get('project/completed', 'ProjectSearchController@searchCompleted')->name('project.search_completed');
-    Route::get('project/{project}', 'ProjectController@show')->name('project.show');
+    Route::get('project', 'ProjectPublicController@index_active')->name('project.active');
+    Route::get('project/completed', 'ProjectPublicController@index_completed')->name('project.completed');
+    Route::get('project/{project}', 'ProjectPublicController@show')->name('project.show_public');
 
     /*
      * Internship frontend access

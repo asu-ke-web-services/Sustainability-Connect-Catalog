@@ -4,7 +4,7 @@
     <div class="container-fluid" style="min-height: 700px">
         <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Past Projects</h3>
+          <h3 class="box-title">Active Projects</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="font-size: .8em;">
@@ -21,8 +21,30 @@
             </thead>
             <tbody>
                 @foreach ($projects as $project)
+                    @php
+                        $accessAffiliations = $project->affiliations
+                            ->filter(function ($affiliation) {
+                                return $affiliation->access_control;
+                            })
+                            ->map(function ($affiliation) {
+                                return $affiliation->slug;
+                            })->toArray();
+
+                        $restrictAccess = false;
+                        foreach ($accessAffiliations as $restriction) {
+                            if (!in_array($restriction, $userAccessAffiliations )) {
+                                $restrictAccess = true;
+                            }
+                        }
+                    @endphp
                     <tr>
-                        <td><a href="{!! route('frontend.opportunity.project.show', $project) !!}">{{ ucwords($project->name) }}</a></td>
+                        <td>
+                        @if (!$canViewRestricted && $restrictAccess)
+                            View Restricted for SOS majors only
+                        @else
+                            <b><a href="{!! route('frontend.opportunity.project.show_public', $project) !!}">{{ ucwords($project->name) }}</a></b>
+                        @endif
+                        </td>
                         <td class="icon-column">
                             @foreach ($project->affiliations as $icon)
                                 @unless(empty($icon->frontend_fa_icon))

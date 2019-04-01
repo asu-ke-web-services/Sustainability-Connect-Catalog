@@ -20,9 +20,9 @@ use SCCatalog\Repositories\Frontend\Organization\OrganizationRepository;
 use SCCatalog\Models\Opportunity\Project;
 
 /**
- * Class ProjectController.
+ * Class ProjectPrivateController.
  */
-class ProjectController extends Controller
+class ProjectPrivateController extends Controller
 {
     /**
      * @var ProjectRepository
@@ -30,69 +30,13 @@ class ProjectController extends Controller
     private $projectRepository;
 
     /**
-     * ProjectController constructor.
+     * ProjectPrivateController constructor.
      *
      * @param ProjectRepository $projectRepository
      */
     public function __construct(ProjectRepository $projectRepository)
     {
         $this->projectRepository = $projectRepository;
-    }
-
-    /**
-     * Display a listing of the Projects.
-     *
-     * @param ViewProjectRequest $request
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function index(ViewProjectRequest $request)
-    {
-        if (auth()->user() !== null) {
-            $userAccessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
-
-            $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
-        }
-
-        JavaScript::put([
-            'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
-        ]);
-
-        return view('frontend.opportunity.project.index')
-            ->with('type', 'Project')
-            ->with('pageTitle', 'Projects');
-    }
-
-    /**
-     * Display a listing of Completed Projects.
-     *
-     * @param ViewProjectRequest $request
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function completed(ViewProjectRequest $request)
-    {
-        if (auth()->user() !== null) {
-            $userAccessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
-
-            $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
-        }
-
-        JavaScript::put([
-            'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
-        ]);
-
-        return view('frontend.opportunity.project.completed')
-            ->with('type', 'Project')
-            ->with('pageTitle', 'Past Projects');
     }
 
     /**
@@ -121,42 +65,45 @@ class ProjectController extends Controller
             ])
             ->getById($id);
 
-        $userAccessAffiliations = false;
-        $canViewRestricted = false;
-        $isFollowed = false;
-        $isApplicationSubmitted = false;
+        $attachments = $project->getMedia();
 
-        if (auth()->user() !== null) {
-            $userAccessAffiliations = auth()->user()->accessAffiliations
-                ->map(function ($affiliation) {
-                    return $affiliation['slug'];
-                })->toJson();
 
-            $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
-
-            $followedProjects = auth()->user()->followedProjects
-                ->map(function ($project) {
-                    return $project['id'];
-                })->toArray();
-
-            $isFollowed = in_array($id, $followedProjects);
-
-            $appliedProjects = auth()->user()->projectApplications
-                ->map(function ($project) {
-                    return $project['id'];
-                })->toArray();
-
-            $isApplicationSubmitted = in_array($id, $appliedProjects);
-        }
-
-        return view('frontend.opportunity.project.show')
+        return view('frontend.opportunity.project.show_private')
             ->withProject($project)
-            ->with('type', 'Project')
-            ->with('pageTitle', $project->name)
-            ->with('userAccessAffiliations', $userAccessAffiliations)
-            ->with('canViewRestricted', $canViewRestricted)
-            ->with('isFollowed', $isFollowed)
-            ->with('isApplicationSubmitted', $isApplicationSubmitted);
+            ->withAttachments($attachments)
+            ->with('pageTitle', $project->name);
+    }
+
+    /**
+     * Display the print-version of the specified Project.
+     *
+     * @param ViewProjectRequest $request
+     * @param Project          $project
+     *
+     * @return \Illuminate\View\View
+     */
+    public function print(ViewProjectRequest $request, Project $project)
+    {
+        $project->loadMissing(
+            'addresses',
+            'notes',
+            'status',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'affiliations',
+            'categories',
+            'keywords',
+            'users',
+            'createdByUser',
+            'updatedByUser'
+        );
+
+        $attachments = $project->getMedia();
+
+        return view('frontend.opportunity.project.print')
+            ->withProject($project)
+            ->withAttachments($attachments);
     }
 
     /**

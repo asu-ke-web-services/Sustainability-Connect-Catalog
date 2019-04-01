@@ -49,7 +49,7 @@ class ProjectUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
         $this->projectUserRepository->apply($project, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.project.show', $project)
+        return redirect()->route('frontend.opportunity.project.show_public', $project)
             ->withFlashSuccess('Successfully submitted project application');
     }
 
@@ -66,7 +66,7 @@ class ProjectUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
         $this->projectUserRepository->cancelApplication($project, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.project.show', $project)
+        return redirect()->route('frontend.opportunity.project.show_public', $project)
             ->withFlashSuccess('Successfully cancelled project application');
     }
 
@@ -83,7 +83,7 @@ class ProjectUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('follower', 'slug');
         $this->projectUserRepository->follow($project, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.project.show', $project)
+        return redirect()->route('frontend.opportunity.project.show_public', $project)
             ->withFlashSuccess('Successfully followed project');
     }
 
@@ -100,7 +100,7 @@ class ProjectUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('follower', 'slug');
         $this->projectUserRepository->unfollow($project, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.project.show', $project)
+        return redirect()->route('frontend.opportunity.project.show_public', $project)
             ->withFlashSuccess('Successfully unfollowed project');
     }
 }

@@ -8,7 +8,7 @@
 
             <ul class="nav nav-tabs" style="margin-left: 1em;">
                 <li class="active"><a href="#">View</a></li>
-                <li class="disabled"><a href="#">Manage</a></li>
+                <li><a href="{{ route('frontend.opportunity.project.show_private', $project) }}">Manage</a></li>
                 @can('view admin dashboard')
                 <li><a href="{{ route('frontend.opportunity.project.edit', $project) }}">Edit</a></li>
                 @endcan

@@ -10,7 +10,7 @@
                 <div class="clearfix">
                     <h4 class="pt-3">No opportunities to report.</h4>
                     <p class="text-muted">You are not following or participating in any opportunities.</p>
-                    <a class="btn btn-info" href="{{ route('frontend.opportunity.project.search_active') }}" role="button">Browse Projects</a>
+                    <a class="btn btn-info" href="{{ route('frontend.opportunity.project.active') }}" role="button">Browse Projects</a>
                     <a class="btn btn-warning" href="{{ route('frontend.opportunity.internship.search_active') }}" role="button">Browse Internships</a>
                 </div>
             </div>

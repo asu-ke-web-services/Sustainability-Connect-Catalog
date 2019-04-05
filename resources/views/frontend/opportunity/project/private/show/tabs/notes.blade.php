@@ -2,8 +2,9 @@
     <div class="card">
         <div class="card-header">
             <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                <a href="{{ route('frontend.opportunity.project.private.note.add', $project) }}"
-                        class="btn btn-success ml-1"
+                {{-- <a href="{{ route('frontend.opportunity.project.private.note.add', $project) }}" --}}
+                <a href="#"
+                        class="btn btn-success ml-1 disabled"
                         data-toggle="tooltip"
                         title="Add Note">
                         <span><span class="fas fa-plus-circle"></span>&nbsp;Add Note</span>

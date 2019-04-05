@@ -44,8 +44,9 @@
             @endforeach
         </table>
         <div class="btn-toolbar float-left" role="toolbar" aria-label="Toolbar with button groups">
-            <a href="{{ route('admin.opportunity.project.add_attachment', $project) }}"
-            class="btn btn-success ml-1"
+            {{-- <a href="{{ route('admin.opportunity.project.add_attachment', $project) }}" --}}
+            <a href="#"
+            class="btn btn-success ml-1 disabled"
             data-toggle="tooltip"
             title="Upload New Attachment">
                 <span><span class="fas fa-plus-circle"></span>&nbsp;Upload New Attachment</span>

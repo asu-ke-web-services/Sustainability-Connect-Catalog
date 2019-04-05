@@ -185,7 +185,7 @@
                             <th>Status</th>
                             <th>Submitted</th>
                             <th>Updated Last</th>
-                            <th>{{ __('labels.general.actions') }}</th>
+                            {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                         </tr>
                         </thead>
                         <tbody>
@@ -195,7 +195,7 @@
                                 <td>{!! $internship->status->name ?? '' !!}</td>
                                 <td>{!! $internship->created_at !!}</td>
                                 <td>{!! $internship->updated_at !!}</td>
-                                <td>{!! $internship->frontend_private_action_buttons !!}</td>
+                                {{-- <td>{!! $internship->frontend_private_action_buttons !!}</td> --}}
                             </tr>
                         @endforeach
                         </tbody>

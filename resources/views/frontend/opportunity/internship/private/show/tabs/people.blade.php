@@ -13,8 +13,9 @@
     <div class="card">
         <div class="card-header">
             <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                <a href="{{ route('frontend.opportunity.internship.private.user.add', $internship, 'participant') }}"
-                        class="btn btn-success ml-1"
+                {{-- <a href="{{ route('frontend.opportunity.internship.private.user.add', $internship, 'participant') }}" --}}
+                <a href="#"
+                        class="btn btn-success ml-1 disabled"
                         data-toggle="tooltip"
                         title="Add Participant">
                         <span><span class="fas fa-plus-circle"></span>&nbsp;Add Participant</span>
@@ -51,8 +52,9 @@
     <div class="card">
         <div class="card-header">
             <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                <a href="{{ route('frontend.opportunity.internship.private.user.add', $internship, 'participant') }}"
-                        class="btn btn-success ml-1"
+                {{-- <a href="{{ route('frontend.opportunity.internship.private.user.add', $internship, 'participant') }}" --}}
+                <a href="#"
+                        class="btn btn-success ml-1 disabled"
                         data-toggle="tooltip"
                         title="Add Mentor">
                         <span><span class="fas fa-plus-circle"></span>&nbsp;Add Mentor</span>

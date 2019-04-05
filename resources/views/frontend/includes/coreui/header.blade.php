@@ -35,23 +35,33 @@
         </li>
 
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ config('app.sc_base_url') }}/news/sustainability-connect-successes/">Success Stories</a>
+            {{-- <a class="nav-link" href="{{ config('app.sc_base_url') }}/news/sustainability-connect-successes/">Success Stories</a> --}}
+            <a class="nav-link" href="#">Success Stories</a>
         </li>
 
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ config('app.sc_base_url') }}/news/sustainability-connect-news/">News</a>
+            {{-- <a class="nav-link" href="{{ config('app.sc_base_url') }}/news/sustainability-connect-news/">News</a> --}}
+            <a class="nav-link" href="#">News</a>
         </li>
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
             <div class="dropdown-menu">
-                <a title="About Us" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/">About Us</a>
+                {{-- <a title="About Us" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/">About Us</a>
                 <a title="Contact Us" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/contact-us/">Contact Us</a>
                 <a title="Programs &amp; Partners" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/programs-partners/">Programs &amp; Partners</a>
                 <a title="Types of Opportunities" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/types-of-opportunities/">Types of Opportunities</a>
                 <a title="Why Work With Us" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/why-work-with-us/">Why Work With Us</a>
                 <a title="Resources" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/resources/">Resources</a>
-                <a title="FAQ" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/faq/">FAQ</a>
+                <a title="FAQ" class="dropdown-item" href="{{ config('app.sc_base_url') }}/about/faq/">FAQ</a> --}}
+
+                <a title="About Us" class="dropdown-item" href="#">About Us</a>
+                <a title="Contact Us" class="dropdown-item" href="#">Contact Us</a>
+                <a title="Programs &amp; Partners" class="dropdown-item" href="#">Programs &amp; Partners</a>
+                <a title="Types of Opportunities" class="dropdown-item" href="#">Types of Opportunities</a>
+                <a title="Why Work With Us" class="dropdown-item" href="#">Why Work With Us</a>
+                <a title="Resources" class="dropdown-item" href="#">Resources</a>
+                <a title="FAQ" class="dropdown-item" href="#">FAQ</a>
             </div>
         </li>
 

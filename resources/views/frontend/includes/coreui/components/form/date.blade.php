@@ -5,7 +5,7 @@
                 ->for($name) }}
     @endif
     <div class="col-md-10">
-        <div id="datetime-{!! $name !!}" class="input-group date" data-target-input="nearest">
+        <div id="{{ $name }}" class="input-group date" data-target-input="nearest">
             <div class="input-group-append">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
@@ -15,8 +15,8 @@
                 old($name) ?: ($object->{$name} ?? '')
             )
                 ->class('form-control datetimepicker-input')
-                ->attribute('data-target', "#datetime-$name")
-                ->attribute('data-toggle', "datetimepicker")
+                ->attribute('data-target', '#'.$name)
+                ->attribute('data-toggle', 'datetimepicker')
             }}
         </div>
 
@@ -33,7 +33,7 @@
 @push('after-scripts')
     <script type="text/javascript">
         $(function () {
-            $("datetime-{!! $name !!}").datetimepicker({
+            $({!! $name !!}).datetimepicker({
                 format: 'L'
             });
         });

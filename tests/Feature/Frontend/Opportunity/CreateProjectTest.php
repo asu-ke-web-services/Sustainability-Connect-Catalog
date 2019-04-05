@@ -23,10 +23,10 @@ class CreateProjectTest extends TestCase
 
         $this
             ->actingAs($admin)
-            ->get(route('frontend.opportunity.project.create'))
+            ->get(route('frontend.opportunity.project.public.create'))
             ->assertStatus(200)
             ->assertSee('Project Proposal')
-            ->assertSee('Submit your idea')
+            ->assertSee('Submit your project')
             ->assertSee('Name')
             ->assertSee('Describe the Project');
     }
@@ -39,8 +39,8 @@ class CreateProjectTest extends TestCase
         $data = [
             'name' => 'Test Project',
             'description' => 'Test description',
-            'opportunity_status_id' => 1,
-            'review_status_id' => 1,
+            // 'opportunity_status_id' => 1,
+            // 'review_status_id' => 1,
             'opportunity_start_at' => Carbon::now()->addDay(30),
             'opportunity_end_at' => Carbon::now()->addDay(45),
             'implementation_paths' => 'test solution',
@@ -65,11 +65,11 @@ class CreateProjectTest extends TestCase
 
         $response = $this
             ->actingAs($admin)
-            ->post(route('frontend.opportunity.project.store'), $data);
+            ->post(route('frontend.opportunity.project.public.store'), $data);
 
         $response
             ->assertStatus(302);
-            // ->assertRedirect(route('admin.opportunity.project.index'))
-            // ->assertSessionHas('message', 'Project created successfully');
+        // ->assertRedirect(route('admin.opportunity.project.index'))
+        // ->assertSessionHas('message', 'Project successfully submitted');
     }
 }

@@ -84,7 +84,6 @@ class Project extends Model implements HasMedia
         'opportunity_status_id',
         'review_status_id',
         'description',
-        // 'parent_opportunity_id',
         'supervisor_user_id',
         'submitting_user_id',
         'degree_program',
@@ -214,41 +213,25 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getRemoveUserButtonAttribute(): string
-    {
-        return '<a href="' . route('admin.opportunity.project.destroy', $this) . '"
-            data-method="delete"
-            data-trans-button-cancel="' . __('buttons.general.cancel') . '"
-            data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
-            data-trans-title="' . __('strings.backend.general.are_you_sure') . '"
-            class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.delete') . '"></i></a> ';
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserActionButtonsAttribute(): string
-    {
-        return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-            ' . $this->show_button . '
-            ' . $this->remove_user_button . '
-        </div>';
-    }
-
-    /**
-     * @return string
-     */
     public function getFrontendShowButtonAttribute(): string
     {
-        return '<a href="' . route('frontend.opportunity.project.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+        return '<a href="' . route('frontend.opportunity.project.public.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
 
     /**
      * @return string
      */
-    public function getFrontendEditButtonAttribute(): string
+    public function getFrontendSubmissionEditButtonAttribute(): string
     {
-        return '<a href="' . route('frontend.opportunity.project.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
+        return '<a href="' . route('frontend.opportunity.project.public.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendFullEditButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.project.private.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
     }
 
     /**
@@ -256,17 +239,28 @@ class Project extends Model implements HasMedia
      */
     public function getFrontendPrintButtonAttribute(): string
     {
-        return '<a href="' . route('frontend.opportunity.project.print', $this) . '" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
+        return '<a href="' . route('frontend.opportunity.project.private.print', $this) . '" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
     }
 
     /**
      * @return string
      */
-    public function getFrontendActionButtonsAttribute(): string
+    public function getFrontendSubmissionActionButtonsAttribute(): string
     {
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
             ' . $this->frontend_show_button . '
-            ' . $this->frontend_edit_button . '
+            ' . $this->frontend_submission_edit_button . '
+            </div>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendPrivateActionButtonsAttribute(): string
+    {
+        return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+            ' . $this->frontend_show_button . '
+            ' . $this->frontend_full_edit_button . '
             </div>';
     }
 

@@ -200,13 +200,13 @@ class Internship extends Model implements HasMedia
      */
     public function getFrontendShowButtonAttribute(): string
     {
-        return '<a href="' . route('frontend.opportunity.internship.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+        return '<a href="' . route('frontend.opportunity.internship.public.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
 
     /**
      * @return string
      */
-    public function getFrontendEditButtonAttribute(): string
+    public function getFrontendSubmissionEditButtonAttribute(): string
     {
         return '<a href="' . route('frontend.opportunity.internship.submission.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
     }
@@ -214,9 +214,17 @@ class Internship extends Model implements HasMedia
     /**
      * @return string
      */
+    public function getFrontendFullEditButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.internship.private.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
     public function getFrontendPrintButtonAttribute(): string
     {
-        return '<a href="' . route('frontend.opportunity.internship.print', $this) . '" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
+        return '<a href="' . route('frontend.opportunity.internship.private.print', $this) . '" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
     }
 
     /**
@@ -226,7 +234,7 @@ class Internship extends Model implements HasMedia
     {
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
             ' . $this->frontend_show_button . '
-            ' . $this->frontend_edit_button . '
+            ' . $this->frontend_submission_edit_button . '
             </div>';
     }
 
@@ -255,7 +263,7 @@ class Internship extends Model implements HasMedia
     }
 
     /**
-     * Get the active status of this model (required for consistency with Project in React SearchApp.)
+     * Get the active status of this model (required for consistency with Internship in React SearchApp.)
      *
      * @return bool
      */

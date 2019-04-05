@@ -18,19 +18,19 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.active') }}">Active Listings</a>
-                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.completed') }}">Past Listings</a>
+                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.public.active') }}">Active Listings</a>
+                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.public.completed') }}">Past Listings</a>
             </div>
         </li>
 
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('frontend.opportunity.internship.search_active') }}">Internships</a>
+            <a class="nav-link" href="{{ route('frontend.opportunity.internship.public.active') }}">Internships</a>
         </li>
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Submit an Opportunity</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.create') }}">Submit Project</a>
+                <a class="dropdown-item" href="{{ route('frontend.opportunity.project.public.create') }}">Submit Project</a>
             </div>
         </li>
 

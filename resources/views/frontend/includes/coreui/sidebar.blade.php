@@ -24,13 +24,13 @@
                 <ul class="nav-dropdown-items">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.opportunity.project.submission.create') }}">
+                        <a class="nav-link" href="{{ route('frontend.opportunity.project.public.create') }}">
                             Submit Project Proposal
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.opportunity.project.create') }}">
+                        <a class="nav-link" href="{{ route('frontend.opportunity.project.private.create') }}">
                             Create Full Project Listing
                         </a>
                     </li>

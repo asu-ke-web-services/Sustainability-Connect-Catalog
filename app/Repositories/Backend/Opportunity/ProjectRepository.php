@@ -2,6 +2,7 @@
 
 namespace SCCatalog\Repositories\Backend\Opportunity;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use SCCatalog\Exceptions\GeneralException;
@@ -12,7 +13,6 @@ use SCCatalog\Models\Address\Address;
 use SCCatalog\Models\Lookup\Affiliation;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\BaseRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Class ProjectRepository

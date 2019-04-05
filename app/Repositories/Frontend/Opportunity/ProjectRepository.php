@@ -2,11 +2,12 @@
 
 namespace SCCatalog\Repositories\Frontend\Opportunity;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
+use SCCatalog\Events\Backend\Opportunity\ProjectUpdated;
 use SCCatalog\Models\Address\Address;
 use SCCatalog\Models\Lookup\Affiliation;
 use SCCatalog\Models\Opportunity\Project;
@@ -24,6 +25,21 @@ class ProjectRepository extends BaseRepository
     {
         return Project::class;
     }
+
+    /**
+     * Array of related models to always eager load.
+     *
+     * @var array
+     */
+    protected $with = [
+        'addresses',
+        'notes',
+        'status',
+        'organization',
+        'affiliations',
+        'categories',
+        'keywords',
+    ];
 
     /**
      * @param int    $paged

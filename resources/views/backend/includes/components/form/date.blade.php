@@ -5,22 +5,18 @@
                 ->for($name) }}
     @endif
     <div class="col-md-10">
-        <div class="input-group">
-            <span class="input-group-prepend">
-                <span class="input-group-text">
-                    <span class="fa fa-calendar"></span>
-                </span>
-            </span>
-
+        <div id="{{ $name }}" class="input-group date" data-target-input="nearest">
+            <div class="input-group-append">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
             {{ html()->input(
-                $type ?? 'text',
+                'text',
                 $name . (($multivalue ?? false) ? '[]' : ''),
                 old($name) ?: ($object->{$name} ?? '')
             )
-                ->class('form-control datepicker')
-                ->placeholder($placeholder ?? 'mm/dd/yyyy')
-                ->attribute($attribute ?? null)
-                ->attributes($attributes ?? [])
+                ->class('form-control datetimepicker-input')
+                ->attribute('data-target', '#'.$name)
+                ->attribute('data-toggle', 'datetimepicker')
             }}
         </div>
 
@@ -33,3 +29,13 @@
         @endif
     </div><!--col-->
 </div><!--form-group-->
+
+@push('after-scripts')
+    <script type="text/javascript">
+        $(function () {
+            $({!! $name !!}).datetimepicker({
+                format: 'L'
+            });
+        });
+    </script>
+@endpush

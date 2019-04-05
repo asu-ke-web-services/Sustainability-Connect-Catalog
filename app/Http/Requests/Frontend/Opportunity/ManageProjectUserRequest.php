@@ -2,12 +2,10 @@
 
 namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class EditProjectSubmissionRequest.
- */
-class EditProjectSubmissionRequest extends FormRequest
+class ManageProjectUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +14,7 @@ class EditProjectSubmissionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('manage project user');
     }
 
     /**

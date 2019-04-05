@@ -28,7 +28,11 @@ class StoreFullProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'                        => 'required|max:1024',
+            'description'                 => 'required',
+            'opportunity_status_id'       => 'required',
+            'implementation_paths'        => 'required',
+            'sustainability_contribution' => 'required',
         ];
     }
 
@@ -40,11 +44,7 @@ class StoreFullProjectRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'                        => 'required|max:1024',
-            'description'                 => 'required',
-            'opportunity_status_id'       => 'required',
-            'implementation_paths'        => 'required',
-            'sustainability_contribution' => 'required',
+            //
         ];
     }
 

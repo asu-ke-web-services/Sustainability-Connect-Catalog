@@ -43,7 +43,7 @@ class ProjectAttachmentController extends Controller
         AttachmentType $attachmentTypeRepository,
         Project $project
     ) {
-        return view('backend.opportunity.project.add_attachment')
+        return view('backend.opportunity.project.attachment.add')
             ->with('attachmentStatuses', $attachmentStatusRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
             ->with('attachmentTypes', $attachmentTypeRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
             ->with('project', $project);
@@ -79,7 +79,7 @@ class ProjectAttachmentController extends Controller
         Project $project,
         Media $media
     ) {
-        return view('backend.opportunity.project.edit_attachment')
+        return view('backend.opportunity.project.attachment.edit')
             ->with('attachmentStatuses', $attachmentStatusRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
             ->with('attachmentTypes', $attachmentTypeRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
             ->with('project', $project)

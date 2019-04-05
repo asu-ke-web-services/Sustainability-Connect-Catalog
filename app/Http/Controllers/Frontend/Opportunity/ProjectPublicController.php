@@ -2,7 +2,6 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewProjectRequest;
 use SCCatalog\Repositories\Frontend\Opportunity\ProjectRepository;
@@ -49,7 +48,7 @@ class ProjectPublicController extends Controller
             $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
         }
 
-        return view("frontend.opportunity.project.index_active")
+        return view("frontend.opportunity.project.public.active.index")
             ->withProjects($this->projectRepository->getActivePaginated(200, 'application_deadline_at', 'asc'))
             ->with('pageTitle', 'Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
@@ -79,7 +78,7 @@ class ProjectPublicController extends Controller
             $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
         }
 
-        return view("frontend.opportunity.project.index_completed")
+        return view("frontend.opportunity.project.public.completed.index")
             ->withProjects($this->projectRepository->getCompletedPaginated(200, 'opportunity_start_at', 'desc'))
             ->with('pageTitle', 'Past Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
@@ -142,7 +141,7 @@ class ProjectPublicController extends Controller
             $isApplicationSubmitted = in_array($id, $appliedProjects);
         }
 
-        return view('frontend.opportunity.project.show_public')
+        return view('frontend.opportunity.project.public.show')
             ->withProject($project)
             ->with('type', 'Project')
             ->with('pageTitle', $project->name)

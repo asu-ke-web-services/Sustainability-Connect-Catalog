@@ -70,7 +70,7 @@ Other ASU majors should contact their major department for credit inquiries.
 For questions about SOS internship credit, please contact: [caroline.savalle@asu.edu](mailto:caroline.savalle@asu.edu)'
         ];
 
-        return view('frontend.opportunity.internship.create')
+        return view('frontend.opportunity.internship.public.create')
             ->with('degreeProgram', (object)$degreeProgram)
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -92,7 +92,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
     {
         $internship = $this->internshipRepository->create($request->all());
 
-        return redirect()->route('frontend.opportunity.internship.show', $internship)
+        return redirect()->route('frontend.opportunity.internship.public.show', $internship)
             ->withFlashSuccess(__('Internship created successfully'));
     }
 
@@ -136,7 +136,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
         // dd($internship->affiliations);
 
 
-        return view('frontend.opportunity.internship.edit')
+        return view('frontend.opportunity.internship.public.edit')
             ->with('internship', $internship)
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -159,7 +159,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
     {
         $internship = $this->internshipRepository->update($internship, $request->all());
 
-        return redirect()->route('frontend.opportunity.internship.show', $internship)
+        return redirect()->route('frontend.opportunity.internship.public.show', $internship)
             ->withFlashSuccess(__('Internship updated successfully'));
     }
 }

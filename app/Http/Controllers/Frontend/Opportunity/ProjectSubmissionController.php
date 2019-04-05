@@ -5,6 +5,7 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\EditProjectSubmissionRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreProjectSubmissionRequest;
+use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Frontend\Auth\UserRepository;
 use SCCatalog\Repositories\Frontend\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Frontend\Lookup\BudgetTypeRepository;
@@ -53,24 +54,18 @@ class ProjectSubmissionController extends Controller
      */
     public function create(
         EditProjectSubmissionRequest $request,
-        AffiliationRepository $affiliationRepository,
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,
         KeywordRepository $keywordRepository,
-        OpportunityStatusRepository $opportunityStatusRepository,
-        OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
         OrganizationRepository $organizationRepository,
         UserRepository $userRepository
     ) {
-        return view('frontend.opportunity.project.create_basic')
-            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
+        return view('frontend.opportunity.project.public.create')
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray());
     }
 
     /**
@@ -86,11 +81,11 @@ class ProjectSubmissionController extends Controller
         $project = $this->projectRepository->create($request->all());
 
         return redirect()->route('frontend.user.dashboard')
-            ->withFlashSuccess(__('Project Proposal successfully submitted'));
+            ->withFlashSuccess(__('Project successfully submitted'));
     }
 
     /**
-     * Show the form for creating a new Project.
+     * Show the form for updating a Project submission.
      *
      * @param EditProjectSubmissionRequest $request
      * @param BudgetTypeRepository $budgetTypeRepository
@@ -107,40 +102,65 @@ class ProjectSubmissionController extends Controller
      */
     public function edit(
         EditProjectSubmissionRequest $request,
-        AffiliationRepository $affiliationRepository,
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,
         KeywordRepository $keywordRepository,
-        OpportunityStatusRepository $opportunityStatusRepository,
-        OpportunityReviewStatusRepository $opportunityReviewStatusRepository,
         OrganizationRepository $organizationRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        Project $project
     ) {
-        return view('frontend.opportunity.project.edit_basic')
-            ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
+        $project->loadMissing(
+            'addresses',
+            'notes',
+            'organization',
+            'supervisorUser',
+            'submittingUser',
+            'categories',
+            'keywords'
+        );
+
+        // dd($project->addresses);
+
+        // if (0 === count($project->addresses)) {
+        //     $project->addresses = null;
+        // }
+
+        if (0 === count($project->notes)) {
+            $project->notes = null;
+        }
+
+        if (0 === count($project->categories)) {
+            $project->categories = null;
+        }
+
+        if (0 === count($project->keywords)) {
+            $project->keywords = null;
+        }
+
+        return view('frontend.opportunity.project.public.edit')
+            ->with('project', $project)
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            // ->with('opportunities', $opportunityRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray());
     }
 
     /**
-     * Store a newly created Project in storage.
+     * Update a Project in storage.
      *
      * @param StoreProjectSubmissionRequest $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function update(StoreProjectSubmissionRequest $request)
+    public function update(StoreProjectSubmissionRequest $request, Project $project)
     {
-        $project = $this->projectRepository->create($request->all());
+        // dd($request->all());
 
-        return redirect()->route('frontend.user.dashboard', $project)
+        $project = $this->projectRepository->update($project, $request->all());
+
+        return redirect()->route('frontend.user.dashboard')
             ->withFlashSuccess(__('Proposal successfully submitted'));
     }
 }

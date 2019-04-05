@@ -226,10 +226,6 @@ class ProjectController extends Controller
             'users'
         );
 
-        // dd($opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
-
-        // dd($project->affiliations->pluck('id')->toArray());
-
         return view('backend.opportunity.project.edit')
             ->with('project', $project)
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())

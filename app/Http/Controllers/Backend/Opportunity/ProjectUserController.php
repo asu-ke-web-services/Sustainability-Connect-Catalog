@@ -41,8 +41,7 @@ class ProjectUserController extends Controller
         ProjectRepository $projectRepository,
         ProjectUserRepository $projectUserRepository,
         UserRepository $userRepository
-    )
-    {
+    ) {
         $this->projectRepository = $projectRepository;
         $this->projectUserRepository = $projectUserRepository;
         $this->userRepository = $userRepository;
@@ -70,8 +69,7 @@ class ProjectUserController extends Controller
             ])
         );
 
-        return redirect()->route('admin.backend.opportunity.user.added')
-            ->withFlashSuccess('User added successfully');
+        return redirect()->back()->withFlashSuccess('User added successfully');
     }
 
     /**
@@ -95,8 +93,7 @@ class ProjectUserController extends Controller
             ])
         );
 
-        return redirect()->route('admin.backend.opportunity.user.updated')
-            ->withFlashSuccess('User approved successfully');
+        return redirect()->back()->withFlashSuccess('User approved successfully');
     }
 
     /**
@@ -117,7 +114,6 @@ class ProjectUserController extends Controller
             ])
         );
 
-        return redirect()->route('admin.backend.opportunity.project.index')
-            ->withFlashSuccess('User removed successfully');
+        return redirect()->back()->withFlashSuccess('User removed successfully');
     }
 }

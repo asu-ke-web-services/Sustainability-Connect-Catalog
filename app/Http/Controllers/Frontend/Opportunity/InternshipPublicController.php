@@ -2,15 +2,15 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
-use JavaScript;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
+use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\Frontend\Opportunity\InternshipRepository;
 
 /**
- * Class InternshipController.
+ * Class InternshipPublicController.
  */
-class InternshipController extends Controller
+class InternshipPublicController extends Controller
 {
     /**
      * @var InternshipRepository
@@ -28,7 +28,7 @@ class InternshipController extends Controller
     }
 
     /**
-     * Display a listing of the Internship.
+     * Display a listing of the Internships.
      *
      * @param ViewInternshipRequest $request
      *
@@ -36,23 +36,25 @@ class InternshipController extends Controller
      */
     public function index(ViewInternshipRequest $request)
     {
-        if ( auth()->user() !== null ) {
+        $userAccessAffiliations = [];
+        $canViewRestricted = false;
+
+        if (null !== auth()->user()) {
             $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
-                })->toJson();
+                })->toArray();
 
             $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
         }
 
-        JavaScript::put([
-            'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
-        ]);
-
-        return view('frontend.opportunity.internship.index')
-            ->with('type', 'Internship')
-            ->with('pageTitle', 'Internships');
+        return view("frontend.opportunity.internship.public.index")
+            ->withInternships($this->internshipRepository->getActivePaginated(200, 'application_deadline_at', 'asc'))
+            ->with('pageTitle', 'Internships')
+            ->with('userAccessAffiliations', $userAccessAffiliations)
+            ->with('canViewRestricted', $canViewRestricted)
+            ->with('defaultOrderBy', 'application_deadline_at')
+            ->with('defaultSort', 'asc');
     }
 
     /**
@@ -70,7 +72,6 @@ class InternshipController extends Controller
                 'addresses',
                 'notes',
                 'status',
-                // 'parentOpportunity',
                 'organization',
                 'supervisorUser',
                 'submittingUser',
@@ -87,7 +88,7 @@ class InternshipController extends Controller
         $isFollowed = false;
         $isApplicationSubmitted = false;
 
-        if ( auth()->user() !== null ) {
+        if (auth()->user() !== null) {
             $userAccessAffiliations = auth()->user()->accessAffiliations
                 ->map(function ($affiliation) {
                     return $affiliation['slug'];
@@ -102,15 +103,15 @@ class InternshipController extends Controller
 
             $isFollowed = in_array($id, $followedInternships);
 
-            $appliedProjects = auth()->user()->projectApplications
-                ->map(function ($project) {
-                    return $project['id'];
+            $appliedInternships = auth()->user()->internshipApplications
+                ->map(function ($internship) {
+                    return $internship['id'];
                 })->toArray();
 
-            $isApplicationSubmitted = in_array($id, $appliedProjects);
+            $isApplicationSubmitted = in_array($id, $appliedInternships);
         }
 
-        return view('frontend.opportunity.internship.show')
+        return view('frontend.opportunity.internship.public.show')
             ->withInternship($internship)
             ->with('type', 'Internship')
             ->with('pageTitle', $internship->name)

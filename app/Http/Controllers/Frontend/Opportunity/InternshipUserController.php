@@ -49,7 +49,7 @@ class InternshipUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
         $this->internshipUserRepository->apply($internship, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.internship.show', $internship)
+        return redirect()->route('frontend.opportunity.internship.public.show', $internship)
             ->withFlashSuccess('Successfully submitted internship application');
     }
 
@@ -66,7 +66,7 @@ class InternshipUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('applicant', 'slug');
         $this->internshipUserRepository->cancelApplication($internship, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.internship.show', $internship)
+        return redirect()->route('frontend.opportunity.internship.public.show', $internship)
             ->withFlashSuccess('Successfully cancelled internship application');
     }
 
@@ -83,7 +83,7 @@ class InternshipUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('follower', 'slug');
         $this->internshipUserRepository->follow($internship, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.internship.show', $internship)
+        return redirect()->route('frontend.opportunity.internship.public.show', $internship)
             ->withFlashSuccess('Successfully followed internship');
     }
 
@@ -100,7 +100,7 @@ class InternshipUserController extends Controller
         $relationship = $this->relationshipTypeRepository->getByColumn('follower', 'slug');
         $this->internshipUserRepository->unfollow($internship, $request->user(), ['relationship_type_id' => $relationship->id]);
 
-        return redirect()->route('frontend.opportunity.internship.show', $internship)
+        return redirect()->route('frontend.opportunity.internship.public.show', $internship)
             ->withFlashSuccess('Successfully unfollowed internship');
     }
 }

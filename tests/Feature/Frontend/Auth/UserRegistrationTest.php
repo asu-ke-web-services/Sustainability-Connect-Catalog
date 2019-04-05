@@ -107,17 +107,17 @@ class UserRegistrationTest extends TestCase
     }
 
     /** @test */
-    public function if_requires_approval_is_active_the_user_cant_login()
-    {
-        config(['access.users.requires_approval' => true]);
+    // public function if_requires_approval_is_active_the_user_cant_login()
+    // {
+    //     config(['access.users.requires_approval' => true]);
 
-        $response = $this->registerUser();
-        $response->assertSessionHas(['flash_success' => __('exceptions.frontend.auth.confirmation.created_pending')]);
+    //     $response = $this->registerUser();
+    //     $response->assertSessionHas(['flash_success' => __('exceptions.frontend.auth.confirmation.created_pending')]);
 
-        $response = $this->post('/login', ['email' => 'john@example.com', 'password' => 'password']);
+    //     $response = $this->post('/login', ['email' => 'john@example.com', 'password' => 'password']);
 
-        $response->assertSessionHas(['flash_danger' => __('exceptions.frontend.auth.confirmation.pending')]);
-    }
+    //     $response->assertSessionHas(['flash_danger' => __('exceptions.frontend.auth.confirmation.pending')]);
+    // }
 
     /** @test */
     public function an_event_get_fired_on_registration()

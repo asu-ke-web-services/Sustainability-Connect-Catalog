@@ -61,7 +61,7 @@
                             </td>
                             <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toDateString() : null }}</td>
                             <td>{{
-                                 null != $project->application_deadline_text
+                                    null != $project->application_deadline_text
                                     ? $project->application_deadline_text
                                     : (null !== $project->application_deadline_at ? $project->application_deadline_at->toDateString() : null)
                             }}</td>

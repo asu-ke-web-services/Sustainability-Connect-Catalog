@@ -41,9 +41,9 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#edit" role="tab" aria-controls="edit">Update Information</a></li>
-                    @if ($logged_in_user->canChangePassword())
+                    @unless ($logged_in_user->asurite)
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab" aria-controls="password">Change Password</a></li>
-                    @endif
+                    @endunless
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="profile" role="tabpanel">

@@ -456,10 +456,10 @@
                     required: true,
                     maxlength: 1024
                 },
-                "description": 'required',
+                // "description": 'required',
                 "opportunity_status_id": 'required',
-                "implementation_paths": 'required',
-                "sustainability_contribution": 'required',
+                // "implementation_paths": 'required',
+                // "sustainability_contribution": 'required',
                 "addresses[0][city]": 'required',
                 "addresses[0][state]": 'required'
             },
@@ -468,10 +468,10 @@
                     required: 'Please enter the project name',
                     maxlength: 'The project name may not be longer than 1024 characters'
                 },
-                "description": 'Please enter the project description',
+                // "description": 'Please enter the project description',
                 "opportunity_status_id": 'Please select the project status',
-                "implementation_paths": 'Please enter the project solution',
-                "sustainability_contribution": 'Please enter the project deliverables',
+                // "implementation_paths": 'Please enter the project solution',
+                // "sustainability_contribution": 'Please enter the project deliverables',
                 "addresses[0][city]": 'Please enter the project city',
                 "addresses[0][state]": 'Please enter the project state'
             },

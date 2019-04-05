@@ -7,11 +7,6 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.description') }}</th>
-                <td>@markdown($internship->description ?? null)</td>
-            </tr>
-
-            <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.status') }}</th>
                 <td>{{ ucwords($internship->status->name ?? '') }}</td>
             </tr>
@@ -74,17 +69,6 @@
                     <ul>
                         @foreach($internship->keywords as $keyword)
                             <li>{{ $keyword->name }}</li>
-                        @endforeach
-                    </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.location') }}</th>
-                <td>
-                    <ul>
-                        @foreach($internship->addresses as $address)
-                            <li>{{ $address->city . ', ' . $address->state }}</li>
                         @endforeach
                     </ul>
                 </td>

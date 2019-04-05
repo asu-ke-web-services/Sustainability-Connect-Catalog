@@ -3,6 +3,32 @@
         <table class="table table-hover">
 
             <tr>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.description') }}</th>
+                <td>@markdown($project->description)</td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.organization.name') }}</th>
+                <td>{{ $project->organization->name ?? '' }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.organization.url') }}</th>
+                <td>{{ $project->organization->url ?? '' }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.location') }}</th>
+                <td>
+                    <ul>
+                        @foreach($project->addresses as $address)
+                            <li>{{ $address->city . ', ' . $address->state }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.implementation_paths') }}</th>
                 <td>@markdown($project->implementation_paths)</td>
             </tr>

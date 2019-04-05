@@ -7,11 +7,6 @@
             </tr>
 
             <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.description') }}</th>
-                <td>@markdown($project->description)</td>
-            </tr>
-
-            <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.status') }}</th>
                 <td>{{ ucwords($project->status->name ?? '') }}</td>
             </tr>
@@ -44,7 +39,7 @@
             <tr>
                 <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.application_deadline_at') }}</th>
                 <td>{{
-                     $project->application_deadline_text > ''
+                        $project->application_deadline_text > ''
                         ? $project->application_deadline_text
                         : (null !== $project->application_deadline_at ? $project->application_deadline_at->toFormattedDateString() : '')
                 }}</td>
@@ -79,17 +74,6 @@
                     <ul>
                         @foreach($project->keywords as $keyword)
                             <li>{{ $keyword->name }}</li>
-                        @endforeach
-                    </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.location') }}</th>
-                <td>
-                    <ul>
-                        @foreach($project->addresses as $address)
-                            <li>{{ $address->city . ', ' . $address->state }}</li>
                         @endforeach
                     </ul>
                 </td>

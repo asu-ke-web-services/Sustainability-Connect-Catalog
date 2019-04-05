@@ -72,6 +72,7 @@
                     @component('backend.includes.components.form.date', [
                         'name'        => 'listing_start_at',
                         'label'       => 'Listing Starts',
+                        'help_text'   => 'Required if you wish to publish in the catalog Active listings',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
@@ -89,7 +90,7 @@
                         'name'      => 'application_deadline_at',
                         'label'     => 'Application Deadline',
                         'placeholder' => 'mm/dd/yyyy',
-                        'help_text'   => 'Required if you wish to publish in the catalog Active listings',
+                        'help_text'   => 'Enter date-format deadline (Leave blank if Text Deadline used)',
                         'object'    => $internship ?? null,
                     ])@endcomponent
 
@@ -440,7 +441,7 @@
                     required: true,
                     maxlength: 1024
                 },
-                "description": 'required',
+                // "description": 'required',
                 "opportunity_status_id": 'required',
                 "addresses[0][city]": 'required',
                 "addresses[0][state]": 'required'
@@ -450,7 +451,7 @@
                     required: 'Please enter the internship name',
                     maxlength: 'The internship name may not be longer than 1024 characters'
                 },
-                "description": 'Please enter the internship description',
+                // "description": 'Please enter the internship description',
                 "opportunity_status_id": 'Please select internship status',
                 "addresses[0][city]": 'Please enter the internship city',
                 "addresses[0][state]": 'Please enter the internship state'

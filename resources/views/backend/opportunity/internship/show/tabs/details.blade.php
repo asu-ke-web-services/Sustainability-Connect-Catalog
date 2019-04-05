@@ -3,6 +3,32 @@
         <table class="table table-hover">
 
             <tr>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.description') }}</th>
+                <td>@markdown($internship->description ?? null)</td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.organization.name') }}</th>
+                <td>{{ $internship->organization->name ?? '' }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.organization.url') }}</th>
+                <td>{{ $internship->organization->url ?? '' }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ __('labels.backend.opportunity.internships.tabs.content.overview.location') }}</th>
+                <td>
+                    <ul>
+                        @foreach($internship->addresses as $address)
+                            <li>{{ $address->city . ', ' . $address->state }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
                 <th>{{ __('labels.backend.opportunity.internships.tabs.content.details.qualifications') }}</th>
                 <td>@markdown($internship->qualifications ?? '')</td>
             </tr>

@@ -10,8 +10,8 @@
                 <div class="clearfix">
                     <h4 class="pt-3">No opportunities to report.</h4>
                     <p class="text-muted">You are not following or participating in any opportunities.</p>
-                    <a class="btn btn-info" href="{{ route('frontend.opportunity.project.active') }}" role="button">Browse Projects</a>
-                    <a class="btn btn-warning" href="{{ route('frontend.opportunity.internship.search_active') }}" role="button">Browse Internships</a>
+                    <a class="btn btn-info" href="{{ route('frontend.opportunity.project.public.active') }}" role="button">Browse Projects</a>
+                    <a class="btn btn-warning" href="{{ route('frontend.opportunity.internship.public.active') }}" role="button">Browse Internships</a>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                                 <td>{!! $project->status->name ?? '' !!}</td>
                                 <td>{!! $project->created_at !!}</td>
                                 <td>{!! $project->updated_at !!}</td>
-                                <td>{!! $project->frontend_action_buttons !!}</td>
+                                <td>{!! $project->frontend_submission_action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -73,7 +73,6 @@
                             <th>Status</th>
                             <th>Submitted</th>
                             <th>Updated Last</th>
-                            <th>{{ __('labels.general.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -83,7 +82,6 @@
                                 <td>{!! $project->status->name ?? '' !!}</td>
                                 <td>{!! $project->created_at !!}</td>
                                 <td>{!! $project->updated_at !!}</td>
-                                <td>{!! $project->frontend_action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -120,7 +118,7 @@
                                 <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
                                 <td>{!! $project->status->name !!}</td>
                                 <td>{!! $project->opportunity_start_at !!}</td>
-                                <td>{!! $project->frontend_action_buttons !!}</td>
+                                <td>{!! $project->frontend_private_action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -160,7 +158,7 @@
                                 <td>{!! $internship->status->name ?? '' !!}</td>
                                 <td>{!! $internship->created_at !!}</td>
                                 <td>{!! $internship->updated_at !!}</td>
-                                <td>{!! $internship->frontend_action_buttons !!}</td>
+                                <td>{!! $internship->frontend_private_action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -197,7 +195,7 @@
                                 <td>{!! $internship->status->name ?? '' !!}</td>
                                 <td>{!! $internship->created_at !!}</td>
                                 <td>{!! $internship->updated_at !!}</td>
-                                <td>{!! $internship->frontend_action_buttons !!}</td>
+                                <td>{!! $internship->frontend_private_action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -234,7 +232,7 @@
                                 <td>{!! $internship->supervisorUser->full_name ?? null !!}</td>
                                 <td>{!! $internship->status->name !!}</td>
                                 <td>{!! $internship->opportunity_start_at !!}</td>
-                                <td>{!! $internship->frontend_action_buttons !!}</td>
+                                <td>{!! $internship->frontend_private_action_buttons !!}</td>
                             </tr>
                         @endforeach
                         </tbody>

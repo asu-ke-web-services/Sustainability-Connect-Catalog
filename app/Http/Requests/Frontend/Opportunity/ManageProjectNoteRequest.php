@@ -1,13 +1,11 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\Note;
+namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class ManageNoteRequest.
- */
-class ManageNoteRequest extends FormRequest
+class ManageProjectNoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

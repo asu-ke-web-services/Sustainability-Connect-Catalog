@@ -126,7 +126,7 @@
                     @component('backend.includes.components.form.select', [
                         'name'        => 'opportunity_status_id',
                         'label'       => 'Internship Status *',
-                        'placeholder' => 'Select project status...',
+                        'placeholder' => 'Select internship status...',
                         'attribute'   => 'required',
                         'optionList'  => $opportunityStatuses,
                         'object'      => $internship ?? null,

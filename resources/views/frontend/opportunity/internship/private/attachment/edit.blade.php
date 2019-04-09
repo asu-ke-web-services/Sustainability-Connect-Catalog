@@ -1,9 +1,9 @@
 @extends ('frontend.layouts.coreui')
 
-@section ('title', 'Internship | Upload Attachment')
+@section ('title', 'Internship | Edit Attachment')
 
 @section('content')
-{{ html()->modelForm($internship, 'POST', route('frontend.opportunity.internship.private.attachment.store', $internship))->acceptsFiles()->class('form-horizontal')->open() }}
+{{ html()->form('POST', route('frontend.opportunity.internship.private.attachment.update', [$internship, $media]))->acceptsFiles()->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">
@@ -11,7 +11,7 @@
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
                         Project
-                        <small class="text-muted">Upload Attachment</small>
+                        <small class="text-muted">Edit Attachment</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <h4 class="card-title mb-0">
-                                Upload Attachment
+                                Edit Attachment
                             </h4>
                         </div><!--col-->
                     </div><!--row-->
@@ -33,12 +33,20 @@
                     <div class="row mt-4">
                         <div class="col">
 
-                            <!-- File Upload Field -->
-                            @component('frontend.includes.coreui.components.form.input', [
-                                'type'        => 'file',
-                                'name'        => 'file_attachment',
-                                'label'       => 'File Attachment',
-                            ])@endcomponent
+                            <div class="form-group row">
+                                {{ html()->label('File Attachment')
+                                        ->class('col-md-2 form-control-label')
+                                        ->for('file_attachment') }}
+                                <div class="col-md-10">
+                                    {{ html()->text(
+                                        'file_attachment',
+                                        $media->file_name ?? ''
+                                    )
+                                        ->class('form-control')
+                                        ->attribute('readonly')
+                                    }}
+                                </div><!--col-->
+                            </div><!--form-group-->
 
                             <div class="form-group row">
                                 {{ html()->label('Visibility *')
@@ -48,7 +56,7 @@
                                     {{ html()->select(
                                         'attachment_status',
                                         $attachmentStatuses,
-                                        old('attachment_status') ?: null
+                                        $visibility ?? ''
                                     )
                                         ->class('form-control selectize-single')
                                         ->placeholder('Select attachment visibility...')
@@ -65,7 +73,7 @@
                                     {{ html()->select(
                                         'attachment_type',
                                         $attachmentTypes,
-                                        old('attachment_type') ?: null
+                                        $type ?? ''
                                     )
                                         ->class('form-control selectize-single')
                                         ->placeholder('Select attachment type...')
@@ -91,5 +99,5 @@
         </div><!--card-body-->
     </div><!--card-->
 
-{{ html()->closeModelForm() }}
+{{ html()->form()->close() }}
 @endsection

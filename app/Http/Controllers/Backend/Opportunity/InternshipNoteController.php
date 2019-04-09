@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Backend\Opportunity\ManageNoteRequest;
+use SCCatalog\Http\Requests\Backend\Note\ManageNoteRequest;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Models\Note\Note;
 use SCCatalog\Repositories\Backend\Opportunity\InternshipNoteRepository;

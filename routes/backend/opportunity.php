@@ -46,12 +46,12 @@ Route::group([
         Route::get('attachment/{media}/delete', 'ProjectAttachmentController@delete')->name('project.attachment.delete');
 
         // Project Notes
-        Route::get('note', 'ProjectAttachmentController@add')->name('project.note.add');
-        Route::post('note', 'ProjectAttachmentController@store')->name('project.note.store');
+        Route::get('note', 'ProjectNoteController@add')->name('project.note.add');
+        Route::post('note', 'ProjectNoteController@store')->name('project.note.store');
 
-        Route::get('note/{note}/edit', 'ProjectAttachmentController@edit')->name('project.note.edit');
-        Route::post('note/{note}', 'ProjectAttachmentController@update')->name('project.note.update');
-        Route::get('note/{note}/delete', 'ProjectAttachmentController@delete')->name('project.note.delete');
+        Route::get('note/{note}/edit', 'ProjectNoteController@edit')->name('project.note.edit');
+        Route::post('note/{note}', 'ProjectNoteController@update')->name('project.note.update');
+        Route::get('note/{note}/delete', 'ProjectNoteController@delete')->name('project.note.delete');
 
         // Project Users
         Route::get('user', 'ProjectUserController@add')->name('project.user.add');

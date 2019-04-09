@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Repositories\Backend\Opportunity;
+namespace SCCatalog\Repositories\Frontend\Opportunity;
 
 use Illuminate\Support\Facades\DB;
 use SCCatalog\Models\Opportunity\Project;

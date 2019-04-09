@@ -1,17 +1,17 @@
-@extends ('backend.layouts.app')
+@extends ('frontend.layouts.coreui')
 
 @section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('Upload Attachment'))
 
 @section('content')
-{{ html()->modelForm($project, 'POST', route('admin.opportunity.project.store_attachment', $project))->acceptsFiles()->class('form-horizontal')->open() }}
+{{ html()->modelForm($project, 'POST', route('admin.opportunity.project.attachment.store', $project))->acceptsFiles()->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('labels.backend.opportunity.projects.management') }}
-                        <small class="text-muted">{{ __('Upload Attachment') }}</small>
+                        Project
+                        <small class="text-muted">Upload Attachment</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -34,7 +34,7 @@
                         <div class="col">
 
                             <!-- File Upload Field -->
-                            @component('backend.includes.components.form.input', [
+                            @component('frontend.includes.coreui.components.form.input', [
                                 'type'        => 'file',
                                 'name'        => 'file_attachment',
                                 'label'       => 'File Attachment',
@@ -76,24 +76,19 @@
 
                         </div><!--col-->
                     </div><!--row-->
+                    <div class="row">
+                        <div class="col">
+                            {{ form_cancel( url()->previous(), __('buttons.general.cancel') ) }}
+                        </div><!--col-->
+
+                        <div class="col text-right">
+                            {{ form_submit( __('buttons.general.submit') ) }}
+                        </div><!--col-->
+                    </div><!--row-->
                 </div><!--card-body-->
             </div><!--card-->
 
         </div><!--card-body-->
-    </div><!--card-->
-
-    <div class="card">
-        <div class="card-footer">
-            <div class="row">
-                <div class="col">
-                    {{ form_cancel( url()->previous(), __('buttons.general.cancel') ) }}
-                </div><!--col-->
-
-                <div class="col text-right">
-                    {{ form_submit( __('buttons.general.submit') ) }}
-                </div><!--col-->
-            </div><!--row-->
-        </div><!--card-footer-->
     </div><!--card-->
 
 {{ html()->closeModelForm() }}

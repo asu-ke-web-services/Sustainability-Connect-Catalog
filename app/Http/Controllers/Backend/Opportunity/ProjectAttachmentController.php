@@ -4,11 +4,11 @@ namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectAttachmentRequest;
+use SCCatalog\Models\Lookup\AttachmentStatus;
+use SCCatalog\Models\Lookup\AttachmentType;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Backend\Opportunity\ProjectAttachmentRepository;
 use Spatie\MediaLibrary\Media;
-use SCCatalog\Models\Lookup\AttachmentStatus;
-use SCCatalog\Models\Lookup\AttachmentType;
 
 /**
  * Class ProjectAttachmentController.
@@ -44,9 +44,9 @@ class ProjectAttachmentController extends Controller
         Project $project
     ) {
         return view('backend.opportunity.project.attachment.add')
-            ->with('attachmentStatuses', $attachmentStatusRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
-            ->with('attachmentTypes', $attachmentTypeRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
-            ->with('project', $project);
+            ->with('project', $project)
+            ->with('attachmentStatuses', $attachmentStatusRepository->get()->pluck('name', 'slug')->toArray())
+            ->with('attachmentTypes', $attachmentTypeRepository->get()->pluck('name', 'slug')->toArray());
     }
 
     /**
@@ -80,10 +80,12 @@ class ProjectAttachmentController extends Controller
         Media $media
     ) {
         return view('backend.opportunity.project.attachment.edit')
-            ->with('attachmentStatuses', $attachmentStatusRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
-            ->with('attachmentTypes', $attachmentTypeRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
             ->with('project', $project)
-            ->with('media', $media);
+            ->with('media', $media)
+            ->with('type', $attachmentTypeRepository->where('slug', $media->getCustomProperty('type'))->get()->pluck('slug')->first())
+            ->with('visibility', $attachmentStatusRepository->where('slug', $media->getCustomProperty('visibility'))->get()->pluck('slug')->first())
+            ->with('attachmentStatuses', $attachmentStatusRepository->get()->pluck('name', 'slug')->toArray())
+            ->with('attachmentTypes', $attachmentTypeRepository->get()->pluck('name', 'slug')->toArray());
     }
 
     /**

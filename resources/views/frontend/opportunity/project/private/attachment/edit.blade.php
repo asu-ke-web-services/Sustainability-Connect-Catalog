@@ -3,7 +3,7 @@
 @section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('Edit Attachment'))
 
 @section('content')
-{{ html()->form('POST', route('admin.opportunity.project.attachment.update', [$project, $media]))->acceptsFiles()->class('form-horizontal')->open() }}
+{{ html()->form('POST', route('frontend.opportunity.project.private.attachment.update', [$project, $media]))->acceptsFiles()->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">

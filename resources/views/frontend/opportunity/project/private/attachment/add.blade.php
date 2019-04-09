@@ -1,4 +1,4 @@
-@extends ('backend.layouts.app')
+@extends ('frontend.layouts.coreui')
 
 @section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('Upload Attachment'))
 
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        Project Management
+                        Project
                         <small class="text-muted">Upload Attachment</small>
                     </h4>
                 </div><!--col-->
@@ -34,7 +34,7 @@
                         <div class="col">
 
                             <!-- File Upload Field -->
-                            @component('frontend.includes.components.form.input', [
+                            @component('frontend.includes.coreui.components.form.input', [
                                 'type'        => 'file',
                                 'name'        => 'file_attachment',
                                 'label'       => 'File Attachment',

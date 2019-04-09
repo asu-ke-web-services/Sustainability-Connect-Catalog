@@ -5,77 +5,77 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreAttachmentRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\RemoveAttachmentRequest;
-use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Frontend\Opportunity\ProjectAttachmentRepository;
+use SCCatalog\Models\Opportunity\Internship;
+use SCCatalog\Repositories\Frontend\Opportunity\InternshipAttachmentRepository;
 use Spatie\MediaLibrary\Media;
 use SCCatalog\Models\Lookup\AttachmentStatus;
 use SCCatalog\Models\Lookup\AttachmentType;
 
 /**
- * Class ProjectAttachmentController.
+ * Class InternshipAttachmentController.
  */
-class ProjectAttachmentController extends Controller
+class InternshipAttachmentController extends Controller
 {
     /**
-     * @var ProjectAttachmentRepository
+     * @var InternshipAttachmentRepository
      */
-    private $projectAttachmentRepository;
+    private $internshipAttachmentRepository;
 
     /**
-     * ProjectController constructor.
+     * InternshipController constructor.
      *
-     * @param ProjectAttachmentRepository $projectAttachmentRepository
+     * @param InternshipAttachmentRepository $internshipAttachmentRepository
      */
-    public function __construct(ProjectAttachmentRepository $projectAttachmentRepository)
+    public function __construct(InternshipAttachmentRepository $internshipAttachmentRepository)
     {
-        $this->projectAttachmentRepository = $projectAttachmentRepository;
+        $this->internshipAttachmentRepository = $internshipAttachmentRepository;
     }
 
     /**
-     * Show the form for uploading a file attachment into Project.
+     * Show the form for uploading a file attachment into Internship.
      *
      * @param StoreAttachmentRequest $request
      *
      * @param AttachmentStatus       $attachmentStatusRepository
      * @param AttachmentType         $attachmentTypeRepository
-     * @param Project                $project
+     * @param Internship                $internship
      * @return \Illuminate\View\View
      */
     public function add(
         StoreAttachmentRequest $request,
         AttachmentStatus $attachmentStatusRepository,
         AttachmentType $attachmentTypeRepository,
-        Project $project
+        Internship $internship
     ) {
-        return view('frontend.opportunity.project.private.attachment.add')
-            ->with('project', $project)
+        return view('frontend.opportunity.internship.private.attachment.add')
+            ->with('internship', $internship)
             ->with('attachmentStatuses', $attachmentStatusRepository->get()->pluck('name', 'slug')->toArray())
             ->with('attachmentTypes', $attachmentTypeRepository->get()->pluck('name', 'slug')->toArray());
     }
 
     /**
-     * Show the form for uploading a file attachment into Project.
+     * Show the form for uploading a file attachment into Internship.
      *
      * @param StoreAttachmentRequest $request
-     * @param Project                $project
+     * @param Internship                $internship
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(StoreAttachmentRequest $request, Project $project)
+    public function store(StoreAttachmentRequest $request, Internship $internship)
     {
-        $project = $this->projectAttachmentRepository->store($project, $request->all());
+        $internship = $this->internshipAttachmentRepository->store($internship, $request->all());
 
-        return redirect()->route('frontend.opportunity.project.private.show', $project)
+        return redirect()->route('frontend.opportunity.internship.private.show', $internship)
             ->withFlashSuccess(__('Attachment uploaded successfully'));
     }
 
     /**
-     * Edit the specified Project in storage.
+     * Edit the specified Internship in storage.
      *
      * @param StoreAttachmentRequest $request
      * @param AttachmentStatus       $attachmentStatusRepository
      * @param AttachmentType         $attachmentTypeRepository
-     * @param Project                $project
+     * @param Internship                $internship
      * @param Media                  $media
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -83,11 +83,11 @@ class ProjectAttachmentController extends Controller
         StoreAttachmentRequest $request,
         AttachmentStatus $attachmentStatusRepository,
         AttachmentType $attachmentTypeRepository,
-        Project $project,
+        Internship $internship,
         Media $media
     ) {
-        return view('frontend.opportunity.project.private.attachment.edit')
-            ->with('project', $project)
+        return view('frontend.opportunity.internship.private.attachment.edit')
+            ->with('internship', $internship)
             ->with('media', $media)
             ->with('type', $attachmentTypeRepository->where('slug', $media->getCustomProperty('type'))->get()->pluck('slug')->first())
             ->with('visibility', $attachmentStatusRepository->where('slug', $media->getCustomProperty('visibility'))->get()->pluck('slug')->first())
@@ -96,35 +96,35 @@ class ProjectAttachmentController extends Controller
     }
 
     /**
-     * Update the specified Project in storage.
+     * Update the specified Internship in storage.
      *
      * @param StoreAttachmentRequest $request
-     * @param Project                        $project
+     * @param Internship                        $internship
      * @param Media                          $media
      * @return
      */
-    public function update(StoreAttachmentRequest $request, Project $project, Media $media)
+    public function update(StoreAttachmentRequest $request, Internship $internship, Media $media)
     {
         // dd($media);
-        $this->projectAttachmentRepository->update($project, $media, $request->all());
+        $this->internshipAttachmentRepository->update($internship, $media, $request->all());
 
-        return redirect()->route('frontend.opportunity.project.private.show', $project)
+        return redirect()->route('frontend.opportunity.internship.private.show', $internship)
             ->withFlashSuccess(__('Attachment updated successfully'));
     }
 
     /**
-     * Remove the specified Project from storage.
+     * Remove the specified Internship from storage.
      *
      * @param StoreAttachmentRequest $request
-     * @param Project                $project
+     * @param Internship                $internship
      * @param Media                  $media
      * @return
      */
-    public function destroy(RemoveAttachmentRequest $request, Project $project, Media $media)
+    public function destroy(RemoveAttachmentRequest $request, Internship $internship, Media $media)
     {
-        $this->projectAttachmentRepository->delete($project, $media);
+        $this->internshipAttachmentRepository->delete($internship, $media);
 
-        return redirect()->route('frontend.opportunity.project.private.show', $project)
+        return redirect()->route('frontend.opportunity.internship.private.show', $internship)
             ->withFlashSuccess('Attachment deleted successfully');
     }
 }

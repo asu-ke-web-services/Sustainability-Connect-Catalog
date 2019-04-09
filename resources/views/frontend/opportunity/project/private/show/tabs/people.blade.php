@@ -1,6 +1,19 @@
 
 <div class="col">
     <div class="card">
+        <div class="card-body">
+            <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                <a href="{{ route('frontend.opportunity.project.private.user.add', $project) }}"
+                    class="btn btn-success ml-1"
+                    data-toggle="tooltip"
+                    title="Add Project User">
+                    <span><span class="fas fa-plus-circle"></span>&nbsp;Add Project User</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
         <div class="card-header"><h4>Project Leadership</h4></div>
         <div class="card-body">
             <ul class="list-group">
@@ -19,16 +32,16 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Type</th>
+                            <th class="w-25">Name</th>
+                            <th>Comments</th>
                             {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                         </tr>
                     </thead>
                     @foreach($project->applicants as $applicant)
                     <tbody>
                         <tr>
-                            <td>{{ $applicant->full_name }}</td>
-                            <td>{{ $applicant->userType->name }}</td>
+                            <td>{{ $applicant->full_name }} ({{ $applicant->userType->name }})</td>
+                            <td>{{ $applicant->pivot->comments }}</td>
                             {{-- <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="{{ route('frontend.opportunity.project.private.user.show', [$project, $applicant]) }}"
@@ -53,15 +66,6 @@
 
     <div class="card">
             <div class="card-header">
-                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    {{-- <a href="{{ route('frontend.opportunity.project.private.user.add', $project, 'participant') }}" --}}
-                    <a href="#"
-                            class="btn btn-success ml-1 disabled"
-                            data-toggle="tooltip"
-                            title="Add Participant">
-                            <span><span class="fas fa-plus-circle"></span>&nbsp;Add Participant</span>
-                    </a>
-                </div>
                 <h4>Participants</h4>
             </div>
             <div class="card-body">
@@ -69,16 +73,16 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Type</th>
+                                <th class="w-25">Name</th>
+                                <th>Comments</th>
                                 {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                             </tr>
                         </thead>
                         @foreach($project->participants as $participant)
                         <tbody>
                             <tr>
-                                <td>{{ $participant->full_name }}</td>
-                                <td>{{ $participant->userType->name }}</td>
+                                <td>{{ $participant->full_name }} ({{ $participant->userType->name }})</td>
+                                <td>{{ $participant->pivot->comments }}</td>
                                 {{-- <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                         <a href="{{ route('frontend.opportunity.project.private.user.show', [$project, $participant]) }}"
@@ -103,15 +107,6 @@
 
     <div class="card">
         <div class="card-header">
-            <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                {{-- <a href="{{ route('frontend.opportunity.project.private.user.add', $project, 'participant') }}" --}}
-                <a href="#"
-                        class="btn btn-success ml-1 disabled"
-                        data-toggle="tooltip"
-                        title="Add Mentor">
-                        <span><span class="fas fa-plus-circle"></span>&nbsp;Add Mentor</span>
-                </a>
-            </div>
             <h4>Mentors</h4>
         </div>
         <div class="card-body">
@@ -119,16 +114,16 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Type</th>
+                            <th class="w-25">Name</th>
+                            <th>Comments</th>
                             {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                         </tr>
                     </thead>
                     @foreach($project->mentors as $mentor)
                     <tbody>
                         <tr>
-                            <td>{{ $mentor->full_name }}</td>
-                            <td>{{ $mentor->userType->name }}</td>
+                            <td>{{ $mentor->full_name }} ({{ $mentor->userType->name }})</td>
+                            <td>{{ $mentor->pivot->comments }}</td>
                             {{-- <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="{{ route('frontend.opportunity.project.private.user.show', [$project, $mentor]) }}"
@@ -158,16 +153,14 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Type</th>
+                            <th class="w-25">Name</th>
                             {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                         </tr>
                     </thead>
                     @foreach($project->followers as $follower)
                     <tbody>
                         <tr>
-                            <td>{{ $follower->full_name }}</td>
-                            <td>{{ $follower->userType->name }}</td>
+                            <td>{{ $follower->full_name }} ({{ $applicant->userType->name }})</td>
                             {{-- <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="{{ route('frontend.opportunity.project.private.user.show', [$project, $follower]) }}"

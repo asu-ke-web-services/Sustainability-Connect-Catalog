@@ -512,7 +512,7 @@ class Project extends Model implements HasMedia
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps();
     }
 
@@ -522,7 +522,7 @@ class Project extends Model implements HasMedia
     public function activeMembers(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [2, 3, 4, 5]);
     }
@@ -533,7 +533,7 @@ class Project extends Model implements HasMedia
     public function followers(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 1);
     }
@@ -544,7 +544,7 @@ class Project extends Model implements HasMedia
     public function applicants(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 2);
     }
@@ -555,7 +555,7 @@ class Project extends Model implements HasMedia
     public function participants(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 3);
     }
@@ -566,7 +566,7 @@ class Project extends Model implements HasMedia
     public function mentors(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [4, 5]);
     }

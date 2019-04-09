@@ -1,56 +1,56 @@
 <div class="col">
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Download</th>
-                    <th>Type</th>
-                    <th>Pending Approval</th>
-                    <th>Visibility</th>
-                    {{-- <th>{{ __('labels.general.actions') }}</th> --}}
-                </tr>
-            </thead>
-            @foreach($attachments as $attachment)
-            <tbody>
-                <tr>
-                    <td>{{ ucwords($attachment->name) }}</td>
-                    <td><a href="{{ $attachment->getUrl() }}">{{ $attachment->file_name }}</a></td>
-                    <td>{{ $attachment->getCustomProperty('type') }}</td>
-                    @if (1 == $attachment->getCustomProperty('pending'))
-                        <td><span class="badge badge-success">{{ __('labels.general.yes') }}</span></td>
-                    @else
-                        <td><span class="badge badge-danger">{{ __('labels.general.no') }}</span></td>
-                    @endif
-                    <td>{{ $attachment->getCustomProperty('visibility') }}</td>
-                    {{-- <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <a href="{{ route('admin.opportunity.project.edit_attachment', $project, $attachment) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>';
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('labels.general.more') }}</button>
-                                <div class="dropdown-menu" aria-labelledby="attachmentActions">
-                                    <a href="{{ route('admin.opportunity.project.delete_attachment', $project, $attachment) }}"
+    <div class="card">
+        <div class="card-header">
+            <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                <a href="{{ route('admin.opportunity.project.attachment.add', $project) }}"
+                        class="btn btn-success ml-1"
+                        data-toggle="tooltip"
+                        title="Upload Attachment">
+                        <span><span class="fas fa-plus-circle"></span>&nbsp;Upload Attachment</span>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Download</th>
+                            <th>Type</th>
+                            {{-- <th>Approved by supervisor</th> --}}
+                            <th>Visibility</th>
+                            <th>{{ __('labels.general.actions') }}</th>
+                        </tr>
+                    </thead>
+                    @foreach($attachments as $attachment)
+                    <tbody>
+                        <tr>
+                            <td>{{ ucwords($attachment->name) }}</td>
+                            <td><a href="{{ $attachment->getUrl() }}">{{ $attachment->file_name }}</a></td>
+                            <td>{{ $attachment->getCustomProperty('type') }}</td>
+                            {{-- @if (1 == $attachment->getCustomProperty('pending'))
+                                <td><span class="badge badge-success">{{ __('labels.general.yes') }}</span></td>
+                            @else
+                                <td><span class="badge badge-danger">{{ __('labels.general.no') }}</span></td>
+                            @endif --}}
+                            <td>{{ $attachment->getCustomProperty('visibility') }}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a href="{{ route('admin.opportunity.project.attachment.edit', [$project, $attachment]) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>
+                                    {{-- <a href="{{ route('admin.opportunity.project.attachment.delete', [$project, $attachment]) }}"
                                         data-method="delete"
                                         data-trans-button-cancel="{{ __('buttons.general.cancel') }}"
                                         data-trans-button-confirm="{{ __('buttons.general.crud.delete') }}"
                                         data-trans-title="{{ __('strings.backend.general.are_you_sure') }}"
-                                        class="dropdown-item">{{ __('buttons.general.crud.delete') }}</a>
+                                        class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a> --}}
                                 </div>
-                            </div>
-                        </div>
-                    </td> --}}
-                </tr>
-            </tbody>
-            @endforeach
-        </table>
-        <div class="btn-toolbar float-left" role="toolbar" aria-label="Toolbar with button groups">
-            {{-- <a href="{{ route('admin.opportunity.project.add_attachment', $project) }}" --}}
-            <a href="#"
-            class="btn btn-success ml-1 disabled"
-            data-toggle="tooltip"
-            title="Upload New Attachment">
-                <span><span class="fas fa-plus-circle"></span>&nbsp;Upload New Attachment</span>
-            </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    @endforeach
+                </table>
+            </div>
         </div>
     </div>
-</div><!--table-responsive-->
+</div>

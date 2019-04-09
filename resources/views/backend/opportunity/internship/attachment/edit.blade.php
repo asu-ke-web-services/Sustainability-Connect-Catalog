@@ -1,17 +1,17 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __('labels.backend.opportunity.internships.management') . ' | ' . __('Upload Attachment'))
+@section ('title', __('labels.backend.opportunity.internships.management') . ' | ' . __('Edit Attachment'))
 
 @section('content')
-{{ html()->modelForm($internship, 'POST', route('admin.opportunity.internship.store_attachment', $internship))->acceptsFiles()->class('form-horizontal')->open() }}
+{{ html()->form('POST', route('admin.opportunity.internship.attachment.update', [$internship, $media]))->acceptsFiles()->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        {{ __('labels.backend.opportunity.internships.management') }}
-                        <small class="text-muted">{{ __('Upload Attachment') }}</small>
+                        Internship
+                        <small class="text-muted">Edit Attachment</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <h4 class="card-title mb-0">
-                                Upload Attachments
+                                Edit Attachment
                             </h4>
                         </div><!--col-->
                     </div><!--row-->
@@ -33,45 +33,64 @@
                     <div class="row mt-4">
                         <div class="col">
 
-                            <!-- File Upload Field -->
-                            @component('backend.includes.components.form.input', [
-                                'type'        => 'file',
-                                'name'        => 'file_attachment',
-                                'label'       => 'File Attachment',
-                                'object'      => $media ?? null,
-                            ])@endcomponent
-
-                        </div><!--col-->
-                    </div><!--row-->
-
-                    <div class="row mt-4">
-                        <div class="col">
+                            <div class="form-group row">
+                                {{ html()->label('File Attachment')
+                                        ->class('col-md-2 form-control-label')
+                                        ->for('file_attachment') }}
+                                <div class="col-md-10">
+                                    {{ html()->text(
+                                        'file_attachment',
+                                        $media->file_name ?? ''
+                                    )
+                                        ->class('form-control')
+                                        ->attribute('readonly')
+                                    }}
+                                </div><!--col-->
+                            </div><!--form-group-->
 
                             <div class="form-group row">
-                                {{ html()->label('Visibility')
+                                {{ html()->label('Visibility *')
                                         ->class('col-md-2 form-control-label')
                                         ->for('attachment_status') }}
                                 <div class="col-md-10">
                                     {{ html()->select(
                                         'attachment_status',
                                         $attachmentStatuses,
-                                        old('attachment_status') ?: ($attachment->getCustomProperty('visibility') ?? null)
+                                        $visibility ?? ''
                                     )
                                         ->class('form-control selectize-single')
                                         ->placeholder('Select attachment visibility...')
                                         ->attribute('required')
                                     }}
-
-                                    @if ($errors->has($name))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first($name) }}</strong>
-                                        </span>
-                                    @elseif (isset($help_text))
-                                        <span class="help-block">{{ $help_text }}</span>
-                                    @endif
                                 </div><!--col-->
                             </div><!--form-group-->
 
+                            <div class="form-group row">
+                                {{ html()->label('Attachment Type *')
+                                        ->class('col-md-2 form-control-label')
+                                        ->for('attachment_type') }}
+                                <div class="col-md-10">
+                                    {{ html()->select(
+                                        'attachment_type',
+                                        $attachmentTypes,
+                                        $type ?? ''
+                                    )
+                                        ->class('form-control selectize-single')
+                                        ->placeholder('Select attachment type...')
+                                        ->attribute('required')
+                                    }}
+                                </div><!--col-->
+                            </div><!--form-group-->
+
+                        </div><!--col-->
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col">
+                            {{ form_cancel( url()->previous(), __('buttons.general.cancel') ) }}
+                        </div><!--col-->
+
+                        <div class="col text-right">
+                            {{ form_submit( __('buttons.general.submit') ) }}
                         </div><!--col-->
                     </div><!--row-->
                 </div><!--card-body-->
@@ -80,19 +99,5 @@
         </div><!--card-body-->
     </div><!--card-->
 
-    <div class="card">
-        <div class="card-footer">
-            <div class="row">
-                <div class="col">
-                    {{ form_cancel( url()->previous(), __('buttons.general.cancel') ) }}
-                </div><!--col-->
-
-                <div class="col text-right">
-                    {{ form_submit( __('buttons.general.submit') ) }}
-                </div><!--col-->
-            </div><!--row-->
-        </div><!--card-footer-->
-    </div><!--card-->
-
-{{ html()->closeModelForm() }}
+{{ html()->form()->close() }}
 @endsection

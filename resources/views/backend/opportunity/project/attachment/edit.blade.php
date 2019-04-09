@@ -1,4 +1,4 @@
-@extends ('frontend.layouts.coreui')
+@extends ('backend.layouts.app')
 
 @section ('title', __('labels.backend.opportunity.projects.management') . ' | ' . __('Edit Attachment'))
 

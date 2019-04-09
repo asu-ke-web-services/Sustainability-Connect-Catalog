@@ -1,4 +1,4 @@
-@extends ('frontend.layouts.coreui')
+@extends ('backend.layouts.app')
 
 @section ('title', 'Project | ' . __('Add User'))
 

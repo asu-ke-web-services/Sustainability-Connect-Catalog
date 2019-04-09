@@ -1,13 +1,13 @@
 @extends ('backend.layouts.app')
 
-@section ('title', 'Project | View Project User')
+@section ('title', 'Internship | View Internship User')
 
 @section('content')
 <div class="col-md-12 mb-4 mt-4">
     <div class="row">
         <div class="col-sm-8">
             <h4 class="card-title mb-0">
-                {{ ucwords($project->name) }}
+                {{ ucwords($internship->name) }}
             </h4>
         </div><!--col-->
 
@@ -29,7 +29,7 @@
 
                         <!-- Relationship -->
                         <tr>
-                            <td class="col col-sm-3 view-label">Project Relationship</td>
+                            <td class="col col-sm-3 view-label">Internship Relationship</td>
                             <td class="col col-sm-9 view-content"></td>
                         </tr>
 

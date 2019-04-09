@@ -1,16 +1,16 @@
 @extends ('backend.layouts.app')
 
-@section ('title', 'Project | ' . __('Post Note'))
+@section ('title', 'Internship | ' . __('Post Note'))
 
 @section('content')
-{{ html()->modelForm($project, 'POST', route('admin.opportunity.project.note.store', $project))->acceptsFiles()->class('form-horizontal')->open() }}
+{{ html()->modelForm($internship, 'POST', route('admin.opportunity.internship.note.store', $internship))->acceptsFiles()->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        Project
+                        Internship
                         <small class="text-muted">Post Note</small>
                     </h4>
                 </div><!--col-->
@@ -36,13 +36,13 @@
                     <!-- Description Field -->
                     @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'body',
-                        'label'       => 'Project Note *',
+                        'label'       => 'Internship Note *',
                         // 'help_text'   => 'What specific sustainability problem do you need solved?',
                         'attributes' => [
                             'required' => 'required',
                             'rows' => 10,
                         ],
-                        'object'      => $project ?? null,
+                        'object'      => $internship ?? null,
                     ])@endcomponent
 
                         </div><!--col-->

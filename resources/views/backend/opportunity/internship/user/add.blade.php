@@ -1,17 +1,17 @@
 @extends ('backend.layouts.app')
 
-@section ('title', 'Project | ' . __('Edit User'))
+@section ('title', 'Internship | ' . __('Add User'))
 
 @section('content')
-{{ html()->form('POST', route('admin.opportunity.project.user.store', [$project, $user]))->id('project-form')->class('form-horizontal')->open() }}
+{{ html()->modelForm($internship, 'POST', route('admin.opportunity.internship.user.store', $internship))->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        Project
-                        <small class="text-muted">Edit User</small>
+                        Internship
+                        <small class="text-muted">Add User</small>
                     </h4>
                 </div><!--col-->
             </div><!--row-->
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <h4 class="card-title mb-0">
-                                Edit User
+                                Add User
                             </h4>
                         </div><!--col-->
                     </div><!--row-->
@@ -33,10 +33,10 @@
                     <div class="row mt-4">
                         <div class="col">
 
-                            <!-- Project User -->
+                            <!-- Internship User -->
                             @component('frontend.includes.coreui.components.form.select', [
                                 'name'        => 'user_id',
-                                'label'       => 'Project User',
+                                'label'       => 'Internship User',
                                 'help_text'   => 'Begin typing to select user',
                                 'optionList'  => $users,
                                 'object'      => null,
@@ -45,7 +45,7 @@
                             <!-- Relationship Type Field -->
                             @component('frontend.includes.coreui.components.form.select', [
                                 'name'        => 'relationship_type_id',
-                                'label'       => 'Relationship to Project',
+                                'label'       => 'Relationship to Internship',
                                 'optionList'  => $relationships,
                                 'object'      => null,
                             ])@endcomponent
@@ -78,5 +78,5 @@
         </div><!--card-body-->
     </div><!--card-->
 
-{{ html()->form()->close() }}
+{{ html()->closeModelForm() }}
 @endsection

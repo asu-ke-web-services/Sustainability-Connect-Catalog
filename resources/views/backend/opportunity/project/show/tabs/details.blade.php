@@ -1,93 +1,25 @@
 <div class="col">
-    <div class="table-responsive">
-        <table class="table table-hover">
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.description') }}</th>
-                <td>@markdown($project->description)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.organization.name') }}</th>
-                <td>{{ $project->organization->name ?? '' }}</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.organization.url') }}</th>
-                <td>{{ $project->organization->url ?? '' }}</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.overview.location') }}</th>
-                <td>
-                    <ul>
-                        @foreach($project->addresses as $address)
-                            <li>{{ $address->city . ', ' . $address->state }}</li>
-                        @endforeach
-                    </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.implementation_paths') }}</th>
-                <td>@markdown($project->implementation_paths)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.sustainability_contribution') }}</th>
-                <td>@markdown($project->sustainability_contribution)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.qualifications') }}</th>
-                <td>@markdown($project->qualifications)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.responsibilities') }}</th>
-                <td>@markdown($project->responsibilities)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.learning_outcomes') }}</th>
-                <td>@markdown($project->learning_outcomes)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.compensation') }}</th>
-                <td>@markdown($project->compensation)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.budget_type') }}</th>
-                <td>{{ $project->budgetType->name ?? '' }}</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.budget_amount') }}</th>
-                <td>{{ $project->budget_amount }}</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.application_instructions') }}</th>
-                <td>@markdown($project->application_instructions)</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.success_story') }}</th>
-                <td>@unless (empty($project->success_story))<a href="{!! $project->success_story !!}">{!! $project->success_story !!}</a>@endunless</td>
-            </tr>
-
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.library_collection') }}</th>
-                <td>@unless (empty($project->library_collection))<a href="{!! $project->library_collection !!}">{!! $project->library_collection !!}</a>@endunless</td>
-            </tr>
-{{--
-            <tr>
-                <th>{{ __('labels.backend.opportunity.projects.tabs.content.details.parent_opportunity') }}</th>
-                <td>{{ $project->parentOpportunity->name ?? '' }}</td>
-            </tr>
---}}
-        </table>
-    </div>
-</div><!--table-responsive-->
+    <ul class="list-group">
+        <li class="list-group-item"><div><b>Description:</b></div> @markdown($project->description)</li>
+        <li class="list-group-item"><span style="float: left; width: 200px;"><b>Organization:</b></span> {{ $project->organization->name ?? '' }}</li>
+        <li class="list-group-item"><span style="float: left; width: 200px;"><b>Organization Website:</b></span> {{ $project->organization->url ?? '' }}</li>
+        <li class="list-group-item"><div><b>Location:</b></div>
+            <ul>
+                @foreach($project->addresses as $address)
+                    <li>{{ $address->city . ', ' . $address->state }}</li>
+                @endforeach
+            </ul>
+        </li>
+        <li class="list-group-item"><div><b>Envisioned Solution:</b></div> @markdown($project->implementation_paths)</li>
+        <li class="list-group-item"><div><b>Sustainability Contribution:</b></div> @markdown($project->sustainability_contribution)</li>
+        <li class="list-group-item"><div><b>Qualifications:</b></div> @markdown($project->qualifications)</li>
+        <li class="list-group-item"><div><b>Responsibilities:</b></div> @markdown($project->responsibilities)</li>
+        <li class="list-group-item"><div><b>Learning Outcomes:</b></div> @markdown($project->learning_outcomes)</li>
+        <li class="list-group-item"><div><b>Compensation:</b></div> @markdown($project->compensation)</li>
+        <li class="list-group-item"><span style="float: left; width: 200px;"><b>Budget Type:</b></span> {{ $project->budgetType->name ?? '' }}</li>
+        <li class="list-group-item"><span style="float: left; width: 200px;"><b>Budget Amount:</b></span> {{ $project->budget_amount }}</li>
+        <li class="list-group-item"><div><b>Application Instructions:</b></div> @markdown($project->application_instructions)</li>
+        <li class="list-group-item"><span style="float: left; width: 200px;"><b>Success Story:</b></span> @unless (empty($project->success_story))<a href="{!! $project->success_story !!}">{!! $project->success_story !!}</a>@endunless</li>
+        <li class="list-group-item"><span style="float: left; width: 200px;"><b>Library Collection:</b></span> @unless (empty($project->library_collection))<a href="{!! $project->library_collection !!}">{!! $project->library_collection !!}</a>@endunless</li>
+    </ul>
+</div>

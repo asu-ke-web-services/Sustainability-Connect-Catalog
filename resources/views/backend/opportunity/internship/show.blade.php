@@ -34,10 +34,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#organization" role="tab" aria-controls="organization" aria-expanded="true"> {{ __('labels.backend.opportunity.internships.tabs.titles.organization') }}</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#people" role="tab" aria-controls="people" aria-expanded="true"> {{ __('labels.backend.opportunity.internships.tabs.titles.people') }}</a>
                     </li>
 
@@ -48,10 +44,6 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#notes" role="tab" aria-controls="notes" aria-expanded="true"> {{ __('labels.backend.opportunity.internships.tabs.titles.notes') }}</a>
                     </li>
-
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-expanded="true"> {{ __('labels.backend.opportunity.internships.tabs.titles.history') }}</a>
-                    </li> --}}
                 </ul>
 
                 <div class="tab-content">
@@ -61,10 +53,6 @@
 
                     <div class="tab-pane" id="details" role="tabpanel" aria-expanded="true">
                         @include('backend.opportunity.internship.show.tabs.details')
-                    </div><!--tab-->
-
-                    <div class="tab-pane" id="organization" role="tabpanel" aria-expanded="true">
-                        @include('backend.opportunity.internship.show.tabs.organization')
                     </div><!--tab-->
 
                     <div class="tab-pane" id="people" role="tabpanel" aria-expanded="true">
@@ -79,10 +67,6 @@
                         @include('backend.opportunity.internship.show.tabs.notes')
                     </div><!--tab-->
 
-                    {{-- <div class="tab-pane" id="history" role="tabpanel" aria-expanded="true">
-                        @include('backend.opportunity.internship.show.tabs.history')
-                    </div><!--tab--> --}}
-
                 </div><!--tab-content-->
             </div><!--col-->
         </div><!--row-->
@@ -92,8 +76,8 @@
         <div class="row">
             <div class="col">
                 <small class="float-right text-muted">
-                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($internship->created_at) }} ({{ $internship->created_at->diffForHumans() }})@if (isset($project->createdByUser)) by {{ $internship->createdByUser->full_name }} ({{ $internship->createdByUser->id }})@endif,
-                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($internship->updated_at) }} ({{ $internship->updated_at->diffForHumans() }})@if (isset($project->createdByUser)) by {{ $internship->updatedByUser->full_name }} ({{ $internship->updatedByUser->id }})@endif
+                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.created_at') }}:</strong> {{ timezone()->convertToLocal($internship->created_at) }} ({{ $internship->created_at->diffForHumans() }})@if (isset($internship->createdByUser)) by {{ $internship->createdByUser->full_name }} ({{ $internship->createdByUser->id }})@endif,
+                    <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.last_updated') }}:</strong> {{ timezone()->convertToLocal($internship->updated_at) }} ({{ $internship->updated_at->diffForHumans() }})@if (isset($internship->createdByUser)) by {{ $internship->updatedByUser->full_name }} ({{ $internship->updatedByUser->id }})@endif
                     @if ($internship->trashed())
                         <strong>{{ __('labels.backend.opportunity.internships.tabs.content.overview.deleted_at') }}:</strong> {{ timezone()->convertToLocal($internship->deleted_at) }} ({{ $internship->deleted_at->diffForHumans() }})
                     @endif

@@ -5,9 +5,9 @@ namespace SCCatalog\Http\Requests\Backend\Note;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ManageNoteRequest.
+ * Class StoreNoteRequest.
  */
-class ManageNoteRequest extends FormRequest
+class StoreNoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

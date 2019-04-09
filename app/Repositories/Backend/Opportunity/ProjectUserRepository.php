@@ -39,19 +39,9 @@ class ProjectUserRepository
                     ]
                 );
 
-            event(new UserAddedToProject($project, $user, $data));
+            // event(new UserAddedToProject($project, $user, $data));
 
             return $project;
-
-            // if (
-
-            // ) {
-            //     event(new UserAddedToProject($project, $user, $data));
-
-            //     return $project;
-            // }
-
-            // throw new GeneralException(__('exceptions.backend.opportunity.users.attach_error'));
         });
     }
 
@@ -83,19 +73,9 @@ class ProjectUserRepository
                     ]
                 );
 
-            event(new ProjectUserRelationshipUpdated($project, $user, $data));
+            // event(new ProjectUserRelationshipUpdated($project, $user, $data));
 
             return $project;
-
-            // if (
-
-            // ) {
-            //     event(new ProjectUserRelationshipUpdated($project, $user, $data));
-
-            //     return $project;
-            // }
-
-            // throw new GeneralException(__('exceptions.backend.opportunity.users.update_error'));
         });
     }
 
@@ -117,19 +97,9 @@ class ProjectUserRepository
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])
                 ->detach();
 
-            event(new UserRemovedFromProject($project, $user, $data));
+            // event(new UserRemovedFromProject($project, $user, $data));
 
             return $project;
-
-            // if (
-            // ) {
-
-            //     event(new UserRemovedFromProject($project, $user, $data));
-
-            //     return $project;
-            // }
-
-            // throw new GeneralException(__('exceptions.backend.opportunity.users.detach_error'));
         });
     }
 }

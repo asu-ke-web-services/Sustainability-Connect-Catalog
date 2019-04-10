@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\OpportunityType;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityTypeRepository;
+use SCCatalog\Repositories\Lookup\OpportunityTypeRepository;
 
 class OpportunityTypeRepositoryTest extends TestCase
 {

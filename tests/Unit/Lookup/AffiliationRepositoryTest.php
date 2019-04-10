@@ -6,7 +6,7 @@ use Tests\TestCase;
 use SCCatalog\Models\Lookup\Affiliation;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AffiliationRepositoryTest extends TestCase

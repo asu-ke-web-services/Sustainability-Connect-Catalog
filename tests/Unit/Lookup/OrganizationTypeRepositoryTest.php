@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\OrganizationType;
-use SCCatalog\Repositories\Backend\Lookup\OrganizationTypeRepository;
+use SCCatalog\Repositories\Lookup\OrganizationTypeRepository;
 
 class OrganizationTypeRepositoryTest extends TestCase
 {

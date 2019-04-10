@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\StudentDegreeLevel;
-use SCCatalog\Repositories\Backend\Lookup\StudentDegreeLevelRepository;
+use SCCatalog\Repositories\Lookup\StudentDegreeLevelRepository;
 
 class StudentDegreeLevelRepositoryTest extends TestCase
 {

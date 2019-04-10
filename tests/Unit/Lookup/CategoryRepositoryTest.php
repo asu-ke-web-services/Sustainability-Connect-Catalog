@@ -6,7 +6,7 @@ use Tests\TestCase;
 use SCCatalog\Models\Lookup\Category;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CategoryRepositoryTest extends TestCase

@@ -4,7 +4,7 @@ namespace Tests\Unit\Lookup;
 
 use Tests\TestCase;
 use SCCatalog\Models\Lookup\AttachmentType;
-use SCCatalog\Repositories\Backend\Lookup\AttachmentTypeRepository;
+use SCCatalog\Repositories\Lookup\AttachmentTypeRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AttachmentTypeRepositoryTest extends TestCase

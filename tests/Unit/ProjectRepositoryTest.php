@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Event;
 use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
 use SCCatalog\Events\Backend\Opportunity\ProjectUpdated;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
 
 class ProjectRepositoryTest extends TestCase
 {
@@ -56,10 +56,11 @@ class ProjectRepositoryTest extends TestCase
             'program_lead'             => 'Lorem program lead',
             'success_story'            => 'https://example.test',
             'library_collection'       => 'https://example.test',
-            //            'addresses'                => [],
-            'affiliations'             => [2,3,6],
-            'categories'               => [1,2],
-            'keywords'                 => [1,2],
+            'city'                     => 'Tempe',
+            'state'                    => 'AZ',
+            'affiliations'             => [2, 3, 6],
+            'categories'               => [1, 2],
+            'keywords'                 => [1, 2],
         ], $projectData);
     }
 

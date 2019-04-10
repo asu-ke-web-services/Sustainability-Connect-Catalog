@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\Keyword;
-use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Lookup\KeywordRepository;
 
 class KeywordRepositoryTest extends TestCase
 {

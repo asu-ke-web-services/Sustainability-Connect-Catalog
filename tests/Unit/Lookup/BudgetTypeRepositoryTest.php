@@ -6,7 +6,7 @@ use Tests\TestCase;
 use SCCatalog\Models\Lookup\BudgetType;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
+use SCCatalog\Repositories\Lookup\BudgetTypeRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BudgetTypeRepositoryTest extends TestCase

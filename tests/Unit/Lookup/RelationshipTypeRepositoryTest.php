@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\RelationshipType;
-use SCCatalog\Repositories\Backend\Lookup\RelationshipTypeRepository;
+use SCCatalog\Repositories\Lookup\RelationshipTypeRepository;
 
 class RelationshipTypeRepositoryTest extends TestCase
 {

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Event;
 use SCCatalog\Events\Backend\Opportunity\InternshipCreated;
 use SCCatalog\Events\Backend\Opportunity\InternshipUpdated;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
 
 class InternshipRepositoryTest extends TestCase
 {
@@ -41,7 +41,6 @@ class InternshipRepositoryTest extends TestCase
             'opportunity_status_id'    => 9,
             'description'              => 'Lorem ipsum',
             'supervisor_user_id'       => 1,
-            'submitting_user_id'       => 1,
             'degree_program'           => 'School of Sustainability',
             'compensation'             => 'Lorem compensation',
             'responsiblities'          => 'Lorem responsiblities',
@@ -50,10 +49,10 @@ class InternshipRepositoryTest extends TestCase
             'program_lead'             => 'Lorem program lead',
             'success_story'            => 'https://example.test',
             'library_collection'       => 'https://example.test',
-//            'addresses'                => [],
-            'affiliations'             => [2,3,16,17],
-            'categories'               => [1,2],
-            'keywords'                 => [1,2],
+            'addresses'                => [],
+            'affiliations'             => [2, 3, 16, 17],
+            'categories'               => [1, 2],
+            'keywords'                 => [1, 2],
         ], $internshipData);
     }
 

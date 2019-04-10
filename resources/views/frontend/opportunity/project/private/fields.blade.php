@@ -425,6 +425,10 @@
         </div><!--card-body-->
     </div><!--card-->
 
+@push('after-styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+@endpush
+
 @push('scripts')
     <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
     <script>
@@ -436,20 +440,16 @@
         CKEDITOR.replace( 'learning_outcomes' );
         CKEDITOR.replace( 'compensation' );
         CKEDITOR.replace( 'application_instructions' );
-    </script>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" ></script>
-    <script>
-        //# sourceMappingURL=text-editor.js.map
+
         $('#project-form').validate({
             rules: {
                 "name": {
                     required: true,
                     maxlength: 1024
                 },
-                // "description": 'required',
                 "opportunity_status_id": 'required',
-                // "implementation_paths": 'required',
-                // "sustainability_contribution": 'required',
+                "opportunity_start_at": 'required',
+                "opportunity_end_at": 'required',
                 "addresses[0][city]": 'required',
                 "addresses[0][state]": 'required'
             },
@@ -458,10 +458,9 @@
                     required: 'Please enter the project name',
                     maxlength: 'The project name may not be longer than 1024 characters'
                 },
-                // "description": 'Please enter the project description',
                 "opportunity_status_id": 'Please select the project status',
-                // "implementation_paths": 'Please enter the project solution',
-                // "sustainability_contribution": 'Please enter the project deliverables',
+                "opportunity_start_at": 'Please enter the project start date',
+                "opportunity_end_at": 'Please enter the project end date',
                 "addresses[0][city]": 'Please enter the project city',
                 "addresses[0][state]": 'Please enter the project state'
             },
@@ -484,6 +483,5 @@
                 $(element).addClass('is-valid').removeClass('is-invalid');
             }
         });
-        //# sourceMappingURL=validation.js.map
-    </script> --}}
+    </script>
 @endpush

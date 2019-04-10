@@ -433,6 +433,10 @@
         </div><!--card-body-->
     </div><!--card-->
 
+{{-- @push('after-styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+@endpush --}}
+
 @section('javascript')
     <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
     <script>
@@ -442,9 +446,7 @@
         CKEDITOR.replace( 'compensation' );
         CKEDITOR.replace( 'degree_program' );
         CKEDITOR.replace( 'application_instructions' );
-    </script>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" ></script>
-    <script>
+
         $('#internship-form').validate({
             rules: {
                 "name": {
@@ -485,6 +487,5 @@
                 $(element).addClass('is-valid').removeClass('is-invalid');
             }
         });
-        //# sourceMappingURL=validation.js.map
-    </script> --}}
+    </script>
 @endsection

@@ -423,6 +423,10 @@
         </div><!--card-body-->
     </div><!--card-->
 
+{{-- @push('after-styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+@endpush --}}
+
 @section('javascript')
     <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
     <script>
@@ -432,16 +436,13 @@
         CKEDITOR.replace( 'compensation' );
         CKEDITOR.replace( 'degree_program' );
         CKEDITOR.replace( 'application_instructions' );
-    </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" ></script>
-    <script>
+
         $('#internship-form').validate({
             rules: {
                 "name": {
                     required: true,
                     maxlength: 1024
                 },
-                // "description": 'required',
                 "opportunity_status_id": 'required',
                 "addresses[0][city]": 'required',
                 "addresses[0][state]": 'required'
@@ -451,7 +452,6 @@
                     required: 'Please enter the internship name',
                     maxlength: 'The internship name may not be longer than 1024 characters'
                 },
-                // "description": 'Please enter the internship description',
                 "opportunity_status_id": 'Please select internship status',
                 "addresses[0][city]": 'Please enter the internship city',
                 "addresses[0][state]": 'Please enter the internship state'
@@ -475,6 +475,5 @@
                 $(element).addClass('is-valid').removeClass('is-invalid');
             }
         });
-        //# sourceMappingURL=validation.js.map
     </script>
 @endsection

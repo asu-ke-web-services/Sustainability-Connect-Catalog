@@ -92,7 +92,7 @@
 
 
 @section('styles')
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <style>
         /*
          Font Awesome custom styles - for Affiliation Icons
@@ -157,7 +157,8 @@
 @endsection
 
 @push('scripts')
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+    <script src="//cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
+    <script src="//cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js" ></script>
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({

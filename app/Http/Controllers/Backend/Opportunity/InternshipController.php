@@ -10,13 +10,13 @@ use SCCatalog\Http\Requests\Backend\Opportunity\DeleteInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipRequest;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
-use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityStatusRepository;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class InternshipController.

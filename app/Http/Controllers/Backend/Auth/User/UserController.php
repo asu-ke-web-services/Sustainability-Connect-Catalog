@@ -5,16 +5,16 @@ namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Backend\Auth\User\UserDeleted;
-use SCCatalog\Repositories\Backend\Auth\RoleRepository;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Auth\PermissionRepository;
+use SCCatalog\Repositories\Auth\Backend\RoleRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Auth\Backend\PermissionRepository;
 use SCCatalog\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserRequest;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Backend\Lookup\StudentDegreeLevelRepository;
-use SCCatalog\Repositories\Backend\Lookup\UserTypeRepository;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\StudentDegreeLevelRepository;
+use SCCatalog\Repositories\Lookup\UserTypeRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class UserController.

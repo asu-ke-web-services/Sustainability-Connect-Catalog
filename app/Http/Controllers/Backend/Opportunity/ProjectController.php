@@ -11,15 +11,15 @@ use SCCatalog\Http\Requests\Backend\Opportunity\DeleteProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
-use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
-use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityStatusRepository;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityReviewStatusRepository;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\BudgetTypeRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Lookup\OpportunityReviewStatusRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class ProjectController.

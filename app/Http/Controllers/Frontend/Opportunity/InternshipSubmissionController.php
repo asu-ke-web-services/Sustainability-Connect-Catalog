@@ -6,13 +6,13 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\EditInternshipSubmissionRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreInternshipSubmissionRequest;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
-use SCCatalog\Repositories\Frontend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Frontend\Lookup\CategoryRepository;
-use SCCatalog\Repositories\Frontend\Lookup\KeywordRepository;
-use SCCatalog\Repositories\Frontend\Lookup\OpportunityStatusRepository;
-use SCCatalog\Repositories\Frontend\Opportunity\InternshipRepository;
-use SCCatalog\Repositories\Frontend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class InternshipSubmissionController.

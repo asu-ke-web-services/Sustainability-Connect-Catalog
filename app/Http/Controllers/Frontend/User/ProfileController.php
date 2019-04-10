@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\User;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 use SCCatalog\Http\Requests\Frontend\User\UpdateProfileRequest;
 
 /**

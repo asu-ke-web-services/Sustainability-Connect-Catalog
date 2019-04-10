@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Controllers\Backend\Lookup;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Lookup\CategoryRequest;
 use SCCatalog\Http\Requests\Backend\Lookup\ManageLookupRequest;
-use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
 
 /**
  * Class CategoryController.

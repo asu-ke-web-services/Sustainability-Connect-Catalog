@@ -5,11 +5,11 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreAttachmentRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\RemoveAttachmentRequest;
-use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Frontend\Opportunity\InternshipAttachmentRepository;
-use Spatie\MediaLibrary\Media;
 use SCCatalog\Models\Lookup\AttachmentStatus;
 use SCCatalog\Models\Lookup\AttachmentType;
+use SCCatalog\Models\Opportunity\Internship;
+use SCCatalog\Repositories\Opportunity\InternshipAttachmentRepository;
+use Spatie\MediaLibrary\Media;
 
 /**
  * Class InternshipAttachmentController.

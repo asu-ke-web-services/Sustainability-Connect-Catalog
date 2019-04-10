@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Frontend\Auth\UserLoggedIn;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 use SCCatalog\Helpers\Auth\AsuDirectoryHelper;
 
 /**

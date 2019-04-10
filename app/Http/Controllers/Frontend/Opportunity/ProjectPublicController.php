@@ -4,7 +4,7 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewProjectRequest;
-use SCCatalog\Repositories\Frontend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
 use SCCatalog\Models\Opportunity\Project;
 
 /**

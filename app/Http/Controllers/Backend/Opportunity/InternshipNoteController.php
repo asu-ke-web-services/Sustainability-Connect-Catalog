@@ -6,7 +6,7 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Note\ManageNoteRequest;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Models\Note\Note;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipNoteRepository;
+use SCCatalog\Repositories\Opportunity\InternshipNoteRepository;
 
 /**
  * Class InternshipNoteController.

@@ -7,7 +7,7 @@ use SCCatalog\Http\Requests\Frontend\Opportunity\StoreNoteRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\RemoveNoteRequest;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Models\Note\Note;
-use SCCatalog\Repositories\Frontend\Opportunity\InternshipNoteRepository;
+use SCCatalog\Repositories\Opportunity\InternshipNoteRepository;
 
 /**
  * Class InternshipNoteController.

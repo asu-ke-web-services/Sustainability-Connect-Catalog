@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Frontend\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
 
 /**
  * Class InternshipPublicController.

@@ -3,8 +3,8 @@
 namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
 use SCCatalog\Http\Requests\Frontend\User\UpdatePasswordRequest;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 
 /**
  * Class PasswordExpiredController.

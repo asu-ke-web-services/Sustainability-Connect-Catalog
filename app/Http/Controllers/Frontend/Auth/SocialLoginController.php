@@ -7,7 +7,7 @@ use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use SCCatalog\Events\Frontend\Auth\UserLoggedIn;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 use SCCatalog\Helpers\Frontend\Auth\Socialite as SocialiteHelper;
 
 /**

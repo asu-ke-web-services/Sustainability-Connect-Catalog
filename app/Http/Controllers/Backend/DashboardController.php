@@ -4,9 +4,9 @@ namespace SCCatalog\Http\Controllers\Backend;
 
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
 
 /**
  * Class DashboardController.

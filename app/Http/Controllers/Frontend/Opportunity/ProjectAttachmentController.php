@@ -6,7 +6,7 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreAttachmentRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\RemoveAttachmentRequest;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Frontend\Opportunity\ProjectAttachmentRepository;
+use SCCatalog\Repositories\Opportunity\ProjectAttachmentRepository;
 use Spatie\MediaLibrary\Media;
 use SCCatalog\Models\Lookup\AttachmentStatus;
 use SCCatalog\Models\Lookup\AttachmentType;

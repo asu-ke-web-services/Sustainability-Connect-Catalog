@@ -5,9 +5,9 @@ namespace SCCatalog\Http\Controllers\Backend\Organization;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Organization\ManageOrganizationRequest;
 use SCCatalog\Models\Organization\Organization;
-use SCCatalog\Repositories\Backend\Lookup\OrganizationStatusRepository;
-use SCCatalog\Repositories\Backend\Lookup\OrganizationTypeRepository;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Lookup\OrganizationStatusRepository;
+use SCCatalog\Repositories\Lookup\OrganizationTypeRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class OrganizationController.

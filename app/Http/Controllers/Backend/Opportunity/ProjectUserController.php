@@ -6,9 +6,9 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\OpportunityUser\ManageProjectUserRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectUserRepository;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Opportunity\ProjectUserRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
 
 /**
  * Class ProjectUserController.

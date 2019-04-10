@@ -7,7 +7,7 @@ use SCCatalog\Http\Requests\Backend\Note\ManageNoteRequest;
 use SCCatalog\Http\Requests\Backend\Note\StoreNoteRequest;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Models\Note\Note;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectNoteRepository;
+use SCCatalog\Repositories\Opportunity\ProjectNoteRepository;
 
 /**
  * Class ProjectNoteController.

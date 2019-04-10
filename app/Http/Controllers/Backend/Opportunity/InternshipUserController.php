@@ -6,9 +6,9 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\OpportunityUser\ManageInternshipUserRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipUserRepository;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Opportunity\InternshipUserRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
 
 /**
  * Class InternshipUserController.

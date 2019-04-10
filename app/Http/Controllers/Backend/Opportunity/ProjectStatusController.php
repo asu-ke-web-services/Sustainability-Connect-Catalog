@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
 
 /**

@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipRequest;
 
 /**

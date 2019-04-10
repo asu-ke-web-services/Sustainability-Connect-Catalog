@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Composers\Backend;
 
 use Illuminate\View\View;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
 
 /**
  * Class SidebarComposer.

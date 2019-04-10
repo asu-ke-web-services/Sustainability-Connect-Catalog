@@ -7,7 +7,7 @@ use SCCatalog\Http\Requests\Frontend\Opportunity\StoreNoteRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\RemoveNoteRequest;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Models\Note\Note;
-use SCCatalog\Repositories\Frontend\Opportunity\ProjectNoteRepository;
+use SCCatalog\Repositories\Opportunity\ProjectNoteRepository;
 
 /**
  * Class ProjectNoteController.

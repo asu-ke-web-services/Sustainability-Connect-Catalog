@@ -6,15 +6,15 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\EditProjectSubmissionRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreProjectSubmissionRequest;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
-use SCCatalog\Repositories\Frontend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Frontend\Lookup\BudgetTypeRepository;
-use SCCatalog\Repositories\Frontend\Lookup\CategoryRepository;
-use SCCatalog\Repositories\Frontend\Lookup\KeywordRepository;
-use SCCatalog\Repositories\Frontend\Lookup\OpportunityStatusRepository;
-use SCCatalog\Repositories\Frontend\Lookup\OpportunityReviewStatusRepository;
-use SCCatalog\Repositories\Frontend\Opportunity\ProjectRepository;
-use SCCatalog\Repositories\Frontend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\BudgetTypeRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Lookup\OpportunityReviewStatusRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class ProjectSubmissionController.

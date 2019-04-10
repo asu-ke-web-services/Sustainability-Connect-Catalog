@@ -7,7 +7,7 @@ use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipAttachmentReques
 use SCCatalog\Models\Lookup\AttachmentStatus;
 use SCCatalog\Models\Lookup\AttachmentType;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipAttachmentRepository;
+use SCCatalog\Repositories\Opportunity\InternshipAttachmentRepository;
 use Spatie\MediaLibrary\Media;
 
 /**

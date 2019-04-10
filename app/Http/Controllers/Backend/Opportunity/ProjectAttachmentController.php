@@ -7,7 +7,7 @@ use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectAttachmentRequest;
 use SCCatalog\Models\Lookup\AttachmentStatus;
 use SCCatalog\Models\Lookup\AttachmentType;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectAttachmentRepository;
+use SCCatalog\Repositories\Opportunity\ProjectAttachmentRepository;
 use Spatie\MediaLibrary\Media;
 
 /**

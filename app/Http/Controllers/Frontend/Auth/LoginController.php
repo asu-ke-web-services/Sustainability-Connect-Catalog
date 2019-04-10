@@ -10,7 +10,7 @@ use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Helpers\Auth\Auth;
 use SCCatalog\Helpers\Frontend\Auth\Socialite;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Frontend\Auth\UserSessionRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserSessionRepository;
 
 /**
  * Class LoginController.

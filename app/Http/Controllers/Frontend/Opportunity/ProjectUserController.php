@@ -10,9 +10,9 @@ use SCCatalog\Http\Requests\Frontend\Opportunity\ProjectApplicantRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ProjectFollowerRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
-use SCCatalog\Repositories\Frontend\Lookup\RelationshipTypeRepository;
-use SCCatalog\Repositories\Frontend\Opportunity\ProjectUserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
+use SCCatalog\Repositories\Lookup\RelationshipTypeRepository;
+use SCCatalog\Repositories\Opportunity\ProjectUserRepository;
 
 /**
  * Class ProjectUserController.

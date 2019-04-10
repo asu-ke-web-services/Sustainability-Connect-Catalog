@@ -10,9 +10,9 @@ use SCCatalog\Http\Requests\Frontend\Opportunity\InternshipApplicantRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\InternshipFollowerRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
-use SCCatalog\Repositories\Frontend\Lookup\RelationshipTypeRepository;
-use SCCatalog\Repositories\Frontend\Opportunity\InternshipUserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
+use SCCatalog\Repositories\Lookup\RelationshipTypeRepository;
+use SCCatalog\Repositories\Opportunity\InternshipUserRepository;
 
 /**
  * Class InternshipUserController.

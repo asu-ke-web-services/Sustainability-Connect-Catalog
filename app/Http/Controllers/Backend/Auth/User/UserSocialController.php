@@ -6,7 +6,7 @@ use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Auth\SocialAccount;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
-use SCCatalog\Repositories\Backend\Access\User\SocialRepository;
+use SCCatalog\Repositories\Auth\Backend\SocialRepository;
 
 /**
  * Class UserSocialController.

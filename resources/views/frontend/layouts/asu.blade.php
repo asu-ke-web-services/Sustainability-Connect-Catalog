@@ -108,8 +108,14 @@
         <!-- End Footer -->
 
         <!-- Scripts -->
+
+        <!-- Scripts -->
         @stack('before-scripts')
         @include('frontend.includes.asu.scripts')
+        {{-- {!! script(mix('js/manifest.js')) !!}
+        {!! script(mix('js/vendor.js')) !!}
+        {!! script(mix('js/frontend.js')) !!} --}}
+        @stack('scripts')
         @stack('after-scripts')
 
         @section('javascript')

@@ -56,23 +56,23 @@
                     ])@endcomponent
 
                     <!-- Categories Field -->
-                    @component('frontend.includes.coreui.components.form.select', [
+                    @component('frontend.includes.coreui.components.form.multiselect', [
                         'name'        => 'categories',
                         'label'       => 'Categories',
+                        'help_text' => 'Select one or more categories...',
                         'optionList'  => $categories,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
-                        'object'      => $project->categories ?? null,
+                        'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- Keywords Field -->
-                    @component('frontend.includes.coreui.components.form.select', [
+                    @component('frontend.includes.coreui.components.form.multiselect', [
                         'name'        => 'keywords',
                         'label'       => 'Keywords',
+                        'help_text'   => 'Select one or more keywords...',
                         'optionList'  => $keywords,
                         'multivalue'  => true,
-                        'attribute'  => 'multiple',
-                        'object'      => $project->keywords ?? null,
+                        'object'      => $project ?? null,
                     ])@endcomponent
 
                 </div><!--col-->
@@ -125,16 +125,16 @@
                     <!-- project Begins Field -->
                     @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'opportunity_start_at',
-                        'label'       => 'Project Start Date',
-                        // 'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
+                        'label'       => 'Project Start Date *',
+                        'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- project Ends Field -->
                     @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'opportunity_end_at',
-                        'label'       => 'Project End Date',
-                        // 'help_text'   => 'Safari users: please format date: yyyy-mm-dd',
+                        'label'       => 'Project End Date *',
+                        'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 {{--

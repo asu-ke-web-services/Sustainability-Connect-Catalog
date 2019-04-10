@@ -217,16 +217,16 @@
                     <!-- Opportunity Begins Field -->
                     @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'opportunity_start_at',
-                        'label'       => 'Project Start Date',
-                        'placeholder' => 'mm/dd/yyyy',
+                        'label'       => 'Project Start Date *',
+                        'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- Opportunity Ends Field -->
                     @component('frontend.includes.coreui.components.form.date', [
                         'name'        => 'opportunity_end_at',
-                        'label'       => 'Project End Date',
-                        'placeholder' => 'mm/dd/yyyy',
+                        'label'       => 'Project End Date *',
+                        'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 

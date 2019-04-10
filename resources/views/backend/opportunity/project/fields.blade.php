@@ -128,16 +128,18 @@
                     <!-- Opportunity Begins Field -->
                     @component('backend.includes.components.form.date', [
                         'name'        => 'opportunity_start_at',
-                        'label'       => 'Project Start Date',
+                        'label'       => 'Project Start Date *',
                         'placeholder' => 'mm/dd/yyyy',
+                        'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 
                     <!-- Opportunity Ends Field -->
                     @component('backend.includes.components.form.date', [
                         'name'        => 'opportunity_end_at',
-                        'label'       => 'Project End Date',
+                        'label'       => 'Project End Date *',
                         'placeholder' => 'mm/dd/yyyy',
+                        'attribute'   => 'required',
                         'object'      => $project ?? null,
                     ])@endcomponent
 

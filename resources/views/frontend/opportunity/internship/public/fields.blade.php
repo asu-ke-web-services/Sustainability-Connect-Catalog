@@ -343,7 +343,7 @@
                     @component('frontend.includes.coreui.components.form.richtext', [
                         'name'        => 'responsibilities',
                         'label'       => '[required]',
-                        'help_text'   => 'Main projects or responsibilities. Provide as much detail as possible.',
+                        'help_text'   => 'Main internships or responsibilities. Provide as much detail as possible.',
                         'attributes' => [
                             'required' => 'required',
                             'rows' => 5,

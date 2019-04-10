@@ -53,7 +53,7 @@
                             <!-- Comments Field -->
                             @component('frontend.includes.coreui.components.form.richtext', [
                                 'name'        => 'comments',
-                                'label'       => 'User Comments *',
+                                'label'       => 'User Comments',
                                 // 'help_text'   => 'What specific sustainability problem do you need solved?',
                                 'attributes' => [
                                     'rows' => 5,

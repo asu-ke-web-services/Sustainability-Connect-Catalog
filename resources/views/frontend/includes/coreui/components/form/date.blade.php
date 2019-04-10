@@ -11,12 +11,12 @@
             </div>
             {{ html()->input(
                 'text',
-                $name . (($multivalue ?? false) ? '[]' : ''),
+                $name,
                 old($name) ?: ($object->{$name} ?? '')
             )
                 ->class('form-control datetimepicker-input')
-                ->attribute('data-target', '#'.$name)
-                ->attribute('data-toggle', 'datetimepicker')
+                ->data('target', '#'.$name)
+                ->data('toggle', 'datetimepicker')
             }}
         </div>
 
@@ -34,7 +34,7 @@
     <script type="text/javascript">
         $(function () {
             $({!! $name !!}).datetimepicker({
-                format: 'L'
+                format: 'Y-MM-DD'
             });
         });
     </script>

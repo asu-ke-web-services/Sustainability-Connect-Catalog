@@ -30,6 +30,7 @@ mix.sass('resources/sass/frontend/coreui-leaf/app.scss', 'css/frontend.css')
   ], 'js/backend.js')
   .extract([
     'jquery',
+    'jquery-validation',
     'bootstrap',
     'popper.js/dist/umd/popper',
     'axios',
@@ -39,10 +40,16 @@ mix.sass('resources/sass/frontend/coreui-leaf/app.scss', 'css/frontend.css')
     '@fortawesome/free-brands-svg-icons',
     '@fortawesome/free-regular-svg-icons',
     '@fortawesome/free-solid-svg-icons',
+    'datatables.net',
     'datatables.net-bs4',
     'datatables.net-fixedheader-bs4',
-    'datatables.net-responsive-bs4'
+    'datatables.net-responsive-bs4',
+    'selectize',
   ]);
+// .autoload({
+//   jquery: ['$', 'window.jQuery'],
+//   DataTable: 'datatables.net-bs4'
+// });
 
 // ReactJS Search apps (not used)
 // mix

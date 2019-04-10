@@ -5,7 +5,7 @@
  * Example: <a href="{{route('customers.destroy', $customer->id)}}"
  * data-method="delete" name="delete_item">Delete</a>
  *
- * Injects a form with that's fired on click of the link with a DELETE request.
+ * Injects a form that's fired on click of the link with a DELETE request.
  * Good because you don't have to dirty your HTML with delete forms everywhere.
  */
 function addDeleteForms() {
@@ -58,15 +58,6 @@ $(function () {
             searchField: 'name',
             // sortField: 'order'
         });
-    });
-
-    /**
-     * Disable all submit buttons once clicked
-     */
-    $('form').submit(function () {
-        $(this).find('input[type="submit"]').attr('disabled', true);
-        $(this).find('button[type="submit"]').attr('disabled', true);
-        return true;
     });
 
     /**

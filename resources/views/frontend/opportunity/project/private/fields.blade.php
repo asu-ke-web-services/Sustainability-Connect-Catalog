@@ -95,29 +95,29 @@
 
                     <label for="addresses">Location:</label>
                     @component('frontend.includes.coreui.components.form.input', [
-                        'name'        => 'addresses[0][city]',
+                        'name'        => 'city',
                         'label'       => 'City: *',
                         'attribute'   => 'required',
-                        'object'      => $project ?? null,
+                        'object'      => $project->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('frontend.includes.coreui.components.form.input', [
-                        'name'        => 'addresses[0][state]',
+                        'name'        => 'state',
                         'label'       => 'State/Prov: *',
                         'attribute'   => 'required',
-                        'object'      => $project ?? null,
+                        'object'      => $project->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('frontend.includes.coreui.components.form.input', [
-                        'name'        => 'addresses[0][country]',
+                        'name'        => 'country',
                         'label'       => 'Country:',
-                        'object'      => $project ?? null,
+                        'object'      => $project->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('frontend.includes.coreui.components.form.textarea', [
-                        'name'        => 'addresses[0][comment]',
+                        'name'        => 'comment',
                         'label'       => 'Location Comment:',
-                        'object'      => $project ?? null,
+                        'object'      => $project->addresses[0] ?? null,
                     ])@endcomponent
 
                 </div><!--col-->

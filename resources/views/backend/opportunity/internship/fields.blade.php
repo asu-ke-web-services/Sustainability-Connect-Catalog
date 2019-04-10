@@ -200,29 +200,29 @@
 
                     <label for="addresses">Location:</label>
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][city]',
+                        'name'        => 'city',
                         'label'       => 'City: *',
                         'attribute'   => 'required',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][state]',
+                        'name'        => 'state',
                         'label'       => 'State/Prov: *',
                         'attribute'   => 'required',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][country]',
+                        'name'        => 'country',
                         'label'       => 'Country:',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.textarea', [
-                        'name'        => 'addresses[0][comment]',
+                        'name'        => 'comment',
                         'label'       => 'Location Comment:',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     {{--

@@ -162,7 +162,7 @@
                     @foreach($internship->followers as $follower)
                     <tbody>
                         <tr>
-                            <td>{{ $follower->full_name }} ({{ $applicant->userType->name }})</td>
+                            <td>{{ $follower->full_name }} ({{ $follower->userType->name }})</td>
                             {{-- <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="{{ route('frontend.opportunity.internship.private.user.show', [$internship, $follower]) }}"

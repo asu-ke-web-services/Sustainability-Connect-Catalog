@@ -36,7 +36,7 @@
                             <th>Status</th>
                             <th>Submitted</th>
                             <th>Updated Last</th>
-                            <th>{{ __('labels.general.actions') }}</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,14 @@
                                 <td>{!! $project->status->name ?? '' !!}</td>
                                 <td>{!! $project->created_at !!}</td>
                                 <td>{!! $project->updated_at !!}</td>
-                                <td>{!! $project->frontend_submission_action_buttons !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.project.private.show', $project) }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.print', $project) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -73,6 +80,7 @@
                             <th>Status</th>
                             <th>Submitted</th>
                             <th>Updated Last</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -82,6 +90,14 @@
                                 <td>{!! $project->status->name ?? '' !!}</td>
                                 <td>{!! $project->created_at !!}</td>
                                 <td>{!! $project->updated_at !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.project.public.show', $project) }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.print', $project) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -108,7 +124,7 @@
                             <th>Your Role</th>
                             <th>Project Status</th>
                             <th>Start Date</th>
-                            <th>{{ __('labels.general.actions') }}</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -118,7 +134,14 @@
                                 <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
                                 <td>{!! $project->status->name !!}</td>
                                 <td>{!! $project->opportunity_start_at !!}</td>
-                                <td>{!! $project->frontend_private_action_buttons !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.project.private.show', $project) }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.print', $project) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -148,7 +171,7 @@
                             <th>Status</th>
                             <th>Submitted</th>
                             <th>Updated Last</th>
-                            <th>{{ __('labels.general.actions') }}</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -158,7 +181,14 @@
                                 <td>{!! $internship->status->name ?? '' !!}</td>
                                 <td>{!! $internship->created_at !!}</td>
                                 <td>{!! $internship->updated_at !!}</td>
-                                <td>{!! $internship->frontend_private_action_buttons !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.internship.private.show', $internship) }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('frontend.opportunity.internship.public.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.print', $internship) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -185,7 +215,7 @@
                             <th>Status</th>
                             <th>Submitted</th>
                             <th>Updated Last</th>
-                            {{-- <th>{{ __('labels.general.actions') }}</th> --}}
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -195,7 +225,14 @@
                                 <td>{!! $internship->status->name ?? '' !!}</td>
                                 <td>{!! $internship->created_at !!}</td>
                                 <td>{!! $internship->updated_at !!}</td>
-                                {{-- <td>{!! $internship->frontend_private_action_buttons !!}</td> --}}
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.internship.public.show', $internship) }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.public.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.print', $internship) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -222,7 +259,7 @@
                             <th>Your Role</th>
                             <th>Project Status</th>
                             <th>Start Date</th>
-                            <th>{{ __('labels.general.actions') }}</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>

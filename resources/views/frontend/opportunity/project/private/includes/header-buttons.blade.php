@@ -6,10 +6,20 @@
         <i class="fas fa-print"></i>
     </a>
 
+@can('manage project')
     <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}"
             class="btn btn-primary ml-1"
             data-toggle="tooltip"
-            title="{{ __('buttons.general.crud.edit') }}">
+            title="Edit">
         <i class="fas fa-edit"></i>
     </a>
+@else
+    <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}"
+            class="btn btn-primary ml-1"
+            data-toggle="tooltip"
+            title="Edit">
+        <i class="fas fa-edit"></i>
+    </a>
+@endcan
+
 </div>

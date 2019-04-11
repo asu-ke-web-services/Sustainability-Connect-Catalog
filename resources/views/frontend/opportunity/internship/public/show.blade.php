@@ -8,8 +8,8 @@
 
             <ul class="nav nav-tabs" style="margin-left: 1em;">
                 <li class="active"><a href="#">View</a></li>
+                @can('manage internship')
                 <li><a href="{{ route('frontend.opportunity.internship.private.show', $internship) }}">Manage</a></li>
-                @can('view admin dashboard')
                 {{-- <li><a href="#">Edit</a></li> --}}
                 @endcan
             </ul>

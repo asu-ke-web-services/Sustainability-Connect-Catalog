@@ -1,4 +1,5 @@
 
+@can('manage project')
 <div class="col">
     <div class="card">
         <div class="card-body">
@@ -12,6 +13,7 @@
             </div>
         </div>
     </div>
+@endcan
 
     <div class="card">
         <div class="card-header"><h4>Project Leadership</h4></div>

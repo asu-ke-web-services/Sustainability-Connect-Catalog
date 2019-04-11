@@ -3,16 +3,16 @@
 namespace SCCatalog\Repositories\Opportunity;
 
 use Illuminate\Support\Facades\DB;
-use SCCatalog\Events\Backend\OpportunityUser\UserCancelledRequestToJoinInternship;
-use SCCatalog\Events\Backend\OpportunityUser\UserFollowedInternship;
-use SCCatalog\Events\Backend\OpportunityUser\UserRequestedToJoinInternship;
-use SCCatalog\Events\Backend\OpportunityUser\UserUnfollowedInternship;
-use SCCatalog\Exceptions\GeneralException;
-use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Models\Auth\User;
 use SCCatalog\Events\Backend\OpportunityUser\UserAddedToInternship;
 use SCCatalog\Events\Backend\OpportunityUser\InternshipUserRelationshipUpdated;
 use SCCatalog\Events\Backend\OpportunityUser\UserRemovedFromInternship;
+use SCCatalog\Events\Frontend\OpportunityUser\UserCancelledRequestToJoinInternship;
+use SCCatalog\Events\Frontend\OpportunityUser\UserFollowedInternship;
+use SCCatalog\Events\Frontend\OpportunityUser\UserRequestedToJoinInternship;
+use SCCatalog\Events\Frontend\OpportunityUser\UserUnfollowedInternship;
+use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Models\Opportunity\Internship;
 
 /**
  * Class InternshipUserRepository

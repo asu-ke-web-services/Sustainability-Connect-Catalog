@@ -3,16 +3,16 @@
 namespace SCCatalog\Repositories\Opportunity;
 
 use Illuminate\Support\Facades\DB;
+use SCCatalog\Events\Backend\OpportunityUser\UserAddedToProject;
+use SCCatalog\Events\Backend\OpportunityUser\ProjectUserRelationshipUpdated;
+use SCCatalog\Events\Backend\OpportunityUser\UserRemovedFromProject;
 use SCCatalog\Events\Frontend\OpportunityUser\UserCancelledRequestToJoinProject;
 use SCCatalog\Events\Frontend\OpportunityUser\UserFollowedProject;
 use SCCatalog\Events\Frontend\OpportunityUser\UserRequestedToJoinProject;
 use SCCatalog\Events\Frontend\OpportunityUser\UserUnfollowedProject;
-use SCCatalog\Events\Backend\OpportunityUser\UserAddedToProject;
-use SCCatalog\Events\Backend\OpportunityUser\ProjectUserRelationshipUpdated;
-use SCCatalog\Events\Backend\OpportunityUser\UserRemovedFromProject;
 use SCCatalog\Exceptions\GeneralException;
-use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Models\Auth\User;
+use SCCatalog\Models\Opportunity\Project;
 
 /**
  * Class ProjectUserRepository

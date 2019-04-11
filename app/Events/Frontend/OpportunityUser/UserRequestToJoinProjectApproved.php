@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Events\Backend\OpportunityUser;
+namespace SCCatalog\Events\Frontend\OpportunityUser;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;

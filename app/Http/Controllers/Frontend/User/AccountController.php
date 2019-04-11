@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\User;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Backend\Lookup\UserTypeRepository;
+use SCCatalog\Repositories\Lookup\UserTypeRepository;
 
 /**
  * Class AccountController.

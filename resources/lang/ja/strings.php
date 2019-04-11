@@ -123,7 +123,7 @@ return [
         ],
 
         'general' => [
-            'joined'        => 'Joined',
+            'joined' => 'Joined',
         ],
 
         'user' => [

@@ -15,15 +15,12 @@ class InternshipFilesSeeder extends Seeder
         // Import old InternshipFiles data
 
         Internship::withoutSyncingToSearch(function () {
-
             $old_internship_files = DB::connection('old')->table('internship_file_attachments')->get();
 
             foreach ($old_internship_files as $old_file) {
-
                 $internship = Internship::find($old_file->internship_id);
 
-                if (1 != $old_file->deleted &&  $internship) {
-
+                if (1 != $old_file->deleted && $internship) {
                     $pathToFile = $old_file->server_filename;
                     $pathToFile = '/var/www/database/uploads/' . $pathToFile;
 
@@ -32,22 +29,19 @@ class InternshipFilesSeeder extends Seeder
                             ->preservingOriginal()
                             ->usingName($old_file->title)
                             ->usingFileName($old_file->orig_filename)
-                            ->sanitizingFileName(function($fileName) {
+                            ->sanitizingFileName(function ($fileName) {
                                 return strtolower(str_replace(['#', '/', '\\', ' ', ',', ';', '!'], '-', $fileName));
                             })
                             ->withCustomProperties([
-                                'type'       => $old_file->type,
+                                'type' => $old_file->type,
                                 // 'visibility' => $old_file->visibility,
-                                'pending'    => $old_file->pending,
-                                'deleted'    => $old_file->deleted,
+                                'pending' => $old_file->pending,
+                                'deleted' => $old_file->deleted,
                             ])
                             ->toMediaCollection();
                     }
-
                 }
-
             }
         });
-
     }
 }

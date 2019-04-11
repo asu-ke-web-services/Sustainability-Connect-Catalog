@@ -16,7 +16,7 @@ use SCCatalog\Models\Lookup\OrganizationType;
 
 $factory->define(OrganizationType::class, function (Generator $faker) {
     return [
-        'name'  => 'Government',
+        'name' => 'Government',
     ];
 });
 

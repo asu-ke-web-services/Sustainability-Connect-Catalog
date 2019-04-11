@@ -29,10 +29,10 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'      => 'required|max:255',
-            'last_name'       => 'required|max:255',
-            'email'           => 'sometimes|required|email|max:255',
-            'avatar_type'     => ['required', 'max:255', Rule::in(array_merge(['gravatar', 'storage'], (new Socialite)->getAcceptedProviders()))],
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'sometimes|required|email|max:255',
+            'avatar_type' => ['required', 'max:255', Rule::in(array_merge(['gravatar', 'storage'], (new Socialite)->getAcceptedProviders()))],
             'avatar_location' => 'sometimes|image|max:255',
         ];
     }

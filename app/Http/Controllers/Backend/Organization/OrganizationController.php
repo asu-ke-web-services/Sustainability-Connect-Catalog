@@ -52,11 +52,10 @@ class OrganizationController extends Controller
      * @return mixed
      */
     public function create(
-            ManageOrganizationRequest $request,
-            OrganizationStatusRepository $organizationStatusRepository,
-            OrganizationTypeRepository $organizationTypeRepository
-    )
-    {
+        ManageOrganizationRequest $request,
+        OrganizationStatusRepository $organizationStatusRepository,
+        OrganizationTypeRepository $organizationTypeRepository
+    ) {
         return view('backend.organization.create')
             ->with('organizationTypes', $organizationTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizationStatuses', $organizationStatusRepository->get(['id', 'name'])->pluck('name', 'id')->toArray());
@@ -88,12 +87,11 @@ class OrganizationController extends Controller
      * @return mixed
      */
     public function edit(
-            ManageOrganizationRequest $request,
-            OrganizationStatusRepository $organizationStatusRepository,
-            OrganizationTypeRepository $organizationTypeRepository,
-            Organization $organization
-    )
-    {
+        ManageOrganizationRequest $request,
+        OrganizationStatusRepository $organizationStatusRepository,
+        OrganizationTypeRepository $organizationTypeRepository,
+        Organization $organization
+    ) {
         return view('backend.organization.edit')
             ->withOrganization($organization)
             ->with('organizationTypes', $organizationTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())

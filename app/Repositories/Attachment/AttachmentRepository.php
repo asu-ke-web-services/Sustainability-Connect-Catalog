@@ -46,11 +46,10 @@ class AttachmentRepository extends BaseRepository
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comment'              => $data['comment'] ?? null,
+                        'comment' => $data['comment'] ?? null,
                     ]
                 )
             ) {
-
                 event(new OpportunityUserAdded($opportunity, $user, $data));
 
                 return $opportunity;
@@ -78,13 +77,12 @@ class AttachmentRepository extends BaseRepository
         //     );
 
         return DB::transaction(function () use ($opportunity, $user, $data) {
-
             if (
                 $opportunity->applicants()->updateExistingPivot(
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? null,
-                        'comment'              => $data['comment'] ?? null,
+                        'comment' => $data['comment'] ?? null,
                     ]
                 )
             ) {
@@ -109,13 +107,11 @@ class AttachmentRepository extends BaseRepository
     public function delete(Opportunity $opportunity, User $user, array $data)
     {
         return DB::transaction(function () use ($opportunity, $user, $data) {
-
             if ($opportunity
                 ->users()
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])
                 ->detach()
             ) {
-
                 event(new OpportunityUserRemoved($opportunity, $user, $data));
 
                 return $opportunity;

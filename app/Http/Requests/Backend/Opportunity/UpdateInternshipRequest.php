@@ -27,9 +27,9 @@ class UpdateInternshipRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                        => 'required|max:1024',
-            'opportunity_status_id'       => 'required',
-            'description'                 => 'required',
+            'name' => 'required|max:1024',
+            'opportunity_status_id' => 'required',
+            'description' => 'required',
         ];
     }
 
@@ -53,9 +53,9 @@ class UpdateInternshipRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'                        => 'Please enter the Internship Name',
-            'opportunity_status_id.required'       => 'Please select the Internship Status',
-            'description.required'                 => 'Please enter the Internship Description',
+            'name.required' => 'Please enter the Internship Name',
+            'opportunity_status_id.required' => 'Please select the Internship Status',
+            'description.required' => 'Please enter the Internship Description',
         ];
     }
 }

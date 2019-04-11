@@ -141,7 +141,6 @@ class InternshipRepository extends BaseRepository
     public function create(array $data)
     {
         return DB::transaction(function () use ($data) {
-
             if (!empty($data['opportunity_start_at'])) {
                 $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
             }
@@ -253,7 +252,6 @@ class InternshipRepository extends BaseRepository
         }
 
         return DB::transaction(function () use ($internship, $data) {
-
             if ($internship->update($data)) {
                 // save Addresses
                 if (isset($data['addresses'])) {
@@ -291,7 +289,6 @@ class InternshipRepository extends BaseRepository
     public function clone(Internship $internship)
     {
         return DB::transaction(function () use ($internship) {
-
             $internship->load(
                 'affiliations',
                 'categories',
@@ -342,7 +339,6 @@ class InternshipRepository extends BaseRepository
             }
 
             if ($clone) {
-
                 event(new InternshipCloned($clone));
 
                 return $clone;
@@ -365,7 +361,6 @@ class InternshipRepository extends BaseRepository
             $internship = parent::getById($internship_id);
 
             if (parent::deleteById($internship_id)) {
-
                 event(new InternshipUpdated($internship));
 
                 return true;

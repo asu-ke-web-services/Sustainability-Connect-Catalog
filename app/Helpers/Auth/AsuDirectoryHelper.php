@@ -20,8 +20,8 @@ use SCCatalog\Exceptions\GeneralException;
  *  Thus, in order to access a user's iSearch profile page when you have their ASURITE,
  *  such as provided by the ASU CAS service, their EID must be retrieved using the XML or JSON service.
  */
-class AsuDirectoryHelper {
-
+class AsuDirectoryHelper
+{
     /**
      * Get user's iSearch record using their ASURITE id
      *
@@ -30,18 +30,18 @@ class AsuDirectoryHelper {
      */
     public static function getDirectoryInfoByAsurite($asurite)
     {
-        if ( $asurite === NULL || \strlen( $asurite ) < 3 || \strlen( $asurite ) > 12 ) {
-            return NULL;
+        if ($asurite === null || \strlen($asurite) < 3 || \strlen($asurite) > 12) {
+            return null;
         }
-        $asurite = urlencode( $asurite );
+        $asurite = urlencode($asurite);
 
         $client = new Client([
             // Base URI is used with relative requests
             'base_uri' => 'https://asudir-solr.asu.edu/asudir/directory/',
             // You can set any number of default request options.
-            'timeout'  => 2.0,
+            'timeout' => 2.0,
         ]);
-        $response = $client->request('GET', 'select?q=asuriteId:' . $asurite . '&wt=json' );
+        $response = $client->request('GET', 'select?q=asuriteId:' . $asurite . '&wt=json');
 
         $code = $response->getStatusCode();
 
@@ -51,13 +51,14 @@ class AsuDirectoryHelper {
             throw new GeneralException($response->getReasonPhrase());
         }
 
-        if ( empty( $json ) ) {
-            return NULL;
+        if (empty($json)) {
+            return null;
         }
-        $info = json_decode ( $json, true );
-        if ( 0 == $info['response']['numFound'] ) {
-            return NULL;
+        $info = json_decode($json, true);
+        if (0 == $info['response']['numFound']) {
+            return null;
         }
+
         return $info;
     }
 
@@ -67,11 +68,12 @@ class AsuDirectoryHelper {
      * @param  array   $info
      * @return Integer
      */
-    public static function getEid( $info ) : int
+    public static function getEid($info) : int
     {
-        if ( isset( $info['response']['docs'][0]['eid'] ) ) {
-            return (int) $info[ 'response' ][ 'docs' ][ 0 ][ 'eid' ];
+        if (isset($info['response']['docs'][0]['eid'])) {
+            return (int) $info['response']['docs'][0]['eid'];
         }
+
         return '';
     }
 
@@ -84,11 +86,12 @@ class AsuDirectoryHelper {
      * @param  array   $info
      * @return string
      */
-    public static function getAsurite( $info ) : string
+    public static function getAsurite($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['asuriteId'] ) ) {
-            return (string) $info[ 'response' ][ 'docs' ][ 0 ][ 'asuriteId' ];
+        if (isset($info['response']['docs'][0]['asuriteId'])) {
+            return (string) $info['response']['docs'][0]['asuriteId'];
         }
+
         return '';
     }
 
@@ -100,9 +103,10 @@ class AsuDirectoryHelper {
      */
     public static function getDisplayName($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['displayName'] ) ) {
-            return (string) $info[ 'response' ][ 'docs' ][ 0 ][ 'displayName' ];
+        if (isset($info['response']['docs'][0]['displayName'])) {
+            return (string) $info['response']['docs'][0]['displayName'];
         }
+
         return '';
     }
 
@@ -114,9 +118,10 @@ class AsuDirectoryHelper {
      */
     public static function getLastName($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['lastName'] ) ) {
-            return (string) $info[ 'response' ][ 'docs' ][ 0 ][ 'lastName' ];
+        if (isset($info['response']['docs'][0]['lastName'])) {
+            return (string) $info['response']['docs'][0]['lastName'];
         }
+
         return '';
     }
 
@@ -128,9 +133,10 @@ class AsuDirectoryHelper {
      */
     public static function getFirstName($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['firstName'] ) ) {
-            return (string) $info[ 'response' ][ 'docs' ][ 0 ][ 'firstName' ];
+        if (isset($info['response']['docs'][0]['firstName'])) {
+            return (string) $info['response']['docs'][0]['firstName'];
         }
+
         return '';
     }
 
@@ -142,9 +148,10 @@ class AsuDirectoryHelper {
      */
     public static function getEmail($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['emailAddress'] ) ) {
-            return (string) $info[ 'response' ][ 'docs' ][ 0 ][ 'emailAddress' ];
+        if (isset($info['response']['docs'][0]['emailAddress'])) {
+            return (string) $info['response']['docs'][0]['emailAddress'];
         }
+
         return '';
     }
 
@@ -154,16 +161,17 @@ class AsuDirectoryHelper {
      * @param  array   $info
      * @return string
      */
-    public static function isStudent( $info ) : string
+    public static function isStudent($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['affiliations'] ) ) {
-            foreach ( $info['response']['docs'][0]['affiliations'] as $affiliation ) {
-                if ( 'Student' === $affiliation ) {
-                    return TRUE;
+        if (isset($info['response']['docs'][0]['affiliations'])) {
+            foreach ($info['response']['docs'][0]['affiliations'] as $affiliation) {
+                if ('Student' === $affiliation) {
+                    return true;
                 }
             }
         }
-        return FALSE;
+
+        return false;
     }
 
     /**
@@ -172,22 +180,23 @@ class AsuDirectoryHelper {
      * @param  array   $info
      * @return string
      */
-    public static function isFaculty( $info ) : string
+    public static function isFaculty($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['affiliations'] ) ) {
-            foreach ( $info['response']['docs'][0]['affiliations'] as $affiliation ) {
-                if ( 'Employee' === $affiliation ) {
+        if (isset($info['response']['docs'][0]['affiliations'])) {
+            foreach ($info['response']['docs'][0]['affiliations'] as $affiliation) {
+                if ('Employee' === $affiliation) {
                     if (isset($info['response']['docs'][0]['emplClasses'])) {
-                        foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
-                            if ( 'Faculty' === $employee_class ) {
-                                return TRUE;
+                        foreach ($info['response']['docs'][0]['emplClasses'] as $employee_class) {
+                            if ('Faculty' === $employee_class) {
+                                return true;
                             }
                         }
                     }
                 }
             }
         }
-        return FALSE;
+
+        return false;
     }
 
     /**
@@ -200,22 +209,23 @@ class AsuDirectoryHelper {
      * @param  array   $info
      * @return string
      */
-    public static function isStaff( $info ) : string
+    public static function isStaff($info) : string
     {
-        if ( isset( $info['response']['docs'][0]['affiliations'] ) ) {
-            foreach ( $info['response']['docs'][0]['affiliations'] as $affiliation ) {
-                if ( 'Employee' === $affiliation ) {
+        if (isset($info['response']['docs'][0]['affiliations'])) {
+            foreach ($info['response']['docs'][0]['affiliations'] as $affiliation) {
+                if ('Employee' === $affiliation) {
                     if (isset($info['response']['docs'][0]['emplClasses'])) {
-                        foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
-                            if ( 'University Staff' === $employee_class ) {
-                                return TRUE;
+                        foreach ($info['response']['docs'][0]['emplClasses'] as $employee_class) {
+                            if ('University Staff' === $employee_class) {
+                                return true;
                             }
                         }
                     }
                 }
             }
         }
-        return FALSE;
+
+        return false;
     }
 
     /**
@@ -228,23 +238,23 @@ class AsuDirectoryHelper {
      * @param  array   $info
      * @return string
      */
-    public static function getUserType( $info ) : ?string
+    public static function getUserType($info) : ?string
     {
-        $student = FALSE;
-        $faculty = FALSE;
-        $staff = FALSE;
-        if ( isset( $info['response']['docs'][0]['affiliations'] ) ) {
-            foreach ( $info['response']['docs'][0]['affiliations'] as $affiliation ) {
-                if ( 'Student' === $affiliation ) {
-                    $student = TRUE;
+        $student = false;
+        $faculty = false;
+        $staff = false;
+        if (isset($info['response']['docs'][0]['affiliations'])) {
+            foreach ($info['response']['docs'][0]['affiliations'] as $affiliation) {
+                if ('Student' === $affiliation) {
+                    $student = true;
                 }
-                if ( 'Employee' === $affiliation ) {
+                if ('Employee' === $affiliation) {
                     if (isset($info['response']['docs'][0]['emplClasses'])) {
-                        foreach ( $info['response']['docs'][0]['emplClasses'] as $employee_class ) {
-                            if ( 'Faculty' === $employee_class ) {
-                                $faculty = TRUE;
-                            } elseif ( 'University Staff' === $employee_class ) {
-                                $staff = TRUE;
+                        foreach ($info['response']['docs'][0]['emplClasses'] as $employee_class) {
+                            if ('Faculty' === $employee_class) {
+                                $faculty = true;
+                            } elseif ('University Staff' === $employee_class) {
+                                $staff = true;
                             }
                         }
                     }
@@ -253,16 +263,17 @@ class AsuDirectoryHelper {
         }
         // in case, user has multiple classifications (staff enrolled as student)
         // role precedence: student > faculty > staff
-        if ( $student ) {
+        if ($student) {
             return 'student';
         }
-        if ( $faculty ) {
+        if ($faculty) {
             return 'faculty';
         }
-        if ( $staff ) {
+        if ($staff) {
             return 'staff';
         }
-        return FALSE;
+
+        return false;
     }
 
     /**
@@ -271,17 +282,17 @@ class AsuDirectoryHelper {
      * @param  array   $info
      * @return string
      */
-    public static function hasSosPlan( $info ) : string
+    public static function hasSosPlan($info) : string
     {
-        if ( $info['response']['numFound'] > 0 ) {
-            if ( !empty( $info['response']['docs'][0]['programs'] ) ) {
-                foreach ( $info['response']['docs'][0]['programs'] as $program ) {
+        if ($info['response']['numFound'] > 0) {
+            if (!empty($info['response']['docs'][0]['programs'])) {
+                foreach ($info['response']['docs'][0]['programs'] as $program) {
                     // look for SOS program
-                    if ( 'School of Sustainability' === $program ) {
-                        foreach ( $info['response']['docs'][0]['majors'] as $major ) {
+                    if ('School of Sustainability' === $program) {
+                        foreach ($info['response']['docs'][0]['majors'] as $major) {
                             // is student majoring in Sustainability
-                            if ( 'Sustainability' === $major ) {
-                                return TRUE;
+                            if ('Sustainability' === $major) {
+                                return true;
                             }
                         }
                     }
@@ -289,6 +300,6 @@ class AsuDirectoryHelper {
             }
         }
 
-        return FALSE;
+        return false;
     }
 }

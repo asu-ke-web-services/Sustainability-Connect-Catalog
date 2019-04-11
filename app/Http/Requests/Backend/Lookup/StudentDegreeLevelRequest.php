@@ -29,8 +29,8 @@ class StudentDegreeLevelRequest extends FormRequest
     {
         return [
             'order' => 'nullable|integer',
-            'name'  => ['required', 'string', 'max:250', Rule::unique('student_degree_levels')],
-            'slug'  => 'nullable|string|max:255',
+            'name' => ['required', 'string', 'max:250', Rule::unique('student_degree_levels')],
+            'slug' => 'nullable|string|max:255',
         ];
     }
 

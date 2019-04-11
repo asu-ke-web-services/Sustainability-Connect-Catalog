@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Event;
 use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
 use SCCatalog\Models\Opportunity\Project;
 
-
 class CreateProjectTest extends TestCase
 {
     use RefreshDatabase;
@@ -80,7 +79,7 @@ class CreateProjectTest extends TestCase
 
         $response
             ->assertStatus(302);
-            // ->assertRedirect(route('admin.opportunity.project.index'))
+        // ->assertRedirect(route('admin.opportunity.project.index'))
             // ->assertSessionHas('message', 'Project created successfully');
 
         // Event::assertDispatched(ProjectCreated::class);

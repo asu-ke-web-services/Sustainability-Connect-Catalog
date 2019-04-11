@@ -65,7 +65,6 @@ class ProjectPrivateController extends Controller
 
         $attachments = $project->getMedia();
 
-
         return view('frontend.opportunity.project.private.show')
             ->withProject($project)
             ->withAttachments($attachments)

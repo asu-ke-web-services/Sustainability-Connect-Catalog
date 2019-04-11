@@ -16,7 +16,7 @@ use SCCatalog\Models\Lookup\BudgetType;
 
 $factory->define(BudgetType::class, function (Generator $faker) {
     return [
-        'name'                => 'Monetary',
+        'name' => 'Monetary',
     ];
 });
 

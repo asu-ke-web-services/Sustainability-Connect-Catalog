@@ -13,6 +13,7 @@ use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
 // use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
@@ -43,12 +44,12 @@ class Project extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
-        'needs_review'            => 'boolean',
-        // 'opportunity_start_at'    => 'date',
-        // 'opportunity_end_at'      => 'date',
-        // 'listing_end_at'          => 'date',
-        // 'listing_start_at'        => 'date',
-        // 'application_deadline_at' => 'date',
+        'needs_review' => 'boolean',
+        'opportunity_start_at' => 'date:Y-m-d',
+        'opportunity_end_at' => 'date:Y-m-d',
+        'listing_end_at' => 'date:Y-m-d',
+        'listing_start_at' => 'date:Y-m-d',
+        'application_deadline_at' => 'date:Y-m-d',
     ];
 
     /**
@@ -195,6 +196,7 @@ class Project extends Model implements HasMedia
                     ' . $this->delete_permanently_button . '
                 </div>';
         }
+
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
             ' . $this->show_button . '
             ' . $this->edit_button . '
@@ -384,23 +386,23 @@ class Project extends Model implements HasMedia
 
     public function toSearchableArray(): array
     {
-        $project = array();
+        $project = [];
 
-        $project['id']                      = $this->id;
-        $project['active']                  = $this->isActive();
+        $project['id'] = $this->id;
+        $project['active'] = $this->isActive();
         // $project['completed']               = $this->isCompleted();
-        $project['name']                    = e($this->name);
-        $project['description']             = e($this->description);
-        $project['opportunityStartAt']      = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
-        $project['opportunityEndAt']        = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
-        $project['applicationDeadlineAt']   = $this->application_deadline_at ? $this->application_deadline_at->getTimestamp() : null;
+        $project['name'] = e($this->name);
+        $project['description'] = e($this->description);
+        $project['opportunityStartAt'] = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
+        $project['opportunityEndAt'] = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
+        $project['applicationDeadlineAt'] = $this->application_deadline_at ? $this->application_deadline_at->getTimestamp() : null;
         $project['applicationDeadlineText'] = e($this->application_deadline_text);
-        $project['listingStartAt']          = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
-        $project['listingEndAt']            = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
-        $project['followerCount']           = $this->follower_count;
-        $project['status']                  = null !== $this->status ? e($this->status->name) : null;
-        $project['reviewStatus']            = null !== $this->reviewStatus ? e($this->reviewStatus->name) : null;
-        $project['organizationName']        = null !== $this->organization ? e($this->organization->name) : null;
+        $project['listingStartAt'] = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
+        $project['listingEndAt'] = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
+        $project['followerCount'] = $this->follower_count;
+        $project['status'] = null !== $this->status ? e($this->status->name) : null;
+        $project['reviewStatus'] = null !== $this->reviewStatus ? e($this->reviewStatus->name) : null;
+        $project['organizationName'] = null !== $this->organization ? e($this->organization->name) : null;
 
         // Index Location Cities
         $project['locations'] = '';
@@ -424,10 +426,10 @@ class Project extends Model implements HasMedia
         // Index AffiliationIcons
         $project['affiliationIcons'] = $this->affiliations->map(function ($data) {
             return [
-                'slug'             => e($data['slug']),
+                'slug' => e($data['slug']),
                 'frontend_fa_icon' => json_decode($data['frontend_fa_icon']),
-                'backend_fa_icon'  => json_decode($data['backend_fa_icon']),
-                'help_text'        => $data['help_text'],
+                'backend_fa_icon' => json_decode($data['backend_fa_icon']),
+                'help_text' => $data['help_text'],
             ];
         })->toArray();
 
@@ -571,7 +573,6 @@ class Project extends Model implements HasMedia
             ->wherePivotIn('relationship_type_id', [4, 5]);
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      **/
@@ -587,7 +588,6 @@ class Project extends Model implements HasMedia
     {
         return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'notable');
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
@@ -773,7 +773,7 @@ class Project extends Model implements HasMedia
     {
         return $query->where([
             ['opportunity_status_id', 1], // New Proposal
-            ['review_status_id', 1] // Needs Review
+            ['review_status_id', 1], // Needs Review
         ]);
     }
 
@@ -786,7 +786,7 @@ class Project extends Model implements HasMedia
     {
         return $query->where([
             ['opportunity_status_id', 1], // New Proposal
-            ['review_status_id', 2] // Review in Progress
+            ['review_status_id', 2], // Review in Progress
         ]);
     }
 
@@ -800,14 +800,13 @@ class Project extends Model implements HasMedia
     {
         if ($approved) {
             return $query->where('review_status_id', 3);
-        } else {
-            // Closed or archived or otherwise not approved
-            return $query->whereIn('review_status_id', [
+        }
+        // Closed or archived or otherwise not approved
+        return $query->whereIn('review_status_id', [
                 1, // Needs Review
                 2, // Review In Progress
                 4, // Not Approved
             ]);
-        }
     }
 
     /**

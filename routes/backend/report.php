@@ -4,9 +4,9 @@
  * All route names are prefixed with 'admin.report'.
  */
 Route::group([
-    'prefix'     => 'report',
-    'as'         => 'report.',
-    'namespace'  => 'Report',
+    'prefix' => 'report',
+    'as' => 'report.',
+    'namespace' => 'Report',
 //    'middleware' => 'role:'.config('access.users.admin_role'),
 ], function () {
 
@@ -17,9 +17,9 @@ Route::group([
 });
 
 Route::group([
-    'prefix'     => 'report',
-    'as'         => 'report.',
-    'namespace'  => 'Opportunity',
+    'prefix' => 'report',
+    'as' => 'report.',
+    'namespace' => 'Opportunity',
 //    'middleware' => 'role:'.config('access.users.admin_role'),
 ], function () {
 

@@ -43,7 +43,7 @@ class CreateUserTest extends TestCase
         factory(User::class)->create(['email' => 'john@example.com']);
 
         $response = $this->post('/admin/auth/user', [
-                'uuid'      => Uuid::generate(4)->string,
+                'uuid' => Uuid::generate(4)->string,
                 'first_name' => 'John',
                 'last_name' => 'Doe',
                 'email' => 'john@example.com',

@@ -28,8 +28,8 @@ class OrganizationTypeRepositoryTest extends TestCase
     protected function getValidOrganizationTypeData($organizationTypeData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test OrganizationType',
+            'order' => '1',
+            'name' => 'Test OrganizationType',
         ], $organizationTypeData);
     }
 
@@ -49,8 +49,8 @@ class OrganizationTypeRepositoryTest extends TestCase
         $organizationType = factory(OrganizationType::class)->create();
 
         $updatedOrganizationType = $this->organizationTypeRepository->updateById($organizationType->id, $this->getValidOrganizationTypeData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedOrganizationType->fresh()->order);

@@ -24,7 +24,6 @@ class ReadUsersTest extends TestCase
     /** @test */
     public function an_admin_can_view_single_user_page()
     {
-
         $this->loginAsAdmin();
         factory(UserType::class)->create();
         $user = factory(User::class)->states('student')->create();

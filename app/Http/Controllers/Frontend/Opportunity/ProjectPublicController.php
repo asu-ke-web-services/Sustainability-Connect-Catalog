@@ -48,7 +48,7 @@ class ProjectPublicController extends Controller
             $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
         }
 
-        return view("frontend.opportunity.project.public.active.index")
+        return view('frontend.opportunity.project.public.active.index')
             ->withProjects($this->projectRepository->getActivePaginated(200, 'application_deadline_at', 'asc'))
             ->with('pageTitle', 'Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
@@ -78,7 +78,7 @@ class ProjectPublicController extends Controller
             $canViewRestricted = auth()->user()->hasPermissionTo('read all projects');
         }
 
-        return view("frontend.opportunity.project.public.completed.index")
+        return view('frontend.opportunity.project.public.completed.index')
             ->withProjects($this->projectRepository->getCompletedPaginated(200, 'opportunity_start_at', 'desc'))
             ->with('pageTitle', 'Past Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)

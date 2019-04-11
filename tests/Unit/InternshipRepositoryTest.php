@@ -31,28 +31,28 @@ class InternshipRepositoryTest extends TestCase
     protected function getValidInternshipData($internshipData = [])
     {
         return array_merge([
-            'name'                     => 'Test Internship',
-            'opportunity_start_at'     => Carbon::yesterday(),
-            'opportunity_end_at'       => Carbon::tomorrow(),
-            'listing_start_at'         => Carbon::yesterday(),
-            'listing_end_at'           => Carbon::tomorrow(),
-            'application_deadline_at'  => Carbon::tomorrow(),
+            'name' => 'Test Internship',
+            'opportunity_start_at' => Carbon::yesterday(),
+            'opportunity_end_at' => Carbon::tomorrow(),
+            'listing_start_at' => Carbon::yesterday(),
+            'listing_end_at' => Carbon::tomorrow(),
+            'application_deadline_at' => Carbon::tomorrow(),
             'application_deadline_text' => 'When Filled',
-            'opportunity_status_id'    => 9,
-            'description'              => 'Lorem ipsum',
-            'supervisor_user_id'       => 1,
-            'degree_program'           => 'School of Sustainability',
-            'compensation'             => 'Lorem compensation',
-            'responsiblities'          => 'Lorem responsiblities',
-            'qualifications'           => 'Lorem qualifications',
+            'opportunity_status_id' => 9,
+            'description' => 'Lorem ipsum',
+            'supervisor_user_id' => 1,
+            'degree_program' => 'School of Sustainability',
+            'compensation' => 'Lorem compensation',
+            'responsiblities' => 'Lorem responsiblities',
+            'qualifications' => 'Lorem qualifications',
             'application_instructions' => 'Lorem application instructions',
-            'program_lead'             => 'Lorem program lead',
-            'success_story'            => 'https://example.test',
-            'library_collection'       => 'https://example.test',
-            'addresses'                => [],
-            'affiliations'             => [2, 3, 16, 17],
-            'categories'               => [1, 2],
-            'keywords'                 => [1, 2],
+            'program_lead' => 'Lorem program lead',
+            'success_story' => 'https://example.test',
+            'library_collection' => 'https://example.test',
+            'addresses' => [],
+            'affiliations' => [2, 3, 16, 17],
+            'categories' => [1, 2],
+            'keywords' => [1, 2],
         ], $internshipData);
     }
 
@@ -133,8 +133,8 @@ class InternshipRepositoryTest extends TestCase
             $internship = factory(Internship::class)->create();
 
             $this->repository->update($internship, $this->getValidInternshipData([
-                'name'                  => 'updated name',
-                'description'           => 'updated description',
+                'name' => 'updated name',
+                'description' => 'updated description',
                 'opportunity_status_id' => 3,
             ]));
 

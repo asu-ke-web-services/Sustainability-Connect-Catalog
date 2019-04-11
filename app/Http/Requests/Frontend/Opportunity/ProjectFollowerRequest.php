@@ -28,7 +28,7 @@ class ProjectFollowerRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

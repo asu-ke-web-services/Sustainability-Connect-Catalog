@@ -1,3 +1,3 @@
 <?php
 
-require __DIR__.'/report/project.php';
+require __DIR__ . '/report/project.php';

@@ -16,7 +16,7 @@ use SCCatalog\Models\Lookup\UserType;
 
 $factory->define(UserType::class, function (Generator $faker) {
     return [
-		'name' => 'Student',
+        'name' => 'Student',
     ];
 });
 

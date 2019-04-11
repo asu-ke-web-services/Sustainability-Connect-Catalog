@@ -16,7 +16,7 @@ use SCCatalog\Models\Address\Address;
 
 $factory->define(Address::class, function (Generator $faker) {
     return [
-        'city'  => 'Tempe',
+        'city' => 'Tempe',
         'state' => 'AZ',
     ];
 });

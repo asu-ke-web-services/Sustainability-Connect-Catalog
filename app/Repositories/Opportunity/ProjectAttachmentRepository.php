@@ -23,14 +23,13 @@ class ProjectAttachmentRepository
     public function store(Project $project, array $data)
     {
         return DB::transaction(function () use ($project, $data) {
-
             if (isset($data['file_attachment'])) {
                 $project->addMedia($data['file_attachment'])
                     ->withCustomProperties([
-                        'type'       => $data['attachment_type'] ?? 'other',
+                        'type' => $data['attachment_type'] ?? 'other',
                         'visibility' => $data['attachment_status'] ?? 'private',
                         // 'pending'    => 0,
-                        'deleted'    => 0,
+                        'deleted' => 0,
                     ])
                     ->toMediaCollection();
 
@@ -53,7 +52,6 @@ class ProjectAttachmentRepository
     public function update(Project $project, Media $media, array $data)
     {
         return DB::transaction(function () use ($project, $media, $data) {
-
             $media->setCustomProperty('type', $data['attachment_type'] ?? 'other');
             $media->setCustomProperty('visibility', $data['attachment_status'] ?? 'private');
             $media->save();
@@ -74,7 +72,6 @@ class ProjectAttachmentRepository
     public function delete(Project $project, Media $media)
     {
         return DB::transaction(function () use ($project, $media) {
-
             $project->deleteMedia($media->id);
 
             event(new AttachmentRemovedFromProject($project, $media));

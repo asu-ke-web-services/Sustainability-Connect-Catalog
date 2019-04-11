@@ -28,7 +28,7 @@ class ProjectApplicantRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

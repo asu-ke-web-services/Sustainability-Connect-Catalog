@@ -23,12 +23,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url)
     {
         Relation::morphMap([
-            'Address'      => \SCCatalog\Models\Address\Address::class,
-            'Note'         => \SCCatalog\Models\Note\Note::class,
+            'Address' => \SCCatalog\Models\Address\Address::class,
+            'Note' => \SCCatalog\Models\Note\Note::class,
             'Organization' => \SCCatalog\Models\Organization\Organization::class,
-            'Internship'   => \SCCatalog\Models\Opportunity\Internship::class,
-            'Project'      => \SCCatalog\Models\Opportunity\Project::class,
-            'User'         => \SCCatalog\Models\Auth\User::class,
+            'Internship' => \SCCatalog\Models\Opportunity\Internship::class,
+            'Project' => \SCCatalog\Models\Opportunity\Project::class,
+            'User' => \SCCatalog\Models\Auth\User::class,
         ]);
 
         /*
@@ -87,7 +87,6 @@ class AppServiceProvider extends ServiceProvider
              * Load third party local aliases
              */
             $loader->alias('Debugbar', \Barryvdh\Debugbar\Facade::class);
-
         }
     }
 }

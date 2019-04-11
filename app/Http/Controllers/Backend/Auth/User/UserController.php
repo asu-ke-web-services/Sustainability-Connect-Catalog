@@ -44,13 +44,13 @@ class UserController extends Controller
     public function index(ManageUserRequest $request)
     {
         $search = '';
-        if($request->has('search')){
+        if ($request->has('search')) {
             $search = $request->get('search');
         }
 
         return view('backend.auth.user.all')
             ->withUsers($this->userRepository->getAllPaginated(25, $search, 'created_at', 'desc'))
-            ->with('searchRequest', (object) array('search' => $search));
+            ->with('searchRequest', (object) ['search' => $search]);
     }
 
     /**
@@ -61,15 +61,14 @@ class UserController extends Controller
      * @return mixed
      */
     public function create(
-            ManageUserRequest $request,
-            RoleRepository $roleRepository,
-            PermissionRepository $permissionRepository,
-            AffiliationRepository $affiliationRepository,
-            OrganizationRepository $organizationRepository,
-            StudentDegreeLevelRepository $studentDegreeLevelRepository,
-            UserTypeRepository $userTypeRepository
-    )
-    {
+        ManageUserRequest $request,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository,
+        AffiliationRepository $affiliationRepository,
+        OrganizationRepository $organizationRepository,
+        StudentDegreeLevelRepository $studentDegreeLevelRepository,
+        UserTypeRepository $userTypeRepository
+    ) {
         return view('backend.auth.user.create')
             ->with('affiliations', $affiliationRepository->where('access_control', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -120,16 +119,15 @@ class UserController extends Controller
      * @return mixed
      */
     public function edit(
-            ManageUserRequest $request,
-            RoleRepository $roleRepository,
-            PermissionRepository $permissionRepository,
-            AffiliationRepository $affiliationRepository,
-            OrganizationRepository $organizationRepository,
-            StudentDegreeLevelRepository $studentDegreeLevelRepository,
-            UserTypeRepository $userTypeRepository,
-            User $user
-    )
-    {
+        ManageUserRequest $request,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository,
+        AffiliationRepository $affiliationRepository,
+        OrganizationRepository $organizationRepository,
+        StudentDegreeLevelRepository $studentDegreeLevelRepository,
+        UserTypeRepository $userTypeRepository,
+        User $user
+    ) {
         return view('backend.auth.user.edit')
             ->withUser($user)
             ->withRoles($roleRepository->get())

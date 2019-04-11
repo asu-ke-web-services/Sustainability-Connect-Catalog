@@ -57,7 +57,6 @@ class ProjectNoteRepository extends BaseRepository
     public function update(Project $project, Note $note, array $data)
     {
         return DB::transaction(function () use ($project, $note, $data) {
-
             $note = $this->model->update($data);
 
             // event(new AttachmentAddedToProject($project, $media));
@@ -66,7 +65,7 @@ class ProjectNoteRepository extends BaseRepository
         });
     }
 
-    /**
+    /*
      * Delete an attachment from a project in the database.
      *
      * @param Project $project

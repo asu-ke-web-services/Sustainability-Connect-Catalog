@@ -152,7 +152,7 @@ trait UserRelationship
                 3, // Participant
                 4, // Manager
                 5, // Practitioner Mentor
-                6  // Academic Mentor
+                6,  // Academic Mentor
             ]);
     }
 
@@ -168,7 +168,7 @@ trait UserRelationship
                 3, // Participant
                 4, // Manager
                 5, // Practitioner Mentor
-                6  // Academic Mentor
+                6,  // Academic Mentor
             ]);
     }
 

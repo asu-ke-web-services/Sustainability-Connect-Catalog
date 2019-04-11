@@ -27,7 +27,7 @@ class DeleteInternshipRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

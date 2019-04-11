@@ -13,6 +13,7 @@ use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
 // use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
@@ -43,11 +44,11 @@ class Internship extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
-        'needs_review'            => 'boolean',
-        'opportunity_start_at'    => 'date:Y-m-d',
-        'opportunity_end_at'      => 'date:Y-m-d',
-        'listing_end_at'          => 'date:Y-m-d',
-        'listing_start_at'        => 'date:Y-m-d',
+        'needs_review' => 'boolean',
+        'opportunity_start_at' => 'date:Y-m-d',
+        'opportunity_end_at' => 'date:Y-m-d',
+        'listing_end_at' => 'date:Y-m-d',
+        'listing_start_at' => 'date:Y-m-d',
         'application_deadline_at' => 'date:Y-m-d',
     ];
 
@@ -180,6 +181,7 @@ class Internship extends Model implements HasMedia
                     ' . $this->delete_permanently_button . '
                 </div>';
         }
+
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
             ' . $this->show_button . '
             ' . $this->edit_button . '
@@ -285,21 +287,21 @@ class Internship extends Model implements HasMedia
      */
     public function toSearchableArray(): array
     {
-        $internship = array();
+        $internship = [];
 
-        $internship['id']                    = $this->id;
-        $internship['active']                = $this->isActive();
-        $internship['name']                  = e($this->name);
-        $internship['description']           = e($this->description);
-        $internship['opportunityStartAt']    = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
-        $internship['opportunityEndAt']      = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
+        $internship['id'] = $this->id;
+        $internship['active'] = $this->isActive();
+        $internship['name'] = e($this->name);
+        $internship['description'] = e($this->description);
+        $internship['opportunityStartAt'] = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
+        $internship['opportunityEndAt'] = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
         $internship['applicationDeadlineAt'] = $this->application_deadline_at ? $this->application_deadline_at->getTimestamp() : null;
         $internship['applicationDeadlineText'] = e($this->application_deadline_text);
-        $internship['listingStartAt']        = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
-        $internship['listingEndAt']          = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
-        $internship['followerCount']         = $this->follower_count;
-        $internship['status']                = e($this->status->name);
-        $internship['organizationName']      = e($this->organization->name) ?? '';
+        $internship['listingStartAt'] = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
+        $internship['listingEndAt'] = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
+        $internship['followerCount'] = $this->follower_count;
+        $internship['status'] = e($this->status->name);
+        $internship['organizationName'] = e($this->organization->name) ?? '';
 
         // Index Location Cities
         $internship['locations'] = '';
@@ -323,10 +325,10 @@ class Internship extends Model implements HasMedia
         // Index AffiliationIcons
         $internship['affiliationIcons'] = $this->affiliations->map(function ($data) {
             return [
-                'slug'             => e($data['slug']),
+                'slug' => e($data['slug']),
                 'frontend_fa_icon' => json_decode($data['frontend_fa_icon']),
-                'backend_fa_icon'  => json_decode($data['backend_fa_icon']),
-                'help_text'        => $data['help_text'],
+                'backend_fa_icon' => json_decode($data['backend_fa_icon']),
+                'help_text' => $data['help_text'],
             ];
         })->toArray();
 
@@ -454,7 +456,6 @@ class Internship extends Model implements HasMedia
             ->wherePivotIn('relationship_type_id', [4, 5]);
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      **/
@@ -470,7 +471,6 @@ class Internship extends Model implements HasMedia
     {
         return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'notable');
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany

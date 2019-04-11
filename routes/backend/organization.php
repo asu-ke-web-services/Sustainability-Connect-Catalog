@@ -6,7 +6,7 @@
 Route::group([
     // 'prefix'     => 'opportunity',
     // 'as'         => 'opportunity.',
-    'namespace'  => 'Organization',
+    'namespace' => 'Organization',
     //    'middleware' => 'role:'.config('access.users.admin_role'),
 ], function () {
 
@@ -19,5 +19,4 @@ Route::group([
 
     /* Organization CRUD */
     Route::resource('organization', 'OrganizationController');
-
 });

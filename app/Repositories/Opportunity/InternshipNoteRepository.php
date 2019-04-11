@@ -52,7 +52,6 @@ class InternshipNoteRepository extends BaseRepository
     public function update(Internship $internship, Note $note, array $data)
     {
         return DB::transaction(function () use ($internship, $note, $data) {
-
             $note = $this->model->update($data);
 
             // event(new AttachmentAddedToInternship($internship, $media));
@@ -61,7 +60,7 @@ class InternshipNoteRepository extends BaseRepository
         });
     }
 
-    /**
+    /*
      * Delete an attachment from a internship in the database.
      *
      * @param Internship $internship

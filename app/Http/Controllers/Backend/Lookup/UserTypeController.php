@@ -96,7 +96,7 @@ class UserTypeController extends Controller
      */
     public function update(UserTypeRequest $request, $id)
     {
-       $this->repository->updateById($usertype->id, $request->only(
+        $this->repository->updateById($usertype->id, $request->only(
             'order',
             'name'
         ));

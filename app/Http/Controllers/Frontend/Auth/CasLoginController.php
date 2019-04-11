@@ -61,8 +61,7 @@ class CasLoginController extends Controller
 
         // dd(cas()->checkAuthentication());
 
-        if ( ! cas()->checkAuthentication() )
-        {
+        if (!cas()->checkAuthentication()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             }
@@ -76,12 +75,12 @@ class CasLoginController extends Controller
             return redirect()->route(home_route())->withFlashDanger($e->getMessage());
         }
 
-        if ( $user === null ) {
+        if ($user === null) {
             return redirect()->route(home_route())->withFlashDanger(__('exceptions.frontend.auth.unknown'));
         }
 
         // Check to see if they are active.
-        if (! $user->isActive()) {
+        if (!$user->isActive()) {
             throw new GeneralException(__('exceptions.frontend.auth.deactivated'));
         }
 
@@ -103,7 +102,6 @@ class CasLoginController extends Controller
     }
 
     /**
-     *
      * @return mixed
      */
     protected function getAuthorizationFirst()

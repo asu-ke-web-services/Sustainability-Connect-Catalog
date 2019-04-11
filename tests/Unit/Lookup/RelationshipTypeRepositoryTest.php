@@ -28,8 +28,8 @@ class RelationshipTypeRepositoryTest extends TestCase
     protected function getValidRelationshipTypeData($relationshipTypeData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test RelationshipType',
+            'order' => '1',
+            'name' => 'Test RelationshipType',
         ], $relationshipTypeData);
     }
 
@@ -49,8 +49,8 @@ class RelationshipTypeRepositoryTest extends TestCase
         $relationshipType = factory(RelationshipType::class)->create();
 
         $updatedRelationshipType = $this->relationshipTypeRepository->updateById($relationshipType->id, $this->getValidRelationshipTypeData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedRelationshipType->fresh()->order);

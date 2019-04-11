@@ -32,14 +32,13 @@ class ProjectUserRepository
     public function apply(Project $project, User $user, array $data)
     {
         return DB::transaction(function () use ($project, $user, $data) {
-
             $project
                 ->users()
                 ->attach(
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -60,7 +59,6 @@ class ProjectUserRepository
     public function cancelApplication(Project $project, User $user, array $data)
     {
         return DB::transaction(function () use ($project, $user, $data) {
-
             $project
                 ->users()
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])
@@ -85,14 +83,13 @@ class ProjectUserRepository
     public function follow(Project $project, User $user, array $data)
     {
         return DB::transaction(function () use ($project, $user, $data) {
-
             $project
                 ->users()
                 ->attach(
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -114,7 +111,6 @@ class ProjectUserRepository
     public function unfollow(Project $project, User $user, array $data)
     {
         return DB::transaction(function () use ($project, $user, $data) {
-
             $project
                 ->users()
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])
@@ -139,14 +135,13 @@ class ProjectUserRepository
     public function attach(Project $project, User $user, array $data)
     {
         return DB::transaction(function () use ($project, $user, $data) {
-
             $project
                 ->users()
                 ->attach(
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -180,7 +175,7 @@ class ProjectUserRepository
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -202,7 +197,6 @@ class ProjectUserRepository
     public function detach(Project $project, User $user, array $data)
     {
         return DB::transaction(function () use ($project, $user, $data) {
-
             $project
                 ->users()
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])

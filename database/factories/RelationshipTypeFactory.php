@@ -16,7 +16,7 @@ use SCCatalog\Models\Lookup\RelationshipType;
 
 $factory->define(RelationshipType::class, function (Generator $faker) {
     return [
-		'name' => 'Applicant',
+        'name' => 'Applicant',
     ];
 });
 

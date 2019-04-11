@@ -27,15 +27,12 @@ class ProjectFilesSeeder extends Seeder
         // Import old ProjectFiles data
 
         Project::withoutSyncingToSearch(function () {
-
             $old_project_files = DB::connection('old')->table('project_file_attachments')->get();
 
             foreach ($old_project_files as $old_file) {
-
                 $project = Project::find($old_file->project_id);
 
                 if (1 != $old_file->deleted && $project) {
-
                     $pathToFile = $old_file->server_filename;
                     $pathToFile = '/var/www/database/uploads/' . $pathToFile;
 
@@ -44,20 +41,18 @@ class ProjectFilesSeeder extends Seeder
                             ->preservingOriginal()
                             ->usingName($old_file->title)
                             ->usingFileName($old_file->orig_filename)
-                            ->sanitizingFileName(function($fileName) {
+                            ->sanitizingFileName(function ($fileName) {
                                 return strtolower(str_replace(['#', '/', '\\', ' ', ',', ';', '!'], '-', $fileName));
                             })
                             ->withCustomProperties([
-                                'type'       => $old_file->type,
+                                'type' => $old_file->type,
                                 'visibility' => $old_file->visibility,
-                                'pending'    => $old_file->pending,
-                                'deleted'    => $old_file->deleted,
+                                'pending' => $old_file->pending,
+                                'deleted' => $old_file->deleted,
                             ])
                             ->toMediaCollection();
                     }
-
                 }
-
             }
         });
 

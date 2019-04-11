@@ -213,7 +213,7 @@ class UserRegistrationTest extends TestCase
         $response->assertSessionHasErrors('password');
     }
 
-    /** @test */
+    /* @test */
     // public function it_redirects_to_dashboard_after_successful_registration()
     // {
     //     config(['access.users.confirm_email' => false]);

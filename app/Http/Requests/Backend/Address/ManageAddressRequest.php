@@ -27,14 +27,14 @@ class ManageAddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'primary'   => 'nullable|boolean',
-            'street1'   => 'nullable|max:255',
-            'street2'   => 'nullable|max:255',
-            'city'      => 'nullable|max:255',
-            'state'     => 'nullable|max:255',
+            'primary' => 'nullable|boolean',
+            'street1' => 'nullable|max:255',
+            'street2' => 'nullable|max:255',
+            'city' => 'nullable|max:255',
+            'state' => 'nullable|max:255',
             'post_code' => 'nullable|max:255',
-            'country'   => 'nullable|max:255',
-            'comment'   => 'nullable',
+            'country' => 'nullable|max:255',
+            'comment' => 'nullable',
         ];
     }
 

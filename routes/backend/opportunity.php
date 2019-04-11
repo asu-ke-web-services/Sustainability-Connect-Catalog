@@ -4,9 +4,9 @@
  * All route names are prefixed with 'admin.opportunity'.
  */
 Route::group([
-    'prefix'     => 'opportunity',
-    'as'         => 'opportunity.',
-    'namespace'  => 'Opportunity',
+    'prefix' => 'opportunity',
+    'as' => 'opportunity.',
+    'namespace' => 'Opportunity',
     //    'middleware' => 'role:'.config('access.users.admin_role'),
 ], function () {
 
@@ -62,7 +62,6 @@ Route::group([
         Route::post('user/{user}', 'ProjectAUserController@update')->name('project.user.update');
         Route::get('user/{user}/delete', 'ProjectUserController@delete')->name('project.user.delete');
     });
-
 
     /*
      * Internship Status'

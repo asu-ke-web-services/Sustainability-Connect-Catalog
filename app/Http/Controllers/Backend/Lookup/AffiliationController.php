@@ -52,7 +52,7 @@ class AffiliationController extends Controller
     public function create(ManageLookupRequest $request, OpportunityTypeRepository $opportunityTypeRepository)
     {
         return view('backend.lookup.affiliation.create')
-            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name','id')->toArray());
+            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -91,7 +91,7 @@ class AffiliationController extends Controller
 
         return view('backend.lookup.affiliation.edit')
             ->withAffiliation($affiliation)
-            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name','id')->toArray());
+            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name', 'id')->toArray());
     }
 
     /**

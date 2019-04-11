@@ -204,7 +204,6 @@ class ProjectUserController extends Controller
      */
     public function update(StoreUserRequest $request, Project $project, User $user)
     {
-
         $this->projectUserRepository->update(
             $project,
             $user,

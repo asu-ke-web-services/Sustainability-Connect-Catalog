@@ -29,8 +29,8 @@ class OpportunityReviewStatusRepositoryTest extends TestCase
     {
         return array_merge([
             'opportunity_type_id' => '1',
-            'order'               => '1',
-            'name'                => 'Test OpportunityReviewStatus',
+            'order' => '1',
+            'name' => 'Test OpportunityReviewStatus',
         ], $opportunityReviewStatusData);
     }
 
@@ -51,8 +51,8 @@ class OpportunityReviewStatusRepositoryTest extends TestCase
 
         $updatedOpportunityReviewStatus = $this->opportunityReviewStatusRepository->updateById($opportunityReviewStatus->id, $this->getValidOpportunityReviewStatusData([
             'opportunity_type_id' => '2',
-            'order'               => '2',
-            'name'                => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedOpportunityReviewStatus->fresh()->order);

@@ -28,8 +28,8 @@ class CategoryRepositoryTest extends TestCase
     protected function getValidCategoryData($categoryData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test Category',
+            'order' => '1',
+            'name' => 'Test Category',
         ], $categoryData);
     }
 
@@ -49,8 +49,8 @@ class CategoryRepositoryTest extends TestCase
         $category = factory(Category::class)->create();
 
         $updatedCategory = $this->categoryRepository->updateById($category->id, $this->getValidCategoryData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedCategory->fresh()->order);

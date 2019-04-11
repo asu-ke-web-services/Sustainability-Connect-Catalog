@@ -59,7 +59,7 @@ class ProjectController extends Controller
 
         JavaScript::put([
             'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
+            'canViewRestricted' => $canViewRestricted ?? false,
         ]);
 
         return view('backend.opportunity.project.all')

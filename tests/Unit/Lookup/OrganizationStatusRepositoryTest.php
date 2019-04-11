@@ -28,8 +28,8 @@ class OrganizationStatusRepositoryTest extends TestCase
     protected function getValidOrganizationStatusData($organizationStatusData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test OrganizationStatus',
+            'order' => '1',
+            'name' => 'Test OrganizationStatus',
         ], $organizationStatusData);
     }
 
@@ -49,8 +49,8 @@ class OrganizationStatusRepositoryTest extends TestCase
         $organizationStatus = factory(OrganizationStatus::class)->create();
 
         $updatedOrganizationStatus = $this->organizationStatusRepository->updateById($organizationStatus->id, $this->getValidOrganizationStatusData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedOrganizationStatus->fresh()->order);

@@ -23,12 +23,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'New Proposal',
+                'name' => 'New Proposal',
                 'indicates_published' => 0,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -38,12 +38,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Archived',
+                'name' => 'Archived',
                 'indicates_published' => 0,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -53,12 +53,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Seeking Champion',
+                'name' => 'Seeking Champion',
                 'indicates_published' => 1,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -68,12 +68,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Recruiting Participants',
+                'name' => 'Recruiting Participants',
                 'indicates_published' => 1,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -83,12 +83,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Positions Filled',
+                'name' => 'Positions Filled',
                 'indicates_published' => 1,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -98,12 +98,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'In Progress',
+                'name' => 'In Progress',
                 'indicates_published' => 1,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -113,12 +113,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Completed',
+                'name' => 'Completed',
                 'indicates_published' => 1,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -128,12 +128,12 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 3,
-                'name'                => 'Inactive',
+                'name' => 'Inactive',
                 'indicates_published' => 0,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -143,15 +143,14 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_statuses->exists) {
             $opportunity_statuses->fill([
                 'opportunity_type_id' => 3,
-                'name'                => 'Active',
+                'name' => 'Active',
                 'indicates_published' => 1,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
-
 
         // Pre-fill Opportunity Review Status options
 
@@ -161,11 +160,11 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_review_statuses->exists) {
             $opportunity_review_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Needs Review',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'name' => 'Needs Review',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -175,11 +174,11 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_review_statuses->exists) {
             $opportunity_review_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Review in Progress',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'name' => 'Review in Progress',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -189,11 +188,11 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_review_statuses->exists) {
             $opportunity_review_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Approved',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'name' => 'Approved',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -203,11 +202,11 @@ class OpportunityTablesSeeder extends Seeder
         if (!$opportunity_review_statuses->exists) {
             $opportunity_review_statuses->fill([
                 'opportunity_type_id' => 2,
-                'name'                => 'Not Approved',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'name' => 'Not Approved',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -218,11 +217,11 @@ class OpportunityTablesSeeder extends Seeder
         ]);
         if (!$budget_types->exists) {
             $budget_types->fill([
-                'name'                => 'Monetary',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'name' => 'Monetary',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -231,11 +230,11 @@ class OpportunityTablesSeeder extends Seeder
         ]);
         if (!$budget_types->exists) {
             $budget_types->fill([
-                'name'                => 'HR',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'name' => 'HR',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -244,11 +243,11 @@ class OpportunityTablesSeeder extends Seeder
         ]);
         if (!$budget_types->exists) {
             $budget_types->fill([
-                'name'                => 'Other',
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'name' => 'Other',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
     }

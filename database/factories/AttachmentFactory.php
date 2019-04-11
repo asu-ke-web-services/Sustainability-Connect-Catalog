@@ -16,7 +16,7 @@ use SCCatalog\Models\Attachment\Attachment;
 
 $factory->define(Attachment::class, function (Generator $faker) {
     return [
-        'status'  => 'Tempe',
+        'status' => 'Tempe',
     ];
 });
 

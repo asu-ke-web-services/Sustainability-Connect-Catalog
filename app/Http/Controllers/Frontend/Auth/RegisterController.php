@@ -71,15 +71,13 @@ class RegisterController extends Controller
 
             return redirect($this->redirectPath())->withFlashSuccess(
                 config('access.users.requires_approval') ?
-                    __('exceptions.frontend.auth.confirmation.created_pending') :
-                    __('exceptions.frontend.auth.confirmation.created_confirm')
+                    __('exceptions.frontend.auth.confirmation.created_pending') : __('exceptions.frontend.auth.confirmation.created_confirm')
             );
-        } else {
-            auth()->login($user);
-
-            event(new UserRegistered($user));
-
-            return redirect($this->redirectPath());
         }
+        auth()->login($user);
+
+        event(new UserRegistered($user));
+
+        return redirect($this->redirectPath());
     }
 }

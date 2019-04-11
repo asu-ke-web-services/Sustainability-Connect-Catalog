@@ -27,7 +27,7 @@ class ViewInternshipRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

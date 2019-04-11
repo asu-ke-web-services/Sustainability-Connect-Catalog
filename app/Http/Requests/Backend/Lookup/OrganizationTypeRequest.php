@@ -29,8 +29,8 @@ class OrganizationTypeRequest extends FormRequest
     {
         return [
             'order' => 'nullable|integer',
-            'name'  => ['required', 'string', 'max:250', Rule::unique('organizations')],
-            'slug'  => 'nullable|string|max:255',
+            'name' => ['required', 'string', 'max:250', Rule::unique('organizations')],
+            'slug' => 'nullable|string|max:255',
         ];
     }
 

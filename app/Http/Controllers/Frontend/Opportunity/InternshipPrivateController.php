@@ -63,7 +63,6 @@ class InternshipPrivateController extends Controller
 
         $attachments = $internship->getMedia();
 
-
         return view('frontend.opportunity.internship.private.show')
             ->withInternship($internship)
             ->withAttachments($attachments)

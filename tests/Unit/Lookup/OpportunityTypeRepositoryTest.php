@@ -28,8 +28,8 @@ class OpportunityTypeRepositoryTest extends TestCase
     protected function getValidOpportunityTypeData($opportunityTypeData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test OpportunityType',
+            'order' => '1',
+            'name' => 'Test OpportunityType',
         ], $opportunityTypeData);
     }
 
@@ -49,8 +49,8 @@ class OpportunityTypeRepositoryTest extends TestCase
         $opportunityType = factory(OpportunityType::class)->create();
 
         $updatedOpportunityType = $this->opportunityTypeRepository->updateById($opportunityType->id, $this->getValidOpportunityTypeData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedOpportunityType->fresh()->order);

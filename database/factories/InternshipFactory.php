@@ -17,12 +17,12 @@ use SCCatalog\Models\Opportunity\Internship;
 
 $factory->define(Internship::class, function (Generator $faker) {
     return [
-		'name'                    => $faker->words(3, true),
-		'opportunity_status_id'   => 9,
-        'listing_start_at'        => Carbon::now()->subDay(2),
-        'listing_end_at'          => Carbon::now()->addDay(2),
+        'name' => $faker->words(3, true),
+        'opportunity_status_id' => 9,
+        'listing_start_at' => Carbon::now()->subDay(2),
+        'listing_end_at' => Carbon::now()->addDay(2),
         'application_deadline_at' => Carbon::now()->addDays(7),
-        'description'             => 'Lorem ipsum',
+        'description' => 'Lorem ipsum',
     ];
 });
 

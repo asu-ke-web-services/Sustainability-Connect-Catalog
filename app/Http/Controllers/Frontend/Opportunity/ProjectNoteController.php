@@ -40,7 +40,7 @@ class ProjectNoteController extends Controller
         StoreNoteRequest $request,
         Project $project
     ) {
-        return view( 'frontend.opportunity.project.private.note.add' )
+        return view('frontend.opportunity.project.private.note.add')
             ->with('project', $project);
     }
 
@@ -101,7 +101,7 @@ class ProjectNoteController extends Controller
      * @param Note              $note
      * @return
      */
-    public function destroy( RemoveNoteRequest $request, Project $project, Note $note)
+    public function destroy(RemoveNoteRequest $request, Project $project, Note $note)
     {
         $this->projectNoteRepository->delete($project, $note);
 

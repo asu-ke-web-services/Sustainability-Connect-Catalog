@@ -27,11 +27,13 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                        => 'required|max:1024',
-            'opportunity_status_id'       => 'required',
-            'description'                 => 'required',
+            'name' => 'required|max:1024',
+            'opportunity_status_id' => 'required',
+            'opportunity_start_at' => 'required',
+            'opportunity_end_at' => 'required',
+            'description' => 'required',
             'sustainability_contribution' => 'required',
-            'implementation_paths'        => 'required',
+            'implementation_paths' => 'required',
         ];
     }
 
@@ -55,11 +57,11 @@ class UpdateProjectRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'                        => 'Please enter the Project Name',
-            'opportunity_status_id.required'       => 'Please select the Project Status',
-            'description.required'                 => 'Please enter the Project Description',
+            'name.required' => 'Please enter the Project Name',
+            'opportunity_status_id.required' => 'Please select the Project Status',
+            'description.required' => 'Please enter the Project Description',
             'sustainability_contribution.required' => 'Please enter the Project Deliverables',
-            'implementation_paths.required'        => 'Please enter the Envisioned Solution',
+            'implementation_paths.required' => 'Please enter the Envisioned Solution',
         ];
     }
 }

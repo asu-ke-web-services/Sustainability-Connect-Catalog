@@ -29,9 +29,9 @@ class StoreFullInternshipRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                        => 'required|max:1024',
-            'opportunity_status_id'       => 'required',
-            'description'                 => 'required',
+            'name' => 'required|max:1024',
+            'opportunity_status_id' => 'required',
+            'description' => 'required',
         ];
     }
 
@@ -55,9 +55,9 @@ class StoreFullInternshipRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'                        => 'Please enter the internship name',
-            'opportunity_status_id.required'       => 'Please select the internship status',
-            'description.required'                 => 'Please enter the internship description',
+            'name.required' => 'Please enter the internship name',
+            'opportunity_status_id.required' => 'Please select the internship status',
+            'description.required' => 'Please enter the internship description',
         ];
     }
 }

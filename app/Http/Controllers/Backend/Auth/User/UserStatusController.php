@@ -33,7 +33,7 @@ class UserStatusController extends Controller
     public function getActivePaginated(ManageUserRequest $request)
     {
         $search = '';
-        if($request->has('search')){
+        if ($request->has('search')) {
             $search = $request->get('search');
         }
 
@@ -49,7 +49,7 @@ class UserStatusController extends Controller
     public function getDeactivated(ManageUserRequest $request)
     {
         $search = '';
-        if($request->has('search')){
+        if ($request->has('search')) {
             $search = $request->get('search');
         }
 
@@ -65,7 +65,7 @@ class UserStatusController extends Controller
     public function getDeleted(ManageUserRequest $request)
     {
         $search = '';
-        if($request->has('search')){
+        if ($request->has('search')) {
             $search = $request->get('search');
         }
 
@@ -87,8 +87,7 @@ class UserStatusController extends Controller
 
         return redirect()->route(
             $status == 1 ?
-            'admin.auth.user.index' :
-            'admin.auth.user.deactivated'
+                'admin.auth.user.index' : 'admin.auth.user.deactivated'
         )->withFlashSuccess(__('alerts.backend.users.updated'));
     }
 

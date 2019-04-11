@@ -34,7 +34,7 @@ class UserEventListener
 
         $event->user->save();
 
-        \Log::info('User Logged In: '.$event->user->full_name);
+        \Log::info('User Logged In: ' . $event->user->full_name);
     }
 
     /**
@@ -42,7 +42,7 @@ class UserEventListener
      */
     public function onLoggedOut($event)
     {
-        \Log::info('User Logged Out: '.$event->user->full_name);
+        \Log::info('User Logged Out: ' . $event->user->full_name);
     }
 
     /**
@@ -50,7 +50,7 @@ class UserEventListener
      */
     public function onRegistered($event)
     {
-        \Log::info('User Registered: '.$event->user->full_name);
+        \Log::info('User Registered: ' . $event->user->full_name);
     }
 
     /**
@@ -58,7 +58,7 @@ class UserEventListener
      */
     public function onProviderRegistered($event)
     {
-        \Log::info('User Provider Registered: '.$event->user->full_name);
+        \Log::info('User Provider Registered: ' . $event->user->full_name);
     }
 
     /**
@@ -66,7 +66,7 @@ class UserEventListener
      */
     public function onConfirmed($event)
     {
-        \Log::info('User Confirmed: '.$event->user->full_name);
+        \Log::info('User Confirmed: ' . $event->user->full_name);
     }
 
     /**

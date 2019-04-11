@@ -28,10 +28,12 @@ class StoreFullProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                        => 'required|max:1024',
-            'description'                 => 'required',
-            'opportunity_status_id'       => 'required',
-            'implementation_paths'        => 'required',
+            'name' => 'required|max:1024',
+            'description' => 'required',
+            'opportunity_status_id' => 'required',
+            'opportunity_start_at' => 'required',
+            'opportunity_end_at' => 'required',
+            'implementation_paths' => 'required',
             'sustainability_contribution' => 'required',
         ];
     }
@@ -56,11 +58,13 @@ class StoreFullProjectRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'                        => 'Please enter the project Name',
-            'name.maxlength'                       => 'The project name may not be longer than 1024 characters',
-            'description.required'                 => 'Please enter the project description',
-            'opportunity_status_id.required'       => 'Please select the project status',
-            'implementation_paths.required'        => 'Please enter the project solution',
+            'name.required' => 'Please enter the project Name',
+            'name.maxlength' => 'The project name may not be longer than 1024 characters',
+            'description.required' => 'Please enter the project description',
+            'opportunity_status_id.required' => 'Please select the project status',
+            'opportunity_start_at.required' => 'Please enter the Project Start Date',
+            'opportunity_end_at.required' => 'Please enter the Project End Date',
+            'implementation_paths.required' => 'Please enter the project solution',
             'sustainability_contribution.required' => 'Please enter the project deliverables',
         ];
     }

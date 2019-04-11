@@ -32,14 +32,13 @@ class InternshipUserRepository
     public function apply(Internship $internship, User $user, array $data)
     {
         return DB::transaction(function () use ($internship, $user, $data) {
-
             $internship
                 ->users()
                 ->attach(
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -60,7 +59,6 @@ class InternshipUserRepository
     public function cancelApplication(Internship $internship, User $user, array $data)
     {
         return DB::transaction(function () use ($internship, $user, $data) {
-
             $internship
                 ->users()
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])
@@ -85,14 +83,13 @@ class InternshipUserRepository
     public function follow(Internship $internship, User $user, array $data)
     {
         return DB::transaction(function () use ($internship, $user, $data) {
-
             $internship
                 ->users()
                 ->attach(
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -114,7 +111,6 @@ class InternshipUserRepository
     public function unfollow(Internship $internship, User $user, array $data)
     {
         return DB::transaction(function () use ($internship, $user, $data) {
-
             $internship
                 ->users()
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])
@@ -139,14 +135,13 @@ class InternshipUserRepository
     public function attach(Internship $internship, User $user, array $data)
     {
         return DB::transaction(function () use ($internship, $user, $data) {
-
             $internship
                 ->users()
                 ->attach(
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -180,7 +175,7 @@ class InternshipUserRepository
                     $user->id,
                     [
                         'relationship_type_id' => $data['relationship_type_id'] ?? 2,
-                        'comments'              => $data['comments'] ?? null,
+                        'comments' => $data['comments'] ?? null,
                     ]
                 );
 
@@ -202,7 +197,6 @@ class InternshipUserRepository
     public function detach(Internship $internship, User $user, array $data)
     {
         return DB::transaction(function () use ($internship, $user, $data) {
-
             $internship
                 ->users()
                 ->wherePivot('relationship_type_id', $data['relationship_type_id'])

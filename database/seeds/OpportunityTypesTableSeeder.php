@@ -13,7 +13,7 @@ class OpportunityTypesTableSeeder extends Seeder
      */
     public function run()
     {
-		// Pre-fill Opportunity Type options
+        // Pre-fill Opportunity Type options
 
         $opportunity_types = OpportunityType::firstOrNew([
             'slug' => 'all',

@@ -46,7 +46,7 @@ return [
         'sidebar' => [
             'dashboard' => 'Dashboard',
             'general' => 'General',
-            'history'   => 'History',
+            'history' => 'History',
             'system' => 'System',
         ],
     ],
@@ -75,12 +75,12 @@ return [
             'it' => '意大利語（Italian）',
             'ja' => '日語（Japanese）',
             'nl' => '荷蘭語（Dutch）',
-            'no'    => '挪威 (Norwegian)',
+            'no' => '挪威 (Norwegian)',
             'pt_BR' => '巴西葡萄牙語（Brazilian Portuguese）',
             'ru' => '俄語（Russian）',
             'sv' => '瑞典語（Swedish）',
             'th' => '泰語（Thai）',
-            'tr'    => '(Turkish)',
+            'tr' => '(Turkish)',
         ],
     ],
 ];

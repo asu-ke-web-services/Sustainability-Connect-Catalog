@@ -204,7 +204,6 @@ class InternshipUserController extends Controller
      */
     public function update(StoreUserRequest $request, Internship $internship, User $user)
     {
-
         $this->internshipUserRepository->update(
             $internship,
             $user,

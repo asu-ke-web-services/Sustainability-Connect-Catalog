@@ -23,14 +23,13 @@ class InternshipAttachmentRepository
     public function store(Internship $internship, array $data)
     {
         return DB::transaction(function () use ($internship, $data) {
-
             if (isset($data['file_attachment'])) {
                 $internship->addMedia($data['file_attachment'])
                     ->withCustomProperties([
-                        'type'       => $data['attachment_type'] ?? 'other',
+                        'type' => $data['attachment_type'] ?? 'other',
                         'visibility' => $data['attachment_status'] ?? 'private',
                         // 'pending'    => 0,
-                        'deleted'    => 0,
+                        'deleted' => 0,
                     ])
                     ->toMediaCollection();
 
@@ -53,7 +52,6 @@ class InternshipAttachmentRepository
     public function update(Internship $internship, Media $media, array $data)
     {
         return DB::transaction(function () use ($internship, $media, $data) {
-
             $media->setCustomProperty('type', $data['attachment_type'] ?? 'other');
             $media->setCustomProperty('visibility', $data['attachment_status'] ?? 'private');
             $media->save();
@@ -74,7 +72,6 @@ class InternshipAttachmentRepository
     public function delete(Internship $internship, Media $media)
     {
         return DB::transaction(function () use ($internship, $media) {
-
             $internship->deleteMedia($media->id);
 
             event(new AttachmentRemovedFromInternship($internship, $media));

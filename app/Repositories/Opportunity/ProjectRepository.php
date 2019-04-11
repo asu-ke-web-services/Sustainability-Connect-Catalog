@@ -312,7 +312,6 @@ class ProjectRepository extends BaseRepository
         // dd($data);
 
         return DB::transaction(function () use ($data) {
-
             $project = $this->model->create($data);
 
             if ($project) {
@@ -325,7 +324,6 @@ class ProjectRepository extends BaseRepository
                 ]);
 
                 $project->addresses()->save($address);
-
 
                 // attach Affiliations
                 if (isset($data['affiliations'])) {
@@ -404,7 +402,6 @@ class ProjectRepository extends BaseRepository
         // dd(count($project->addresses));
 
         return DB::transaction(function () use ($project, $data) {
-
             if ($project->update($data)) {
                 // save Address
                 if (isset($data['city'])) {
@@ -435,8 +432,8 @@ class ProjectRepository extends BaseRepository
                         ->withCustomProperties([
                             // 'type'       => $old_file->type,
                             // 'visibility' => $old_file->visibility,
-                            'pending'    => 1,
-                            'deleted'    => 0,
+                            'pending' => 1,
+                            'deleted' => 0,
                         ])
                         ->toMediaCollection();
                 }
@@ -469,7 +466,6 @@ class ProjectRepository extends BaseRepository
     public function clone(Project $project)
     {
         return DB::transaction(function () use ($project) {
-
             $project->load(
                 'affiliations',
                 'categories',
@@ -484,7 +480,6 @@ class ProjectRepository extends BaseRepository
             $clone = $project->replicate();
 
             // dd($clone);
-
 
             // save model before recreating the relations
             $clone->push();
@@ -531,7 +526,6 @@ class ProjectRepository extends BaseRepository
             // }
 
             if ($clone) {
-
                 event(new ProjectCloned($clone));
 
                 return $clone;

@@ -16,9 +16,9 @@ use SCCatalog\Models\Organization\Organization;
 
 $factory->define(Organization::class, function (Generator $faker) {
     return [
-		'name'                   => 'Acme Corp',
-		'organization_type_id'   => 2,
-		'organization_status_id' => 1,
+        'name' => 'Acme Corp',
+        'organization_type_id' => 2,
+        'organization_status_id' => 1,
     ];
 });
 

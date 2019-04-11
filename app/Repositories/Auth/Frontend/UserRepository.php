@@ -94,18 +94,18 @@ class UserRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data) {
             $user = parent::create([
-                'first_name'        => $data['first_name'],
-                'last_name'         => $data['last_name'],
-                'email'             => $data['email'],
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'active'            => 1,
-                'password'          => $data['password'],
+                'active' => 1,
+                'password' => $data['password'],
                 // If users require approval or needs to confirm email
-                'confirmed'         => !($data['confirmed'] ?? false) || config('access.users.requires_approval') || config('access.users.confirm_email') ? 0 : 1,
-                'asurite'           => $data['asurite'] ?? 0,
-                'asurite_login'     => $data['asurite_login'] ?? null,
-                'user_type_id'      => $data['user_type_id'] ?? 5,
-                'access_validated'  => 0,
+                'confirmed' => !($data['confirmed'] ?? false) || config('access.users.requires_approval') || config('access.users.confirm_email') ? 0 : 1,
+                'asurite' => $data['asurite'] ?? 0,
+                'asurite_login' => $data['asurite_login'] ?? null,
+                'user_type_id' => $data['user_type_id'] ?? 5,
+                'access_validated' => 0,
             ]);
 
             if ($user) {
@@ -292,7 +292,7 @@ class UserRepository extends BaseRepository
             $firstName = AsuDirectoryHelper::getFirstName($directoryInfo);
             $lastName = AsuDirectoryHelper::getLastName($directoryInfo);
             $phone = AsuDirectoryHelper::getLastName($directoryInfo);
-            $email =  AsuDirectoryHelper::getEmail($directoryInfo);
+            $email = AsuDirectoryHelper::getEmail($directoryInfo);
 
             $userType = AsuDirectoryHelper::getUserType($directoryInfo);
 
@@ -311,15 +311,15 @@ class UserRepository extends BaseRepository
             ];
 
             $user = $this->create([
-                'first_name'    => $firstName,
-                'last_name'     => $lastName,
-                'email'         => $email,
-                'asurite'       => 1,
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'email' => $email,
+                'asurite' => 1,
                 'asurite_login' => $asurite,
-                'user_type_id'  => $user_types[$userType],
-                'active'        => 1,
-                'confirmed'     => 1,
-                'password'      => Hash::make(str_random(20)),
+                'user_type_id' => $user_types[$userType],
+                'active' => 1,
+                'confirmed' => 1,
+                'password' => Hash::make(str_random(20)),
                 // 'avatar_type' => $provider,
             ]);
 
@@ -343,12 +343,12 @@ class UserRepository extends BaseRepository
             $user = parent::updateById(
                 $user->id,
                 [
-                    'asurite'       => 1,
+                    'asurite' => 1,
                     'asurite_login' => $asurite,
                     // 'user_type_id'  => $user_types[$userType],
-                    'active'        => 1,
-                    'confirmed'     => 1,
-                    'password'      => Hash::make(str_random(20)),
+                    'active' => 1,
+                    'confirmed' => 1,
+                    'password' => Hash::make(str_random(20)),
                 ]
             );
         }
@@ -387,8 +387,8 @@ class UserRepository extends BaseRepository
             $nameParts = $this->getNameParts($data->getName());
 
             $user = parent::create([
-                'first_name'  => $nameParts['first_name'],
-                'last_name'  => $nameParts['last_name'],
+                'first_name' => $nameParts['first_name'],
+                'last_name' => $nameParts['last_name'],
                 'email' => $user_email,
                 'active' => 1,
                 'confirmed' => 1,
@@ -403,16 +403,16 @@ class UserRepository extends BaseRepository
         if (!$user->hasProvider($provider)) {
             // Gather the provider data for saving and associate it with the user
             $user->providers()->save(new SocialAccount([
-                'provider'    => $provider,
+                'provider' => $provider,
                 'provider_id' => $data->id,
-                'token'       => $data->token,
-                'avatar'      => $data->avatar,
+                'token' => $data->token,
+                'avatar' => $data->avatar,
             ]));
         } else {
             // Update the users information, token and avatar can be updated.
             $user->providers()->update([
-                'token'       => $data->token,
-                'avatar'      => $data->avatar,
+                'token' => $data->token,
+                'avatar' => $data->avatar,
             ]);
 
             $user->avatar_type = $provider;

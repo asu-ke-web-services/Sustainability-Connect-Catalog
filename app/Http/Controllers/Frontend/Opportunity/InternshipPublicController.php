@@ -48,7 +48,7 @@ class InternshipPublicController extends Controller
             $canViewRestricted = auth()->user()->hasPermissionTo('read all internships');
         }
 
-        return view("frontend.opportunity.internship.public.index")
+        return view('frontend.opportunity.internship.public.index')
             ->withInternships($this->internshipRepository->getActivePaginated(200, 'application_deadline_at', 'asc'))
             ->with('pageTitle', 'Internships')
             ->with('userAccessAffiliations', $userAccessAffiliations)

@@ -4,11 +4,10 @@
  * Opportunity Controllers
  * All route names are prefixed with 'frontend.opportunity'.
  */
-
 Route::group([
-    'as'         => 'opportunity.',
-    'namespace'  => 'Opportunity',
-    'middleware' => ['auth', 'password_expires']
+    'as' => 'opportunity.',
+    'namespace' => 'Opportunity',
+    'middleware' => ['auth', 'password_expires'],
 ], function () {
 
     /*
@@ -31,7 +30,6 @@ Route::group([
      * Project - Private/Manage - must be signed-in
      */
     Route::group(['prefix' => 'project/{project}'], function () {
-
         Route::get('manage', 'ProjectPrivateController@show')->name('project.private.show');
         Route::get('print', 'ProjectPrivateController@print')->name('project.private.print');
 
@@ -89,7 +87,6 @@ Route::group([
      * Internship - Private/Manage - must be signed-in
      */
     Route::group(['prefix' => 'internship/{internship}'], function () {
-
         Route::get('manage', 'InternshipPrivateController@show')->name('internship.private.show');
         Route::get('print', 'InternshipPrivateController@print')->name('internship.private.print');
 
@@ -129,8 +126,8 @@ Route::group([
 });
 
 Route::group([
-    'as'         => 'opportunity.',
-    'namespace'  => 'Opportunity',
+    'as' => 'opportunity.',
+    'namespace' => 'Opportunity',
 ], function () {
 
     /*

@@ -144,17 +144,17 @@ class ProjectPrivateController extends Controller
     /**
      * Store a newly created Project in storage.
      *
-     * @param StoreFullProjectRequest $request
+     * @param $request
      *
      * @return \Illuminate\View\View
      * @throws \Throwable
      */
-    public function store(StoreFullProjectRequest $request)
+    public function store($request)
     {
-        $project = $this->projectRepository->create($request->all());
+        $project = $this->projectRepository->create($request);
 
-        return redirect()->route('frontend.user.dashboard')
-            ->withFlashSuccess(__('Proposal successfully submitted'));
+        return redirect()->route('frontend.opportunity.project.private.show', $project)
+            ->withFlashSuccess(__('Project successfully created'));
     }
 
     /**
@@ -198,7 +198,6 @@ class ProjectPrivateController extends Controller
             'users'
         );
 
-
         if (0 === count($project->addresses)) {
             $project->addresses = null;
         }
@@ -222,7 +221,6 @@ class ProjectPrivateController extends Controller
         if (0 === count($project->users)) {
             $project->users = null;
         }
-        // dd($project->addresses);
 
         return view('frontend.opportunity.project.private.edit')
             ->with('project', $project)
@@ -248,7 +246,7 @@ class ProjectPrivateController extends Controller
     {
         $project = $this->projectRepository->update($project, $request->all());
 
-        return redirect()->route('frontend.user.dashboard')
-            ->withFlashSuccess(__('Proposal successfully submitted'));
+        return redirect()->route('frontend.opportunity.project.private.show', $project)
+            ->withFlashSuccess(__('Project successfully updated'));
     }
 }

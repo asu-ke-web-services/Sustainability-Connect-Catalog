@@ -119,11 +119,9 @@ class ProjectSubmissionController extends Controller
             'keywords'
         );
 
-        // dd($project->addresses);
-
-        // if (0 === count($project->addresses)) {
-        //     $project->addresses = null;
-        // }
+        if (0 === count($project->addresses)) {
+            $project->addresses = null;
+        }
 
         if (0 === count($project->notes)) {
             $project->notes = null;
@@ -156,11 +154,9 @@ class ProjectSubmissionController extends Controller
      */
     public function update(StoreProjectSubmissionRequest $request, Project $project)
     {
-        // dd($request->all());
-
         $project = $this->projectRepository->update($project, $request->all());
 
         return redirect()->route('frontend.user.dashboard')
-            ->withFlashSuccess(__('Proposal successfully submitted'));
+            ->withFlashSuccess(__('Proposal successfully updated'));
     }
 }

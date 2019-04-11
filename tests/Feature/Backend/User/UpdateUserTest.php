@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use SCCatalog\Events\Backend\Auth\User\UserUpdated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 class UpdateUserTest extends TestCase
 {

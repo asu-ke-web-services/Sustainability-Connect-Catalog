@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Notification;
 use SCCatalog\Events\Backend\Auth\User\UserCreated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 use Webpatser\Uuid\Uuid;
 
 class CreateUserTest extends TestCase

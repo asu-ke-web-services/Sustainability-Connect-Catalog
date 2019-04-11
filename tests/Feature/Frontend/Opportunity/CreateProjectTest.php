@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
-use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
-use SCCatalog\Models\Opportunity\Project;
 
 class CreateProjectTest extends TestCase
 {

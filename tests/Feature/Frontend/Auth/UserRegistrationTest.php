@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use SCCatalog\Events\Frontend\Auth\UserConfirmed;
 use SCCatalog\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Support\Facades\Notification;
-use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 

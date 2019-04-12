@@ -1,0 +1,20 @@
+<?php
+
+namespace SCCatalog\Repositories{{namespace}};
+
+use SCCatalog\Models{{namespace}}\{{modelName}};
+use SCCatalog\Repositories\BaseRepository;
+
+/**
+ * Class {{modelName}}Repository
+ */
+class {{modelName}}Repository extends BaseRepository
+{
+    /**
+     * Configure the Model
+     **/
+    public function model()
+    {
+        return {{modelName}}::class;
+    }
+}

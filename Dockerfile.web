@@ -1,0 +1,17 @@
+################################################################################
+# Base image
+################################################################################
+
+FROM nginx:stable
+
+################################################################################
+# Build instructions
+################################################################################
+
+# Add configuration files
+COPY deploy/nginx/nginx.conf /etc/nginx/
+COPY deploy/nginx/default.conf /etc/nginx/conf.d/
+
+# Add app
+COPY --chown=nginx:nginx ./public/ /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html

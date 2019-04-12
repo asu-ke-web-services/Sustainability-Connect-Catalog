@@ -1,0 +1,13 @@
+
+mysqldump --skip-set-charset --no-data --databases sustainabilityconnect > schema.sql
+
+mysqldump --skip-set-charset -n -t --databases sustainabilityconnect > data.sql
+
+
+sed -i -e "s/DEFAULT CHARACTER SET latin1/DEFAULT CHARACTER SET utf8mb4/g" schema.sql
+sed -i -e "s/DEFAULT CHARSET=latin1/DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci /" schema.sql
+sed -i -e "s/SET character_set_client = utf8/SET character_set_client = utf8mb4/" schema.sql
+
+
+mysql -h 127.0.0.1 -u root -proot < schema.sql
+mysql -h 127.0.0.1 -u root -proot < data.sql

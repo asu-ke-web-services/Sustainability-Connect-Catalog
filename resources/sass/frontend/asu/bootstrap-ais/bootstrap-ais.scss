@@ -1,0 +1,30 @@
+/*!
+ * Bootstrap v3.3.7 adjusted to work with Algolia Instant Search components
+ * Currently only Pagination
+ */
+
+// Core variables and mixins
+@import "variables";
+@import "mixins";
+
+// Components
+@import "pagination";
+
+// Highlighted Hits
+.ais-Highlight-highlighted, .ais-Snippet-highlighted {
+  background-color: #ffc168;
+}
+
+button {
+  background-color: #f3b300;
+  border-color: #e9ab00;
+  color: #373a47;
+  outline: 0;
+  line-height: 1.33;
+  padding: 8px 25px;
+  font-size: 1.125rem;
+  border-radius: 4px;
+  align-content: center;
+  font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
+}

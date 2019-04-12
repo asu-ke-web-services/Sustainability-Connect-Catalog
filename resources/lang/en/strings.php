@@ -1,0 +1,165 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Strings Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used in strings throughout the system.
+    | Regardless where it is placed, a string can be listed here so it is easily
+    | found in a intuitive way.
+    |
+    */
+
+    'backend' => [
+        'opportunity' => [
+            'internships' => [
+                'delete_internship' => 'Are you sure you want to delete this internship?',
+                'delete_internship_confirm' => 'Are you sure you want to delete this internship permanently? Anywhere in the application that references this internship\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+                'no_archived' => 'There are no archived internships.',
+                'no_deleted' => 'There are no deleted internships.',
+                'restore_internship_confirm' => 'Restore this internship to its original state?',
+            ],
+            'projects' => [
+                'delete_project' => 'Are you sure you want to delete this project?',
+                'delete_project_confirm' => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+                'no_archived' => 'There are no archived projects.',
+                'no_deleted' => 'There are no deleted projects.',
+                'no_reviews' => 'There are no project proposals to review.',
+                'restore_project_confirm' => 'Restore this project to its original state?',
+            ],
+        ],
+        'organization' => [
+            'delete_organization_confirm' => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_archived' => 'There are no archived organizations.',
+            'no_active' => 'There are no active organizations.',
+            'no_inactive' => 'There are no inactive organizations.',
+            'no_deleted' => 'There are no deleted organizations.',
+            'restore_organization_confirm' => 'Restore this organization to its original state?',
+        ],
+        'access' => [
+            'users' => [
+                'delete_user_confirm' => 'Are you sure you want to delete this user permanently? Anywhere in the application that references this user\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+                'if_confirmed_off' => '(If confirmed is off)',
+                'no_deactivated' => 'There are no deactivated users.',
+                'no_deleted' => 'There are no deleted users.',
+                'restore_user_confirm' => 'Restore this user to its original state?',
+            ],
+        ],
+
+        'dashboard' => [
+            'title' => 'Dashboard',
+            'welcome' => 'Welcome',
+            'new_user_accounts' => 'New Users Accounts To Approve Access to Restricted Opportunities',
+            'projects_under_review' => 'Projects Under Review',
+            'all_active_project_members' => 'All Active Project Members',
+        ],
+
+        'general' => [
+            'all_rights_reserved' => 'All Rights Reserved.',
+            'are_you_sure' => 'Are you sure you want to do this?',
+            'boilerplate_link' => 'Laravel 5 Boilerplate',
+            'continue' => 'Continue',
+            'member_since' => 'Member since',
+            'minutes' => ' minutes',
+            'search_placeholder' => 'Search...',
+            'timeout' => 'You were automatically logged out for security reasons since you had no activity in ',
+
+            'see_all' => [
+                'messages' => 'See all messages',
+                'notifications' => 'View all',
+                'tasks' => 'View all tasks',
+            ],
+
+            'status' => [
+                'online' => 'Online',
+                'offline' => 'Offline',
+            ],
+
+            'you_have' => [
+                'messages' => '{0} You don\'t have messages|{1} You have 1 message|[2,Inf] You have :number messages',
+                'notifications' => '{0} You don\'t have notifications|{1} You have 1 notification|[2,Inf] You have :number notifications',
+                'tasks' => '{0} You don\'t have tasks|{1} You have 1 task|[2,Inf] You have :number tasks',
+            ],
+        ],
+
+        'search' => [
+            'empty' => 'Please enter a search term.',
+            'incomplete' => 'You must write your own search logic for this system.',
+            'title' => 'Search Results',
+            'results' => 'Search Results for :query',
+        ],
+
+        'welcome' => '<p>This is the preview Admin Dashboard for Sustainability Connect Catalog. Feel free to explore this system, and "kick the tires" so to speak.</p>
+<p>All functionality is currently unrestricted so everyone can explore all aspects of the system during this preview period. This dashboard comes with a fully functional access control system to manage users & roles. Also, you may explore the administrative tools for managing the Lookup option lists that populate all dropdown menus in the SC Catalog. Feel free to add and edit the Lookup lists and opportunities records.</p>
+<p>Keep in mind it is a work in progress and there may be bugs or other issues I am still working on. I will do my best to fix them as I receive them.</p>',
+    ],
+
+    'emails' => [
+        'auth' => [
+            'account_confirmed' => 'Your account has been confirmed.',
+            'error' => 'Whoops!',
+            'greeting' => 'Hello!',
+            'regards' => 'Regards,',
+            'trouble_clicking_button' => 'If you’re having trouble clicking the ":action_text" button, copy and paste the URL below into your web browser:',
+            'thank_you_for_using_app' => 'Thank you for using our application!',
+
+            'password_reset_subject' => 'Reset Password',
+            'password_cause_of_email' => 'You are receiving this email because we received a password reset request for your account.',
+            'password_if_not_requested' => 'If you did not request a password reset, no further action is required.',
+            'reset_password' => 'Click here to reset your password',
+
+            'click_to_confirm' => 'Click here to confirm your account:',
+        ],
+
+        'contact' => [
+            'email_body_title' => 'You have a new contact form request: Below are the details:',
+            'subject' => 'A new :app_name contact form submission!',
+        ],
+    ],
+
+    'frontend' => [
+        'test' => 'Test',
+
+        'tests' => [
+            'based_on' => [
+                'permission' => 'Permission Based - ',
+                'role' => 'Role Based - ',
+            ],
+
+            'js_injected_from_controller' => 'Javascript Injected from a Controller',
+
+            'using_blade_extensions' => 'Using Blade Extensions',
+
+            'using_access_helper' => [
+                'array_permissions' => 'Using Access Helper with Array of Permission Names or ID\'s where the user does have to possess all.',
+                'array_permissions_not' => 'Using Access Helper with Array of Permission Names or ID\'s where the user does not have to possess all.',
+                'array_roles' => 'Using Access Helper with Array of Role Names or ID\'s where the user does have to possess all.',
+                'array_roles_not' => 'Using Access Helper with Array of Role Names or ID\'s where the user does not have to possess all.',
+                'permission_id' => 'Using Access Helper with Permission ID',
+                'permission_name' => 'Using Access Helper with Permission Name',
+                'role_id' => 'Using Access Helper with Role ID',
+                'role_name' => 'Using Access Helper with Role Name',
+            ],
+
+            'view_console_it_works' => 'View console, you should see \'it works!\' which is coming from FrontendController@index',
+            'you_can_see_because' => 'You can see this because you have the role of \':role\'!',
+            'you_can_see_because_permission' => 'You can see this because you have the permission of \':permission\'!',
+        ],
+
+        'general' => [
+            'joined' => 'Joined',
+        ],
+
+        'user' => [
+            'change_email_notice' => 'If you change your e-mail you will be logged out until you confirm your new e-mail address.',
+            'email_changed_notice' => 'You must confirm your new e-mail address before you can log in again.',
+            'profile_updated' => 'Profile successfully updated.',
+            'password_updated' => 'Password successfully updated.',
+        ],
+
+        'welcome_to' => 'Welcome to :place',
+    ],
+];

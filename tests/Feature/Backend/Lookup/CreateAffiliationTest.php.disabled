@@ -1,0 +1,111 @@
+<?php
+
+namespace Tests\Feature\Backend\Lookup;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class CreateAffiliationTest extends TestCase
+{
+    use RefreshDatabase;
+
+    /** @test */
+    public function an_admin_can_access_the_create_affiliation_page()
+    {
+        $admin = $this->loginAsAdmin();
+
+        $this
+            ->actingAs($admin)
+            ->get(route('admin.lookup.affiliation.create'))
+            ->assertStatus(200)
+            ->assertSee('Affiliation Management')
+            ->assertSee('Create New Affiliation')
+            ->assertSee('Name')
+            ->assertSee('Opportunity Type')
+            ->assertSee('Access Control?')
+            ->assertSee('Public Visible?');
+    }
+
+    /** @test */
+    public function an_affiliation_can_be_created()
+    {
+        $admin = $this->loginAsAdmin();
+
+        $data = [
+            'name' => 'new affiliation',
+            'opportunity_type_id' => 1,
+        ];
+
+        $response = $this
+            ->actingAs($admin)
+            ->post(route('admin.lookup.affiliation.store'), $data);
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect(route('admin.lookup.affiliation.index'))
+            ->assertSessionHas('message', 'Affiliation created successfully');
+
+//        $affiliation = Affiliation::where(['name' => 'new affiliation'])->first();
+//
+//        $this->assertEquals(1, $affiliation->opportunity_type_id);
+    }
+
+    /** @test */
+    public function the_name_is_required()
+    {
+        $admin = $this->loginAsAdmin();
+
+        $data = [
+            'name' => '',
+            'opportunity_type_id' => 1,
+        ];
+
+        $response = $this
+            ->actingAs($admin)
+            ->post(route('admin.lookup.affiliation.store'), $data);
+
+        $response
+            ->assertSessionHasErrors('name');
+
+    }
+
+    /** @test */
+    public function the_name_must_be_unique()
+    {
+        $admin = $this->loginAsAdmin();
+
+        $data = [
+            'name' => 'new affiliation',
+            'opportunity_type_id' => 1,
+        ];
+
+        $this
+            ->actingAs($admin)
+            ->post(route('admin.lookup.affiliation.store'), $data);
+
+        $response = $this
+            ->actingAs($admin)
+            ->post(route('admin.lookup.affiliation.store'), $data);
+
+        $response
+            ->assertSessionHasErrors('name');
+
+    }
+
+    /** @test */
+    public function opportunity_type_is_required()
+    {
+        $admin = $this->loginAsAdmin();
+
+        $data = [
+            'name' => 'new affiliation'
+        ];
+
+        $response = $this
+            ->actingAs($admin)
+            ->post(route('admin.lookup.affiliation.store'), $data);
+
+        $response->assertSessionHas(['flash_danger' => '']);
+    }
+
+}

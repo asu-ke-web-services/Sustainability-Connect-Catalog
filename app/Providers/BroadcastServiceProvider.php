@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Providers;
+namespace SCCatalog\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;
 
+/**
+ * Class BroadcastServiceProvider.
+ */
 class BroadcastServiceProvider extends ServiceProvider
 {
     /**

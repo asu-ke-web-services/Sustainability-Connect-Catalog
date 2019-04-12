@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Sustainability Connect Catalog'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,20 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://catalog.sustainabilityconnect.asu.edu'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Base Application URL
+    |--------------------------------------------------------------------------
+    |
+    | This URL is points to the base Sustainability Connect WordPress site that
+    | encompasses this application. THis primarily used in views for links back
+    | to the base website.
+    |
+    */
+
+    'sc_base_url' => env('SC_BASE_URL', 'https://sustainabilityconnect.asu.edu'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +78,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +91,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +104,18 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PHP Locale Code
+    |--------------------------------------------------------------------------
+    |
+    | The PHP locale determines the default locale that will be used
+    | by the Carbon library when setting Carbon's localization.
+    |
+    */
+    'locale_php' => env('APP_LOCALE_PHP', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
@@ -107,23 +131,6 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Logging Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
-    | you a variety of powerful log handlers / formatters to utilize.
-    |
-    | Available Settings: "single", "daily", "syslog", "errorlog"
-    |
-    */
-
-    'log' => env('APP_LOG', 'single'),
-
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,17 +172,20 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Package Service Providers that aren't auto-discover...
          */
 
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        SCCatalog\Providers\AppServiceProvider::class,
+        SCCatalog\Providers\AuthServiceProvider::class,
+        SCCatalog\Providers\BladeServiceProvider::class,
+        // SCCatalog\Providers\BroadcastServiceProvider::class,
+        SCCatalog\Providers\ComposerServiceProvider::class,
+        SCCatalog\Providers\EventServiceProvider::class,
+        SCCatalog\Providers\ObserverServiceProvider::class,
+        SCCatalog\Providers\RouteServiceProvider::class,
 
     ],
 
@@ -226,6 +236,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Package Aliases
+         */
+        'Active' => HieuLe\Active\Facades\Active::class,
+        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Cas' => Subfission\Cas\Facades\Cas::class,
     ],
 
 ];

@@ -39,6 +39,12 @@ return [
             'prefix' => '',
         ],
 
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -47,6 +53,21 @@ return [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
+        'old' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_OLD', '127.0.0.1'),
+            'port' => env('DB_PORT_OLD', '3306'),
+            'database' => env('DB_DATABASE_OLD', 'forge'),
+            'username' => env('DB_USERNAME_OLD', 'forge'),
+            'password' => env('DB_PASSWORD_OLD', ''),
+            'unix_socket' => env('DB_SOCKET_OLD', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -112,7 +133,8 @@ return [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
-            'database' => 0,
+            'database' => env('REDIS_CACHE_DB', 0),
+            'read_write_timeout' => -1,
         ],
 
     ],

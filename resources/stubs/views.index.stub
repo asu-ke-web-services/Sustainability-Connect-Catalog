@@ -1,0 +1,69 @@
+@extends ('backend.layouts.app')
+
+@section ('title', app_name() . ' | '. __('{{modelName}} Management'))
+
+@section('content')
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <h4 class="card-title mb-0">
+                    {{ __('{{modelName}} Management') }}
+                </h4>
+            </div><!--col-->
+
+            <div class="col-sm-7 pull-right">
+                @include('{{modelNameSingularLowerCase}}.includes.header-buttons')
+            </div><!--col-->
+        </div><!--row-->
+
+        <div class="row mt-4">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>{{ __('{{modelName}}') }}</th>
+                            <th>{{ __('Email') }}</th>
+                            <th>{{ __('Associated Models') }}</th>
+                            <th>{{ __('Actions') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (${{modelNamePluralLowerCase}} as ${{modelNameSingularLowerCase}})
+                            <tr>
+                                <td>{{ ucwords(${{modelNameSingularLowerCase}}->name) }}</td>
+                                <td>{{ ucwords(${{modelNameSingularLowerCase}}->email) }}</td>
+                                <td>
+                                    @if (${{modelNameSingularLowerCase}}->associated_models->count())
+                                        @foreach (${{modelNameSingularLowerCase}}->associated_models as $associated_model)
+                                            {{ ucwords($associated_model->name) }}
+                                        @endforeach
+                                    @else
+                                        {{ __('None') }}
+                                    @endif
+                                </td>
+                                <td>{!! ${{modelNameSingularLowerCase}}->action_buttons !!}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div><!--col-->
+        </div><!--row-->
+        <div class="row">
+            <div class="col-7">
+                <div class="float-left">
+                    {!! ${{modelNamePluralLowerCase}}->total() !!} {{ str_plural('{{modelNameSingularLowerCase}}', ${{modelNamePluralLowerCase}}->total()) . ' total' }}
+                </div>
+            </div><!--col-->
+
+            <div class="col-5">
+                <div class="float-right">
+                    {!! ${{modelNamePluralLowerCase}}->render() !!}
+                </div>
+            </div><!--col-->
+        </div><!--row-->
+    </div><!--card-body-->
+</div><!--card-->
+@endsection

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Providers;
+namespace SCCatalog\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+/**
+ * Class EventServiceProvider.
+ */
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -13,9 +15,33 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
+        //
+    ];
+
+    /**
+     * Class event subscribers.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        /*
+         * Frontend Subscribers
+         */
+
+        /*
+         * Auth Subscribers
+         */
+        \SCCatalog\Listeners\Frontend\Auth\UserEventListener::class,
+
+        /*
+         * Backend Subscribers
+         */
+
+        /*
+         * Auth Subscribers
+         */
+        \SCCatalog\Listeners\Backend\Auth\User\UserEventListener::class,
+        \SCCatalog\Listeners\Backend\Auth\Role\RoleEventListener::class,
     ];
 
     /**

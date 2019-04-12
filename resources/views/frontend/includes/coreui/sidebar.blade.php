@@ -29,12 +29,13 @@
                         </a>
                     </li>
 
+                    @can('manage project')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('frontend.opportunity.project.private.create') }}">
                             Create Full Project Listing
                         </a>
                     </li>
-
+                    @endcan
                 </ul>
             </li>
         </ul>

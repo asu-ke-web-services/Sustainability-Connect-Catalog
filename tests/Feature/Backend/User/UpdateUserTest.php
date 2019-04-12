@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use SCCatalog\Events\Backend\Auth\User\UserUpdated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 class UpdateUserTest extends TestCase
 {
@@ -20,7 +19,7 @@ class UpdateUserTest extends TestCase
         $this->loginAsAdmin();
         $user = factory(User::class)->create();
 
-        $response = $this->get('/admin/auth/user/'.$user->id.'/edit');
+        $response = $this->get('/admin/auth/user/' . $user->id . '/edit');
 
         $response->assertStatus(200);
     }

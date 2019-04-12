@@ -77,9 +77,9 @@ if (! function_exists('home_route')) {
         if (auth()->check()) {
             if (auth()->user()->can('view admin dashboard')) {
                 return 'admin.dashboard';
-            } else {
-                return 'frontend.user.dashboard';
             }
+
+            return 'frontend.user.dashboard';
         }
 
         return 'frontend.opportunity.project.search_active';

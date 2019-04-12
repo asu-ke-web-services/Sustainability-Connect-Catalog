@@ -1,4 +1,4 @@
-@extends('frontend.layouts.asu')
+@extends('frontend.layouts.coreui')
 
 @section('content')
     <!-- Main content -->
@@ -38,25 +38,25 @@
             <!-- /.col -->
 
             <div class="col-md-9">
-                <ul class="nav nav-tabs">
-                    <li class="profile"><a href="#profile" data-toggle="tab">{{ __('navs.frontend.user.profile') }}</a></li>
-                    <li><a href="#edit" data-toggle="tab">{{ __('labels.frontend.user.profile.update_information') }}</a></li>
-                    @if ($logged_in_user->canChangePassword())
-                    <li><a href="#password" data-toggle="tab">{{ __('navs.frontend.user.change_password') }}</a></li>
-                    @endif
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#edit" role="tab" aria-controls="edit">Update Information</a></li>
+                    @unless ($logged_in_user->asurite)
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab" aria-controls="password">Change Password</a></li>
+                    @endunless
                 </ul>
                 <div class="tab-content">
-                    <div class="active tab-pane" id="profile">
+                    <div class="tab-pane active" id="profile" role="tabpanel">
                         @include('frontend.user.account.tabs.profile')
                     </div>
                     <!-- /.tab-pane -->
 
-                    <div class="tab-pane" id="edit">
+                    <div class="tab-pane" id="edit" role="tabpanel">
                         @include('frontend.user.account.tabs.edit')
                     </div>
                     <!-- /.tab-pane -->
 
-                    <div class="tab-pane" id="password">
+                    <div class="tab-pane" id="password" role="tabpanel">
                         @include('frontend.user.account.tabs.change-password')
                     </div>
                     <!-- /.tab-pane -->

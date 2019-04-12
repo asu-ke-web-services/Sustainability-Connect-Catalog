@@ -4,7 +4,7 @@ namespace Tests\Unit\Lookup;
 
 use Tests\TestCase;
 use SCCatalog\Models\Lookup\AttachmentType;
-use SCCatalog\Repositories\Backend\Lookup\AttachmentTypeRepository;
+use SCCatalog\Repositories\Lookup\AttachmentTypeRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AttachmentTypeRepositoryTest extends TestCase
@@ -26,8 +26,8 @@ class AttachmentTypeRepositoryTest extends TestCase
     protected function getValidAttachmentTypeData($attachmentTypeData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test AttachmentType',
+            'order' => '1',
+            'name' => 'Test AttachmentType',
         ], $attachmentTypeData);
     }
 
@@ -47,8 +47,8 @@ class AttachmentTypeRepositoryTest extends TestCase
         $attachmentType = factory(AttachmentType::class)->create();
 
         $updatedAttachmentType = $this->attachmentTypeRepository->updateById($attachmentType->id, $this->getValidAttachmentTypeData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedAttachmentType->fresh()->order);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\StudentDegreeLevel;
-use SCCatalog\Repositories\Backend\Lookup\StudentDegreeLevelRepository;
+use SCCatalog\Repositories\Lookup\StudentDegreeLevelRepository;
 
 class StudentDegreeLevelRepositoryTest extends TestCase
 {
@@ -28,8 +28,8 @@ class StudentDegreeLevelRepositoryTest extends TestCase
     protected function getValidStudentDegreeLevelData($studentDegreeLevelData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test StudentDegreeLevel',
+            'order' => '1',
+            'name' => 'Test StudentDegreeLevel',
         ], $studentDegreeLevelData);
     }
 
@@ -49,8 +49,8 @@ class StudentDegreeLevelRepositoryTest extends TestCase
         $studentDegreeLevel = factory(StudentDegreeLevel::class)->create();
 
         $updatedStudentDegreeLevel = $this->studentDegreeLevelRepository->updateById($studentDegreeLevel->id, $this->getValidStudentDegreeLevelData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedStudentDegreeLevel->fresh()->order);

@@ -27,7 +27,7 @@ class ManageLookupRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

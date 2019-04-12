@@ -12,10 +12,10 @@ Breadcrumbs::for('log-viewer::logs.list', function ($trail) {
 
 Breadcrumbs::for('log-viewer::logs.show', function ($trail, $date) {
     $trail->parent('log-viewer::logs.list');
-    $trail->push($date, url('admin/log-viewer/logs/'.$date));
+    $trail->push($date, url('admin/log-viewer/logs/' . $date));
 });
 
 Breadcrumbs::for('log-viewer::logs.filter', function ($trail, $date, $filter) {
     $trail->parent('log-viewer::logs.show', $date);
-    $trail->push(ucfirst($filter), url('admin/log-viewer/'.$date.'/'.$filter));
+    $trail->push(ucfirst($filter), url('admin/log-viewer/' . $date . '/' . $filter));
 });

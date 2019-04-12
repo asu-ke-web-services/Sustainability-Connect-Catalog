@@ -93,7 +93,7 @@ return [
                             'last_updated' => '最終更新日',
                             'name' => '名前',
                             'status' => 'ステータス',
-                            'timezone'     => 'Timezone',
+                            'timezone' => 'Timezone',
                         ],
                     ],
                 ],

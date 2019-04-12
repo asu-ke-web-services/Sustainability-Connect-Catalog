@@ -7,7 +7,7 @@ use SCCatalog\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 use SCCatalog\Http\Requests\Frontend\Auth\ResetPasswordRequest;
 
 /**
@@ -43,7 +43,7 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm($token = null)
     {
-        if (! $token) {
+        if (!$token) {
             return redirect()->route('frontend.auth.password.email');
         }
 

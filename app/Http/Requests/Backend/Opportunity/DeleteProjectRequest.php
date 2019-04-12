@@ -27,7 +27,7 @@ class DeleteProjectRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

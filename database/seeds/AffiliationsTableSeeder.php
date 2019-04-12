@@ -21,32 +21,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 0,
-                'name'                => 'Urgent',
-                'help_text'           => 'This opportunity urgently needs participants!',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
-                            'tag'       => 'span',
+                'access_control' => 0,
+                'name' => 'Urgent',
+                'help_text' => 'This opportunity urgently needs participants!',
+                'frontend_fa_icon' => json_encode([
+                        [
+                            'tag' => 'span',
                             'className' => 'fa fa-square fa-maroon fa-stack-2x',
-                            'content'   => null,
-                        ),
-                        array(
-                            'tag'       => 'span',
+                            'content' => null,
+                        ],
+                        [
+                            'tag' => 'span',
                             'className' => 'fa fa-exclamation fa-stack-1x fa-inverse',
-                            'content'   => null,
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
-                            'tag'       => 'span',
+                            'content' => null,
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
+                            'tag' => 'span',
                             'className' => 'fa fa-exclamation',
-                            'content'   => null,
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                            'content' => null,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -56,32 +56,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 1,
-                'name'                => 'School of Sustainability',
-                'help_text'           => 'Restricted to students majoring in degrees from The School of Sustainability',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 1,
+                'name' => 'School of Sustainability',
+                'help_text' => 'Restricted to students majoring in degrees from The School of Sustainability',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-green fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
+                        ],
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-leaf fa-stack-1x',
                             'content' => null,
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-leaf',
                             'content' => null,
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -91,32 +91,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 0,
-                'name'                => 'Undergrad',
-                'help_text'           => 'Available for Undergraduates',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Undergrad',
+                'help_text' => 'Available for Undergraduates',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
+                        ],
+                        [
                             'tag' => 'strong',
                             'className' => 'fa-stack-1x fa-inverse',
                             'content' => 'U',
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'strong',
                             'className' => '',
                             'content' => 'U',
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -126,32 +126,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 0,
-                'name'                => 'Grad',
-                'help_text'           => 'Available for Graduate Students',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Grad',
+                'help_text' => 'Available for Graduate Students',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue-darkened fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
+                        ],
+                        [
                             'tag' => 'strong',
                             'className' => 'fa-stack-1x fa-inverse',
                             'content' => 'G',
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'strong',
                             'className' => '',
                             'content' => 'G',
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -161,15 +161,15 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 2,
-                'access_control'      => 0,
-                'name'                => 'General Project',
-                'help_text'           => 'General Project',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'General Project',
+                'help_text' => 'General Project',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -179,32 +179,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 2,
-                'access_control'      => 0,
-                'name'                => 'Culminating Experience',
-                'help_text'           => 'Can fulfill School of Sustainability Culminating Experience',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Culminating Experience',
+                'help_text' => 'Can fulfill School of Sustainability Culminating Experience',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-gold fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
+                        ],
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-graduation-cap fa-stack-1x',
                             'content' => null,
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-graduation-cap',
                             'content' => null,
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -214,15 +214,15 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 2,
-                'access_control'      => 0,
-                'name'                => 'Class Project',
-                'help_text'           => 'Class Project',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'Class Project',
+                'help_text' => 'Class Project',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -232,15 +232,15 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 0,
-                'name'                => 'Other Opportunity',
-                'help_text'           => 'Other Opportunity',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'Other Opportunity',
+                'help_text' => 'Other Opportunity',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -250,15 +250,15 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 0,
-                'name'                => 'Other (G)',
-                'help_text'           => 'Other Opportunity for Grad Students',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'Other (G)',
+                'help_text' => 'Other Opportunity for Grad Students',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -268,15 +268,15 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 0,
-                'name'                => 'Other (U)',
-                'help_text'           => 'Other Opportunity for Undergrad Students',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'Other (U)',
+                'help_text' => 'Other Opportunity for Undergrad Students',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -286,15 +286,15 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 1,
-                'access_control'      => 0,
-                'name'                => 'Research Opportunity',
-                'help_text'           => 'Research Opportunity',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'Research Opportunity',
+                'help_text' => 'Research Opportunity',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -304,15 +304,15 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 2,
-                'access_control'      => 0,
-                'name'                => 'REU',
-                'help_text'           => 'REU',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'REU',
+                'help_text' => 'REU',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -322,32 +322,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 2,
-                'access_control'      => 0,
-                'name'                => 'Service Learning',
-                'help_text'           => 'A Service Learning opportunity',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Service Learning',
+                'help_text' => 'A Service Learning opportunity',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-abbey fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
+                        ],
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-users fa-stack-1x fa-inverse',
                             'content' => null,
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-users',
                             'content' => null,
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -357,18 +357,17 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 2,
-                'access_control'      => 0,
-                'name'                => 'Workshop',
-                'help_text'           => 'Workshop',
-                'frontend_fa_icon'    => null,
-                'backend_fa_icon'     => null,
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                'access_control' => 0,
+                'name' => 'Workshop',
+                'help_text' => 'Workshop',
+                'frontend_fa_icon' => null,
+                'backend_fa_icon' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
-
 
         // Internship Affiliations
 
@@ -378,32 +377,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 3,
-                'access_control'      => 0,
-                'name'                => 'Credit',
-                'help_text'           => 'Earning college credit for this internship is subject to prior approval',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Credit',
+                'help_text' => 'Earning college credit for this internship is subject to prior approval',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-gold fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
+                        ],
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-graduation-cap fa-stack-1x',
                             'content' => null,
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-graduation-cap',
                             'content' => null,
-                        ),
-                )),
-                'created_at'          => Carbon::now(),
-                'updated_at'          => Carbon::now(),
-                'created_by'          => 1,
-                'updated_by'          => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -413,32 +412,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 3,
-                'access_control'      => 0,
-                'name'                => 'Fall',
-                'help_text'           => 'Available in the Fall semester',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Fall',
+                'help_text' => 'Available in the Fall semester',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
-                            'className'   => 'fa fa-square fa-blue fa-stack-2x',
-                            'content'    => null,
-                        ),
-                        array(
-                            'tag'       => 'strong',
+                            'className' => 'fa fa-square fa-blue fa-stack-2x',
+                            'content' => null,
+                        ],
+                        [
+                            'tag' => 'strong',
                             'className' => 'fa-stack-1x fa-inverse',
-                            'content'   => 'F',
-                        ),
-                )),
-                'backend_fa_icon' => json_encode(array(
-                        array(
-                            'tag'       => 'strong',
+                            'content' => 'F',
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
+                            'tag' => 'strong',
                             'className' => '',
-                            'content'   => 'F',
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                            'content' => 'F',
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -448,32 +447,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 3,
-                'access_control'      => 0,
-                'name'                => 'Spring',
-                'help_text'           => 'Available in the Spring semester',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Spring',
+                'help_text' => 'Available in the Spring semester',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
-                            'tag'       => 'strong',
+                        ],
+                        [
+                            'tag' => 'strong',
                             'className' => 'fa-stack-1x fa-inverse',
-                            'content'   => 'S',
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                            'content' => 'S',
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'strong',
                             'className' => '',
                             'content' => 'Sp',
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -483,32 +482,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 3,
-                'access_control'      => 0,
-                'name'                => 'Summer',
-                'help_text'           => 'Available during Summer Break',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Summer',
+                'help_text' => 'Available during Summer Break',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-blue fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
-                            'tag'       => 'strong',
+                        ],
+                        [
+                            'tag' => 'strong',
                             'className' => 'fa-stack-1x fa-inverse',
-                            'content'   => 'B',
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                            'content' => 'B',
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'strong',
                             'className' => '',
                             'content' => 'Sum',
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
 
@@ -518,32 +517,32 @@ class AffiliationsTableSeeder extends Seeder
         if (!$affiliation->exists) {
             $affiliation->fill([
                 'opportunity_type_id' => 3,
-                'access_control'      => 0,
-                'name'                => 'Paid',
-                'help_text'           => 'Paid internship',
-                'frontend_fa_icon'    => json_encode(array(
-                        array(
+                'access_control' => 0,
+                'name' => 'Paid',
+                'help_text' => 'Paid internship',
+                'frontend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-square fa-green fa-stack-2x',
                             'content' => null,
-                        ),
-                        array(
+                        ],
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-usd fa-stack-1x',
                             'content' => null,
-                        ),
-                )),
-                'backend_fa_icon'  => json_encode(array(
-                        array(
+                        ],
+                ]),
+                'backend_fa_icon' => json_encode([
+                        [
                             'tag' => 'span',
                             'className' => 'fa fa-dollar-sign',
                             'content' => null,
-                        ),
-                )),
-                'created_at'     => Carbon::now(),
-                'updated_at'     => Carbon::now(),
-                'created_by'     => 1,
-                'updated_by'     => 1,
+                        ],
+                ]),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ])->save();
         }
     }

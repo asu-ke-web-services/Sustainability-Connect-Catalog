@@ -11,7 +11,7 @@ use SCCatalog\Events\Backend\OpportunityUser\ProjectUserRelationshipUpdated;
 use SCCatalog\Events\Backend\OpportunityUser\UserRemovedFromProject;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectUserRepository;
+use SCCatalog\Repositories\Opportunity\ProjectUserRepository;
 
 class ProjectUserRepositoryTest extends TestCase
 {

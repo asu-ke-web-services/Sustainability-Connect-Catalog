@@ -6,9 +6,9 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\OpportunityUser\ManageInternshipUserRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipUserRepository;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Opportunity\InternshipUserRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
 
 /**
  * Class InternshipUserController.
@@ -41,8 +41,7 @@ class InternshipUserController extends Controller
         InternshipRepository $internshipRepository,
         InternshipUserRepository $internshipUserRepository,
         UserRepository $userRepository
-    )
-    {
+    ) {
         $this->internshipRepository = $internshipRepository;
         $this->internshipUserRepository = $internshipUserRepository;
         $this->userRepository = $userRepository;
@@ -51,65 +50,113 @@ class InternshipUserController extends Controller
     /**
      * Add user to Internship.
      *
-     * @param ManageInternshipUserRequest $request
-     * @param Internship $internship
-     * @param User $user
+     * @param ManageInternshipUserRequest           $request
+     * @param Internship                    $internship
+     * @param RelationshipTypeRepository $relationshipTypeRepository
+     * @param UserRepository             $userRepository
      * @return
+     * @throws \Throwable
      */
-    public function add(ManageInternshipUserRequest $request, Internship $internship, User $user)
-    {
-        // $internship = $this->internshipRepository->getById($request->input('internship_id'));
-        // $user = $this->userRepository->getById($request->input('user_id'));
+    public function add(
+        ManageInternshipUserRequest $request,
+        Internship $internship,
+        RelationshipTypeRepository $relationshipTypeRepository,
+        UserRepository $userRepository
 
-        $internship = $this->internshipUserRepository->create(
+    ) {
+        return view('backend.opportunity.internship.user.add')
+            ->withInternship($internship)
+            ->with('relationships', $relationshipTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray());
+    }
+
+    /**
+     * Store user relationship in Internship.
+     *
+     *
+     * @param StoreUserRequest $request
+     * @param Internship          $internship
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Throwable
+     */
+    public function store(StoreUserRequest $request, Internship $internship)
+    {
+        $user = $this->userRepository->getById($request->input('user_id'));
+
+        $this->internshipUserRepository->attach(
             $internship,
             $user,
             $request->only([
                 'relationship_type_id',
-                'comment',
+                'comments',
             ])
         );
 
-        return redirect()->route('admin.backend.opportunity.user.added')
-            ->withFlashSuccess('User added successfully');
+        return redirect()->route('admin.opportunity.internship.show', $internship)->withFlashSuccess('User relationship updated successfully');
+    }
+
+    /**
+     * Edit user attached to Internship.
+     *
+     * @param ManageInternshipUserRequest            $request
+     * @param Internship                    $internship
+     * @param User                       $user
+     * @param RelationshipTypeRepository $relationshipTypeRepository
+     * @param UserRepository             $userRepository
+     * @return
+     */
+    public function edit(
+        ManageInternshipUserRequest $request,
+        Internship $internship,
+        User $user,
+        RelationshipTypeRepository $relationshipTypeRepository,
+        UserRepository $userRepository
+
+    ) {
+        return view('backend.opportunity.internship.user.edit')
+            ->withInternship($internship)
+            ->withUser($user)
+            ->with('relationships', $relationshipTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray());
     }
 
     /**
      * Approve user's request to join Internship.
      *
      *
-     * @param ManageInternshipUserRequest $request
-     * @param Internship $internship
-     * @param User $user
+     * @param StoreUserRequest $request
+     * @param Internship          $internship
+     * @param User             $user
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Throwable
      */
-    public function update(ManageInternshipUserRequest $request, Internship $internship, User $user)
+    public function update(StoreUserRequest $request, Internship $internship, User $user)
     {
-        $internship = $this->internshipUserRepository->update(
+        $this->internshipUserRepository->update(
             $internship,
             $user,
             $request->only([
                 'relationship_type_id',
-                'comment',
+                'comments',
             ])
         );
 
-        return redirect()->route('admin.backend.opportunity.user.updated')
-            ->withFlashSuccess('User approved successfully');
+        return redirect()->route('admin.opportunity.internship.show', $internship)->withFlashSuccess('User relationship updated successfully');
     }
 
     /**
      * Remove user relationship from Internship.
      *
-     * @param ManageInternshipUserRequest $request
-     * @param Internship $internship
-     * @param User $user
+     * @param RemoveUserRequest $request
+     * @param Internship          $internship
+     * @param User             $user
      * @return
      */
-    public function remove(ManageInternshipUserRequest $request, Internship $internship, User $user)
+    public function delete(RemoveUserRequest $request, Internship $internship, User $user)
     {
-        $internship = $this->internshipUserRepository->delete(
+        // dd($internship);
+
+        $internship = $this->internshipUserRepository->detach(
             $internship,
             $user,
             $request->only([
@@ -117,7 +164,6 @@ class InternshipUserController extends Controller
             ])
         );
 
-        return redirect()->route('admin.backend.opportunity.internship.index')
-            ->withFlashSuccess('User removed successfully');
+        return redirect()->route('admin.opportunity.internship.show', $internship)->withFlashSuccess('User removed successfully');
     }
 }

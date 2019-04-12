@@ -11,7 +11,7 @@ use SCCatalog\Events\Backend\OpportunityUser\InternshipUserRelationshipUpdated;
 use SCCatalog\Events\Backend\OpportunityUser\UserRemovedFromInternship;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipUserRepository;
+use SCCatalog\Repositories\Opportunity\InternshipUserRepository;
 
 class InternshipUserRepositoryTest extends TestCase
 {

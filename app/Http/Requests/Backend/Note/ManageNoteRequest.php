@@ -27,8 +27,7 @@ class ManageNoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'body'    => 'required',
-            'user_id' => 'integer|exists:users,id',
+            //
         ];
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
+
 // use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
@@ -64,13 +65,11 @@ class Organization extends Model
      * @var array
      */
     public static $rules = [
-        'name'                   => 'string|max:255',
-        'url'                    => 'string|max:1024',
+        'name' => 'string|max:255',
+        'url' => 'string|max:1024',
         'organization_status_id' => 'integer|exists:organization_statuses,id',
-        'organization_type_id'   => 'integer|exists:organization_types,id',
+        'organization_type_id' => 'integer|exists:organization_types,id',
     ];
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +82,7 @@ class Organization extends Model
      */
     public function getShowButtonAttribute()
     {
-        return '<a href="'.route('admin.organization.show', $this).'" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+        return '<a href="' . route('admin.organization.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
 
     /**
@@ -91,7 +90,7 @@ class Organization extends Model
      */
     public function getEditButtonAttribute()
     {
-        return '<a href="'.route('admin.organization.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
+        return '<a href="' . route('admin.organization.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
     }
 
     /**
@@ -99,12 +98,12 @@ class Organization extends Model
      */
     public function getDeleteButtonAttribute()
     {
-        return '<a href="'.route('admin.organization.destroy', $this).'"
+        return '<a href="' . route('admin.organization.destroy', $this) . '"
              data-method="delete"
-             data-trans-button-cancel="'.__('buttons.general.cancel').'"
-             data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
-             data-trans-title="'.__('strings.backend.general.are_you_sure').'"
-             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.delete').'"></i></a> ';
+             data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+             data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+             data-trans-title="' . __('strings.backend.general.are_you_sure') . '"
+             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.delete') . '"></i></a> ';
     }
 
     /**
@@ -113,9 +112,9 @@ class Organization extends Model
     public function getActionButtonsAttribute()
     {
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-              '.$this->show_button.'
-              '.$this->edit_button.'
-              '.$this->delete_button.'
+              ' . $this->show_button . '
+              ' . $this->edit_button . '
+              ' . $this->delete_button . '
             </div>';
     }
 
@@ -140,8 +139,8 @@ class Organization extends Model
         // Index Addresses
         $array['addresses'] = $this->addresses->map(function ($data) {
             return $data['city'] .
-                ( is_null($data['state']) ? '' : (', ' . $data['state']) ) .
-                ( is_null($data['country']) ? '' : (', ' . $data['country']) );
+                (is_null($data['state']) ? '' : (', ' . $data['state'])) .
+                (is_null($data['country']) ? '' : (', ' . $data['country']));
         })->toArray();
 
         return $array;
@@ -203,13 +202,12 @@ class Organization extends Model
                 ->whereIn('organization_status_id', [
                     2, // Active
                 ]);
-        } else {
-            // Closed or archived or otherwise not approved
-            return $query
+        }
+        // Closed or archived or otherwise not approved
+        return $query
                 ->whereIn('organization_status_id', [
                     1, // Inactive
                 ]);
-        }
     }
 
     /*
@@ -218,11 +216,9 @@ class Organization extends Model
     |--------------------------------------------------------------------------
     */
 
-
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
 }

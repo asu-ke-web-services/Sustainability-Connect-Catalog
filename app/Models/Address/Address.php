@@ -54,7 +54,7 @@ class Address extends Model
         'state',
         'post_code',
         'country',
-        'comment'
+        'comment',
     ];
 
     /*
@@ -96,5 +96,4 @@ class Address extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
 }

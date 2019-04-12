@@ -28,7 +28,7 @@ class InternshipFollowerRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

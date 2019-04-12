@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Controllers\Backend\Lookup;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Lookup\BudgetTypeRequest;
 use SCCatalog\Http\Requests\Backend\Lookup\ManageLookupRequest;
-use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
+use SCCatalog\Repositories\Lookup\BudgetTypeRepository;
 
 /**
  * Class BudgetTypeController.

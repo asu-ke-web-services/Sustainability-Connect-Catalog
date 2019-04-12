@@ -4,10 +4,10 @@
  * All route names are prefixed with 'admin.auth'.
  */
 Route::group([
-    'prefix'     => 'auth',
-    'as'         => 'auth.',
-    'namespace'  => 'Auth',
-    'middleware' => 'role:'.config('access.users.admin_role'),
+    'prefix' => 'auth',
+    'as' => 'auth.',
+    'namespace' => 'Auth',
+    'middleware' => 'role:' . config('access.users.admin_role'),
 ], function () {
     /*
      * User Management

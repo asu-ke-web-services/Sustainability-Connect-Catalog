@@ -16,7 +16,7 @@ use SCCatalog\Models\Lookup\StudentDegreeLevel;
 
 $factory->define(StudentDegreeLevel::class, function (Generator $faker) {
     return [
-		'name' => 'Bachelors',
+        'name' => 'Bachelors',
     ];
 });
 

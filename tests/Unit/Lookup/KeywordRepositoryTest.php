@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\Keyword;
-use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Lookup\KeywordRepository;
 
 class KeywordRepositoryTest extends TestCase
 {
@@ -28,8 +28,8 @@ class KeywordRepositoryTest extends TestCase
     protected function getValidKeywordData($keywordData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test Keyword',
+            'order' => '1',
+            'name' => 'Test Keyword',
         ], $keywordData);
     }
 
@@ -49,8 +49,8 @@ class KeywordRepositoryTest extends TestCase
         $keyword = factory(Keyword::class)->create();
 
         $updatedKeyword = $this->keywordRepository->updateById($keyword->id, $this->getValidKeywordData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedKeyword->fresh()->order);

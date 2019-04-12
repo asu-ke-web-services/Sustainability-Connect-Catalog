@@ -72,6 +72,7 @@
                     @component('backend.includes.components.form.date', [
                         'name'        => 'listing_start_at',
                         'label'       => 'Listing Starts',
+                        'help_text'   => 'Required if you wish to publish in the catalog Active listings',
                         'object'      => $internship ?? null,
                     ])@endcomponent
 
@@ -89,7 +90,7 @@
                         'name'      => 'application_deadline_at',
                         'label'     => 'Application Deadline',
                         'placeholder' => 'mm/dd/yyyy',
-                        'help_text'   => 'Required if you wish to publish in the catalog Active listings',
+                        'help_text'   => 'Enter date-format deadline (Leave blank if Text Deadline used)',
                         'object'    => $internship ?? null,
                     ])@endcomponent
 
@@ -125,7 +126,7 @@
                     @component('backend.includes.components.form.select', [
                         'name'        => 'opportunity_status_id',
                         'label'       => 'Internship Status *',
-                        'placeholder' => 'Select project status...',
+                        'placeholder' => 'Select internship status...',
                         'attribute'   => 'required',
                         'optionList'  => $opportunityStatuses,
                         'object'      => $internship ?? null,
@@ -199,29 +200,29 @@
 
                     <label for="addresses">Location:</label>
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][city]',
+                        'name'        => 'city',
                         'label'       => 'City: *',
                         'attribute'   => 'required',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][state]',
+                        'name'        => 'state',
                         'label'       => 'State/Prov: *',
                         'attribute'   => 'required',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][country]',
+                        'name'        => 'country',
                         'label'       => 'Country:',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.textarea', [
-                        'name'        => 'addresses[0][comment]',
+                        'name'        => 'comment',
                         'label'       => 'Location Comment:',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     {{--
@@ -422,6 +423,10 @@
         </div><!--card-body-->
     </div><!--card-->
 
+{{-- @push('after-styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+@endpush --}}
+
 @section('javascript')
     <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
     <script>
@@ -431,16 +436,13 @@
         CKEDITOR.replace( 'compensation' );
         CKEDITOR.replace( 'degree_program' );
         CKEDITOR.replace( 'application_instructions' );
-    </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" ></script>
-    <script>
+
         $('#internship-form').validate({
             rules: {
                 "name": {
                     required: true,
                     maxlength: 1024
                 },
-                "description": 'required',
                 "opportunity_status_id": 'required',
                 "addresses[0][city]": 'required',
                 "addresses[0][state]": 'required'
@@ -450,7 +452,6 @@
                     required: 'Please enter the internship name',
                     maxlength: 'The internship name may not be longer than 1024 characters'
                 },
-                "description": 'Please enter the internship description',
                 "opportunity_status_id": 'Please select internship status',
                 "addresses[0][city]": 'Please enter the internship city',
                 "addresses[0][state]": 'Please enter the internship state'
@@ -474,6 +475,5 @@
                 $(element).addClass('is-valid').removeClass('is-invalid');
             }
         });
-        //# sourceMappingURL=validation.js.map
     </script>
 @endsection

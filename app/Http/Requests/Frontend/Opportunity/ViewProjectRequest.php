@@ -27,7 +27,7 @@ class ViewProjectRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

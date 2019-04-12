@@ -5,8 +5,8 @@ namespace SCCatalog\Http\Controllers\Backend\Lookup;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Lookup\AffiliationRequest;
 use SCCatalog\Http\Requests\Backend\Lookup\ManageLookupRequest;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityTypeRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\OpportunityTypeRepository;
 
 /**
  * Class AffiliationController.
@@ -52,7 +52,7 @@ class AffiliationController extends Controller
     public function create(ManageLookupRequest $request, OpportunityTypeRepository $opportunityTypeRepository)
     {
         return view('backend.lookup.affiliation.create')
-            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name','id')->toArray());
+            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -91,7 +91,7 @@ class AffiliationController extends Controller
 
         return view('backend.lookup.affiliation.edit')
             ->withAffiliation($affiliation)
-            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name','id')->toArray());
+            ->withTypes($opportunityTypeRepository->get(['id', 'name', 'order'])->pluck('name', 'id')->toArray());
     }
 
     /**

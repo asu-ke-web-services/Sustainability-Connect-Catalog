@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Backend\Organization;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 use SCCatalog\Http\Requests\Backend\Organization\ManageOrganizationRequest;
 
 /**

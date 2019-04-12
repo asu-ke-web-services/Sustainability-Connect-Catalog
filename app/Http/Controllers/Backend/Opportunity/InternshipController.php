@@ -10,13 +10,13 @@ use SCCatalog\Http\Requests\Backend\Opportunity\DeleteInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateInternshipRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipRequest;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Backend\Lookup\CategoryRepository;
-use SCCatalog\Repositories\Backend\Lookup\KeywordRepository;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityStatusRepository;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipRepository;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\KeywordRepository;
+use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class InternshipController.
@@ -56,7 +56,7 @@ class InternshipController extends Controller
 
         JavaScript::put([
             'userAccessAffiliations' => $userAccessAffiliations ?? null,
-            'canViewRestricted' => $canViewRestricted ?? false
+            'canViewRestricted' => $canViewRestricted ?? false,
         ]);
 
         return view('backend.opportunity.internship.all')
@@ -98,11 +98,11 @@ Students are welcome to pursue additional internships for experience and not for
 
 Other ASU majors should contact their major department for credit inquiries.
 
-For questions about SOS internship credit, please contact: [caroline.savalle@asu.edu](mailto:caroline.savalle@asu.edu)'
+For questions about SOS internship credit, please contact: [caroline.savalle@asu.edu](mailto:caroline.savalle@asu.edu)',
         ];
 
         return view('backend.opportunity.internship.create')
-            ->with('degreeProgram', (object)$degreeProgram)
+            ->with('degreeProgram', (object) $degreeProgram)
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -229,7 +229,6 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
         );
 
         // dd($internship->affiliations);
-
 
         return view('backend.opportunity.internship.edit')
             ->with('internship', $internship)

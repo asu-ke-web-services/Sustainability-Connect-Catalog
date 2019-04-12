@@ -42,7 +42,7 @@ class HtmlHelper
 
         $attributes['href'] = $this->url->asset($url, $secure);
 
-        return $this->toHtmlString('<link'.$this->attributes($attributes).'>'.PHP_EOL);
+        return $this->toHtmlString('<link' . $this->attributes($attributes) . '>' . PHP_EOL);
     }
 
     /**
@@ -58,7 +58,7 @@ class HtmlHelper
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
-        return $this->toHtmlString('<script'.$this->attributes($attributes).'></script>'.PHP_EOL);
+        return $this->toHtmlString('<script' . $this->attributes($attributes) . '></script>' . PHP_EOL);
     }
 
     /**
@@ -103,7 +103,7 @@ class HtmlHelper
             }
         }
 
-        return count($html) > 0 ? ' '.implode(' ', $html) : '';
+        return count($html) > 0 ? ' ' . implode(' ', $html) : '';
     }
 
     /**
@@ -131,7 +131,7 @@ class HtmlHelper
         }
 
         if (! is_null($value)) {
-            return $key.'="'.e($value).'"';
+            return $key . '="' . e($value) . '"';
         }
 
         return null;

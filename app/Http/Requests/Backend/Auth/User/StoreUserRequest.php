@@ -29,10 +29,10 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'first_name' => 'required|max:255',
-            'last_name'  => 'required|max:255',
-            'email'      => ['required', 'email', 'max:255', Rule::unique('users')],
-            'password'   => 'required|min:6|confirmed',
-            'roles'      => 'required|array',
+            'last_name' => 'required|max:255',
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')],
+            'password' => 'required|min:6|confirmed',
+            'roles' => 'required|array',
         ];
     }
 }

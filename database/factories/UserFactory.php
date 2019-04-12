@@ -17,17 +17,17 @@ use SCCatalog\Models\Auth\User;
 
 $factory->define(User::class, function (Generator $faker) {
     return [
-        'uuid'                => Uuid::generate(4)->string,
-        'first_name'          => $faker->firstName,
-        'last_name'           => $faker->lastName,
-        'email'               => $faker->safeEmail,
-        'password'            => 'secret',
+        'uuid' => Uuid::generate(4)->string,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'email' => $faker->safeEmail,
+        'password' => 'secret',
         'password_changed_at' => null,
-        'remember_token'      => str_random(10),
-        'confirmation_code'   => md5(uniqid(mt_rand(), true)),
-        'active'              => 1,
-        'confirmed'           => 1,
-        'user_type_id'        => 1,
+        'remember_token' => str_random(10),
+        'confirmation_code' => md5(uniqid(mt_rand(), true)),
+        'active' => 1,
+        'confirmed' => 1,
+        'user_type_id' => 1,
     ];
 });
 
@@ -60,7 +60,6 @@ $factory->state(User::class, 'professional', function () {
         'user_type_id' => 5,
     ];
 });
-
 
 $factory->state(User::class, 'active', function () {
     return [

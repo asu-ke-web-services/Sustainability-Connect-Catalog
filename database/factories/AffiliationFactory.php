@@ -16,8 +16,8 @@ use SCCatalog\Models\Lookup\Affiliation;
 
 $factory->define(Affiliation::class, function (Generator $faker) {
     return [
-        'name'                => 'Undergraduate',
-        'access_control'      => 0,
+        'name' => 'Undergraduate',
+        'access_control' => 0,
     ];
 });
 

@@ -5,16 +5,16 @@ namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Backend\Auth\User\UserDeleted;
-use SCCatalog\Repositories\Backend\Auth\RoleRepository;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
-use SCCatalog\Repositories\Backend\Auth\PermissionRepository;
+use SCCatalog\Repositories\Auth\Backend\RoleRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
+use SCCatalog\Repositories\Auth\Backend\PermissionRepository;
 use SCCatalog\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserRequest;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
-use SCCatalog\Repositories\Backend\Lookup\StudentDegreeLevelRepository;
-use SCCatalog\Repositories\Backend\Lookup\UserTypeRepository;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\StudentDegreeLevelRepository;
+use SCCatalog\Repositories\Lookup\UserTypeRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class UserController.
@@ -44,13 +44,13 @@ class UserController extends Controller
     public function index(ManageUserRequest $request)
     {
         $search = '';
-        if($request->has('search')){
+        if ($request->has('search')) {
             $search = $request->get('search');
         }
 
         return view('backend.auth.user.all')
             ->withUsers($this->userRepository->getAllPaginated(25, $search, 'created_at', 'desc'))
-            ->with('searchRequest', (object) array('search' => $search));
+            ->with('searchRequest', (object) ['search' => $search]);
     }
 
     /**
@@ -61,15 +61,14 @@ class UserController extends Controller
      * @return mixed
      */
     public function create(
-            ManageUserRequest $request,
-            RoleRepository $roleRepository,
-            PermissionRepository $permissionRepository,
-            AffiliationRepository $affiliationRepository,
-            OrganizationRepository $organizationRepository,
-            StudentDegreeLevelRepository $studentDegreeLevelRepository,
-            UserTypeRepository $userTypeRepository
-    )
-    {
+        ManageUserRequest $request,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository,
+        AffiliationRepository $affiliationRepository,
+        OrganizationRepository $organizationRepository,
+        StudentDegreeLevelRepository $studentDegreeLevelRepository,
+        UserTypeRepository $userTypeRepository
+    ) {
         return view('backend.auth.user.create')
             ->with('affiliations', $affiliationRepository->where('access_control', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -120,16 +119,15 @@ class UserController extends Controller
      * @return mixed
      */
     public function edit(
-            ManageUserRequest $request,
-            RoleRepository $roleRepository,
-            PermissionRepository $permissionRepository,
-            AffiliationRepository $affiliationRepository,
-            OrganizationRepository $organizationRepository,
-            StudentDegreeLevelRepository $studentDegreeLevelRepository,
-            UserTypeRepository $userTypeRepository,
-            User $user
-    )
-    {
+        ManageUserRequest $request,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository,
+        AffiliationRepository $affiliationRepository,
+        OrganizationRepository $organizationRepository,
+        StudentDegreeLevelRepository $studentDegreeLevelRepository,
+        UserTypeRepository $userTypeRepository,
+        User $user
+    ) {
         return view('backend.auth.user.edit')
             ->withUser($user)
             ->withRoles($roleRepository->get())

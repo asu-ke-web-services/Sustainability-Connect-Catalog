@@ -8,9 +8,7 @@ import swal from "sweetalert2";
 import $ from "jquery";
 import "popper.js/dist/umd/popper"; // Required for BS4
 import "bootstrap";
-
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+import moment from 'moment';
 /**
  * Font Awesome >=5.1
  *
@@ -39,6 +37,9 @@ window.$ = window.jQuery = $;
 window.swal = swal;
 window._ = _; // Lodash
 
+window.moment = moment;
+require('tempusdominus-bootstrap-4');
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -63,11 +64,6 @@ if (token) {
     "CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token"
   );
 }
-
-// const allEditors = document.querySelectorAll("textarea.richtext");
-// allEditors.forEach(editor => {
-//   ClassicEditor.create(editor);
-// });
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

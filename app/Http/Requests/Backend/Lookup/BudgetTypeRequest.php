@@ -29,8 +29,8 @@ class BudgetTypeRequest extends FormRequest
     {
         return [
             'order' => 'nullable|integer',
-            'name'  => ['required', 'string', 'max:250', Rule::unique('budget_types')],
-            'slug'  => 'nullable|string|max:255',
+            'name' => ['required', 'string', 'max:250', Rule::unique('budget_types')],
+            'slug' => 'nullable|string|max:255',
         ];
     }
 

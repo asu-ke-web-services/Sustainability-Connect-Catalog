@@ -13,6 +13,7 @@ use Laravel\Scout\Searchable;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
 // use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
@@ -43,12 +44,12 @@ class Project extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
-        'needs_review'            => 'boolean',
-        // 'opportunity_start_at'    => 'date',
-        // 'opportunity_end_at'      => 'date',
-        // 'listing_end_at'          => 'date',
-        // 'listing_start_at'        => 'date',
-        // 'application_deadline_at' => 'date',
+        'needs_review' => 'boolean',
+        'opportunity_start_at' => 'date:Y-m-d',
+        'opportunity_end_at' => 'date:Y-m-d',
+        'listing_end_at' => 'date:Y-m-d',
+        'listing_start_at' => 'date:Y-m-d',
+        'application_deadline_at' => 'date:Y-m-d',
     ];
 
     /**
@@ -84,7 +85,6 @@ class Project extends Model implements HasMedia
         'opportunity_status_id',
         'review_status_id',
         'description',
-        // 'parent_opportunity_id',
         'supervisor_user_id',
         'submitting_user_id',
         'degree_program',
@@ -158,11 +158,11 @@ class Project extends Model implements HasMedia
     {
         if ($this->id != auth()->id() && $this->id != 1) {
             return '<a href="' . route('admin.opportunity.project.destroy', $this) . '"
-                 data-method="delete"
-                 data-trans-button-cancel="' . __('buttons.general.cancel') . '"
-                 data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
-                 data-trans-title="' . __('strings.backend.opportunity.projects.delete_project') . '"
-                 class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
+                data-method="delete"
+                data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+                data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+                data-trans-title="' . __('strings.backend.opportunity.projects.delete_project') . '"
+                class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
         }
 
         return '';
@@ -192,10 +192,11 @@ class Project extends Model implements HasMedia
         if ($this->trashed()) {
             return '
                 <div class="btn-group" role="group" aria-label="Actions">
-                  ' . $this->restore_button . '
-                  ' . $this->delete_permanently_button . '
+                    ' . $this->restore_button . '
+                    ' . $this->delete_permanently_button . '
                 </div>';
         }
+
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
             ' . $this->show_button . '
             ' . $this->edit_button . '
@@ -214,24 +215,54 @@ class Project extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getRemoveUserButtonAttribute(): string
+    public function getFrontendShowButtonAttribute(): string
     {
-        return '<a href="' . route('admin.opportunity.project.destroy', $this) . '"
-             data-method="delete"
-             data-trans-button-cancel="' . __('buttons.general.cancel') . '"
-             data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
-             data-trans-title="' . __('strings.backend.general.are_you_sure') . '"
-             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.delete') . '"></i></a> ';
+        return '<a href="' . route('frontend.opportunity.project.public.show', $this) . '" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.view') . '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
     }
 
     /**
      * @return string
      */
-    public function getUserActionButtonsAttribute(): string
+    public function getFrontendSubmissionEditButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.project.public.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendFullEditButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.project.private.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendPrintButtonAttribute(): string
+    {
+        return '<a href="' . route('frontend.opportunity.project.private.print', $this) . '" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendSubmissionActionButtonsAttribute(): string
     {
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-              ' . $this->show_button . '
-              ' . $this->remove_user_button . '
+            ' . $this->frontend_show_button . '
+            ' . $this->frontend_submission_edit_button . '
+            </div>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontendPrivateActionButtonsAttribute(): string
+    {
+        return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+            ' . $this->frontend_show_button . '
+            ' . $this->frontend_full_edit_button . '
             </div>';
     }
 
@@ -355,23 +386,23 @@ class Project extends Model implements HasMedia
 
     public function toSearchableArray(): array
     {
-        $project = array();
+        $project = [];
 
-        $project['id']                      = $this->id;
-        $project['active']                  = $this->isActive();
+        $project['id'] = $this->id;
+        $project['active'] = $this->isActive();
         // $project['completed']               = $this->isCompleted();
-        $project['name']                    = e($this->name);
-        $project['description']             = e($this->description);
-        $project['opportunityStartAt']      = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
-        $project['opportunityEndAt']        = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
-        $project['applicationDeadlineAt']   = $this->application_deadline_at ? $this->application_deadline_at->getTimestamp() : null;
+        $project['name'] = e($this->name);
+        $project['description'] = e($this->description);
+        $project['opportunityStartAt'] = $this->opportunity_start_at ? $this->opportunity_start_at->getTimestamp() : null;
+        $project['opportunityEndAt'] = $this->opportunity_end_at ? $this->opportunity_end_at->getTimestamp() : null;
+        $project['applicationDeadlineAt'] = $this->application_deadline_at ? $this->application_deadline_at->getTimestamp() : null;
         $project['applicationDeadlineText'] = e($this->application_deadline_text);
-        $project['listingStartAt']          = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
-        $project['listingEndAt']            = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
-        $project['followerCount']           = $this->follower_count;
-        $project['status']                  = null !== $this->status ? e($this->status->name) : null;
-        $project['reviewStatus']            = null !== $this->reviewStatus ? e($this->reviewStatus->name) : null;
-        $project['organizationName']        = null !== $this->organization ? e($this->organization->name) : null;
+        $project['listingStartAt'] = $this->listing_start_at ? $this->listing_start_at->getTimestamp() : null;
+        $project['listingEndAt'] = $this->listing_end_at ? $this->listing_end_at->getTimestamp() : null;
+        $project['followerCount'] = $this->follower_count;
+        $project['status'] = null !== $this->status ? e($this->status->name) : null;
+        $project['reviewStatus'] = null !== $this->reviewStatus ? e($this->reviewStatus->name) : null;
+        $project['organizationName'] = null !== $this->organization ? e($this->organization->name) : null;
 
         // Index Location Cities
         $project['locations'] = '';
@@ -395,10 +426,10 @@ class Project extends Model implements HasMedia
         // Index AffiliationIcons
         $project['affiliationIcons'] = $this->affiliations->map(function ($data) {
             return [
-                'slug'             => e($data['slug']),
+                'slug' => e($data['slug']),
                 'frontend_fa_icon' => json_decode($data['frontend_fa_icon']),
-                'backend_fa_icon'  => json_decode($data['backend_fa_icon']),
-                'help_text'        => $data['help_text'],
+                'backend_fa_icon' => json_decode($data['backend_fa_icon']),
+                'help_text' => $data['help_text'],
             ];
         })->toArray();
 
@@ -483,7 +514,7 @@ class Project extends Model implements HasMedia
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps();
     }
 
@@ -493,7 +524,7 @@ class Project extends Model implements HasMedia
     public function activeMembers(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [2, 3, 4, 5]);
     }
@@ -504,7 +535,7 @@ class Project extends Model implements HasMedia
     public function followers(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 1);
     }
@@ -515,7 +546,7 @@ class Project extends Model implements HasMedia
     public function applicants(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 2);
     }
@@ -526,7 +557,7 @@ class Project extends Model implements HasMedia
     public function participants(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivot('relationship_type_id', 3);
     }
@@ -537,11 +568,10 @@ class Project extends Model implements HasMedia
     public function mentors(): BelongsToMany
     {
         return $this->belongsToMany(\SCCatalog\Models\Auth\User::class, 'project_user')
-            ->withPivot('relationship_type_id', 'comments')
+            ->withPivot(['relationship_type_id', 'comments'])
             ->withTimestamps()
             ->wherePivotIn('relationship_type_id', [4, 5]);
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -558,7 +588,6 @@ class Project extends Model implements HasMedia
     {
         return $this->morphMany(\SCCatalog\Models\Note\Note::class, 'notable');
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
@@ -744,7 +773,7 @@ class Project extends Model implements HasMedia
     {
         return $query->where([
             ['opportunity_status_id', 1], // New Proposal
-            ['review_status_id', 1] // Needs Review
+            ['review_status_id', 1], // Needs Review
         ]);
     }
 
@@ -757,7 +786,7 @@ class Project extends Model implements HasMedia
     {
         return $query->where([
             ['opportunity_status_id', 1], // New Proposal
-            ['review_status_id', 2] // Review in Progress
+            ['review_status_id', 2], // Review in Progress
         ]);
     }
 
@@ -771,14 +800,13 @@ class Project extends Model implements HasMedia
     {
         if ($approved) {
             return $query->where('review_status_id', 3);
-        } else {
-            // Closed or archived or otherwise not approved
-            return $query->whereIn('review_status_id', [
+        }
+        // Closed or archived or otherwise not approved
+        return $query->whereIn('review_status_id', [
                 1, // Needs Review
                 2, // Review In Progress
                 4, // Not Approved
             ]);
-        }
     }
 
     /**

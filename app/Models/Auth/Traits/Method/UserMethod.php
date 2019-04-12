@@ -42,7 +42,7 @@ trait UserMethod
                 return gravatar()->get($this->email, ['size' => $size]);
 
             case 'storage':
-                return url('storage/'.$this->avatar_location);
+                return url('storage/' . $this->avatar_location);
         }
 
         $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
@@ -117,6 +117,7 @@ trait UserMethod
         if ($this->asurite) {
             return AsuDirectoryHelper::getEid(AsuDirectoryHelper::getDirectoryInfoByAsurite($this->asurite_login));
         }
+
         return false;
     }
 }

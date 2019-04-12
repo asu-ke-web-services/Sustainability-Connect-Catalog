@@ -5,9 +5,9 @@ namespace SCCatalog\Http\Controllers\Backend\Organization;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Organization\ManageOrganizationRequest;
 use SCCatalog\Models\Organization\Organization;
-use SCCatalog\Repositories\Backend\Lookup\OrganizationStatusRepository;
-use SCCatalog\Repositories\Backend\Lookup\OrganizationTypeRepository;
-use SCCatalog\Repositories\Backend\Organization\OrganizationRepository;
+use SCCatalog\Repositories\Lookup\OrganizationStatusRepository;
+use SCCatalog\Repositories\Lookup\OrganizationTypeRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class OrganizationController.
@@ -52,11 +52,10 @@ class OrganizationController extends Controller
      * @return mixed
      */
     public function create(
-            ManageOrganizationRequest $request,
-            OrganizationStatusRepository $organizationStatusRepository,
-            OrganizationTypeRepository $organizationTypeRepository
-    )
-    {
+        ManageOrganizationRequest $request,
+        OrganizationStatusRepository $organizationStatusRepository,
+        OrganizationTypeRepository $organizationTypeRepository
+    ) {
         return view('backend.organization.create')
             ->with('organizationTypes', $organizationTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizationStatuses', $organizationStatusRepository->get(['id', 'name'])->pluck('name', 'id')->toArray());
@@ -88,12 +87,11 @@ class OrganizationController extends Controller
      * @return mixed
      */
     public function edit(
-            ManageOrganizationRequest $request,
-            OrganizationStatusRepository $organizationStatusRepository,
-            OrganizationTypeRepository $organizationTypeRepository,
-            Organization $organization
-    )
-    {
+        ManageOrganizationRequest $request,
+        OrganizationStatusRepository $organizationStatusRepository,
+        OrganizationTypeRepository $organizationTypeRepository,
+        Organization $organization
+    ) {
         return view('backend.organization.edit')
             ->withOrganization($organization)
             ->with('organizationTypes', $organizationTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())

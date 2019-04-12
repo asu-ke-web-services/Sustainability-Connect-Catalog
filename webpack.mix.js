@@ -1,4 +1,4 @@
-const mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,45 +11,54 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.setPublicPath("public");
+mix.setPublicPath('public');
 
-mix
-  .sass("resources/sass/backend/app.scss", "css/backend.css")
+mix.sass('resources/sass/frontend/coreui-leaf/app.scss', 'css/frontend.css')
+  .sass('resources/sass/backend/app.scss', 'css/backend.css')
   .js(
     [
-      "resources/js/backend/before.js",
-      "resources/js/backend/app.js",
-      "resources/js/backend/after.js"
+      'resources/js/frontend/before.js',
+      'resources/js/frontend/app.js',
+      'resources/js/frontend/after.js'
     ],
-    "js/backend.js"
+    'js/frontend.js'
   )
+  .js([
+    'resources/js/backend/before.js',
+    'resources/js/backend/app.js',
+    'resources/js/backend/after.js'
+  ], 'js/backend.js')
   .extract([
-    "jquery",
-    "bootstrap",
-    "popper.js/dist/umd/popper",
-    "axios",
-    "sweetalert2",
-    "lodash",
-    "@fortawesome/fontawesome-svg-core",
-    "@fortawesome/free-brands-svg-icons",
-    "@fortawesome/free-regular-svg-icons",
-    "@fortawesome/free-solid-svg-icons",
-    "datatables.net-bs4",
-    "datatables.net-fixedheader-bs4",
-    "datatables.net-responsive-bs4"
+    'jquery',
+    'jquery-validation',
+    'bootstrap',
+    'popper.js/dist/umd/popper',
+    'axios',
+    'sweetalert2',
+    'lodash',
+    '@fortawesome/fontawesome-svg-core',
+    '@fortawesome/free-brands-svg-icons',
+    '@fortawesome/free-regular-svg-icons',
+    '@fortawesome/free-solid-svg-icons',
+    'datatables.net',
+    'datatables.net-bs4',
+    'datatables.net-fixedheader-bs4',
+    'datatables.net-responsive-bs4',
+    'selectize',
   ]);
+// .autoload({
+//   jquery: ['$', 'window.jQuery'],
+//   DataTable: 'datatables.net-bs4'
+// });
 
-mix
-  .sass("resources/sass/frontend/SearchApp.scss", "css/")
-  .react("resources/js/frontend/searchProject.js", "js/")
-  .react("resources/js/frontend/searchCompletedProject.js", "js/")
-  .react("resources/js/frontend/searchInternship.js", "js/");
-
-mix
-  .sass("resources/sass/frontend/app.scss", "css/frontend.css")
-  .js("resources/js/frontend/app.js", "js/frontend.js");
+// ReactJS Search apps (not used)
+// mix
+//   .sass('resources/sass/frontend/asu/SearchApp.scss', 'css/')
+//   .react('resources/js/frontend/searchProject.js', 'js/')
+//   .react('resources/js/frontend/searchCompletedProject.js', 'js/')
+//   .react('resources/js/frontend/searchInternship.js', 'js/');
 
 
-if (mix.inProduction() || process.env.npm_lifecycle_event !== "hot") {
+if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
   mix.version();
 }

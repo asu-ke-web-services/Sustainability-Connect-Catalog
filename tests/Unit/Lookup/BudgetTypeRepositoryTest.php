@@ -6,7 +6,7 @@ use Tests\TestCase;
 use SCCatalog\Models\Lookup\BudgetType;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use SCCatalog\Repositories\Backend\Lookup\BudgetTypeRepository;
+use SCCatalog\Repositories\Lookup\BudgetTypeRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BudgetTypeRepositoryTest extends TestCase
@@ -28,8 +28,8 @@ class BudgetTypeRepositoryTest extends TestCase
     protected function getValidBudgetTypeData($budgetTypeData = [])
     {
         return array_merge([
-            'order'               => '1',
-            'name'                => 'Test BudgetType',
+            'order' => '1',
+            'name' => 'Test BudgetType',
         ], $budgetTypeData);
     }
 
@@ -49,8 +49,8 @@ class BudgetTypeRepositoryTest extends TestCase
         $budgetType = factory(BudgetType::class)->create();
 
         $updatedBudgetType = $this->budgetTypeRepository->updateById($budgetType->id, $this->getValidBudgetTypeData([
-            'order'          => '2',
-            'name'           => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedBudgetType->fresh()->order);

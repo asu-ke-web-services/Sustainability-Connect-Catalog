@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Event;
 use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
 use SCCatalog\Models\Opportunity\Project;
 
-
 class CreateProjectTest extends TestCase
 {
     use RefreshDatabase;
@@ -55,15 +54,11 @@ class CreateProjectTest extends TestCase
             'opportunity_end_at' => Carbon::tomorrow(),
             'implementation_paths' => 'test solution',
             'sustainability_contribution' => 'deliverables',
-            // 'affiliations' => [1, 2],
-            // 'categories' => [1, 2],
-            // 'keywords' => [1, 2],
-            // 'addresses' => [
-            //     'city' => 'Tempe',
-            //     'state' => 'AZ',
-            //     'country' => null,
-            //     'comment' => null,
-            // ],
+            'affiliations' => [1, 2],
+            'categories' => [1, 2],
+            'keywords' => [1, 2],
+            'city' => 'Tempe',
+            'state' => 'AZ',
             'qualifications' => 'Qualifications',
             'responsibilities' => 'responsibilities',
             'learning_outcomes' => 'outcomes',
@@ -84,7 +79,7 @@ class CreateProjectTest extends TestCase
 
         $response
             ->assertStatus(302);
-            // ->assertRedirect(route('admin.opportunity.project.index'))
+        // ->assertRedirect(route('admin.opportunity.project.index'))
             // ->assertSessionHas('message', 'Project created successfully');
 
         // Event::assertDispatched(ProjectCreated::class);

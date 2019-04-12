@@ -29,14 +29,14 @@ class AffiliationRequest extends FormRequest
     {
         return [
             'opportunity_type_id' => 'nullable|integer|exists:opportunity_types,id',
-            'order'               => 'nullable|integer',
-            'name'                => ['required', 'string', 'max:250', Rule::unique('affiliations')],
-            'slug'                => 'nullable|string|max:255',
-            'help_text'           => 'nullable|string|max:255',
-            'frontend_fa_icon'    => 'nullable|string|max:255',
-            'backend_fa_icon'     => 'nullable|string|max:255',
-            'access_control'      => 'nullable|boolean',
-            'public'              => 'nullable|boolean',
+            'order' => 'nullable|integer',
+            'name' => ['required', 'string', 'max:250', Rule::unique('affiliations')],
+            'slug' => 'nullable|string|max:255',
+            'help_text' => 'nullable|string|max:255',
+            'frontend_fa_icon' => 'nullable|string|max:255',
+            'backend_fa_icon' => 'nullable|string|max:255',
+            'access_control' => 'nullable|boolean',
+            'public' => 'nullable|boolean',
         ];
     }
 

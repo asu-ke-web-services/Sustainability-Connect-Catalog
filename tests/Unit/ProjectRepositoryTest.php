@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Event;
 use SCCatalog\Events\Backend\Opportunity\ProjectCreated;
 use SCCatalog\Events\Backend\Opportunity\ProjectUpdated;
 use SCCatalog\Models\Opportunity\Project;
-use SCCatalog\Repositories\Backend\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Opportunity\ProjectRepository;
 
 class ProjectRepositoryTest extends TestCase
 {
@@ -31,35 +31,36 @@ class ProjectRepositoryTest extends TestCase
     protected function getValidProjectData($projectData = [])
     {
         return array_merge([
-            'name'                     => 'Test Project',
-            'opportunity_start_at'     => Carbon::now()->addDay(30),
-            'opportunity_end_at'       => Carbon::now()->addDay(45),
-            'listing_start_at'         => Carbon::now()->subDay(2),
-            'listing_end_at'           => Carbon::now()->addDay(2),
-            'application_deadline_at'  => Carbon::tomorrow(),
+            'name' => 'Test Project',
+            'opportunity_start_at' => Carbon::now()->addDay(30),
+            'opportunity_end_at' => Carbon::now()->addDay(45),
+            'listing_start_at' => Carbon::now()->subDay(2),
+            'listing_end_at' => Carbon::now()->addDay(2),
+            'application_deadline_at' => Carbon::tomorrow(),
             'application_deadline_text' => 'When Filled',
-            'opportunity_status_id'    => 5,
-            'review_status_id'         => 3,
-            'description'              => 'Lorem ipsum',
-            'supervisor_user_id'       => 1,
-            'submitting_user_id'       => 1,
-            'degree_program'           => 'School of Sustainability',
-            'compensation'             => 'Lorem compensation',
-            'responsiblities'          => 'Lorem responsiblities',
-            'learning_outcomes'        => 'Lorem learning outcomes',
-            'sustainability_outcomes'  => 'Lorem sustainability outcomes',
-            'qualifications'           => 'Lorem qualifications',
+            'opportunity_status_id' => 5,
+            'review_status_id' => 3,
+            'description' => 'Lorem ipsum',
+            'supervisor_user_id' => 1,
+            'submitting_user_id' => 1,
+            'degree_program' => 'School of Sustainability',
+            'compensation' => 'Lorem compensation',
+            'responsiblities' => 'Lorem responsiblities',
+            'learning_outcomes' => 'Lorem learning outcomes',
+            'sustainability_outcomes' => 'Lorem sustainability outcomes',
+            'qualifications' => 'Lorem qualifications',
             'application_instructions' => 'Lorem application instructions',
-            'implementation_paths'     => 'Lorem implementation',
-            'budget_type_id'           => 3,
-            'budget_amount'            => 'Lorem budget notes',
-            'program_lead'             => 'Lorem program lead',
-            'success_story'            => 'https://example.test',
-            'library_collection'       => 'https://example.test',
-            //            'addresses'                => [],
-            'affiliations'             => [2,3,6],
-            'categories'               => [1,2],
-            'keywords'                 => [1,2],
+            'implementation_paths' => 'Lorem implementation',
+            'budget_type_id' => 3,
+            'budget_amount' => 'Lorem budget notes',
+            'program_lead' => 'Lorem program lead',
+            'success_story' => 'https://example.test',
+            'library_collection' => 'https://example.test',
+            'city' => 'Tempe',
+            'state' => 'AZ',
+            'affiliations' => [2, 3, 6],
+            'categories' => [1, 2],
+            'keywords' => [1, 2],
         ], $projectData);
     }
 
@@ -143,8 +144,8 @@ class ProjectRepositoryTest extends TestCase
             $project = factory(Project::class)->create();
 
             $this->repository->update($project, $this->getValidProjectData([
-                'name'                  => 'updated name',
-                'description'           => 'updated description',
+                'name' => 'updated name',
+                'description' => 'updated description',
                 'opportunity_status_id' => 3,
             ]));
 

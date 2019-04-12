@@ -27,7 +27,7 @@ class ManageOrganizationRequest extends FormRequest
     public function rules()
     {
         return [
-        	//
+            //
         ];
     }
 

@@ -26,9 +26,7 @@ class Note extends Model
      *
      * @var array
      */
-    protected $casts = [
-
-    ];
+    protected $casts = [];
 
     /**
      * The attributes that should be mutated to dates (automatically cast to Carbon instances).
@@ -48,7 +46,6 @@ class Note extends Model
      */
     public $fillable = [
         'body',
-        'user_id',
     ];
 
     /*
@@ -68,7 +65,7 @@ class Note extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\SCCatalog\Models\Auth\User::class);
+        return $this->belongsTo(\SCCatalog\Models\Auth\User::class, 'created_by');
     }
 
     /**
@@ -76,7 +73,7 @@ class Note extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      **/
-    public function notables() : MorphTo
+    public function notables(): MorphTo
     {
         return $this->morphTo();
     }

@@ -93,7 +93,7 @@ return [
                             'last_updated' => '最後更新',
                             'name' => '名稱',
                             'status' => '狀態',
-                            'timezone'     => 'Timezone',
+                            'timezone' => 'Timezone',
                         ],
                     ],
                 ],

@@ -16,7 +16,7 @@ use SCCatalog\Models\Lookup\AttachmentType;
 
 $factory->define(AttachmentType::class, function (Generator $faker) {
     return [
-        'name'                => 'Test Document',
+        'name' => 'Test Document',
     ];
 });
 

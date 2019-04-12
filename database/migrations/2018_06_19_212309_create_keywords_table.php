@@ -57,7 +57,6 @@ class CreateKeywordsTable extends Migration
             $table->foreign('deleted_by')
                 ->references('id')->on('users');
         });
-
     }
 
     /**

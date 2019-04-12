@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use SCCatalog\Models\Lookup\OpportunityStatus;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
 
 class OpportunityStatusRepositoryTest extends TestCase
 {
@@ -29,8 +29,8 @@ class OpportunityStatusRepositoryTest extends TestCase
     {
         return array_merge([
             'opportunity_type_id' => '1',
-            'order'               => '1',
-            'name'                => 'Test OpportunityStatus',
+            'order' => '1',
+            'name' => 'Test OpportunityStatus',
         ], $opportunityStatusData);
     }
 
@@ -51,8 +51,8 @@ class OpportunityStatusRepositoryTest extends TestCase
 
         $updatedOpportunityStatus = $this->opportunityStatusRepository->updateById($opportunityStatus->id, $this->getValidOpportunityStatusData([
             'opportunity_type_id' => '2',
-            'order'               => '2',
-            'name'                => 'Updated',
+            'order' => '2',
+            'name' => 'Updated',
         ]));
 
         $this->assertEquals('2', $updatedOpportunityStatus->fresh()->order);

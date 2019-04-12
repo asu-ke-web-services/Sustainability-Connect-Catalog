@@ -20,7 +20,7 @@ class UserRoleTableSeeder extends Seeder
         $this->disableForeignKeys();
 
         $users = User::all();
-        foreach($users as $user) {
+        foreach ($users as $user) {
             switch ($user->asurite_login) {
                 case 'ndrollin':
                 case 'susadmin':
@@ -30,6 +30,7 @@ class UserRoleTableSeeder extends Seeder
                 case 'cjharri1':
                 case 'ebrunda':
                     $user->assignRole(config('access.users.admin_role'));
+
                     break;
 
                 default:

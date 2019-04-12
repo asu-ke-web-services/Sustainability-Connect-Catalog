@@ -2,7 +2,6 @@
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use SCCatalog\Models\Address\Address;
 use SCCatalog\Models\Note\Note;
 use SCCatalog\Models\Lookup\OrganizationType;
 use SCCatalog\Models\Lookup\OrganizationStatus;
@@ -20,92 +19,91 @@ class OrganizationsTableSeeder extends Seeder
     public function run()
     {
         Organization::withoutSyncingToSearch(function () {
-        Project::withoutSyncingToSearch(function () {
-        Internship::withoutSyncingToSearch(function () {
-            // Pre-fill Organization Status options
+            Project::withoutSyncingToSearch(function () {
+                Internship::withoutSyncingToSearch(function () {
+                    // Pre-fill Organization Status options
 
-            $organization_statuses = OrganizationStatus::firstOrNew([
+                    $organization_statuses = OrganizationStatus::firstOrNew([
                 'slug' => 'inactive',
             ]);
-            if (!$organization_statuses->exists) {
-                $organization_statuses->fill([
+                    if (!$organization_statuses->exists) {
+                        $organization_statuses->fill([
                     'name' => 'Inactive',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                     'created_by' => 1,
                     'updated_by' => 1,
                 ])->save();
-            }
+                    }
 
-            $organization_statuses = OrganizationStatus::firstOrNew([
+                    $organization_statuses = OrganizationStatus::firstOrNew([
                 'slug' => 'active',
             ]);
-            if (!$organization_statuses->exists) {
-                $organization_statuses->fill([
+                    if (!$organization_statuses->exists) {
+                        $organization_statuses->fill([
                     'name' => 'Active',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                     'created_by' => 1,
                     'updated_by' => 1,
                 ])->save();
-            }
+                    }
 
+                    // Pre-fill Organization Type options
 
-            // Pre-fill Organization Type options
-
-            $organization_types = OrganizationType::firstOrNew([
+                    $organization_types = OrganizationType::firstOrNew([
                 'slug' => 'government',
             ]);
-            if (!$organization_types->exists) {
-                $organization_types->fill([
+                    if (!$organization_types->exists) {
+                        $organization_types->fill([
                     'name' => 'Government',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                     'created_by' => 1,
                     'updated_by' => 1,
                 ])->save();
-            }
+                    }
 
-            $organization_types = OrganizationType::firstOrNew([
+                    $organization_types = OrganizationType::firstOrNew([
                 'slug' => 'non-governmental-ngo',
             ]);
-            if (!$organization_types->exists) {
-                $organization_types->fill([
+                    if (!$organization_types->exists) {
+                        $organization_types->fill([
                     'name' => 'Non-Governmental (NGO)',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                     'created_by' => 1,
                     'updated_by' => 1,
                 ])->save();
-            }
+                    }
 
-            $organization_types = OrganizationType::firstOrNew([
+                    $organization_types = OrganizationType::firstOrNew([
                 'slug' => 'non-profit',
             ]);
-            if (!$organization_types->exists) {
-                $organization_types->fill([
+                    if (!$organization_types->exists) {
+                        $organization_types->fill([
                     'name' => 'Non-Profit',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                     'created_by' => 1,
                     'updated_by' => 1,
                 ])->save();
-            }
+                    }
 
-            $organization_types = OrganizationType::firstOrNew([
+                    $organization_types = OrganizationType::firstOrNew([
                 'slug' => 'corporation',
             ]);
-            if (!$organization_types->exists) {
-                $organization_types->fill([
+                    if (!$organization_types->exists) {
+                        $organization_types->fill([
                     'name' => 'Corporation',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                     'created_by' => 1,
                     'updated_by' => 1,
                 ])->save();
-            }
+                    }
 
-            $starterOrgs = [
+                    $starterOrgs = [
                 [
                     'project_ids' => [10],
                     'name' => 'Mitchell Park Neighborhood Association',
@@ -364,7 +362,7 @@ Our vision is to empower communities to break the cycle of poverty through innov
                     'note' => 'http://www.hdrinc.com/',
                 ],
                 [
-                    'project_ids' => [329,],
+                    'project_ids' => [329],
                     'name' => 'National League of Cities',
                     'type' => '3',
                     'status' => '',
@@ -564,7 +562,7 @@ Our vision is to empower communities to break the cycle of poverty through innov
                 ],
 
                 [
-                    'internship_ids' => [334,392,393,],
+                    'internship_ids' => [334,392,393],
                     'name' => 'Arizona Department of Environmental Quality (ADEQ)',
                     'type' => null,
                     'status' => '2',
@@ -816,7 +814,7 @@ Our vision is to empower communities to break the cycle of poverty through innov
                 ],
 
                 [
-                    'internship_ids' => [205,303,],
+                    'internship_ids' => [205,303],
                     'name' => 'City of Mesa',
                     'type' => '1',
                     'status' => '2',
@@ -1723,56 +1721,55 @@ Our vision is to empower communities to break the cycle of poverty through innov
                     'name' => 'You Change',
                     'type' => null,
                     'status' => '2',
-                ]
+                ],
             ];
 
-
-            foreach ($starterOrgs as $organization) {
-                $newOrganization = Organization::create([
-                    'organization_type_id'   => $organization['type'],
+                    foreach ($starterOrgs as $organization) {
+                        $newOrganization = Organization::create([
+                    'organization_type_id' => $organization['type'],
                     'organization_status_id' => 2,
-                    'name'                   => $organization['name'],
-                    'created_at'             => Carbon::now(),
-                    'updated_at'             => Carbon::now(),
-                    'created_by'             => 1,
-                    'updated_by'             => 1,
+                    'name' => $organization['name'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                    'created_by' => 1,
+                    'updated_by' => 1,
                 ]);
 
-                if (isset($organization['note'])) {
-                    $newNote = Note::create([
-                        'notable_id'   => $newOrganization->id,
+                        if (isset($organization['note'])) {
+                            $newNote = Note::create([
+                        'notable_id' => $newOrganization->id,
                         'notable_type' => 'Organization',
-                        'user_id'      => 1,
-                        'body'         => $organization['note'],
-                        'created_at'   => Carbon::now(),
-                        'updated_at'   => Carbon::now(),
-                        'created_by'   => 1,
-                        'updated_by'   => 1,
+                        'user_id' => 1,
+                        'body' => $organization['note'],
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                        'created_by' => 1,
+                        'updated_by' => 1,
                     ]);
-                }
+                        }
 
-                if (isset($organization['project_ids'])) {
-                    foreach ($organization['project_ids'] as $order => $project_id) {
-                        $project = Project::find($project_id);
-                        if ($project) {
-                            $project->organization_id = $newOrganization->id;
-                            $project->save();
+                        if (isset($organization['project_ids'])) {
+                            foreach ($organization['project_ids'] as $order => $project_id) {
+                                $project = Project::find($project_id);
+                                if ($project) {
+                                    $project->organization_id = $newOrganization->id;
+                                    $project->save();
+                                }
+                            }
+                        }
+
+                        if (isset($organization['internship_ids'])) {
+                            foreach ($organization['internship_ids'] as $order => $internship_id) {
+                                $internship = Internship::find($internship_id);
+                                if ($internship) {
+                                    $internship->organization_id = $newOrganization->id;
+                                    $internship->save();
+                                }
+                            }
                         }
                     }
-                }
-
-                if (isset($organization['internship_ids'])) {
-                    foreach ($organization['internship_ids'] as $order => $internship_id) {
-                        $internship = Internship::find($internship_id);
-                        if ($internship) {
-                            $internship->organization_id = $newOrganization->id;
-                            $internship->save();
-                        }
-                    }
-                }
-            }
-        });
-        });
+                });
+            });
         });
     }
 }

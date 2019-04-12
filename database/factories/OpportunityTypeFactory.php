@@ -16,15 +16,15 @@ use SCCatalog\Models\Lookup\OpportunityType;
 
 $factory->define(OpportunityType::class, function (Generator $faker) {
     return [
-        'id'    => 2,
-        'name'  => 'Project',
+        'id' => 2,
+        'name' => 'Project',
     ];
 });
 
 $factory->state(OpportunityType::class, 'internship', function () {
     return [
-        'id'    => 3,
-        'name'  => 'Internship',
+        'id' => 3,
+        'name' => 'Internship',
     ];
 });
 

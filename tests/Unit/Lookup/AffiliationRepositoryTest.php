@@ -6,7 +6,7 @@ use Tests\TestCase;
 use SCCatalog\Models\Lookup\Affiliation;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use SCCatalog\Repositories\Backend\Lookup\AffiliationRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AffiliationRepositoryTest extends TestCase
@@ -29,9 +29,9 @@ class AffiliationRepositoryTest extends TestCase
     {
         return array_merge([
             'opportunity_type_id' => '1',
-            'order'               => '1',
-            'name'                => 'Test Affiliation',
-            'access_control'      => false,
+            'order' => '1',
+            'name' => 'Test Affiliation',
+            'access_control' => false,
         ], $affiliationData);
     }
 
@@ -52,9 +52,9 @@ class AffiliationRepositoryTest extends TestCase
 
         $updatedAffiliation = $this->affiliationRepository->updateById($affiliation->id, $this->getValidAffiliationData([
             'opportunity_type_id' => '2',
-            'order'               => '2',
-            'name'                => 'Updated',
-            'access_control'      => true,
+            'order' => '2',
+            'name' => 'Updated',
+            'access_control' => true,
         ]));
 
         $this->assertEquals('2', $updatedAffiliation->fresh()->opportunity_type_id);

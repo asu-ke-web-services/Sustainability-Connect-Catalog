@@ -5,6 +5,7 @@ namespace SCCatalog\Models\Attachment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Spatie\MediaLibrary\Media as BaseMedia;
+
 // use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
@@ -59,7 +60,7 @@ class Attachment extends BaseMedia
      * @var array
      */
     public static $rules = [
-        'attachment_type_id'   => 'nullable|integer',
+        'attachment_type_id' => 'nullable|integer',
         'attachment_status_id' => 'nullable|integer',
         'comments' => 'nullable',
     ];
@@ -93,5 +94,4 @@ class Attachment extends BaseMedia
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
 }

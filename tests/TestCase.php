@@ -6,13 +6,23 @@ use SCCatalog\Models\Auth\Role;
 use SCCatalog\Models\Auth\User;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Database\SQLiteConnection;
+use Illuminate\Database\Schema\SQLiteBuilder;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Fluent;
 
 /**
  * Class TestCase.
  */
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, SqliteForeignHotfix;
+
+    public function __construct(?string $name = null, array $data = [], string $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->hotfixSqlite();
+    }
 
     /**
      * Create the admin role or return it if it already exists.
@@ -102,7 +112,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function loginAsAdmin($admin = false)
     {
-        if (! $admin) {
+        if (!$admin) {
             $admin = $this->createAdmin();
         }
 

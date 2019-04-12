@@ -60,10 +60,9 @@ class OpportunityStatus extends Model implements Sortable
     ];
 
     public $sortable = [
-        'order_column_name'  => 'order',
+        'order_column_name' => 'order',
         'sort_when_creating' => true,
     ];
-
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +101,7 @@ class OpportunityStatus extends Model implements Sortable
      */
     public function getEditButtonAttribute()
     {
-        return '<a href="'.route('admin.lookup.opportunity_status.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
+        return '<a href="' . route('admin.lookup.opportunity_status.edit', $this) . '" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.edit') . '"></i></a>';
     }
 
     /**
@@ -110,12 +109,12 @@ class OpportunityStatus extends Model implements Sortable
      */
     public function getDeleteButtonAttribute()
     {
-        return '<a href="'.route('admin.lookup.opportunity_status.destroy', $this).'"
+        return '<a href="' . route('admin.lookup.opportunity_status.destroy', $this) . '"
              data-method="delete"
-             data-trans-button-cancel="'.__('buttons.general.cancel').'"
-             data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
-             data-trans-title="'.__('strings.backend.general.are_you_sure').'"
-             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.delete').'"></i></a> ';
+             data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+             data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+             data-trans-title="' . __('strings.backend.general.are_you_sure') . '"
+             class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="' . __('buttons.general.crud.delete') . '"></i></a> ';
     }
 
     /**
@@ -124,8 +123,8 @@ class OpportunityStatus extends Model implements Sortable
     public function getActionButtonsAttribute()
     {
         return '<div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-              '.$this->edit_button.'
-              '.$this->delete_button.'
+              ' . $this->edit_button . '
+              ' . $this->delete_button . '
             </div>';
     }
 

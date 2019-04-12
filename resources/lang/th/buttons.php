@@ -16,16 +16,16 @@ return [
     'backend' => [
         'access' => [
             'users' => [
-                'activate'           => 'เปิดใช้งาน',
-                'change_password'    => 'เปลี่ยนรหัสผ่าน',
-                'clear_session'         => 'Clear Session',
-                'confirm'             => 'Confirm',
-                'deactivate'         => 'พักการใช้งาน',
+                'activate' => 'เปิดใช้งาน',
+                'change_password' => 'เปลี่ยนรหัสผ่าน',
+                'clear_session' => 'Clear Session',
+                'confirm' => 'Confirm',
+                'deactivate' => 'พักการใช้งาน',
                 'delete_permanently' => 'ลบอย่างถาวร',
-                'login_as'           => 'เข้าสู่ระบบเสมือนเป็น :user',
-                'resend_email'       => 'ส่งอีเมลยืนยันตัวตนอีกครั้ง',
-                'restore_user'       => 'กู้คืนผู้ใช้',
-                'unconfirm'             => 'Un-confirm',
+                'login_as' => 'เข้าสู่ระบบเสมือนเป็น :user',
+                'resend_email' => 'ส่งอีเมลยืนยันตัวตนอีกครั้ง',
+                'restore_user' => 'กู้คืนผู้ใช้',
+                'unconfirm' => 'Un-confirm',
                 'unlink' => 'Unlink',
             ],
         ],
@@ -34,7 +34,7 @@ return [
     'emails' => [
         'auth' => [
             'confirm_account' => 'ยืนยันบัญชี',
-            'reset_password'  => 'ตั้งรหัสผ่านใหม่',
+            'reset_password' => 'ตั้งรหัสผ่านใหม่',
         ],
     ],
 
@@ -45,9 +45,9 @@ return [
         'crud' => [
             'create' => 'สร้าง',
             'delete' => 'ลบ',
-            'edit'   => 'แก้ไข',
+            'edit' => 'แก้ไข',
             'update' => 'ปรับปรุง',
-        'view'       => 'แสดง',
+        'view' => 'แสดง',
         ],
 
         'save' => 'บันทึก',

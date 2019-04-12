@@ -50,8 +50,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'active'    => 'boolean',
-        'asurite'   => 'boolean',
+        'active' => 'boolean',
+        'asurite' => 'boolean',
         'confirmed' => 'boolean',
     ];
 
@@ -96,7 +96,7 @@ class User extends Authenticatable
         'phone',
         'research_interests',
         'department',
-        'organization_id'
+        'organization_id',
     ];
 
     /**
@@ -105,7 +105,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +169,7 @@ class User extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
-    /**
+    /*
      * Rehash user password using bcrypt(); rehashing from insecure md5sum()
      * @param [type] $value [description]
      */
@@ -178,5 +177,4 @@ class User extends Authenticatable
     // {
     //     $this->attributes['password'] = bcrypt($value);
     // }
-
 }

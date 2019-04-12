@@ -7,7 +7,7 @@ use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipAttachmentReques
 use SCCatalog\Models\Lookup\AttachmentStatus;
 use SCCatalog\Models\Lookup\AttachmentType;
 use SCCatalog\Models\Opportunity\Internship;
-use SCCatalog\Repositories\Backend\Opportunity\InternshipAttachmentRepository;
+use SCCatalog\Repositories\Opportunity\InternshipAttachmentRepository;
 use Spatie\MediaLibrary\Media;
 
 /**
@@ -39,11 +39,11 @@ class InternshipAttachmentController extends Controller
      */
     public function add(
         ManageInternshipAttachmentRequest $request,
+        Internship $internship,
         AttachmentStatus $attachmentStatusRepository,
-        AttachmentType $attachmentTypeRepository,
-        Internship $internship
+        AttachmentType $attachmentTypeRepository
     ) {
-        return view('backend.opportunity.internship.add_attachment')
+        return view('backend.opportunity.internship.attachment.add')
             ->with('attachmentStatuses', $attachmentStatusRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
             ->with('attachmentTypes', $attachmentTypeRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
             ->with('internship', $internship);
@@ -74,16 +74,16 @@ class InternshipAttachmentController extends Controller
      */
     public function edit(
         ManageInternshipAttachmentRequest $request,
-        AttachmentStatus $attachmentStatusRepository,
-        AttachmentType $attachmentTypeRepository,
         Internship $internship,
-        Media $media
+        Media $media,
+        AttachmentStatus $attachmentStatusRepository,
+        AttachmentType $attachmentTypeRepository
     ) {
-        return view('backend.opportunity.internship.edit_attachment')
-            ->with('attachmentStatuses', $attachmentStatusRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
-            ->with('attachmentTypes', $attachmentTypeRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
+        return view('backend.opportunity.internship.attachment.edit')
             ->with('internship', $internship)
-            ->with('media', $media);
+            ->with('media', $media)
+            ->with('attachmentStatuses', $attachmentStatusRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray())
+            ->with('attachmentTypes', $attachmentTypeRepository->get(['id', 'slug'])->pluck('slug', 'id')->toArray());
     }
 
     /**

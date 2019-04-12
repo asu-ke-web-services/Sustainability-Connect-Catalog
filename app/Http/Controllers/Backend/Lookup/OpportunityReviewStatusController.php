@@ -5,8 +5,8 @@ namespace SCCatalog\Http\Controllers\Backend\Lookup;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Lookup\OpportunityReviewStatusRequest;
 use SCCatalog\Http\Requests\Backend\Lookup\ManageLookupRequest;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityReviewStatusRepository;
-use SCCatalog\Repositories\Backend\Lookup\OpportunityTypeRepository;
+use SCCatalog\Repositories\Lookup\OpportunityReviewStatusRepository;
+use SCCatalog\Repositories\Lookup\OpportunityTypeRepository;
 
 /**
  * Class OpportunityReviewStatusController.

@@ -5,7 +5,7 @@ namespace SCCatalog\Http\Controllers\Backend\Lookup;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Backend\Lookup\UserTypeRequest;
 use SCCatalog\Http\Requests\Backend\Lookup\ManageLookupRequest;
-use SCCatalog\Repositories\Backend\Lookup\UserTypeRepository;
+use SCCatalog\Repositories\Lookup\UserTypeRepository;
 
 /**
  * Class UserTypeController.
@@ -96,7 +96,7 @@ class UserTypeController extends Controller
      */
     public function update(UserTypeRequest $request, $id)
     {
-       $this->repository->updateById($usertype->id, $request->only(
+        $this->repository->updateById($usertype->id, $request->only(
             'order',
             'name'
         ));

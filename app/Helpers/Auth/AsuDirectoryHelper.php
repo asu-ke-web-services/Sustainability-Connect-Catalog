@@ -273,7 +273,7 @@ class AsuDirectoryHelper
             return 'staff';
         }
 
-        return false;
+        return 'student';
     }
 
     /**

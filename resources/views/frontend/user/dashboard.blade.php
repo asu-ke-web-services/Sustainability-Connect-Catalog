@@ -184,7 +184,7 @@
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                         <a href="{{ route('frontend.opportunity.internship.private.show', $internship) }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('frontend.opportunity.internship.public.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.public.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
                                         {{-- <a href="{{ route('frontend.opportunity.internship.private.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
                                         {{-- <a href="{{ route('frontend.opportunity.internship.private.print', $internship) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
                                     </div>

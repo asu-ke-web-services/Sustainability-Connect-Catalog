@@ -58,6 +58,8 @@ class InternshipPrivateController extends Controller
                 'keywords',
                 'followers',
                 'applicants',
+                'participants',
+                'mentors',
             ])
             ->getById($id);
 

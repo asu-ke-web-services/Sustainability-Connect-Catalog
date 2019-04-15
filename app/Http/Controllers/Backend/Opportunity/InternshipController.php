@@ -148,6 +148,10 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
             'categories',
             'keywords',
             'users',
+            'followers',
+            'applicants',
+            'participants',
+            'mentors',
             'createdByUser',
             'updatedByUser'
         );

@@ -142,6 +142,10 @@ class ProjectController extends Controller
             'categories',
             'keywords',
             'users',
+            'followers',
+            'applicants',
+            'participants',
+            'mentors',
             'createdByUser',
             'updatedByUser'
         );

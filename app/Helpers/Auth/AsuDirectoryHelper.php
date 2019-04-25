@@ -3,6 +3,7 @@
 namespace SCCatalog\Helpers\Auth;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 use SCCatalog\Exceptions\GeneralException;
 
 /**

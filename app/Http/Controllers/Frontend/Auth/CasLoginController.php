@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Frontend\Auth\UserLoggedIn;

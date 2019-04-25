@@ -69,7 +69,7 @@ class CasLoginController extends Controller
             cas()->authenticate();
         }
 
-        Log::channel('slack')->debug('New sign-in - CAS User: '.cas()->getCurrentUser());
+        Log::channel('stack')->debug('New sign-in - CAS User: '.cas()->getCurrentUser());
 
         // Create the user if this is a new social account or find the one that is already there.
         try {

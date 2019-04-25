@@ -275,6 +275,8 @@ class UserRepository extends BaseRepository
         // Check to see if there is a user with this ASURITE.
         $user = $this->getByColumn($asurite, 'asurite_login');
 
+        Log::channel('slack')->info('Lookup user: '.$user);
+
         /*
          * If the user does not exist create them
          * The true flag indicate that it is a social account

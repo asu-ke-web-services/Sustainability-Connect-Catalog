@@ -35,6 +35,10 @@ class AsuDirectoryHelper
         }
         $asurite = urlencode($asurite);
 
+
+        Log::channel('slack')->info('urlencoded ASURITE: '.$asurite);
+
+
         $client = new Client([
             // Base URI is used with relative requests
             'base_uri' => 'https://asudir-solr.asu.edu/asudir/directory/',
@@ -42,6 +46,8 @@ class AsuDirectoryHelper
             'timeout' => 2.0,
         ]);
         $response = $client->request('GET', 'select?q=asuriteId:' . $asurite . '&wt=json');
+
+        Log::channel('slack')->info('Directory response: '.$response);
 
         $code = $response->getStatusCode();
 

@@ -37,7 +37,7 @@ class AsuDirectoryHelper
         $asurite = urlencode($asurite);
 
 
-        Log::channel('slack')->info('urlencoded ASURITE: '.$asurite);
+        Log::channel('slack')->debug('urlencoded ASURITE: '.$asurite);
 
 
         $client = new Client([
@@ -48,7 +48,7 @@ class AsuDirectoryHelper
         ]);
         $response = $client->request('GET', 'select?q=asuriteId:' . $asurite . '&wt=json');
 
-        Log::channel('slack')->info('Directory response: '.$response);
+        Log::channel('slack')->debug('Directory response: '.$response);
 
         $code = $response->getStatusCode();
 

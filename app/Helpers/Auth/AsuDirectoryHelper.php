@@ -81,7 +81,7 @@ class AsuDirectoryHelper
             return (int) $info['response']['docs'][0]['eid'];
         }
 
-        return '';
+        return false;
     }
 
     /**

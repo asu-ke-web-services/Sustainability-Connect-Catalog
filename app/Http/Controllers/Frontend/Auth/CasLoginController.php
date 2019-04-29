@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use SCCatalog\Exceptions\GeneralException;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Events\Frontend\Auth\UserLoggedIn;
@@ -67,6 +68,8 @@ class CasLoginController extends Controller
             }
             cas()->authenticate();
         }
+
+        Log::channel('stack')->debug('New sign-in - CAS User: '.cas()->getCurrentUser());
 
         // Create the user if this is a new social account or find the one that is already there.
         try {

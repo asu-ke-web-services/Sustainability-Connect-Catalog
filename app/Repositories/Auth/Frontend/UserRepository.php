@@ -7,6 +7,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use SCCatalog\Events\Frontend\Auth\UserConfirmed;
 use SCCatalog\Events\Frontend\Auth\UserProviderRegistered;
 use SCCatalog\Exceptions\GeneralException;
@@ -274,6 +275,8 @@ class UserRepository extends BaseRepository
     {
         // Check to see if there is a user with this ASURITE.
         $user = $this->getByColumn($asurite, 'asurite_login');
+
+        Log::channel('stack')->debug('Lookup user: '.$user);
 
         /*
          * If the user does not exist create them

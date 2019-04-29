@@ -37,7 +37,7 @@ class AsuDirectoryHelper
         $asurite = urlencode($asurite);
 
 
-        Log::channel('stack')->debug('urlencoded ASURITE: '.$asurite);
+        Log::channel('stack')->debug('Requesting ASU Directory info for ASURITE: '.$asurite);
 
 
         $client = new Client([
@@ -48,7 +48,7 @@ class AsuDirectoryHelper
         ]);
         $response = $client->request('GET', 'select?q=asuriteId:' . $asurite . '&wt=json');
 
-        Log::channel('stack')->debug('Directory response: '.$response);
+        Log::channel('stack')->debug('ASU Directory response: '.$response);
 
         $code = $response->getStatusCode();
 

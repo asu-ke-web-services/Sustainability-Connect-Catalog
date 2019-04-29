@@ -276,7 +276,7 @@ class UserRepository extends BaseRepository
         // Check to see if there is a user with this ASURITE.
         $user = $this->getByColumn($asurite, 'asurite_login');
 
-        Log::channel('stack')->debug('Lookup user: '.$user);
+        Log::channel('stack')->debug('DB lookup user: '.$user);
 
         /*
          * If the user does not exist create them

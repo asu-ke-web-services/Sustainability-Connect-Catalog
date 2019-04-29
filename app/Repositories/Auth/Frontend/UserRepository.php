@@ -7,6 +7,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use SCCatalog\Events\Frontend\Auth\UserConfirmed;
 use SCCatalog\Events\Frontend\Auth\UserProviderRegistered;
 use SCCatalog\Exceptions\GeneralException;
@@ -275,6 +276,8 @@ class UserRepository extends BaseRepository
         // Check to see if there is a user with this ASURITE.
         $user = $this->getByColumn($asurite, 'asurite_login');
 
+        Log::channel('stack')->debug('DB lookup user: '.$user);
+
         /*
          * If the user does not exist create them
          * The true flag indicate that it is a social account
@@ -327,31 +330,32 @@ class UserRepository extends BaseRepository
         }
 
         // if user account was found, let's ensure we have stored updated ASURITE status
-        else {
-            // Lookup ASURITE in iSearch
-            $directoryInfo = AsuDirectoryHelper::getDirectoryInfoByAsurite($asurite);
-            $userType = AsuDirectoryHelper::getUserType($directoryInfo);
+        // else {
+        //     // Lookup ASURITE in iSearch
+        //     $directoryInfo = AsuDirectoryHelper::getDirectoryInfoByAsurite($asurite);
 
-            $user_types = [
-                'student' => 1,
-                'alumni' => 2,
-                'faculty' => 3,
-                'staff' => 4,
-                'professional' => 5,
-            ];
+        //     $userType = AsuDirectoryHelper::getUserType($directoryInfo);
 
-            $user = parent::updateById(
-                $user->id,
-                [
-                    'asurite' => 1,
-                    'asurite_login' => $asurite,
-                    // 'user_type_id'  => $user_types[$userType],
-                    'active' => 1,
-                    'confirmed' => 1,
-                    'password' => Hash::make(str_random(20)),
-                ]
-            );
-        }
+        //     $user_types = [
+        //         'student' => 1,
+        //         'alumni' => 2,
+        //         'faculty' => 3,
+        //         'staff' => 4,
+        //         'professional' => 5,
+        //     ];
+
+        //     $user = parent::updateById(
+        //         $user->id,
+        //         [
+        //             'asurite' => 1,
+        //             'asurite_login' => $asurite,
+        //             // 'user_type_id'  => $user_types[$userType],
+        //             'active' => 1,
+        //             'confirmed' => 1,
+        //             'password' => Hash::make(str_random(20)),
+        //         ]
+        //     );
+        // }
 
         // Return the user object
         return $user;

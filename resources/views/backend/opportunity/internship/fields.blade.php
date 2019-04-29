@@ -423,11 +423,11 @@
         </div><!--card-body-->
     </div><!--card-->
 
-{{-- @push('after-styles')
+@push('after-styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
-@endpush --}}
+@endpush
 
-@section('javascript')
+@push('scripts')
     <script src="https://cdn.ckeditor.com/4.11.3/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace( 'description' );
@@ -476,4 +476,4 @@
             }
         });
     </script>
-@endsection
+@endpush

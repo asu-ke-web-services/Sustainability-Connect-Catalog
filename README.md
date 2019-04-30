@@ -60,23 +60,8 @@ You need to set up your development environment before you can do anything.
 
 Laravel Homestead is an official, pre-packaged Vagrant box that provides you a development environment without requiring you to install PHP, a web server, and any other server software on your local machine. No more worrying about messing up your operating system. Vagrant boxes are completely disposable. If something goes wrong, you can destroy and re-create the box in minutes.
 
-Instructions on installing Homestead and launching this application are available [her](https://laravel.com/docs/5.8/homestead).
+Instructions on installing Homestead and launching this application are available [here](https://laravel.com/docs/5.8/homestead).
 
 
-Install [Node.js and NPM](https://nodejs.org/en/download/)
 
-- on OSX use [homebrew](http://brew.sh) `brew install node`
-- on Windows use [chocolatey](https://chocolatey.org/) `choco install nodejs`
-
-Install yarn globally
-
-```bash
-yarn install yarn -g
-```
-
-Install a MySQL database.
-
-> If you work with a mac, we recommend to use homebrew for the installation.
-
-
-TO BE CONTINUED
+### TO BE CONTINUED

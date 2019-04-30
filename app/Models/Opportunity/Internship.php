@@ -255,7 +255,7 @@ class Internship extends Model implements HasMedia
     {
         return (9 === $this->opportunity_status_id &&
             null !== $this->application_deadline_at &&
-            $this->application_deadline_at->greaterThan(Carbon::tomorrow()) // TODO: fix timezone discrepancy UTC vs AZ - this is temporary fix
+            $this->application_deadline_at->greaterThan(Carbon::today())
 
             // $this->listing_start_at !== null &&
             // $this->listing_start_at->lessThan(Carbon::today()) &&
@@ -538,7 +538,7 @@ class Internship extends Model implements HasMedia
         return $query
             ->where([
                 ['application_deadline_at', '<>', null],
-                ['application_deadline_at', '>', Carbon::tomorrow()],
+                ['application_deadline_at', '>', Carbon::today()],
             ])
             ->where('opportunity_status_id', 9);
     }

@@ -1,58 +1,67 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+  <img src="./logo-asu_jaw_globalsustainability__150ppi.png" alt="Julie Ann Wrigley Global Institute of Sustainability" width="400" />
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+<p align="center">
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[![Build Status](https://travis-ci.com/gios-asu/Sustainability-Connect-Catalog.svg?token=oSRRJhepR7mbqntkCzhN&branch=develop)](https://travis-ci.com/gios-asu/Sustainability-Connect-Catalog)
+[![Dependency Status](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog.svg)](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog)
+[![devDependency Status](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog/dev-status.svg)](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog#info=devDependencies)
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+[![Github release](https://img.shields.io/github/release/gios-asu/Sustainability-Connect-Catalog.svg?style=flat)](https://github.com/gios-asu/Sustainability-Connect-Catalog/releases)
+[![Github issues](https://img.shields.io/github/issues/gios-asu/Sustainability-Connect-Catalog.svg?style=flat)](https://github.com/gios-asu/Sustainability-Connect-Catalog/issues)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](https://github.com/gios-asu/Sustainability-Connect-Catalog/blob/master/LICENSE.md)
 
-## Learning Laravel
+</p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+<h1 align="center">Sustainability Connect Catalog application using Laravel</h1>
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+<p align="center">
+  <b>A PHP Laravel opportunity management application based on the Laravel 5 Boilerplate codebase written by <a href="http://laravel-boilerplate.com/">Rappasoft</a>.</b>
+</p>
 
-## Laravel Sponsors
+<br />
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+![divider](./divider.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+### Features
 
-## Contributing
+- **Laravel** a web application framework with expressive, elegant syntax. [Documentation](https://laravel.com/docs) available.
+- **User Authentication and Access Control** precisely define user roles and permissions, and assign roles and individual permisisons to users to control their access to site features.
+- **Third-Party Social Logins - Google, Twitter, Github, etc.** thanks to the awesome annotations of the libraries from [pleerock](https://github.com/pleerock).
+- **ASU CAS Logins & ASU Directory (iSearch) Support**.
+- **Frontend and Backend Dashboards** themed using the beautiful [CoreUI Bootstrap 4 theme](https://coreui.io/).
+- **Full-text, fuzzy search** thanks to [Algolia](https://www.algolia.com/).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+![divider](./divider.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ❯ Table of Contents
 
-## License
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Logging](#-logging)
+- [Seeding](#-seeding)
+- [Docker](#-docker)
+- [Further Documentation](#-further-documentation)
+- [Related Projects](#-related-projects)
+- [License](#-license)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![divider](./divider.png)
+
+## ❯ Getting Started
+
+### Step 1: Set up the Development Environment
+
+You need to set up your development environment before you can do anything.
+
+#### Homestead VM
+
+Laravel Homestead is an official, pre-packaged Vagrant box that provides you a development environment without requiring you to install PHP, a web server, and any other server software on your local machine. No more worrying about messing up your operating system. Vagrant boxes are completely disposable. If something goes wrong, you can destroy and re-create the box in minutes.
+
+Instructions on installing Homestead and launching this application are available [here](https://laravel.com/docs/5.8/homestead).
+
+
+
+### TO BE CONTINUED

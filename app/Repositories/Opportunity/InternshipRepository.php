@@ -140,42 +140,45 @@ class InternshipRepository extends BaseRepository
      */
     public function create(array $data)
     {
+        if (!empty($data['opportunity_start_at'])) {
+            $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
+        }
+
+        if (!empty($data['opportunity_end_at'])) {
+            $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
+        }
+
+        if (!empty($data['listing_start_at'])) {
+            $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
+        }
+
+        if (!empty($data['listing_end_at'])) {
+            $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
+        }
+
+        if (!empty($data['application_deadline_at'])) {
+            $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
+        }
+
+        // If text deadline value is set, that overrides any value in the date field, which is to be set
+        // to far-future date for Algolia search purposes.
+        if (!empty($data['application_deadline_text'])) {
+            $data['application_deadline_at'] = Carbon::create(2030, 12, 31, 23, 59);
+        }
+
         return DB::transaction(function () use ($data) {
-            if (!empty($data['opportunity_start_at'])) {
-                $data['opportunity_start_at'] = Carbon::parse($data['opportunity_start_at']);
-            }
-
-            if (!empty($data['opportunity_end_at'])) {
-                $data['opportunity_end_at'] = Carbon::parse($data['opportunity_end_at']);
-            }
-
-            if (!empty($data['listing_start_at'])) {
-                $data['listing_start_at'] = Carbon::parse($data['listing_start_at']);
-            }
-
-            if (!empty($data['listing_end_at'])) {
-                $data['listing_end_at'] = Carbon::parse($data['listing_end_at']);
-            }
-
-            if (!empty($data['application_deadline_at'])) {
-                $data['application_deadline_at'] = Carbon::parse($data['application_deadline_at']);
-            }
-
-            // If text deadline value is set, that overrides any value in the date field, which is to be set
-            // to far-future date for Algolia search purposes.
-            if (!empty($data['application_deadline_text'])) {
-                $data['application_deadline_at'] = Carbon::create(2030, 12, 31, 23, 59);
-            }
-
             $internship = $this->model->create($data);
 
             if ($internship) {
-                // save Addresses
-                if (isset($data['addresses'])) {
-                    foreach ($data['addresses'] as $address) {
-                        $internship->addresses()->save(Address::firstOrCreate($address));
-                    }
-                }
+                // save Address
+                $address = new Address([
+                    'city' => $data['city'],
+                    'state' => $data['state'],
+                    'country' => $data['country'] ?? '',
+                    'comment' => $data['comment'] ?? '',
+                ]);
+
+                $internship->addresses()->save($address);
 
                 // attach Affiliations
                 if (isset($data['affiliations'])) {
@@ -253,10 +256,24 @@ class InternshipRepository extends BaseRepository
 
         return DB::transaction(function () use ($internship, $data) {
             if ($internship->update($data)) {
-                // save Addresses
-                if (isset($data['addresses'])) {
-                    foreach ($data['addresses'] as $address) {
-                        $internship->addresses()->save(Address::firstOrCreate($address));
+                // save Address
+                if (isset($data['city'])) {
+                    if (0 < count($internship->addresses)) {
+                        $internship->addresses()->first()->update([
+                            'city' => $data['city'],
+                            'state' => $data['state'],
+                            'country' => $data['country'] ?? '',
+                            'comment' => $data['comment'] ?? '',
+                        ]);
+                    } else {
+                        $address = new Address([
+                            'city' => $data['city'],
+                            'state' => $data['state'],
+                            'country' => $data['country'] ?? '',
+                            'comment' => $data['comment'] ?? '',
+                        ]);
+
+                        $internship->addresses()->save($address);
                     }
                 }
 

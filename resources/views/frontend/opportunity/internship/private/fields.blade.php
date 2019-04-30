@@ -200,29 +200,29 @@
 
                     <label for="addresses">Location:</label>
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][city]',
+                        'name'        => 'city',
                         'label'       => 'City: *',
                         'attribute'   => 'required',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][state]',
+                        'name'        => 'state',
                         'label'       => 'State/Prov: *',
                         'attribute'   => 'required',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.input', [
-                        'name'        => 'addresses[0][country]',
+                        'name'        => 'country',
                         'label'       => 'Country:',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     @component('backend.includes.components.form.textarea', [
-                        'name'        => 'addresses[0][comment]',
+                        'name'        => 'comment',
                         'label'       => 'Location Comment:',
-                        'object'      => $internship ?? null,
+                        'object'      => $internship->addresses[0] ?? null,
                     ])@endcomponent
 
                     {{--
@@ -455,8 +455,8 @@
                 },
                 "description": 'required',
                 "opportunity_status_id": 'required',
-                "addresses[0][city]": 'required',
-                "addresses[0][state]": 'required'
+                "city": 'required',
+                "state": 'required'
             },
             messages: {
                 "name": {
@@ -465,8 +465,8 @@
                 },
                 "description": 'Please enter the internship description',
                 "opportunity_status_id": 'Please select internship status',
-                "addresses[0][city]": 'Please enter the internship city',
-                "addresses[0][state]": 'Please enter the internship state'
+                "city": 'Please enter the internship city',
+                "state": 'Please enter the internship state'
             },
             errorElement: 'em',
             errorPlacement: function errorPlacement(error, element) {

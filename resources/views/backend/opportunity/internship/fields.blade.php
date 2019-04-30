@@ -444,8 +444,8 @@
                     maxlength: 1024
                 },
                 "opportunity_status_id": 'required',
-                "addresses[0][city]": 'required',
-                "addresses[0][state]": 'required'
+                "city": 'required',
+                "state": 'required'
             },
             messages: {
                 "name": {
@@ -453,8 +453,8 @@
                     maxlength: 'The internship name may not be longer than 1024 characters'
                 },
                 "opportunity_status_id": 'Please select internship status',
-                "addresses[0][city]": 'Please enter the internship city',
-                "addresses[0][state]": 'Please enter the internship state'
+                "city": 'Please enter the internship city',
+                "state": 'Please enter the internship state'
             },
             errorElement: 'em',
             errorPlacement: function errorPlacement(error, element) {

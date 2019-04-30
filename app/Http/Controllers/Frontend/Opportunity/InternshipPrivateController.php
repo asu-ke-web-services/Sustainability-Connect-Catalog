@@ -161,7 +161,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
         $internship = $this->internshipRepository->create($request->all());
 
         return redirect()->route('frontend.user.dashboard')
-            ->withFlashSuccess(__('Proposal successfully submitted'));
+            ->withFlashSuccess(__('Internship successfully created'));
     }
 
     /**
@@ -213,6 +213,6 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
         $internship = $this->internshipRepository->update($internship, $request->all());
 
         return redirect()->route('frontend.user.dashboard')
-            ->withFlashSuccess(__('Proposal successfully submitted'));
+            ->withFlashSuccess(__('Internship successfully updated'));
     }
 }

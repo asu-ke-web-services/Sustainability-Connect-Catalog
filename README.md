@@ -4,6 +4,7 @@
 
 
 <p align="center">
+
 [![Build Status](https://travis-ci.com/gios-asu/Sustainability-Connect-Catalog.svg?token=oSRRJhepR7mbqntkCzhN&branch=develop)](https://travis-ci.com/gios-asu/Sustainability-Connect-Catalog)
 [![Dependency Status](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog.svg)](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog)
 [![devDependency Status](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog/dev-status.svg)](https://david-dm.org/gios-asu/Sustainability-Connect-Catalog#info=devDependencies)
@@ -11,6 +12,7 @@
 [![Github release](https://img.shields.io/github/release/gios-asu/Sustainability-Connect-Catalog.svg?style=flat)](https://github.com/gios-asu/Sustainability-Connect-Catalog/releases)
 [![Github issues](https://img.shields.io/github/issues/gios-asu/Sustainability-Connect-Catalog.svg?style=flat)](https://github.com/gios-asu/Sustainability-Connect-Catalog/issues)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](https://github.com/gios-asu/Sustainability-Connect-Catalog/blob/master/LICENSE.md)
+
 </p>
 
 <h1 align="center">Sustainability Connect Catalog application using Laravel</h1>

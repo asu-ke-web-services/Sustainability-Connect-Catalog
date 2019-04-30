@@ -255,7 +255,7 @@ class Internship extends Model implements HasMedia
     {
         return (9 === $this->opportunity_status_id &&
             null !== $this->application_deadline_at &&
-            $this->application_deadline_at->greaterThan(Carbon::today())
+            $this->application_deadline_at->greaterThan(Carbon::tomorrow()) // TODO: fix timezone discrepancy UTC vs AZ - this is temporary fix
 
             // $this->listing_start_at !== null &&
             // $this->listing_start_at->lessThan(Carbon::today()) &&

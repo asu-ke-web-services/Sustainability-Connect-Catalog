@@ -82,7 +82,7 @@ if (! function_exists('home_route')) {
             return 'frontend.user.dashboard';
         }
 
-        return 'frontend.opportunity.project.search_active';
+        return 'frontend.opportunity.project.public.active';
         // return config('app.sc_base_url');
     }
 }

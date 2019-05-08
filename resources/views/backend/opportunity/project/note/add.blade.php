@@ -36,7 +36,7 @@
                             <!-- Hidden Current User Field -->
                             <div class="form-group row">
                                 <div class="col-md-10">
-                                    <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
+                                    <input type="hidden" value="{{ auth()->user()->id }}" name="user_id" id="user_id">
                                 </div><!--col-->
                             </div><!--form-group-->
 

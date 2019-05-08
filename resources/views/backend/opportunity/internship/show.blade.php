@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ ucwords($project->name) }}
+                    {{ ucwords($internship->name) }}
                 </h4>
             </div><!--col-->
 

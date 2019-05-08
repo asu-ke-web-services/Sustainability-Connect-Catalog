@@ -45,6 +45,7 @@ class Note extends Model
      * @var array
      */
     public $fillable = [
+        'user_id',
         'body',
     ];
 

@@ -12,8 +12,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.opportunity.projects.management') }}
-                    <small class="text-muted">{{ __('labels.backend.opportunity.projects.view') }}</small>
+                    {{ ucwords($project->name) }}
                 </h4>
             </div><!--col-->
 

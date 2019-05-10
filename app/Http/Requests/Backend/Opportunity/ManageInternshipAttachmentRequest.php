@@ -14,7 +14,7 @@ class ManageInternshipAttachmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage internship');
+        return $this->user()->can('manage internship') || $this->user()->isAdmin();
     }
 
     /**

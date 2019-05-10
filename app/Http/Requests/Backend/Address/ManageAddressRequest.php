@@ -16,7 +16,7 @@ class ManageAddressRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage address');
+        return $this->user()->can('manage address') || $this->user()->isAdmin();
     }
 
     /**

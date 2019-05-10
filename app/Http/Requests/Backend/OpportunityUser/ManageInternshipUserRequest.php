@@ -14,7 +14,7 @@ class ManageInternshipUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage project user');
+        return $this->user()->can('manage internship user') || $this->user()->isAdmin();
     }
 
     /**

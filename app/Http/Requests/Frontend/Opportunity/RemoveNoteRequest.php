@@ -14,7 +14,7 @@ class RemoveNoteRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage note');
+        return Auth::check() && $this->user()->can('remove note') || $this->user()->isAdmin();
     }
 
     /**

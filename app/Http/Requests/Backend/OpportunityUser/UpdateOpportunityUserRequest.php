@@ -14,7 +14,7 @@ class UpdateOpportunityUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('update project user');
+        return $this->user()->can('update project user') || $this->user()->isAdmin();
     }
 
     /**

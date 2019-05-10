@@ -14,7 +14,7 @@ class ManageProjectUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage project user');
+        return $this->user()->can('manage project user') || $this->user()->isAdmin();
     }
 
     /**

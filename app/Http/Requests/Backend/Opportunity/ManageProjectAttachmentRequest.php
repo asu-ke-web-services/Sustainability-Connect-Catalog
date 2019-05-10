@@ -14,7 +14,7 @@ class ManageProjectAttachmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage project');
+        return $this->user()->can('manage project') || $this->user()->isAdmin();
     }
 
     /**

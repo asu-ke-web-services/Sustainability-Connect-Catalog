@@ -17,7 +17,7 @@ class OpportunityReviewStatusRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage lookup');
+        return $this->user()->can('manage lookup') || $this->user()->isAdmin();
     }
 
     /**

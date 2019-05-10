@@ -16,7 +16,7 @@ class UpdateInternshipRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('update internship');
+        return $this->user()->can('store internship') || $this->user()->isAdmin();
     }
 
     /**

@@ -14,7 +14,7 @@ class RemoveOpportunityUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('remove project user');
+        return $this->user()->can('remove project user') || $this->user()->isAdmin();
     }
 
     /**

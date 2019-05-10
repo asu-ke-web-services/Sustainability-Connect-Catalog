@@ -14,7 +14,7 @@ class ManageProjectNoteRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage note');
+        return Auth::check() && $this->user()->can('manage note') || $this->user()->isAdmin();
     }
 
     /**

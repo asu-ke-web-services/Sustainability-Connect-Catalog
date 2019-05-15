@@ -4,6 +4,7 @@ namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ManageProjectNoteRequest extends FormRequest
 {

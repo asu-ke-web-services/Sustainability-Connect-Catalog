@@ -156,16 +156,12 @@ class Project extends Model implements HasMedia
      */
     public function getDeleteButtonAttribute()
     {
-        if ($this->id != auth()->id() && $this->id != 1) {
-            return '<a href="' . route('admin.opportunity.project.destroy', $this) . '"
-                data-method="delete"
-                data-trans-button-cancel="' . __('buttons.general.cancel') . '"
-                data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
-                data-trans-title="' . __('strings.backend.opportunity.projects.delete_project') . '"
-                class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
-        }
-
-        return '';
+        return '<a href="' . route('admin.opportunity.project.destroy', $this) . '"
+            data-method="delete"
+            data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+            data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+            data-trans-title="' . __('strings.backend.opportunity.projects.delete_project') . '"
+            class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
     }
 
     /**

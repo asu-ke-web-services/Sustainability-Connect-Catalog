@@ -45,32 +45,32 @@ Breadcrumbs::for('admin.opportunity.internship.edit', function ($trail, $id) {
     $trail->push(__('menus.backend.opportunity.internships.edit'), route('admin.opportunity.internship.edit', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.internship.attachment.add', function ($trail, $internship) {
+Breadcrumbs::for('admin.opportunity.internship.attachment.add', function ($trail, $id) {
     $trail->parent('admin.opportunity.internship.index');
-    $trail->push(__('menus.backend.opportunity.internships.attachment.add'), route('admin.opportunity.internship.attachment.add', $internship));
+    $trail->push(__('menus.backend.opportunity.internships.attachment.add'), route('admin.opportunity.internship.show', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.internship.attachment.edit', function ($trail, $internship, $media) {
+Breadcrumbs::for('admin.opportunity.internship.attachment.edit', function ($trail, $id) {
     $trail->parent('admin.opportunity.internship.index');
-    $trail->push(__('menus.backend.opportunity.internships.attachment.edit'), route('admin.opportunity.internship.attachment.edit', $internship, $media));
+    $trail->push(__('menus.backend.opportunity.internships.attachment.edit'), route('admin.opportunity.internship.show', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.internship.note.add', function ($trail, $internship) {
+Breadcrumbs::for('admin.opportunity.internship.note.add', function ($trail, $id) {
     $trail->parent('admin.opportunity.internship.index');
-    $trail->push(__('menus.backend.opportunity.internships.note.add'), route('admin.opportunity.internship.note.add', $internship));
+    $trail->push(__('menus.backend.opportunity.internships.note.add'), route('admin.opportunity.internship.show', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.internship.note.edit', function ($trail, $internship, $media) {
+Breadcrumbs::for('admin.opportunity.internship.note.edit', function ($trail, $id) {
     $trail->parent('admin.opportunity.internship.index');
-    $trail->push(__('menus.backend.opportunity.internships.note.edit'), route('admin.opportunity.internship.note.edit', $internship, $media));
+    $trail->push(__('menus.backend.opportunity.internships.note.edit'), route('admin.opportunity.internship.show', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.internship.user.add', function ($trail, $internship) {
+Breadcrumbs::for('admin.opportunity.internship.user.add', function ($trail, $id) {
     $trail->parent('admin.opportunity.internship.index');
-    $trail->push(__('menus.backend.opportunity.internships.user.add'), route('admin.opportunity.internship.user.add', $internship));
+    $trail->push(__('menus.backend.opportunity.internships.user.add'), route('admin.opportunity.internship.show', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.internship.user.edit', function ($trail, $internship, $media) {
+Breadcrumbs::for('admin.opportunity.internship.user.edit', function ($trail, $id) {
     $trail->parent('admin.opportunity.internship.index');
-    $trail->push(__('menus.backend.opportunity.internships.user.edit'), route('admin.opportunity.internship.user.edit', $internship, $media));
+    $trail->push(__('menus.backend.opportunity.internships.user.edit'), route('admin.opportunity.internship.show', $id));
 });

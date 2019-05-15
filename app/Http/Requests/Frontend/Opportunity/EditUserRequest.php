@@ -14,7 +14,7 @@ class EditUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && $this->user()->can('store project user') || $this->user()->isAdmin();
+        return Auth::check() && ( $this->user()->can('store project user') || $this->user()->isAdmin() );
     }
 
     /**

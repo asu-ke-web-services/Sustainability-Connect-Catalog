@@ -16,7 +16,7 @@ class EditFullInternshipRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && $this->user()->can('store internship') || $this->user()->isAdmin();
+        return Auth::check() && ( $this->user()->can('store internship') || $this->user()->isAdmin() );
     }
 
     /**

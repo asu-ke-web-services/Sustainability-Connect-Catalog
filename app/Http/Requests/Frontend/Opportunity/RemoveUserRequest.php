@@ -14,7 +14,7 @@ class RemoveUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && $this->user()->can('remove project user') || $this->user()->isAdmin();
+        return Auth::check() && ( $this->user()->can('remove project user') || $this->user()->isAdmin() );
     }
 
     /**

@@ -14,7 +14,7 @@ class RemoveAttachmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && $this->user()->can('remove attachment') || $this->user()->isAdmin();
+        return Auth::check() && ( $this->user()->can('remove attachment') || $this->user()->isAdmin() );
     }
 
     /**

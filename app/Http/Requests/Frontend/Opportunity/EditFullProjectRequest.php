@@ -16,7 +16,7 @@ class EditFullProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && $this->user()->can('store full project') || $this->user()->isAdmin();
+        return Auth::check() && ( $this->user()->can( 'store full project' ) || $this->user()->isAdmin() );
     }
 
     /**

@@ -80,7 +80,7 @@ Breadcrumbs::for('admin.opportunity.project.attachment.add', function ($trail, $
     $trail->push(__('menus.backend.opportunity.projects.attachment.add'), route('admin.opportunity.project.attachment.add', $project));
 });
 
-Breadcrumbs::for('admin.opportunity.project.attachment.edit', function ($trail, $project, $media) {
+Breadcrumbs::for('admin.opportunity.project.attachment.edit', function ($trail) {
     $trail->parent('admin.opportunity.project.index');
-    $trail->push(__('menus.backend.opportunity.projects.attachment.edit'), route('admin.opportunity.project.attachment.edit', $project, $media));
+    $trail->push('Edit Attachment', route('admin.opportunity.project.index'));
 });

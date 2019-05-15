@@ -74,7 +74,7 @@ class InternshipAttachmentRepository
         return DB::transaction(function () use ($internship, $media) {
             $internship->deleteMedia($media->id);
 
-            event(new AttachmentRemovedFromInternship($internship, $media));
+            // event(new AttachmentRemovedFromInternship($internship, $media));
 
             return $internship;
         });

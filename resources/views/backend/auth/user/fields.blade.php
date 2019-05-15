@@ -189,7 +189,7 @@
                                                             <div class="checkbox d-flex align-items-center">
                                                                 {{
                                                                     html()->label(
-                                                                        html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)
+                                                                        html()->checkbox('roles[]', isset($userRoles) ? in_array($role->name, $userRoles) : false, $role->name)
                                                                               ->class('switch-input')
                                                                               ->id('role-'.$role->id)
                                                                         . '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')
@@ -224,7 +224,7 @@
                                                 @foreach($permissions as $permission)
                                                     <div class="checkbox d-flex align-items-center">
                                                         {{ html()->label(
-                                                                html()->checkbox('permissions[]', in_array($permission->name, $userPermissions), $permission->name)
+                                                                html()->checkbox('permissions[]', isset($userPermissions) ? in_array($permission->name, $userPermissions) : false, $permission->name)
                                                                       ->class('switch-input')
                                                                       ->id('permission-'.$permission->id)
                                                                     . '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')

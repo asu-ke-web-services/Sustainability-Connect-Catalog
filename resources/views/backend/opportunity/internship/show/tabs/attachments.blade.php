@@ -18,7 +18,6 @@
                             <th>Name</th>
                             <th>Download</th>
                             <th>Type</th>
-                            {{-- <th>Approved by supervisor</th> --}}
                             <th>Visibility</th>
                             <th>{{ __('labels.general.actions') }}</th>
                         </tr>
@@ -29,11 +28,6 @@
                             <td>{{ ucwords($attachment->name) }}</td>
                             <td><a href="{{ $attachment->getUrl() }}">{{ $attachment->file_name }}</a></td>
                             <td>{{ $attachment->getCustomProperty('type') }}</td>
-                            {{-- @if (1 == $attachment->getCustomProperty('pending'))
-                                <td><span class="badge badge-success">{{ __('labels.general.yes') }}</span></td>
-                            @else
-                                <td><span class="badge badge-danger">{{ __('labels.general.no') }}</span></td>
-                            @endif --}}
                             <td>{{ $attachment->getCustomProperty('visibility') }}</td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">

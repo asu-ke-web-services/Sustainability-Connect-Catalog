@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\OpportunityUser;
+namespace SCCatalog\Http\Requests\Backend\Opportunity;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;

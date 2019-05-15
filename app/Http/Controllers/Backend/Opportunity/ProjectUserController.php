@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Backend\OpportunityUser\ManageProjectUserRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectUserRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Auth\Backend\UserRepository;

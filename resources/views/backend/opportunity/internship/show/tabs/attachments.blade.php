@@ -38,12 +38,7 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="{{ route('admin.opportunity.internship.attachment.edit', [$internship, $attachment]) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>
-                                    {{-- <a href="{{ route('admin.opportunity.internship.attachment.delete', [$internship, $attachment]) }}"
-                                        data-method="delete"
-                                        data-trans-button-cancel="{{ __('buttons.general.cancel') }}"
-                                        data-trans-button-confirm="{{ __('buttons.general.crud.delete') }}"
-                                        data-trans-title="{{ __('strings.backend.general.are_you_sure') }}"
-                                        class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a> --}}
+                                    <a href="{{ route('admin.opportunity.internship.attachment.delete', [$internship, $attachment]) }}" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
                                 </div>
                             </td>
                         </tr>

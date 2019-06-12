@@ -183,6 +183,7 @@
             </table>
         </div>
 
+        @if(count($publicAttachments) > 0)
         <h3>Internship Documents</h3>
         <div class="table-responsive">
             <table class="table table-striped">
@@ -197,3 +198,4 @@
                 </tbody>
             </table>
         </div>
+        @endif

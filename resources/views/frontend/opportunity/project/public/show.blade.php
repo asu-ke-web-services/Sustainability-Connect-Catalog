@@ -225,6 +225,7 @@
                     </table>
                 </div>
 
+                @if(count($publicAttachments) > 0)
                 <h3>Project Documents</h3>
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -239,6 +240,7 @@
                         </tbody>
                     </table>
                 </div>
+                @endif
 
                 <a href="{!! url()->previous() !!}" class="btn btn-default">Back</a>
             </div>

@@ -83,6 +83,15 @@ class InternshipPublicController extends Controller
             ])
             ->getById($id);
 
+        $attachments = $internship->getMedia();
+        $publicAttachments = [];
+
+        foreach ($attachments as $attachment) {
+            if ($attachment->getCustomProperty('visibility') === 'public') {
+                $publicAttachments[] = $attachment;
+            }
+        }
+
         $userAccessAffiliations = false;
         $canViewRestricted = false;
         $isFollowed = false;
@@ -118,6 +127,7 @@ class InternshipPublicController extends Controller
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
             ->with('isFollowed', $isFollowed)
-            ->with('isApplicationSubmitted', $isApplicationSubmitted);
+            ->with('isApplicationSubmitted', $isApplicationSubmitted)
+            ->with('publicAttachments', $publicAttachments);
     }
 }

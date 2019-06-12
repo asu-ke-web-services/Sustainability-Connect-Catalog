@@ -225,6 +225,21 @@
                     </table>
                 </div>
 
+                <h3>Project Documents</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach($publicAttachments as $attachment)
+                                <tr>
+                                    <td>{{ ucwords($attachment->name) }}</td>
+                                    <td><a href="{{ $attachment->getUrl() }}">{{ $attachment->file_name }}</a></td>
+                                    <td>{{ $attachment->getCustomProperty('type') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
                 <a href="{!! url()->previous() !!}" class="btn btn-default">Back</a>
             </div>
 

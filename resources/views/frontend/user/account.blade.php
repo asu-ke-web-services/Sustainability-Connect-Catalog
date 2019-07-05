@@ -24,12 +24,14 @@
                             </li>
                         </ul>
 --}}
+<!--
                         <a href="{{ route('frontend.user.account')}}" class="btn btn-primary btn-block"><i class="fa fa-user-circle"></i> {{ __('navs.frontend.user.account') }}</a>
                         @can('view admin dashboard')
                             &nbsp;<a href="{{ route ('admin.dashboard')}}" class="btn btn-primary btn-block">
                                 <i class="fa fa-user-secret"></i> {{ __('navs.frontend.user.administration') }}
                             </a>
                         @endcan
+-->
                     </div>
                     <!-- /.box-body -->
                 </div>

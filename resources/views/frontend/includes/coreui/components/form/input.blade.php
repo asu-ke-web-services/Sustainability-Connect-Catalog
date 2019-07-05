@@ -1,8 +1,10 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }} row">
     @if (isset($label))
+        <div class="col-md-2">
         {{ html()->label($label)
-                ->class('col-md-2 form-control-label')
+                ->class('form-control-label')
                 ->for($name) }}
+        </div>
     @endif
     <div class="col-md-10">
         {{ html()->input(

@@ -1,4 +1,4 @@
-@extends('frontend.layouts.asu')
+@extends('frontend.layouts.coreui-basic')
 
 @section('title', app_name() . ' | '.__('labels.frontend.passwords.reset_password_box_title'))
 

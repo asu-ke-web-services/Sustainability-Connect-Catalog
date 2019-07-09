@@ -1,4 +1,4 @@
-@extends('frontend.layouts.asu')
+@extends('frontend.layouts.coreui-basic')
 
 @section('title', app_name() . ' | '.__('labels.frontend.passwords.expired_password_box_title'))
 
@@ -38,6 +38,7 @@
                                         ->class('form-control')
                                         ->placeholder(__('validation.attributes.frontend.password'))
                                         ->required() }}
+                                    <p class="text-muted">Your password must be more than 8 characters long, should contain at least 1 uppercase, 1 lowercase and 1 number.</p>
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->

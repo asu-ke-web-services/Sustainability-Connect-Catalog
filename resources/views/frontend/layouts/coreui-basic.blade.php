@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 @langrtl
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 @else
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @endlangrtl
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,32 +24,15 @@
     @stack('after-styles')
 </head>
 
-<body class="{{ config('frontend.dashboard_body_classes') }}">
-    @include('frontend.includes.coreui.header')
+<body class="{{ config('frontend.auth_body_classes') }}">
+    {{-- @include('frontend.includes.coreui.header-basic') --}}
 
     <div class="app-body">
-        @include('frontend.includes.coreui.sidebar')
-
-        <main class="main">
-            @include('includes.partials.logged-in-as')
-            {{-- {!! Breadcrumbs::render() !!} --}}
-
-            <div class="container-fluid">
-                <div class="animated fadeIn">
-                    <div class="content-header">
-                        @yield('page-header')
-                    </div><!--content-header-->
-
-                    @include('includes.partials.messages')
-                    @yield('content')
-                </div><!--animated-->
-            </div><!--container-fluid-->
-        </main><!--main-->
-
-        {{-- @include('frontend.includes.coreui.aside') --}}
+        <div class="container">
+            @include('includes.partials.messages')
+            @yield('content')
+        </div>
     </div><!--app-body-->
-
-    @include('frontend.includes.coreui.footer')
 
     <!-- Scripts -->
     @stack('before-scripts')
@@ -57,6 +41,6 @@
     {!! script(mix('js/frontend.js')) !!}
     @stack('scripts')
     @stack('after-scripts')
-
 </body>
+
 </html>

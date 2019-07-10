@@ -16,7 +16,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('update project');
+        return $this->user()->can('store project') || $this->user()->isAdmin();
     }
 
     /**

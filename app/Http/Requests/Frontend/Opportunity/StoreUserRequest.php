@@ -14,7 +14,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('add project user');
+        return $this->user()->can('store project user') || $this->user()->isAdmin();
     }
 
     /**

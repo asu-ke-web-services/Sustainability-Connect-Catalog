@@ -13,7 +13,7 @@ const mix = require('laravel-mix');
 
 mix.setPublicPath('public');
 
-mix.sass('resources/sass/frontend/coreui-leaf/app.scss', 'css/frontend.css')
+mix.sass('resources/sass/frontend/coreui/app.scss', 'css/frontend.css')
   .sass('resources/sass/backend/app.scss', 'css/backend.css')
   .js(
     [
@@ -32,6 +32,9 @@ mix.sass('resources/sass/frontend/coreui-leaf/app.scss', 'css/frontend.css')
     'jquery',
     'jquery-validation',
     'bootstrap',
+    '@coreui/coreui-plugin-chartjs-custom-tooltips',
+    'ladda',
+    'toastr',
     'popper.js/dist/umd/popper',
     'axios',
     'sweetalert2',

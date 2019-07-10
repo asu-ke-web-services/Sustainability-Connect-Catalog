@@ -23,7 +23,7 @@
     @stack('after-styles')
 </head>
 
-<body class="{{ config('backend.body_classes') }}">
+<body class="{{ config('frontend.dashboard_body_classes') }}">
     @include('frontend.includes.coreui.header')
 
     <div class="app-body">

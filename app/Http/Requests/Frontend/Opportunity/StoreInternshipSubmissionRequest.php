@@ -18,7 +18,7 @@ class StoreInternshipSubmissionRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && $this->user()->can('store internship');
+        return Auth::check() && ( $this->user()->can('store internship') || $this->user()->isAdmin() );
     }
 
     /**

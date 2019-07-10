@@ -3,12 +3,13 @@
 namespace SCCatalog\Http\Controllers\Backend\Opportunity;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Http\Requests\Backend\OpportunityUser\ManageInternshipUserRequest;
+use SCCatalog\Http\Requests\Backend\Opportunity\ManageInternshipUserRequest;
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\Auth\Backend\UserRepository;
 use SCCatalog\Repositories\Opportunity\InternshipUserRepository;
 use SCCatalog\Repositories\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Lookup\RelationshipTypeRepository;
 
 /**
  * Class InternshipUserController.
@@ -74,12 +75,12 @@ class InternshipUserController extends Controller
      * Store user relationship in Internship.
      *
      *
-     * @param StoreUserRequest $request
+     * @param ManageInternshipUserRequest $request
      * @param Internship          $internship
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Throwable
      */
-    public function store(StoreUserRequest $request, Internship $internship)
+    public function store(ManageInternshipUserRequest $request, Internship $internship)
     {
         $user = $this->userRepository->getById($request->input('user_id'));
 
@@ -92,7 +93,7 @@ class InternshipUserController extends Controller
             ])
         );
 
-        return redirect()->route('admin.opportunity.internship.show', $internship)->withFlashSuccess('User relationship updated successfully');
+        return redirect()->route('admin.opportunity.internship.show', $internship)->withFlashSuccess('User added successfully');
     }
 
     /**
@@ -121,16 +122,16 @@ class InternshipUserController extends Controller
     }
 
     /**
-     * Approve user's request to join Internship.
+     * Update user relationship with Internship.
      *
      *
-     * @param StoreUserRequest $request
+     * @param ManageInternshipUserRequest $request
      * @param Internship          $internship
      * @param User             $user
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Throwable
      */
-    public function update(StoreUserRequest $request, Internship $internship, User $user)
+    public function update(ManageInternshipUserRequest $request, Internship $internship, User $user)
     {
         $this->internshipUserRepository->update(
             $internship,

@@ -37,6 +37,7 @@ Route::group([
         * Project membership actions - must be signed-in
         */
         Route::post('follow', 'ProjectUserController@follow')->name('project.follow');
+        Route::get('unfollow', 'ProjectUserController@unfollow')->name('project.unfollow');
         Route::post('unfollow', 'ProjectUserController@unfollow')->name('project.unfollow');
         Route::post('apply', 'ProjectUserController@apply')->name('project.apply');
         Route::post('cancel-application', 'ProjectUserController@cancelApplication')->name('project.cancelApplication');
@@ -94,6 +95,7 @@ Route::group([
         * Internship membership actions - must be signed-in
         */
         Route::post('follow', 'InternshipUserController@follow')->name('internship.follow');
+        Route::get('unfollow', 'InternshipUserController@unfollow')->name('internship.unfollow');
         Route::post('unfollow', 'InternshipUserController@unfollow')->name('internship.unfollow');
         Route::post('apply', 'InternshipUserController@apply')->name('internship.apply');
         Route::post('cancel-application', 'InternshipUserController@cancelApplication')->name('internship.cancelApplication');

@@ -14,7 +14,7 @@ class CloneInternshipRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('clone internship');
+        return $this->user()->can('clone internship') || $this->user()->isAdmin();
     }
 
     /**

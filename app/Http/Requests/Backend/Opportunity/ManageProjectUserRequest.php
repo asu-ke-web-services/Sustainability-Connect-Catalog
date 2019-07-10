@@ -1,11 +1,11 @@
 <?php
 
-namespace SCCatalog\Http\Requests\Backend\OpportunityUser;
+namespace SCCatalog\Http\Requests\Backend\Opportunity;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ManageInternshipUserRequest extends FormRequest
+class ManageProjectUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class ManageInternshipUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage project user');
+        return $this->user()->can('manage project user') || $this->user()->isAdmin();
     }
 
     /**

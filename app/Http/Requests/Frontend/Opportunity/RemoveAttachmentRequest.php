@@ -4,6 +4,7 @@ namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RemoveAttachmentRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class RemoveAttachmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage attachment');
+        return Auth::check() && ( $this->user()->can('remove attachment') || $this->user()->isAdmin() );
     }
 
     /**

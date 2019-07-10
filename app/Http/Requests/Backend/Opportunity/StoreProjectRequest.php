@@ -16,7 +16,7 @@ class StoreProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('store project');
+        return $this->user()->can('store project') || $this->user()->isAdmin();
     }
 
     /**

@@ -72,15 +72,35 @@ Breadcrumbs::for('admin.opportunity.project.show', function ($trail, $id) {
 
 Breadcrumbs::for('admin.opportunity.project.edit', function ($trail, $id) {
     $trail->parent('admin.opportunity.project.index');
-    $trail->push(__('menus.backend.opportunity.projects.edit'), route('admin.opportunity.project.edit', $id));
+    $trail->push(__('menus.backend.opportunity.projects.edit'), route('admin.opportunity.project.show', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.project.attachment.add', function ($trail, $project) {
+Breadcrumbs::for('admin.opportunity.project.attachment.add', function ($trail, $id) {
     $trail->parent('admin.opportunity.project.index');
-    $trail->push(__('menus.backend.opportunity.projects.attachment.add'), route('admin.opportunity.project.attachment.add', $project));
+    $trail->push(__('menus.backend.opportunity.projects.attachment.add'), route('admin.opportunity.project.show', $id));
 });
 
-Breadcrumbs::for('admin.opportunity.project.attachment.edit', function ($trail, $project, $media) {
+Breadcrumbs::for('admin.opportunity.project.attachment.edit', function ($trail, $id) {
     $trail->parent('admin.opportunity.project.index');
-    $trail->push(__('menus.backend.opportunity.projects.attachment.edit'), route('admin.opportunity.project.attachment.edit', $project, $media));
+    $trail->push('Edit Attachment', route('admin.opportunity.project.show', $id));
+});
+
+Breadcrumbs::for('admin.opportunity.project.note.add', function ($trail, $id) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push('Add Note', route('admin.opportunity.project.show', $id));
+});
+
+Breadcrumbs::for('admin.opportunity.project.note.edit', function ($trail, $id) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push('Edit Note', route('admin.opportunity.project.show', $id));
+});
+
+Breadcrumbs::for('admin.opportunity.project.user.add', function ($trail, $id) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push(__('menus.backend.opportunity.projects.user.add'), route('admin.opportunity.project.show', $id));
+});
+
+Breadcrumbs::for('admin.opportunity.project.user.edit', function ($trail, $id) {
+    $trail->parent('admin.opportunity.project.index');
+    $trail->push(__('menus.backend.opportunity.projects.user.edit'), route('admin.opportunity.project.show', $id));
 });

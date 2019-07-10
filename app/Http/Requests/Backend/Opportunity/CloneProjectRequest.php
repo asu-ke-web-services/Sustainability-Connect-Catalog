@@ -14,7 +14,7 @@ class CloneProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('clone project');
+        return $this->user()->can('clone project') || $this->user()->isAdmin();
     }
 
     /**

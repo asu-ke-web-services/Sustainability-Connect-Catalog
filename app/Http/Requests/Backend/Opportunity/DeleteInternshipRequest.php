@@ -16,7 +16,7 @@ class DeleteInternshipRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('delete internship');
+        return $this->user()->can('delete internship') || $this->user()->isAdmin();
     }
 
     /**

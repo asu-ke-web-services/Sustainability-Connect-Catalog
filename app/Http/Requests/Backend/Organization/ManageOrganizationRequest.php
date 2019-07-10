@@ -16,7 +16,7 @@ class ManageOrganizationRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage organization');
+        return $this->user()->can('manage organization') || $this->user()->isAdmin();
     }
 
     /**

@@ -4,6 +4,7 @@ namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EditUserRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class EditUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('add project user');
+        return Auth::check() && ( $this->user()->can('store project user') || $this->user()->isAdmin() );
     }
 
     /**

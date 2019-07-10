@@ -36,7 +36,7 @@
                             <!-- Project User -->
                             @component('frontend.includes.coreui.components.form.select', [
                                 'name'        => 'user_id',
-                                'label'       => 'Project User',
+                                'label'       => 'Project User *',
                                 'help_text'   => 'Begin typing to select user',
                                 'optionList'  => $users,
                                 'object'      => null,
@@ -45,21 +45,21 @@
                             <!-- Relationship Type Field -->
                             @component('frontend.includes.coreui.components.form.select', [
                                 'name'        => 'relationship_type_id',
-                                'label'       => 'Relationship to Project',
+                                'label'       => 'Relationship to Project *',
                                 'optionList'  => $relationships,
                                 'object'      => null,
                             ])@endcomponent
 
                             <!-- Comments Field -->
-                            @component('frontend.includes.coreui.components.form.richtext', [
+                            {{-- @component('frontend.includes.coreui.components.form.richtext', [
                                 'name'        => 'comments',
-                                'label'       => 'User Comments *',
+                                'label'       => 'User Comments',
                                 // 'help_text'   => 'What specific sustainability problem do you need solved?',
                                 'attributes' => [
                                     'rows' => 5,
                                 ],
                                 'object'      => null,
-                            ])@endcomponent
+                            ])@endcomponent --}}
 
                         </div><!--col-->
                     </div><!--row-->

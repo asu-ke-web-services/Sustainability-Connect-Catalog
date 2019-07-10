@@ -33,7 +33,7 @@
                     <thead>
                         <tr>
                             <th class="w-25">Name</th>
-                            <th>Comments</th>
+                            {{-- <th>Comments</th> --}}
                             {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@
                     <tbody>
                         <tr>
                             <td>{{ $applicant->full_name }} ({{ $applicant->userType->name }})</td>
-                            <td>{{ $applicant->pivot->comments }}</td>
+                            {{-- <td>{{ $applicant->pivot->comments }}</td> --}}
                             {{-- <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="{{ route('admin.opportunity.project.user.show', [$project, $applicant]) }}"
@@ -74,7 +74,7 @@
                         <thead>
                             <tr>
                                 <th class="w-25">Name</th>
-                                <th>Comments</th>
+                                {{-- <th>Comments</th> --}}
                                 {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                             </tr>
                         </thead>
@@ -82,7 +82,7 @@
                         <tbody>
                             <tr>
                                 <td>{{ $participant->full_name }} ({{ $participant->userType->name }})</td>
-                                <td>{{ $participant->pivot->comments }}</td>
+                                {{-- <td>{{ $participant->pivot->comments }}</td> --}}
                                 {{-- <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                         <a href="{{ route('admin.opportunity.project.user.show', [$project, $participant]) }}"
@@ -115,7 +115,7 @@
                     <thead>
                         <tr>
                             <th class="w-25">Name</th>
-                            <th>Comments</th>
+                            {{-- <th>Comments</th> --}}
                             {{-- <th>{{ __('labels.general.actions') }}</th> --}}
                         </tr>
                     </thead>
@@ -123,7 +123,7 @@
                     <tbody>
                         <tr>
                             <td>{{ $mentor->full_name }} ({{ $mentor->userType->name }})</td>
-                            <td>{{ $mentor->pivot->comments }}</td>
+                            {{-- <td>{{ $mentor->pivot->comments }}</td> --}}
                             {{-- <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="{{ route('admin.opportunity.project.user.show', [$project, $mentor]) }}"

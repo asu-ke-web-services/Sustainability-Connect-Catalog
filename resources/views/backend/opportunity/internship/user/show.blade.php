@@ -28,16 +28,16 @@
                         </tr>
 
                         <!-- Relationship -->
-                        <tr>
+                        {{-- <tr>
                             <td class="col col-sm-3 view-label">Internship Relationship</td>
                             <td class="col col-sm-9 view-content"></td>
-                        </tr>
+                        </tr> --}}
 
                         <!-- Comments -->
-                        <tr>
+                        {{-- <tr>
                             <td class="col col-sm-3 view-label">Comments</td>
                             <td class="col col-sm-9 view-content"></td>
-                        </tr>
+                        </tr> --}}
 
                     </tbody>
                 </table>

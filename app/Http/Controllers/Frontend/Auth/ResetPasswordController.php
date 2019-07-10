@@ -2,13 +2,13 @@
 
 namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
-use Illuminate\Support\Str;
-use SCCatalog\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use SCCatalog\Repositories\Auth\Frontend\UserRepository;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Auth\ResetPasswordRequest;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 
 /**
  * Class ResetPasswordController.
@@ -43,7 +43,7 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm($token = null)
     {
-        if (!$token) {
+        if (! $token) {
             return redirect()->route('frontend.auth.password.email');
         }
 
@@ -71,8 +71,7 @@ class ResetPasswordController extends Controller
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
         $response = $this->broker()->reset(
-            $this->credentials($request),
-            function ($user, $password) {
+            $this->credentials($request), function ($user, $password) {
                 $this->resetPassword($user, $password);
             }
         );
@@ -108,11 +107,10 @@ class ResetPasswordController extends Controller
     /**
      * Get the response for a successful password reset.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $response
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function sendResetResponse(Request $request, $response)
+    protected function sendResetResponse($response)
     {
         return redirect()->route(home_route())->withFlashSuccess(trans($response));
     }

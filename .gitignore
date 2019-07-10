@@ -42,3 +42,6 @@ coverage.xml
 database/files
 database/uploads
 *.tar.gz
+
+# Laravel's public/uploads symlink
+public/uploads/

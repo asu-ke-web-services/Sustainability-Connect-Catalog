@@ -14,7 +14,7 @@ class ManageAttachmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage attachment');
+        return $this->user()->can('manage attachment') || $this->user()->isAdmin();
     }
 
     /**

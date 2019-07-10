@@ -450,8 +450,8 @@
                 "opportunity_status_id": 'required',
                 "opportunity_start_at": 'required',
                 "opportunity_end_at": 'required',
-                "addresses[0][city]": 'required',
-                "addresses[0][state]": 'required'
+                "city": 'required',
+                "state": 'required'
             },
             messages: {
                 "name": {
@@ -461,8 +461,8 @@
                 "opportunity_status_id": 'Please select the project status',
                 "opportunity_start_at": 'Please enter the project start date',
                 "opportunity_end_at": 'Please enter the project end date',
-                "addresses[0][city]": 'Please enter the project city',
-                "addresses[0][state]": 'Please enter the project state'
+                "city": 'Please enter the internship city',
+                "state": 'Please enter the internship state'
             },
             errorElement: 'em',
             errorPlacement: function errorPlacement(error, element) {

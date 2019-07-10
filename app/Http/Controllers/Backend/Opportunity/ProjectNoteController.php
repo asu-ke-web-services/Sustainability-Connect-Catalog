@@ -40,7 +40,7 @@ class ProjectNoteController extends Controller
         ManageNoteRequest $request,
         Project $project
     ) {
-        return view('frontend.opportunity.project.private.note.add')
+        return view('backend.opportunity.project.note.add')
             ->with('project', $project);
     }
 
@@ -55,7 +55,7 @@ class ProjectNoteController extends Controller
     {
         $project = $this->projectNoteRepository->store($project, $request->all());
 
-        return redirect()->route('frontend.opportunity.project.private.show', $project)
+        return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Note uploaded successfully'));
     }
 
@@ -72,7 +72,7 @@ class ProjectNoteController extends Controller
         Project $project,
         Note $note
     ) {
-        return view('frontend.opportunity.project.private.note.edit')
+        return view('backend.opportunity.project.note.edit')
             ->with('project', $project)
             ->with('note', $note);
     }
@@ -89,7 +89,7 @@ class ProjectNoteController extends Controller
     {
         $this->projectNoteRepository->update($project, $note, $request->all());
 
-        return redirect()->route('frontend.opportunity.project.private.show', $project)
+        return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Note updated successfully'));
     }
 
@@ -105,7 +105,7 @@ class ProjectNoteController extends Controller
     {
         $this->projectNoteRepository->delete($project, $note);
 
-        return redirect()->route('frontend.opportunity.project.private.show', $project)
+        return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess('Note deleted successfully');
     }
 }

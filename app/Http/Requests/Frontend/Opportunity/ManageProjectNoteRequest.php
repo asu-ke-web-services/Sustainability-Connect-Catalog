@@ -4,6 +4,7 @@ namespace SCCatalog\Http\Requests\Frontend\Opportunity;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ManageProjectNoteRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class ManageProjectNoteRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage note');
+        return Auth::check() && ( $this->user()->can('manage note') || $this->user()->isAdmin() );
     }
 
     /**

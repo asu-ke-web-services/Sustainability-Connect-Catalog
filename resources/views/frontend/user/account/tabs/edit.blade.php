@@ -1,11 +1,17 @@
 {{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('form-profile-edit')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
-{{--
-    <div class="form-group">
-        {{ html()->label(__('validation.attributes.frontend.avatar'))->for('avatar') }}
 
-        <div class="col-sm-10">
-            <input type="radio" name="avatar_type" value="gravatar" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} /> Gravatar
-            <input type="radio" name="avatar_type" value="storage" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} /> Upload
+    <div class="form-group">
+        {{ html()->label('Set Profile Photo')->for('avatar') }}
+
+        <div class="col-sm-10 col-form-label">
+            <div class="form-check">
+                <input class="form-check-input" id="gravatar" type="radio" value="gravatar" name="avatar_type" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} />
+                <label class="form-check-label" for="gravatar">Use <a href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer nofollow">Gravatar profile photo service</a></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="storage" type="radio" value="storage" name="avatar_type" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} />
+                <label class="form-check-label" for="storage">Upload</label>
+            </div>
 
             @foreach ($logged_in_user->providers as $provider)
                 @if (strlen($provider->avatar))
@@ -17,7 +23,7 @@
                 {{ html()->file('avatar_location')->class('form-control') }}
             </div><!--form-group-->
         </div>
-    </div> --}}
+    </div>
 
     <!-- First Name Field -->
     @component('frontend.includes.coreui.components.form.input', [

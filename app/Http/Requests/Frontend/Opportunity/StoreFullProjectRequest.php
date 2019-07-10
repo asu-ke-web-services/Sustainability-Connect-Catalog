@@ -17,7 +17,7 @@ class StoreFullProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && $this->user()->can('submit project proposal');
+        return Auth::check() && ( $this->user()->can('store full project') || $this->user()->isAdmin() );
     }
 
     /**

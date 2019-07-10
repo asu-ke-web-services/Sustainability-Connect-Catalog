@@ -14,7 +14,7 @@ class StoreNoteRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('manage note');
+        return $this->user()->can('store note') || $this->user()->isAdmin();
     }
 
     /**

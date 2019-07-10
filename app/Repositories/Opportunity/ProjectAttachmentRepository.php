@@ -74,7 +74,7 @@ class ProjectAttachmentRepository
         return DB::transaction(function () use ($project, $media) {
             $project->deleteMedia($media->id);
 
-            event(new AttachmentRemovedFromProject($project, $media));
+            // event(new AttachmentRemovedFromProject($project, $media));
 
             return $project;
         });

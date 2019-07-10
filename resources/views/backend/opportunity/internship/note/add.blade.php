@@ -33,17 +33,24 @@
                     <div class="row mt-4">
                         <div class="col">
 
-                    <!-- Description Field -->
-                    @component('frontend.includes.coreui.components.form.richtext', [
-                        'name'        => 'body',
-                        'label'       => 'Internship Note *',
-                        // 'help_text'   => 'What specific sustainability problem do you need solved?',
-                        'attributes' => [
-                            'required' => 'required',
-                            'rows' => 10,
-                        ],
-                        'object'      => $internship ?? null,
-                    ])@endcomponent
+                            <!-- Hidden Current User Field -->
+                            <div class="form-group row">
+                                <div class="col-md-10">
+                                    <input type="hidden" value="{{ auth()->user()->id }}" name="user_id" id="user_id">
+                                </div><!--col-->
+                            </div><!--form-group-->
+
+                            <!-- Description Field -->
+                            @component('frontend.includes.coreui.components.form.richtext', [
+                                'name'        => 'body',
+                                'label'       => 'Internship Note *',
+                                // 'help_text'   => 'What specific sustainability problem do you need solved?',
+                                'attributes' => [
+                                    'required' => 'required',
+                                    'rows' => 10,
+                                ],
+                                'object'      => $internship ?? null,
+                            ])@endcomponent
 
                         </div><!--col-->
                     </div><!--row-->

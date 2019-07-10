@@ -45,7 +45,7 @@ class ProjectNoteRepository extends BaseRepository
     }
 
     /**
-     * Update a file attachment for a project in the database.
+     * Update a note for a project in the database.
      *
      * @param Project $project
      * @param Note    $note
@@ -66,7 +66,7 @@ class ProjectNoteRepository extends BaseRepository
     }
 
     /*
-     * Delete an attachment from a project in the database.
+     * Delete a note from a project in the database.
      *
      * @param Project $project
      * @param Note   $note

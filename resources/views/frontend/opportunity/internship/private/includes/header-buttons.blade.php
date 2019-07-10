@@ -5,11 +5,4 @@
             title="Print">
         <i class="fas fa-print"></i>
     </a>
-
-    <a href="{{ route('frontend.opportunity.internship.private.edit', $internship) }}"
-            class="btn btn-primary ml-1"
-            data-toggle="tooltip"
-            title="{{ __('buttons.general.crud.edit') }}">
-        <i class="fas fa-edit"></i>
-    </a>
 </div>

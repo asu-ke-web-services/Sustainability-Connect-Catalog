@@ -141,16 +141,12 @@ class Internship extends Model implements HasMedia
      */
     public function getDeleteButtonAttribute()
     {
-        if ($this->id != auth()->id() && $this->id != 1) {
-            return '<a href="' . route('admin.opportunity.internship.destroy', $this) . '"
-                data-method="delete"
-                data-trans-button-cancel="' . __('buttons.general.cancel') . '"
-                data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
-                data-trans-title="' . __('strings.backend.opportunity.internships.delete_internship') . '"
-                class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
-        }
-
-        return '';
+        return '<a href="' . route('admin.opportunity.internship.destroy', $this) . '"
+            data-method="delete"
+            data-trans-button-cancel="' . __('buttons.general.cancel') . '"
+            data-trans-button-confirm="' . __('buttons.general.crud.delete') . '"
+            data-trans-title="' . __('strings.backend.opportunity.internships.delete_internship') . '"
+            class="dropdown-item">' . __('buttons.general.crud.delete') . '</a> ';
     }
 
     /**
@@ -255,7 +251,7 @@ class Internship extends Model implements HasMedia
     {
         return (9 === $this->opportunity_status_id &&
             null !== $this->application_deadline_at &&
-            $this->application_deadline_at->greaterThan(Carbon::today())
+            $this->application_deadline_at->greaterThan(Carbon::yesterday())
 
             // $this->listing_start_at !== null &&
             // $this->listing_start_at->lessThan(Carbon::today()) &&
@@ -538,7 +534,7 @@ class Internship extends Model implements HasMedia
         return $query
             ->where([
                 ['application_deadline_at', '<>', null],
-                ['application_deadline_at', '>', Carbon::tomorrow()],
+                ['application_deadline_at', '>', Carbon::yesterday()],
             ])
             ->where('opportunity_status_id', 9);
     }

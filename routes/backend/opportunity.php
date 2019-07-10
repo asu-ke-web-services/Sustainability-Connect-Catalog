@@ -43,7 +43,7 @@ Route::group([
 
         Route::get('attachment/{media}', 'ProjectAttachmentController@edit')->name('project.attachment.edit');
         Route::post('attachment/{media}', 'ProjectAttachmentController@update')->name('project.attachment.update');
-        Route::get('attachment/{media}/delete', 'ProjectAttachmentController@delete')->name('project.attachment.delete');
+        Route::get('attachment/{media}/delete', 'ProjectAttachmentController@destroy')->name('project.attachment.delete');
 
         // Project Notes
         Route::get('note', 'ProjectNoteController@add')->name('project.note.add');
@@ -59,7 +59,7 @@ Route::group([
 
         Route::get('user/{user}', 'ProjectUserController@show')->name('project.user.show');
         Route::get('user/{user}/edit', 'ProjectUserController@edit')->name('project.user.edit');
-        Route::post('user/{user}', 'ProjectAUserController@update')->name('project.user.update');
+        Route::post('user/{user}', 'ProjectUserController@update')->name('project.user.update');
         Route::get('user/{user}/delete', 'ProjectUserController@delete')->name('project.user.delete');
     });
 
@@ -91,7 +91,7 @@ Route::group([
 
         Route::get('attachment/{media}/edit', 'InternshipAttachmentController@edit')->name('internship.attachment.edit');
         Route::post('attachment/{media}', 'InternshipAttachmentController@update')->name('internship.attachment.update');
-        Route::get('attachment/{media}/delete', 'InternshipAttachmentController@delete')->name('internship.attachment.delete');
+        Route::get('attachment/{media}/delete', 'InternshipAttachmentController@destroy')->name('internship.attachment.delete');
 
         // Internship Notes
         Route::get('note', 'InternshipNoteController@add')->name('internship.note.add');

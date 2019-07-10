@@ -1,6 +1,6 @@
 
-@can('manage project')
 <div class="col">
+@can('manage project')
     <div class="card">
         <div class="card-body">
             <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">

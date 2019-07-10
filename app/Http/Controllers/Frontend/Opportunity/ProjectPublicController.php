@@ -113,6 +113,15 @@ class ProjectPublicController extends Controller
             ])
             ->getById($id);
 
+        $attachments = $project->getMedia();
+        $publicAttachments = [];
+
+        foreach ($attachments as $attachment) {
+            if ($attachment->getCustomProperty('visibility') === 'public') {
+                $publicAttachments[] = $attachment;
+            }
+        }
+
         $userAccessAffiliations = false;
         $canViewRestricted = false;
         $isFollowed = false;
@@ -148,6 +157,7 @@ class ProjectPublicController extends Controller
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
             ->with('isFollowed', $isFollowed)
-            ->with('isApplicationSubmitted', $isApplicationSubmitted);
+            ->with('isApplicationSubmitted', $isApplicationSubmitted)
+            ->with('publicAttachments', $publicAttachments);
     }
 }

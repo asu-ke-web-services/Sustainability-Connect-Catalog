@@ -59,7 +59,7 @@ Route::group([
 
         Route::get('user/{user}', 'ProjectUserController@show')->name('project.user.show');
         Route::get('user/{user}/edit', 'ProjectUserController@edit')->name('project.user.edit');
-        Route::post('user/{user}', 'ProjectAUserController@update')->name('project.user.update');
+        Route::post('user/{user}', 'ProjectUserController@update')->name('project.user.update');
         Route::get('user/{user}/delete', 'ProjectUserController@delete')->name('project.user.delete');
     });
 

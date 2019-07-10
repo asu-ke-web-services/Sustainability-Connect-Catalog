@@ -50,8 +50,7 @@
                 <div class="card-body text-center">
                     <div>
                         <h2>Sign up</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Sustainability Connect external partners are welcome to register a user account! If you are an ASU student or employee, please return to the previous screen and select the ASU Affiliate sign-in option.</p>
                         {{ html()->form('GET', route('frontend.auth.register'))->open() }}
                             <button class="btn btn-primary active mt-3" type="submit">Register Now!</button>
                         {{ html()->form()->close() }}

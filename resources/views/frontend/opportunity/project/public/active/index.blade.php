@@ -8,7 +8,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="font-size: .8em;">
-          <table id="datatable" class="table table-bordered table-striped dt-responsive nowrap" width="100%"">
+          <table id="datatable" class="table table-bordered table-striped dt-responsive nowrap" width="100%">
             <thead>
                 <tr>
                     <th>More</th>

@@ -12,6 +12,8 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Category</th>
+                    <th>Keywords</th>
                     <th>Availability</th>
                     <th>City</th>
                     <th>Begins</th>
@@ -23,6 +25,20 @@
                 @foreach ($projects as $project)
                     <tr>
                         <td><a href="{!! route('frontend.opportunity.project.public.show', $project) !!}">{{ ucwords($project->name) }}</a></td>
+                        <td>
+                          @if ($project->categories->count())
+                            @foreach($project->categories as $category)
+                              {{ ucwords($category->name) }}
+                            @endforeach
+                          @endif
+                        </td>
+                        <td>
+                          @if ($project->keywords->count())
+                            @foreach($project->keywords as $keyword)
+                              {{ ucwords($keyword->name) }}
+                            @endforeach
+                          @endif
+                        </td>
                         <td class="icon-column">
                             @foreach ($project->affiliations as $icon)
                                 @unless(empty($icon->frontend_fa_icon))
@@ -55,6 +71,16 @@
                         }}</td>
                     </tr>
                 @endforeach
+              <tfoot>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Keywords</th>
+                <th>Availability</th>
+                <th>City</th>
+                <th>Begins</th>
+                <th>Ends</th>
+                <th>Apply By</th>
+              </tfoot>
             </tbody>
           </table>
         </div>
@@ -135,11 +161,17 @@
     <script src="//cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js" ></script>
     <script>
         $(document).ready( function () {
-            $('#datatable').DataTable({
+          $('#datatable').DataTable({
+              "columnDefs": [
+                  {
+                    "targets": [1,2],
+                    "visible": false
+                  }
+                ],
                 "order": [ 5, 'asc' ],
-                "lengthMenu": [ [25, 50, 100], [25, 50, 100] ]
-            });
-            $('[data-toggle="tooltip"]').tooltip();
-        } );
+                "lengthMenu": [ [25, 50, 100], [25, 50, 100] ],
+          } );
+        } ) ;
+      $('[data-toggle="tooltip"]').tooltip();
     </script>
 @endpush

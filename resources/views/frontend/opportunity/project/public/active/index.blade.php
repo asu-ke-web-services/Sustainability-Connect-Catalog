@@ -12,6 +12,8 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Category</th>
+                    <th>Keywords</th>
                     <th>Availability</th>
                     <th>City</th>
                     <th>Begins</th>
@@ -44,6 +46,24 @@
                         @else
                             <b><a href="{!! route('frontend.opportunity.project.public.show', $project) !!}">{{ ucwords($project->name) }}</a></b>
                         @endif
+                        </td>
+                        <td>
+                          @if ($project->categories->count())
+                            @foreach($project->categories as $category)
+                              {{ ucwords($category->name) }}
+                            @endforeach
+                          @else
+                            (none)
+                          @endif
+                        </td>
+                        <td>
+                          @if ($project->keywords->count())
+                            @foreach($project->keywords as $keyword)
+                              {{ ucwords($keyword->name) }}
+                            @endforeach
+                          @else
+                            (none)
+                          @endif
                         </td>
                         <td class="icon-column">
                             @foreach ($project->affiliations as $icon)
@@ -158,6 +178,12 @@
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({
+                "columnDefs": [
+                  {
+                    "targets": [1,2],
+                    "visible": false
+                  }
+                ],
                 "order": [ 5, 'asc' ],
                 "lengthMenu": [ [25, 50, 100], [25, 50, 100] ]
             });

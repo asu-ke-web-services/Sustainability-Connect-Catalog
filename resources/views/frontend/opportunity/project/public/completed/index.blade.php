@@ -8,7 +8,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="font-size: .8em;">
-          <table id="datatable" class="table table-bordered table-striped">
+          <table id="datatable" class="table table-bordered table-striped nowrap">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -93,6 +93,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
     <style>
         /*
           Font Awesome custom styles - for Affiliation Icons
@@ -159,9 +160,11 @@
 @push('scripts')
     <script src="//cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <script src="//cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js" ></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script>
         $(document).ready( function () {
           $('#datatable').DataTable({
+              "responsive": true,
               "columnDefs": [
                   {
                     "targets": [1,2],

@@ -8,22 +8,24 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="font-size: .8em;">
-          <table id="datatable" class="table table-bordered table-striped nowrap">
+          <table id="datatable" class="table table-bordered table-striped dt-responsive nowrap" width="100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Keywords</th>
-                    <th>Availability</th>
-                    <th>City</th>
-                    <th>Begins</th>
-                    <th>Ends</th>
-                    <th>Apply By</th>
+                  <th>More</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Keywords</th>
+                  <th data-priority="4">Availability</th>
+                  <th data-priority="4">City</th>
+                  <th data-priority="2">Begins</th>
+                  <th data-priority="3">Ends</th>
+                  <th data-priority="1">Apply By</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($projects as $project)
                     <tr>
+                        <td></td>
                         <td><a href="{!! route('frontend.opportunity.project.public.show', $project) !!}">{{ ucwords($project->name) }}</a></td>
                         <td>
                           @if ($project->categories->count())
@@ -71,16 +73,6 @@
                         }}</td>
                     </tr>
                 @endforeach
-              <tfoot>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Keywords</th>
-                <th>Availability</th>
-                <th>City</th>
-                <th>Begins</th>
-                <th>Ends</th>
-                <th>Apply By</th>
-              </tfoot>
             </tbody>
           </table>
         </div>
@@ -164,14 +156,27 @@
     <script>
         $(document).ready( function () {
           $('#datatable').DataTable({
-              "responsive": true,
+              "responsive": {
+                "details": {
+                  "type": "column"
+                }
+              },
               "columnDefs": [
                   {
-                    "targets": [1,2],
+                    "targets": [2,3],
                     "visible": false
+                  },
+                  {
+                    "className": "control",
+                    "orderable": false,
+                    "targets":   0
+                  },
+                  {
+                    "className": "all",
+                    "targets": 1
                   }
                 ],
-                "order": [ 5, 'asc' ],
+                "order": [ 8, 'asc' ],
                 "lengthMenu": [ [25, 50, 100], [25, 50, 100] ],
           } );
         } ) ;

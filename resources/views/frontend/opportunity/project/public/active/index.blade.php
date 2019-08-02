@@ -8,15 +8,18 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="font-size: .8em;">
-          <table id="datatable" class="table table-bordered table-striped">
+          <table id="datatable" class="table table-bordered table-striped dt-responsive nowrap" width="100%">
             <thead>
                 <tr>
+                    <th>More</th>
                     <th>Name</th>
-                    <th>Availability</th>
-                    <th>City</th>
-                    <th>Begins</th>
-                    <th>Ends</th>
-                    <th>Apply By</th>
+                    <th>Category</th>
+                    <th>Keywords</th>
+                    <th data-priority="4">Availability</th>
+                    <th data-priority="4">City</th>
+                    <th data-priority="2">Begins</th>
+                    <th data-priority="3">Ends</th>
+                    <th data-priority="1">Apply By</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,12 +41,27 @@
                         }
                     @endphp
                     <tr>
+                        <td></td>
                         <td>
                         @if (!$canViewRestricted && $restrictAccess)
                             View Restricted for SOS majors only
                         @else
                             <b><a href="{!! route('frontend.opportunity.project.public.show', $project) !!}">{{ ucwords($project->name) }}</a></b>
                         @endif
+                        </td>
+                        <td>
+                          @if (count($project->categories))
+                            @foreach($project->categories as $category)
+                              {{ ucwords($category->name) }}
+                            @endforeach
+                          @endif
+                        </td>
+                        <td>
+                          @if (count($project->keywords))
+                            @foreach($project->keywords as $keyword)
+                              {{ ucwords($keyword->name) }}
+                            @endforeach
+                          @endif
                         </td>
                         <td class="icon-column">
                             @foreach ($project->affiliations as $icon)
@@ -89,6 +107,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
     <style>
         /*
          Font Awesome custom styles - for Affiliation Icons
@@ -155,9 +174,30 @@
 @push('scripts')
     <script src="//cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" ></script>
     <script src="//cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js" ></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({
+                "responsive": {
+                  "details": {
+                    "type": "column"
+                  }
+                },
+                "columnDefs": [
+                  {
+                    "visible": false,
+                    "targets": [2,3]
+                  },
+                  {
+                    "className": "control",
+                    "orderable": false,
+                    "targets":   0
+                  },
+                  {
+                    "className": "all",
+                    "targets": 1
+                  }
+                ],
                 "order": [ 5, 'asc' ],
                 "lengthMenu": [ [25, 50, 100], [25, 50, 100] ]
             });

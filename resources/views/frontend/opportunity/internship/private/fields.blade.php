@@ -1,7 +1,6 @@
 
             <div class="row mt-4">
                 <div class="col">
-
                     <div class="form-group row">
                         <label class="col-md-2 form-control-label">[Required Fields *]</label>
 

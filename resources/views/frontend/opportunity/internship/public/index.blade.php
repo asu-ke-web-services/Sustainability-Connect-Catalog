@@ -48,14 +48,18 @@
                                 @endif
                             </td>
                             <td>
-                                @foreach($internship->categories as $category)
-                                    {{ ucwords($category->name) }}
-                                @endforeach
+                                @if (count($internship->categories))
+                                    @foreach($internship->categories as $category)
+                                        {{ ucwords($category->name) }}
+                                    @endforeach
+                                @endif
                             </td>
                             <td>
-                                @foreach($internship->keywords as $keyword)
-                                    {{ ucwords($keyword->name) }}
-                                @endforeach
+                                @if (count($internship->keywords))
+                                    @foreach($internship->keywords as $keyword)
+                                        {{ ucwords($keyword->name) }}
+                                    @endforeach
+                                @endif
                             </td>
                             <td>
                                 @if (!$canViewRestricted && $restrictAccess)

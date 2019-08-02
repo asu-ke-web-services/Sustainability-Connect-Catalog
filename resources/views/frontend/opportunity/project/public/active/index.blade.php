@@ -50,21 +50,17 @@
                         @endif
                         </td>
                         <td>
-                          @if ($project->categories->count())
+                          @if (count($project->categories))
                             @foreach($project->categories as $category)
                               {{ ucwords($category->name) }}
                             @endforeach
-                          @else
-                            (none)
                           @endif
                         </td>
                         <td>
-                          @if ($project->keywords->count())
+                          @if (count($project->keywords))
                             @foreach($project->keywords as $keyword)
                               {{ ucwords($keyword->name) }}
                             @endforeach
-                          @else
-                            (none)
                           @endif
                         </td>
                         <td class="icon-column">

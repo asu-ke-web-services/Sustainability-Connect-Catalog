@@ -3,7 +3,7 @@
 @section ('title', __('labels.backend.opportunity.internships.management') . ' | ' . __('labels.backend.opportunity.internships.create'))
 
 @section('content')
-{{ html()->form('POST', route('admin.opportunity.internship.store'))->id('internship-form')->class('form-horizontal')->open() }}
+{{ html()->form('POST', route('admin.opportunity.internship.store'))->acceptsFiles()->id('internship-form')->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">

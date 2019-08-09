@@ -46,8 +46,14 @@
                                 <td>{!! $project->status->name ?? '' !!}</td>
                                 <td>{!! $project->created_at !!}</td>
                                 <td>{!! $project->updated_at !!}</td>
-                                <td>{!! $project->action_buttons !!}</td>
-
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.project.private.show', $project) }}" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.view') }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{ __('buttons.general.crud.edit') }}"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.print', $project) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

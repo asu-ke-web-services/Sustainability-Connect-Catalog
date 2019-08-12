@@ -7,7 +7,7 @@
         </div>
     @endif
     <div class="col-md-10">
-        <div id="{{ $name }}_group" class="input-group date" data-target-input="nearest">
+        <div id="{{ $name }}" class="input-group date" data-target-input="nearest">
             <div class="input-group-append">
                 <div class="input-group-text" data-toggle="datetimepicker" data-target="#{{ $name }}"><span class="fa fa-calendar"></span></div>
             </div>

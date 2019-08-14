@@ -17,7 +17,7 @@
                 <table class="table table-hover">
                     @foreach($project->notes as $note)
                         <tr>
-                            <th class="w-25">{{ ucwords($note->user->name) . ': ' . $note->created_at->toFormattedDateString() }}</th>
+                            <th class="w-25">{{ !empty($note->user) ? ucwords($note->user->full_name) . ': ' . $note->created_at->toFormattedDateString() : '' }}</th>
                             <td>@markdown($note->body)</td>
                         </tr>
                     @endforeach

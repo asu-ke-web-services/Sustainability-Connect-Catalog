@@ -178,6 +178,9 @@
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({
+                initComplete: function() {
+                  this.api().search(getUrlVars()['search']).draw();
+                },
                 "responsive": {
                   "details": {
                     "type": "column"
@@ -203,5 +206,16 @@
             });
             $('[data-toggle="tooltip"]').tooltip();
         } );
+
+      // Read a page's GET URL variables and return them as an associative array.
+        function getUrlVars()
+        {
+          var vars = {};
+          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = value;
+        });
+
+        return vars;
+        }
     </script>
 @endpush

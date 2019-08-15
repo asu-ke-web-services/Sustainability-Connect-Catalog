@@ -34,7 +34,7 @@
                         <div class="col">
 
                             <!-- File Upload Field -->
-                            @component('frontend.includes.coreui.components.form.input', [
+                            @component('backend.includes.components.form.input', [
                                 'type'        => 'file',
                                 'name'        => 'file_attachment',
                                 'label'       => 'File Attachment',

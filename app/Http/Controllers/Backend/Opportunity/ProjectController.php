@@ -10,6 +10,8 @@ use SCCatalog\Http\Requests\Backend\Opportunity\StoreProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\DeleteProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\UpdateProjectRequest;
 use SCCatalog\Http\Requests\Backend\Opportunity\ManageProjectRequest;
+use SCCatalog\Models\Lookup\AttachmentStatus;
+use SCCatalog\Models\Lookup\AttachmentType;
 use SCCatalog\Models\Opportunity\Project;
 use SCCatalog\Repositories\Auth\Backend\UserRepository;
 use SCCatalog\Repositories\Lookup\AffiliationRepository;
@@ -18,8 +20,10 @@ use SCCatalog\Repositories\Lookup\CategoryRepository;
 use SCCatalog\Repositories\Lookup\KeywordRepository;
 use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
 use SCCatalog\Repositories\Lookup\OpportunityReviewStatusRepository;
+use SCCatalog\Repositories\Opportunity\ProjectAttachmentRepository;
 use SCCatalog\Repositories\Opportunity\ProjectRepository;
 use SCCatalog\Repositories\Organization\OrganizationRepository;
+use Spatie\MediaLibrary\Media;
 
 /**
  * Class ProjectController.
@@ -32,13 +36,19 @@ class ProjectController extends Controller
     private $projectRepository;
 
     /**
+     * @var ProjectAttachmentRepository
+     */
+    private $projectAttachmentRepository;
+
+    /**
      * ProjectController constructor.
      *
      * @param ProjectRepository $projectRepository
      */
-    public function __construct(ProjectRepository $projectRepository)
+    public function __construct(ProjectRepository $projectRepository, ProjectAttachmentRepository $projectAttachmentRepository)
     {
         $this->projectRepository = $projectRepository;
+        $this->projectAttachmentRepository = $projectAttachmentRepository;
     }
 
     /**
@@ -86,6 +96,8 @@ class ProjectController extends Controller
     public function create(
         ManageProjectRequest $request,
         AffiliationRepository $affiliationRepository,
+        AttachmentStatus $attachmentStatusRepository,
+        AttachmentType $attachmentTypeRepository,
         BudgetTypeRepository $budgetTypeRepository,
         CategoryRepository $categoryRepository,
         KeywordRepository $keywordRepository,
@@ -95,6 +107,7 @@ class ProjectController extends Controller
         UserRepository $userRepository
     ) {
         return view('backend.opportunity.project.create')
+            ->with('formMode', 'create')
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
@@ -102,7 +115,9 @@ class ProjectController extends Controller
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
             ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityReviewStatuses', $opportunityReviewStatusRepository->where('opportunity_type_id', 2)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('attachmentStatuses', $attachmentStatusRepository->get()->pluck('name', 'slug')->toArray())
+            ->with('attachmentTypes', $attachmentTypeRepository->get()->pluck('name', 'slug')->toArray());
     }
 
     /**
@@ -116,6 +131,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $project = $this->projectRepository->create($request->all());
+        $project = $this->projectAttachmentRepository->store($project, $request->all());
 
         return redirect()->route('admin.opportunity.project.show', $project)
             ->withFlashSuccess(__('Project created successfully'));
@@ -231,6 +247,7 @@ class ProjectController extends Controller
         );
 
         return view('backend.opportunity.project.edit')
+            ->with('formMode', 'edit')
             ->with('project', $project)
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('budgetTypes', $budgetTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())

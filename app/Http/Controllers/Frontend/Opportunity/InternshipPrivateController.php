@@ -6,14 +6,18 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\EditFullInternshipRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\StoreFullInternshipRequest;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
+use SCCatalog\Models\Lookup\AttachmentStatus;
+use SCCatalog\Models\Lookup\AttachmentType;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 use SCCatalog\Repositories\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Lookup\CategoryRepository;
 use SCCatalog\Repositories\Lookup\KeywordRepository;
 use SCCatalog\Repositories\Lookup\OpportunityStatusRepository;
+use SCCatalog\Repositories\Opportunity\InternshipAttachmentRepository;
 use SCCatalog\Repositories\Opportunity\InternshipRepository;
 use SCCatalog\Repositories\Organization\OrganizationRepository;
+use Spatie\MediaLibrary\Media;
 
 /**
  * Class InternshipPrivateController.
@@ -26,13 +30,19 @@ class InternshipPrivateController extends Controller
     private $internshipRepository;
 
     /**
+     * @var InternshipAttachmentRepository
+     */
+    private $internshipAttachmentRepository;
+
+    /**
      * InternshipPrivateController constructor.
      *
      * @param InternshipRepository $internshipRepository
      */
-    public function __construct(InternshipRepository $internshipRepository)
+    public function __construct(InternshipRepository $internshipRepository, InternshipAttachmentRepository $internshipAttachmentRepository)
     {
         $this->internshipRepository = $internshipRepository;
+        $this->internshipAttachmentRepository = $internshipAttachmentRepository;
     }
 
     /**
@@ -124,7 +134,9 @@ class InternshipPrivateController extends Controller
         KeywordRepository $keywordRepository,
         OpportunityStatusRepository $opportunityStatusRepository,
         OrganizationRepository $organizationRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        AttachmentStatus $attachmentStatusRepository,
+        AttachmentType $attachmentTypeRepository
     ) {
         $degreeProgram = [
             'degree_program' => 'Students wishing to register and earn credit for the SOS 484 Capstone (or Elective) Internship must meet all eligibility requirements, submit all necessary paperwork, begin the internship, and be cleared to register prior to the add/drop deadline of Session C term. Retroactive credit will not be granted.
@@ -139,13 +151,16 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
         ];
 
         return view('frontend.opportunity.internship.private.create')
+            ->with('formMode', 'create')
             ->with('degreeProgram', (object) $degreeProgram)
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('keywords', $keywordRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('users', $userRepository->get(['id', 'first_name', 'last_name'])->pluck('full_name', 'id')->toArray())
-            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 3)->get(['id', 'name'])->pluck('name', 'id')->toArray());
+            ->with('opportunityStatuses', $opportunityStatusRepository->where('opportunity_type_id', 3)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('attachmentStatuses', $attachmentStatusRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray())
+            ->with('attachmentTypes', $attachmentTypeRepository->get(['slug', 'name'])->pluck('name', 'slug')->toArray());
     }
 
     /**
@@ -159,6 +174,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
     public function store(StoreFullInternshipRequest $request)
     {
         $internship = $this->internshipRepository->create($request->all());
+        $internship = $this->internshipAttachmentRepository->store($internship, $request->all());
 
         return redirect()->route('frontend.user.dashboard')
             ->withFlashSuccess(__('Internship successfully created'));
@@ -191,6 +207,7 @@ For questions about SOS internship credit, please contact: [caroline.savalle@asu
         Internship $internship
     ) {
         return view('frontend.opportunity.internship.private.edit')
+            ->with('formMode', 'edit')
             ->with('internship', $internship)
             ->with('affiliations', $affiliationRepository->whereIn('opportunity_type_id', [1, 3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())

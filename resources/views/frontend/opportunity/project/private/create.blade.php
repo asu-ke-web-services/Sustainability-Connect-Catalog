@@ -3,7 +3,7 @@
 @section ('title', 'Project | Create project listing')
 
 @section('content')
-{{ html()->form('POST', route('frontend.opportunity.project.private.store'))->id('project-form')->class('form-horizontal')->open() }}
+{{ html()->form('POST', route('frontend.opportunity.project.private.store'))->acceptsFiles()->id('project-form')->class('form-horizontal')->open() }}
 
     <div class="card">
         <div class="card-body">

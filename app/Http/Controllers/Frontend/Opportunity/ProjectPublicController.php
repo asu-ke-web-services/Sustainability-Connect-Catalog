@@ -93,6 +93,7 @@ class ProjectPublicController extends Controller
             ->with('pageTitle', 'Past Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
+            ->with('categories', $this->categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('defaultOrderBy', 'opportunity_start_at')
             ->with('defaultSort', 'desc');
     }

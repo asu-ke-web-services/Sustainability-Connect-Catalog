@@ -6,6 +6,9 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewInternshipRequest;
 use SCCatalog\Models\Opportunity\Internship;
 use SCCatalog\Repositories\Opportunity\InternshipRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
+
 
 /**
  * Class InternshipPublicController.
@@ -16,15 +19,25 @@ class InternshipPublicController extends Controller
      * @var InternshipRepository
      */
     private $internshipRepository;
+    private $categoryRepository;
+    private $affiliationRepository;
 
     /**
      * InternshipController constructor.
      *
      * @param InternshipRepository $internshipRepository
+     * @param CategoryRepository $categoryRepository
+     * @param AffiliationRepository $affiliationRepository
      */
-    public function __construct(InternshipRepository $internshipRepository)
+    public function __construct(
+        InternshipRepository $internshipRepository,
+        CategoryRepository $categoryRepository,
+        AffiliationRepository $affiliationRepository
+        )
     {
         $this->internshipRepository = $internshipRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->affiliationRepository = $affiliationRepository;
     }
 
     /**
@@ -52,6 +65,9 @@ class InternshipPublicController extends Controller
             ->withInternships($this->internshipRepository->getActivePaginated(200, 'application_deadline_at', 'asc'))
             ->with('pageTitle', 'Internships')
             ->with('userAccessAffiliations', $userAccessAffiliations)
+            ->with('categories', $this->categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $this->affiliationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+
             ->with('canViewRestricted', $canViewRestricted)
             ->with('defaultOrderBy', 'application_deadline_at')
             ->with('defaultSort', 'asc');

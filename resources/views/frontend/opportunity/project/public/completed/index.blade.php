@@ -13,13 +13,18 @@
                 <tr>
                   <th>More</th>
                   <th>Name</th>
-                  <th>Category</th>
-                  <th>Keywords</th>
+                  <th data-priority="2">Category</th>
+                  <th data-priority="4">Keywords</th>
+                  <th data-priority="3">Ends</th>
+                  <!--
                   <th data-priority="4">Availability</th>
+                  <th>Availability Name</th>
+                  <th>Order</th>
                   <th data-priority="4">City</th>
                   <th data-priority="2">Begins</th>
                   <th data-priority="3">Ends</th>
                   <th data-priority="1">Apply By</th>
+                  -->
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +35,7 @@
                         <td>
                           @if ($project->categories->count())
                             @foreach($project->categories as $category)
-                              {{ ucwords($category->name) }}
+                              <span class="label label-default">{{ ucwords($category->name) }}</span>
                             @endforeach
                           @endif
                         </td>
@@ -41,6 +46,7 @@
                             @endforeach
                           @endif
                         </td>
+                        <!--
                         <td class="icon-column">
                             @foreach ($project->affiliations as $icon)
                                 @unless(empty($icon->frontend_fa_icon))
@@ -56,6 +62,19 @@
                             @endforeach
                         </td>
                         <td>
+                            @foreach ($project->affiliations as $affiliation)
+                                {{$affiliation->name}}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($project->affiliations as $affiliation)
+                                @if($affiliation->slug == 'urgent')
+                                    1
+                                    @break
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
                             @if ($project->addresses->count())
                                 @foreach ($project->addresses as $address)
                                     {{ ucwords($address->city) }}
@@ -66,6 +85,7 @@
                         </td>
                         <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toDateString() : null }}</td>
                         <td>{{ null !== $project->opportunity_end_at ? $project->opportunity_end_at->toDateString() : null }}</td>
+                        -->
                         <td>{{
                               null != $project->application_deadline_text
                                 ? $project->application_deadline_text
@@ -166,7 +186,7 @@
               },
               "columnDefs": [
                   {
-                    "targets": [2,3],
+                    "targets": [3],
                     "visible": false
                   },
                   {
@@ -179,7 +199,8 @@
                     "targets": 1
                   }
                 ],
-                "order": [ 8, 'asc' ],
+                /* sorted by closing date; ignoring urgent */
+                "order": [ 4, 'desc' ],
                 "lengthMenu": [ [25, 50, 100], [25, 50, 100] ],
           } );
         } ) ;

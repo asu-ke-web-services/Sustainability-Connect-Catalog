@@ -16,6 +16,8 @@
                     <th>Category</th>
                     <th>Keywords</th>
                     <th data-priority="4">Availability</th>
+                    <th>Availability Name</th>
+                    <th>Order</th>
                     <th data-priority="4">City</th>
                     <th data-priority="2">Begins</th>
                     <th data-priority="3">Ends</th>
@@ -75,6 +77,19 @@
                                     </div>
                                 </span>
                                 @endunless
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($project->affiliations as $affiliation)
+                                {{$affiliation->name}}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($project->affiliations as $affiliation)
+                                @if($affiliation->slug == 'urgent')
+                                    1
+                                    @break
+                                @endif
                             @endforeach
                         </td>
                         <td>
@@ -178,6 +193,9 @@
     <script>
         $(document).ready( function () {
             $('#datatable').DataTable({
+                initComplete: function() {
+                  this.api().search(getUrlVars()['search']).draw();
+                },
                 "responsive": {
                   "details": {
                     "type": "column"
@@ -186,7 +204,7 @@
                 "columnDefs": [
                   {
                     "visible": false,
-                    "targets": [2,3]
+                    "targets": [2,3,5,6]
                   },
                   {
                     "className": "control",
@@ -198,10 +216,21 @@
                     "targets": 1
                   }
                 ],
-                "order": [ 5, 'asc' ],
+                "order": [[ 6, 'desc' ], [10, 'asc']],
                 "lengthMenu": [ [25, 50, 100], [25, 50, 100] ]
             });
             $('[data-toggle="tooltip"]').tooltip();
         } );
+
+      // Read a page's GET URL variables and return them as an associative array.
+        function getUrlVars()
+        {
+          var vars = {};
+          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = decodeURI(value);
+        });
+
+        return vars;
+        }
     </script>
 @endpush

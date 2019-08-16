@@ -5,7 +5,10 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewProjectRequest;
 use SCCatalog\Repositories\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
 use SCCatalog\Models\Opportunity\Project;
+
 
 /**
  * Class ProjectPublicController.
@@ -34,7 +37,7 @@ class ProjectPublicController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index_active(ViewProjectRequest $request)
+    public function index_active(ViewProjectRequest $request, CategoryRepository $categoryRepository, AffiliationRepository $affiliationRepository)
     {
         $userAccessAffiliations = [];
         $canViewRestricted = false;
@@ -53,6 +56,8 @@ class ProjectPublicController extends Controller
             ->with('pageTitle', 'Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
+            ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $affiliationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('defaultOrderBy', 'application_deadline_at')
             ->with('defaultSort', 'asc');
     }

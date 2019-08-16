@@ -17,17 +17,22 @@ class ProjectPublicController extends Controller
 {
     /**
      * @var ProjectRepository
+     *
      */
     private $projectRepository;
+    private $categoryRepository;
+    private $affiliationRepository;
 
     /**
      * ProjectPublicController constructor.
      *
      * @param ProjectRepository $projectRepository
      */
-    public function __construct(ProjectRepository $projectRepository)
+    public function __construct(ProjectRepository $projectRepository, CategoryRepository $categoryRepository, AffiliationRepository $affiliationRepository)
     {
         $this->projectRepository = $projectRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->affiliationRepository = $affiliationRepository;
     }
 
     /**
@@ -37,7 +42,7 @@ class ProjectPublicController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index_active(ViewProjectRequest $request, CategoryRepository $categoryRepository, AffiliationRepository $affiliationRepository)
+    public function index_active(ViewProjectRequest $request)
     {
         $userAccessAffiliations = [];
         $canViewRestricted = false;
@@ -56,8 +61,8 @@ class ProjectPublicController extends Controller
             ->with('pageTitle', 'Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
-            ->with('categories', $categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('affiliations', $affiliationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('categories', $this->categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $this->affiliationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('defaultOrderBy', 'application_deadline_at')
             ->with('defaultSort', 'asc');
     }

@@ -11,7 +11,7 @@
               <form class="form-inline">
                 <div class="form-group">
                   <label for="category_dropdown">Category: </label>
-                  <select name="category_dropdown" id="category_dropdown" class="form-control">
+                  <select name="category_dropdown" id="category_dropdown" class="form-control sc-drop-down">
                     <option value="">--none--</option>
                     @foreach($categories as $cat)
                       <option value="{{$cat}}">{{$cat}}</option>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail2">Affiliation: </label>
-                  <select name="affiliation_dropdown" id="affiliation_dropdown" class="form-control">
+                  <select name="affiliation_dropdown" id="affiliation_dropdown" class="form-control sc-drop-down">
                   <option value="">--none--</option>
                     @foreach($affiliations as $aff)
                       <option value="{{$aff}}">{{$aff}}</option>
@@ -267,20 +267,25 @@
         return vars;
         }
 
-        // when the value of either select box changes, update the search
-      $('#category_dropdown, #affiliation_dropdown').change( function() {
-        searchTerm = $.trim( $("#category_dropdown").val() + ' ' + $('#affiliation_dropdown').val() );
-        console.log('Searching for: ' + searchTerm );
+        function preventUndefined( term ) {
+        return ( typeof(term) == 'undefined' ? '' : $.trim( term ) )
+      }
+
+      // when the value a select box changes, update the search
+      $('.sc-drop-down').change( function() {
+        var categoryTerm = preventUndefined( $("#category_dropdown").val() );
+        var affiliationTerm = preventUndefined( $('#affiliation_dropdown').val() );
+        var searchTerm = categoryTerm + ' ' + affiliationTerm;
         $("#datatable").DataTable().search(searchTerm).draw();
       })
 
       // clears the drop-downs and searches for '' (aka no filters)
       $('#clear_filters').click( function(e) {
         e.preventDefault();
-        $('#category_dropdown').val('');
-        $('#affiliation_dropdown').val('');
+        // $('#category_dropdown').val('');
+        // $('#affiliation_dropdown').val('');
+        $('.sc-drop-down').val('');
         $("#datatable").DataTable().search('').draw();
       })
-
     </script>
 @endpush

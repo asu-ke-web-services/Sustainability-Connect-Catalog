@@ -11,7 +11,7 @@
                 <div class="form-group">
                   <label for="category_dropdown">Category: </label>
                   <select name="category_dropdown" id="category_dropdown" class="form-control sc-drop-down">
-                    <option value="">--none--</option>
+                    <option value="">--all--</option>
                     @foreach($categories as $category)
                       <option value="{{$category}}">{{$category}}</option>
                     @endforeach

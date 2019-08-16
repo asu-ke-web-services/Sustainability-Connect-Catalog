@@ -12,7 +12,7 @@
                 <div class="form-group">
                   <label for="category_dropdown">Category: </label>
                   <select name="category_dropdown" id="category_dropdown" class="form-control sc-drop-down">
-                    <option value="">--none--</option>
+                    <option value="">--all--</option>
                     @foreach($categories as $cat)
                       <option value="{{$cat}}">{{$cat}}</option>
                     @endforeach
@@ -21,7 +21,7 @@
                 <div class="form-group">
                   <label for="exampleInputEmail2">Affiliation: </label>
                   <select name="affiliation_dropdown" id="affiliation_dropdown" class="form-control sc-drop-down">
-                  <option value="">--none--</option>
+                  <option value="">--all--</option>
                     @foreach($affiliations as $aff)
                       <option value="{{$aff}}">{{$aff}}</option>
                     @endforeach

@@ -5,32 +5,33 @@
             <div class="box-header">
                 <h3 class="box-title">Active Internships</h3>
             </div>
+            <div class="row  center-block">
+                <div class="col-sm-12">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="category_dropdown">Category: </label>
+                            <select name="category_dropdown" id="category_dropdown" class="form-control sc-drop-down">
+                                <option value="">--all--</option>
+                                @foreach($categories as $cat)
+                                    <option value="{{$cat}}">{{$cat}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-            <div class="row">
-            <div class="col-sm-12">
-              <form class="form-inline">
-                <div class="form-group">
-                  <label for="category_dropdown">Category: </label>
-                  <select name="category_dropdown" id="category_dropdown" class="form-control sc-drop-down">
-                    <option value="">--none--</option>
-                    @foreach($categories as $cat)
-                      <option value="{{$cat}}">{{$cat}}</option>
-                    @endforeach
-                  </select>
+                        <div class="form-group">
+                            <label for="exampleInputEmail2">Affiliation: </label>
+                            <select name="affiliation_dropdown" id="affiliation_dropdown" class="form-control sc-drop-down">
+                                <option value="">--all--</option>
+                                @foreach($affiliations as $aff)
+                                    <option value="{{$aff}}">{{$aff}}</option>
+                                @endforeach
+                            </select>
+                            <button name="clear_filters" id="clear_filters" class="btn btn-danger">Clear</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail2">Affiliation: </label>
-                  <select name="affiliation_dropdown" id="affiliation_dropdown" class="form-control sc-drop-down">
-                  <option value="">--none--</option>
-                    @foreach($affiliations as $aff)
-                      <option value="{{$aff}}">{{$aff}}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <button name="clear_filters" id="clear_filters" class="btn btn-danger">Clear</button>
-              </form>
             </div>
-          </div>
+
 
             <!-- /.box-header -->
             <div class="box-body" style="font-size: .8em;">

@@ -43,6 +43,8 @@
                         <th>Keywords</th>
                         <th data-priority="2">Organization</th>
                         <th data-priority="4">Availability</th>
+                        <th>Availability Name</th>
+                        <th>Order</th>
                         <th data-priority="4">City</th>
                         <th data-priority="1">Apply By</th>
                     </tr>
@@ -107,6 +109,19 @@
                                     </div>
                                 </span>
                                     @endunless
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($internship->affiliations as $affiliation)
+                                    {{$affiliation->name}}
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($internship->affiliations as $affiliation)
+                                    @if($affiliation->slug == 'urgent')
+                                        1
+                                        @break
+                                    @endif
                                 @endforeach
                             </td>
                             <td>
@@ -222,7 +237,7 @@
                 "columnDefs": [
                   {
                     "visible": false,
-                    "targets": [2,3]
+                    "targets": [2,3,6,7]
                   },
                   {
                     "className": "control",
@@ -234,7 +249,8 @@
                     "targets": 1
                   }
                 ],
-                "order": [ 5, 'asc' ],
+                /* order by urgent first, then by application date */
+                "order": [ [7, 'desc'], [9, 'asc'] ],
                 "lengthMenu": [ [25, 50, 100], [25, 50, 100] ]
             });
             $('[data-toggle="tooltip"]').tooltip();

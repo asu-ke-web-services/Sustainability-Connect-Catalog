@@ -17,6 +17,8 @@ class InternshipPublicController extends Controller
 {
     /**
      * @var InternshipRepository
+     * @var categoryRepository
+     * @var affiliationRepository
      */
     private $internshipRepository;
     private $categoryRepository;

@@ -193,8 +193,11 @@
         $(document).ready( function () {
           $('#datatable').DataTable({
               initComplete: function() {
-                this.api().search(getUrlVars()['search']).draw();
+                //this.api().search(getUrlVars()['search']).draw();
               },
+              "search": {
+                  "search": getUrlVars()['search']
+                },
               "responsive": {
                 "details": {
                   "type": "column"
@@ -224,13 +227,34 @@
 
       // Read a page's GET URL variables and return them as an associative array.
       function getUrlVars()
-        {
-          var vars = {};
-          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-          vars[key] = decodeURI(value);
+      {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = decodeURI(value);
         });
 
         return vars;
-        }
+      }
+
+      function preventUndefined( term ) {
+        return ( typeof(term) == 'undefined' ? '' : $.trim( term ) )
+      }
+
+      // when the value a select box changes, update the search
+      $('.sc-drop-down').change( function() {
+        var categoryTerm = preventUndefined( $("#category_dropdown").val() );
+        var affiliationTerm = preventUndefined( $('#affiliation_dropdown').val() );
+        var searchTerm = categoryTerm + ' ' + affiliationTerm;
+        $("#datatable").DataTable().search(searchTerm).draw();
+      })
+
+      // clears the drop-downs and searches for '' (aka no filters)
+      $('#clear_filters').click( function(e) {
+        e.preventDefault();
+        // $('#category_dropdown').val('');
+        // $('#affiliation_dropdown').val('');
+        $('.sc-drop-down').val('');
+        $("#datatable").DataTable().search('').draw();
+      })
     </script>
 @endpush

@@ -80,13 +80,13 @@
                             @endforeach
                         </td>
                         <td>
-                            @foreach ($project->affiliations as $aff)
-                                {{$aff->name}}
+                            @foreach ($project->affiliations as $affiliation)
+                                {{$affiliation->name}}
                             @endforeach
                         </td>
                         <td>
-                            @foreach ($project->affiliations as $aff)
-                                @if($aff->slug == 'urgent')
+                            @foreach ($project->affiliations as $affiliation)
+                                @if($affiliation->slug == 'urgent')
                                     1
                                     @break
                                 @endif

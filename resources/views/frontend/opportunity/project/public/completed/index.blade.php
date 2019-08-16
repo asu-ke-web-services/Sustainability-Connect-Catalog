@@ -5,6 +5,22 @@
         <div class="box">
         <div class="box-header">
           <h3 class="box-title">Past Projects</h3>
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label for="category_dropdown">Category: </label>
+                  <select name="category_dropdown" id="category_dropdown" class="form-control sc-drop-down">
+                    <option value="">--none--</option>
+                    @foreach($categories as $category)
+                      <option value="{{$category}}">{{$category}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <button name="clear_filters" id="clear_filters" class="btn btn-danger">Clear</button>
+              </form>
+            </div>
+          </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="font-size: .8em;">

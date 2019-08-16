@@ -62,7 +62,7 @@ class ProjectPublicController extends Controller
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
             ->with('categories', $this->categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('affiliations', $this->affiliationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $this->affiliationRepository->whereIn('opportunity_type_id', [1,2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('defaultOrderBy', 'application_deadline_at')
             ->with('defaultSort', 'asc');
     }

@@ -68,8 +68,7 @@ class InternshipPublicController extends Controller
             ->with('pageTitle', 'Internships')
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('categories', $this->categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-            ->with('affiliations', $this->affiliationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
-
+            ->with('affiliations', $this->affiliationRepository->whereIn('opportunity_type_id',[1,3])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('canViewRestricted', $canViewRestricted)
             ->with('defaultOrderBy', 'application_deadline_at')
             ->with('defaultSort', 'asc');

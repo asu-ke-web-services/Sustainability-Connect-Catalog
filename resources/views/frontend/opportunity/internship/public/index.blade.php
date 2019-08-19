@@ -15,8 +15,8 @@
                         <label for="category_dropdown" class="sr-only">Category: </label>
                         <select name="category_dropdown" class="form-control sc-drop-down category_dropdown">
                             <option value="">-- Choose Category --</option>
-                            @foreach($categories as $cat)
-                                <option value="{{$cat}}">{{$cat}}</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category}}">{{$category}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -26,8 +26,8 @@
                         <label for="exampleInputEmail2" class="sr-only">Affiliation: </label>
                         <select name="affiliation_dropdown" class="form-control sc-drop-down affiliation_dropdown">
                             <option value="">-- Choose Tag --</option>
-                            @foreach($affiliations as $aff)
-                                <option value="{{$aff}}">{{$aff}}</option>
+                            @foreach($affiliations as $affiliation)
+                                <option value="{{$affiliation}}">{{$affiliation}}</option>
                             @endforeach
                         </select>
                     </div>

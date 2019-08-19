@@ -25,7 +25,7 @@
                     <div id="tag-controls" class="form-group">
                         <label for="exampleInputEmail2" class="sr-only">Affiliation: </label>
                         <select name="affiliation_dropdown" class="form-control sc-drop-down affiliation_dropdown">
-                            <option value="">-- Choose Tag --</option>
+                            <option value="">-- Choose Affiliation --</option>
                             @foreach($affiliations as $affiliation)
                                 <option value="{{$affiliation}}">{{$affiliation}}</option>
                             @endforeach

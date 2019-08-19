@@ -167,6 +167,11 @@
         /*
         Font Awesome custom styles - for Affiliation Icons
          */
+
+        .table-wrapper {
+            font-size: .8em;
+        }
+
         .icon-column .fa,
         .icon-legend .fa {
             margin-right: .5rem;

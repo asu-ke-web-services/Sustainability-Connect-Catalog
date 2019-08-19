@@ -1,153 +1,162 @@
 @extends('frontend.layouts.asu')
 @section('content')
-    <div class="container-fluid" style="min-height: 700px">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Active Internships</h3>
+    <div class="container-fluid" style="min-height: 700px;">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="h3">Internships</h1>
             </div>
-            <div class="row  center-block">
-                <div class="col-sm-12">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="category_dropdown">Category: </label>
-                            <select name="category_dropdown" id="category_dropdown" class="form-control sc-drop-down">
-                                <option value="">--all--</option>
-                                @foreach($categories as $cat)
-                                    <option value="{{$cat}}">{{$cat}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail2">Affiliation: </label>
-                            <select name="affiliation_dropdown" id="affiliation_dropdown" class="form-control sc-drop-down">
-                                <option value="">--all--</option>
-                                @foreach($affiliations as $aff)
-                                    <option value="{{$aff}}">{{$aff}}</option>
-                                @endforeach
-                            </select>
-                            <button name="clear_filters" id="clear_filters" class="btn btn-danger">Clear</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
-            <!-- /.box-header -->
-            <div class="box-body" style="font-size: .8em;">
-                <table id="datatable" class="table table-bordered table-striped dt-responsive nowrap" width="100%">
-                <thead>
-                    <tr>
-                        <th>More</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Keywords</th>
-                        <th data-priority="2">Organization</th>
-                        <th data-priority="4">Availability</th>
-                        <th>Availability Name</th>
-                        <th>Order</th>
-                        <th data-priority="4">City</th>
-                        <th data-priority="1">Apply By</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($internships as $internship)
-                        @php
-                            $accessAffiliations = $internship->affiliations
-                                ->filter(function ($affiliation) {
-                                    return $affiliation->access_control;
-                                })
-                                ->map(function ($affiliation) {
-                                    return $affiliation->slug;
-                                })->toArray();
-
-                            $restrictAccess = false;
-                            foreach ($accessAffiliations as $restriction) {
-                                if (!in_array($restriction, $userAccessAffiliations )) {
-                                    $restrictAccess = true;
-                                }
-                            }
-                        @endphp
-                        <tr>
-                            <td></td>
-                            <td>
-                                @if (!$canViewRestricted && $restrictAccess)
-                                    View Restricted for SOS majors only
-                                @else
-                                    <b><a href="{!! route('frontend.opportunity.internship.public.show', $internship) !!}">{{ ucwords($internship->name) }}</a></b>
-                                @endif
-                            </td>
-                            <td>
-                                @if (count($internship->categories))
-                                    @foreach($internship->categories as $category)
-                                        {{ ucwords($category->name) }}
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>
-                                @if (count($internship->keywords))
-                                    @foreach($internship->keywords as $keyword)
-                                        {{ ucwords($keyword->name) }}
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>
-                                @if (!$canViewRestricted && $restrictAccess)
-                                    View Restricted for SOS majors only
-                                @else
-                                    {{ ucwords($internship->organization->name) }}
-                                @endif
-                            </td>
-                            <td class="icon-column">
-                                @foreach ($internship->affiliations as $icon)
-                                    @unless(empty($icon->frontend_fa_icon))
-                                        <span class="fa-stack" data-toggle="tooltip" data-container="body" title="{{ $icon->help_text }}">
-                                    @php
-                                        $icon = json_decode($icon->frontend_fa_icon);
-                                    @endphp
-                                    <div><div class="{{ $icon[0]->className ?? null }}">{{ $icon[0]->content ?? null }}</div></div>
-                                    <div><div class="{{ $icon[1]->className ?? null }}">{{ $icon[1]->content ?? null }}</div>
-                                    </div>
-                                </span>
-                                    @endunless
-                                @endforeach
-                            </td>
-                            <td>
-                                @foreach ($internship->affiliations as $affiliation)
-                                    {{$affiliation->name}}
-                                @endforeach
-                            </td>
-                            <td>
-                                @foreach ($internship->affiliations as $affiliation)
-                                    @if($affiliation->slug == 'urgent')
-                                        1
-                                        @break
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>
-                                @if ($internship->addresses->count())
-                                    @foreach ($internship->addresses as $address)
-                                        {{ ucwords($address->city) }}
-                                    @endforeach
-                                @else
-                                    {{ __('labels.general.none') }}
-                                @endif
-                            </td>
-                            <td>{{
-                                !empty($internship->application_deadline_text)
-                                    ? $internship->application_deadline_text
-                                    : (!empty($internship->application_deadline_at) ? $internship->application_deadline_at->toDateString() : null)
-                            }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.box-body -->
         </div>
-        <!-- /.box -->
-    </div>
+
+        <div class="row collapse in" id="control-bar" style="padding-top: 1em;">
+            <form class="form">
+                <div class="col-sm-12 col-md-4">
+                    <div id="category-controls" class="form-group">
+                        <label for="category_dropdown" class="sr-only">Category: </label>
+                        <select name="category_dropdown" class="form-control sc-drop-down category_dropdown">
+                            <option value="">-- Choose Category --</option>
+                            @foreach($categories as $cat)
+                                <option value="{{$cat}}">{{$cat}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div id="tag-controls" class="form-group">
+                        <label for="exampleInputEmail2" class="sr-only">Affiliation: </label>
+                        <select name="affiliation_dropdown" class="form-control sc-drop-down affiliation_dropdown">
+                            <option value="">-- Choose Tag --</option>
+                            @foreach($affiliations as $aff)
+                                <option value="{{$aff}}">{{$aff}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="customFilter" class="sr-only">Search: </label>
+                            <input type="search" id="customFilter" class="form-control" aria-controls="datatable" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button name="clear_filters" type="button" class="btn btn-primary clear_filters">Clear</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <small class="hidden-md hidden-lg"><a href="#control-bar" data-toggle="collapse"> >> Show/Hide Search</a></small>
+
+
+        <table id="datatable" class="table table-bordered table-striped dt-responsive nowrap" width="100%">
+            <thead>
+                <tr>
+                    <th>More</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Keywords</th>
+                    <th data-priority="2">Organization</th>
+                    <th data-priority="4">Availability</th>
+                    <th>Availability Name</th>
+                    <th>Order</th>
+                    <th data-priority="4">City</th>
+                    <th data-priority="1">Apply By</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach ($internships as $internship)
+                @php
+                    $accessAffiliations = $internship->affiliations
+                        ->filter(function ($affiliation) {
+                            return $affiliation->access_control;
+                        })
+                        ->map(function ($affiliation) {
+                            return $affiliation->slug;
+                        })->toArray();
+
+                    $restrictAccess = false;
+                    foreach ($accessAffiliations as $restriction) {
+                        if (!in_array($restriction, $userAccessAffiliations )) {
+                            $restrictAccess = true;
+                        }
+                    }
+                @endphp
+                <tr>
+                    <td></td>
+                    <td>
+                        @if (!$canViewRestricted && $restrictAccess)
+                            View Restricted for SOS majors only
+                        @else
+                            <b><a href="{!! route('frontend.opportunity.internship.public.show', $internship) !!}">{{ ucwords($internship->name) }}</a></b>
+                        @endif
+                    </td>
+                    <td>
+                        @if (count($internship->categories))
+                            @foreach($internship->categories as $category)
+                                {{ ucwords($category->name) }}
+                            @endforeach
+                        @endif
+                    </td>
+                    <td>
+                        @if (count($internship->keywords))
+                            @foreach($internship->keywords as $keyword)
+                                {{ ucwords($keyword->name) }}
+                            @endforeach
+                        @endif
+                    </td>
+                    <td>
+                        @if (!$canViewRestricted && $restrictAccess)
+                            View Restricted for SOS majors only
+                        @else
+                            {{ ucwords($internship->organization->name) }}
+                        @endif
+                    </td>
+                    <td class="icon-column">
+                        @foreach ($internship->affiliations as $icon)
+                            @unless(empty($icon->frontend_fa_icon))
+                                <span class="fa-stack" data-toggle="tooltip" data-container="body" title="{{ $icon->help_text }}">
+                            @php
+                                $icon = json_decode($icon->frontend_fa_icon);
+                            @endphp
+                            <div><div class="{{ $icon[0]->className ?? null }}">{{ $icon[0]->content ?? null }}</div></div>
+                            <div><div class="{{ $icon[1]->className ?? null }}">{{ $icon[1]->content ?? null }}</div>
+                            </div>
+                        </span>
+                            @endunless
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($internship->affiliations as $affiliation)
+                            {{$affiliation->name}}
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($internship->affiliations as $affiliation)
+                            @if($affiliation->slug == 'urgent')
+                                1
+                                @break
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @if ($internship->addresses->count())
+                            @foreach ($internship->addresses as $address)
+                                {{ ucwords($address->city) }}
+                            @endforeach
+                        @else
+                            {{ __('labels.general.none') }}
+                        @endif
+                    </td>
+                    <td>{{
+                        !empty($internship->application_deadline_text)
+                            ? $internship->application_deadline_text
+                            : (!empty($internship->application_deadline_at) ? $internship->application_deadline_at->toDateString() : null)
+                    }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div> <!-- container -->
 @endsection
 
 
@@ -156,9 +165,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
     <style>
         /*
-         Font Awesome custom styles - for Affiliation Icons
+        Font Awesome custom styles - for Affiliation Icons
          */
-
         .icon-column .fa,
         .icon-legend .fa {
             margin-right: .5rem;
@@ -211,7 +219,7 @@
 
         @media (max-width: 768px) {
             .input-group {
-                margin-top: 30px;
+                /* margin-top: 30px; */
             }
         }
     </style>
@@ -225,30 +233,32 @@
         $(document).ready( function () {
             $('#datatable').DataTable({
                 initComplete: function() {
-                  //this.api().search(getUrlVars()['search']).draw();
                 },
+                /* put the table in a table-wrapper div, with info on top, then table, then paging controls */
+                "dom": '<"table-wrapper"itp>',
+                /* perform a search when the table is ready */
                 "search": {
-                  "search": getUrlVars()['search']
+                    "search": getUrlVars()['search']
                 },
                 "responsive": {
-                  "details": {
+                    "details": {
                     "type": "column"
-                  }
+                    }
                 },
                 "columnDefs": [
-                  {
+                    {
                     "visible": false,
                     "targets": [2,3,6,7]
-                  },
-                  {
+                    },
+                    {
                     "className": "control",
                     "orderable": false,
                     "targets":   0
-                  },
-                  {
+                    },
+                    {
                     "className": "all",
                     "targets": 1
-                  }
+                    }
                 ],
                 /* order by urgent first, then by application date */
                 "order": [ [7, 'desc'], [9, 'asc'] ],
@@ -262,31 +272,35 @@
         {
             var vars = {};
             var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-            vars[key] = decodeURI(value);
-        });
+                vars[key] = decodeURI(value);
+            });
 
-        return vars;
+            return vars;
         }
 
         function preventUndefined( term ) {
-        return ( typeof(term) == 'undefined' ? '' : $.trim( term ) )
-      }
+            return ( typeof(term) == 'undefined' ? '' : $.trim( term ) );
+        }
 
-      // when the value a select box changes, update the search
-      $('.sc-drop-down').change( function() {
-        var categoryTerm = preventUndefined( $("#category_dropdown").val() );
-        var affiliationTerm = preventUndefined( $('#affiliation_dropdown').val() );
-        var searchTerm = categoryTerm + ' ' + affiliationTerm;
-        $("#datatable").DataTable().search(searchTerm).draw();
-      })
+        // when the value a select box changes, update the search
+        $('.sc-drop-down').change( function() {
+            var categoryTerm = preventUndefined( $(".category_dropdown").val() );
+            var affiliationTerm = preventUndefined( $('.affiliation_dropdown').val() );
+            var searchTerm = categoryTerm + ' ' + affiliationTerm;
+            $('#customFilter').val( searchTerm );
+            $("#datatable").DataTable().search(searchTerm).draw();
+        });
 
-      // clears the drop-downs and searches for '' (aka no filters)
-      $('#clear_filters').click( function(e) {
-        e.preventDefault();
-        // $('#category_dropdown').val('');
-        // $('#affiliation_dropdown').val('');
-        $('.sc-drop-down').val('');
-        $("#datatable").DataTable().search('').draw();
-      })
+        // clears the drop-downs and searches for '' (aka no filters)
+        $('.clear_filters').click( function(e) {
+            e.preventDefault();
+            $('.sc-drop-down, #customFilter').val('');
+            $("#datatable").DataTable().search('').draw();
+        });
+
+        $('#customFilter').keyup( function() {
+            searchTerm = $('#customFilter').val();
+            $("#datatable").DataTable().search( searchTerm ).draw();
+        });
     </script>
 @endpush

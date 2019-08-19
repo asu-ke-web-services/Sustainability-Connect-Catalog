@@ -15,8 +15,8 @@
                   <label for="category_dropdown" class="sr-only">Category: </label>
                   <select name="category_dropdown" class="form-control sc-drop-down category_dropdown">
                       <option value="">-- Choose Category --</option>
-                      @foreach($categories as $cat)
-                          <option value="{{$cat}}">{{$cat}}</option>
+                      @foreach($categories as $category)
+                          <option value="{{$category}}">{{$category}}</option>
                       @endforeach
                   </select>
               </div>

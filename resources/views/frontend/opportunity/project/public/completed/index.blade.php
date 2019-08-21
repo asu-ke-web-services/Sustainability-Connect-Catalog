@@ -4,7 +4,7 @@
 <div class="container-fluid" style="min-height: 700px">
   <div class="row">
     <div class="col-xs-12">
-        <h1 class="h3">Current Projects</h1>
+        <h1 class="h3">Past Projects</h1>
     </div>
   </div>
 

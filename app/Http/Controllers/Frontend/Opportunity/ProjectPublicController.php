@@ -5,7 +5,10 @@ namespace SCCatalog\Http\Controllers\Frontend\Opportunity;
 use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\Frontend\Opportunity\ViewProjectRequest;
 use SCCatalog\Repositories\Opportunity\ProjectRepository;
+use SCCatalog\Repositories\Lookup\CategoryRepository;
+use SCCatalog\Repositories\Lookup\AffiliationRepository;
 use SCCatalog\Models\Opportunity\Project;
+
 
 /**
  * Class ProjectPublicController.
@@ -14,17 +17,22 @@ class ProjectPublicController extends Controller
 {
     /**
      * @var ProjectRepository
+     *
      */
     private $projectRepository;
+    private $categoryRepository;
+    private $affiliationRepository;
 
     /**
      * ProjectPublicController constructor.
      *
      * @param ProjectRepository $projectRepository
      */
-    public function __construct(ProjectRepository $projectRepository)
+    public function __construct(ProjectRepository $projectRepository, CategoryRepository $categoryRepository, AffiliationRepository $affiliationRepository)
     {
         $this->projectRepository = $projectRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->affiliationRepository = $affiliationRepository;
     }
 
     /**
@@ -53,6 +61,8 @@ class ProjectPublicController extends Controller
             ->with('pageTitle', 'Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
+            ->with('categories', $this->categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('affiliations', $this->affiliationRepository->whereIn('opportunity_type_id', [1,2])->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('defaultOrderBy', 'application_deadline_at')
             ->with('defaultSort', 'asc');
     }
@@ -83,6 +93,7 @@ class ProjectPublicController extends Controller
             ->with('pageTitle', 'Past Projects')
             ->with('userAccessAffiliations', $userAccessAffiliations)
             ->with('canViewRestricted', $canViewRestricted)
+            ->with('categories', $this->categoryRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->with('defaultOrderBy', 'opportunity_start_at')
             ->with('defaultSort', 'desc');
     }

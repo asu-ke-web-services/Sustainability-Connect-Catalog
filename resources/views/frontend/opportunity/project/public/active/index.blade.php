@@ -2,12 +2,51 @@
 
 @section('content')
     <div class="container-fluid" style="min-height: 700px">
-        <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Active Projects</h3>
+      <div class="row">
+          <div class="col-xs-12">
+              <h1 class="h3">Current Projects</h1>
+          </div>
+      </div>
+
+      <div class="row collapse in" id="control-bar" style="padding-top: 1em;">
+            <form class="form">
+                <div class="col-sm-12 col-md-4">
+                    <div id="category-controls" class="form-group">
+                        <label for="category_dropdown" class="sr-only">Category: </label>
+                        <select name="category_dropdown" class="form-control sc-drop-down category_dropdown">
+                            <option value="">-- Choose Category --</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category}}">{{$category}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div id="tag-controls" class="form-group">
+                        <label for="exampleInputEmail2" class="sr-only">Affiliation: </label>
+                        <select name="affiliation_dropdown" class="form-control sc-drop-down affiliation_dropdown">
+                            <option value="">-- Choose Affiliation --</option>
+                            @foreach($affiliations as $affiliation)
+                                <option value="{{$affiliation}}">{{$affiliation}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="customFilter" class="sr-only">Search: </label>
+                            <input type="search" id="customFilter" class="form-control" aria-controls="datatable" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button name="clear_filters" type="button" class="btn btn-primary clear_filters">Clear</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body" style="font-size: .8em;">
+        <small class="hidden-md hidden-lg"><a href="#control-bar" data-toggle="collapse"> >> Show/Hide Search</a></small>
+
           <table id="datatable" class="table table-bordered table-striped dt-responsive nowrap" width="100%">
             <thead>
                 <tr>
@@ -112,10 +151,6 @@
                 @endforeach
             </tbody>
           </table>
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
     </div>
 @endsection
 
@@ -127,6 +162,10 @@
         /*
          Font Awesome custom styles - for Affiliation Icons
          */
+
+        .table-wrapper {
+          font-size: .8em;
+        }
 
         .icon-column .fa,
         .icon-legend .fa {
@@ -177,12 +216,6 @@
           margin-top: 9px;
           margin-left: 7px;
         }
-
-        @media (max-width: 768px) {
-          .input-group {
-            margin-top: 30px;
-          }
-        }
     </style>
 @endsection
 
@@ -192,9 +225,14 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script>
         $(document).ready( function () {
-            $('#datatable').DataTable({
+            $('#datatable').dataTable({
                 initComplete: function() {
-                  this.api().search(getUrlVars()['search']).draw();
+                },
+                /* put the table in a table-wrapper div, with info on top, then table, then paging controls */
+                "dom": '<"table-wrapper"itp>',
+                /* perform a search when the table is ready */
+                "search": {
+                    "search": getUrlVars()['search']
                 },
                 "responsive": {
                   "details": {
@@ -228,9 +266,35 @@
           var vars = {};
           var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
           vars[key] = decodeURI(value);
-        });
+          });
 
-        return vars;
+          return vars;
         }
+
+        function preventUndefined( term )
+        {
+          return ( typeof(term) == 'undefined' ? '' : $.trim( term ) )
+        }
+
+     // when the value a select box changes, update the search
+      $('.sc-drop-down').change( function() {
+        var categoryTerm = preventUndefined( $(".category_dropdown").val() );
+        var affiliationTerm = preventUndefined( $('.affiliation_dropdown').val() );
+        var searchTerm = categoryTerm + ' ' + affiliationTerm;
+        $('#customFilter').val( searchTerm );
+        $("#datatable").DataTable().search(searchTerm).draw();
+      });
+
+      // clears the drop-downs and searches for '' (aka no filters)
+      $('.clear_filters').click( function(e) {
+          e.preventDefault();
+          $('.sc-drop-down, #customFilter').val('');
+          $("#datatable").DataTable().search('').draw();
+      });
+
+      $('#customFilter').keyup( function() {
+          searchTerm = $('#customFilter').val();
+          $("#datatable").DataTable().search( searchTerm ).draw();
+      });
     </script>
 @endpush

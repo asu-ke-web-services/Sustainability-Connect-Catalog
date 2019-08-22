@@ -10,7 +10,7 @@
 
   <div class="row collapse in" id="control-bar" style="padding-top: 1em;">
       <form class="form">
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-4">
               <div id="category-controls" class="form-group">
                   <label for="category_dropdown" class="sr-only">Category: </label>
                   <select name="category_dropdown" class="form-control sc-drop-down category_dropdown">
@@ -21,7 +21,18 @@
                   </select>
               </div>
           </div>
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-4">
+                  <div id="tag-controls" class="form-group">
+                      <label for="affiliation_dropdown" class="sr-only">Affiliation: </label>
+                      <select name="affiliation_dropdown" class="form-control sc-drop-down affiliation_dropdown">
+                          <option value="">-- Choose Affiliation --</option>
+                          @foreach($affiliations as $affiliation)
+                              <option value="{{$affiliation}}">{{$affiliation}}</option>
+                          @endforeach
+                      </select>
+                  </div>
+                </div>
+          <div class="col-sm-12 col-md-4">
               <div class="form-group">
                   <div class="input-group">
                       <label for="customFilter" class="sr-only">Search: </label>
@@ -43,8 +54,6 @@
       <th>Name</th>
       <th data-priority="2">Category</th>
       <th data-priority="4">Keywords</th>
-      <th data-priority="3">Ends</th>
-      <!--
       <th data-priority="4">Availability</th>
       <th>Availability Name</th>
       <th>Order</th>
@@ -52,14 +61,15 @@
       <th data-priority="2">Begins</th>
       <th data-priority="3">Ends</th>
       <th data-priority="1">Apply By</th>
-      -->
     </tr>
   </thead>
   <tbody>
     @foreach ($projects as $project)
         <tr>
             <td></td>
-            <td><a href="{!! route('frontend.opportunity.project.public.show', $project) !!}">{{ ucwords($project->name) }}</a></td>
+            <td>
+              <a href="{!! route('frontend.opportunity.project.public.show', $project) !!}">{{ ucwords($project->name) }}</a>
+            </td>
             <td>
               @if ($project->categories->count())
                 @foreach($project->categories as $category)
@@ -74,7 +84,6 @@
                 @endforeach
               @endif
             </td>
-            <!--
             <td class="icon-column">
                 @foreach ($project->affiliations as $icon)
                     @unless(empty($icon->frontend_fa_icon))
@@ -113,7 +122,6 @@
             </td>
             <td>{{ null !== $project->opportunity_start_at ? $project->opportunity_start_at->toDateString() : null }}</td>
             <td>{{ null !== $project->opportunity_end_at ? $project->opportunity_end_at->toDateString() : null }}</td>
-            -->
             <td>{{
                   null != $project->application_deadline_text
                     ? $project->application_deadline_text
@@ -213,7 +221,7 @@
               },
               "columnDefs": [
                   {
-                    "targets": [3],
+                    "targets": [3,5,6,7,8,10],
                     "visible": false
                   },
                   {

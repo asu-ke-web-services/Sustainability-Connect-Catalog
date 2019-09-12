@@ -21,18 +21,7 @@
                   </select>
               </div>
           </div>
-          <div class="col-sm-12 col-md-4">
-                  <div id="tag-controls" class="form-group">
-                      <label for="affiliation_dropdown" class="sr-only">Affiliation: </label>
-                      <select name="affiliation_dropdown" class="form-control sc-drop-down affiliation_dropdown">
-                          <option value="">-- Choose Affiliation --</option>
-                          @foreach($affiliations as $affiliation)
-                              <option value="{{$affiliation}}">{{$affiliation}}</option>
-                          @endforeach
-                      </select>
-                  </div>
-                </div>
-          <div class="col-sm-12 col-md-4">
+          <div class="col-sm-12 col-md-4 col-md-offset-4">
               <div class="form-group">
                   <div class="input-group">
                       <label for="customFilter" class="sr-only">Search: </label>

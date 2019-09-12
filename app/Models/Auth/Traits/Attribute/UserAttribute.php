@@ -109,6 +109,22 @@ trait UserAttribute
     }
 
     /**
+     * @return string
+     */
+    public function getFullNameEmailAttribute()
+    {
+        return $this->full_name . ' <' . $this->email . '>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getNameEmailAttribute()
+    {
+        return $this->full_name_email;
+    }
+
+    /**
      * @return mixed
      */
     public function getPictureAttribute()

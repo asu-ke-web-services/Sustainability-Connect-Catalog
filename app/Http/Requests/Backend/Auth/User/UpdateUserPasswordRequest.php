@@ -19,7 +19,7 @@ class UpdateUserPasswordRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->isAdmin();
+        return $this->user()->can('update user password') || $this->user()->isAdmin();
     }
 
     /**

@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div id="tag-controls" class="form-group">
-                        <label for="exampleInputEmail2" class="sr-only">Affiliation: </label>
+                        <label for="affiliation_dropdown" class="sr-only">Affiliation: </label>
                         <select name="affiliation_dropdown" class="form-control sc-drop-down affiliation_dropdown">
                             <option value="">-- Choose Affiliation --</option>
                             @foreach($affiliations as $affiliation)

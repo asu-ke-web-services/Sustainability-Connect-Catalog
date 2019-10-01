@@ -8,9 +8,7 @@ use SCCatalog\Events\Backend\Auth\User\UserDeleted;
 use SCCatalog\Repositories\Auth\Backend\RoleRepository;
 use SCCatalog\Repositories\Auth\Backend\UserRepository;
 use SCCatalog\Repositories\Auth\Backend\PermissionRepository;
-use SCCatalog\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
-use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserRequest;
 use SCCatalog\Repositories\Lookup\AffiliationRepository;
 use SCCatalog\Repositories\Lookup\StudentDegreeLevelRepository;
 use SCCatalog\Repositories\Lookup\UserTypeRepository;
@@ -79,12 +77,12 @@ class UserController extends Controller
     }
 
     /**
-     * @param StoreUserRequest $request
+     * @param ManageUserRequest $request
      *
      * @return mixed
      * @throws \Throwable
      */
-    public function store(StoreUserRequest $request)
+    public function store(ManageUserRequest $request)
     {
         $this->userRepository->create($request->all());
 
@@ -141,14 +139,14 @@ class UserController extends Controller
     }
 
     /**
-     * @param UpdateUserRequest $request
+     * @param ManageUserRequest $request
      * @param User              $user
      *
      * @return mixed
      * @throws \SCCatalog\Exceptions\GeneralException
      * @throws \Throwable
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(ManageUserRequest $request, User $user)
     {
         $this->userRepository->update($user, $request->all());
 

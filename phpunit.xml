@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false"
-         printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer">
+        backupStaticAttributes="false"
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="false"
+        printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer">
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">
@@ -42,6 +42,7 @@
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
+        <server name="CAS_MASQUERADE" value="tester"/>
         <server name="CONTACT_CAPTCHA_STATUS" value="false"/>
         <server name="DB_CONNECTION" value="sqlite_testing"/>
         <server name="ENABLE_REGISTRATION" value="true"/>
@@ -49,6 +50,7 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="REGISTRATION_CAPTCHA_STATUS" value="false"/>
+        <server name="SCOUT_DRIVER" value="null"/>
         <server name="SESSION_DRIVER" value="array"/>
     </php>
 </phpunit>

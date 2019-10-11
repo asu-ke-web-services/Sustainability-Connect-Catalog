@@ -1,6 +1,6 @@
 {
-    "name": "@rappasoft/laravel-boilerplate",
-    "author": "rappasoft rappa819@gmail.com",
+    "name": "gios-sustainability-connect-catalog",
+    "author": "Nathan Rollins nathan.rollins@asu.edu",
     "private": true,
     "license": "MIT",
     "scripts": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Repositories\Backend\Access\User;
+namespace SCCatalog\Repositories\Auth\Backend;
 
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Models\Auth\SocialAccount;

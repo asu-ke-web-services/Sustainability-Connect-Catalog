@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Repositories\Frontend\Auth;
+namespace SCCatalog\Repositories\Auth\Frontend;
 
 use SCCatalog\Models\Auth\User;
 use Illuminate\Http\UploadedFile;

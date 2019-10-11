@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Repositories\Backend\Auth;
+namespace SCCatalog\Repositories\Auth\Backend;
 
 use SCCatalog\Repositories\BaseRepository;
 use Spatie\Permission\Models\Permission;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SCCatalog\Repositories\Backend\Auth;
+namespace SCCatalog\Repositories\Auth\Backend;
 
 use SCCatalog\Models\Auth\Role;
 use Illuminate\Support\Facades\DB;

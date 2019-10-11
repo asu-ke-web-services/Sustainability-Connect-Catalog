@@ -28,4 +28,15 @@ trait UserScope
     {
         return $query->where('active', $status);
     }
+
+    /**
+     * @param $query
+     * @param bool $status
+     *
+     * @return mixed
+     */
+    public function scopeNeedsAffiliationReview($query)
+    {
+        return $query->where('access_validated', 0);
+    }
 }

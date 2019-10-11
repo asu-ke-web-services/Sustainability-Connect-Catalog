@@ -8,6 +8,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
 use Lab404\Impersonate\Models\Impersonate;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use SCCatalog\Models\Auth\Traits\SendUserPasswordReset;
 use Altek\Accountant\Recordable as RecordableTrait;
@@ -23,6 +24,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
         Impersonate,
         Notifiable,
         RecordableTrait,
+        Searchable,
         SendUserPasswordReset,
         SoftDeletes,
         Uuid;
@@ -47,6 +49,17 @@ abstract class BaseUser extends Authenticatable implements Recordable
         'last_login_at',
         'last_login_ip',
         'to_be_logged_out',
+        'access_validated',
+        'asurite',
+        'asurite_login',
+        'user_type_id',
+        'student_degree_level_id',
+        'degree_program',
+        'graduation_date',
+        'phone',
+        'research_interests',
+        'department',
+        'organization_id',
     ];
 
     /**
@@ -64,6 +77,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
      */
     protected $casts = [
         'active' => 'boolean',
+        'asurite' => 'boolean',
         'confirmed' => 'boolean',
         'to_be_logged_out' => 'boolean',
     ];
@@ -87,7 +101,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
     ];
 
     /**
-     * Return true or false if the user can impersonate an other user.
+     * Return true or false if the user can impersonate another user.
      *
      * @param void
      * @return  bool
@@ -98,7 +112,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
     }
 
     /**
-     * Return true or false if the user can be impersonate.
+     * Return true or false if the user can be impersonated.
      *
      * @param void
      * @return  bool
@@ -107,4 +121,50 @@ abstract class BaseUser extends Authenticatable implements Recordable
     {
         return $this->id !== 1;
     }
+
+    /**
+     * Return true or false if the user should be indexed for search.
+     *
+     * @param void
+     * @return  bool
+     */
+    public function shouldBeSearchable()
+    {
+        return true;
+    }
+
+    /**
+     * Return array of customized properties to be stored in search index.
+     *
+     * @param void
+     * @return  array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        $array['userType'] = e($this->userType->name);
+
+        // Index Location Cities
+        $array['addresses'] = '';
+        foreach ($this->addresses as $address) {
+            $array['addresses'] .= e($address['city']) . ' ' . e($address['state']);
+        }
+
+        // Index Affiliations
+        $array['affiliations'] = $this->affiliations->map(function ($data) {
+            return e($data['name']);
+        })->toArray();
+
+        // Index AccessAffiliations
+        $array['accessAffiliations'] = $this->affiliations->where('access_control', true)->map(function ($data) {
+            return [
+                'name' => e($data['name']),
+                'slug' => e($data['slug']),
+            ];
+        })->toArray();
+
+        return $array;
+    }
+
 }

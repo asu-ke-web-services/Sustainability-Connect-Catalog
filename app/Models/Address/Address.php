@@ -9,10 +9,6 @@ use SCCatalog\Models\BaseModel;
  */
 class Address extends BaseModel
 {
-    use Eventually,
-        RecordableTrait,
-        SoftDeletes;
-
     /**
      * The attributes that should be cast to native types.
      *

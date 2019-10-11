@@ -6,6 +6,7 @@
     "require": {
         "php": "^7.2",
         "albertcht/invisible-recaptcha": "^1.9",
+        "algolia/algoliasearch-client-php": "^2.2",
         "altek/accountant": "^1.2",
         "altek/eventually": "^1.0",
         "arcanedev/log-viewer": "^5.0",
@@ -99,7 +100,7 @@
             "composer cache-all"
         ],
         "phpunit": [
-            "phpunit > output.txt -d memory_limit=2048M"
+            "phpunit -d memory_limit=2048M"
         ],
         "coverage-xml": [
             "phpunit --coverage-clover ./coverage.xml"

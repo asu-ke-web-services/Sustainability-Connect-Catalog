@@ -3,7 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 /**

@@ -6,7 +6,7 @@ use SCCatalog\Http\Controllers\Controller;
 use SCCatalog\Http\Requests\RegisterRequest;
 use SCCatalog\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository;
 
 /**
  * Class RegisterController.

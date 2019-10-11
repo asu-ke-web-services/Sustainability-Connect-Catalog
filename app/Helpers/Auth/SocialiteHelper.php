@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\Auth;
+namespace SCCatalog\Helpers\Auth;
 
 /**
  * Class Socialite.

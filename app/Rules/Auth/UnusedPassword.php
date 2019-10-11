@@ -5,8 +5,8 @@ namespace SCCatalog\Rules\Auth;
 use SCCatalog\Models\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Validation\Rule;
-use SCCatalog\Repositories\Backend\Auth\UserRepository as BackendUserRepository;
-use SCCatalog\Repositories\Frontend\Auth\UserRepository as FrontendUserRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository as BackendUserRepository;
+use SCCatalog\Repositories\Auth\Frontend\UserRepository as FrontendUserRepository;
 
 /**
  * Class UnusedPassword.

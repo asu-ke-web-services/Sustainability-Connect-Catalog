@@ -4,7 +4,7 @@ namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 
 use SCCatalog\Models\Auth\User;
 use SCCatalog\Http\Controllers\Controller;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
 use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserPasswordRequest;
 

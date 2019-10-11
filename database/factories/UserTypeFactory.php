@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\UserType;
+use SCCatalog\Models\Reference\UserType;
 
 /*
 |--------------------------------------------------------------------------

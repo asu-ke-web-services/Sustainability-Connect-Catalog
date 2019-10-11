@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\Affiliation;
+use SCCatalog\Models\Reference\Affiliation;
 
 /*
 |--------------------------------------------------------------------------

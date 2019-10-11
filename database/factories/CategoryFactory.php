@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\Category;
+use SCCatalog\Models\Reference\Category;
 
 /*
 |--------------------------------------------------------------------------

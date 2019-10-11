@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\OrganizationStatus;
+use SCCatalog\Models\Reference\OrganizationStatus;
 
 /*
 |--------------------------------------------------------------------------

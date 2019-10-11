@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\StudentDegreeLevel;
+use SCCatalog\Models\Reference\StudentDegreeLevel;
 
 /*
 |--------------------------------------------------------------------------

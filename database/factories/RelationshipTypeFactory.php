@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\RelationshipType;
+use SCCatalog\Models\Reference\RelationshipType;
 
 /*
 |--------------------------------------------------------------------------

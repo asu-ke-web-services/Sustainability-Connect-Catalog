@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\OpportunityType;
+use SCCatalog\Models\Reference\OpportunityType;
 
 /*
 |--------------------------------------------------------------------------

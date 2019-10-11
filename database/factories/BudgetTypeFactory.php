@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\BudgetType;
+use SCCatalog\Models\Reference\BudgetType;
 
 /*
 |--------------------------------------------------------------------------

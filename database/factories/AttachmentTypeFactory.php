@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\AttachmentType;
+use SCCatalog\Models\Reference\AttachmentType;
 
 /*
 |--------------------------------------------------------------------------

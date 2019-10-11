@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator;
-use SCCatalog\Models\Lookup\Keyword;
+use SCCatalog\Models\Reference\Keyword;
 
 /*
 |--------------------------------------------------------------------------

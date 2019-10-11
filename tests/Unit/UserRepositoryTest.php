@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
 use SCCatalog\Events\Backend\Auth\User\UserCreated;
 use SCCatalog\Events\Backend\Auth\User\UserUpdated;
-use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Auth\Backend\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserRepositoryTest extends TestCase

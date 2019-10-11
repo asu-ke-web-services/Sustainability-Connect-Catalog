@@ -3,11 +3,11 @@
 namespace Tests\Feature\Backend\User;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Support\Facades\Event;
-use App\Events\Backend\Auth\User\UserRestored;
+use SCCatalog\Events\Backend\Auth\User\UserRestored;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Events\Backend\Auth\User\UserPermanentlyDeleted;
+use SCCatalog\Events\Backend\Auth\User\UserPermanentlyDeleted;
 
 class DeleteUserTest extends TestCase
 {

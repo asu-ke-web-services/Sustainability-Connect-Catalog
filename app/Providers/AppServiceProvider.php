@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace SCCatalog\Providers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;

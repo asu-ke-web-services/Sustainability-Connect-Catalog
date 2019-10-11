@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Auth\Traits\Method;
+namespace SCCatalog\Models\Auth\Traits\Method;
 
 /**
  * Trait UserMethod.

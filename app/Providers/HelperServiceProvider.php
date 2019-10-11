@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace SCCatalog\Providers;
 
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;

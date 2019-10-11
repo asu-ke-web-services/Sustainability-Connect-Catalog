@@ -193,14 +193,14 @@ return [
         // Package Service Providers that aren't auto-discover...
 
         // Application Service Providers...
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\ComposerServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
-        App\Providers\ObserverServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        SCCatalog\Providers\AppServiceProvider::class,
+        SCCatalog\Providers\AuthServiceProvider::class,
+        // SCCatalog\Providers\BroadcastServiceProvider::class,
+        SCCatalog\Providers\ComposerServiceProvider::class,
+        SCCatalog\Providers\EventServiceProvider::class,
+        SCCatalog\Providers\HelperServiceProvider::class,
+        SCCatalog\Providers\ObserverServiceProvider::class,
+        SCCatalog\Providers\RouteServiceProvider::class,
     ],
 
     /*

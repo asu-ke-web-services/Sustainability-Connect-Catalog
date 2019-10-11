@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Auth\Role;
+namespace SCCatalog\Http\Controllers\Backend\Auth\Role;
 
-use App\Models\Auth\Role;
-use App\Http\Controllers\Controller;
-use App\Events\Backend\Auth\Role\RoleDeleted;
-use App\Repositories\Backend\Auth\RoleRepository;
-use App\Repositories\Backend\Auth\PermissionRepository;
-use App\Http\Requests\Backend\Auth\Role\StoreRoleRequest;
-use App\Http\Requests\Backend\Auth\Role\ManageRoleRequest;
-use App\Http\Requests\Backend\Auth\Role\UpdateRoleRequest;
+use SCCatalog\Models\Auth\Role;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Events\Backend\Auth\Role\RoleDeleted;
+use SCCatalog\Repositories\Backend\Auth\RoleRepository;
+use SCCatalog\Repositories\Backend\Auth\PermissionRepository;
+use SCCatalog\Http\Requests\Backend\Auth\Role\StoreRoleRequest;
+use SCCatalog\Http\Requests\Backend\Auth\Role\ManageRoleRequest;
+use SCCatalog\Http\Requests\Backend\Auth\Role\UpdateRoleRequest;
 
 /**
  * Class RoleController.
@@ -65,7 +65,7 @@ class RoleController extends Controller
      * @param  StoreRoleRequest  $request
      *
      * @return mixed
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @throws \Throwable
      */
     public function store(StoreRoleRequest $request)
@@ -98,7 +98,7 @@ class RoleController extends Controller
      * @param  Role  $role
      *
      * @return mixed
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @throws \Throwable
      */
     public function update(UpdateRoleRequest $request, Role $role)

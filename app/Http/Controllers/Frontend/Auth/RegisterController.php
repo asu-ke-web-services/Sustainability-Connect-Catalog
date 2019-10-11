@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Auth;
+namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
-use App\Events\Frontend\Auth\UserRegistered;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Http\Requests\RegisterRequest;
+use SCCatalog\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Repositories\Frontend\Auth\UserRepository;
 
 /**
  * Class RegisterController.

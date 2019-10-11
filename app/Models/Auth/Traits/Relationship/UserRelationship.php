@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\Auth\Traits\Relationship;
+namespace SCCatalog\Models\Auth\Traits\Relationship;
 
-use App\Models\Auth\SocialAccount;
-use App\Models\Auth\PasswordHistory;
+use SCCatalog\Models\Auth\SocialAccount;
+use SCCatalog\Models\Auth\PasswordHistory;
 
 /**
  * Class UserRelationship.

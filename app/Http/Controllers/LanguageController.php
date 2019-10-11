@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace SCCatalog\Http\Controllers;
 
 /**
  * Class LanguageController.

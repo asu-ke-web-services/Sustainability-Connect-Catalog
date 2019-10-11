@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Auth;
+namespace SCCatalog\Models\Auth;
 
-use App\Models\RecordingModel;
+use SCCatalog\Models\RecordingModel;
 
 /**
  * Class SocialAccount.

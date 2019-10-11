@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Repositories\Backend\Auth;
+namespace SCCatalog\Repositories\Backend\Auth;
 
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Support\Facades\DB;
-use App\Exceptions\GeneralException;
-use App\Repositories\BaseRepository;
-use App\Events\Backend\Auth\User\UserCreated;
-use App\Events\Backend\Auth\User\UserUpdated;
-use App\Events\Backend\Auth\User\UserRestored;
-use App\Events\Backend\Auth\User\UserConfirmed;
+use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Repositories\BaseRepository;
+use SCCatalog\Events\Backend\Auth\User\UserCreated;
+use SCCatalog\Events\Backend\Auth\User\UserUpdated;
+use SCCatalog\Events\Backend\Auth\User\UserRestored;
+use SCCatalog\Events\Backend\Auth\User\UserConfirmed;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Events\Backend\Auth\User\UserDeactivated;
-use App\Events\Backend\Auth\User\UserReactivated;
-use App\Events\Backend\Auth\User\UserUnconfirmed;
-use App\Events\Backend\Auth\User\UserPasswordChanged;
-use App\Notifications\Backend\Auth\UserAccountActive;
-use App\Events\Backend\Auth\User\UserPermanentlyDeleted;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use SCCatalog\Events\Backend\Auth\User\UserDeactivated;
+use SCCatalog\Events\Backend\Auth\User\UserReactivated;
+use SCCatalog\Events\Backend\Auth\User\UserUnconfirmed;
+use SCCatalog\Events\Backend\Auth\User\UserPasswordChanged;
+use SCCatalog\Notifications\Backend\Auth\UserAccountActive;
+use SCCatalog\Events\Backend\Auth\User\UserPermanentlyDeleted;
+use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 /**
  * Class UserRepository.

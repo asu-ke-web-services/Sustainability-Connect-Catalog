@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace SCCatalog\Providers;
 
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = 'SCCatalog\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

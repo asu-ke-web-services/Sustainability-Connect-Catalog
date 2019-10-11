@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\User;
+namespace SCCatalog\Http\Controllers\Frontend\User;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\Frontend\Auth\UserRepository;
-use App\Http\Requests\Frontend\User\UpdateProfileRequest;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Http\Requests\Frontend\User\UpdateProfileRequest;
 
 /**
  * Class ProfileController.
@@ -29,7 +29,7 @@ class ProfileController extends Controller
     /**
      * @param UpdateProfileRequest $request
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function update(UpdateProfileRequest $request)

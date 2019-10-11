@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Auth\Traits\Attribute;
+namespace SCCatalog\Models\Auth\Traits\Attribute;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -24,7 +24,7 @@ trait UserAttribute
             $hash = Hash::make($password);
         }
 
-        // Note: Password Histories are logged from the \App\Observer\User\UserObserver class
+        // Note: Password Histories are logged from the \SCCatalog\Observer\User\UserObserver class
         $this->attributes['password'] = $hash;
     }
 

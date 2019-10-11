@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace SCCatalog\Providers;
 
 use Illuminate\Support\Facades\View;
-use App\Http\Composers\GlobalComposer;
+use SCCatalog\Http\Composers\GlobalComposer;
 use Illuminate\Support\ServiceProvider;
-use App\Http\Composers\Backend\SidebarComposer;
+use SCCatalog\Http\Composers\Backend\SidebarComposer;
 
 /**
  * Class ComposerServiceProvider.

@@ -1,6 +1,6 @@
 <?php
 
-use App\Helpers\General\TimezoneHelper;
+use SCCatalog\Helpers\General\TimezoneHelper;
 
 if (! function_exists('timezone')) {
     /**

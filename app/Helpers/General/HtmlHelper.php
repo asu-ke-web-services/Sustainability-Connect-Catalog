@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\General;
+namespace SCCatalog\Helpers\General;
 
 use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\Routing\UrlGenerator;

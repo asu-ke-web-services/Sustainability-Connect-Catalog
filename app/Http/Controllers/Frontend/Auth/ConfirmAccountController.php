@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Auth;
+namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\Frontend\Auth\UserRepository;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 /**
  * Class ConfirmAccountController.
@@ -29,7 +29,7 @@ class ConfirmAccountController extends Controller
     /**
      * @param $token
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function confirm($token)
@@ -42,7 +42,7 @@ class ConfirmAccountController extends Controller
     /**
      * @param $uuid
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function sendConfirmationEmail($uuid)

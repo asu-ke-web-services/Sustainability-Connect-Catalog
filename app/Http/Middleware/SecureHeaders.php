@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace SCCatalog\Http\Middleware;
 
 use Closure;
 

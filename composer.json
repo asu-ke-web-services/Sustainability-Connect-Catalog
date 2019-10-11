@@ -1,12 +1,7 @@
 {
-    "name": "rappasoft/laravel-boilerplate",
+    "name": "gios-asu/sustainability-connect-catalog",
     "type": "project",
-    "description": "The Laravel Boilerplate Project.",
-    "keywords": [
-        "framework",
-        "laravel",
-        "boilerplate"
-    ],
+    "description": "The Sustainability Connect Catalog.",
     "license": "MIT",
     "require": {
         "php": "^7.2",
@@ -48,7 +43,7 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "SCCatalog\\": "app/"
         }
     },
     "autoload-dev": {

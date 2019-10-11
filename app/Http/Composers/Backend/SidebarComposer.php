@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Composers\Backend;
+namespace SCCatalog\Http\Composers\Backend;
 
 use Illuminate\View\View;
-use App\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Backend\Auth\UserRepository;
 
 /**
  * Class SidebarComposer.

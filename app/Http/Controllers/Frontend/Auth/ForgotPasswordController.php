@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Auth;
+namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
-use App\Http\Controllers\Controller;
+use SCCatalog\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 /**

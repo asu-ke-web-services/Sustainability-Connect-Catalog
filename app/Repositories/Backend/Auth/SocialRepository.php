@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Backend\Access\User;
+namespace SCCatalog\Repositories\Backend\Access\User;
 
-use App\Models\Auth\User;
-use App\Models\Auth\SocialAccount;
-use App\Exceptions\GeneralException;
-use App\Events\Backend\Auth\User\UserSocialDeleted;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Models\Auth\SocialAccount;
+use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Events\Backend\Auth\User\UserSocialDeleted;
 
 /**
  * Class SocialRepository.

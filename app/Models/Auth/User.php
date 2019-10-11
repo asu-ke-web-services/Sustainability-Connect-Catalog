@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Auth;
+namespace SCCatalog\Models\Auth;
 
-use App\Models\Auth\Traits\Scope\UserScope;
-use App\Models\Auth\Traits\Method\UserMethod;
-use App\Models\Auth\Traits\Attribute\UserAttribute;
-use App\Models\Auth\Traits\Relationship\UserRelationship;
+use SCCatalog\Models\Auth\Traits\Scope\UserScope;
+use SCCatalog\Models\Auth\Traits\Method\UserMethod;
+use SCCatalog\Models\Auth\Traits\Attribute\UserAttribute;
+use SCCatalog\Models\Auth\Traits\Relationship\UserRelationship;
 
 /**
  * Class User.

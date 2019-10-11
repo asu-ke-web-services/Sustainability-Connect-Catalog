@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\User;
+namespace SCCatalog\Http\Controllers\Frontend\User;
 
-use App\Http\Controllers\Controller;
+use SCCatalog\Http\Controllers\Controller;
 
 /**
  * Class AccountController.

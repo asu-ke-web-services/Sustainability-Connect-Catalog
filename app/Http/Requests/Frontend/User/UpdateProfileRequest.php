@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Frontend\User;
+namespace SCCatalog\Http\Requests\Frontend\User;
 
 use Illuminate\Validation\Rule;
-use App\Helpers\Auth\SocialiteHelper;
+use SCCatalog\Helpers\Auth\SocialiteHelper;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**

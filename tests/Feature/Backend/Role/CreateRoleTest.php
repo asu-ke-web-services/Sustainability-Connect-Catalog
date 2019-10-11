@@ -3,9 +3,9 @@
 namespace Tests\Feature\Backend\Role;
 
 use Tests\TestCase;
-use App\Models\Auth\Role;
+use SCCatalog\Models\Auth\Role;
 use Illuminate\Support\Facades\Event;
-use App\Events\Backend\Auth\Role\RoleCreated;
+use SCCatalog\Events\Backend\Auth\Role\RoleCreated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateRoleTest extends TestCase

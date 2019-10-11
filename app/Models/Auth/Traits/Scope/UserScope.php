@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Auth\Traits\Scope;
+namespace SCCatalog\Models\Auth\Traits\Scope;
 
 /**
  * Class UserScope.

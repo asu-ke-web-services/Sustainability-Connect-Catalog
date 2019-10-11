@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Auth;
+namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
 use Illuminate\Http\Request;
-use App\Exceptions\GeneralException;
-use App\Http\Controllers\Controller;
-use App\Events\Frontend\Auth\UserLoggedIn;
-use App\Events\Frontend\Auth\UserLoggedOut;
+use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Events\Frontend\Auth\UserLoggedIn;
+use SCCatalog\Events\Frontend\Auth\UserLoggedOut;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Events\Frontend\Auth;
+namespace SCCatalog\Events\Frontend\Auth;
 
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Queue\SerializesModels;
 
 /**

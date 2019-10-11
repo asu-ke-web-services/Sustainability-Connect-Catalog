@@ -3,17 +3,17 @@
 namespace Tests\Feature\Frontend;
 
 use Tests\TestCase;
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\Role;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use App\Events\Frontend\Auth\UserConfirmed;
-use App\Events\Frontend\Auth\UserRegistered;
+use SCCatalog\Events\Frontend\Auth\UserConfirmed;
+use SCCatalog\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Support\Facades\Notification;
-use App\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Backend\Auth\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 class UserRegistrationTest extends TestCase
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Auth\User;
+namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 
-use App\Models\Auth\User;
-use App\Http\Controllers\Controller;
-use App\Repositories\Backend\Auth\UserRepository;
-use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
-use App\Http\Requests\Backend\Auth\User\UpdateUserPasswordRequest;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
+use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserPasswordRequest;
 
 /**
  * Class UserPasswordController.
@@ -42,7 +42,7 @@ class UserPasswordController extends Controller
      * @param UpdateUserPasswordRequest $request
      * @param User                      $user
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function update(UpdateUserPasswordRequest $request, User $user)

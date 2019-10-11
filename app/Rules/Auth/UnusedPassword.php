@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Rules\Auth;
+namespace SCCatalog\Rules\Auth;
 
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Validation\Rule;
-use App\Repositories\Backend\Auth\UserRepository as BackendUserRepository;
-use App\Repositories\Frontend\Auth\UserRepository as FrontendUserRepository;
+use SCCatalog\Repositories\Backend\Auth\UserRepository as BackendUserRepository;
+use SCCatalog\Repositories\Frontend\Auth\UserRepository as FrontendUserRepository;
 
 /**
  * Class UnusedPassword.

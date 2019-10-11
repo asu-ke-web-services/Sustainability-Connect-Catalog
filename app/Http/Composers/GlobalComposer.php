@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Composers;
+namespace SCCatalog\Http\Composers;
 
 use Illuminate\View\View;
 

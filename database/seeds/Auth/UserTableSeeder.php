@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Database\Seeder;
 
 /**

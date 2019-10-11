@@ -3,8 +3,8 @@
 namespace Tests\Feature\Middleware;
 
 use Tests\TestCase;
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\Role;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Http\Response;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Backend\Auth\User;
+namespace SCCatalog\Events\Backend\Auth\User;
 
 use Illuminate\Queue\SerializesModels;
 

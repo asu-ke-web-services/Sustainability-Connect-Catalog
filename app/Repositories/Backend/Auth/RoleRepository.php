@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories\Backend\Auth;
+namespace SCCatalog\Repositories\Backend\Auth;
 
-use App\Models\Auth\Role;
+use SCCatalog\Models\Auth\Role;
 use Illuminate\Support\Facades\DB;
-use App\Exceptions\GeneralException;
-use App\Repositories\BaseRepository;
-use App\Events\Backend\Auth\Role\RoleCreated;
-use App\Events\Backend\Auth\Role\RoleUpdated;
+use SCCatalog\Exceptions\GeneralException;
+use SCCatalog\Repositories\BaseRepository;
+use SCCatalog\Events\Backend\Auth\Role\RoleCreated;
+use SCCatalog\Events\Backend\Auth\Role\RoleUpdated;
 
 /**
  * Class RoleRepository.

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace SCCatalog\Providers;
 
-use App\Models\Auth\User;
-use App\Observers\User\UserObserver;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Observers\User\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
 /**

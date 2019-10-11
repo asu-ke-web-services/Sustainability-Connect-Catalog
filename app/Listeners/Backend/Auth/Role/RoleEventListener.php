@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Listeners\Backend\Auth\Role;
+namespace SCCatalog\Listeners\Backend\Auth\Role;
 
-use App\Events\Backend\Auth\Role\RoleCreated;
-use App\Events\Backend\Auth\Role\RoleDeleted;
-use App\Events\Backend\Auth\Role\RoleUpdated;
+use SCCatalog\Events\Backend\Auth\Role\RoleCreated;
+use SCCatalog\Events\Backend\Auth\Role\RoleDeleted;
+use SCCatalog\Events\Backend\Auth\Role\RoleUpdated;
 
 /**
  * Class RoleEventListener.
@@ -44,17 +44,17 @@ class RoleEventListener
     {
         $events->listen(
             RoleCreated::class,
-            'App\Listeners\Backend\Auth\Role\RoleEventListener@onCreated'
+            'SCCatalog\Listeners\Backend\Auth\Role\RoleEventListener@onCreated'
         );
 
         $events->listen(
             RoleUpdated::class,
-            'App\Listeners\Backend\Auth\Role\RoleEventListener@onUpdated'
+            'SCCatalog\Listeners\Backend\Auth\Role\RoleEventListener@onUpdated'
         );
 
         $events->listen(
             RoleDeleted::class,
-            'App\Listeners\Backend\Auth\Role\RoleEventListener@onDeleted'
+            'SCCatalog\Listeners\Backend\Auth\Role\RoleEventListener@onDeleted'
         );
     }
 }

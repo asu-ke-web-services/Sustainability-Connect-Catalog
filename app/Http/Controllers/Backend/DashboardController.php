@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace SCCatalog\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use SCCatalog\Http\Controllers\Controller;
 
 /**
  * Class DashboardController.

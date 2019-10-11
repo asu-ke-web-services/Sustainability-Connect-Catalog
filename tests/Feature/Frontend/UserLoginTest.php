@@ -3,10 +3,10 @@
 namespace Tests\Feature\Frontend;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Support\Facades\Event;
-use App\Events\Frontend\Auth\UserLoggedIn;
-use App\Events\Frontend\Auth\UserLoggedOut;
+use SCCatalog\Events\Frontend\Auth\UserLoggedIn;
+use SCCatalog\Events\Frontend\Auth\UserLoggedOut;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Listeners\Backend\Auth\User;
+namespace SCCatalog\Listeners\Backend\Auth\User;
 
-use App\Events\Backend\Auth\User\UserCreated;
-use App\Events\Backend\Auth\User\UserDeleted;
-use App\Events\Backend\Auth\User\UserUpdated;
-use App\Events\Backend\Auth\User\UserRestored;
-use App\Events\Backend\Auth\User\UserConfirmed;
-use App\Events\Backend\Auth\User\UserDeactivated;
-use App\Events\Backend\Auth\User\UserReactivated;
-use App\Events\Backend\Auth\User\UserUnconfirmed;
-use App\Events\Backend\Auth\User\UserSocialDeleted;
-use App\Events\Backend\Auth\User\UserPasswordChanged;
-use App\Events\Backend\Auth\User\UserPermanentlyDeleted;
+use SCCatalog\Events\Backend\Auth\User\UserCreated;
+use SCCatalog\Events\Backend\Auth\User\UserDeleted;
+use SCCatalog\Events\Backend\Auth\User\UserUpdated;
+use SCCatalog\Events\Backend\Auth\User\UserRestored;
+use SCCatalog\Events\Backend\Auth\User\UserConfirmed;
+use SCCatalog\Events\Backend\Auth\User\UserDeactivated;
+use SCCatalog\Events\Backend\Auth\User\UserReactivated;
+use SCCatalog\Events\Backend\Auth\User\UserUnconfirmed;
+use SCCatalog\Events\Backend\Auth\User\UserSocialDeleted;
+use SCCatalog\Events\Backend\Auth\User\UserPasswordChanged;
+use SCCatalog\Events\Backend\Auth\User\UserPermanentlyDeleted;
 
 /**
  * Class UserEventListener.
@@ -116,57 +116,57 @@ class UserEventListener
     {
         $events->listen(
             UserCreated::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onCreated'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onCreated'
         );
 
         $events->listen(
             UserUpdated::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onUpdated'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onUpdated'
         );
 
         $events->listen(
             UserDeleted::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onDeleted'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onDeleted'
         );
 
         $events->listen(
             UserConfirmed::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onConfirmed'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onConfirmed'
         );
 
         $events->listen(
             UserUnconfirmed::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onUnconfirmed'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onUnconfirmed'
         );
 
         $events->listen(
             UserPasswordChanged::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onPasswordChanged'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onPasswordChanged'
         );
 
         $events->listen(
             UserDeactivated::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onDeactivated'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onDeactivated'
         );
 
         $events->listen(
             UserReactivated::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onReactivated'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onReactivated'
         );
 
         $events->listen(
             UserSocialDeleted::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onSocialDeleted'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onSocialDeleted'
         );
 
         $events->listen(
             UserPermanentlyDeleted::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onPermanentlyDeleted'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onPermanentlyDeleted'
         );
 
         $events->listen(
             UserRestored::class,
-            'App\Listeners\Backend\Auth\User\UserEventListener@onRestored'
+            'SCCatalog\Listeners\Backend\Auth\User\UserEventListener@onRestored'
         );
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners\Frontend\Auth;
+namespace SCCatalog\Listeners\Frontend\Auth;
 
-use App\Events\Frontend\Auth\UserLoggedIn;
-use App\Events\Frontend\Auth\UserConfirmed;
-use App\Events\Frontend\Auth\UserLoggedOut;
-use App\Events\Frontend\Auth\UserRegistered;
-use App\Events\Frontend\Auth\UserProviderRegistered;
+use SCCatalog\Events\Frontend\Auth\UserLoggedIn;
+use SCCatalog\Events\Frontend\Auth\UserConfirmed;
+use SCCatalog\Events\Frontend\Auth\UserLoggedOut;
+use SCCatalog\Events\Frontend\Auth\UserRegistered;
+use SCCatalog\Events\Frontend\Auth\UserProviderRegistered;
 
 /**
  * Class UserEventListener.
@@ -82,27 +82,27 @@ class UserEventListener
     {
         $events->listen(
             UserLoggedIn::class,
-            'App\Listeners\Frontend\Auth\UserEventListener@onLoggedIn'
+            'SCCatalog\Listeners\Frontend\Auth\UserEventListener@onLoggedIn'
         );
 
         $events->listen(
             UserLoggedOut::class,
-            'App\Listeners\Frontend\Auth\UserEventListener@onLoggedOut'
+            'SCCatalog\Listeners\Frontend\Auth\UserEventListener@onLoggedOut'
         );
 
         $events->listen(
             UserRegistered::class,
-            'App\Listeners\Frontend\Auth\UserEventListener@onRegistered'
+            'SCCatalog\Listeners\Frontend\Auth\UserEventListener@onRegistered'
         );
 
         $events->listen(
             UserProviderRegistered::class,
-            'App\Listeners\Frontend\Auth\UserEventListener@onProviderRegistered'
+            'SCCatalog\Listeners\Frontend\Auth\UserEventListener@onProviderRegistered'
         );
 
         $events->listen(
             UserConfirmed::class,
-            'App\Listeners\Frontend\Auth\UserEventListener@onConfirmed'
+            'SCCatalog\Listeners\Frontend\Auth\UserEventListener@onConfirmed'
         );
     }
 }

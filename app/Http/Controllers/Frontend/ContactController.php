@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace SCCatalog\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use SCCatalog\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Frontend\Contact\SendContact;
-use App\Http\Requests\Frontend\Contact\SendContactRequest;
+use SCCatalog\Mail\Frontend\Contact\SendContact;
+use SCCatalog\Http\Requests\Frontend\Contact\SendContactRequest;
 
 /**
  * Class ContactController.

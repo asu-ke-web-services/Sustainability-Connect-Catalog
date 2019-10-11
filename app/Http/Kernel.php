@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace SCCatalog\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -17,13 +17,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \App\Http\Middleware\TrustProxies::class,
-        \App\Http\Middleware\CheckForMaintenanceMode::class,
-        \App\Http\Middleware\CheckForReadOnlyMode::class,
+        \SCCatalog\Http\Middleware\TrustProxies::class,
+        \SCCatalog\Http\Middleware\CheckForMaintenanceMode::class,
+        \SCCatalog\Http\Middleware\CheckForReadOnlyMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \App\Http\Middleware\TrimStrings::class,
+        \SCCatalog\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        // \App\Http\Middleware\SecureHeaders::class,
+        // \SCCatalog\Http\Middleware\SecureHeaders::class,
     ];
 
     /**
@@ -33,15 +33,15 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
+            \SCCatalog\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\Session\Middleware\AuthenticateSession::class, // Must be enabled for 'single login' to work
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\LocaleMiddleware::class,
+            \SCCatalog\Http\Middleware\VerifyCsrfToken::class,
+            \SCCatalog\Http\Middleware\LocaleMiddleware::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\ToBeLoggedOut::class,
+            \SCCatalog\Http\Middleware\ToBeLoggedOut::class,
         ],
 
         'api' => [
@@ -64,13 +64,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth' => \SCCatalog\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password_expires' => \App\Http\Middleware\PasswordExpires::class,
+        'guest' => \SCCatalog\Http\Middleware\RedirectIfAuthenticated::class,
+        'password_expires' => \SCCatalog\Http\Middleware\PasswordExpires::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
@@ -88,7 +88,7 @@ class Kernel extends HttpKernel
     protected $middlewarePriority = [
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \App\Http\Middleware\Authenticate::class,
+        \SCCatalog\Http\Middleware\Authenticate::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,

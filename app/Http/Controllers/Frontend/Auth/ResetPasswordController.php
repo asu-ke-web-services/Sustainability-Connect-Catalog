@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Auth;
+namespace SCCatalog\Http\Controllers\Frontend\Auth;
 
 use Illuminate\Support\Str;
-use App\Http\Controllers\Controller;
+use SCCatalog\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use App\Repositories\Frontend\Auth\UserRepository;
-use App\Http\Requests\Frontend\Auth\ResetPasswordRequest;
+use SCCatalog\Repositories\Frontend\Auth\UserRepository;
+use SCCatalog\Http\Requests\Frontend\Auth\ResetPasswordRequest;
 
 /**
  * Class ResetPasswordController.

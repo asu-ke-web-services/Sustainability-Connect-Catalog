@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Auth\User;
+namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 
-use App\Models\Auth\User;
-use App\Http\Controllers\Controller;
-use App\Events\Backend\Auth\User\UserDeleted;
-use App\Repositories\Backend\Auth\RoleRepository;
-use App\Repositories\Backend\Auth\UserRepository;
-use App\Repositories\Backend\Auth\PermissionRepository;
-use App\Http\Requests\Backend\Auth\User\StoreUserRequest;
-use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
-use App\Http\Requests\Backend\Auth\User\UpdateUserRequest;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Events\Backend\Auth\User\UserDeleted;
+use SCCatalog\Repositories\Backend\Auth\RoleRepository;
+use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Repositories\Backend\Auth\PermissionRepository;
+use SCCatalog\Http\Requests\Backend\Auth\User\StoreUserRequest;
+use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
+use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserRequest;
 
 /**
  * Class UserController.
@@ -114,7 +114,7 @@ class UserController extends Controller
      * @param UpdateUserRequest $request
      * @param User              $user
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @throws \Throwable
      * @return mixed
      */

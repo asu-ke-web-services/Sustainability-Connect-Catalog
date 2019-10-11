@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Auth\User;
+namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 
-use App\Models\Auth\User;
-use App\Http\Controllers\Controller;
-use App\Repositories\Backend\Auth\UserRepository;
-use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
 
 /**
  * Class UserStatusController.
@@ -52,7 +52,7 @@ class UserStatusController extends Controller
      * @param User              $user
      * @param                   $status
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function mark(ManageUserRequest $request, User $user, $status)
@@ -70,7 +70,7 @@ class UserStatusController extends Controller
      * @param ManageUserRequest $request
      * @param User              $deletedUser
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @throws \Throwable
      * @return mixed
      */
@@ -85,7 +85,7 @@ class UserStatusController extends Controller
      * @param ManageUserRequest $request
      * @param User              $deletedUser
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function restore(ManageUserRequest $request, User $deletedUser)

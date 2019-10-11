@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Frontend\Auth;
+namespace SCCatalog\Events\Frontend\Auth;
 
 use Illuminate\Queue\SerializesModels;
 

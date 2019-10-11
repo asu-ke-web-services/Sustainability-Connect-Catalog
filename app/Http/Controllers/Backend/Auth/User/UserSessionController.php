@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Auth\User;
+namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 
-use App\Models\Auth\User;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
 
 /**
  * Class UserSessionController.

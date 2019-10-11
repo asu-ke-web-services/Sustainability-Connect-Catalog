@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\Frontend\Contact;
+namespace SCCatalog\Mail\Frontend\Contact;
 
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;

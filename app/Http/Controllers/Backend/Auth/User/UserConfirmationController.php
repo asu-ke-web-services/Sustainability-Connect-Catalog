@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Auth\User;
+namespace SCCatalog\Http\Controllers\Backend\Auth\User;
 
-use App\Models\Auth\User;
-use App\Http\Controllers\Controller;
-use App\Repositories\Backend\Auth\UserRepository;
-use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use SCCatalog\Models\Auth\User;
+use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Repositories\Backend\Auth\UserRepository;
+use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
+use SCCatalog\Notifications\Frontend\Auth\UserNeedsConfirmation;
 
 /**
  * Class UserConfirmationController.
@@ -52,7 +52,7 @@ class UserConfirmationController extends Controller
      * @param ManageUserRequest $request
      * @param User              $user
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function confirm(ManageUserRequest $request, User $user)
@@ -66,7 +66,7 @@ class UserConfirmationController extends Controller
      * @param ManageUserRequest $request
      * @param User              $user
      *
-     * @throws \App\Exceptions\GeneralException
+     * @throws \SCCatalog\Exceptions\GeneralException
      * @return mixed
      */
     public function unconfirm(ManageUserRequest $request, User $user)

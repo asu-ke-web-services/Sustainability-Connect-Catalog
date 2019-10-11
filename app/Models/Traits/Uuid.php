@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace SCCatalog\Models\Traits;
 
 use Ramsey\Uuid\Uuid as PackageUuid;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend\Auth\Role;
+namespace SCCatalog\Http\Requests\Backend\Auth\Role;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;

@@ -2,7 +2,7 @@
 
 use Faker\Generator;
 use Ramsey\Uuid\Uuid;
-use App\Models\Auth\User;
+use SCCatalog\Models\Auth\User;
 use Illuminate\Support\Str;
 
 /*

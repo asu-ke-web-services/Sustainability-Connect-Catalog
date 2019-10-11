@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\Auth;
+namespace SCCatalog\Models\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
-use App\Models\Auth\Traits\Method\RoleMethod;
+use SCCatalog\Models\Auth\Traits\Method\RoleMethod;
 use Spatie\Permission\Models\Role as SpatieRole;
 use Altek\Accountant\Recordable as RecordableTrait;
 

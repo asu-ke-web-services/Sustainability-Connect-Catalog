@@ -1,6 +1,6 @@
 <?php
 
-use App\Helpers\General\HtmlHelper;
+use SCCatalog\Helpers\General\HtmlHelper;
 
 if (! function_exists('style')) {
     /**

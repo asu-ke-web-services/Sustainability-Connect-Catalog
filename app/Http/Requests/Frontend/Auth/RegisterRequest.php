@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace SCCatalog\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;

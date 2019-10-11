@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Frontend\Contact;
+namespace SCCatalog\Http\Requests\Frontend\Contact;
 
 use Illuminate\Foundation\Http\FormRequest;
 

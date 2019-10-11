@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Backend\Auth\Role;
+namespace SCCatalog\Events\Backend\Auth\Role;
 
 use Illuminate\Queue\SerializesModels;
 

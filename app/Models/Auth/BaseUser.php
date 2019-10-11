@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models\Auth;
+namespace SCCatalog\Models\Auth;
 
-use App\Models\Traits\Uuid;
+use SCCatalog\Models\Traits\Uuid;
 use Altek\Eventually\Eventually;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
 use Lab404\Impersonate\Models\Impersonate;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Auth\Traits\SendUserPasswordReset;
+use SCCatalog\Models\Auth\Traits\SendUserPasswordReset;
 use Altek\Accountant\Recordable as RecordableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

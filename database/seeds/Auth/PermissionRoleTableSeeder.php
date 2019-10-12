@@ -72,7 +72,7 @@ class PermissionRoleTableSeeder extends Seeder
 
         // Assign Permissions to other Roles
         // Note: Admin (User 1) Has all permissions via a gate in the AuthServiceProvider
-        // $user->givePermissionTo('view backend');
+        // $user->givePermissionTo('view admin dashboard');
 
         // Assign Permissions to other Roles
         $worker->givePermissionTo(Permission::all());

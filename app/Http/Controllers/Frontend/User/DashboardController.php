@@ -14,6 +14,25 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('frontend.user.dashboard');
+        if (auth()->user() !== null) {
+            $submittedProjects = auth()->user()->submittedProjects;
+            $submittedInternships = auth()->user()->submittedInternships;
+            $followedProjects = auth()->user()->followedProjects;
+            $followedInternships = auth()->user()->followedInternships;
+            $participatingInProjects = auth()->user()->participatingInProjects;
+            $participatingInInternships = auth()->user()->participatingInInternships;
+            $projectApplications = auth()->user()->projectApplications;
+            $internshipApplications = auth()->user()->internshipApplications;
+        }
+
+        return view('frontend.user.dashboard')
+            ->with('submittedProjects', $submittedProjects)
+            ->with('submittedInternships', $submittedInternships)
+            ->with('followedProjects', $followedProjects)
+            ->with('followedInternships', $followedInternships)
+            ->with('participatingInProjects', $participatingInProjects)
+            ->with('participatingInInternships', $participatingInInternships)
+            ->with('projectApplications', $projectApplications)
+            ->with('internshipApplications', $internshipApplications);
     }
 }

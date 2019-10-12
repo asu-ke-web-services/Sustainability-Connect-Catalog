@@ -28,6 +28,17 @@ class UserStatusController extends Controller
     /**
      * @param ManageUserRequest $request
      *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getActivePaginated(ManageUserRequest $request)
+    {
+        return view('backend.auth.user.active')
+            ->withUsers($this->userRepository->getActivePaginated(25, 'created_at', 'desc'));
+    }
+
+    /**
+     * @param ManageUserRequest $request
+     *
      * @return mixed
      */
     public function getDeactivated(ManageUserRequest $request)

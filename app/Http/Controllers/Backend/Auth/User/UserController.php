@@ -11,6 +11,10 @@ use SCCatalog\Repositories\Auth\Backend\PermissionRepository;
 use SCCatalog\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use SCCatalog\Http\Requests\Backend\Auth\User\UpdateUserRequest;
+use SCCatalog\Repositories\Reference\AffiliationRepository;
+use SCCatalog\Repositories\Reference\StudentDegreeLevelRepository;
+use SCCatalog\Repositories\Reference\UserTypeRepository;
+use SCCatalog\Repositories\Organization\OrganizationRepository;
 
 /**
  * Class UserController.
@@ -39,8 +43,14 @@ class UserController extends Controller
      */
     public function index(ManageUserRequest $request)
     {
-        return view('backend.auth.user.index')
-            ->withUsers($this->userRepository->getActivePaginated(25, 'id', 'asc'));
+        $search = '';
+        if ($request->has('search')) {
+            $search = $request->get('search');
+        }
+
+        return view('backend.auth.user.all')
+            ->withUsers($this->userRepository->getAllPaginated(25, $search, 'created_at', 'desc'))
+            ->with('searchRequest', (object) ['search' => $search]);
     }
 
     /**
@@ -50,9 +60,20 @@ class UserController extends Controller
      *
      * @return mixed
      */
-    public function create(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository)
-    {
+    public function create(
+        ManageUserRequest $request,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository,
+        AffiliationRepository $affiliationRepository,
+        OrganizationRepository $organizationRepository,
+        StudentDegreeLevelRepository $studentDegreeLevelRepository,
+        UserTypeRepository $userTypeRepository
+    ) {
         return view('backend.auth.user.create')
+            ->with('affiliations', $affiliationRepository->where('access_control', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('studentDegreeLevels', $studentDegreeLevelRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('userTypes', $userTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
             ->withRoles($roleRepository->with('permissions')->get(['id', 'name']))
             ->withPermissions($permissionRepository->get(['id', 'name']));
     }
@@ -62,20 +83,11 @@ class UserController extends Controller
      *
      * @throws \Throwable
      * @return mixed
+     * @throws \Throwable
      */
     public function store(StoreUserRequest $request)
     {
-        $this->userRepository->create($request->only(
-            'first_name',
-            'last_name',
-            'email',
-            'password',
-            'active',
-            'confirmed',
-            'confirmation_email',
-            'roles',
-            'permissions'
-        ));
+        $this->userRepository->create($request->all());
 
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.created'));
     }
@@ -88,6 +100,13 @@ class UserController extends Controller
      */
     public function show(ManageUserRequest $request, User $user)
     {
+        $user->loadMissing(
+            'affiliations',
+            'organization',
+            'studentDegreeLevel',
+            'userType'
+        );
+
         return view('backend.auth.user.show')
             ->withUser($user);
     }
@@ -100,14 +119,26 @@ class UserController extends Controller
      *
      * @return mixed
      */
-    public function edit(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository, User $user)
-    {
+    public function edit(
+        ManageUserRequest $request,
+        RoleRepository $roleRepository,
+        PermissionRepository $permissionRepository,
+        AffiliationRepository $affiliationRepository,
+        OrganizationRepository $organizationRepository,
+        StudentDegreeLevelRepository $studentDegreeLevelRepository,
+        UserTypeRepository $userTypeRepository,
+        User $user
+    ) {
         return view('backend.auth.user.edit')
             ->withUser($user)
             ->withRoles($roleRepository->get())
             ->withUserRoles($user->roles->pluck('name')->all())
             ->withPermissions($permissionRepository->get(['id', 'name']))
-            ->withUserPermissions($user->permissions->pluck('name')->all());
+            ->withUserPermissions($user->permissions->pluck('name')->all())
+            ->with('affiliations', $affiliationRepository->where('access_control', 1)->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('organizations', $organizationRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('studentDegreeLevels', $studentDegreeLevelRepository->get(['id', 'name'])->pluck('name', 'id')->toArray())
+            ->with('userTypes', $userTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 
     /**
@@ -120,13 +151,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->userRepository->update($user, $request->only(
-            'first_name',
-            'last_name',
-            'email',
-            'roles',
-            'permissions'
-        ));
+        $this->userRepository->update($user, $request->all());
 
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.updated'));
     }

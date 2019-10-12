@@ -3,6 +3,7 @@
 namespace SCCatalog\Http\Controllers\Frontend\User;
 
 use SCCatalog\Http\Controllers\Controller;
+use SCCatalog\Repositories\Lookup\UserTypeRepository;
 
 /**
  * Class AccountController.
@@ -10,10 +11,12 @@ use SCCatalog\Http\Controllers\Controller;
 class AccountController extends Controller
 {
     /**
+     * @param UserTypeRepository $userTypeRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(UserTypeRepository $userTypeRepository)
     {
-        return view('frontend.user.account');
+        return view('frontend.user.account')
+        ->with('userTypes', $userTypeRepository->get(['id', 'name'])->pluck('name', 'id')->toArray());
     }
 }

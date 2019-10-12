@@ -37,11 +37,36 @@ class UserRepository extends BaseRepository
     /**
      * @return mixed
      */
+    public function getActiveCount()
+    {
+        return $this->model
+            ->active()
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
     public function getUnconfirmedCount() : int
     {
         return $this->model
             ->where('confirmed', false)
             ->count();
+    }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getAllPaginated($paged = 25, $search = '', $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
+    {
+        return $this->model
+            ->search($search)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
     }
 
     /**
@@ -93,6 +118,22 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getNeedsAffiliationReviewPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
+    {
+        return $this->model
+            ->with('roles', 'permissions', 'providers')
+            ->needsAffiliationReview()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
      * @param array $data
      *
      * @throws \Exception
@@ -110,7 +151,23 @@ class UserRepository extends BaseRepository
                 'active' => isset($data['active']) && $data['active'] === '1',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed' => isset($data['confirmed']) && $data['confirmed'] === '1',
+                'access_validated' => $data['access_validated'] ?? 0,
+                'user_type_id' => $data['user_type_id'] ?? null,
+                'student_degree_level_id' => $data['student_degree_level_id'] ?? null,
+                'degree_program' => $data['degree_program'] ?? null,
+                'graduation_date' => $data['graduation_date'] ?? null,
+                'phone' => $data['phone'] ?? null,
+                'research_interests' => $data['research_interests'] ?? null,
+                'department' => $data['department'] ?? null,
+                'organization_id' => $data['organization_id'] ?? null,
             ]);
+
+            // attach Affiliations
+            if (isset($data['affiliations'])) {
+                foreach ($data['affiliations'] as $affiliation) {
+                    $user->affiliations()->attach($affiliation);
+                }
+            }
 
             // See if adding any additional permissions
             if (! isset($data['permissions']) || ! count($data['permissions'])) {
@@ -159,15 +216,31 @@ class UserRepository extends BaseRepository
             $data['permissions'] = [];
         }
 
+        $user->loadMissing(
+            'affiliations'
+        );
+
         return DB::transaction(function () use ($user, $data) {
             if ($user->update([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
+                'access_validated' => $data['access_validated'] ?? 0,
+                'user_type_id' => $data['user_type_id'] ?? null,
+                'student_degree_level_id' => $data['student_degree_level_id'] ?? null,
+                'degree_program' => $data['degree_program'] ?? null,
+                'graduation_date' => $data['graduation_date'] ?? null,
+                'phone' => $data['phone'] ?? null,
+                'research_interests' => $data['research_interests'] ?? null,
+                'department' => $data['department'] ?? null,
+                'organization_id' => $data['organization_id'] ?? null,
             ])) {
                 // Add selected roles/permissions
                 $user->syncRoles($data['roles']);
                 $user->syncPermissions($data['permissions']);
+
+                // sync Affiliations
+                $user->affiliations()->sync(array_filter($data['affiliations'] ?? []) ?? null);
 
                 event(new UserUpdated($user));
 

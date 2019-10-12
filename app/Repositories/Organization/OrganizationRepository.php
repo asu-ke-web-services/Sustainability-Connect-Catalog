@@ -12,11 +12,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class OrganizationRepository extends BaseRepository
 {
     /**
-     * Configure the Model
-     **/
-    public function model()
+     * OrganizationRepository constructor.
+     *
+     * @param  Organization  $model
+     */
+    public function __construct(Organization $model)
     {
-        return Organization::class;
+        $this->model = $model;
     }
 
     /**

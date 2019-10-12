@@ -42,11 +42,67 @@ return [
             'logs' => 'Logs',
         ],
 
+        'opportunity' => [
+            'title' => 'Opportunity',
+            'filtered_views' => 'More Views',
+
+            'internships' => [
+                'all' => 'All Internships',
+                'active' => 'Active Internships',
+                'create' => 'Create Internship',
+                'inactive' => 'Inactive Internships',
+                'deleted' => 'Deleted Internships',
+                'edit' => 'Edit Internship',
+                'add_attachment' => 'Upload Internship Attachment',
+                'management' => 'Internship Management',
+                'main' => 'Internships',
+                'view' => 'View Internship',
+                'import_review' => 'Cleanup Imported Internships',
+            ],
+
+            'projects' => [
+                'all' => 'All Projects',
+                'active' => 'Active Listings',
+                'archived' => 'Archived Projects',
+                'expired' => 'Expired Listings',
+                'invalid_open' => 'Invalid Open Projects',
+                'future' => 'Future Listings',
+                'completed' => 'Completed Projects',
+                'create' => 'Create Project',
+                'deleted' => 'Deleted Projects',
+                'edit' => 'Edit Project',
+                'add_attachment' => 'Upload Project Attachment',
+                'management' => 'Project Management',
+                'main' => 'Projects',
+                'view' => 'View Project',
+                'import_review' => 'Cleanup Imported Projects',
+                'reviews' => 'Review Project Proposals',
+                'search' => 'Search Projects',
+            ],
+        ],
+
+        'organization' => [
+            'all' => 'All Organizations',
+            'active' => 'Active Organizations',
+            'inactive' => 'Inactive Organizations',
+            'create' => 'Create Organization',
+            'deleted' => 'Deleted Organizations',
+            'edit' => 'Edit Organization',
+            'management' => 'Organization Management',
+            'main' => 'Organizations',
+            'filtered_views' => 'More Views',
+        ],
+
+        'report' => [
+            'active_users' => 'Active Organizations',
+        ],
+
         'sidebar' => [
             'dashboard' => 'Dashboard',
             'general' => 'General',
             'history' => 'History',
             'system' => 'System',
+            'catalog' => 'Catalog',
         ],
     ],
 

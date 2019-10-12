@@ -13,6 +13,31 @@ return [
     */
 
     'backend' => [
+        'opportunity' => [
+            'internships' => [
+                'delete_internship' => 'Are you sure you want to delete this internship?',
+                'delete_internship_confirm' => 'Are you sure you want to delete this internship permanently? Anywhere in the application that references this internship\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+                'no_archived' => 'There are no archived internships.',
+                'no_deleted' => 'There are no deleted internships.',
+                'restore_internship_confirm' => 'Restore this internship to its original state?',
+            ],
+            'projects' => [
+                'delete_project' => 'Are you sure you want to delete this project?',
+                'delete_project_confirm' => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+                'no_archived' => 'There are no archived projects.',
+                'no_deleted' => 'There are no deleted projects.',
+                'no_reviews' => 'There are no project proposals to review.',
+                'restore_project_confirm' => 'Restore this project to its original state?',
+            ],
+        ],
+        'organization' => [
+            'delete_organization_confirm' => 'Are you sure you want to delete this project permanently? Anywhere in the application that references this project\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_archived' => 'There are no archived organizations.',
+            'no_active' => 'There are no active organizations.',
+            'no_inactive' => 'There are no inactive organizations.',
+            'no_deleted' => 'There are no deleted organizations.',
+            'restore_organization_confirm' => 'Restore this organization to its original state?',
+        ],
         'access' => [
             'users' => [
                 'delete_user_confirm' => 'Are you sure you want to delete this user permanently? Anywhere in the application that references this user\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
@@ -26,6 +51,9 @@ return [
         'dashboard' => [
             'title' => 'Dashboard',
             'welcome' => 'Welcome',
+            'new_user_accounts' => 'New Users Accounts To Approve Access to Restricted Opportunities',
+            'projects_under_review' => 'Projects Under Review',
+            'all_active_project_members' => 'All Active Project Members',
         ],
 
         'general' => [

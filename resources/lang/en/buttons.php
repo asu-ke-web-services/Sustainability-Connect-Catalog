@@ -28,6 +28,18 @@ return [
                 'unlink' => 'Unlink',
             ],
         ],
+        'opportunity' => [
+            'internship' => [
+                'archive' => 'Archive',
+                'delete_permanently' => 'Delete Permanently',
+                'restore' => 'Restore Internship',
+            ],
+            'project' => [
+                'archive' => 'Archive',
+                'delete_permanently' => 'Delete Permanently',
+                'restore' => 'Restore Project',
+            ],
+        ],
     ],
 
     'emails' => [
@@ -42,6 +54,7 @@ return [
         'continue' => 'Continue',
 
         'crud' => [
+            'clone' => 'Clone',
             'create' => 'Create',
             'delete' => 'Delete',
             'edit' => 'Edit',
@@ -50,6 +63,7 @@ return [
         ],
 
         'save' => 'Save',
+        'submit' => 'Submit',
         'view' => 'View',
     ],
 ];

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import $ from 'jquery';
 import 'popper.js'; // Required for BS4
 import 'bootstrap';
+import moment from 'moment';
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -18,6 +19,9 @@ import 'bootstrap';
 window.$ = window.jQuery = $;
 window.Swal = Swal;
 window._ = _; // Lodash
+
+window.moment = moment;
+require('tempusdominus-bootstrap-4');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

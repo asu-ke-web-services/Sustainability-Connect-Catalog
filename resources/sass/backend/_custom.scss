@@ -1,0 +1,24 @@
+// Here you can add other styles
+@import '~simple-line-icons/scss/simple-line-icons';
+
+@import "~selectize-bootstrap4-theme/scss/selectize.bootstrap4";
+
+@import "~datatables.net-bs4/css/dataTables.bootstrap4";
+
+// Fix mobile footer
+.app-footer {
+    flex: 0 0;
+    padding-top: map-get($spacers, 3);
+    padding-bottom: map-get($spacers, 3);
+}
+
+// core overrides
+$navbar-brand-logo: url('/img/logo-white.png');
+
+.app-header {
+    background-color: $maroon;
+}
+
+.navbar-nav .nav-link {
+    color: $white;
+}

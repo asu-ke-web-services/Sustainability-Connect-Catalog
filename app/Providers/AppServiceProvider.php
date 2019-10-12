@@ -3,6 +3,7 @@
 namespace SCCatalog\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,6 +39,15 @@ class AppServiceProvider extends ServiceProvider
          *
          * These will be overridden by LocaleMiddleware if the session local is set
          */
+
+        Relation::morphMap([
+            'Address' => \SCCatalog\Models\Address\Address::class,
+            'Note' => \SCCatalog\Models\Note\Note::class,
+            'Organization' => \SCCatalog\Models\Organization\Organization::class,
+            'Internship' => \SCCatalog\Models\Opportunity\Internship::class,
+            'Project' => \SCCatalog\Models\Opportunity\Project::class,
+            'User' => \SCCatalog\Models\Auth\User::class,
+        ]);
 
         // setLocale for php. Enables ->formatLocalized() with localized values for dates
         setlocale(LC_TIME, config('app.locale_php'));

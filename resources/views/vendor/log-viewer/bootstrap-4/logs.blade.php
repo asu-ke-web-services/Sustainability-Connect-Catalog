@@ -15,7 +15,7 @@
 
     <div class="card">
         <div class="card-header">
-            {{ __('menus.backend.log-viewer.logs') }}
+            @lang('menus.backend.log-viewer.logs')
         </div><!-- box-header -->
 
         <div class="card-body">
@@ -75,7 +75,7 @@
                     @else
                         <tr>
                             <td colspan="11" class="text-center">
-                                <span class="badge badge-default">{{ __('log-viewer::general.empty-logs') }}</span>
+                                <span class="badge badge-default">@lang('log-viewer::general.empty-logs')</span>
                             </td>
                         </tr>
                     @endif

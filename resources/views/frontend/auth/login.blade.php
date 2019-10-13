@@ -1,8 +1,9 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.asu')
 
 @section('title', app_name() . ' | ' . __('labels.frontend.auth.login_box_title'))
 
 @section('content')
+<div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col col-sm-8 align-self-center">
             <div class="card">
@@ -88,10 +89,5 @@
             </div><!--card-->
         </div><!-- col-md-8 -->
     </div><!-- row -->
+</div>
 @endsection
-
-@push('after-scripts')
-    @if(config('access.captcha.login'))
-        @captchaScripts
-    @endif
-@endpush

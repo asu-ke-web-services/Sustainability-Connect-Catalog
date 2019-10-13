@@ -1,143 +1,283 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.coreui')
 
-@section('title', app_name() . ' | ' . __('navs.frontend.dashboard') )
+@section('title', app_name() . ' | ' . __('strings.backend.dashboard.title'))
 
 @section('content')
-    <div class="row mb-4">
-        <div class="col">
-            <div class="card">
+@unless (count($submittedProjects) || count($followedProjects) || count($participatingInProjects) || count($submittedInternships) || count($followedInternships) || count($participatingInInternships))
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="clearfix">
+                    <h4 class="pt-3">No opportunities to report.</h4>
+                    <p class="text-muted">You are not following or participating in any opportunities.</p>
+                    <a class="btn btn-info" href="{{ route('frontend.opportunity.project.public.active') }}" role="button">Browse Projects</a>
+                    <a class="btn btn-warning" href="{{ route('frontend.opportunity.internship.public.active') }}" role="button">Browse Internships</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endunless
+
+@if (count($submittedProjects) || count($followedProjects) || count($participatingInProjects))
+    <h3>Projects</h3>
+    @if (count($submittedProjects))
+    {{-- User's Submitted Projects --}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-accent-info">
                 <div class="card-header">
-                    <strong>
-                        <i class="fas fa-tachometer-alt"></i> @lang('navs.frontend.dashboard')
-                    </strong>
+                    <strong>Your Recent Project Submissions</strong>
                 </div><!--card-header-->
-
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col col-sm-4 order-1 order-sm-2  mb-4">
-                            <div class="card mb-4 bg-light">
-                                <img class="card-img-top" src="{{ $logged_in_user->picture }}" alt="Profile Picture">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Submitted</th>
+                            <th>Updated Last</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($submittedProjects as $project)
+                            <tr>
+                                <td>{!! $project->name !!}</td>
+                                <td>{!! $project->status->name ?? '' !!}</td>
+                                <td>{!! $project->created_at !!}</td>
+                                <td>{!! $project->updated_at !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.project.private.show', $project) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.print', $project) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row-->
+    @endif
 
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        {{ $logged_in_user->name }}<br/>
-                                    </h4>
+    @if (count($followedProjects))
+    {{-- Following Projects --}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-accent-info">
+                <div class="card-header">
+                    <strong>Projects You're Following</strong>
+                </div><!--card-header-->
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Submitted</th>
+                            <th>Updated Last</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($followedProjects as $project)
+                            <tr>
+                                <td>{!! $project->name !!}</td>
+                                <td>{!! $project->status->name ?? '' !!}</td>
+                                <td>{!! $project->created_at !!}</td>
+                                <td>{!! $project->updated_at !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.project.public.show', $project) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.print', $project) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row-->
+    @endif
 
-                                    <p class="card-text">
-                                        <small>
-                                            <i class="fas fa-envelope"></i> {{ $logged_in_user->email }}<br/>
-                                            <i class="fas fa-calendar-check"></i> @lang('strings.frontend.general.joined') {{ timezone()->convertToLocal($logged_in_user->created_at, 'F jS, Y') }}
-                                        </small>
-                                    </p>
+    @if (count($participatingInProjects))
+    {{-- Projects that User is member of --}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-accent-info">
+                <div class="card-header">
+                    <strong>Your Active Projects</strong>
+                </div><!--card-header-->
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Your Role</th>
+                            <th>Project Status</th>
+                            <th>Start Date</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($participatingInProjects as $project)
+                            <tr>
+                                <td>{!! $project->name !!}</td>
+                                <td>{!! $project->supervisorUser->full_name ?? null !!}</td>
+                                <td>{!! $project->status->name !!}</td>
+                                <td>{!! $project->opportunity_start_at !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.project.private.show', $project) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.public.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        <a href="{{ route('frontend.opportunity.project.private.edit', $project) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.project.private.print', $project) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row-->
+    @endif
+@endif
 
-                                    <p class="card-text">
+@if (count($submittedInternships) || count($followedInternships) || count($participatingInInternships))
+    <h3>Internships</h3>
+    {{-- User's Submitted Internships --}}
+    @if (count($submittedInternships))
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-accent-warning">
+                <div class="card-header">
+                    <strong>Your Recent Internship Submissions</strong>
+                </div><!--card-header-->
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Submitted</th>
+                            <th>Updated Last</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($submittedInternships as $internship)
+                            <tr>
+                                <td>{!! $internship->name !!}</td>
+                                <td>{!! $internship->status->name ?? '' !!}</td>
+                                <td>{!! $internship->created_at !!}</td>
+                                <td>{!! $internship->updated_at !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.internship.private.show', $internship) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.public.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.print', $internship) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row-->
+    @endif
 
-                                        <a href="{{ route('frontend.user.account')}}" class="btn btn-info btn-sm mb-1">
-                                            <i class="fas fa-user-circle"></i> @lang('navs.frontend.user.account')
-                                        </a>
+    @if (count($followedInternships))
+    {{-- Following Internships --}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-accent-warning">
+                <div class="card-header">
+                    <strong>Internships You're Following</strong>
+                </div><!--card-header-->
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Submitted</th>
+                            <th>Updated Last</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($followedInternships as $internship)
+                            <tr>
+                                <td>{!! $internship->name !!}</td>
+                                <td>{!! $internship->status->name ?? '' !!}</td>
+                                <td>{!! $internship->created_at !!}</td>
+                                <td>{!! $internship->updated_at !!}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <a href="{{ route('frontend.opportunity.internship.public.show', $internship) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.public.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.edit', $internship) }}" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')"></i></a> --}}
+                                        {{-- <a href="{{ route('frontend.opportunity.internship.private.print', $internship) }}" class="btn btn-secondary"><i class="fas fa-print" data-toggle="tooltip" data-placement="top" title="Print View"></i></a> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row-->
+    @endif
 
-                                        @can('view admin dashboard')
-                                            &nbsp;<a href="{{ route('admin.dashboard')}}" class="btn btn-danger btn-sm mb-1">
-                                                <i class="fas fa-user-secret"></i> @lang('navs.frontend.user.administration')
-                                            </a>
-                                        @endcan
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="card mb-4">
-                                <div class="card-header">Header</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Info card title</h4>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div><!--card-->
-                        </div><!--col-md-4-->
-
-                        <div class="col-md-8 order-2 order-sm-1">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Item
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Item
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Item
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Item
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-
-                                <div class="w-100"></div>
-
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Item
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Item
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-                            </div><!--row-->
-                        </div><!--col-md-8-->
-                    </div><!-- row -->
-                </div> <!-- card-body -->
-            </div><!-- card -->
-        </div><!-- row -->
-    </div><!-- row -->
+    @if (count($participatingInInternships))
+    {{-- Internships that User is member of --}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-accent-warning">
+                <div class="card-header">
+                    <strong>Your Active Internships</strong>
+                </div><!--card-header-->
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Your Role</th>
+                            <th>Project Status</th>
+                            <th>Start Date</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($participatingInInternships as $internship)
+                            <tr>
+                                <td>{!! $internship->name !!}</td>
+                                <td>{!! $internship->supervisorUser->full_name ?? null !!}</td>
+                                <td>{!! $internship->status->name !!}</td>
+                                <td>{!! $internship->opportunity_start_at !!}</td>
+                                <td>{!! $internship->frontend_private_action_buttons !!}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row-->
+    @endif
+@endif
 @endsection

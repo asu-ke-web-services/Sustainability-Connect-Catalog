@@ -1,51 +1,70 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.coreui')
 
 @section('content')
-    <div class="row justify-content-center align-items-center mb-3">
-        <div class="col col-sm-10 align-self-center">
-            <div class="card">
-                <div class="card-header">
-                    <strong>
-                        @lang('navs.frontend.user.account')
-                    </strong>
-                </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Profile -->
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <h3 class="profile-username text-center">{{ $logged_in_user->name }}</h3>
 
-                <div class="card-body">
-                    <div role="tabpanel">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a href="#profile" class="nav-link active" aria-controls="profile" role="tab" data-toggle="tab">@lang('navs.frontend.user.profile')</a>
+                        {{-- <p class="text-muted text-center">{{ $logged_in_user->type->name }}</p> --}}
+{{--
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Followers</b> <a class="pull-right">1,322</a>
                             </li>
-
-                            <li class="nav-item">
-                                <a href="#edit" class="nav-link" aria-controls="edit" role="tab" data-toggle="tab">@lang('labels.frontend.user.profile.update_information')</a>
+                            <li class="list-group-item">
+                                <b>Following</b> <a class="pull-right">543</a>
                             </li>
-
-                            @if($logged_in_user->canChangePassword())
-                                <li class="nav-item">
-                                    <a href="#password" class="nav-link" aria-controls="password" role="tab" data-toggle="tab">@lang('navs.frontend.user.change_password')</a>
-                                </li>
-                            @endif
+                            <li class="list-group-item">
+                                <b>Friends</b> <a class="pull-right">13,287</a>
+                            </li>
                         </ul>
+--}}
+                        <a href="{{ route('frontend.user.account')}}" class="btn btn-primary btn-block"><i class="fa fa-user-circle"></i> @lang('navs.frontend.user.account')</a>
+                        @can('view admin dashboard')
+                            &nbsp;<a href="{{ route ('admin.dashboard')}}" class="btn btn-primary btn-block">
+                                <i class="fa fa-user-secret"></i> @lang('navs.frontend.user.administration')
+                            </a>
+                        @endcan
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
 
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade show active pt-3" id="profile" aria-labelledby="profile-tab">
-                                @include('frontend.user.account.tabs.profile')
-                            </div><!--tab panel profile-->
+            <div class="col-md-9">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#edit" role="tab" aria-controls="edit">Update Information</a></li>
+                    @unless ($logged_in_user->asurite)
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab" aria-controls="password">Change Password</a></li>
+                    @endunless
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="profile" role="tabpanel">
+                        @include('frontend.user.account.tabs.profile')
+                    </div>
+                    <!-- /.tab-pane -->
 
-                            <div role="tabpanel" class="tab-pane fade show pt-3" id="edit" aria-labelledby="edit-tab">
-                                @include('frontend.user.account.tabs.edit')
-                            </div><!--tab panel profile-->
+                    <div class="tab-pane" id="edit" role="tabpanel">
+                        @include('frontend.user.account.tabs.edit')
+                    </div>
+                    <!-- /.tab-pane -->
 
-                            @if($logged_in_user->canChangePassword())
-                                <div role="tabpanel" class="tab-pane fade show pt-3" id="password" aria-labelledby="password-tab">
-                                    @include('frontend.user.account.tabs.change-password')
-                                </div><!--tab panel change password-->
-                            @endif
-                        </div><!--tab content-->
-                    </div><!--tab panel-->
-                </div><!--card body-->
-            </div><!-- card -->
-        </div><!-- col-xs-12 -->
-    </div><!-- row -->
+                    <div class="tab-pane" id="password" role="tabpanel">
+                        @include('frontend.user.account.tabs.change-password')
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
 @endsection

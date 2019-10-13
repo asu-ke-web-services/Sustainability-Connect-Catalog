@@ -1,8 +1,9 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.asu')
 
 @section('title', app_name() . ' | ' . __('labels.frontend.passwords.expired_password_box_title'))
 
 @section('content')
+<div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col col-sm-6 align-self-center">
             <div class="card">

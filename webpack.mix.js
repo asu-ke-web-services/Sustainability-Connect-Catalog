@@ -16,22 +16,38 @@ mix.setPublicPath('public')
     // .options({
     //     processCssUrls: false,
     // })
-    .sass('resources/sass/frontend/app.scss', 'css/frontend.css')
+    .sass('resources/sass/frontend/coreui-leaf/app.scss', 'css/frontend.css')
     .sass('resources/sass/backend/app.scss', 'css/backend.css')
-    .js('resources/js/frontend/app.js', 'js/frontend.js')
+    .js(
+        [
+        'resources/js/frontend/before.js',
+        'resources/js/frontend/app.js',
+        'resources/js/frontend/after.js'
+        ],
+        'js/frontend.js'
+    )
     .js([
         'resources/js/backend/before.js',
         'resources/js/backend/app.js',
         'resources/js/backend/after.js'
     ], 'js/backend.js')
     .extract([
-        // Extract packages from node_modules to vendor.js
         'jquery',
+        'jquery-validation',
         'bootstrap',
-        'popper.js',
+        'popper.js/dist/umd/popper',
         'axios',
         'sweetalert2',
-        'lodash'
+        'lodash',
+        '@fortawesome/fontawesome-svg-core',
+        '@fortawesome/free-brands-svg-icons',
+        '@fortawesome/free-regular-svg-icons',
+        '@fortawesome/free-solid-svg-icons',
+        'datatables.net',
+        'datatables.net-bs4',
+        'datatables.net-fixedheader-bs4',
+        'datatables.net-responsive-bs4',
+        'selectize',
     ])
     .sourceMaps();
 

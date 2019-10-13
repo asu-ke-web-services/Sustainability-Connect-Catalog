@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', app_name())</title>
-    <meta name="description" content="@yield('meta_description', 'Laravel Boilerplate')">
-    <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+    <meta name="description" content="@yield('meta_description', 'Sustainability Connect Catalog')">
+    <meta name="author" content="@yield('meta_author', 'Julie Ann Wrigley Global Institute of Sustainability')">
     @yield('meta')
 
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
@@ -46,7 +46,7 @@
      * // Footer options
      * 1. '.footer-fixed'					- Fixed footer
 --}}
-<body class="app header-fixed sidebar-fixed aside-menu-off-canvas sidebar-lg-show">
+<body class="app header-fixed sidebar-fixed sidebar-md-show aside-menu-off-canvas aside-menu-hidden">
     @include('backend.includes.header')
 
     <div class="app-body">
@@ -69,7 +69,7 @@
             </div><!--container-fluid-->
         </main><!--main-->
 
-        @include('backend.includes.aside')
+        {{-- @include('backend.includes.aside') --}}
     </div><!--app-body-->
 
     @include('backend.includes.footer')
@@ -79,6 +79,7 @@
     {!! script(mix('js/manifest.js')) !!}
     {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/backend.js')) !!}
+    @stack('scripts')
     @stack('after-scripts')
 </body>
 </html>

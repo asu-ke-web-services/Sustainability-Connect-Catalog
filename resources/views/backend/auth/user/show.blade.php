@@ -1,6 +1,6 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
 
-@section('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.view'))
+@section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.view'))
 
 @section('breadcrumb-links')
     @include('backend.auth.user.includes.breadcrumb-links')
@@ -24,11 +24,17 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true"><i class="fas fa-user"></i> @lang('labels.backend.access.users.tabs.titles.overview')</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#{{ $user->userType->slug ?? null}}" role="tab" aria-controls="overview" aria-expanded="true"><i class="fas fa-user"></i> @lang('labels.backend.access.users.tabs.titles.'.$user->userType->slug)</a>
+                    </li>
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="overview" role="tabpanel" aria-expanded="true">
                         @include('backend.auth.user.show.tabs.overview')
+                    </div><!--tab-->
+                    <div class="tab-pane" id="{{ $user->userType->slug ?? null}}" role="tabpanel" aria-expanded="false">
+                        @include('backend.auth.user.show.tabs.'.$user->userType->slug)
                     </div><!--tab-->
                 </div><!--tab-content-->
             </div><!--col-->
@@ -41,7 +47,7 @@
                 <small class="float-right text-muted">
                     <strong>@lang('labels.backend.access.users.tabs.content.overview.created_at'):</strong> {{ timezone()->convertToLocal($user->created_at) }} ({{ $user->created_at->diffForHumans() }}),
                     <strong>@lang('labels.backend.access.users.tabs.content.overview.last_updated'):</strong> {{ timezone()->convertToLocal($user->updated_at) }} ({{ $user->updated_at->diffForHumans() }})
-                    @if($user->trashed())
+                    @if ($user->trashed())
                         <strong>@lang('labels.backend.access.users.tabs.content.overview.deleted_at'):</strong> {{ timezone()->convertToLocal($user->deleted_at) }} ({{ $user->deleted_at->diffForHumans() }})
                     @endif
                 </small>

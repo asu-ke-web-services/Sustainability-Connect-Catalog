@@ -1,6 +1,6 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
 
-@section('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.deleted'))
+@section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.deleted'))
 
 @section('breadcrumb-links')
     @include('backend.auth.user.includes.breadcrumb-links')
@@ -26,6 +26,7 @@
                         <tr>
                             <th>@lang('labels.backend.access.users.table.last_name')</th>
                             <th>@lang('labels.backend.access.users.table.first_name')</th>
+                            <th>@lang('labels.backend.access.users.table.type')</th>
                             <th>@lang('labels.backend.access.users.table.email')</th>
                             <th>@lang('labels.backend.access.users.table.confirmed')</th>
                             <th>@lang('labels.backend.access.users.table.roles')</th>
@@ -37,18 +38,19 @@
                         </thead>
                         <tbody>
 
-                        @if($users->count())
-                            @foreach($users as $user)
+                        @if ($users->count())
+                            @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $user->last_name }}</td>
                                     <td>{{ $user->first_name }}</td>
+                                    <td>{{ ucwords($user->userType->name) }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>@include('backend.auth.user.includes.confirm', ['user' => $user])</td>
-                                    <td>{{ $user->roles_label }}</td>
-                                    <td>{{ $user->permissions_label }}</td>
-                                    <td>@include('backend.auth.user.includes.social-buttons', ['user' => $user])</td>
+                                    <td>{!! $user->confirmed_label !!}</td>
+                                    <td>{!! $user->roles_label !!}</td>
+                                    <td>{!! $user->permissions_label !!}</td>
+                                    <td>{!! $user->social_buttons !!}</td>
                                     <td>{{ $user->updated_at->diffForHumans() }}</td>
-                                    <td>@include('backend.auth.user.includes.actions', ['user' => $user])</td>
+                                    <td>{!! $user->action_buttons !!}</td>
                                 </tr>
                             @endforeach
                         @else

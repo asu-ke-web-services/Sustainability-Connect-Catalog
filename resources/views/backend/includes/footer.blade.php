@@ -1,11 +1,7 @@
 <footer class="app-footer">
-    <div>
-        <strong>@lang('labels.general.copyright') &copy; {{ date('Y') }}
-            <a href="http://laravel-boilerplate.com">
-                @lang('strings.backend.general.boilerplate_link')
-            </a>
-        </strong> @lang('strings.backend.general.all_rights_reserved')
-    </div>
+    <span class="float-left">
+        <strong>@lang('labels.general.copyright') &copy; {{ date('Y') }} <a href="https://sustainability.asu.edu">@lang('Julie Ann Wrigley Global Institute of Sustainability')</a></strong> @lang('strings.backend.general.all_rights_reserved')
+    </span>
 
-    <div class="ml-auto">Theme by <a href="http://coreui.io">CoreUI</a></div>
+    <div class="clearfix"></div>
 </footer>

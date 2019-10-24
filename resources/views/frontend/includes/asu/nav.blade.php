@@ -113,7 +113,7 @@
                 </li>
                 @else
                 <li id="menu-item-20" class="menu-item">
-                    <a title="Dashboard" href="/login" class="menu-item">Dashboard</a>
+                    <a title="Sign In" href="/login" class="menu-item">Sign In</a>
                 </li>
                 @endif
             </ul>

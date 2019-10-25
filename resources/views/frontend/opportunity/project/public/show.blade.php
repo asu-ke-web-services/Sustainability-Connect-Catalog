@@ -8,10 +8,15 @@
 
             <ul class="nav nav-tabs" style="margin-left: 1em;">
                 <li class="active"><a href="#">View</a></li>
-                @can('manage project')
+            @can('view admin dashboard')
+                <li><a href="{{ route('admin.opportunity.project.show', $project) }}">Manage</a></li>
+            @elsecan('manage project')
                 <li><a href="{{ route('frontend.opportunity.project.private.show', $project) }}">Manage</a></li>
+            @endcan
+
+            @can('manage project')
                 <li><a href="{{ route('frontend.opportunity.project.private.edit', $project) }}">Edit</a></li>
-                @endcan
+            @endcan
             </ul>
 
             <div class="col-sm-9">

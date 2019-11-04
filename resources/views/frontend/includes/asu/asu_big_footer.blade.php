@@ -30,7 +30,7 @@
                             <li class="menu-item"><a href="/project/submit">Submit an Opportunity</a></li>
                             <li class="menu-item"><a href="{{ config('app.sc_base_url') }}/about/types-of-opportunities/">Types of Opportunities</a></li>
                             <li class="menu-item"><a href="{{ config('app.sc_base_url') }}/about/faq/">FAQ</a></li>
-                            <li class="menu-item"><a href="https://forms.gle/BiiKy8ofL4zjNDbF6">Report a Problem</a></li>
+                            <li class="menu-item"><a href="https://forms.gle/BiiKy8ofL4zjNDbF6">Report an Error</a></li>
                         </ul>
                     </ul>
                 </div>

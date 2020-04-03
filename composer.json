@@ -25,7 +25,7 @@
     "laracasts/utilities": "^3.0",
     "laravel/framework": "5.7.*",
     "laravel/scout": "^4.0",
-    "laravel/socialite": "^3.0",
+    "laravel/socialite": "^4.3",
     "laravel/tinker": "^1.0",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/flysystem-cached-adapter": "^1.0",

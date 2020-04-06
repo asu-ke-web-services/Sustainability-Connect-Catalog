@@ -19,7 +19,7 @@
     "fideloper/proxy": "^4.0",
     "fntneves/laravel-transactional-events": "^1.4",
     "genealabs/laravel-caffeine": "^0.7.1",
-    "graham-campbell/markdown": "^10.2",
+    "graham-campbell/markdown": "^11.2",
     "guzzlehttp/guzzle": "^6.3",
     "hieu-le/active": "^3.5",
     "laracasts/utilities": "^3.0",

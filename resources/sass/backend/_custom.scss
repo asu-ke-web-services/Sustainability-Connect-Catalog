@@ -24,3 +24,13 @@ $navbar-brand-logo: url('/img/logo-white.png');
 .navbar-nav .nav-link {
     color: $white;
 }
+
+div.form-switch {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+div.form-switch > label {
+    margin-left: 1em;
+}

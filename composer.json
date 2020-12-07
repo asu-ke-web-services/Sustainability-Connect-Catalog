@@ -10,7 +10,7 @@
     "algolia/algoliasearch-client-php": "^1.27",
     "appstract/laravel-blade-directives": "^1.1",
     "arcanedev/log-viewer": "^4.5",
-    "arcanedev/no-captcha": "^5.0",
+    "arcanedev/no-captcha": "^8.1",
     "barryvdh/laravel-dompdf": "^0.8.3",
     "beyondcode/laravel-self-diagnosis": "^1.0",
     "creativeorange/gravatar": "~1.0",

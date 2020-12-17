@@ -34,7 +34,7 @@
     "ckeditor": "^4.12.1",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.1",
-    "datatables.net": "^1.10.20",
+    "datatables.net": "^1.10.22",
     "datatables.net-bs4": "^1.10.20",
     "datatables.net-fixedheader-bs4": "^3.1.6",
     "datatables.net-responsive-bs4": "^2.2.3",

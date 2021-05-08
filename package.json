@@ -55,7 +55,7 @@
     "jvectormap-next": "^3.0.0",
     "ladda": "^1.0.6",
     "laravel-mix": "^2.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "moment": "^2.23.0",
     "moment-timezone": "^0.5.27",
     "morris.js06": "^0.6.4",

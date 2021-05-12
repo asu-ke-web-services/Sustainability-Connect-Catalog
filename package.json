@@ -30,7 +30,7 @@
     "bootstrap-sass": "^3.4.0",
     "bootstrap-slider": "^9.8.0",
     "bootstrap-timepicker": "^0.5.2",
-    "chart.js": "^2.9.2",
+    "chart.js": "^2.9.4",
     "ckeditor": "^4.12.1",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.1",
